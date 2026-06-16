@@ -1,0 +1,31 @@
+
+
+@import "tailwindcss";
+
+:root {
+  --color-primary: 75 30 145;  /* #4B1E91 */
+  --color-gold:    201 168 76; /* #C9A84C */
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+.heading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nav {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
