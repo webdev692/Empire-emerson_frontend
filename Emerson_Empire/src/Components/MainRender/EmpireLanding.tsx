@@ -31,9 +31,11 @@ const HomePage: React.FC = () => {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      <main id="main-content">
-        <Hero />
-        <ThreeCompaniesSection />
+      <main id="main-content" className="min-h-screen bg-transparent">
+        <div className="mx-auto max-w-[480px] px-4 sm:px-6 lg:px-8 py-6">
+          <Hero />
+          <ThreeCompaniesSection />
+        </div>
       </main>
     </div>
   );

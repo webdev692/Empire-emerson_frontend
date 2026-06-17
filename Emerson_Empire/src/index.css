@@ -21,6 +21,8 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: var(--text-main-content);
   line-height: 1.75;
+  background-color: #1f1f1f; /* page background to create narrow centered column */
+  color: #f8f7f5;
 }
 
 /* Headings use Montserrat and the defined scale */

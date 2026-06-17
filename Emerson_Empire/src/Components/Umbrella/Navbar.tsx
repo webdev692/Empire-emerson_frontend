@@ -53,17 +53,23 @@ const Navbar: React.FC = () => {
       {/* Main bar */}
       <div className="flex justify-between items-center shadow-md shadow-white mx-auto px-4 sm:px-2 lg:px-10 w-full h-20 sm:h-20">
 
-        {/* Logo */}
-          <div className="m-1 w-[80%] sm:w-[20%] h-full">
+        {/* Hamburger (left) + Centered title */}
+        <div className="flex items-center gap-3">
+          <button
+            className="md:hidden flex flex-col justify-center items-center gap-1.25 rounded-b-3xl focus-visible:outline-none focus-visible:ring-[#C9A84C] focus-visible:ring-2 w-10 h-10 shrink-0"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+          >
+            <span className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-300 origin-center ${menuOpen ? 'rotate-45 translate-y-1.75' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-300 origin-center ${menuOpen ? '-rotate-45 -translate-y-1.75' : ''}`} />
+          </button>
 
-
-             <img
-              src={EmpersonLogo}
-              alt="Emerson Empire Logo"
-             
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-            />
+          <div className="flex-1 flex justify-center items-center">
+            <p className="text-white text-lg font-semibold tracking-wide">The Emerson Empire Project</p>
           </div>
+        </div>
            
          
           
