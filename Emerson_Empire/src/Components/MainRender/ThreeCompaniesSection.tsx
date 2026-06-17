@@ -1,10 +1,22 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import {
+  BookOpen, GraduationCap, Wallet, Briefcase, Building2, Handshake,
+} from 'lucide-react';
+import {
   EPDGWebp, EPDGAvif, hos, malikbg,
   wiltordb, matheosbg, jonath, kashawn, empire, empireWebp, empireAvif,
   AgencyWebp, AgencyAvif, Logo1, Logo2, Vincent,
 } from '../../assets';
+
+const FIND_PATHS = [
+  { icon: BookOpen,      title: 'Free resources and guidance',              href: '/about'             },
+  { icon: GraduationCap, title: 'Career classes and professional development', href: '/classes'        },
+  { icon: Wallet,        title: 'Financial education and organization',     href: '/agency'            },
+  { icon: Briefcase,     title: 'Internship opportunities',                 href: '/global-internship' },
+  { icon: Building2,     title: 'Business consultation and project support', href: '/contact'          },
+  { icon: Handshake,     title: 'Community or organizational partnership',  href: '/contact'           },
+];
 
 const TEAM_SLIDES = [
   {
@@ -55,32 +67,35 @@ const COMPANIES = [
   {
     title: 'EMERSON PROFESSIONAL DEVELOPMENT GROUP',
     description:
-      'Internships, career readiness, resume and LinkedIn support, interview prep, professional coaching, and workforce development for students and career changers.',
+      'Weekly classes, career readiness, internship programming, professional development, and workforce training.',
     img: Logo2,
     imgWebp: EPDGWebp,
     imgAvif: EPDGAvif,
     alt: 'Emerson Professional Development Group',
     href: '/global-internship',
+    logoCls: '',
   },
   {
     title: 'THE EMERSON EMPIRE',
     description:
-      'The front door for anyone unsure where to start. General intake, resource navigation, community support, and business direction for individuals, families, and organizations.',
+      'Central hub for free resources, community guidance, referrals, and partnership pathways.',
     img: empire,
     imgWebp: empireWebp,
     imgAvif: empireAvif,
     alt: 'The Emerson Empire',
     href: '/about',
+    logoCls: 'scale-[1.35]',
   },
   {
     title: 'THE EMERSON AGENCY LLC',
     description:
-      'Financial education, insurance education, tax readiness, tax preparation, household organization, and small business support for those who need expert guidance.',
+      'Financial education, tax readiness, insurance education, household financial organization, credit and debt education, and small business financial organization.',
     img: Logo1,
     imgWebp: AgencyWebp,
     imgAvif: AgencyAvif,
     alt: 'The Emerson Agency LLC',
     href: '/agency',
+    logoCls: '',
   },
 ];
 
@@ -367,79 +382,122 @@ const ThreeCompaniesSection: React.FC = () => {
   return (
     <section className="bg-white py-0 lg:py-0">
 
-      {/* ── Who We Are ── */}
-      <div className="mt-2 px-6 sm:px-2 lg:px-16 py-16 text-center">
+      {/* ── Find Your Path ── */}
+      <div className="bg-[#12022A] px-6 sm:px-10 lg:px-16 py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl">
+          <p
+            className="mb-3 font-semibold text-[#C9A84C] text-xs sm:text-sm uppercase tracking-[0.3em]"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            Find Your Path
+          </p>
+          <h2
+            className="mb-12 font-medium text-white text-4xl sm:text-5xl"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          >
+            What do you need help finding?
+          </h2>
+
+          <div className="gap-5 grid sm:grid-cols-2 lg:grid-cols-3">
+            {FIND_PATHS.map(({ icon: Icon, title, href }) => (
+              <a
+                key={title}
+                href={href}
+                className="group flex items-start gap-4 bg-white/[0.03] hover:bg-white/[0.06] p-5 border border-[#C9A84C]/15 hover:border-[#C9A84C]/40 rounded-lg transition-colors duration-200"
+              >
+                <Icon className="mt-0.5 text-[#C9A84C] shrink-0" size={24} strokeWidth={1.5} />
+                <div>
+                  <p
+                    className="font-semibold text-white text-sm leading-snug"
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                  >
+                    {title}
+                  </p>
+                  <span className="inline-flex items-center gap-1 mt-2 font-medium text-[#C9A84C] text-xs">
+                    Explore <span aria-hidden="true" className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── The Ecosystem — Three Emerson Pathways ── */}
+      <div className="px-6 sm:px-10 lg:px-16 py-16 lg:py-20 text-center">
         <motion.p
           whileInView={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 16 }}
           transition={{ duration: 0.45 }}
-          className="mb-4 font-semibold text-[#4B1E91] text-sm sm:text-base uppercase tracking-[4px]"
+          className="mb-3 font-semibold text-[#C9A84C] text-xs sm:text-sm uppercase tracking-[0.3em]"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
-          WHO WE ARE
+          The Ecosystem
         </motion.p>
 
         <motion.h2
           whileInView={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.55, delay: 0.08 }}
-          className="font-bold text-[#12022A] text-[36px] sm:text-[52px] lg:text-[60px] uppercase leading-none tracking-tight heading"
+          className="font-medium text-[#12022A] text-4xl sm:text-5xl lg:text-6xl"
+          style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
-          Three companies. One ecosystem.
+          Three Emerson Pathways
         </motion.h2>
 
         <motion.p
           whileInView={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 0.16 }}
-          className="mt-4 mb-14 text-[#12022A]/55 text-lg sm:text-xl leading-[1.9]"
+          className="mx-auto mt-4 mb-12 max-w-2xl text-[#12022A]/60 text-base sm:text-lg"
+          style={{ fontFamily: "'Inter', sans-serif" }}
         >
-          Each company serves a different need — find the one that fits yours.
+          One ecosystem. Three doors. Choose the one that fits where you are right now.
         </motion.p>
-
-        <motion.div
-          whileInView={{ scaleX: 1 }}
-          initial={{ scaleX: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          style={{ originX: 0 }}
-          className="bg-[#C9A84C] mx-auto mb-16 w-24 h-0.75"
-        />
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="gap-8 grid sm:grid-cols-2 lg:grid-cols-3"
+          className="gap-6 lg:gap-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-auto max-w-6xl"
         >
           {COMPANIES.map((company) => (
             <motion.div
               key={company.title}
               variants={cardVariants}
-              className="group flex flex-col bg-white shadow-sm hover:shadow-[#4B1E91]/15 hover:shadow-lg border border-[#12022A]/08 rounded-2xl overflow-hidden transition-shadow duration-300"
+              className="flex flex-col items-center p-8 border-[1.5px] border-[#C9A84C]/55 rounded-lg text-center"
             >
-              <div className="relative bg-white h-56 sm:h-64 overflow-hidden">
+              {/* Logo — no frame */}
+              <div className="flex justify-center items-center mb-7 w-full h-40">
                 <img
                   src={company.img}
                   alt={company.alt}
-                  className="p-3 w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  className={`max-w-[80%] max-h-full object-contain ${company.logoCls}`}
                 />
-                <div className="right-0 bottom-0 left-0 absolute bg-[#C9A84C] h0.75" />
               </div>
 
-              <div className="flex flex-col flex-1 px-6 py-6">
-                <h3 className="mb-4 min-h-12 font-bold text-[#12022A] text-base leading-tight heading">
-                  {company.title}
-                </h3>
-                <p className="flex-1 mb-6 text-[#12022A]/55 text-sm leading-[1.8]">
-                  {company.description}
-                </p>
-                <a
-                  href={company.href}
-                  className="inline-flex items-center self-start bg-[#12022A] hover:bg-[#1E0A4A] px-5 py-2.5 rounded-sm font-semibold text-white text-xs uppercase tracking-[0.18em] transition-colors duration-200"
-                >
-                  Learn More
-                </a>
-              </div>
+              {/* Divider line between logo and text */}
+              <div className="bg-[#C9A84C]/40 mb-7 w-full h-px" />
+
+              <h3
+                className="mb-4 font-medium text-[#12022A] text-xl sm:text-2xl leading-snug"
+                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              >
+                {company.title}
+              </h3>
+              <p
+                className="flex-1 mb-7 text-[#12022A]/70 text-sm leading-[1.8]"
+                style={{ fontFamily: "'Inter', sans-serif" }}
+              >
+                {company.description}
+              </p>
+              <a
+                href={company.href}
+                className="inline-flex justify-center items-center bg-[#12022A] hover:bg-[#1E0A4A] px-6 py-3.5 rounded-sm w-full max-w-[240px] font-semibold text-white text-xs uppercase tracking-[0.18em] transition-colors duration-200"
+              >
+                Learn More
+              </a>
             </motion.div>
           ))}
         </motion.div>
