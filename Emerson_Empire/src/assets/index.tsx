@@ -78,7 +78,7 @@ import Workshop from "./workshop.jpeg";
 import EmpersonLogo from "./emerson_ logo.png";
 import lolo from "./Mololuwa Oloyede.jpeg"
 import vincent2 from "./vincent (2).jpeg"
-import Globe from "./Globe.svg";
+import globe from "./globe.webp"
 
 export {
   Emason, EmasonWebp,EmpersonLogo, sales,EmasonAvif,lidi,study,Jonathan,Hosea2,Khaishawn,form,Welcome,development,meeting,Adaobi,
@@ -97,6 +97,6 @@ export {
   hero, heroAvif,
   lolo1,hos,vin,malikbg,
   wiltordb, matheosbg, jonath , kashawn,
-  Globe
+  globe
 
 };
