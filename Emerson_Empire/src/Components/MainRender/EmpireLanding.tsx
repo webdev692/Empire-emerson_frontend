@@ -2,6 +2,14 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import Hero from "../Umbrella/Hero";
 import ThreeCompaniesSection from "./ThreeCompaniesSection";
+import WhatWeOffer from "./WhatWeOffer";
+import BuildingReal from "./BuildingReal";
+import TeamSection from "./TeamSection";
+import ResourceHub from "./ResourceHub";
+import FeeWaiverSection from "./FeeWaiverSection";
+import FormsNextSteps from "./FormsNextSteps";
+import PartnerWithUs from "./PartnerWithUs";
+import GetInTouch from "./GetInTouch";
 
 const HomePage: React.FC = () => {
   return (
@@ -31,11 +39,17 @@ const HomePage: React.FC = () => {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      <main id="main-content" className="min-h-screen bg-transparent">
-        <div className="mx-auto max-w-[480px] px-4 sm:px-6 lg:px-8 py-6">
-          <Hero />
-          <ThreeCompaniesSection />
-        </div>
+      <main id="main-content">
+        <Hero />
+        <WhatWeOffer />
+        <ThreeCompaniesSection />
+        <BuildingReal />
+        <TeamSection />
+        <ResourceHub />
+        <FeeWaiverSection />
+        <FormsNextSteps />
+        <PartnerWithUs />
+        <GetInTouch />
       </main>
     </div>
   );
