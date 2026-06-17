@@ -7,6 +7,12 @@
       "runtimeArgs": ["run", "dev", "--prefix", "../EPDG-Landing-Page", "--", "--port", "5180"],
       "port": 5180,
       "autoPort": false
+    },
+    {
+      "name": "emerson-empire",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 5173
     }
   ]
 }
