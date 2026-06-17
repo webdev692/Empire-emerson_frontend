@@ -6,7 +6,7 @@ import {
 import {
   EPDGWebp, EPDGAvif, hos, malikbg,
   wiltordb, matheosbg, jonath, kashawn, empire, empireWebp, empireAvif,
-  AgencyWebp, AgencyAvif, Logo1, Logo2, Vincent,
+  AgencyWebp, AgencyAvif, Logo1, Logo2, Vincent, globe,
 } from '../../assets';
 
 const FIND_PATHS = [
@@ -238,140 +238,81 @@ const ImageSlider: React.FC = () => {
   );
 };
 
-// ── World Connection ─────────────────────────────────────────────────────────
+// ── Global Internship ────────────────────────────────────────────────────────
 
-const WORLD_NODES = [
-  { id: 'ny',  x: 248, y: 148, hub: true,  label: 'Career',   color: '#C9A84C' },
-  { id: 'lon', x: 488, y: 118, hub: true,  label: 'Finance',  color: '#7C4DBA' },
-  { id: 'sin', x: 762, y: 255, hub: true,  label: 'Business', color: '#4B1E91' },
-  { id: 'la',  x: 142, y: 162, hub: false, color: '#C9A84C' },
-  { id: 'tor', x: 242, y: 132, hub: false, color: '#C9A84C' },
-  { id: 'mia', x: 268, y: 180, hub: false, color: '#C9A84C' },
-  { id: 'sao', x: 342, y: 302, hub: false, color: '#C9A84C' },
-  { id: 'mad', x: 462, y: 132, hub: false, color: '#7C4DBA' },
-  { id: 'ber', x: 518, y: 110, hub: false, color: '#7C4DBA' },
-  { id: 'lag', x: 488, y: 240, hub: false, color: '#7C4DBA' },
-  { id: 'nai', x: 572, y: 262, hub: false, color: '#7C4DBA' },
-  { id: 'dub', x: 628, y: 185, hub: false, color: '#4B1E91' },
-  { id: 'mum', x: 675, y: 204, hub: false, color: '#4B1E91' },
-  { id: 'tok', x: 858, y: 155, hub: false, color: '#4B1E91' },
-  { id: 'syd', x: 886, y: 308, hub: false, color: '#4B1E91' },
-];
+const GlobalReachSection: React.FC = () => (
+  <div
+    className="relative flex items-center overflow-hidden min-h-[560px] lg:min-h-[660px]"
+    style={{ background: '#f0e0ca' }}
+  >
+    {/* Globe image — desktop: bleeds off the right edge, cream background blends into the section */}
+    <img
+      src={globe}
+      alt="Interns connected across the globe"
+      aria-hidden="true"
+      className="hidden lg:block top-1/2 right-0 z-0 absolute w-auto h-[120%] max-w-none -translate-y-1/2 pointer-events-none select-none"
+    />
 
-const WORLD_EDGES: [string, string, string][] = [
-  ['ny',  'tor', '#C9A84C'], ['ny',  'la',  '#C9A84C'], ['ny',  'mia', '#C9A84C'],
-  ['ny',  'lon', '#C9A84C'], ['ny',  'sao', '#C9A84C'], ['mia', 'sao', '#C9A84C'],
-  ['lon', 'mad', '#7C4DBA'], ['lon', 'ber', '#7C4DBA'], ['lon', 'lag', '#7C4DBA'],
-  ['lon', 'dub', '#7C4DBA'], ['lag', 'nai', '#7C4DBA'],
-  ['dub', 'mum', '#4B1E91'], ['dub', 'sin', '#4B1E91'], ['mum', 'sin', '#4B1E91'],
-  ['sin', 'tok', '#4B1E91'], ['sin', 'syd', '#4B1E91'],
-];
+    <div className="z-10 relative mx-auto px-6 sm:px-10 lg:px-16 py-16 lg:py-24 w-full max-w-7xl">
 
-function arc(x1: number, y1: number, x2: number, y2: number) {
-  const mx = (x1 + x2) / 2;
-  const my = (y1 + y2) / 2 - Math.abs(x2 - x1) * 0.12;
-  return `M${x1},${y1} Q${mx},${my} ${x2},${y2}`;
-}
+      {/* Left — copy */}
+      <motion.div
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 24 }}
+        transition={{ duration: 0.55 }}
+        viewport={{ once: true }}
+        className="lg:max-w-[48%]"
+      >
+        <p
+          className="mb-5 font-bold text-[#4B3FA0] text-xs sm:text-sm uppercase tracking-[0.25em]"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
+        >
+          Global Internship
+        </p>
 
-const WorldConnection: React.FC = () => (
-  <div className="relative bg-[#0C011E] py-16 overflow-hidden">
-    <style>{`
-      @keyframes wc-pulse { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(2.8);opacity:0} }
-      @keyframes wc-pulse2 { 0%,100%{transform:scale(1);opacity:.4} 50%{transform:scale(2);opacity:0} }
-      @keyframes wc-flow { 0%{stroke-dashoffset:600} 100%{stroke-dashoffset:0} }
-      @keyframes wc-dot { 0%,100%{opacity:.9} 50%{opacity:.35} }
-    `}</style>
+        <h2
+          className="mb-6 font-medium text-[#1c1a17] text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.08]"
+          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+        >
+          We're Building Something Real —
+          <span className="block text-[#5a3e9e]">And You Can Be Part of It.</span>
+        </h2>
 
-    <div className="relative z-10 mx-auto px-4 text-center mb-10">
-      <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-[4px] mb-3">Global Reach</p>
-      <h2 className="font-bold text-white text-2xl sm:text-3xl uppercase leading-tight tracking-tight">
-        Connecting Communities <span className="text-[#C9A84C]">Worldwide</span>
-      </h2>
-      <p className="mt-3 text-white/45 font-mono text-xs uppercase tracking-widest">
-        Career · Finance · Business — across every continent
-      </p>
-    </div>
+        <p
+          className="mb-5 max-w-xl text-[#44423c] text-base sm:text-lg leading-[1.7]"
+          style={{ fontFamily: "'Inter', sans-serif" }}
+        >
+          The Emerson Empire Global Internship Program is founder-led and
+          intern-supported. Students, career changers, and emerging professionals
+          from around the world contribute to real public-facing systems — web
+          development, marketing, content, sales, operations, and more.
+        </p>
 
-    <div className="mx-auto max-w-5xl px-2">
-      <svg viewBox="0 0 1000 420" className="w-full" style={{ maxHeight: 360 }}>
-        <defs>
-          <radialGradient id="wc-bg" cx="50%" cy="50%">
-            <stop offset="0%" stopColor="#1a0535" />
-            <stop offset="100%" stopColor="#0C011E" />
-          </radialGradient>
-          <pattern id="wc-dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
-            <circle cx="1" cy="1" r="0.9" fill="#ffffff" opacity="0.07" />
-          </pattern>
-          <filter id="wc-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
-        </defs>
+        <p
+          className="mb-8 max-w-xl text-[#44423c] text-base sm:text-lg leading-[1.7]"
+          style={{ fontFamily: "'Inter', sans-serif" }}
+        >
+          Internship participation is free. You'll gain structured onboarding, real
+          project experience, portfolio-ready work, and completion documentation.
+        </p>
 
-        <rect width="1000" height="420" fill="url(#wc-bg)" rx="12" />
-        <rect width="1000" height="420" fill="url(#wc-dots)" rx="12" />
+        <a
+          href="/global-internship#application-form"
+          className="inline-flex items-center bg-[#161228] hover:bg-[#241b45] px-7 py-3.5 rounded-lg font-bold text-white text-sm transition-colors duration-200"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
+        >
+          Apply for the Internship
+        </a>
+      </motion.div>
 
-        {/* connection arcs */}
-        {WORLD_EDGES.map(([from, to, color], i) => {
-          const a = WORLD_NODES.find(n => n.id === from)!;
-          const b = WORLD_NODES.find(n => n.id === to)!;
-          return (
-            <path
-              key={i}
-              d={arc(a.x, a.y, b.x, b.y)}
-              fill="none"
-              stroke={color}
-              strokeWidth="1"
-              strokeOpacity="0.45"
-              strokeDasharray="600"
-              strokeDashoffset="600"
-              style={{ animation: `wc-flow ${2.4 + i * 0.18}s ease-out ${i * 0.12}s forwards` }}
-            />
-          );
-        })}
-
-        {/* regular nodes */}
-        {WORLD_NODES.filter(n => !n.hub).map(n => (
-          <g key={n.id}>
-            <circle cx={n.x} cy={n.y} r="5" fill={n.color} opacity="0.15" />
-            <circle cx={n.x} cy={n.y} r="2.5" fill={n.color} opacity="0.85"
-              style={{ animation: `wc-dot ${1.8 + Math.random() * 1.2}s ease-in-out infinite` }}
-            />
-          </g>
-        ))}
-
-        {/* hub nodes */}
-        {WORLD_NODES.filter(n => n.hub).map((n, i) => (
-          <g key={n.id}>
-            <circle cx={n.x} cy={n.y} r="14" fill="none" stroke={n.color} strokeWidth="1.5"
-              style={{ animation: `wc-pulse 2.6s ease-out ${i * 0.9}s infinite`, transformOrigin: `${n.x}px ${n.y}px` }} />
-            <circle cx={n.x} cy={n.y} r="14" fill="none" stroke={n.color} strokeWidth="1"
-              style={{ animation: `wc-pulse2 2.6s ease-out ${i * 0.9 + 1.3}s infinite`, transformOrigin: `${n.x}px ${n.y}px` }} />
-            <circle cx={n.x} cy={n.y} r="8" fill={n.color} opacity="0.2" filter="url(#wc-glow)" />
-            <circle cx={n.x} cy={n.y} r="4.5" fill={n.color} filter="url(#wc-glow)" />
-            <circle cx={n.x} cy={n.y} r="2" fill="white" />
-            <text x={n.x} y={n.y - 17} textAnchor="middle"
-              fill={n.color} fontSize="9" fontFamily="monospace"
-              fontWeight="700" letterSpacing="1.5" opacity="0.9">
-              {n.label?.toUpperCase()}
-            </text>
-          </g>
-        ))}
-      </svg>
-    </div>
-
-    {/* legend */}
-    <div className="flex justify-center gap-8 mt-8 flex-wrap px-4">
-      {[
-        { label: 'Career & Services', color: '#C9A84C' },
-        { label: 'Finance',           color: '#7C4DBA' },
-        { label: 'Business',          color: '#4B1E91' },
-      ].map(({ label, color }) => (
-        <div key={label} className="flex items-center gap-2">
-          <span className="inline-block w-2 h-2 rounded-full" style={{ background: color }} />
-          <span className="font-mono text-white/50 text-xs uppercase tracking-widest">{label}</span>
-        </div>
-      ))}
+      {/* Globe image — mobile / tablet */}
+      <div className="lg:hidden mt-10">
+        <img
+          src={globe}
+          alt="Interns connected across the globe"
+          className="mx-auto w-full max-w-md"
+        />
+      </div>
     </div>
   </div>
 );
@@ -503,7 +444,7 @@ const ThreeCompaniesSection: React.FC = () => {
         </motion.div>
       </div>
 
-      <WorldConnection />
+      <GlobalReachSection />
 
       {/* ── What We Offer ── */}
       <div className="mt-2 px-6 sm:px-2 lg:px-16 py-16 text-center">
