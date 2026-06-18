@@ -24,9 +24,11 @@ interface Recommendation {
   id: number;
   title: string;
   department: string;
+  description?: string;
   score: number;
   matched_skills: string[];
   required_skills: string[];
+  suggested?: boolean;
 }
 
 interface CvAnalysis {
@@ -443,53 +445,79 @@ const ApplicationsReview: React.FC = () => {
 
                           {/* Internship Recommendations */}
                           <div>
-                            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#C9A84C]">
-                              Best Internship Matches
-                            </p>
-                            {analysis.recommendations.length === 0 ? (
-                              <p className="text-sm text-[#F5F0E8]/50">No open internship slots available to match against.</p>
-                            ) : (
-                              <div className="space-y-2">
-                                {analysis.recommendations.map((rec) => (
-                                  <div
-                                    key={rec.id}
-                                    className="flex flex-col gap-2 rounded-2xl border border-[#4B1E91]/40 bg-[#0D0118] px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
-                                  >
-                                    <div className="flex-1">
-                                      <p className="font-semibold text-white">{rec.title}</p>
-                                      <p className="text-xs text-[#F5F0E8]/50">{rec.department}</p>
-                                      {rec.matched_skills.length > 0 && (
-                                        <div className="mt-1.5 flex flex-wrap gap-1">
-                                          {rec.matched_skills.slice(0, 6).map((s) => (
-                                            <span key={s} className="rounded-full bg-green-500/10 border border-green-500/20 px-2 py-0.5 text-[10px] text-green-300">
-                                              ✓ {s}
-                                            </span>
-                                          ))}
-                                        </div>
-                                      )}
-                                    </div>
-                                    <div className="flex items-center gap-3 shrink-0">
-                                      {/* Score ring */}
-                                      <div className={`flex h-12 w-12 items-center justify-center rounded-full border-2 text-sm font-bold ${
-                                        rec.score >= 70 ? "border-green-400 text-green-300" :
-                                        rec.score >= 40 ? "border-[#C9A84C] text-[#C9A84C]" :
-                                        "border-white/20 text-[#F5F0E8]/50"
-                                      }`}>
-                                        {rec.score}%
-                                      </div>
-                                      {app.status === "pending" && rec.department && (
-                                        <button
-                                          onClick={() => setLocalField(app.id, "department", rec.department)}
-                                          className="rounded-2xl border border-[#4B1E91] bg-[#4B1E91]/20 px-3 py-1.5 text-xs text-[#D8B9FF] hover:bg-[#4B1E91]/40 transition"
-                                        >
-                                          Pre-assign
-                                        </button>
-                                      )}
-                                    </div>
+                            {(() => {
+                              const hasSuggested = analysis.recommendations.some((r) => r.suggested);
+                              return (
+                                <>
+                                  <div className="mb-3 flex flex-wrap items-center gap-3">
+                                    <p className="text-xs font-semibold uppercase tracking-widest text-[#C9A84C]">
+                                      {hasSuggested ? "Suggested Placements" : "Best Internship Matches"}
+                                    </p>
+                                    {hasSuggested && (
+                                      <span className="rounded-full bg-amber-500/10 border border-amber-500/25 px-2.5 py-0.5 text-[10px] text-amber-300">
+                                        Based on CV skills — no open slots yet
+                                      </span>
+                                    )}
                                   </div>
-                                ))}
-                              </div>
-                            )}
+                                  {analysis.recommendations.length === 0 ? (
+                                    <p className="text-sm text-[#F5F0E8]/50">Could not determine placement from CV.</p>
+                                  ) : (
+                                    <div className="space-y-2">
+                                      {analysis.recommendations.map((rec) => (
+                                        <div
+                                          key={rec.id}
+                                          className={`flex flex-col gap-2 rounded-2xl border px-4 py-3 sm:flex-row sm:items-center sm:justify-between ${
+                                            rec.suggested
+                                              ? "border-amber-500/20 bg-amber-500/5"
+                                              : "border-[#4B1E91]/40 bg-[#0D0118]"
+                                          }`}
+                                        >
+                                          <div className="flex-1">
+                                            <div className="flex items-center gap-2">
+                                              <p className="font-semibold text-white">{rec.title}</p>
+                                              {rec.suggested && (
+                                                <span className="text-[9px] uppercase tracking-wider text-amber-400/70">suggested</span>
+                                              )}
+                                            </div>
+                                            <p className="text-xs text-[#F5F0E8]/50">{rec.department}</p>
+                                            {rec.matched_skills.length > 0 && (
+                                              <div className="mt-1.5 flex flex-wrap gap-1">
+                                                {rec.matched_skills.slice(0, 8).map((s) => (
+                                                  <span key={s} className={`rounded-full border px-2 py-0.5 text-[10px] ${
+                                                    rec.suggested
+                                                      ? "bg-amber-500/10 border-amber-500/20 text-amber-200"
+                                                      : "bg-green-500/10 border-green-500/20 text-green-300"
+                                                  }`}>
+                                                    {rec.suggested ? "◆" : "✓"} {s}
+                                                  </span>
+                                                ))}
+                                              </div>
+                                            )}
+                                          </div>
+                                          <div className="flex items-center gap-3 shrink-0">
+                                            <div className={`flex h-12 w-12 items-center justify-center rounded-full border-2 text-sm font-bold ${
+                                              rec.score >= 70 ? "border-green-400 text-green-300" :
+                                              rec.score >= 40 ? "border-[#C9A84C] text-[#C9A84C]" :
+                                              "border-white/20 text-[#F5F0E8]/50"
+                                            }`}>
+                                              {rec.score}%
+                                            </div>
+                                            {app.status === "pending" && rec.department && (
+                                              <button
+                                                onClick={() => setLocalField(app.id, "department", rec.department)}
+                                                className="rounded-2xl border border-[#4B1E91] bg-[#4B1E91]/20 px-3 py-1.5 text-xs text-[#D8B9FF] hover:bg-[#4B1E91]/40 transition"
+                                              >
+                                                Assign dept
+                                              </button>
+                                            )}
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  )}
+                                </>
+                              );
+                            })()}
                           </div>
                         </div>
                       );
