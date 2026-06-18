@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
-import { Plus, X, Users, Star } from "lucide-react";
+import { Plus, X, Users, Star, RefreshCw, Copy, Check } from "lucide-react";
 import api from "../../lib/axios";
 import type { AxiosError } from "axios";
 
@@ -15,6 +15,15 @@ interface Mentor {
 const DEPTS = ["Frontend", "Backend", "Full Stack", "UX/UI", "Sales", "Marketing", "Social Media"];
 
 const EMPTY_FORM = { name: "", email: "", password: "", department: "Frontend", max_capacity: 3 };
+
+// Avoids visually ambiguous characters (0/O, 1/l/I) since admins read this aloud or copy it manually.
+const PASSWORD_CHARSET = "ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$%&*";
+
+function generatePassword(length = 12): string {
+  const values = new Uint32Array(length);
+  window.crypto.getRandomValues(values);
+  return Array.from(values, (v) => PASSWORD_CHARSET[v % PASSWORD_CHARSET.length]).join("");
+}
 
 const Stars = ({ rating }: { rating: number }) => (
   <span className="flex items-center gap-1">
@@ -34,6 +43,10 @@ const MentorManagement: React.FC = () => {
   const [form,             setForm]       = useState(EMPTY_FORM);
   const [saving,           setSaving]     = useState(false);
   const [toast,            setToast]      = useState<{ msg: string; ok: boolean } | null>(null);
+
+  // Holds the just-created mentor's credentials so the admin can copy/share them once.
+  const [credentials, setCredentials] = useState<{ name: string; email: string; password: string } | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     fetchMentors();
@@ -56,6 +69,15 @@ const MentorManagement: React.FC = () => {
     setTimeout(() => setToast(null), 3500);
   }
 
+  function openAddModal() {
+    setForm({ ...EMPTY_FORM, password: generatePassword() });
+    setShowAdd(true);
+  }
+
+  function regeneratePassword() {
+    setForm((p) => ({ ...p, password: generatePassword() }));
+  }
+
   async function handleAdd() {
     if (!form.name.trim() || !form.email.trim() || !form.password.trim()) return;
     setSaving(true);
@@ -68,6 +90,7 @@ const MentorManagement: React.FC = () => {
         max_capacity: Number(form.max_capacity),
       });
       setMentors((prev) => [data.data, ...prev]);
+      setCredentials({ name: data.data.name, email: form.email.trim(), password: form.password.trim() });
       setForm(EMPTY_FORM);
       setShowAdd(false);
       showToast(`${data.data.name} added as mentor.`);
@@ -77,6 +100,15 @@ const MentorManagement: React.FC = () => {
     } finally {
       setSaving(false);
     }
+  }
+
+  async function copyCredentials() {
+    if (!credentials) return;
+    await navigator.clipboard.writeText(
+      `Email: ${credentials.email}\nTemporary password: ${credentials.password}`
+    );
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   }
 
   async function handleDeactivate() {
@@ -106,14 +138,14 @@ const MentorManagement: React.FC = () => {
     <div className="space-y-6 text-white">
       {/* Header */}
       <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl">
-        <div className="flex md:flex-row flex-col md:justify-between md:items-end gap-4">
+        <div className="flex flex-col gap-4 md:flex-row md:justify-between md:items-end">
           <div>
             <p className="text-[#F5F0E8] text-sm uppercase tracking-[0.25em]">Mentor Management</p>
-            <h1 className="mt-2 font-semibold text-3xl">Platform Mentors</h1>
+            <h1 className="mt-2 text-3xl font-semibold">Platform Mentors</h1>
             <p className="mt-2 text-[#F5F0E8]">Manage mentor accounts, capacity, and intern assignments.</p>
           </div>
           <button
-            onClick={() => setShowAdd(true)}
+            onClick={openAddModal}
             className="inline-flex items-center gap-2 bg-[#4B1E91] px-5 py-3 rounded-2xl font-semibold text-white text-sm"
           >
             <Plus size={16} /> Add Mentor
@@ -133,7 +165,7 @@ const MentorManagement: React.FC = () => {
       )}
 
       {/* Stats */}
-      <div className="gap-4 grid sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-3">
         {[
           { label: "Total Mentors", value: stats.total     },
           { label: "Available",     value: stats.available },
@@ -141,7 +173,7 @@ const MentorManagement: React.FC = () => {
         ].map((s) => (
           <div key={s.label} className="bg-[#1E0A4A] p-5 border border-[#4B1E91] rounded-3xl">
             <p className="text-[#F5F0E8] text-xs uppercase tracking-[0.25em]">{s.label}</p>
-            <p className="mt-3 font-semibold text-3xl">{s.value}</p>
+            <p className="mt-3 text-3xl font-semibold">{s.value}</p>
           </div>
         ))}
       </div>
@@ -156,7 +188,7 @@ const MentorManagement: React.FC = () => {
           No mentors yet. Add the first mentor above.
         </div>
       ) : (
-        <div className="gap-4 grid md:grid-cols-2 2xl:grid-cols-4 xl:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-4 xl:grid-cols-3">
           {mentors.map((m) => {
             const fill     = m.max_capacity > 0 ? m.assigned_count / m.max_capacity : 0;
             const barColor = fill >= 0.8 ? "bg-amber-400" : "bg-[#4B1E91]";
@@ -164,7 +196,7 @@ const MentorManagement: React.FC = () => {
 
             return (
               <div key={m.id} className="rounded-3xl border border-[#4B1E91] bg-[#1E0A4A] p-5 flex flex-col gap-4">
-                <div className="flex justify-between items-start gap-3">
+                <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="flex justify-center items-center bg-[#4B1E91]/20 rounded-2xl w-12 h-12 font-bold text-white text-sm">
                       {m.name.split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase()}
@@ -206,7 +238,7 @@ const MentorManagement: React.FC = () => {
                   </button>
                   <button
                     onClick={() => setDeactivate(m)}
-                    className="flex-1 bg-red-500/10 hover:bg-red-500/20 py-2 rounded-2xl text-red-300 text-xs transition"
+                    className="flex-1 py-2 text-xs text-red-300 transition bg-red-500/10 hover:bg-red-500/20 rounded-2xl"
                   >
                     Remove
                   </button>
@@ -219,15 +251,15 @@ const MentorManagement: React.FC = () => {
 
       {/* Detail modal */}
       {selectedMentor && (
-        <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/60 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
           <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-start gap-3 mb-6">
+            <div className="flex items-start justify-between gap-3 mb-6">
               <div className="flex items-center gap-4">
                 <div className="flex justify-center items-center bg-[#4B1E91]/20 rounded-2xl w-14 h-14 font-bold text-lg">
                   {selectedMentor.name.split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase()}
                 </div>
                 <div>
-                  <h2 className="font-semibold text-xl">{selectedMentor.name}</h2>
+                  <h2 className="text-xl font-semibold">{selectedMentor.name}</h2>
                   <p className="text-[#F5F0E8] text-sm">{selectedMentor.department}</p>
                 </div>
               </div>
@@ -236,7 +268,7 @@ const MentorManagement: React.FC = () => {
               </button>
             </div>
 
-            <div className="gap-3 grid grid-cols-2">
+            <div className="grid grid-cols-2 gap-3">
               {[
                 { label: "Email",        value: selectedMentor.email },
                 { label: "Department",   value: selectedMentor.department },
@@ -245,7 +277,7 @@ const MentorManagement: React.FC = () => {
               ].map((f) => (
                 <div key={f.label} className="bg-[#0D0118] p-3 border border-[#4B1E91] rounded-2xl">
                   <p className="text-[#F5F0E8] text-xs">{f.label}</p>
-                  <p className="mt-1 font-medium text-sm break-all">{f.value}</p>
+                  <p className="mt-1 text-sm font-medium break-all">{f.value}</p>
                 </div>
               ))}
             </div>
@@ -255,19 +287,18 @@ const MentorManagement: React.FC = () => {
 
       {/* Add mentor modal */}
       {showAdd && (
-        <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/60 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
           <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl w-full max-w-md">
-            <div className="flex justify-between items-center gap-3 mb-6">
-              <h2 className="font-semibold text-xl">Add Mentor</h2>
+            <div className="flex items-center justify-between gap-3 mb-6">
+              <h2 className="text-xl font-semibold">Add Mentor</h2>
               <button onClick={() => setShowAdd(false)} className="text-[#F5F0E8] hover:text-white">
                 <X size={18} />
               </button>
             </div>
             <div className="space-y-4">
               {([
-                { label: "Full Name",  key: "name",     type: "text",     ph: "Jane Doe"          },
-                { label: "Email",      key: "email",    type: "email",    ph: "jane@example.com"  },
-                { label: "Password",   key: "password", type: "password", ph: "Temporary password" },
+                { label: "Full Name", key: "name",  type: "text",  ph: "Jane Doe" },
+                { label: "Email",     key: "email", type: "email", ph: "jane@example.com" },
               ] as const).map(({ label, key, type, ph }) => (
                 <label key={key} className="block text-[#F5F0E8] text-sm">
                   {label}
@@ -280,6 +311,29 @@ const MentorManagement: React.FC = () => {
                   />
                 </label>
               ))}
+
+              <label className="block text-[#F5F0E8] text-sm">
+                Temporary Password
+                <div className="flex gap-2 mt-1.5">
+                  <input
+                    type="text"
+                    readOnly
+                    value={form.password}
+                    className="bg-[#0D0118] px-4 py-3 border border-[#4B1E91] rounded-2xl outline-none w-full text-white font-mono"
+                  />
+                  <button
+                    type="button"
+                    onClick={regeneratePassword}
+                    title="Generate a new password"
+                    className="flex items-center justify-center px-3 border border-[#4B1E91] rounded-2xl text-[#F5F0E8] hover:text-white transition"
+                  >
+                    <RefreshCw size={16} />
+                  </button>
+                </div>
+                <p className="mt-1.5 text-[#F5F0E8]/50 text-xs">
+                  Auto-generated. You'll get a copy to share with the mentor after creating their account.
+                </p>
+              </label>
 
               <label className="block text-[#F5F0E8] text-sm">
                 Department
@@ -324,11 +378,51 @@ const MentorManagement: React.FC = () => {
         </div>
       )}
 
+      {/* Credentials modal — shown once, right after a mentor is created */}
+      {credentials && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
+          <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl w-full max-w-md">
+            <h2 className="text-xl font-semibold text-white">Share these credentials</h2>
+            <p className="mt-2 text-[#F5F0E8] text-sm">
+              This password won't be shown again. Copy it now and send it to{" "}
+              <span className="font-medium text-white">{credentials.name}</span> through a secure channel.
+            </p>
+
+            <div className="bg-[#0D0118] mt-4 p-4 border border-[#4B1E91] rounded-2xl space-y-3">
+              <div>
+                <p className="text-[#F5F0E8] text-xs">Email</p>
+                <p className="font-mono text-sm break-all">{credentials.email}</p>
+              </div>
+              <div>
+                <p className="text-[#F5F0E8] text-xs">Temporary Password</p>
+                <p className="font-mono text-sm break-all">{credentials.password}</p>
+              </div>
+            </div>
+
+            <div className="flex gap-3 mt-6">
+              <button
+                onClick={copyCredentials}
+                className="flex flex-1 justify-center items-center gap-2 bg-[#4B1E91] py-3 rounded-2xl font-semibold text-white text-sm"
+              >
+                {copied ? <Check size={16} /> : <Copy size={16} />}
+                {copied ? "Copied" : "Copy to clipboard"}
+              </button>
+              <button
+                onClick={() => setCredentials(null)}
+                className="flex-1 py-3 border border-[#4B1E91] rounded-2xl text-[#F5F0E8] text-sm"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Deactivate confirm modal */}
       {deactivateTarget && (
-        <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/60 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
           <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl w-full max-w-md">
-            <h2 className="font-semibold text-white text-xl">Remove mentor?</h2>
+            <h2 className="text-xl font-semibold text-white">Remove mentor?</h2>
             <p className="mt-3 text-[#F5F0E8] text-sm">
               This will remove <span className="font-medium text-white">{deactivateTarget.name}</span> from the
               mentor list. Their account will remain but they won't appear in the mentor dropdown.
@@ -337,7 +431,7 @@ const MentorManagement: React.FC = () => {
               <button
                 onClick={handleDeactivate}
                 disabled={saving}
-                className="flex-1 bg-red-500 disabled:opacity-50 py-3 rounded-2xl font-semibold text-white text-sm"
+                className="flex-1 py-3 text-sm font-semibold text-white bg-red-500 disabled:opacity-50 rounded-2xl"
               >
                 {saving ? "Removing…" : "Confirm Remove"}
               </button>
