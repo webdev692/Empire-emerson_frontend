@@ -315,7 +315,7 @@ const InternManagement = () => {
                 <p className="text-sm">{selectedInternData.email}</p>
               </div>
               <div>
-                <p className="mb-1 text-[#F5F0E8] text-xs">School</p>
+                <p className="mb-1 text-[#F5F0E8] text-xs">Institution</p>
                 <p className="text-sm">{selectedInternData.school}</p>
               </div>
               <div>

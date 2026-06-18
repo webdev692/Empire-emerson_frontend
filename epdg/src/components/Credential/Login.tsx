@@ -18,7 +18,7 @@ const EMPIRE_URL = import.meta.env.VITE_EMPIRE_URL || "";
 const USER_TYPES: { value: UserType; label: string;  }[] = [
   { value: "Intern",  label: "Intern" },
   { value: "Company", label: "Company"},
-  { value: "School",  label: "School",    },
+  { value: "School",  label: "Institution" },
   { value: "Admin",   label: "Admin" },
 ];
 
@@ -267,14 +267,14 @@ const Login: React.FC = () => {
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
                   </svg>
                 )}
-                {loading ? "Signing in…" : `Sign In as ${userType === "School" ? "School / University" : userType}`}
+                {loading ? "Signing in…" : `Sign In as ${userType === "School" ? "Institution / University" : userType}`}
               </button>
             </form>
 
             {userType === "School" ? (
               <div className="mt-6 px-5 py-4 border rounded-xl text-center bg-white/5 border-white/10 lg:bg-[#12022A]/5 lg:border-[#12022A]/10">
                 <p className="mb-2 text-[13px] text-[#F5F0E8]/60 lg:text-[#12022A]/60">
-                  New school or university?
+                  New institution?
                 </p>
                 <p className="mb-3 text-[12px] text-[#F5F0E8]/40 lg:text-[#12022A]/40 leading-relaxed">
                   Register your institution to connect students with internship opportunities and track their progress.
@@ -283,7 +283,7 @@ const Login: React.FC = () => {
                   href="/register/school"
                   className="inline-block font-semibold text-[12px] text-[#C9A84C] hover:text-[#E8C97A] lg:text-[#4B1E91] lg:hover:text-[#3d1778] uppercase tracking-wider transition"
                 >
-                  Register Your School →
+                  Register Your Institution →
                 </a>
               </div>
             ) : (

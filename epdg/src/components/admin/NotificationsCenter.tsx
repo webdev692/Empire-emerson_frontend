@@ -44,7 +44,7 @@ const AUDIENCE_META: Record<Audience, { label: string; cls: string }> = {
   all:       { label: "All Users",    cls: "bg-[#4B1E91]/15 text-[#D8B9FF]" },
   interns:   { label: "Interns",      cls: "bg-blue-500/15 text-blue-200"   },
   companies: { label: "Companies",    cls: "bg-amber-500/15 text-amber-200" },
-  schools:   { label: "Schools",      cls: "bg-green-500/15 text-green-200" },
+  schools:   { label: "Institutions",  cls: "bg-green-500/15 text-green-200" },
   mentors:   { label: "Mentors",      cls: "bg-pink-500/15 text-pink-200"   },
 };
 
@@ -127,7 +127,7 @@ const NotificationsCenter: React.FC = () => {
               <option value="all">All Users</option>
               <option value="interns">Interns Only</option>
               <option value="companies">Companies Only</option>
-              <option value="schools">Schools Only</option>
+              <option value="schools">Institutions Only</option>
               <option value="mentors">Mentors Only</option>
             </select>
           </label>

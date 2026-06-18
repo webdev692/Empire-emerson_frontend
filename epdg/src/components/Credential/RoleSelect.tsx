@@ -12,7 +12,7 @@ interface RoleCard {
 
 const BASE_CARDS: RoleCard[] = [
   { role: "company", title: "Company",  description: "Post internship slots and manage your interns" },
-  { role: "school",  title: "School",   description: "Register your students and track their placements" },
+  { role: "school",  title: "Institution", description: "Register your students and track their placements" },
   { role: "intern",  title: "Intern",   description: "Apply for internships and build your career" },
 ];
 
@@ -103,7 +103,7 @@ const RoleSelect: React.FC = () => {
         `}
       >
         {selected
-          ? `Continue as ${selected.charAt(0).toUpperCase() + selected.slice(1)}`
+          ? `Continue as ${cards.find((c) => c.role === selected)?.title ?? ''}`
           : "Select a role to continue"}
       </button>
 

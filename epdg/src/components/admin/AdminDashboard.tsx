@@ -32,7 +32,7 @@ const AdminDashboard: React.FC = () => {
 
   const statCards = [
     { label: "Companies",         value: fmt(stats?.companies),         icon: Building2,  accent: "bg-blue-500/20 text-blue-300",   border: "border-blue-500/30"   },
-    { label: "Schools",           value: fmt(stats?.schools),           icon: Users,      accent: "bg-teal-500/20 text-teal-300",   border: "border-teal-500/30"   },
+    { label: "Institutions",      value: fmt(stats?.schools),           icon: Users,      accent: "bg-teal-500/20 text-teal-300",   border: "border-teal-500/30"   },
     { label: "Interns",           value: fmt(stats?.interns),           icon: Briefcase,  accent: "bg-[#4B1E91]/30 text-[#D8B9FF]",border: "border-[#4B1E91]/40"  },
     { label: "Active Placements", value: fmt(stats?.active_placements), icon: ChartBar,   accent: "bg-green-500/20 text-green-300", border: "border-green-500/30"  },
     { label: "Certificates",      value: "—",                           icon: ShieldCheck,accent: "bg-[#C9A84C]/20 text-[#C9A84C]", border: "border-[#C9A84C]/30" },
@@ -121,7 +121,7 @@ const AdminDashboard: React.FC = () => {
             </div>
 
             <div className="bg-[#0D0118] p-4 border border-[#4B1E91] rounded-3xl">
-              <p className="text-[#F5F0E8] text-sm">Pending schools</p>
+              <p className="text-[#F5F0E8] text-sm">Pending institutions</p>
               <div className="space-y-3 mt-4">
                 {loading ? (
                   <div className="bg-[#1E0A4A] rounded-3xl h-16 animate-pulse" />
@@ -156,7 +156,7 @@ const AdminDashboard: React.FC = () => {
             {[
               { label: "Review applications", to: "/admin/applications" },
               { label: "Approve companies",   to: "/admin/companies"    },
-              { label: "Approve schools",     to: "/admin/schools"      },
+              { label: "Approve institutions", to: "/admin/schools"      },
               { label: "Manage users",        to: "/admin/users"        },
             ].map(({ label, to }) => (
               <Link key={to} to={to}
@@ -184,7 +184,7 @@ const AdminDashboard: React.FC = () => {
             </Link>
           </div>
           <div className="gap-3 grid sm:grid-cols-3">
-            {["Pending review", "School-referred", "Self-applied"].map((label) => (
+            {["Pending review", "Institution-referred", "Self-applied"].map((label) => (
               <div key={label} className="bg-[#0D0118] p-4 border border-[#4B1E91] rounded-3xl">
                 <p className="text-[#F5F0E8] text-xs">{label}</p>
                 <p className={`mt-3 text-xl font-semibold ${loading ? "text-[#4B1E91] animate-pulse" : ""}`}>
@@ -252,7 +252,7 @@ const AdminDashboard: React.FC = () => {
               {[
                 { label: "Review applications", to: "/admin/applications" },
                 { label: "Approve companies",   to: "/admin/companies"    },
-                { label: "Approve schools",     to: "/admin/schools"      },
+                { label: "Approve institutions", to: "/admin/schools"      },
                 { label: "Manage users",        to: "/admin/users"        },
               ].map(({ label, to }) => (
                 <Link key={to} to={to}

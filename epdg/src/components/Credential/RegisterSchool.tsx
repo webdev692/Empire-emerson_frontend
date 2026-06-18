@@ -109,9 +109,9 @@ const RegisterSchool: React.FC = () => {
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
 
             <div className="gap-5 grid grid-cols-1 sm:grid-cols-2 mb-5">
-              <Field label="School / Institution Name" error={errors.schoolName?.message}>
+              <Field label="Institution Name" error={errors.schoolName?.message}>
                 <input type="text" placeholder="University of Nairobi" autoComplete="organization" className={inputCls}
-                  {...register("schoolName", { required: "School name is required", minLength: { value: 2, message: "Must be at least 2 characters" } })} />
+                  {...register("schoolName", { required: "Institution name is required", minLength: { value: 2, message: "Must be at least 2 characters" } })} />
               </Field>
               <Field label="Official Email Address" error={errors.email?.message}>
                 <input type="email" placeholder="admin@university.edu" autoComplete="email" className={inputCls}
@@ -210,7 +210,7 @@ const RegisterSchool: React.FC = () => {
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
                 </svg>
               )}
-              {loading ? "Registering…" : "Register School"}
+              {loading ? "Registering…" : "Register Institution"}
             </button>
           </form>
         </div>
@@ -220,7 +220,7 @@ const RegisterSchool: React.FC = () => {
           <a href="/login" className="font-semibold text-[#C9A84C] hover:text-[#E8C97A] transition-colors">Sign in</a>
         </p>
         <p className="mt-2 text-[#F5F0E8]/50 text-[13px] text-center">
-          Not a school?{" "}
+          Not an institution?{" "}
           <a href="/register" className="font-semibold text-[#C9A84C] hover:text-[#E8C97A] transition-colors ]">Change role</a>
         </p>
       </div>

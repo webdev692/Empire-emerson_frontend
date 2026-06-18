@@ -66,7 +66,7 @@ const PlatformSettings: React.FC = () => {
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <p className="font-semibold">Open registration</p>
-                  <p className="text-sm text-[#F5F0E8]">Allow new companies, schools and interns to onboard through the portal.</p>
+                  <p className="text-sm text-[#F5F0E8]">Allow new companies, institutions and interns to onboard through the portal.</p>
                 </div>
                 <button
                   onClick={() => setOpenRegistration((prev) => !prev)}

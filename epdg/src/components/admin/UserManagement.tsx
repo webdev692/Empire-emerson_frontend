@@ -169,7 +169,7 @@ const UserManagement: React.FC = () => {
                 {roleLabels.map((l) => (
                   <button key={l} onClick={() => setFilter(l)}
                     className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${filter === l ? "bg-[#4B1E91] text-white" : "bg-[#12022A] text-[#F5F0E8]"}`}>
-                    {l === "all" ? "All" : `${l.charAt(0).toUpperCase() + l.slice(1)} (${counts[l as keyof typeof counts] ?? 0})`}
+                    {l === "all" ? "All" : `${l === "school" ? "Institution" : l.charAt(0).toUpperCase() + l.slice(1)} (${counts[l as keyof typeof counts] ?? 0})`}
                   </button>
                 ))}
               </div>
@@ -233,7 +233,7 @@ const UserManagement: React.FC = () => {
                       </td>
                       <td className="px-4 py-4">
                         <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${badgeClass(user.role)}`}>
-                          {user.role}
+                          {user.role === "school" ? "Institution" : user.role}
                         </span>
                       </td>
                       <td className="px-4 py-4">
@@ -290,7 +290,7 @@ const UserManagement: React.FC = () => {
                   className="mt-1.5 w-full rounded-2xl border border-[#4B1E91] bg-[#0D0118] px-4 py-3 text-white outline-none">
                   <option value="intern">Intern</option>
                   <option value="company">Company</option>
-                  <option value="school">School</option>
+                  <option value="school">Institution</option>
                   <option value="admin">Admin</option>
                 </select>
               </label>

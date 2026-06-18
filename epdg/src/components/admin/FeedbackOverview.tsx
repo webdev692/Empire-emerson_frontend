@@ -39,7 +39,7 @@ const FeedbackOverview: React.FC = () => {
           <div>
             <p className="text-sm uppercase tracking-[0.25em] text-[#F5F0E8]">Feedback overview</p>
             <h1 className="mt-2 text-3xl font-semibold">Stakeholder sentiment</h1>
-            <p className="mt-2 max-w-2xl text-[#F5F0E8]">Review quality signals from students, companies and schools.</p>
+            <p className="mt-2 max-w-2xl text-[#F5F0E8]">Review quality signals from students, companies and institutions.</p>
           </div>
           <button className="inline-flex items-center gap-2 rounded-2xl bg-[#4B1E91] px-5 py-3 text-sm font-semibold text-white">
             <MessageSquare size={16} /> Add note

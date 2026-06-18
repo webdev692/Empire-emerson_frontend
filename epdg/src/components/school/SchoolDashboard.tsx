@@ -113,7 +113,7 @@ const SchoolDashboard = () => {
         </h2>
 
         <p className='text-[#A78BCC]'>
-          Your school account is currently awaiting approval from the admin
+          Your institution account is currently awaiting approval from the admin
           team.
         </p>
       </div>
@@ -145,7 +145,7 @@ const SchoolDashboard = () => {
         </div>
 
         <div className='text-sm text-[#A78BCC]'>
-          School Dashboard Portal
+          Institution Dashboard Portal
         </div>
       </div>
 

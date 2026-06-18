@@ -29,7 +29,7 @@ const menuItems = [
   { name: "Users",         path: "/admin/users",          icon: Users           },
   { name: "Applications",  path: "/admin/applications",   icon: ClipboardList   },
   { name: "Companies",     path: "/admin/companies",      icon: Building2       },
-  { name: "Schools",       path: "/admin/schools",        icon: School2         },
+  { name: "Institutions",  path: "/admin/schools",        icon: School2         },
   { name: "Mentors",       path: "/admin/mentors",        icon: UserCheck       },
   { name: "Slots",         path: "/admin/slots",          icon: Briefcase       },
   { name: "Placements",    path: "/admin/placements",     icon: Briefcase       },

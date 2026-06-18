@@ -13,8 +13,9 @@ const RegisterCompany = lazy(() => import("./components/Credential/RegisterCompa
 const RegisterSchool  = lazy(() => import("./components/Credential/RegisterSchool"));
 const ForgotPassword  = lazy(() => import("./components/Credential/ForgotPassword"));
 const ResetPassword   = lazy(() => import("./components/Credential/ResetPassword"));
-const ChangePassword  = lazy(() => import("./components/Credential/ChangePassword"));
-const PendingApproval = lazy(() => import("./components/Credential/PendingApproval"));
+const ChangePassword      = lazy(() => import("./components/Credential/ChangePassword"));
+const PendingApproval     = lazy(() => import("./components/Credential/PendingApproval"));
+const CertificateVerify   = lazy(() => import("./components/CertificateVerify"));
 
 // Dashboard
 const Dashboard = lazy(() => import("./components/Dashboard"));
@@ -108,6 +109,7 @@ function App() {
           <Route path="/reset-password"   element={<ResetPassword />} />
           <Route path="/change-password"  element={<ChangePassword />} />
           <Route path="/verify-email"     element={<VerifyEmail />} />
+          <Route path="/verify/:certificateId" element={<CertificateVerify />} />
 
           {/* ── Pending approval ─────────────────────────────────────────── */}
           <Route path="/pending-approval" element={<PendingApproval />} />
