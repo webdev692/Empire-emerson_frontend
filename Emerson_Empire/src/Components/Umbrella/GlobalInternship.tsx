@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { EPDG, development, study, meeting, sales } from '../../assets';
 
-// â”€â”€ SEO / Schema â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
 
 const SCHEMA_PROGRAM = {
   '@context': 'https://schema.org',
@@ -40,7 +40,7 @@ const SCHEMA_FAQ = {
       name: 'Is the internship paid?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. This is an unpaid internship program. Interns do not receive wages, stipends, or compensation for participation. The program is designed to provide experience, portfolio work, and professional development. There are also no fees to join â€” participation is free.',
+        text: 'No. This is an unpaid internship program. Interns do not receive wages, stipends, or compensation for participation. The program is designed to provide experience, portfolio work, and professional development. There are also no fees to join — participation is free.',
       },
     },
     {
@@ -48,7 +48,7 @@ const SCHEMA_FAQ = {
       name: 'Is the internship really free?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. There are no application fees or participation fees. The internship is unpaid â€” meaning interns are not compensated for their work â€” but it costs nothing to apply or participate.',
+        text: 'Yes. There are no application fees or participation fees. The internship is unpaid — meaning interns are not compensated for their work — but it costs nothing to apply or participate.',
       },
     },
     {
@@ -72,7 +72,7 @@ const SCHEMA_FAQ = {
       name: 'How long is the internship?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The program is semester-based, typically running 10â€“16 weeks depending on the track and cohort schedule.',
+        text: 'The program is semester-based, typically running 10–16 weeks depending on the track and cohort schedule.',
       },
     },
     {
@@ -102,7 +102,7 @@ const SCHEMA_FAQ = {
   ],
 };
 
-// â”€â”€ Tracks data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Tracks data ───────────────────────────────────────────────────────────────
 
 const TRACKS = [
   {
@@ -172,13 +172,13 @@ const TRACKS = [
   },
 ];
 
-// â”€â”€ How It Works â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── How It Works ──────────────────────────────────────────────────────────────
 
 const STEPS = [
   {
     step: '01',
     title: 'Apply Online',
-    body: 'Fill out the application form. No resume required â€” just your goals, your track of interest, and your availability. Applications are reviewed on a rolling basis.',
+    body: 'Fill out the application form. No resume required — just your goals, your track of interest, and your availability. Applications are reviewed on a rolling basis.',
   },
   {
     step: '02',
@@ -188,7 +188,7 @@ const STEPS = [
   {
     step: '03',
     title: 'Complete Weekly Assignments',
-    body: 'Work through weekly assignments, team projects, and communication exercises at your own pace. All work is done virtually â€” no commute, no relocation.',
+    body: 'Work through weekly assignments, team projects, and communication exercises at your own pace. All work is done virtually — no commute, no relocation.',
   },
   {
     step: '04',
@@ -197,19 +197,19 @@ const STEPS = [
   },
 ];
 
-// â”€â”€ FAQ data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── FAQ data ──────────────────────────────────────────────────────────────────
 
 const FAQS = SCHEMA_FAQ.mainEntity.map((q) => ({
   q: q.name,
   a: q.acceptedAnswer.text,
 }));
 
-// â”€â”€ Application form URL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Application form URL ──────────────────────────────────────────────────────
 
 const APPLY_FORM =
   'https://docs.google.com/forms/d/e/1FAIpQLSct0beq8VHPv9zhRreBFv8fK8HWGIGNp2YmuRGiOiL7RPoGFQ/viewform?embedded=true';
 
-// â”€â”€ Sub-components â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Sub-components ────────────────────────────────────────────────────────────
 
 const TrackCard: React.FC<(typeof TRACKS)[0] & { open: boolean; onToggle: () => void }> = ({
   icon: Icon, title, subtitle, color, description, skills, build, bestFor, img, open, onToggle,
@@ -290,7 +290,7 @@ const TrackCard: React.FC<(typeof TRACKS)[0] & { open: boolean; onToggle: () => 
   </motion.div>
 );
 
-// â”€â”€ ApplicationForm â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── ApplicationForm ───────────────────────────────────────────────────────────
 
 const ApplicationForm: React.FC = () => {
   const [loadCount, setLoadCount] = useState(0);
@@ -301,7 +301,7 @@ const ApplicationForm: React.FC = () => {
       {submitted ? (
         <div className="flex flex-col items-center justify-center py-20 px-8 text-center">
           <div className="flex items-center justify-center w-16 h-16 bg-[#C9A84C] text-[#12022A] text-2xl font-bold mb-6">
-            âœ“
+            ✓
           </div>
           <h3 className="font-bold text-[#12022A] text-2xl uppercase mb-3">Application Submitted!</h3>
           <p className="text-neutral-500 text-sm leading-relaxed max-w-sm mb-8">
@@ -327,7 +327,7 @@ const ApplicationForm: React.FC = () => {
   );
 };
 
-// â”€â”€ FAQ Accordion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── FAQ Accordion ─────────────────────────────────────────────────────────────
 
 const FAQItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
   const [open, setOpen] = useState(false);
@@ -360,7 +360,7 @@ const FAQItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
   );
 };
 
-// â”€â”€ Main page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Main page ─────────────────────────────────────────────────────────────────
 
 const GlobalInternship: React.FC = () => {
   const [openTrack, setOpenTrack] = useState<string | null>(null);
@@ -371,7 +371,7 @@ const GlobalInternship: React.FC = () => {
   return (
     <div className="pt-16 sm:pt-20 min-h-screen bg-[#FAFAF9] font-sans antialiased">
 
-      {/* â”€â”€ SEO â”€â”€ */}
+      {/* ── SEO ── */}
       <Helmet>
         <title>Free Virtual Internship Program | Emerson Professional Development</title>
         <meta
@@ -386,7 +386,7 @@ const GlobalInternship: React.FC = () => {
         <script type="application/ld+json">{JSON.stringify(SCHEMA_FAQ)}</script>
       </Helmet>
 
-      {/* â”€â”€ Hero â”€â”€ */}
+      {/* ── Hero ── */}
       <div className="bg-[#12022A] text-white">
         <div className="mx-auto px-4 sm:px-6 lg:px-16 py-24 max-w-7xl">
           <motion.span
@@ -413,7 +413,7 @@ const GlobalInternship: React.FC = () => {
           >
             An unpaid, fully remote internship program in web design, UX/UI design, digital marketing,
             social media, or sales. Free to join, open worldwide, no experience required.
-            Build real portfolio work â€” and stay connected for gig projects and job opportunities as they arise.
+            Build real portfolio work — and stay connected for gig projects and job opportunities as they arise.
           </motion.p>
 
           <div className="flex flex-col sm:flex-row gap-3">
@@ -421,14 +421,14 @@ const GlobalInternship: React.FC = () => {
               href="#application-form"
               className="inline-flex items-center justify-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-4 font-mono font-bold text-[#12022A] text-xs uppercase tracking-wider transition-colors duration-200"
             >
-              Apply Now â€” It's Free
+              Apply Now — It's Free
               <ArrowRight size={14} />
             </a>
             <a
               href="#tracks"
               className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-[#C9A84C]/60 hover:bg-white/5 px-8 py-4 font-mono text-white text-xs uppercase tracking-wider transition-colors duration-200"
             >
-              Explore Tracks â†“
+              Explore Tracks ↓
             </a>
           </div>
         </div>
@@ -440,7 +440,7 @@ const GlobalInternship: React.FC = () => {
               {[
                 { icon: Globe,  stat: '100% Remote',  label: 'Work from anywhere'         },
                 { icon: Star,   stat: 'Unpaid',       label: 'Free to join, no wages'     },
-                { icon: Clock,  stat: '10 â€“ 16 Weeks',label: 'Semester-based program'     },
+                { icon: Clock,  stat: '10 – 16 Weeks',label: 'Semester-based program'     },
                 { icon: Users,  stat: '5 Tracks',     label: 'Choose your focus area'     },
               ].map(({ icon: Icon, stat, label }) => (
                 <div key={stat} className="flex items-center gap-3">
@@ -458,7 +458,7 @@ const GlobalInternship: React.FC = () => {
         </div>
       </div>
 
-      {/* â”€â”€ Who Can Apply â”€â”€ */}
+      {/* ── Who Can Apply ── */}
       <section className="bg-white border-b border-neutral-100 py-16">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -468,7 +468,7 @@ const GlobalInternship: React.FC = () => {
                 Students, Graduates &amp; Career Changers Welcome.
               </h2>
               <p className="text-neutral-500 text-sm leading-relaxed mb-6">
-                This program was built for people who want to build real skills and real experience â€”
+                This program was built for people who want to build real skills and real experience —
                 not just add another certification to a shelf. If you're willing to show up, complete
                 assignments, and put in the work, you belong here.
               </p>
@@ -477,7 +477,7 @@ const GlobalInternship: React.FC = () => {
                   'Current students at any level',
                   'Recent graduates looking for practical experience',
                   'Career changers entering tech, design, or marketing',
-                  'International applicants â€” no visa required',
+                  'International applicants — no visa required',
                   'Beginners with no prior professional experience',
                   'Professionals seeking to expand into new skill areas',
                 ].map((item) => (
@@ -505,7 +505,7 @@ const GlobalInternship: React.FC = () => {
         </div>
       </section>
 
-      {/* â”€â”€ Tracks â”€â”€ */}
+      {/* ── Tracks ── */}
       <section id="tracks" className="py-20 scroll-mt-20">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Internship Tracks</p>
@@ -513,7 +513,7 @@ const GlobalInternship: React.FC = () => {
             Choose Your Track.
           </h2>
           <p className="text-neutral-500 text-sm leading-relaxed mb-10 max-w-2xl">
-            Five focus areas. Pick the one that matches your goals â€” or apply and tell us where you want to grow.
+            Five focus areas. Pick the one that matches your goals — or apply and tell us where you want to grow.
           </p>
 
           <div className="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -529,7 +529,7 @@ const GlobalInternship: React.FC = () => {
         </div>
       </section>
 
-      {/* â”€â”€ How It Works â”€â”€ */}
+      {/* ── How It Works ── */}
       <section className="bg-[#12022A] text-white py-20">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Process</p>
@@ -550,7 +550,7 @@ const GlobalInternship: React.FC = () => {
         </div>
       </section>
 
-      {/* â”€â”€ Portfolio â”€â”€ */}
+      {/* ── Portfolio ── */}
       <section id="portfolio" className="py-20 scroll-mt-20 bg-white border-b border-neutral-100">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -565,10 +565,10 @@ const GlobalInternship: React.FC = () => {
               </p>
               <div className="space-y-4">
                 {[
-                  { label: 'Real project work', body: 'Weekly assignments and team projects that produce actual deliverables â€” not hypotheticals.' },
+                  { label: 'Real project work', body: 'Weekly assignments and team projects that produce actual deliverables — not hypotheticals.' },
                   { label: 'Portfolio documentation', body: 'Guidance on how to present your work, write about your experience, and frame it for job applications.' },
                   { label: 'Professional communication practice', body: 'Written communication, feedback cycles, and collaboration experience in a professional setting.' },
-                  { label: 'Track-specific deliverables', body: 'Each track produces specific outputs â€” code, designs, campaigns, or strategy documents â€” that are yours to keep.' },
+                  { label: 'Track-specific deliverables', body: 'Each track produces specific outputs — code, designs, campaigns, or strategy documents — that are yours to keep.' },
                 ].map((item) => (
                   <div key={item.label} className="pl-4 border-l-2 border-[#4B1E91]/30">
                     <p className="font-bold text-[#12022A] text-sm mb-1">{item.label}</p>
@@ -586,7 +586,7 @@ const GlobalInternship: React.FC = () => {
         </div>
       </section>
 
-      {/* â”€â”€ Beyond the Program â”€â”€ */}
+      {/* ── Beyond the Program ── */}
       <section className="py-20 bg-[#12022A] text-white">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">What Comes Next</p>
@@ -594,7 +594,7 @@ const GlobalInternship: React.FC = () => {
             Beyond the Internship.
           </h2>
           <p className="text-white/55 text-sm leading-relaxed mb-10 max-w-2xl">
-            Completing the program is the foundation. Here's what may be available to qualified interns and alumni â€” subject to availability, not guaranteed.
+            Completing the program is the foundation. Here's what may be available to qualified interns and alumni — subject to availability, not guaranteed.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -611,14 +611,14 @@ const GlobalInternship: React.FC = () => {
                 Short-Term Project Work
               </h3>
               <p className="text-white/60 text-sm leading-relaxed mb-5">
-                As client projects, community work, and internal assignments arise, qualified interns and program alumni may be considered for short-term, one-time gig projects in their track area. These are project-based engagements â€” not employment â€” and may include compensation depending on the project scope.
+                As client projects, community work, and internal assignments arise, qualified interns and program alumni may be considered for short-term, one-time gig projects in their track area. These are project-based engagements — not employment — and may include compensation depending on the project scope.
               </p>
               <ul className="space-y-2 mb-6">
                 {[
                   'Available to interns and program alumni',
                   'Project-based, not ongoing employment',
                   'May include compensation depending on scope',
-                  'Subject to availability â€” not guaranteed',
+                  'Subject to availability — not guaranteed',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
                     <CheckCircle size={13} className="text-[#C9A84C] mt-0.5 shrink-0" />
@@ -653,7 +653,7 @@ const GlobalInternship: React.FC = () => {
                 {[
                   'Available to interns who complete in good standing',
                   'Network referrals and introductions when available',
-                  'Not a staffing service â€” no placement guarantee',
+                  'Not a staffing service — no placement guarantee',
                   'Opportunities shared as they arise',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
@@ -683,7 +683,7 @@ const GlobalInternship: React.FC = () => {
         </div>
       </section>
 
-      {/* â”€â”€ Evidence & Certificates â”€â”€ */}
+      {/* ── Evidence & Certificates ── */}
       <section id="evidence-certificates" className="py-20 scroll-mt-20 bg-[#4B1E91]/5">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Evidence &amp; Certificates</p>
@@ -698,12 +698,12 @@ const GlobalInternship: React.FC = () => {
               {
                 icon: Award,
                 title: 'Completion Documentation',
-                body: 'A written record of your participation, track, duration, and accomplishments â€” issued by Emerson Professional Development Group when all requirements are met.',
+                body: 'A written record of your participation, track, duration, and accomplishments — issued by Emerson Professional Development Group when all requirements are met.',
               },
               {
                 icon: BookOpen,
                 title: 'Portfolio Evidence',
-                body: 'The actual work you produce during the internship â€” deliverables, projects, and documents you can present directly to employers or include in a portfolio.',
+                body: 'The actual work you produce during the internship — deliverables, projects, and documents you can present directly to employers or include in a portfolio.',
               },
               {
                 icon: Star,
@@ -731,7 +731,7 @@ const GlobalInternship: React.FC = () => {
         </div>
       </section>
 
-      {/* â”€â”€ Application Form â”€â”€ */}
+      {/* ── Application Form ── */}
       <section id="application-form" className="py-20 scroll-mt-20 bg-white">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Apply Now</p>
@@ -748,7 +748,7 @@ const GlobalInternship: React.FC = () => {
         </div>
       </section>
 
-      {/* â”€â”€ FAQ â”€â”€ */}
+      {/* ── FAQ ── */}
       <section className="py-20 bg-[#FAFAF9] border-t border-neutral-100">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">FAQ</p>
@@ -763,7 +763,7 @@ const GlobalInternship: React.FC = () => {
         </div>
       </section>
 
-      {/* â”€â”€ Bottom CTA â”€â”€ */}
+      {/* ── Bottom CTA ── */}
       <div className="bg-[#4B1E91] text-white py-20">
         <div className="mx-auto px-6 max-w-4xl text-center">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-4">Ready to Start?</p>
@@ -778,7 +778,7 @@ const GlobalInternship: React.FC = () => {
               href="#application-form"
               className="inline-flex items-center justify-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-4 font-mono font-bold text-[#12022A] text-xs uppercase tracking-wider transition-colors duration-200"
             >
-              Apply Now â€” It's Free
+              Apply Now — It's Free
               <ArrowRight size={14} />
             </a>
             <Link
