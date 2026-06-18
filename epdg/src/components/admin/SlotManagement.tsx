@@ -25,7 +25,7 @@ interface Slot {
   created_by_name: string | null;
 }
 
-const DEPARTMENTS = ["Frontend", "Backend", "UX/UI", "Sales", "Marketing", "Social Media", "Data & Analytics", "HR & Admin"];
+const DEPARTMENTS = ["Frontend", "Backend", "Full Stack", "UX/UI", "Sales", "Marketing", "Social Media", "Data & Analytics", "HR & Admin"];
 const STATUSES: SlotStatus[] = ["draft", "open", "closed", "filled"];
 
 const STATUS_STYLE: Record<SlotStatus, string> = {

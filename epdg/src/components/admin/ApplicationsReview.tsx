@@ -1,4 +1,4 @@
-﻿import { useMemo, useState, useEffect } from "react";
+﻿import { useMemo, useState, useEffect, useRef } from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import api from "../../lib/axios";
 import type { AxiosError } from "axios";
@@ -48,7 +48,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   "Soft Skills":           "bg-yellow-500/15 text-yellow-300 border-yellow-500/30",
 };
 
-const departments = ["Frontend", "Backend", "UX/UI", "Sales", "Marketing", "Social Media", "Data & Analytics", "HR & Admin"];
+const departments = ["Frontend", "Backend", "Full Stack", "UX/UI", "Sales", "Marketing", "Social Media", "Data & Analytics", "HR & Admin"];
 
 const sourceOptions = [
   { label: "All",     value: "all"     as const },
@@ -68,6 +68,8 @@ const ApplicationsReview: React.FC = () => {
   const [saving, setSaving]             = useState<number | null>(null);
   const [cvAnalysis, setCvAnalysis]     = useState<Record<number, CvAnalysis | "loading" | "error">>({});
   const [mentors, setMentors]           = useState<{ id: number; name: string }[]>([]);
+  const [assignedDept, setAssignedDept] = useState<Record<number, string>>({});
+  const deptRefs = useRef<Record<number, HTMLSelectElement | null>>({});
 
   useEffect(() => {
     fetchApplications();
@@ -154,8 +156,16 @@ const ApplicationsReview: React.FC = () => {
     setMessage(`✅ ${toApprove.length} application(s) approved.`);
   }
 
-  function setLocalField(id: number, field: "department" | "mentor", value: string) {
+  function setLocalField(id: number, field: "department" | "mentor", value: string, fromSuggestion = false) {
     setApplications((prev) => prev.map((a) => a.id === id ? { ...a, [field]: value } : a));
+    if (field === "department" && fromSuggestion) {
+      setAssignedDept((prev) => ({ ...prev, [id]: value }));
+      // Scroll the department dropdown into view
+      const el = deptRefs.current[id];
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+      // Clear the flash after 3 seconds
+      setTimeout(() => setAssignedDept((prev) => { const n = { ...prev }; delete n[id]; return n; }), 3000);
+    }
   }
 
   async function analyseCv(id: number) {
@@ -324,11 +334,23 @@ const ApplicationsReview: React.FC = () => {
                 {app.status === "pending" && (
                   <div className="mt-6 grid gap-4 lg:grid-cols-3">
                     <label className="space-y-2 text-sm text-[#F5F0E8]">
-                      Assign Department
+                      <span className="flex items-center gap-2">
+                        Assign Department
+                        {assignedDept[app.id] && (
+                          <span className="rounded-full bg-green-500/15 border border-green-500/30 px-2.5 py-0.5 text-[10px] text-green-300 animate-pulse">
+                            ✓ Set to {assignedDept[app.id]}
+                          </span>
+                        )}
+                      </span>
                       <select
+                        ref={(el) => { deptRefs.current[app.id] = el; }}
                         value={app.department}
                         onChange={(e) => setLocalField(app.id, "department", e.target.value)}
-                        className="w-full rounded-3xl border border-[#4B1E91] bg-[#0D0118] px-4 py-3 text-white outline-none"
+                        className={`w-full rounded-3xl border px-4 py-3 text-white outline-none transition-colors ${
+                          assignedDept[app.id]
+                            ? "border-green-500/50 bg-green-500/10"
+                            : "border-[#4B1E91] bg-[#0D0118]"
+                        }`}
                       >
                         <option value="">Select department</option>
                         {departments.map((d) => <option key={d} value={d}>{d}</option>)}
@@ -504,7 +526,7 @@ const ApplicationsReview: React.FC = () => {
                                             </div>
                                             {app.status === "pending" && rec.department && (
                                               <button
-                                                onClick={() => setLocalField(app.id, "department", rec.department)}
+                                                onClick={() => setLocalField(app.id, "department", rec.department, true)}
                                                 className="rounded-2xl border border-[#4B1E91] bg-[#4B1E91]/20 px-3 py-1.5 text-xs text-[#D8B9FF] hover:bg-[#4B1E91]/40 transition"
                                               >
                                                 Assign dept

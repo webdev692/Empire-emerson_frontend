@@ -10,6 +10,8 @@ export interface AuthUser {
   email: string;
   role: Role;
   status: AccountStatus;
+  is_mentor?: boolean;
+  force_password_change?: boolean;
 }
 
 interface AuthStore {

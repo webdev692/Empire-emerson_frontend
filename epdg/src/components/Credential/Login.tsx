@@ -77,6 +77,10 @@ const Login: React.FC = () => {
         navigate("/pending-approval");
       } else if (user.status === "rejected") {
         setError("Your account has been rejected. Contact support@theemersonempire.info for help.");
+      } else if (user.force_password_change) {
+        navigate("/change-password");
+      } else if (user.role === "admin" && user.is_mentor) {
+        navigate("/mentor");
       } else {
         navigate(HOME[user.role] ?? "/dashboard");
       }
