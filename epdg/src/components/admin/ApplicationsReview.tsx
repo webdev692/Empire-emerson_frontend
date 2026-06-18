@@ -46,8 +46,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   "Soft Skills":           "bg-yellow-500/15 text-yellow-300 border-yellow-500/30",
 };
 
-const departments = ["Frontend", "Backend", "UX/UI", "Sales", "Marketing", "Social Media"];
-const mentors     = ["Mila", "AJ", "Noor", "Zane"];
+const departments = ["Frontend", "Backend", "UX/UI", "Sales", "Marketing", "Social Media", "Data & Analytics", "HR & Admin"];
 
 const sourceOptions = [
   { label: "All",     value: "all"     as const },
@@ -66,8 +65,21 @@ const ApplicationsReview: React.FC = () => {
   const [message, setMessage]           = useState("");
   const [saving, setSaving]             = useState<number | null>(null);
   const [cvAnalysis, setCvAnalysis]     = useState<Record<number, CvAnalysis | "loading" | "error">>({});
+  const [mentors, setMentors]           = useState<{ id: number; name: string }[]>([]);
 
-  useEffect(() => { fetchApplications(); }, []);
+  useEffect(() => {
+    fetchApplications();
+    fetchMentors();
+  }, []);
+
+  async function fetchMentors() {
+    try {
+      const { data } = await api.get<{ success: boolean; data: { id: number; name: string }[] }>("/api/admin/mentors");
+      setMentors(data.data);
+    } catch {
+      // fall back silently — dropdown will be empty
+    }
+  }
 
   async function fetchApplications() {
     setLoading(true);
@@ -329,7 +341,10 @@ const ApplicationsReview: React.FC = () => {
                         className="w-full rounded-3xl border border-[#4B1E91] bg-[#0D0118] px-4 py-3 text-white outline-none"
                       >
                         <option value="">Select mentor</option>
-                        {mentors.map((m) => <option key={m} value={m}>{m}</option>)}
+                        {mentors.length > 0
+                          ? mentors.map((m) => <option key={m.id} value={m.name}>{m.name}</option>)
+                          : <option disabled>No mentors configured</option>
+                        }
                       </select>
                     </label>
 

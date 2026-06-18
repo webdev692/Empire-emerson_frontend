@@ -1,4 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import api from "../lib/axios";
+
+interface Slot {
+  id: number;
+  title: string;
+  department: string | null;
+  description: string | null;
+  slots_available: number;
+  slots_filled: number;
+  duration_weeks: number | null;
+  stipend: number | null;
+  is_remote: boolean;
+  county: string | null;
+  deadline: string | null;
+  company_name: string | null;
+  skills_required: string[] | null;
+}
+
+const STATIC_COMPANIES = [
+  { id: 1, name: "Emerson Group",   industry: "Technology",     roles: "12 Open Roles" },
+  { id: 2, name: "Nova Studio",     industry: "Design Agency",  roles: "5 Open Roles"  },
+  { id: 3, name: "Skyline Digital", industry: "Marketing",      roles: "8 Open Roles"  },
+];
 
 const roles = ["intern", "company", "admin"];
 
@@ -10,53 +33,6 @@ type ApplicationStatus =
   | "Accepted"
   | "Rejected"
   | "Active Internship";
-
-// ─── Intern Data ─────────────────────────────────────────────
-
-const companies = [
-  {
-    id: 1,
-    name: "Emerson Group",
-    industry: "Technology",
-    roles: "12 Open Roles",
-  },
-  {
-    id: 2,
-    name: "Nova Studio",
-    industry: "Design Agency",
-    roles: "5 Open Roles",
-  },
-  {
-    id: 3,
-    name: "Skyline Digital",
-    industry: "Marketing",
-    roles: "8 Open Roles",
-  },
-];
-
-const opportunities = [
-  {
-    id: 1,
-    title: "Frontend Internship",
-    type: "Remote",
-    duration: "3 Months",
-    company: "Emerson Group",
-  },
-  {
-    id: 2,
-    title: "UI/UX Design Program",
-    type: "Hybrid",
-    duration: "6 Months",
-    company: "Nova Studio",
-  },
-  {
-    id: 3,
-    title: "Backend Developer Intern",
-    type: "On-site",
-    duration: "4 Months",
-    company: "Skyline Digital",
-  },
-];
 
 const projects = [
   "AI Research Project",
@@ -103,49 +79,59 @@ const internshipTasks = [
 const DiscoveryDashboard: React.FC = () => {
   const [role, setRole] = useState("intern");
 
-  // ─── Phase 6 State ───────────────────────────────────────
+  const [slots,        setSlots]        = useState<Slot[]>([]);
+  const [slotsLoading, setSlotsLoading] = useState(true);
+  const [applying,     setApplying]     = useState<number | null>(null);
+  const [appliedIds,   setAppliedIds]   = useState<number[]>([]);
+  const [slotMessage,  setSlotMessage]  = useState("");
 
   const [connectedCompanies, setConnectedCompanies] = useState<number[]>([]);
-
   const [applications, setApplications] = useState<
-    {
-      id: number;
-      role: string;
-      company: string;
-      status: ApplicationStatus;
-    }[]
+    { id: number; role: string; company: string; status: ApplicationStatus }[]
   >([]);
-
   const [interviewRequests, setInterviewRequests] = useState<number[]>([]);
 
-  // ─── Functions ───────────────────────────────────────────
+  useEffect(() => {
+    async function loadSlots() {
+      setSlotsLoading(true);
+      try {
+        const { data } = await api.get<{ success: boolean; data: Slot[] }>("/api/intern/slots");
+        setSlots(data.data);
+      } catch {
+        // silently ignore — no auth token if not logged in as intern
+      } finally {
+        setSlotsLoading(false);
+      }
+    }
+    loadSlots();
+  }, []);
 
   const handleConnect = (id: number) => {
-    if (connectedCompanies.includes(id)) return;
-
-    setConnectedCompanies((prev) => [...prev, id]);
+    if (!connectedCompanies.includes(id)) setConnectedCompanies((prev) => [...prev, id]);
   };
 
-  const handleApply = (item: (typeof opportunities)[0]) => {
-    const alreadyApplied = applications.find((app) => app.id === item.id);
-
-    if (alreadyApplied) return;
-
-    setApplications((prev) => [
-      ...prev,
-      {
-        id: item.id,
-        role: item.title,
-        company: item.company,
-        status: "Applied",
-      },
-    ]);
+  const handleApply = async (slot: Slot) => {
+    if (appliedIds.includes(slot.id)) return;
+    setApplying(slot.id);
+    setSlotMessage("");
+    try {
+      await api.post("/api/intern/apply", { slot_id: slot.id });
+      setAppliedIds((prev) => [...prev, slot.id]);
+      setApplications((prev) => [
+        ...prev,
+        { id: slot.id, role: slot.title, company: slot.company_name ?? "EPDG", status: "Applied" },
+      ]);
+      setSlotMessage(`✅ Applied to "${slot.title}" successfully!`);
+    } catch (err: any) {
+      const msg = err?.response?.data?.message ?? "Application failed.";
+      setSlotMessage(`❌ ${msg}`);
+    } finally {
+      setApplying(null);
+    }
   };
 
   const handleInterviewRequest = (id: number) => {
-    if (interviewRequests.includes(id)) return;
-
-    setInterviewRequests((prev) => [...prev, id]);
+    if (!interviewRequests.includes(id)) setInterviewRequests((prev) => [...prev, id]);
   };
 
   const getStatusColor = (status: ApplicationStatus) => {
@@ -284,7 +270,7 @@ const DiscoveryDashboard: React.FC = () => {
               </div>
 
               <div className="gap-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-                {companies.map((company) => (
+                {STATIC_COMPANIES.map((company) => (
                   <div
                     key={company.id}
                     className="bg-gray-50 p-6 border border-black rounded-3xl"
@@ -318,56 +304,102 @@ const DiscoveryDashboard: React.FC = () => {
               </div>
             </div>
 
-            {/* PHASE 6 — OPPORTUNITIES */}
+            {/* LIVE OPPORTUNITIES */}
             <div className="mb-14">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="font-bold text-2xl sm:text-3xl">
                   Discover Opportunities
                 </h2>
-
-                <button className="text-sm underline">Browse More</button>
+                <span className="text-sm text-gray-500">{slots.length} open</span>
               </div>
 
-              <div className="gap-6 grid grid-cols-1 lg:grid-cols-3">
-                {opportunities.map((item) => (
-                  <div
-                    key={item.id}
-                    className="p-6 border border-black rounded-3xl"
-                  >
-                    <div className="flex gap-3 mb-5">
-                      <div className="px-3 py-2 border border-black rounded-xl text-sm">
-                        {item.type}
+              {slotMessage && (
+                <div className={`mb-4 rounded-2xl border px-4 py-3 text-sm ${slotMessage.startsWith("✅") ? "bg-green-50 border-green-200 text-green-700" : "bg-red-50 border-red-200 text-red-700"}`}>
+                  {slotMessage}
+                </div>
+              )}
+
+              {slotsLoading ? (
+                <div className="flex justify-center py-10">
+                  <div className="h-8 w-8 rounded-full border-2 border-black border-t-transparent animate-spin" />
+                </div>
+              ) : slots.length === 0 ? (
+                <div className="rounded-3xl border border-black p-10 text-center text-gray-400">
+                  No open internship opportunities right now. Check back soon!
+                </div>
+              ) : (
+                <div className="gap-6 grid grid-cols-1 lg:grid-cols-3">
+                  {slots.map((slot) => {
+                    const applied = appliedIds.includes(slot.id);
+                    const isApplying = applying === slot.id;
+                    return (
+                      <div key={slot.id} className="p-6 border border-black rounded-3xl flex flex-col">
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {slot.is_remote
+                            ? <span className="px-3 py-1.5 border border-black rounded-xl text-xs">Remote</span>
+                            : <span className="px-3 py-1.5 border border-black rounded-xl text-xs">On-site</span>
+                          }
+                          {slot.duration_weeks && (
+                            <span className="px-3 py-1.5 border border-black rounded-xl text-xs">{slot.duration_weeks}w</span>
+                          )}
+                          {slot.department && (
+                            <span className="px-3 py-1.5 bg-gray-100 rounded-xl text-xs">{slot.department}</span>
+                          )}
+                        </div>
+
+                        <p className="mb-1 text-gray-500 text-sm">
+                          {slot.company_name ?? "EPDG Internal"}
+                        </p>
+                        <h3 className="mb-2 font-bold text-xl">{slot.title}</h3>
+
+                        {slot.description && (
+                          <p className="mb-3 text-gray-500 text-sm line-clamp-2">{slot.description}</p>
+                        )}
+
+                        <div className="flex flex-wrap gap-3 text-xs text-gray-400 mb-4">
+                          {slot.stipend && <span>💰 ${Number(slot.stipend).toLocaleString()}/mo</span>}
+                          {slot.deadline && <span>📅 {new Date(slot.deadline).toLocaleDateString()}</span>}
+                          {slot.county && <span>📍 {slot.county}</span>}
+                          <span>{slot.slots_available - slot.slots_filled} spot{slot.slots_available - slot.slots_filled !== 1 ? "s" : ""} left</span>
+                        </div>
+
+                        {slot.skills_required && slot.skills_required.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mb-4">
+                            {slot.skills_required.slice(0, 4).map((sk) => (
+                              <span key={sk} className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-600">{sk}</span>
+                            ))}
+                            {slot.skills_required.length > 4 && (
+                              <span className="text-xs text-gray-400">+{slot.skills_required.length - 4}</span>
+                            )}
+                          </div>
+                        )}
+
+                        <div className="mt-auto flex flex-col gap-3">
+                          <button
+                            onClick={() => handleApply(slot)}
+                            disabled={applied || isApplying || slot.slots_filled >= slot.slots_available}
+                            className={`py-3 rounded-2xl w-full font-semibold text-sm transition ${
+                              applied
+                                ? "bg-green-600 text-white cursor-default"
+                                : slot.slots_filled >= slot.slots_available
+                                  ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                                  : "bg-black text-white hover:bg-gray-800"
+                            }`}
+                          >
+                            {isApplying ? "Applying…" : applied ? "Applied ✓" : slot.slots_filled >= slot.slots_available ? "Full" : "Apply Now"}
+                          </button>
+                          <button
+                            onClick={() => handleInterviewRequest(slot.id)}
+                            className="py-3 border border-black rounded-2xl w-full text-sm"
+                          >
+                            {interviewRequests.includes(slot.id) ? "Interview Requested" : "Request Interview"}
+                          </button>
+                        </div>
                       </div>
-
-                      <div className="px-3 py-2 border border-black rounded-xl text-sm">
-                        {item.duration}
-                      </div>
-                    </div>
-
-                    <p className="mb-2 text-gray-500">{item.company}</p>
-
-                    <h3 className="mb-5 font-bold text-2xl">{item.title}</h3>
-
-                    <div className="flex flex-col gap-3">
-                      <button
-                        onClick={() => handleApply(item)}
-                        className="bg-black py-3 rounded-2xl w-full text-white"
-                      >
-                        Apply Opportunity
-                      </button>
-
-                      <button
-                        onClick={() => handleInterviewRequest(item.id)}
-                        className="py-3 border border-black rounded-2xl w-full"
-                      >
-                        {interviewRequests.includes(item.id)
-                          ? "Interview Requested"
-                          : "Request Interview"}
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
 
             {/* PHASE 7 — MESSAGES */}

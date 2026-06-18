@@ -31,6 +31,7 @@ const menuItems = [
   { name: "Companies",     path: "/admin/companies",      icon: Building2       },
   { name: "Schools",       path: "/admin/schools",        icon: School2         },
   { name: "Mentors",       path: "/admin/mentors",        icon: UserCheck       },
+  { name: "Slots",         path: "/admin/slots",          icon: Briefcase       },
   { name: "Placements",    path: "/admin/placements",     icon: Briefcase       },
   { name: "Analytics",     path: "/admin/analytics",      icon: BarChart3       },
   { name: "Gamification",  path: "/admin/gamification",   icon: Trophy          },

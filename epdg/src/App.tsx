@@ -48,6 +48,7 @@ const MentorManagement      = lazy(() => import("./components/admin/MentorManage
 const PlacementManagement   = lazy(() => import("./components/admin/PlacementManagement"));
 const NotificationsCenter   = lazy(() => import("./components/admin/NotificationsCenter"));
 const GamificationAdmin     = lazy(() => import("./components/admin/GamificationAdmin"));
+const SlotManagement        = lazy(() => import("./components/admin/SlotManagement"));
 
 // Intern
 const InternProfile         = lazy(() => import("./components/InternProfile"));
@@ -222,6 +223,7 @@ function App() {
             <Route path="placements"        element={<PlacementManagement />} />
             <Route path="notifications"     element={<NotificationsCenter />} />
             <Route path="gamification"      element={<GamificationAdmin />} />
+            <Route path="slots"             element={<SlotManagement />} />
           </Route>
           
           {/* ── School dashboard ──────────────────────────────────────────── */}
