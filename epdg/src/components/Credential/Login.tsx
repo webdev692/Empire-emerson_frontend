@@ -5,6 +5,7 @@ import api from "../../lib/axios";
 import type { AxiosError } from "axios";
 import { useAuthStore } from "../../store/authStore";
 import logo from "../../assets/epd_logo.png";
+import learningImg from "../../assets/epds-learning.png";
 import { mockLogin, logMockCredentials, isRealAccount } from "../../lib/mockAuth";
 
 const MOCK_MODE = import.meta.env.VITE_MOCK_AUTH === "true";
@@ -102,15 +103,18 @@ const Login: React.FC = () => {
 
         {/* Left branding panel — desktop only */}
         <div className="hidden lg:flex flex-col justify-between bg-[#12022A] shadow-md shadow-white p-12 border-white/5 border-r w-[45%]">
-          {EMPIRE_URL ? (
-            <a href={EMPIRE_URL} className="group flex items-center gap-3">
-              <img src={logo} alt="Emerson Professional" className="w-auto h-10 object-contain" />
-            </a>
-          ) : (
-            <div className="flex items-center gap-3">
-              <img src={logo} alt="Emerson Professional" className="w-auto h-96 sm:h-60 object-contain" />
-            </div>
-          )}
+          <div className="flex flex-col gap-6">
+            {EMPIRE_URL ? (
+              <a href={EMPIRE_URL} className="group flex items-center gap-3">
+                <img src={logo} alt="Emerson Professional" className="w-auto h-10 object-contain" />
+              </a>
+            ) : (
+              <div className="flex items-center gap-3">
+                <img src={logo} alt="Emerson Professional" className="w-auto h-96 sm:h-60 object-contain" />
+              </div>
+            )}
+            <img src={learningImg} alt="EPDG Learning" className="w-full rounded-xl object-cover" />
+          </div>
 
           <div>
             <blockquote className="mb-6 font-medium text-slate-300 text-xl leading-relaxed">
