@@ -2,6 +2,8 @@ import React from "react";
 import { FormModalProvider } from "./FormModal";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
+import ValuesSection from "./ValuesSection";
+import ClassHighlight from "./ClassHighlight";
 import Features from "./Features";
 import WeeklyClasses from "./WeeklyClasses";
 import CareerServices from "./CareerServices";
@@ -18,8 +20,10 @@ const EPDGLanding: React.FC = () => {
       <div className="font-sans">
         <Navbar />
         <Hero />
-        <Features />
+        <ValuesSection />
+        <ClassHighlight />
         <WeeklyClasses />
+        <Features />
         <CareerServices />
         <Internship />
         <WorkforceTraining />
