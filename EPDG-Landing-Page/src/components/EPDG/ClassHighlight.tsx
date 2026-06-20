@@ -25,7 +25,7 @@ const ClassHighlight: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-[#F7F2E6] px-4 pt-4 pb-20">
+    <section className="bg-[#FCF5E9] px-4 pt-4 pb-20">
       <div className="mx-auto max-w-6xl">
         <p className="mb-3 font-bold text-[#B8943D] text-xs uppercase tracking-[0.25em]">
           Weekly Classes

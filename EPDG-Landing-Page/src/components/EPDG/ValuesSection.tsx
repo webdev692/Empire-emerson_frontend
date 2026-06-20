@@ -1,18 +1,14 @@
 import React from "react";
-import valuesBanner from "../../assets/OurValues.webp";
+import valuesBanner from "../../assets/OurValues.png";
 
-/**
- * Our Values banner.
- * Replace src/assets/OurValues.webp with the real "Our Values" artwork and it
- * will update automatically.
- */
+/** Our Values banner. */
 const ValuesSection: React.FC = () => (
-  <section className="bg-[#F7F2E6] px-4 pt-14 pb-10">
+  <section className="bg-[#FCF5E9] px-4 pt-14 pb-10">
     <div className="mx-auto max-w-6xl">
       <img
         src={valuesBanner}
         alt="Our Values — We value access, growth, professionalism, empowerment, lifelong learning, and community-centered support."
-        className="shadow-2xl rounded-2xl w-full h-auto"
+        className="block w-full h-auto"
       />
     </div>
   </section>

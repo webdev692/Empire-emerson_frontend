@@ -10,13 +10,13 @@ const Hero: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="home" className="bg-gradient-to-b from-[#0B3D2B] to-[#072018] px-4 pt-6 pb-16">
+    <section id="home" className="bg-[#052012] px-4 pt-6 pb-16">
       <div className="mx-auto max-w-6xl">
         {/* Our Mission banner */}
         <img
           src={missionBanner}
           alt="Emerson Professional Development Group — Our Mission: equipping students, professionals, and emerging leaders with education, training, and development pathways. Learn. Grow. Lead."
-          className="shadow-2xl rounded-2xl w-full h-auto"
+          className="block w-full h-auto"
         />
 
         {/* Hero copy — left edge aligned with the banner box */}
