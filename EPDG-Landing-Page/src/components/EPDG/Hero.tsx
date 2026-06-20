@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="home" className="bg-gradient-to-b from-[#0B3D2B] to-[#072018] px-4 pt-10 pb-16">
+    <section id="home" className="bg-gradient-to-b from-[#0B3D2B] to-[#072018] px-4 pt-6 pb-16">
       <div className="mx-auto max-w-6xl">
         {/* Our Mission banner */}
         <img
@@ -20,12 +20,12 @@ const Hero: React.FC = () => {
         />
 
         {/* Hero copy — left edge aligned with the banner box */}
-        <div className="mt-12">
-          <span className="inline-flex items-center gap-2 mb-7 bg-[#0B5C3B]/25 px-4 py-1.5 border border-[#C9A84C]/45 rounded-full font-medium text-[#C9A84C] text-[13px] tracking-wide">
+        <div className="mt-8">
+          <span className="inline-flex items-center gap-2 mb-6 bg-[#0B5C3B]/25 px-4 py-1.5 border border-[#C9A84C]/45 rounded-full font-medium text-[#C9A84C] text-[13px] tracking-wide">
             <span className="text-xs">🌿</span> Now enrolling for weekly classes
           </span>
 
-          <h1 className="mb-6 font-bold text-white text-6xl sm:text-7xl leading-none tracking-tight heading">
+          <h1 className="mb-4 font-bold text-white text-6xl sm:text-7xl leading-none tracking-tight heading">
             Learn. <span className="text-[#C9A84C] italic">Grow.</span> Lead.
           </h1>
 

@@ -7,7 +7,7 @@ import valuesBanner from "../../assets/OurValues.webp";
  * will update automatically.
  */
 const ValuesSection: React.FC = () => (
-  <section className="bg-[#F7F2E6] px-4 py-16">
+  <section className="bg-[#F7F2E6] px-4 pt-14 pb-10">
     <div className="mx-auto max-w-6xl">
       <img
         src={valuesBanner}
