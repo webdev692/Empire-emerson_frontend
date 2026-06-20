@@ -41,7 +41,7 @@ const CTASection: React.FC = () => {
 
   return (
     <section id="contact" className="bg-[#F3F0E8] py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[1114px] mx-auto">
         <p className="text-[#C9A84C] text-xs font-bold tracking-[0.25em] uppercase mb-2">
           Get Started
         </p>

@@ -53,7 +53,7 @@ const Internship: React.FC = () => {
 
   return (
     <section id="internships" className="bg-[#044E37] px-4 py-20 text-white">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-[1114px]">
         <p className="mb-2 font-bold text-[#AF9056] text-xs uppercase tracking-[0.25em]">
           Global Internship Program
         </p>

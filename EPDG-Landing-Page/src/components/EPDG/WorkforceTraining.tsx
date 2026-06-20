@@ -64,7 +64,7 @@ const WorkforceTraining: React.FC = () => {
     <>
       {/* Workforce Training */}
       <section id="workforce" className="bg-white px-4 py-20 w-full">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-[1114px]">
           <p className="mb-2 font-bold text-[#C9A84C] text-xs uppercase tracking-[0.25em]">
             Workforce &amp; Organizational Training
           </p>
