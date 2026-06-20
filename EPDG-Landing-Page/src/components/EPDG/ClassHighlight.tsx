@@ -1,7 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useFormModal } from "./FormModal";
 
-const FORM_CLASSES  = "https://docs.google.com/forms/d/e/1FAIpQLSfOGM0MZ05Em3O502rC9HxvK5qzW06ATQMcMX2Fgcn9xBpncQ/viewform";
 const FORM_SERVICES = "https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform";
 
 const sessions = [
@@ -22,6 +22,7 @@ const Check: React.FC = () => (
 
 const ClassHighlight: React.FC = () => {
   const { openForm } = useFormModal();
+  const navigate = useNavigate();
 
   return (
     <section className="bg-[#F7F2E6] px-4 pt-4 pb-20">
@@ -77,7 +78,7 @@ const ClassHighlight: React.FC = () => {
         {/* CTAs */}
         <div className="flex flex-wrap gap-4">
           <button
-            onClick={() => openForm(FORM_CLASSES, "Register for Weekly Classes", "Free & low-cost weekly classes")}
+            onClick={() => navigate("/classes")}
             className="flex items-center gap-2 bg-[#0B5C3B] hover:bg-[#094a30] px-7 py-3.5 rounded-lg font-semibold text-white text-[15px] transition-all duration-200 cursor-pointer"
           >
             Register for Weekly Classes <span aria-hidden>→</span>

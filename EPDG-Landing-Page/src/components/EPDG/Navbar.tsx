@@ -1,20 +1,35 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/EPDG_LOGO.webp";
 
-const navLinks = [
-  { label: "Home", id: "home" },
-  { label: "Classes", id: "classes" },
-  { label: "Services", id: "services" },
-  { label: "Internships", id: "internships" },
-  { label: "Workforce", id: "workforce" },
-  { label: "Contact", id: "contact" },
+type NavLink = { label: string; id: string } & (
+  | { type: "home" }
+  | { type: "route"; to: string }
+  | { type: "section" }
+);
+
+const navLinks: NavLink[] = [
+  { label: "Home", id: "home", type: "home" },
+  { label: "Classes", id: "classes", type: "route", to: "/classes" },
+  { label: "Services", id: "services", type: "section" },
+  { label: "Internships", id: "internships", type: "section" },
+  { label: "Workforce", id: "workforce", type: "section" },
+  { label: "Contact", id: "contact", type: "section" },
 ];
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const onClasses = location.pathname === "/classes";
 
+  // Track active section while scrolling the landing page
   useEffect(() => {
+    if (onClasses) {
+      setActiveId("classes");
+      return;
+    }
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -23,39 +38,60 @@ const Navbar: React.FC = () => {
       },
       { rootMargin: "-40% 0px -55% 0px" }
     );
-    navLinks.forEach(({ id }) => {
+    ["home", "services", "internships", "workforce", "contact"].forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+  }, [onClasses, location.pathname]);
+
+  const handleNav = (link: NavLink) => {
+    setMenuOpen(false);
+    if (link.type === "route") {
+      navigate(link.to);
+    } else if (link.type === "home") {
+      if (onClasses) navigate("/");
+      else window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // section link
+      if (onClasses) {
+        navigate("/", { state: { scrollTo: link.id } });
+      } else {
+        document.getElementById(link.id)?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <nav className="top-0 right-0 left-0 z-50 sticky bg-white border-gray-200/80 border-b">
       <div className="flex justify-between items-center mx-auto px-6 max-w-7xl h-18">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-3 shrink-0">
+        <button
+          onClick={() => handleNav(navLinks[0])}
+          className="flex items-center gap-3 shrink-0 cursor-pointer"
+          aria-label="Home"
+        >
           <img
             src={logo}
             alt="Emerson Professional Development Group"
             className="rounded-full w-11 h-11"
           />
-        </a>
+        </button>
 
         {/* Desktop Nav */}
         <ul className="hidden md:flex items-center gap-9 nav font-medium text-[15px]">
-          {navLinks.map(({ label, id }) => (
-            <li key={id}>
-              <a
-                href={`#${id}`}
-                className={`transition-colors duration-200 ${
-                  activeId === id
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <button
+                onClick={() => handleNav(link)}
+                className={`transition-colors duration-200 cursor-pointer ${
+                  activeId === link.id
                     ? "text-[#0B3D2B] font-bold"
                     : "text-gray-600 hover:text-[#0B3D2B]"
                 }`}
               >
-                {label}
-              </a>
+                {link.label}
+              </button>
             </li>
           ))}
         </ul>
@@ -97,17 +133,16 @@ const Navbar: React.FC = () => {
       {menuOpen && (
         <div className="md:hidden bg-white px-6 pb-6 border-gray-100 border-t">
           <ul className="flex flex-col gap-1 mt-4">
-            {navLinks.map(({ label, id }) => (
-              <li key={id}>
-                <a
-                  href={`#${id}`}
-                  className={`block py-3 text-[15px] font-medium border-b border-gray-100 transition-colors duration-200 ${
-                    activeId === id ? "text-[#0B3D2B] font-bold" : "text-gray-600 hover:text-[#0B3D2B]"
+            {navLinks.map((link) => (
+              <li key={link.id}>
+                <button
+                  onClick={() => handleNav(link)}
+                  className={`block w-full text-left py-3 text-[15px] font-medium border-b border-gray-100 transition-colors duration-200 cursor-pointer ${
+                    activeId === link.id ? "text-[#0B3D2B] font-bold" : "text-gray-600 hover:text-[#0B3D2B]"
                   }`}
-                  onClick={() => setMenuOpen(false)}
                 >
-                  {label}
-                </a>
+                  {link.label}
+                </button>
               </li>
             ))}
           </ul>

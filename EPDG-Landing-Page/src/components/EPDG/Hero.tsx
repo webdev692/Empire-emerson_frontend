@@ -1,9 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useFormModal } from "./FormModal";
 import logo from "../../assets/EPDG_LOGO.webp";
 import biz from "../../assets/bussines.png";
 
-const FORM_CLASSES  = "https://docs.google.com/forms/d/e/1FAIpQLSfOGM0MZ05Em3O502rC9HxvK5qzW06ATQMcMX2Fgcn9xBpncQ/viewform";
 const FORM_SERVICES = "https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform";
 
 /* ── Small gold-ringed pillar icons (Learn / Grow / Lead) ─────────────── */
@@ -93,6 +93,7 @@ const MissionBanner: React.FC = () => (
 
 const Hero: React.FC = () => {
   const { openForm } = useFormModal();
+  const navigate = useNavigate();
 
   return (
     <section id="home" className="bg-gradient-to-b from-[#0B3D2B] to-[#072018] px-4 pt-10 pb-16">
@@ -101,8 +102,8 @@ const Hero: React.FC = () => {
 
         {/* Hero copy */}
         <div className="mt-12 max-w-3xl">
-          <span className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 border border-[#C9A84C]/40 rounded-full font-medium text-[#C9A84C] text-xs tracking-wide">
-            <span className="text-sm">✦</span> Now enrolling for weekly classes
+          <span className="inline-flex items-center gap-2 mb-7 bg-[#0B5C3B]/25 px-4 py-1.5 border border-[#C9A84C]/45 rounded-full font-medium text-[#C9A84C] text-[13px] tracking-wide">
+            <span className="text-xs">🌿</span> Now enrolling for weekly classes
           </span>
 
           <h1 className="mb-6 font-bold text-white text-6xl sm:text-7xl leading-none tracking-tight heading">
@@ -116,14 +117,14 @@ const Hero: React.FC = () => {
 
           <div className="flex flex-wrap gap-4">
             <button
-              onClick={() => openForm(FORM_CLASSES, "Register for a Class", "Free & low-cost weekly classes")}
-              className="flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8943d] px-7 py-3.5 rounded-lg font-semibold text-[#0B3D2B] text-[15px] transition-all duration-200 cursor-pointer"
+              onClick={() => navigate("/classes")}
+              className="flex items-center gap-2 bg-[#A98B5C] hover:bg-[#98794d] px-7 py-3.5 rounded-md font-semibold text-[#231b0e] text-[15px] transition-all duration-200 cursor-pointer"
             >
               Register for a Class <span aria-hidden>→</span>
             </button>
             <button
               onClick={() => openForm(FORM_SERVICES, "Request Career Support", "Resume, coaching, interview prep & more")}
-              className="bg-transparent hover:bg-white/5 px-7 py-3.5 border border-white/40 hover:border-[#C9A84C]/70 rounded-lg font-semibold text-white text-[15px] transition-all duration-200 cursor-pointer"
+              className="bg-transparent hover:bg-white/5 px-7 py-3.5 border border-white/40 hover:border-[#C9A84C]/70 rounded-md font-semibold text-white text-[15px] transition-all duration-200 cursor-pointer"
             >
               Request Career Support
             </button>
