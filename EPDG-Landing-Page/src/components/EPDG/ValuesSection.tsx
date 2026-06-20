@@ -1,16 +1,16 @@
 import React from "react";
+import valuesBanner from "../../assets/OurValues.webp";
 
 /**
  * Our Values banner.
- * The artwork lives in the public folder so it can be dropped in without a
- * build step: save the uploaded banner as
- *   EPDG-Landing-Page/public/our-values-banner.png
+ * Replace src/assets/OurValues.webp with the real "Our Values" artwork and it
+ * will update automatically.
  */
 const ValuesSection: React.FC = () => (
   <section className="bg-[#F7F2E6] px-4 py-16">
     <div className="mx-auto max-w-6xl">
       <img
-        src="/our-values-banner.png"
+        src={valuesBanner}
         alt="Our Values — We value access, growth, professionalism, empowerment, lifelong learning, and community-centered support."
         className="shadow-2xl rounded-2xl w-full h-auto"
       />

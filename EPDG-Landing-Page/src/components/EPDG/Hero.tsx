@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormModal } from "./FormModal";
+import missionBanner from "../../assets/HeroEPDG.webp";
 
 const FORM_SERVICES = "https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform";
 
@@ -11,9 +12,9 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="bg-gradient-to-b from-[#0B3D2B] to-[#072018] px-4 pt-10 pb-16">
       <div className="mx-auto max-w-6xl">
-        {/* Our Mission banner — save the artwork as public/our-mission-banner.png */}
+        {/* Our Mission banner */}
         <img
-          src="/our-mission-banner.png"
+          src={missionBanner}
           alt="Emerson Professional Development Group — Our Mission: equipping students, professionals, and emerging leaders with education, training, and development pathways. Learn. Grow. Lead."
           className="shadow-2xl rounded-2xl w-full h-auto"
         />
