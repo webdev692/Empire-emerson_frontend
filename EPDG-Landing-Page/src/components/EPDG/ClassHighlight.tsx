@@ -25,7 +25,7 @@ const ClassHighlight: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-[#FCF5E9] px-4 pt-4 pb-20">
+    <section className="bg-[#FCF5E9] px-4 pt-10 pb-20">
       <div className="mx-auto max-w-6xl">
         <p className="mb-3 font-bold text-[#B8943D] text-xs uppercase tracking-[0.25em]">
           Weekly Classes
@@ -44,15 +44,13 @@ const ClassHighlight: React.FC = () => {
           {sessions.map((s) => (
             <div
               key={s.time}
-              className="bg-white shadow-sm border border-gray-200/70 rounded-2xl overflow-hidden"
+              className="bg-white shadow-sm p-6 border border-gray-200/70 rounded-xl"
             >
-              <div className="bg-[#F4EEDD] px-6 py-3 border-gray-200/60 border-b">
-                <p className="font-medium text-gray-500 text-sm">{s.duration}</p>
-              </div>
-              <div className="px-6 py-6">
-                <p className="mb-2 font-bold text-[#0B2018] text-2xl heading">{s.time}</p>
-                <p className="text-gray-500 text-sm">{s.price}</p>
-              </div>
+              <span className="inline-block bg-gray-100 px-3 py-1 rounded-md font-medium text-gray-500 text-xs">
+                {s.duration}
+              </span>
+              <p className="mt-5 mb-1.5 font-bold text-[#0B2018] text-2xl">{s.time}</p>
+              <p className="text-gray-400 text-sm">{s.price}</p>
             </div>
           ))}
         </div>

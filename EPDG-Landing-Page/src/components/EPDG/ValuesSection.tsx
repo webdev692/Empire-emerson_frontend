@@ -3,7 +3,7 @@ import valuesBanner from "../../assets/OurValues.png";
 
 /** Our Values banner. */
 const ValuesSection: React.FC = () => (
-  <section className="bg-[#FCF5E9] px-4 pt-14 pb-10">
+  <section className="bg-[#FCF5E9] px-4 pt-10 pb-10">
     <div className="mx-auto max-w-6xl">
       <img
         src={valuesBanner}
