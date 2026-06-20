@@ -26,7 +26,7 @@ const ClassHighlight: React.FC = () => {
 
   return (
     <section className="bg-[#FCF5E9] px-4 pt-10 pb-20">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-[1114px]">
         <p className="mb-3 font-bold text-[#B8943D] text-xs uppercase tracking-[0.25em]">
           Weekly Classes
         </p>

@@ -11,15 +11,18 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="bg-[#052012] px-4 pt-8 pb-14">
-      <div className="mx-auto max-w-5xl">
+      {/* Same 1114px content line as every other section. The banner image has
+          ~3.3% transparent padding each side, so it is widened (w-[107.12%]) and
+          pulled left (-3.56%) to make its visible card fill the container. */}
+      <div className="mx-auto max-w-[1114px]">
         {/* Our Mission banner */}
         <img
           src={missionBanner}
           alt="Emerson Professional Development Group — Our Mission: equipping students, professionals, and emerging leaders with education, training, and development pathways. Learn. Grow. Lead."
-          className="block w-full h-auto"
+          className="block ml-[-3.56%] w-[107.12%] max-w-none h-auto"
         />
 
-        {/* Hero copy — left edge aligned with the banner box */}
+        {/* Hero copy — aligned with the visible banner card */}
         <div className="mt-6">
           <span className="inline-flex items-center gap-2 mb-5 bg-[#0B5C3B]/25 px-4 py-1.5 border border-[#C9A84C]/45 rounded-full font-medium text-[#C9A84C] text-[13px] tracking-wide">
             <span className="text-xs">🌿</span> Now enrolling for weekly classes

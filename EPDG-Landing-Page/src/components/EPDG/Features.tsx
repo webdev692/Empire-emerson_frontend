@@ -86,7 +86,7 @@ const bottomRow = [
 const Features: React.FC = () => {
   return (
     <section className="bg-[#044E37] py-12 px-4 border-b border-[#C9A84C]/20">
-      <div className="max-w-5xl mx-auto text-white">
+      <div className="max-w-[1114px] mx-auto text-white">
         {/* Top row — 4 items */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 text-center mb-10">
           {topRow.map((f) => (

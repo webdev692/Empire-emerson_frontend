@@ -9,7 +9,7 @@ const ClassesPage: React.FC = () => {
     <>
       <Navbar />
       <div className="bg-white px-4 pt-8">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1114px]">
           <Link
             to="/"
             className="inline-flex items-center gap-2 font-medium text-[#0B5C3B] hover:text-[#094a30] text-sm transition-colors"

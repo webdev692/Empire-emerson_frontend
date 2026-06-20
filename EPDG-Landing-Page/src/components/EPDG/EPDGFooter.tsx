@@ -84,7 +84,7 @@ const socialIcons = [
 const EPDGFooter: React.FC = () => {
   return (
     <footer className="bg-[#022B1F] px-4 pt-16 border-[#C9A84C]/15 border-t text-white">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-[1114px]">
         <div className="mb-10">
           <img src={logo} alt="EPDG logo" className="w-auto h-32" />
         </div>

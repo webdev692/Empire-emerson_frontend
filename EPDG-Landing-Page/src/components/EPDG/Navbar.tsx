@@ -63,8 +63,8 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="top-0 right-0 left-0 z-50 sticky bg-white border-gray-200/80 border-b">
-      <div className="flex justify-between items-center mx-auto px-6 max-w-7xl h-18">
+    <nav className="top-0 right-0 left-0 z-50 sticky bg-white px-4 border-gray-200/80 border-b">
+      <div className="flex justify-between items-center mx-auto max-w-[1114px] h-18">
         {/* Logo */}
         <button
           onClick={() => handleNav(navLinks[0])}

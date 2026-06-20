@@ -1,111 +1,121 @@
 import React from "react";
 import { useFormModal } from "./FormModal";
+import careerBg from "../../assets/CareerSupportBackground.png";
 
 const FORM_SERVICES = "https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform";
 
-const services = [
-  {
-    title: "Career Readiness Consultation",
-    description:
-      "Discovery calls, planning sessions, and career strategy consultations for students, job seekers, and career changers.",
-    price: "Free – $75 · Sliding scale available",
-  },
-  {
-    title: "Resume Services",
-    description:
-      "Resume review, rewriting, and coaching sessions to help you present your experience clearly and professionally.",
-    price: "From  $50 · Reduced cost options available",
-  },
-  {
-    title: "LinkedIn Profile Support",
-    description:
-      "Profile audits, content guidance, and LinkedIn strategy for job seekers, career changers, and early-career professionals.",
-    price: "From $50 · Sliding scale available",
-  },
-  {
-    title: "Cover Letter Services",
-    description:
-      "Cover letter review, drafting support, and targeted letter writing for job applications, internships, and professional opportunities.",
-    price: "From $25 · Reduced cost options available",
-  },
-  {
-    title: "Interview Preparation",
-    description:
-      "Mock interview practice, response coaching, and preparation support for interviews across industries and experience levels.",
-    price: "From $50 · Group sessions from $15",
-  },
-  {
-    title: "Job Search Support",
-    description:
-      "Job search strategy, application systems, follow-up guidance, and accountability support for active job seekers.",
-    price: "From $75 · Sliding scale available",
-  },
-  {
-    title: "Career Change Package",
-    description:
-      "Structured support for career changers navigating new industries, updated materials, and job search repositioning.",
-    price: "$200 – $500 · Sliding scale when possible",
-  },
-  {
-    title: "Professional Development Coaching",
-    description:
-      "Coaching sessions focused on professional goals, skills development, and building momentum toward career advancement.",
-    price: "From $50/session · Packages available",
-  },
+const ic = "w-5 h-5";
+
+const ResumeIcon = (
+  <svg viewBox="0 0 24 24" className={ic} fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /><path d="M8 13h8M8 17h8M8 9h2" />
+  </svg>
+);
+const MailIcon = (
+  <svg viewBox="0 0 24 24" className={ic} fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" />
+  </svg>
+);
+const LinkedInIcon = (
+  <svg viewBox="0 0 24 24" className={ic} fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" />
+  </svg>
+);
+const ChatIcon = (
+  <svg viewBox="0 0 24 24" className={ic} fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+  </svg>
+);
+const SearchIcon = (
+  <svg viewBox="0 0 24 24" className={ic} fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
+  </svg>
+);
+const SparkleIcon = (
+  <svg viewBox="0 0 24 24" className={ic} fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 3l1.6 4.9L18.5 9.5 13.6 11.1 12 16l-1.6-4.9L5.5 9.5l4.9-1.6z" /><path d="M19 14l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z" />
+  </svg>
+);
+const CompassIcon = (
+  <svg viewBox="0 0 24 24" className={ic} fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88" />
+  </svg>
+);
+
+const rowOne = [
+  { title: "Resume Support", desc: "Build or refine a clear, results-focused resume.", icon: ResumeIcon },
+  { title: "Cover Letter Support", desc: "Craft cover letters tailored to specific roles.", icon: MailIcon },
+  { title: "LinkedIn Profile Support", desc: "Strengthen your profile to be found by recruiters.", icon: LinkedInIcon },
 ];
+
+const rowTwo = [
+  { title: "Interview Preparation", desc: "Practice common questions and refine your responses.", icon: ChatIcon },
+  { title: "Job Search Support", desc: "Build a focused, organized job search strategy.", icon: SearchIcon },
+  { title: "Professional Development Coaching", desc: "Grow skills, confidence, and long-term career goals.", icon: SparkleIcon },
+  { title: "Career Change Support", desc: "Explore new directions and plan a thoughtful transition.", icon: CompassIcon },
+];
+
+const Card: React.FC<{ title: string; desc: string; icon: React.ReactNode }> = ({ title, desc, icon }) => (
+  <div className="bg-white shadow-[0_2px_14px_rgba(40,50,30,0.06)] p-6 rounded-2xl">
+    <span className="flex justify-center items-center bg-[#E5EDE2] mb-5 rounded-full w-10 h-10 text-[#3E5C44]">
+      {icon}
+    </span>
+    <h3 className="mb-2 font-bold text-[#1A2620] text-[15px]">{title}</h3>
+    <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+  </div>
+);
 
 const CareerServices: React.FC = () => {
   const { openForm } = useFormModal();
 
   return (
-    <section id="services" className="bg-[#F3F0E8] px-4 py-20">
-      <div className="mx-auto max-w-6xl">
-        <p className="mb-2 font-bold text-[#C9A84C] text-xs uppercase tracking-[0.25em]">
-          Career &amp; Professional Services
+    <section
+      id="services"
+      className="relative bg-[#EAE7DD] px-4 py-16 overflow-hidden"
+      style={{
+        backgroundImage: `url(${careerBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center right",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="relative mx-auto max-w-[1114px]">
+        <p className="mb-3 font-bold text-[#B8943D] text-xs uppercase tracking-[0.25em]">
+          Career Services
         </p>
-        <h2 className="mb-3 font-bold text-[#0A1F17] text-3xl md:text-4xl tracking-tight">
-          Practical Support for Every Stage
+        <h2 className="mb-4 font-bold text-[#1A2620] text-4xl sm:text-5xl heading">
+          Practical, <span className="text-[#3F6B4B] italic">one-on-one</span> career support.
         </h2>
-        <div className="bg-[#044E37] mb-5 w-12 h-0.5" />
-        <p className="mb-12 max-w-7xl text-gray-500 text-sm md:text-base leading-relaxed">
-          EPDG focuses on internships, career readiness, professional development, resume and
-          LinkedIn support, interview preparation, workforce training, and leadership development.
+        <p className="mb-10 max-w-md text-gray-500 text-[15px] leading-relaxed">
+          Personalized services to help you take the next step in your career with clarity
+          and confidence.
         </p>
 
-        <div className="gap-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-12">
-          {services.map((s) => (
-            <div
-              key={s.title}
-              className="flex flex-col bg-white shadow-md"
-             
-            >
-              <div className="flex flex-col flex-1 items-center bg-white p-2 border-2 border-black/50 rounded-xl">
-                <h3 className="mb-3 font-bold text-[15px] text-black leading-snug">{s.title}</h3>
-                <p className="flex-1 mb-4 text-gray-800 text-sm leading-relaxed">{s.description}</p>
-                <p className="font-medium text-[#044E37] text-sm text-center tracking-wide">{s.price}</p>
-              </div>
-            </div>
+        {/* Row 1 — three cards across */}
+        <div className="gap-5 grid grid-cols-1 sm:grid-cols-3 mb-5">
+          {rowOne.map((c) => (
+            <Card key={c.title} {...c} />
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-4 mb-10">
-          <button
-            onClick={() => openForm(FORM_SERVICES, "Request a Service", "Career & professional support services")}
-            className="bg-[#AF9056] hover:bg-[#b8943d] px-7 py-3.5 rounded-md font-bold text-[#022B1F] text-sm uppercase tracking-wider transition-all duration-200 cursor-pointer"
-          >
-            Request a Service
-          </button>
-          <button
-            onClick={() => openForm(FORM_SERVICES, "Reduced Cost Options", "Sliding scale & fee waiver inquiry")}
-            className="hover:bg-[#044E37] px-7 py-3.5 border border-[#044E37] rounded-md font-bold text-[#044E37] hover:text-white text-sm uppercase tracking-wider transition-all duration-200 cursor-pointer"
-          >
-            Ask about Reduced Cost Options
-          </button>
+        {/* Rows 2–3 — two columns, left aligned so the artwork shows at right */}
+        <div className="gap-5 grid grid-cols-1 sm:grid-cols-2 mb-10 max-w-[736px]">
+          {rowTwo.map((c) => (
+            <Card key={c.title} {...c} />
+          ))}
         </div>
 
-        <p className="max-w-7xl text-gray-600 text-sm leading-relaxed">
-          Services are subject to availability, scope review, and program capacity. No employment,
-          income, or career outcome is guaranteed.
+        <button
+          onClick={() => openForm(FORM_SERVICES, "Request Services", "Career & professional support services")}
+          className="bg-[#0B5C3B] hover:bg-[#094a30] mb-10 px-7 py-3.5 rounded-md font-semibold text-white text-[15px] transition-all duration-200 cursor-pointer"
+        >
+          Request Services
+        </button>
+
+        <p className="max-w-3xl text-gray-500 text-sm leading-relaxed">
+          Classes are for general educational purposes only and do not constitute career counseling,
+          legal, financial, tax, or insurance advice. Individualized support may be requested
+          separately through a consultation.
         </p>
       </div>
     </section>
