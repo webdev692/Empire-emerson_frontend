@@ -3,7 +3,6 @@ import Navbar from "./Navbar";
 import Hero from "./Hero";
 import ValuesSection from "./ValuesSection";
 import ClassHighlight from "./ClassHighlight";
-import Features from "./Features";
 import CareerServices from "./CareerServices";
 import Internship from "./Internship";
 import WorkforceTraining from "./WorkforceTraining";
@@ -20,7 +19,6 @@ const LandingPage: React.FC = () => {
       <CareerServices />
       <Internship />
       <WorkforceTraining />
-      <Features />
       <CTASection />
       <EPDGFooter />
     </>

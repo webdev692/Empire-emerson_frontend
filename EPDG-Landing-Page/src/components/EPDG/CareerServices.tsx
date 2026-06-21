@@ -71,35 +71,34 @@ const CareerServices: React.FC = () => {
   return (
     <section
       id="services"
-      className="relative bg-[#EAE7DD] px-4 py-16 overflow-hidden"
+      className="relative overflow-hidden bg-[#041814] px-4 py-20 sm:py-28 text-white"
       style={{
         backgroundImage: `url(${careerBg})`,
+        backgroundBlendMode: "overlay",
         backgroundSize: "cover",
         backgroundPosition: "center right",
         backgroundRepeat: "no-repeat",
       }}
     >
+      <div className="absolute inset-0 bg-[#03110f]/70" />
       <div className="relative mx-auto max-w-[1114px]">
-        <p className="mb-3 font-bold text-[#B8943D] text-xs uppercase tracking-[0.25em]">
+        <p className="mb-3 text-sm uppercase tracking-[0.25em] text-[#C9A84C]/90">
           Career Services
         </p>
-        <h2 className="mb-4 font-bold text-[#1A2620] text-4xl sm:text-5xl heading">
-          Practical, <span className="text-[#3F6B4B] italic">one-on-one</span> career support.
+        <h2 className="mb-6 max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-5xl heading">
+          Practical, <span className="text-[#C9A84C] italic">one-on-one</span> career support.
         </h2>
-        <p className="mb-10 max-w-md text-gray-500 text-[15px] leading-relaxed">
-          Personalized services to help you take the next step in your career with clarity
-          and confidence.
+        <p className="mb-12 max-w-xl text-white/70 text-base leading-relaxed">
+          Personalized services to help you take the next step in your career with clarity and confidence.
         </p>
 
-        {/* Row 1 — three cards across */}
-        <div className="gap-5 grid grid-cols-1 sm:grid-cols-3 mb-5">
+        <div className="grid gap-6 sm:grid-cols-3 mb-8">
           {rowOne.map((c) => (
             <Card key={c.title} {...c} />
           ))}
         </div>
 
-        {/* Rows 2–3 — two columns, left aligned so the artwork shows at right */}
-        <div className="gap-5 grid grid-cols-1 sm:grid-cols-2 mb-10 max-w-[736px]">
+        <div className="grid gap-6 sm:grid-cols-2 mb-12 max-w-[760px]">
           {rowTwo.map((c) => (
             <Card key={c.title} {...c} />
           ))}
@@ -107,15 +106,14 @@ const CareerServices: React.FC = () => {
 
         <button
           onClick={() => openForm(FORM_SERVICES, "Request Services", "Career & professional support services")}
-          className="bg-[#0B5C3B] hover:bg-[#094a30] mb-10 px-7 py-3.5 rounded-md font-semibold text-white text-[15px] transition-all duration-200 cursor-pointer"
+          className="rounded-full bg-[#C9A84C] px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-[#07120f] transition duration-200 hover:bg-[#bda55f]"
         >
           Request Services
         </button>
 
-        <p className="max-w-3xl text-gray-500 text-sm leading-relaxed">
+        <p className="mt-10 max-w-3xl text-sm leading-relaxed text-white/60">
           Classes are for general educational purposes only and do not constitute career counseling,
-          legal, financial, tax, or insurance advice. Individualized support may be requested
-          separately through a consultation.
+          legal, financial, tax, or insurance advice. Individualized support may be requested separately.
         </p>
       </div>
     </section>

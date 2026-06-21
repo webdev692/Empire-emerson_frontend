@@ -24,12 +24,12 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const onClasses = location.pathname === "/classes";
 
-  // Track active section while scrolling the landing page
   useEffect(() => {
     if (onClasses) {
       setActiveId("classes");
       return;
     }
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -38,10 +38,12 @@ const Navbar: React.FC = () => {
       },
       { rootMargin: "-40% 0px -55% 0px" }
     );
+
     ["home", "services", "internships", "workforce", "contact"].forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
+
     return () => observer.disconnect();
   }, [onClasses, location.pathname]);
 
@@ -53,7 +55,6 @@ const Navbar: React.FC = () => {
       if (onClasses) navigate("/");
       else window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      // section link
       if (onClasses) {
         navigate("/", { state: { scrollTo: link.id } });
       } else {
@@ -63,31 +64,28 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="top-0 right-0 left-0 z-50 sticky bg-white px-4 border-gray-200/80 border-b">
-      <div className="flex justify-between items-center mx-auto max-w-[1114px] h-18">
-        {/* Logo */}
+    <nav className="top-0 sticky z-50 bg-[#03140f]/95 backdrop-blur-sm border-b border-white/10">
+      <div className="mx-auto flex items-center justify-between px-4 py-4 max-w-[1114px]">
         <button
           onClick={() => handleNav(navLinks[0])}
-          className="flex items-center gap-3 shrink-0 cursor-pointer"
+          className="flex items-center gap-3 shrink-0"
           aria-label="Home"
         >
-          <img
-            src={logo}
-            alt="Emerson Professional Development Group"
-            className="rounded-full w-11 h-11"
-          />
+          <img src={logo} alt="EPDG logo" className="w-12 h-12 rounded-full border border-white/10" />
+          <span className="hidden md:inline-block font-semibold text-white tracking-[0.16em] uppercase text-xs">
+            EPDG
+          </span>
         </button>
 
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-9 nav font-medium text-[15px]">
+        <ul className="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-[0.18em] text-white/70">
           {navLinks.map((link) => (
             <li key={link.id}>
               <button
                 onClick={() => handleNav(link)}
-                className={`transition-colors duration-200 cursor-pointer ${
+                className={`transition duration-200 ${
                   activeId === link.id
-                    ? "text-[#0B3D2B] font-bold"
-                    : "text-gray-600 hover:text-[#0B3D2B]"
+                    ? "text-[#C9A84C]"
+                    : "hover:text-white"
                 }`}
               >
                 {link.label}
@@ -96,13 +94,12 @@ const Navbar: React.FC = () => {
           ))}
         </ul>
 
-        {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
             href="https://emersonproffesionaldevelopment.netlify.app/"
             target="_blank"
             rel="noreferrer"
-            className="px-5 py-2.5 border border-gray-300 hover:border-[#0B3D2B] rounded-lg font-semibold text-gray-800 text-sm transition-all duration-200 cursor-pointer"
+            className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/70 hover:text-white hover:border-[#C9A84C] transition-all duration-200"
           >
             Log In
           </a>
@@ -110,35 +107,36 @@ const Navbar: React.FC = () => {
             href="https://emersonproffesionaldevelopment.netlify.app/"
             target="_blank"
             rel="noreferrer"
-            className="bg-[#0B5C3B] hover:bg-[#094a30] px-5 py-2.5 rounded-lg font-semibold text-white text-sm transition-all duration-200 cursor-pointer"
+            className="rounded-full bg-[#C9A84C] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#07120f] transition-all duration-200 hover:bg-[#BDA55F]"
           >
-            Create an account
+            Create Account
           </a>
         </div>
 
-        {/* Hamburger */}
         <button
-          className="md:hidden flex flex-col justify-center items-center gap-1.5 w-9 h-9 shrink-0"
+          className="md:hidden flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#03140f] text-white"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
         >
-          <span className={`block w-6 h-0.5 bg-[#0B3D2B] transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-[#0B3D2B] transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-[#0B3D2B] transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+          <span className="sr-only">Toggle menu</span>
+          <div className="relative h-5 w-5">
+            <span className={`absolute left-0 top-0 h-0.5 w-5 rounded-full bg-white transition-transform ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`absolute left-0 top-2 h-0.5 w-5 rounded-full bg-white transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`absolute left-0 top-4 h-0.5 w-5 rounded-full bg-white transition-transform ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+          </div>
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white px-6 pb-6 border-gray-100 border-t">
-          <ul className="flex flex-col gap-1 mt-4">
+        <div className="space-y-4 border-t border-white/10 bg-[#03140f] px-4 pb-6 md:hidden">
+          <ul className="flex flex-col gap-2 pt-4 text-sm uppercase tracking-[0.18em] text-white/75">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <button
                   onClick={() => handleNav(link)}
-                  className={`block w-full text-left py-3 text-[15px] font-medium border-b border-gray-100 transition-colors duration-200 cursor-pointer ${
-                    activeId === link.id ? "text-[#0B3D2B] font-bold" : "text-gray-600 hover:text-[#0B3D2B]"
+                  className={`w-full text-left py-3 transition duration-200 ${
+                    activeId === link.id ? "text-[#C9A84C]" : "hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -146,12 +144,12 @@ const Navbar: React.FC = () => {
               </li>
             ))}
           </ul>
-          <div className="flex flex-col gap-3 mt-6">
+          <div className="flex flex-col gap-3">
             <a
               href="https://emersonproffesionaldevelopment.netlify.app/"
               target="_blank"
               rel="noreferrer"
-              className="px-4 py-3 border border-gray-300 rounded-lg font-semibold text-gray-800 text-sm text-center transition-all cursor-pointer"
+              className="rounded-full border border-white/10 px-4 py-3 text-center text-sm font-semibold uppercase tracking-[0.18em] text-white/80 hover:text-white"
             >
               Log In
             </a>
@@ -159,9 +157,9 @@ const Navbar: React.FC = () => {
               href="https://emersonproffesionaldevelopment.netlify.app/"
               target="_blank"
               rel="noreferrer"
-              className="bg-[#0B5C3B] hover:bg-[#094a30] px-4 py-3 rounded-lg font-semibold text-white text-sm text-center transition-all cursor-pointer"
+              className="rounded-full bg-[#C9A84C] px-4 py-3 text-center text-sm font-semibold uppercase tracking-[0.18em] text-[#07120f] hover:bg-[#BDA55F]"
             >
-              Create an account
+              Create Account
             </a>
           </div>
         </div>
