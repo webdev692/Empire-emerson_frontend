@@ -9,6 +9,7 @@ interface Stats {
   schools:           number;
   interns:           number;
   active_placements: number;
+  certificates:      number;
   pending_approvals: number;
   pending_companies: { name: string; created_at: string }[];
   pending_schools:   { name: string; created_at: string }[];
@@ -35,7 +36,7 @@ const AdminDashboard: React.FC = () => {
     { label: "Institutions",      value: fmt(stats?.schools),           icon: Users,      accent: "bg-teal-500/20 text-teal-300",   border: "border-teal-500/30"   },
     { label: "Interns",           value: fmt(stats?.interns),           icon: Briefcase,  accent: "bg-[#4B1E91]/30 text-[#D8B9FF]",border: "border-[#4B1E91]/40"  },
     { label: "Active Placements", value: fmt(stats?.active_placements), icon: ChartBar,   accent: "bg-green-500/20 text-green-300", border: "border-green-500/30"  },
-    { label: "Certificates",      value: "—",                           icon: ShieldCheck,accent: "bg-[#C9A84C]/20 text-[#C9A84C]", border: "border-[#C9A84C]/30" },
+    { label: "Certificates",      value: fmt(stats?.certificates),      icon: ShieldCheck,accent: "bg-[#C9A84C]/20 text-[#C9A84C]", border: "border-[#C9A84C]/30" },
     { label: "Pending Approvals", value: fmt(stats?.pending_approvals), icon: Bell,       accent: "bg-red-500/20 text-red-300",     border: "border-red-500/30"    },
   ];
 
@@ -85,7 +86,7 @@ const AdminDashboard: React.FC = () => {
         <div className="space-y-4 bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl">
           <div className="flex md:flex-row flex-col md:justify-between md:items-center gap-3">
             <div>
-              <p className="text-[#F5F0E8] text-xs uppercase tracking-[0.3em]">Pending approvals</p>
+              <p className="text-[#C9A84C] text-xs uppercase tracking-[0.3em]">Pending approvals</p>
               <h2 className="mt-2 font-semibold text-xl">Requires Your Attention</h2>
             </div>
             <Link to="/admin/companies"
@@ -96,7 +97,7 @@ const AdminDashboard: React.FC = () => {
 
           <div className="gap-4 grid sm:grid-cols-2">
             <div className="bg-[#0D0118] p-4 border border-[#4B1E91] rounded-3xl">
-              <p className="text-[#F5F0E8] text-sm">Pending companies</p>
+              <p className="text-[#C9A84C] text-sm">Pending companies</p>
               <div className="space-y-3 mt-4">
                 {loading ? (
                   <div className="bg-[#1E0A4A] rounded-3xl h-16 animate-pulse" />
@@ -112,7 +113,7 @@ const AdminDashboard: React.FC = () => {
                             Registered {new Date(c.created_at).toLocaleDateString()}
                           </p>
                         </div>
-                        <Link to="/admin/companies" className="text-[#4B1E91] text-sm">Review →</Link>
+                        <Link to="/admin/companies" className="text-[#C9A84C] text-sm">Review →</Link>
                       </div>
                     </div>
                   ))
@@ -121,7 +122,7 @@ const AdminDashboard: React.FC = () => {
             </div>
 
             <div className="bg-[#0D0118] p-4 border border-[#4B1E91] rounded-3xl">
-              <p className="text-[#F5F0E8] text-sm">Pending institutions</p>
+              <p className="text-[#C9A84C] text-sm">Pending institutions</p>
               <div className="space-y-3 mt-4">
                 {loading ? (
                   <div className="bg-[#1E0A4A] rounded-3xl h-16 animate-pulse" />
@@ -137,7 +138,7 @@ const AdminDashboard: React.FC = () => {
                             Registered {new Date(s.created_at).toLocaleDateString()}
                           </p>
                         </div>
-                        <Link to="/admin/schools" className="text-[#4B1E91] text-sm">Review →</Link>
+                        <Link to="/admin/schools" className="text-[#C9A84C] text-sm">Review →</Link>
                       </div>
                     </div>
                   ))
@@ -149,7 +150,7 @@ const AdminDashboard: React.FC = () => {
 
         <div className="space-y-4 bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl">
           <div>
-            <p className="text-[#F5F0E8] text-sm uppercase tracking-[0.25em]">Quick actions</p>
+            <p className="text-[#C9A84C] text-sm uppercase tracking-[0.25em]">Quick actions</p>
             <p className="mt-2 font-semibold text-xl">Fast access</p>
           </div>
           <div className="gap-3 grid sm:grid-cols-2">
@@ -173,7 +174,7 @@ const AdminDashboard: React.FC = () => {
         <div className="space-y-4 bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl">
           <div className="flex sm:flex-row flex-col sm:justify-between sm:items-center gap-3">
             <div>
-              <p className="text-[#F5F0E8] text-sm uppercase tracking-[0.25em]">Pending intern applications</p>
+              <p className="text-[#C9A84C] text-sm uppercase tracking-[0.25em]">Pending intern applications</p>
               <h2 className={`mt-2 text-2xl font-semibold ${loading ? "text-[#4B1E91] animate-pulse" : ""}`}>
                 {loading ? "…" : `${stats?.pending_interns ?? 0} applications`}
               </h2>
@@ -196,7 +197,7 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl">
-          <p className="text-[#F5F0E8] text-sm uppercase tracking-[0.25em]">Active placements</p>
+          <p className="text-[#C9A84C] text-sm uppercase tracking-[0.25em]">Active placements</p>
           <p className={`mt-2 text-2xl font-semibold ${loading ? "text-[#4B1E91] animate-pulse" : ""}`}>
             {loading ? "…" : `${stats?.active_placements ?? 0} active`}
           </p>
@@ -213,10 +214,10 @@ const AdminDashboard: React.FC = () => {
         <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl">
           <div className="flex justify-between items-center gap-3">
             <div>
-              <p className="text-[#F5F0E8] text-sm uppercase tracking-[0.25em]">Activity feed</p>
+              <p className="text-[#C9A84C] text-sm uppercase tracking-[0.25em]">Activity feed</p>
               <p className="mt-2 font-semibold text-xl">Recent events</p>
             </div>
-            <div className="bg-[#0D0118] px-4 py-2 rounded-2xl text-[#F5F0E8] text-sm">Live</div>
+            <div className="bg-[#0D0118] px-4 py-2 border border-[#C9A84C]/40 rounded-2xl text-[#C9A84C] text-sm">Live</div>
           </div>
           <div className="bg-[#0D0118] mt-5 p-6 border border-[#4B1E91] rounded-3xl text-center">
             <p className="text-[#F5F0E8] text-sm">Activity feed coming soon.</p>
@@ -226,7 +227,7 @@ const AdminDashboard: React.FC = () => {
 
         <div className="space-y-4">
           <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl">
-            <div className="flex items-center gap-3 text-[#F5F0E8] text-sm uppercase tracking-[0.25em]">
+            <div className="flex items-center gap-3 text-[#C9A84C] text-sm uppercase tracking-[0.25em]">
               <Flag size={16} /><span>Alerts</span>
             </div>
             <div className="space-y-3 mt-5">
@@ -245,7 +246,7 @@ const AdminDashboard: React.FC = () => {
           </div>
 
           <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl">
-            <div className="flex items-center gap-3 text-[#F5F0E8] text-sm uppercase tracking-[0.25em]">
+            <div className="flex items-center gap-3 text-[#C9A84C] text-sm uppercase tracking-[0.25em]">
               <Sparkles size={16} /><span>Quick actions</span>
             </div>
             <div className="gap-3 grid mt-5">

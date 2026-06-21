@@ -1,5 +1,6 @@
-﻿import { useState, useMemo } from "react";
+﻿import { useState, useMemo, useEffect } from "react";
 // import { X } from "lucide-react";
+import api from "../../lib/axios";
 
 type Audience = "all" | "interns" | "companies" | "schools" | "mentors";
 type EventType = "info" | "warning" | "error";
@@ -28,8 +29,11 @@ interface Preference {
   enabled: boolean;
 }
 
-const INIT_ANNOUNCEMENTS: Announcement[] = [];
-const INIT_EVENTS: SystemEvent[] = [];
+const ACTION_TYPE = (action: string): EventType => {
+  if (action.includes('delete') || action.includes('revoke')) return 'error';
+  if (action.includes('reject'))                              return 'warning';
+  return 'info';
+};
 
 const INIT_PREFS: Preference[] = [
   { id: 1, label: "New company registration",     enabled: true  },
@@ -57,8 +61,8 @@ const EVENT_META: Record<EventType, string> = {
 const MAX_CHARS = 500;
 
 const NotificationsCenter: React.FC = () => {
-  const [announcements, setAnnouncements] = useState<Announcement[]>(INIT_ANNOUNCEMENTS);
-  const [events, setEvents]               = useState<SystemEvent[]>(INIT_EVENTS);
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [events, setEvents]               = useState<SystemEvent[]>([]);
   const [prefs, setPrefs]                 = useState<Preference[]>(INIT_PREFS);
 
   const [subject,    setSubject]  = useState("");
@@ -66,23 +70,59 @@ const NotificationsCenter: React.FC = () => {
   const [audience,  setAudience] = useState<Audience>("all");
   const [toast,     setToast]    = useState("");
 
+  useEffect(() => {
+    api.get<{ success: boolean; data: any[] }>('/api/admin/announcements')
+      .then(({ data }) => setAnnouncements(
+        data.data.map((a) => ({
+          id:              a.id,
+          subject:         a.subject,
+          message:         a.message,
+          targetAudience:  a.target_audience as Audience,
+          sentDate:        new Date(a.created_at).toISOString().slice(0, 10),
+          totalRecipients: a.total_recipients,
+          readCount:       0,
+        }))
+      ))
+      .catch(() => {});
+
+    api.get<{ success: boolean; data: any[] }>('/api/admin/audit-log?limit=30')
+      .then(({ data }) => setEvents(
+        data.data.map((e) => ({
+          id:          e.id,
+          event:       e.action + (e.target_type ? ` · ${e.target_type} #${e.target_id ?? ''}` : ''),
+          triggeredAt: new Date(e.created_at).toLocaleString(),
+          affectedUser: e.admin_name || e.admin_email || 'system',
+          type:        ACTION_TYPE(e.action),
+        }))
+      ))
+      .catch(() => {});
+  }, []);
+
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(""), 3000); }
 
-  function handleSend() {
+  async function handleSend() {
     if (!subject.trim() || !message.trim()) return;
-    const recipientMap: Record<Audience, number> = { all: 0, interns: 0, companies: 0, schools: 0, mentors: 0 };
-    const next: Announcement = {
-      id:              Date.now(),
-      subject:         subject.trim(),
-      message:         message.trim(),
-      targetAudience:  audience,
-      sentDate:        new Date().toISOString().slice(0, 10),
-      totalRecipients: recipientMap[audience],
-      readCount:       0,
-    };
-    setAnnouncements((prev) => [next, ...prev]);
-    setSubject(""); setMessage(""); setAudience("all");
-    showToast("✅ Announcement sent successfully.");
+    try {
+      const { data } = await api.post<{ success: boolean; data: any }>('/api/admin/announcements', {
+        subject:        subject.trim(),
+        message:        message.trim(),
+        targetAudience: audience,
+      });
+      const a = data.data;
+      setAnnouncements((prev) => [{
+        id:              a.id,
+        subject:         a.subject,
+        message:         a.message,
+        targetAudience:  a.target_audience as Audience,
+        sentDate:        new Date(a.created_at).toISOString().slice(0, 10),
+        totalRecipients: a.total_recipients,
+        readCount:       0,
+      }, ...prev]);
+      setSubject(''); setMessage(''); setAudience('all');
+      showToast('✅ Announcement sent successfully.');
+    } catch {
+      showToast('⚠️ Failed to send announcement.');
+    }
   }
 
   const readRateColor = (r: number, t: number) => {

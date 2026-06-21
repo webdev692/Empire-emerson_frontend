@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { Award, Download, ShieldOff, Plus, Search } from "lucide-react";
 import api from "../../lib/axios";
 import type { AxiosError } from "axios";
+import { useAuthStore } from "../../store/authStore";
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface Certificate {
@@ -42,6 +43,7 @@ const CertificateManagement: React.FC = () => {
   const [interns, setInterns]     = useState<Intern[]>([]);
   const [loading, setLoading]     = useState(true);
   const [message, setMessage]     = useState("");
+  const isSuperAdmin = useAuthStore((s) => s.user?.admin_role === 'super_admin');
 
   // filters
   const [deptFilter, setDeptFilter]     = useState("");
@@ -189,7 +191,7 @@ const CertificateManagement: React.FC = () => {
                   <Download size={14} /> Download PDF
                 </a>
               )}
-              {issued.status === "active" && (
+              {issued.status === "active" && isSuperAdmin && (
                 <button onClick={() => handleRevoke(issued.id)} disabled={revoking === issued.id}
                   className="inline-flex items-center gap-2 bg-red-500/20 hover:bg-red-500/30 px-4 py-2 rounded-2xl text-red-300 text-sm disabled:opacity-50">
                   <ShieldOff size={14} /> Revoke
@@ -269,7 +271,7 @@ const CertificateManagement: React.FC = () => {
                             <Download size={12} /> PDF
                           </a>
                         )}
-                        {cert.status === "active" && (
+                        {cert.status === "active" && isSuperAdmin && (
                           <button onClick={() => handleRevoke(cert.id)} disabled={revoking === cert.id}
                             className="inline-flex items-center gap-1 bg-red-500/10 hover:bg-red-500/20 px-3 py-1.5 rounded-2xl text-red-300 text-xs disabled:opacity-50 transition">
                             <ShieldOff size={12} />

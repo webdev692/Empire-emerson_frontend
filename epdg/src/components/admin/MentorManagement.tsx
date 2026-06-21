@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
-import { Plus, X, Users, Star, RefreshCw, Copy, Check } from "lucide-react";
+import { Plus, X, Users, Star, RefreshCw, Copy, Check, KeyRound } from "lucide-react";
 import api from "../../lib/axios";
 import type { AxiosError } from "axios";
 
@@ -47,6 +47,11 @@ const MentorManagement: React.FC = () => {
   // Holds the just-created mentor's credentials so the admin can copy/share them once.
   const [credentials, setCredentials] = useState<{ name: string; email: string; password: string } | null>(null);
   const [copied, setCopied] = useState(false);
+
+  // Reset password
+  const [resetTarget, setResetTarget]   = useState<Mentor | null>(null);
+  const [resetPassword, setResetPassword] = useState("");
+  const [resetting, setResetting]        = useState(false);
 
   useEffect(() => {
     fetchMentors();
@@ -111,6 +116,30 @@ const MentorManagement: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
   }
 
+  function openReset(m: Mentor) {
+    setResetTarget(m);
+    setResetPassword(generatePassword());
+  }
+
+  async function handleReset() {
+    if (!resetTarget || !resetPassword.trim()) return;
+    setResetting(true);
+    try {
+      await api.patch(`/api/admin/mentors/${resetTarget.id}/reset-password`, {
+        password: resetPassword.trim(),
+      });
+      setCredentials({ name: resetTarget.name, email: resetTarget.email, password: resetPassword.trim() });
+      showToast(`Password reset for ${resetTarget.name}. Credentials email sent.`);
+      setResetTarget(null);
+      setResetPassword("");
+    } catch (err) {
+      const msg = (err as AxiosError<{ message: string }>).response?.data?.message ?? "Failed to reset password.";
+      showToast(msg, false);
+    } finally {
+      setResetting(false);
+    }
+  }
+
   async function handleDeactivate() {
     if (!deactivateTarget) return;
     setSaving(true);
@@ -138,10 +167,10 @@ const MentorManagement: React.FC = () => {
     <div className="space-y-6 text-white">
       {/* Header */}
       <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl">
-        <div className="flex flex-col gap-4 md:flex-row md:justify-between md:items-end">
+        <div className="flex md:flex-row flex-col md:justify-between md:items-end gap-4">
           <div>
             <p className="text-[#F5F0E8] text-sm uppercase tracking-[0.25em]">Mentor Management</p>
-            <h1 className="mt-2 text-3xl font-semibold">Platform Mentors</h1>
+            <h1 className="mt-2 font-semibold text-3xl">Platform Mentors</h1>
             <p className="mt-2 text-[#F5F0E8]">Manage mentor accounts, capacity, and intern assignments.</p>
           </div>
           <button
@@ -160,12 +189,12 @@ const MentorManagement: React.FC = () => {
             : "bg-[#0D0118] border-red-500/40 text-red-300"
         }`}>
           <span>{toast.msg}</span>
-          <button onClick={() => setToast(null)} className="ml-4 hover:opacity-70">✕</button>
+          <button onClick={() => setToast(null)} className="hover:opacity-70 ml-4">✕</button>
         </div>
       )}
 
       {/* Stats */}
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="gap-4 grid sm:grid-cols-3">
         {[
           { label: "Total Mentors", value: stats.total     },
           { label: "Available",     value: stats.available },
@@ -173,7 +202,7 @@ const MentorManagement: React.FC = () => {
         ].map((s) => (
           <div key={s.label} className="bg-[#1E0A4A] p-5 border border-[#4B1E91] rounded-3xl">
             <p className="text-[#F5F0E8] text-xs uppercase tracking-[0.25em]">{s.label}</p>
-            <p className="mt-3 text-3xl font-semibold">{s.value}</p>
+            <p className="mt-3 font-semibold text-3xl">{s.value}</p>
           </div>
         ))}
       </div>
@@ -184,19 +213,19 @@ const MentorManagement: React.FC = () => {
           <div className="border-[#4B1E91] border-2 border-t-transparent rounded-full w-8 h-8 animate-spin" />
         </div>
       ) : mentors.length === 0 ? (
-        <div className="bg-[#1E0A4A] p-10 border border-[#4B1E91] rounded-3xl text-center text-[#F5F0E8]">
+        <div className="bg-[#1E0A4A] p-10 border border-[#4B1E91] rounded-3xl text-[#F5F0E8] text-center">
           No mentors yet. Add the first mentor above.
         </div>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-4 xl:grid-cols-3">
+        <div className="gap-4 grid md:grid-cols-2 2xl:grid-cols-4 xl:grid-cols-3">
           {mentors.map((m) => {
             const fill     = m.max_capacity > 0 ? m.assigned_count / m.max_capacity : 0;
             const barColor = fill >= 0.8 ? "bg-amber-400" : "bg-[#4B1E91]";
             const isFull   = m.assigned_count >= m.max_capacity;
 
             return (
-              <div key={m.id} className="rounded-3xl border border-[#4B1E91] bg-[#1E0A4A] p-5 flex flex-col gap-4">
-                <div className="flex items-start justify-between gap-3">
+              <div key={m.id} className="flex flex-col gap-4 bg-[#1E0A4A] p-5 border border-[#4B1E91] rounded-3xl">
+                <div className="flex justify-between items-start gap-3">
                   <div className="flex items-center gap-3">
                     <div className="flex justify-center items-center bg-[#4B1E91]/20 rounded-2xl w-12 h-12 font-bold text-white text-sm">
                       {m.name.split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase()}
@@ -237,8 +266,15 @@ const MentorManagement: React.FC = () => {
                     View Profile
                   </button>
                   <button
+                    onClick={() => openReset(m)}
+                    title="Reset password"
+                    className="flex justify-center items-center bg-[#4B1E91]/20 hover:bg-[#4B1E91]/40 px-3 py-2 rounded-2xl text-[#D8B9FF] text-xs transition"
+                  >
+                    <KeyRound size={14} />
+                  </button>
+                  <button
                     onClick={() => setDeactivate(m)}
-                    className="flex-1 py-2 text-xs text-red-300 transition bg-red-500/10 hover:bg-red-500/20 rounded-2xl"
+                    className="flex-1 bg-red-500/10 hover:bg-red-500/20 py-2 rounded-2xl text-red-300 text-xs transition"
                   >
                     Remove
                   </button>
@@ -251,15 +287,15 @@ const MentorManagement: React.FC = () => {
 
       {/* Detail modal */}
       {selectedMentor && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
+        <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/60 p-4">
           <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <div className="flex items-start justify-between gap-3 mb-6">
+            <div className="flex justify-between items-start gap-3 mb-6">
               <div className="flex items-center gap-4">
                 <div className="flex justify-center items-center bg-[#4B1E91]/20 rounded-2xl w-14 h-14 font-bold text-lg">
                   {selectedMentor.name.split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase()}
                 </div>
                 <div>
-                  <h2 className="text-xl font-semibold">{selectedMentor.name}</h2>
+                  <h2 className="font-semibold text-xl">{selectedMentor.name}</h2>
                   <p className="text-[#F5F0E8] text-sm">{selectedMentor.department}</p>
                 </div>
               </div>
@@ -268,7 +304,7 @@ const MentorManagement: React.FC = () => {
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="gap-3 grid grid-cols-2">
               {[
                 { label: "Email",        value: selectedMentor.email },
                 { label: "Department",   value: selectedMentor.department },
@@ -277,7 +313,7 @@ const MentorManagement: React.FC = () => {
               ].map((f) => (
                 <div key={f.label} className="bg-[#0D0118] p-3 border border-[#4B1E91] rounded-2xl">
                   <p className="text-[#F5F0E8] text-xs">{f.label}</p>
-                  <p className="mt-1 text-sm font-medium break-all">{f.value}</p>
+                  <p className="mt-1 font-medium text-sm break-all">{f.value}</p>
                 </div>
               ))}
             </div>
@@ -287,10 +323,10 @@ const MentorManagement: React.FC = () => {
 
       {/* Add mentor modal */}
       {showAdd && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
+        <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/60 p-4">
           <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl w-full max-w-md">
-            <div className="flex items-center justify-between gap-3 mb-6">
-              <h2 className="text-xl font-semibold">Add Mentor</h2>
+            <div className="flex justify-between items-center gap-3 mb-6">
+              <h2 className="font-semibold text-xl">Add Mentor</h2>
               <button onClick={() => setShowAdd(false)} className="text-[#F5F0E8] hover:text-white">
                 <X size={18} />
               </button>
@@ -319,13 +355,13 @@ const MentorManagement: React.FC = () => {
                     type="text"
                     readOnly
                     value={form.password}
-                    className="bg-[#0D0118] px-4 py-3 border border-[#4B1E91] rounded-2xl outline-none w-full text-white font-mono"
+                    className="bg-[#0D0118] px-4 py-3 border border-[#4B1E91] rounded-2xl outline-none w-full font-mono text-white"
                   />
                   <button
                     type="button"
                     onClick={regeneratePassword}
                     title="Generate a new password"
-                    className="flex items-center justify-center px-3 border border-[#4B1E91] rounded-2xl text-[#F5F0E8] hover:text-white transition"
+                    className="flex justify-center items-center px-3 border border-[#4B1E91] rounded-2xl text-[#F5F0E8] hover:text-white transition"
                   >
                     <RefreshCw size={16} />
                   </button>
@@ -380,15 +416,15 @@ const MentorManagement: React.FC = () => {
 
       {/* Credentials modal — shown once, right after a mentor is created */}
       {credentials && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
+        <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/60 p-4">
           <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl w-full max-w-md">
-            <h2 className="text-xl font-semibold text-white">Share these credentials</h2>
+            <h2 className="font-semibold text-white text-xl">Share these credentials</h2>
             <p className="mt-2 text-[#F5F0E8] text-sm">
               This password won't be shown again. Copy it now and send it to{" "}
               <span className="font-medium text-white">{credentials.name}</span> through a secure channel.
             </p>
 
-            <div className="bg-[#0D0118] mt-4 p-4 border border-[#4B1E91] rounded-2xl space-y-3">
+            <div className="space-y-3 bg-[#0D0118] mt-4 p-4 border border-[#4B1E91] rounded-2xl">
               <div>
                 <p className="text-[#F5F0E8] text-xs">Email</p>
                 <p className="font-mono text-sm break-all">{credentials.email}</p>
@@ -418,11 +454,61 @@ const MentorManagement: React.FC = () => {
         </div>
       )}
 
+      {/* Reset password modal */}
+      {resetTarget && (
+        <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/60 p-4">
+          <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl w-full max-w-md">
+            <div className="flex justify-between items-center gap-3 mb-5">
+              <h2 className="font-semibold text-xl">Reset Password</h2>
+              <button onClick={() => setResetTarget(null)} className="text-[#F5F0E8] hover:text-white"><X size={18} /></button>
+            </div>
+            <p className="text-[#F5F0E8] text-sm mb-4">
+              Generate a new temporary password for <span className="font-medium text-white">{resetTarget.name}</span>.
+              They will be required to change it on next login.
+            </p>
+            <label className="block text-[#F5F0E8] text-sm">
+              New Temporary Password
+              <div className="flex gap-2 mt-1.5">
+                <input
+                  type="text"
+                  readOnly
+                  value={resetPassword}
+                  className="bg-[#0D0118] px-4 py-3 border border-[#4B1E91] rounded-2xl outline-none w-full font-mono text-white"
+                />
+                <button
+                  type="button"
+                  onClick={() => setResetPassword(generatePassword())}
+                  title="Generate new password"
+                  className="flex justify-center items-center px-3 border border-[#4B1E91] rounded-2xl text-[#F5F0E8] hover:text-white transition"
+                >
+                  <RefreshCw size={16} />
+                </button>
+              </div>
+            </label>
+            <div className="flex gap-3 mt-6">
+              <button
+                onClick={handleReset}
+                disabled={resetting}
+                className="flex-1 bg-[#4B1E91] disabled:opacity-50 py-3 rounded-2xl font-semibold text-white text-sm"
+              >
+                {resetting ? "Resetting…" : "Reset Password"}
+              </button>
+              <button
+                onClick={() => setResetTarget(null)}
+                className="flex-1 py-3 border border-[#4B1E91] rounded-2xl text-[#F5F0E8] text-sm"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Deactivate confirm modal */}
       {deactivateTarget && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
+        <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/60 p-4">
           <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl w-full max-w-md">
-            <h2 className="text-xl font-semibold text-white">Remove mentor?</h2>
+            <h2 className="font-semibold text-white text-xl">Remove mentor?</h2>
             <p className="mt-3 text-[#F5F0E8] text-sm">
               This will remove <span className="font-medium text-white">{deactivateTarget.name}</span> from the
               mentor list. Their account will remain but they won't appear in the mentor dropdown.
@@ -431,7 +517,7 @@ const MentorManagement: React.FC = () => {
               <button
                 onClick={handleDeactivate}
                 disabled={saving}
-                className="flex-1 py-3 text-sm font-semibold text-white bg-red-500 disabled:opacity-50 rounded-2xl"
+                className="flex-1 bg-red-500 disabled:opacity-50 py-3 rounded-2xl font-semibold text-white text-sm"
               >
                 {saving ? "Removing…" : "Confirm Remove"}
               </button>

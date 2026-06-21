@@ -25,6 +25,11 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles,
     return <Navigate to="/login" replace />;
   }
 
+  // Mentor first login — must set a permanent password before accessing anything
+  if (user.force_password_change) {
+    return <Navigate to="/change-password" replace />;
+  }
+
   // Mentor trying to access full admin panel → send to mentor dashboard
   if (user.role === 'admin' && user.is_mentor && allowedRoles?.includes('admin') && !mentorOnly) {
     return <Navigate to="/mentor" replace />;

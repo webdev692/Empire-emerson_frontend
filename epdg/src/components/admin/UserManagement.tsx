@@ -2,6 +2,7 @@
 import { Plus, Search, X } from "lucide-react";
 import api from "../../lib/axios";
 import type { AxiosError } from "axios";
+import { useAuthStore } from "../../store/authStore";
 
 interface User {
   id: number;
@@ -61,6 +62,7 @@ const UserManagement: React.FC = () => {
   const [formValues, setFormValues]   = useState({ name: "", email: "", role: "intern", password: "" });
   const [saving, setSaving]           = useState(false);
   const [message, setMessage]         = useState("");
+  const isSuperAdmin = useAuthStore((s) => s.user?.admin_role === 'super_admin');
 
   useEffect(() => { fetchUsers(); }, []);
 
@@ -94,6 +96,16 @@ const UserManagement: React.FC = () => {
       setMessage(e.response?.data?.message ?? "Failed to create user.");
     } finally {
       setSaving(false);
+    }
+  }
+
+  async function handlePromote(userId: number, newRole: 'admin' | 'super_admin') {
+    try {
+      await api.patch(`/api/admin/users/${userId}/role`, { admin_role: newRole });
+      setMessage(`✅ Admin role updated to ${newRole}.`);
+    } catch (err) {
+      const e = err as AxiosError<{ message: string }>;
+      setMessage(e.response?.data?.message ?? 'Failed to update role.');
     }
   }
 
@@ -242,12 +254,21 @@ const UserManagement: React.FC = () => {
                         </span>
                       </td>
                       <td className="px-4 py-4 text-sm text-[#F5F0E8]">{fmtLogin(user.last_login_at)}</td>
-                      <td className="px-4 py-4 space-x-2">
-                        <button
-                          onClick={() => setDeleteTarget(user.id)}
-                          className="rounded-2xl bg-red-500/10 px-3 py-2 text-xs text-red-300 hover:bg-red-500/20 transition">
-                          ⊘ Delete
-                        </button>
+                      <td className="px-4 py-4 space-x-2 whitespace-nowrap">
+                        {isSuperAdmin && user.role === 'admin' && (
+                          <button
+                            onClick={() => handlePromote(user.id, 'super_admin')}
+                            className="rounded-2xl bg-[#C9A84C]/10 px-3 py-2 text-xs text-[#C9A84C] hover:bg-[#C9A84C]/20 transition">
+                            ↑ Make Super
+                          </button>
+                        )}
+                        {isSuperAdmin && (
+                          <button
+                            onClick={() => setDeleteTarget(user.id)}
+                            className="rounded-2xl bg-red-500/10 px-3 py-2 text-xs text-red-300 hover:bg-red-500/20 transition">
+                            ⊘ Delete
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))

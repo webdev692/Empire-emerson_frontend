@@ -12,6 +12,7 @@ export interface AuthUser {
   status: AccountStatus;
   is_mentor?: boolean;
   force_password_change?: boolean;
+  admin_role?: 'admin' | 'super_admin';
 }
 
 interface AuthStore {
