@@ -54,34 +54,26 @@ const Internship: React.FC = () => {
   return (
     <section id="internships" className="bg-[#044E37] px-4 py-20 text-white">
       <div className="mx-auto max-w-[1114px]">
-        <p className="mb-2 font-bold text-[#AF9056] text-xs uppercase tracking-[0.25em]">
+        <p className="mb-3 text-xs uppercase tracking-[0.25em] text-[#E0CF8D]">
           Global Internship Program
         </p>
-        <h2 className="mb-3 font-bold text-3xl md:text-4xl tracking-tight">
-          Build Real Skills. Contribute to Real Projects.
+        <h2 className="mb-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          Build real skills. Contribute to real projects.
         </h2>
-        <div className="bg-[#C9A84C] mb-5 w-12 h-0.5" />
-        <p className="mb-12 max-w-7xl text-white/65 text-sm md:text-base leading-relaxed">
-          The EPDG Internship Program is founder-led and built with the support of interns
-          contributing to real public-facing systems, documentation, strategy, and digital
-          infrastructure. Participation is free whenever possible.
+        <div className="mb-10 h-1 w-20 rounded-full bg-[#C9A84C]" />
+        <p className="mb-12 max-w-3xl text-white/70 text-base leading-relaxed">
+          The EPDG Internship Program is founder-led and built with the support of interns contributing to real public-facing systems, documentation, strategy, and digital infrastructure.
         </p>
 
-        <div className="gap-5 grid grid-cols-1 md:grid-cols-2 mb-12">
+        <div className="grid gap-6 md:grid-cols-2 mb-14">
           {cards.map((card) => (
-            <div
-              key={card.title}
-              className="flex flex-col items-left bg-white/30 p-5 border-2 border-white/50 rounded-md"
-          
-            >
-              <h3 className="mb-2 font-bold text-[#AF9056] text-[17px] tracking-wide">
-                {card.title}
-              </h3>
-              <ul className="space-y-0.1">
+            <div key={card.title} className="rounded-[2rem] border border-white/15 bg-white/10 p-7 shadow-[0_24px_65px_rgba(0,0,0,0.15)]">
+              <h3 className="mb-4 text-lg font-bold text-[#F8E8B5]">{card.title}</h3>
+              <ul className="space-y-3 text-sm leading-relaxed text-white/85">
                 {card.items.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[14px] text-white/95">
-                    <span className="bg-[#C9A84C] mt-1 rounded-full w-1 h-1 shrink-0" />
-                    {item}
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-[#C9A84C]" />
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -91,17 +83,13 @@ const Internship: React.FC = () => {
 
         <button
           onClick={() => openForm(FORM_INTERNSHIP, "Apply for the Internship Program", "Free semester-long program")}
-          className="bg-[#AF9056] hover:bg-[#b8943d] px-7 py-3.5 rounded-md font-bold text-[#022B1F] text-xs uppercase tracking-[0.2em] transition-all duration-200 cursor-pointer"
+          className="rounded-full bg-[#C9A84C] px-9 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-[#07120f] transition duration-200 hover:bg-[#bda55f]"
         >
-          Apply for the Internship Program
+          Apply for the internship program
         </button>
 
-        <p className="mt-12 pt-6 border-white/15 border-t max-w-7xl text-white/45 text-sm leading-relaxed">
-          Participation in the internship program does not guarantee employment, academic credit,
-          compensation, paid project work, contract work, or future placement. Future paid,
-          project-based, or permanent opportunities may be considered for strong contributors as the
-          company grows, but employment is not guaranteed. Leadership track selection is based on
-          performance and program capacity.
+        <p className="mt-12 border-t border-white/10 pt-8 text-sm leading-relaxed text-white/60">
+          Participation in the internship program does not guarantee employment, academic credit, compensation, or future placement. Leadership track selection is based on performance and program capacity.
         </p>
       </div>
     </section>

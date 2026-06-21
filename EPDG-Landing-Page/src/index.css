@@ -1,37 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: 91 95 240;
+  color-scheme: dark;
+  font-family: "DM Sans", sans-serif;
+  background: #0b1310;
+  color: #111d18;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 88px;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: #0b1310;
+  color: #111d18;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .heading {
   font-family: "Cormorant Garamond", serif;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
+  font-weight: 700;
 }
 
 .body {
   font-family: "DM Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
 }
 
 .nav {
   font-family: "DM Sans", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 500;
-  font-style: normal;
 }
 
 .script {
   font-family: "Great Vibes", cursive;
-  font-weight: 400;
-  font-style: normal;
 }

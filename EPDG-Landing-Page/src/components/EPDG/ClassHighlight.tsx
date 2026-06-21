@@ -25,67 +25,51 @@ const ClassHighlight: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-[#FCF5E9] px-4 pt-10 pb-20">
+    <section className="bg-[#FCF5E9] px-4 py-20 sm:py-24">
       <div className="mx-auto max-w-[1114px]">
-        <p className="mb-3 font-bold text-[#B8943D] text-xs uppercase tracking-[0.25em]">
+        <p className="mb-3 text-xs uppercase tracking-[0.28em] text-[#8c7434]">
           Weekly Classes
         </p>
-        <h2 className="mb-5 max-w-3xl font-bold text-[#0B2018] text-4xl sm:text-5xl heading">
+        <h2 className="mb-6 max-w-3xl text-4xl font-bold tracking-tight text-[#0B2018] sm:text-5xl heading">
           21 weekly group classes, <span className="text-[#0B5C3B] italic">every week.</span>
         </h2>
-        <p className="mb-12 max-w-2xl text-gray-600 text-base leading-relaxed">
-          EPDG offers 21 weekly group classes designed for students, job seekers, workers, and
-          lifelong learners. Each class includes curriculum, a quiz, workbook, worksheets,
-          activities, an in-depth overview, and hands-on help.
+        <p className="mb-14 max-w-2xl text-base leading-relaxed text-[#4f4c42]">
+          EPDG offers 21 weekly group classes designed for students, job seekers, workers, and lifelong learners. Each session includes curriculum, a quiz, a workbook, worksheets, activities, and guided hands-on support.
         </p>
 
-        {/* Session cards */}
-        <div className="gap-5 grid grid-cols-1 sm:grid-cols-3 mb-12">
+        <div className="grid gap-6 sm:grid-cols-3 mb-12">
           {sessions.map((s) => (
-            <div
-              key={s.time}
-              className="bg-white shadow-sm p-6 border border-gray-200/70 rounded-xl"
-            >
-              <span className="inline-block bg-gray-100 px-3 py-1 rounded-md font-medium text-gray-500 text-xs">
+            <div key={s.time} className="rounded-[2rem] border border-[#d7ceb7] bg-white p-7 shadow-[0_16px_50px_rgba(14,19,11,0.08)]">
+              <span className="inline-flex rounded-full bg-[#f4edda] px-3 py-2 text-[13px] font-semibold uppercase tracking-[0.2em] text-[#9e8f52]">
                 {s.duration}
               </span>
-              <p className="mt-5 mb-1.5 font-bold text-[#0B2018] text-2xl">{s.time}</p>
-              <p className="text-gray-400 text-sm">{s.price}</p>
+              <p className="mt-6 mb-1 text-3xl font-bold text-[#0B2018]">{s.time}</p>
+              <p className="text-sm text-[#5b5a50]">{s.price}</p>
             </div>
           ))}
         </div>
 
-        {/* Feature checklist */}
-        <div className="gap-x-12 gap-y-4 grid grid-cols-1 sm:grid-cols-2 mb-12 max-w-2xl">
-          <ul className="space-y-4">
-            {featuresLeft.map((f) => (
-              <li key={f} className="flex items-center gap-3 text-gray-700 text-[15px]">
-                <Check /> {f}
-              </li>
-            ))}
-          </ul>
-          <ul className="space-y-4">
-            {featuresRight.map((f) => (
-              <li key={f} className="flex items-center gap-3 text-gray-700 text-[15px]">
-                <Check /> {f}
-              </li>
-            ))}
-          </ul>
+        <div className="grid gap-6 sm:grid-cols-2 mb-12 max-w-3xl">
+          {[...featuresLeft, ...featuresRight].map((f) => (
+            <div key={f} className="flex items-start gap-3 rounded-3xl border border-[#e5ddc2] bg-white p-5">
+              <Check />
+              <p className="text-sm leading-relaxed text-[#4f4c42]">{f}</p>
+            </div>
+          ))}
         </div>
 
-        {/* CTAs */}
         <div className="flex flex-wrap gap-4">
           <button
             onClick={() => navigate("/classes")}
-            className="flex items-center gap-2 bg-[#0B5C3B] hover:bg-[#094a30] px-7 py-3.5 rounded-lg font-semibold text-white text-[15px] transition-all duration-200 cursor-pointer"
+            className="rounded-full bg-[#0B5C3B] px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] text-white transition duration-200 hover:bg-[#094a30]"
           >
-            Register for Weekly Classes <span aria-hidden>→</span>
+            Register for weekly classes
           </button>
           <button
             onClick={() => openForm(FORM_SERVICES, "Ask about a Fee Waiver", "Reduced cost & fee waiver options")}
-            className="bg-white hover:bg-gray-50 px-7 py-3.5 border border-gray-300 hover:border-[#0B5C3B] rounded-lg font-semibold text-[#0B2018] text-[15px] transition-all duration-200 cursor-pointer"
+            className="rounded-full border border-[#b0a57f] bg-white px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] text-[#0B2018] transition duration-200 hover:bg-[#f7f2e8]"
           >
-            Ask about a Fee Waiver
+            Ask about a fee waiver
           </button>
         </div>
       </div>

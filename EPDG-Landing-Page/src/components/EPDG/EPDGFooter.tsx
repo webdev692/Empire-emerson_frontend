@@ -83,111 +83,68 @@ const socialIcons = [
 
 const EPDGFooter: React.FC = () => {
   return (
-    <footer className="bg-[#022B1F] px-4 pt-16 border-[#C9A84C]/15 border-t text-white">
+    <footer className="bg-[#03140f] px-4 pt-16 border-t border-white/10 text-white">
       <div className="mx-auto max-w-[1114px]">
-        <div className="mb-10">
-          <img src={logo} alt="EPDG logo" className="w-auto h-32" />
+        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <img src={logo} alt="EPDG logo" className="h-16 w-16 rounded-full border border-white/10 object-cover" />
+            <div>
+              <p className="font-semibold uppercase tracking-[0.24em] text-[#C9A84C] text-xs">EPDG</p>
+              <p className="text-sm text-white/70">Professional development for learners, leaders, and teams.</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            {socialIcons.map((s) => (
+              <a
+                key={s.name}
+                href={s.href}
+                target={s.href.startsWith("mailto") ? undefined : "_blank"}
+                rel={s.href.startsWith("mailto") ? undefined : "noreferrer"}
+                aria-label={s.name}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-[#C9A84C] hover:text-[#C9A84C]"
+              >
+                {s.svg}
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="gap-12 grid grid-cols-1 md:grid-cols-3 pb-14">
-          {/* Brand + contact */}
+        <div className="grid gap-8 md:grid-cols-3 mb-14 text-sm text-white/70">
           <div>
-            <p className="mb-5 font-bold text-[#C9A84C] text-[10px] uppercase tracking-[0.2em]">
-              Contact
-            </p>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-center gap-3 text-white/65 hover:text-white transition-colors">
-                <span className="text-[#C9A84C] shrink-0">
-                  <svg {...iconProps}>
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="m22 7-10 7L2 7" />
-                  </svg>
-                </span>
-                <a href="mailto:admin@theemersonempire.info" className="hover:text-[#C9A84C] transition-colors">
-                  admin@theemersonempire.info
-                </a>
-              </li>
-              <li className="flex items-center gap-3 text-white/65">
-                <span className="text-[#C9A84C] shrink-0">
-                  <svg {...iconProps}>
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                  </svg>
-                </span>
-                <a href="tel:+18034794492" className="hover:text-[#C9A84C] transition-colors">
-                  +1 (803) 479-4492
-                </a>
-              </li>
-              <li className="flex items-center gap-3 text-white/65">
-                <span className="text-[#C9A84C] shrink-0">
-                  <svg {...iconProps}>
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                </span>
-                <span>Columbia, SC United States</span>
-              </li>
-            </ul>
-
-            {/* Social icons */}
-            <div className="flex gap-2.5 mt-8">
-              {socialIcons.map((s) => (
-                <a
-                  key={s.name}
-                  href={s.href}
-                  target={s.href.startsWith("mailto") ? undefined : "_blank"}
-                  rel={s.href.startsWith("mailto") ? undefined : "noreferrer"}
-                  aria-label={s.name}
-                  className="flex justify-center items-center border border-white/15 hover:border-[#C9A84C] w-9 h-9 text-white/50 hover:text-[#C9A84C] transition-all duration-200"
-                >
-                  {s.svg}
-                </a>
-              ))}
+            <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#C9A84C]">Contact</p>
+            <div className="space-y-3">
+              <a href="mailto:admin@theemersonempire.info" className="block hover:text-[#C9A84C]">admin@theemersonempire.info</a>
+              <a href="tel:+18034794492" className="block hover:text-[#C9A84C]">+1 (803) 479-4492</a>
+              <p>Columbia, SC United States</p>
             </div>
           </div>
 
-          {/* Navigate */}
           <div>
-            <p className="mb-6 font-bold text-[#C9A84C] text-[10px] uppercase tracking-[0.2em]">
-              Navigate
-            </p>
-            <ul className="space-y-4 text-sm">
+            <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#C9A84C]">Navigate</p>
+            <ul className="space-y-3">
               {navigateLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-white/60 hover:text-[#C9A84C] transition-colors duration-200">
-                    {l.label}
-                  </a>
+                  <a href={l.href} className="hover:text-[#C9A84C]">{l.label}</a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Forms & Access */}
           <div>
-            <p className="mb-6 font-bold text-[#C9A84C] text-[10px] uppercase tracking-[0.2em]">
-              Forms &amp; Access
-            </p>
-            <ul className="space-y-4 text-sm">
+            <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#C9A84C]">Forms</p>
+            <ul className="space-y-3">
               {formsLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-white/60 hover:text-[#C9A84C] transition-colors duration-200">
-                    {l.label}
-                  </a>
+                  <a href={l.href} className="hover:text-[#C9A84C]">{l.label}</a>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex sm:flex-row flex-col justify-between items-center gap-4 py-6 border-white/10 border-t">
-          <p className="text-white/35 text-xs tracking-wide">
-            &copy; {new Date().getFullYear()} The Emerson Empire. All rights reserved.
-          </p>
-          <div className="flex gap-8 text-xs">
-            <a href="mailto:admin@theemersonempire.info" className="text-white/35 hover:text-[#C9A84C] transition-colors duration-200">
-              Contact Us
-            </a>
-          </div>
+        <div className="flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row sm:justify-between">
+          <p>© {new Date().getFullYear()} Emerson Professional Development Group</p>
+          <a href="mailto:admin@theemersonempire.info" className="hover:text-[#C9A84C]">Contact Us</a>
         </div>
       </div>
     </footer>
