@@ -41,33 +41,33 @@ const CTASection: React.FC = () => {
 
   return (
     <section id="contact" className="bg-[#07120f] px-4 py-20 sm:py-24 text-white">
-      <div className="mx-auto max-w-[1114px]">
-        <p className="mb-3 text-xs uppercase tracking-[0.28em] text-[#C9A84C]">
+      <div className="mx-auto max-w-278.5">
+        <p className="mb-3 text-[#C9A84C] text-xs uppercase tracking-[0.28em]">
           Get Started
         </p>
-        <h2 className="mb-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
+        <h2 className="mb-4 max-w-3xl font-bold text-4xl sm:text-5xl tracking-tight">
           Ready to take the next step?
         </h2>
-        <div className="mb-10 h-1 w-20 rounded-full bg-[#C9A84C]" />
-        <p className="mb-12 max-w-xl text-base leading-relaxed text-white/70">
+        <div className="bg-[#C9A84C] mb-10 rounded-full w-20 h-1" />
+        <p className="mb-12 max-w-xl text-white/70 text-base leading-relaxed">
           Use the right form below to register, apply, or request services. Each form goes directly to our team for review.
         </p>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-12">
+        <div className="gap-6 grid sm:grid-cols-2 lg:grid-cols-4 mb-12">
           {forms.map((f) => (
             <div
               key={f.title}
-              className="flex flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_24px_60px_rgba(255,255,255,0.05)]"
+              className="flex flex-col bg-white/5 shadow-[0_24px_60px_rgba(255,255,255,0.05)] border border-white/10 rounded-4xl overflow-hidden"
             >
-              <div className="flex flex-1 flex-col gap-5 p-6">
+              <div className="flex flex-col flex-1 gap-5 p-6">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.24em] text-[#C9A84C]">{f.subtitle}</p>
-                  <h3 className="mt-3 text-lg font-bold text-white">{f.title}</h3>
+                  <p className="text-[#C9A84C] text-xs uppercase tracking-[0.24em]">{f.subtitle}</p>
+                  <h3 className="mt-3 font-bold text-white text-lg">{f.title}</h3>
                 </div>
-                <p className="flex-1 text-sm leading-relaxed text-white/70">{f.description}</p>
+                <p className="flex-1 text-white/70 text-sm leading-relaxed">{f.description}</p>
                 <button
                   onClick={() => openForm(f.formUrl, f.title, f.subtitle)}
-                  className="mt-4 inline-flex items-center justify-center rounded-full bg-[#C9A84C] px-4 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-[#07120f] transition duration-200 hover:bg-[#bda55f]"
+                  className="inline-flex justify-center items-center bg-[#C9A84C] hover:bg-[#bda55f] mt-4 px-4 py-3 rounded-full font-semibold text-[#07120f] text-sm uppercase tracking-[0.16em] transition duration-200"
                 >
                   {f.button}
                 </button>
@@ -76,7 +76,7 @@ const CTASection: React.FC = () => {
           ))}
         </div>
 
-        <p className="max-w-3xl text-sm leading-relaxed text-white/50">
+        <p className="max-w-3xl text-white/50 text-sm leading-relaxed">
           Do not submit sensitive personal documents, private financial information, Social Security numbers, government ID copies, or insurance documents through general inquiry forms.
         </p>
       </div>

@@ -85,19 +85,19 @@ const bottomRow = [
 
 const Features: React.FC = () => {
   return (
-    <section className="bg-[#03140f] py-16 px-4 border-t border-white/10">
-      <div className="max-w-[1114px] mx-auto text-white">
-        <div className="text-center mb-12">
-          <p className="text-sm uppercase tracking-[0.3em] text-[#C9A84C]/80">Why EPDG</p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white">A complete pathway from class to career.</h2>
+    <section className="bg-[#03140f] px-4 py-16 border-white/10 border-t">
+      <div className="mx-auto max-w-278.5 text-white">
+        <div className="mb-12 text-center">
+          <p className="text-[#C9A84C]/80 text-sm uppercase tracking-[0.3em]">Why EPDG</p>
+          <h2 className="mt-4 font-bold text-white text-3xl tracking-tight">A complete pathway from class to career.</h2>
         </div>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="gap-8 grid sm:grid-cols-2 lg:grid-cols-4">
           {topRow.concat(bottomRow).map((f) => (
-            <div key={f.label} className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-sm transition hover:bg-white/10">
-              <div className="mx-auto mb-6 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#C9A84C]/15 text-[#C9A84C]">
+            <div key={f.label} className="bg-white/5 hover:bg-white/10 backdrop-blur-sm p-8 border border-white/10 rounded-3xl text-center transition">
+              <div className="inline-flex justify-center items-center bg-[#C9A84C]/15 mx-auto mb-6 rounded-full w-14 h-14 text-[#C9A84C]">
                 {f.icon}
               </div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">{f.label}</p>
+              <p className="font-semibold text-white/80 text-sm uppercase tracking-[0.18em]">{f.label}</p>
             </div>
           ))}
         </div>

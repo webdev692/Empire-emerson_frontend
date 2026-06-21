@@ -63,24 +63,24 @@ const WorkforceTraining: React.FC = () => {
   return (
     <>
       <section id="workforce" className="bg-[#F3F0E8] px-4 py-20 sm:py-24">
-        <div className="mx-auto max-w-[1114px]">
-          <p className="mb-3 text-xs uppercase tracking-[0.28em] text-[#9f8745]">
+        <div className="mx-auto max-w-278.5">
+          <p className="mb-3 text-[#9f8745] text-xs uppercase tracking-[0.28em]">
             Workforce & Organizational Training
           </p>
-          <h2 className="mb-6 max-w-3xl text-4xl font-bold tracking-tight text-[#0A1F17] sm:text-5xl">
+          <h2 className="mb-6 max-w-3xl font-bold text-[#0A1F17] text-4xl sm:text-5xl tracking-tight">
             Training for teams, schools, and organizations.
           </h2>
-          <div className="mb-10 h-1 w-20 rounded-full bg-[#044E37]" />
-          <p className="mb-12 max-w-3xl text-base leading-relaxed text-[#5a5a4f]">
+          <div className="bg-[#044E37] mb-10 rounded-full w-20 h-1" />
+          <p className="mb-12 max-w-3xl text-[#5a5a4f] text-base leading-relaxed">
             EPDG works with schools, libraries, workforce programs, staffing agencies, and community organizations to expand access to career readiness and professional development resources.
           </p>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="gap-6 grid lg:grid-cols-2">
             {tracks.map((t) => (
-              <div key={t.title} className="rounded-[2rem] border border-[#dbd3b9] bg-white p-8 shadow-[0_24px_60px_rgba(22,25,16,0.08)]">
-                <h3 className="mb-3 text-sm font-bold uppercase tracking-[0.24em] text-[#6d5f33]">{t.title}</h3>
-                <p className="text-sm leading-relaxed text-[#4b4a40]">{t.description}</p>
-                <p className="mt-5 text-sm font-semibold text-[#044E37]">{t.fee}</p>
+              <div key={t.title} className="bg-white shadow-[0_24px_60px_rgba(22,25,16,0.08)] p-8 border border-[#dbd3b9] rounded-4xl">
+                <h3 className="mb-3 font-bold text-[#6d5f33] text-sm uppercase tracking-[0.24em]">{t.title}</h3>
+                <p className="text-[#4b4a40] text-sm leading-relaxed">{t.description}</p>
+                <p className="mt-5 font-semibold text-[#044E37] text-sm">{t.fee}</p>
               </div>
             ))}
           </div>
@@ -93,7 +93,7 @@ const WorkforceTraining: React.FC = () => {
                 "Workforce training & organizational partnerships"
               )
             }
-            className="mt-10 rounded-full bg-[#044E37] px-9 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition duration-200 hover:bg-[#032819]"
+            className="bg-[#044E37] hover:bg-[#032819] mt-10 px-9 py-4 rounded-full font-semibold text-white text-sm uppercase tracking-[0.18em] transition duration-200"
           >
             Request workforce training
           </button>
@@ -101,53 +101,53 @@ const WorkforceTraining: React.FC = () => {
       </section>
 
       <section className="bg-[#041914] px-4 py-20 sm:py-24 text-white">
-        <div className="mx-auto grid max-w-[1114px] gap-10 lg:grid-cols-[0.95fr_1.05fr] items-center">
+        <div className="items-center gap-10 grid lg:grid-cols-[0.95fr_1.05fr] mx-auto max-w-278.5">
           <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.28em] text-[#C9A84C]">Partnerships</p>
-            <h3 className="max-w-2xl text-4xl font-bold tracking-tight sm:text-5xl">
+            <p className="text-[#C9A84C] text-xs uppercase tracking-[0.28em]">Partnerships</p>
+            <h3 className="max-w-2xl font-bold text-4xl sm:text-5xl tracking-tight">
               Partner with EPDG to expand training, support, and career opportunity access.
             </h3>
-            <p className="max-w-xl text-sm leading-relaxed text-white/70">
+            <p className="max-w-xl text-white/70 text-sm leading-relaxed">
               EPDG works with schools, libraries, workforce programs, staffing agencies, and community organizations to extend career readiness and professional development resources.
             </p>
 
-            <div className="grid gap-4">
+            <div className="gap-4 grid">
               {partners.map((part) => (
-                <div key={part.title} className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
-                  <h4 className="mb-2 text-base font-semibold text-white">{part.title}</h4>
-                  <p className="text-sm leading-relaxed text-white/70">{part.description}</p>
+                <div key={part.title} className="bg-white/5 p-6 border border-white/10 rounded-[1.75rem]">
+                  <h4 className="mb-2 font-semibold text-white text-base">{part.title}</h4>
+                  <p className="text-white/70 text-sm leading-relaxed">{part.description}</p>
                 </div>
               ))}
             </div>
 
             <button
               onClick={() => openForm(FORM_WORKFORCE, "Partner with EPDG", "Partnership inquiry")}
-              className="mt-6 rounded-full bg-[#C9A84C] px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-[#07120f] transition duration-200 hover:bg-[#bda55f]"
+              className="bg-[#C9A84C] hover:bg-[#bda55f] mt-6 px-8 py-3.5 rounded-full font-semibold text-[#07120f] text-sm uppercase tracking-[0.18em] transition duration-200"
             >
               Partner with EPDG
             </button>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b2119] shadow-[0_40px_100px_rgba(0,0,0,0.35)]">
-            <img src={biz} alt="Professional partnership" className="h-full w-full object-cover" />
+          <div className="bg-[#0b2119] shadow-[0_40px_100px_rgba(0,0,0,0.35)] border border-white/10 rounded-4xl overflow-hidden">
+            <img src={biz} alt="Professional partnership" className="w-full h-full object-cover" />
           </div>
         </div>
       </section>
 
       <section className="bg-[#C9A84C] px-4 py-20 text-[#07120f]">
-        <div className="mx-auto max-w-[1114px] text-center">
-          <h2 className="mb-5 text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="mx-auto max-w-278.5 text-center">
+          <h2 className="mb-5 font-bold text-3xl sm:text-4xl tracking-tight">
             Free & reduced-cost support available.
           </h2>
-          <div className="mx-auto mb-8 h-1 w-20 rounded-full bg-[#07120f]/40" />
-          <p className="mx-auto max-w-3xl text-sm leading-relaxed text-[#07120f]/80">
+          <div className="bg-[#07120f]/40 mx-auto mb-8 rounded-full w-20 h-1" />
+          <p className="mx-auto max-w-3xl text-[#07120f]/80 text-sm leading-relaxed">
             Clients experiencing financial hardship may request a reduced fee, sliding-scale rate, or fee waiver. Free or reduced-cost support may be available for students, interns, job seekers, caregivers, and community partners.
           </p>
           <button
             onClick={() =>
               openForm(FORM_SERVICES, "Request a Fee Waiver", "Reduced cost & sliding scale options")
             }
-            className="mt-8 rounded-full bg-[#07120f] px-8 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition duration-200 hover:bg-[#000a05]"
+            className="bg-[#07120f] hover:bg-[#000a05] mt-8 px-8 py-4 rounded-full font-semibold text-white text-sm uppercase tracking-[0.18em] transition duration-200"
           >
             Request a fee waiver
           </button>

@@ -7,7 +7,7 @@ const ValuesSection: React.FC = () => (
     {/* Same 1114px content line as every other section. The banner has ~1.6%
         transparent padding each side, so it is widened (w-[103.37%]) and pulled
         left (-1.64%) to make its visible card fill the container. */}
-    <div className="mx-auto max-w-[1114px]">
+    <div className="mx-auto max-w-278.5">
       <img
         src={valuesBanner}
         alt="Our Values — We value access, growth, professionalism, empowerment, lifelong learning, and community-centered support."

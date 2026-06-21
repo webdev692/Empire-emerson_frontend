@@ -83,14 +83,14 @@ const socialIcons = [
 
 const EPDGFooter: React.FC = () => {
   return (
-    <footer className="bg-[#03140f] px-4 pt-16 border-t border-white/10 text-white">
-      <div className="mx-auto max-w-[1114px]">
-        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <footer className="bg-[#03140f] px-4 pt-16 border-white/10 border-t text-white">
+      <div className="mx-auto max-w-278.5">
+        <div className="flex sm:flex-row flex-col sm:justify-between sm:items-center gap-4 mb-10">
           <div className="flex items-center gap-4">
-            <img src={logo} alt="EPDG logo" className="h-16 w-16 rounded-full border border-white/10 object-cover" />
+            <img src={logo} alt="EPDG logo" className="border border-white/10 rounded-full w-16 h-16 object-cover" />
             <div>
-              <p className="font-semibold uppercase tracking-[0.24em] text-[#C9A84C] text-xs">EPDG</p>
-              <p className="text-sm text-white/70">Professional development for learners, leaders, and teams.</p>
+              <p className="font-semibold text-[#C9A84C] text-xs uppercase tracking-[0.24em]">EPDG</p>
+              <p className="text-white/70 text-sm">Professional development for learners, leaders, and teams.</p>
             </div>
           </div>
           <div className="flex gap-3">
@@ -101,7 +101,7 @@ const EPDGFooter: React.FC = () => {
                 target={s.href.startsWith("mailto") ? undefined : "_blank"}
                 rel={s.href.startsWith("mailto") ? undefined : "noreferrer"}
                 aria-label={s.name}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-[#C9A84C] hover:text-[#C9A84C]"
+                className="flex justify-center items-center bg-white/5 border border-white/10 hover:border-[#C9A84C] rounded-full w-11 h-11 text-white/70 hover:text-[#C9A84C] transition"
               >
                 {s.svg}
               </a>
@@ -109,9 +109,9 @@ const EPDGFooter: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3 mb-14 text-sm text-white/70">
+        <div className="gap-8 grid md:grid-cols-3 mb-14 text-white/70 text-sm">
           <div>
-            <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#C9A84C]">Contact</p>
+            <p className="mb-4 text-[#C9A84C] text-xs uppercase tracking-[0.24em]">Contact</p>
             <div className="space-y-3">
               <a href="mailto:admin@theemersonempire.info" className="block hover:text-[#C9A84C]">admin@theemersonempire.info</a>
               <a href="tel:+18034794492" className="block hover:text-[#C9A84C]">+1 (803) 479-4492</a>
@@ -120,7 +120,7 @@ const EPDGFooter: React.FC = () => {
           </div>
 
           <div>
-            <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#C9A84C]">Navigate</p>
+            <p className="mb-4 text-[#C9A84C] text-xs uppercase tracking-[0.24em]">Navigate</p>
             <ul className="space-y-3">
               {navigateLinks.map((l) => (
                 <li key={l.label}>
@@ -131,7 +131,7 @@ const EPDGFooter: React.FC = () => {
           </div>
 
           <div>
-            <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#C9A84C]">Forms</p>
+            <p className="mb-4 text-[#C9A84C] text-xs uppercase tracking-[0.24em]">Forms</p>
             <ul className="space-y-3">
               {formsLinks.map((l) => (
                 <li key={l.label}>
@@ -142,7 +142,7 @@ const EPDGFooter: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row sm:justify-between">
+        <div className="flex sm:flex-row flex-col sm:justify-between gap-3 pt-6 border-white/10 border-t text-white/40 text-xs">
           <p>© {new Date().getFullYear()} Emerson Professional Development Group</p>
           <a href="mailto:admin@theemersonempire.info" className="hover:text-[#C9A84C]">Contact Us</a>
         </div>

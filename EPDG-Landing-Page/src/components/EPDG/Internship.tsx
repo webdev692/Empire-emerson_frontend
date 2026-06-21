@@ -53,26 +53,26 @@ const Internship: React.FC = () => {
 
   return (
     <section id="internships" className="bg-[#044E37] px-4 py-20 text-white">
-      <div className="mx-auto max-w-[1114px]">
-        <p className="mb-3 text-xs uppercase tracking-[0.25em] text-[#E0CF8D]">
+      <div className="mx-auto max-w-278.5">
+        <p className="mb-3 text-[#E0CF8D] text-xs uppercase tracking-[0.25em]">
           Global Internship Program
         </p>
-        <h2 className="mb-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+        <h2 className="mb-4 font-bold text-white text-4xl sm:text-5xl tracking-tight">
           Build real skills. Contribute to real projects.
         </h2>
-        <div className="mb-10 h-1 w-20 rounded-full bg-[#C9A84C]" />
+        <div className="bg-[#C9A84C] mb-10 rounded-full w-20 h-1" />
         <p className="mb-12 max-w-3xl text-white/70 text-base leading-relaxed">
           The EPDG Internship Program is founder-led and built with the support of interns contributing to real public-facing systems, documentation, strategy, and digital infrastructure.
         </p>
 
-        <div className="grid gap-6 md:grid-cols-2 mb-14">
+        <div className="gap-6 grid md:grid-cols-2 mb-14">
           {cards.map((card) => (
-            <div key={card.title} className="rounded-[2rem] border border-white/15 bg-white/10 p-7 shadow-[0_24px_65px_rgba(0,0,0,0.15)]">
-              <h3 className="mb-4 text-lg font-bold text-[#F8E8B5]">{card.title}</h3>
-              <ul className="space-y-3 text-sm leading-relaxed text-white/85">
+            <div key={card.title} className="bg-white/10 shadow-[0_24px_65px_rgba(0,0,0,0.15)] p-7 border border-white/15 rounded-4xl">
+              <h3 className="mb-4 font-bold text-[#F8E8B5] text-lg">{card.title}</h3>
+              <ul className="space-y-3 text-white/85 text-sm leading-relaxed">
                 {card.items.map((item) => (
                   <li key={item} className="flex gap-3">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-[#C9A84C]" />
+                    <span className="bg-[#C9A84C] mt-1 rounded-full w-2 h-2" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -83,12 +83,12 @@ const Internship: React.FC = () => {
 
         <button
           onClick={() => openForm(FORM_INTERNSHIP, "Apply for the Internship Program", "Free semester-long program")}
-          className="rounded-full bg-[#C9A84C] px-9 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-[#07120f] transition duration-200 hover:bg-[#bda55f]"
+          className="bg-[#C9A84C] hover:bg-[#bda55f] px-9 py-3.5 rounded-full font-semibold text-[#07120f] text-sm uppercase tracking-[0.18em] transition duration-200"
         >
           Apply for the internship program
         </button>
 
-        <p className="mt-12 border-t border-white/10 pt-8 text-sm leading-relaxed text-white/60">
+        <p className="mt-12 pt-8 border-white/10 border-t text-white/60 text-sm leading-relaxed">
           Participation in the internship program does not guarantee employment, academic credit, compensation, or future placement. Leadership track selection is based on performance and program capacity.
         </p>
       </div>

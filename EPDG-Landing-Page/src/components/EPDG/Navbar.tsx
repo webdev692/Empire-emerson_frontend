@@ -64,20 +64,20 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="top-0 sticky z-50 bg-[#03140f]/95 backdrop-blur-sm border-b border-white/10">
-      <div className="mx-auto flex items-center justify-between px-4 py-4 max-w-[1114px]">
+    <nav className="top-0 z-50 sticky bg-[#03140f]/95 backdrop-blur-sm border-white/10 border-b">
+      <div className="flex justify-between items-center mx-auto px-4 py-4 max-w-278.5">
         <button
           onClick={() => handleNav(navLinks[0])}
           className="flex items-center gap-3 shrink-0"
           aria-label="Home"
         >
-          <img src={logo} alt="EPDG logo" className="w-12 h-12 rounded-full border border-white/10" />
-          <span className="hidden md:inline-block font-semibold text-white tracking-[0.16em] uppercase text-xs">
+          <img src={logo} alt="EPDG logo" className="border border-white/10 rounded-full w-12 h-12" />
+          <span className="hidden md:inline-block font-semibold text-white text-xs uppercase tracking-[0.16em]">
             EPDG
           </span>
         </button>
 
-        <ul className="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-[0.18em] text-white/70">
+        <ul className="hidden md:flex items-center gap-8 font-medium text-white/70 text-sm uppercase tracking-[0.18em]">
           {navLinks.map((link) => (
             <li key={link.id}>
               <button
@@ -99,7 +99,7 @@ const Navbar: React.FC = () => {
             href="https://emersonproffesionaldevelopment.netlify.app/"
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/70 hover:text-white hover:border-[#C9A84C] transition-all duration-200"
+            className="px-4 py-2 border border-white/10 hover:border-[#C9A84C] rounded-full font-semibold text-white/70 hover:text-white text-xs uppercase tracking-[0.18em] transition-all duration-200"
           >
             Log In
           </a>
@@ -107,20 +107,20 @@ const Navbar: React.FC = () => {
             href="https://emersonproffesionaldevelopment.netlify.app/"
             target="_blank"
             rel="noreferrer"
-            className="rounded-full bg-[#C9A84C] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#07120f] transition-all duration-200 hover:bg-[#BDA55F]"
+            className="bg-[#C9A84C] hover:bg-[#BDA55F] px-4 py-2 rounded-full font-semibold text-[#07120f] text-xs uppercase tracking-[0.18em] transition-all duration-200"
           >
             Create Account
           </a>
         </div>
 
         <button
-          className="md:hidden flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#03140f] text-white"
+          className="md:hidden flex justify-center items-center bg-[#03140f] border border-white/10 rounded-full w-11 h-11 text-white"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
         >
           <span className="sr-only">Toggle menu</span>
-          <div className="relative h-5 w-5">
+          <div className="relative w-5 h-5">
             <span className={`absolute left-0 top-0 h-0.5 w-5 rounded-full bg-white transition-transform ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
             <span className={`absolute left-0 top-2 h-0.5 w-5 rounded-full bg-white transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
             <span className={`absolute left-0 top-4 h-0.5 w-5 rounded-full bg-white transition-transform ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
@@ -129,8 +129,8 @@ const Navbar: React.FC = () => {
       </div>
 
       {menuOpen && (
-        <div className="space-y-4 border-t border-white/10 bg-[#03140f] px-4 pb-6 md:hidden">
-          <ul className="flex flex-col gap-2 pt-4 text-sm uppercase tracking-[0.18em] text-white/75">
+        <div className="md:hidden space-y-4 bg-[#03140f] px-4 pb-6 border-white/10 border-t">
+          <ul className="flex flex-col gap-2 pt-4 text-white/75 text-sm uppercase tracking-[0.18em]">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <button
@@ -149,7 +149,7 @@ const Navbar: React.FC = () => {
               href="https://emersonproffesionaldevelopment.netlify.app/"
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-white/10 px-4 py-3 text-center text-sm font-semibold uppercase tracking-[0.18em] text-white/80 hover:text-white"
+              className="px-4 py-3 border border-white/10 rounded-full font-semibold text-white/80 hover:text-white text-sm text-center uppercase tracking-[0.18em]"
             >
               Log In
             </a>
@@ -157,7 +157,7 @@ const Navbar: React.FC = () => {
               href="https://emersonproffesionaldevelopment.netlify.app/"
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-[#C9A84C] px-4 py-3 text-center text-sm font-semibold uppercase tracking-[0.18em] text-[#07120f] hover:bg-[#BDA55F]"
+              className="bg-[#C9A84C] hover:bg-[#BDA55F] px-4 py-3 rounded-full font-semibold text-[#07120f] text-sm text-center uppercase tracking-[0.18em]"
             >
               Create Account
             </a>
