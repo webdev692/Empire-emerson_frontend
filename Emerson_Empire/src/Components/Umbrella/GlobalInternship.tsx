@@ -529,7 +529,7 @@ const GlobalInternship: React.FC = () => {
         </div>
       </section>
 
-      {/* ── How It Works ── */}
+      
       <section className="bg-[#12022A] text-white py-20">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Process</p>
