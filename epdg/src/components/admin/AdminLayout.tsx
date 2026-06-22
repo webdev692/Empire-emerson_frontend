@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import logo from "../../assets/epd_logo.png";
 import {
@@ -21,9 +21,11 @@ import {
   ChevronLeft,
   ChevronRight,
   Menu,
+  ChevronDown,
 } from "lucide-react";
 import { useAuthStore } from "../../store/authStore";
 import { useThemeStore, MOODS } from "../../store/themeStore";
+import api from "../../lib/axios";
 
 const ALL_MENU = [
   { name: "Dashboard",     path: "/admin/dashboard",     icon: LayoutDashboard, superOnly: false },
@@ -47,14 +49,58 @@ const ALL_MENU = [
 const f: React.CSSProperties = { fontFamily: "Inter" };
 
 const AdminLayout: React.FC = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen]           = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const profileRef                = useRef<HTMLDivElement>(null);
   const clearAuth    = useAuthStore((s) => s.clearAuth);
-  const adminRole    = useAuthStore((s) => s.user?.admin_role);
+  const patchUser    = useAuthStore((s) => s.patchUser);
+  const setToken     = useAuthStore((s) => s.setToken);
+  const user         = useAuthStore((s) => s.user);
+  const adminRole    = user?.admin_role;
   const isSuperAdmin = adminRole === 'super_admin';
+  const isMentor     = user?.is_mentor === true;
   const menuItems    = ALL_MENU.filter((item) => !item.superOnly || isSuperAdmin);
   const navigate     = useNavigate();
   const mood         = useThemeStore((s) => s.mood);
   const moodDef      = MOODS.find((m) => m.id === mood) ?? MOODS[0];
+
+  // Silently refresh JWT and sync admin_role + is_mentor from DB on every mount.
+  // Fixes stale cached tokens where admin_role changed after login (e.g. super_admin seed).
+  useEffect(() => {
+    const currentToken = useAuthStore.getState().token;
+    if (!currentToken) return;
+    (async () => {
+      try {
+        // 1. Get a fresh JWT from the DB (re-queries admins table for admin_role)
+        const { data: refreshData } = await api.post<{ success: boolean; token: string }>(
+          '/api/auth/refresh', { token: currentToken }
+        );
+        if (refreshData?.token) setToken(refreshData.token);
+
+        // 2. Fetch current user details — admin_role + is_mentor live in profile
+        const { data: meData } = await api.get<{ success: boolean; user: any }>('/api/auth/me');
+        if (meData?.user?.profile) {
+          const { admin_role, is_mentor } = meData.user.profile;
+          patchUser({ admin_role, is_mentor: is_mentor ?? false });
+        }
+      } catch {
+        // silently ignore — stale data is still usable
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+        setProfileOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const initials = (name?: string | null) =>
+    (name ?? "A").split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase();
   const theme = {
     deep:   moodDef.deep,
     mid:    moodDef.mid,
@@ -175,6 +221,77 @@ const AdminLayout: React.FC = () => {
             <Menu size={18} />
           </button>
           <img src={logo} alt="Emerson Professional" className="w-auto h-28 object-contain" />
+
+          {/* Profile icon — pushed to far right */}
+          <div className="ml-auto relative" ref={profileRef}>
+            <button
+              onClick={() => setProfileOpen((v) => !v)}
+              style={{ borderColor: theme.border }}
+              className="flex items-center gap-2 border rounded-2xl px-2.5 py-1.5 hover:opacity-80 transition"
+            >
+              <div
+                style={{ backgroundColor: theme.accent, color: theme.gold }}
+                className="w-8 h-8 rounded-xl flex items-center justify-center text-xs font-bold shrink-0"
+              >
+                {initials(user?.name)}
+              </div>
+              <span className="hidden sm:block text-sm text-white font-medium max-w-32 truncate">
+                {user?.name}
+              </span>
+              <ChevronDown size={14} className="text-[#F5F0E8] hidden sm:block" />
+            </button>
+
+            {profileOpen && (
+              <div
+                style={{ backgroundColor: theme.mid, borderColor: `${theme.border}99` }}
+                className="absolute right-0 top-full mt-2 w-64 rounded-2xl border shadow-2xl z-50 overflow-hidden"
+              >
+                {/* Avatar header */}
+                <div style={{ backgroundColor: theme.accent }} className="px-4 py-4 flex items-center gap-3">
+                  <div
+                    style={{ color: theme.gold, border: `2px solid ${theme.gold}55` }}
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center text-base font-bold bg-white/10 shrink-0"
+                  >
+                    {initials(user?.name)}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-white font-semibold text-sm truncate">{user?.name}</p>
+                    <p className="text-white/60 text-xs truncate">{user?.email}</p>
+                    {/* Title badge under name */}
+                    <p style={{ color: theme.gold }} className="text-[10px] font-bold mt-0.5 uppercase tracking-wider">
+                      {isSuperAdmin ? 'Super Admin' : isMentor ? 'Mentor' : 'Admin'}
+                    </p>
+                  </div>
+                </div>
+                {/* Details */}
+                <div className="px-4 py-3 space-y-2.5 text-xs">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#F5F0E8]/60 uppercase tracking-wider font-mono">Title</span>
+                    <span
+                      style={{ backgroundColor: `${theme.accent}33`, color: theme.gold }}
+                      className="px-2 py-0.5 rounded-full font-semibold text-[11px]"
+                    >
+                      {isSuperAdmin ? 'Super Admin' : isMentor ? 'Mentor' : 'Admin'}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#F5F0E8]/60 uppercase tracking-wider font-mono">Email</span>
+                    <span className="text-white font-medium max-w-36 truncate text-right">{user?.email}</span>
+                  </div>
+                </div>
+                {/* Logout */}
+                <div style={{ borderColor: `${theme.border}4D` }} className="border-t px-4 py-3">
+                  <button
+                    onClick={() => { clearAuth(); navigate("/login"); }}
+                    className="flex items-center gap-2 text-red-400 hover:text-red-300 text-xs font-medium transition w-full"
+                  >
+                    <LogOut size={14} />
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Page content */}

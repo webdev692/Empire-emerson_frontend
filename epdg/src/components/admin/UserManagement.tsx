@@ -58,7 +58,8 @@ const UserManagement: React.FC = () => {
   const [filter, setFilter]           = useState<(typeof roleLabels)[number]>("all");
   const [statusFilter, setStatusFilter] = useState<(typeof statusLabels)[number]>("all");
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [deleteTarget, setDeleteTarget] = useState<number | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<{ id: number; name: string } | null>(null);
+  const currentUserId = useAuthStore((s) => s.user?.id);
   const [formValues, setFormValues]   = useState({ name: "", email: "", role: "intern", password: "" });
   const [saving, setSaving]           = useState(false);
   const [message, setMessage]         = useState("");
@@ -112,9 +113,9 @@ const UserManagement: React.FC = () => {
   async function handleDelete() {
     if (deleteTarget === null) return;
     try {
-      await api.delete(`/api/admin/users/${deleteTarget}`);
-      setUsers((prev) => prev.filter((u) => u.id !== deleteTarget));
-      setMessage("User deleted.");
+      await api.delete(`/api/admin/users/${deleteTarget.id}`);
+      setUsers((prev) => prev.filter((u) => u.id !== deleteTarget.id));
+      setMessage(`✅ ${deleteTarget.name} has been removed.`);
     } catch (err) {
       const e = err as AxiosError<{ message: string }>;
       setMessage(e.response?.data?.message ?? "Delete failed.");
@@ -262,9 +263,9 @@ const UserManagement: React.FC = () => {
                             ↑ Make Super
                           </button>
                         )}
-                        {isSuperAdmin && (
+                        {isSuperAdmin && user.id !== currentUserId && (
                           <button
-                            onClick={() => setDeleteTarget(user.id)}
+                            onClick={() => setDeleteTarget({ id: user.id, name: user.name })}
                             className="rounded-2xl bg-red-500/10 px-3 py-2 text-xs text-red-300 hover:bg-red-500/20 transition">
                             ⊘ Delete
                           </button>
@@ -335,14 +336,23 @@ const UserManagement: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
           <div className="w-full max-w-md rounded-3xl border border-[#4B1E91] bg-[#1E0A4A] p-6">
             <h2 className="text-xl font-semibold text-white">Delete user?</h2>
+            <div className="mt-4 flex items-center gap-3 rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-red-500/20 text-sm font-semibold text-red-300 shrink-0">
+                {deleteTarget.name.split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase()}
+              </div>
+              <div>
+                <p className="font-semibold text-white text-sm">{deleteTarget.name}</p>
+                <p className="text-xs text-red-300 mt-0.5">This account will be permanently removed</p>
+              </div>
+            </div>
             <p className="mt-3 text-sm text-[#F5F0E8]">
-              This will permanently remove the account. The user will lose all access immediately.
+              The user will lose all access immediately. This action cannot be undone.
             </p>
             <div className="mt-6 flex gap-3">
-              <button onClick={handleDelete} className="flex-1 rounded-2xl bg-red-500 py-3 text-sm font-semibold text-white">
+              <button onClick={handleDelete} className="flex-1 rounded-2xl bg-red-500 py-3 text-sm font-semibold text-white hover:bg-red-600 transition">
                 Confirm Delete
               </button>
-              <button onClick={() => setDeleteTarget(null)} className="flex-1 rounded-2xl border border-[#4B1E91] py-3 text-sm text-[#F5F0E8]">
+              <button onClick={() => setDeleteTarget(null)} className="flex-1 rounded-2xl border border-[#4B1E91] py-3 text-sm text-[#F5F0E8] hover:text-white transition">
                 Cancel
               </button>
             </div>
