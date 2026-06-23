@@ -5,8 +5,10 @@ import LandingPage from "./components/EPDG/LandingPage";
 import ClassesPage from "./components/EPDG/ClassesPage";
 
 function App() {
+  const base = import.meta.env.BASE_URL
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={base}>
       <FormModalProvider>
         <ScrollManager />
         <div className="font-sans">

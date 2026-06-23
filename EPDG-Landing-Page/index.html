@@ -14,6 +14,15 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Great+Vibes&display=swap"
       rel="stylesheet"
     />
+    <script>
+      // Restore path from GitHub Pages 404 redirect
+      (function() {
+        var p = new URLSearchParams(window.location.search).get('p');
+        if (p) {
+          window.history.replaceState(null, null, '/' + p);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
