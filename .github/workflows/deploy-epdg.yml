@@ -1,0 +1,37 @@
+name: Deploy EPDG Landing Page
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'EPDG-Landing-Page/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install
+        working-directory: EPDG-Landing-Page
+        run: npm install
+
+      - name: Build
+        working-directory: EPDG-Landing-Page
+        run: npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./EPDG-Landing-Page/dist
+          destination_dir: EPDG-Landing-Page
