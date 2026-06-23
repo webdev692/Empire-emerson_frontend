@@ -5,21 +5,28 @@ on:
     branches: [main]
     paths:
       - 'EPDG-Landing-Page/**'
+      - '.github/workflows/deploy-epdg.yml'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Node 18
-        uses: actions/setup-node@v3
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install
         working-directory: EPDG-Landing-Page
@@ -29,9 +36,18 @@ jobs:
         working-directory: EPDG-Landing-Page
         run: npm run build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./EPDG-Landing-Page/dist
-          destination_dir: EPDG-Landing-Page
+          path: ./EPDG-Landing-Page/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

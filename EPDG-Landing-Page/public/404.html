@@ -3,12 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <script>
-      // GitHub Pages SPA redirect: preserve path as query param, then index.html restores it
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 3).join('/') +
-        '/?p=' + encodeURIComponent(l.pathname.slice(1) + (l.search ? '&' + l.search.slice(1) : '')) +
+        '/Empire-emerson_frontend/' +
+        '?p=' + encodeURIComponent(l.pathname.slice(1) + (l.search ? '&' + l.search.slice(1) : '')) +
         l.hash
       );
     </script>
