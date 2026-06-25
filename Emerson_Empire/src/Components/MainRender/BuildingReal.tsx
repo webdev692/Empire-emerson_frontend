@@ -1,5 +1,5 @@
 import React from 'react';
-import { Globe } from '../../assets';
+import { globe } from '../../assets';
 
 const BuildingReal: React.FC = () => {
   return (
@@ -30,7 +30,7 @@ const BuildingReal: React.FC = () => {
           <div className="lg:w-1/2">
             <div className="rounded-2xl overflow-hidden shadow-lg">
               <img 
-                src={Globe} 
+                src={globe} 
                 alt="Global opportunity" 
                 className="w-full h-auto object-cover"
               />

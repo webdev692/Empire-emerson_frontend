@@ -1,19 +1,21 @@
 import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import { AgencyAvif } from '../../assets';
 
 const GetInTouch: React.FC = () => {
   return (
     <section className="bg-white px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 grid-cols-1 lg:grid-cols-2">
-          {/* Left: Image */}
-          <div className="relative rounded-2xl overflow-hidden shadow-lg h-96 lg:h-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#12022A] to-[#2D1B4E]" />
-            <div className="flex items-center justify-center w-full h-full">
-              <div className="text-center">
-                <h3 className="mb-4 font-bold text-white text-3xl">Ready to Connect?</h3>
-                <p className="text-[#C9A84C] text-lg">We're here to help you move forward.</p>
-              </div>
+          {/* Left: Brand Logo */}
+          <div className="relative rounded-2xl overflow-hidden shadow-lg h-96 lg:h-auto bg-[#12022A]">
+            <div className="absolute inset-0 bg-[#12022A] opacity-90" />
+            <div className="relative flex items-center justify-center w-full h-full p-8">
+              <img
+                src={AgencyAvif}
+                alt="Agency logo"
+                className="max-h-full max-w-full object-contain"
+              />
             </div>
           </div>
 
