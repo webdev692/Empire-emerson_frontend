@@ -30,58 +30,65 @@ const partners = [
   },
 ];
 
-const tracks = [
-  {
-    title: "Workforce Readiness Workshops",
-    description:
-      "Community, small group, and organizational sessions covering career skills, professional development, and workforce preparation.",
-    fee: "Free–$25/person (community). $150–$1,500+ (org). Free/reduced through community partners.",
-  },
-  {
-    title: "Organizational Team Training",
-    description:
-      "Professional development training for staff, interns, and volunteers. Available in 60-min, 90-min, half-day, and custom series formats.",
-    fee: "$150–$1,000+. Mission-aligned nonprofit rates by agreement.",
-  },
-  {
-    title: "Internship Program Design for Small Businesses",
-    description:
-      "Support for small businesses wanting to build ethical, structured internship systems with proper onboarding and project frameworks.",
-    fee: "$150 (consultation). $500–$1,500 (full setup). Reduced for community partners.",
-  },
-  {
-    title: "School & Library Workshops",
-    description:
-      "Career readiness and professional development workshops designed for school programs, public libraries, and community learning spaces.",
-    fee: "Pricing by scope. Reduced community rates available.",
-  },
+const audiences = [
+  "Organizations",
+  "Schools",
+  "Libraries",
+  "Staffing agencies",
+  "Community groups",
 ];
+
+const BuildingIcon: React.FC = () => (
+  <svg
+    className="w-4 h-4 text-[#2E6B3E] shrink-0"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect width="16" height="20" x="4" y="2" rx="2" ry="2" />
+    <path d="M9 22v-4h6v4" />
+    <path d="M8 6h.01" />
+    <path d="M16 6h.01" />
+    <path d="M12 6h.01" />
+    <path d="M12 10h.01" />
+    <path d="M12 14h.01" />
+    <path d="M16 10h.01" />
+    <path d="M16 14h.01" />
+    <path d="M8 10h.01" />
+    <path d="M8 14h.01" />
+  </svg>
+);
 
 const WorkforceTraining: React.FC = () => {
   const { openForm } = useFormModal();
 
   return (
     <>
-      <section id="workforce" className="bg-[#F3F0E8] px-4 py-20 sm:py-24">
+      <section id="workforce" className="bg-[#E8E5DE] px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-278.5">
-          <p className="mb-3 text-[#9f8745] text-xs uppercase tracking-[0.28em]">
-            Workforce & Organizational Training
+          <p className="mb-4 font-bold text-[#B0893C] text-lg uppercase tracking-[0.22em]">
+            Workforce &amp; Organizational Training
           </p>
-          <h2 className="mb-6 max-w-3xl font-bold text-[#0A1F17] text-4xl sm:text-5xl tracking-tight">
-            Training for teams, schools, and organizations.
+          <h2 className="mb-6 max-w-3xl text-[#1A1A1A] text-5xl sm:text-6xl leading-[1.05] heading">
+            Partner with us for <span className="text-[#2E6B3E] italic">workshops</span> and professional development.
           </h2>
-          <div className="bg-[#044E37] mb-10 rounded-full w-20 h-1" />
-          <p className="mb-12 max-w-3xl text-[#5a5a4f] text-base leading-relaxed">
-            EPDG works with schools, libraries, workforce programs, staffing agencies, and community organizations to expand access to career readiness and professional development resources.
+          <p className="mb-10 max-w-2xl text-[#555] text-base leading-relaxed">
+            EPDG can support organizations, schools, libraries, staffing agencies, and community
+            groups with workshops and professional development training tailored to your audience.
           </p>
 
-          <div className="gap-6 grid lg:grid-cols-2">
-            {tracks.map((t) => (
-              <div key={t.title} className="bg-white shadow-[0_24px_60px_rgba(22,25,16,0.08)] p-8 border border-[#dbd3b9] rounded-4xl">
-                <h3 className="mb-3 font-bold text-[#6d5f33] text-sm uppercase tracking-[0.24em]">{t.title}</h3>
-                <p className="text-[#4b4a40] text-sm leading-relaxed">{t.description}</p>
-                <p className="mt-5 font-semibold text-[#044E37] text-sm">{t.fee}</p>
-              </div>
+          <div className="flex flex-wrap gap-3 mb-10">
+            {audiences.map((a) => (
+              <span
+                key={a}
+                className="inline-flex items-center gap-2 bg-white shadow-[0_6px_18px_rgba(20,30,20,0.07)] px-4 py-2.5 rounded-full font-medium text-[#1A1A1A] text-sm"
+              >
+                <BuildingIcon />
+                {a}
+              </span>
             ))}
           </div>
 
@@ -89,13 +96,13 @@ const WorkforceTraining: React.FC = () => {
             onClick={() =>
               openForm(
                 FORM_WORKFORCE,
-                "Partner with EPDG",
+                "Request Workforce Training or Partnership",
                 "Workforce training & organizational partnerships"
               )
             }
-            className="bg-[#044E37] hover:bg-[#032819] mt-10 px-9 py-4 rounded-full font-semibold text-white text-sm uppercase tracking-[0.18em] transition duration-200"
+            className="inline-flex justify-center items-center bg-[#13431C] hover:bg-[#0d2e14] px-7 py-3.5 rounded-lg font-semibold text-white text-base transition duration-200 cursor-pointer"
           >
-            Request workforce training
+            Request Workforce Training or Partnership
           </button>
         </div>
       </section>
