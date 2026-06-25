@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
       <div className="flex justify-between items-center mx-auto px-4 py-4 max-w-278.5">
         <button
           onClick={() => handleNav(navLinks[0])}
-          className="flex items-center gap-3 shrink-0"
+          className="flex items-center gap-3 shrink-0 cursor-pointer"
           aria-label="Home"
         >
           <img src={logo} alt="EPDG logo" className="border border-white/10 rounded-full w-12 h-12" />
@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
             <li key={link.id}>
               <button
                 onClick={() => handleNav(link)}
-                className={`transition duration-200 ${
+                className={`cursor-pointer transition duration-200 ${
                   activeId === link.id
                     ? "text-[#C9A84C]"
                     : "hover:text-white"
@@ -114,7 +114,7 @@ const Navbar: React.FC = () => {
         </div>
 
         <button
-          className="md:hidden flex justify-center items-center bg-[#03140f] border border-white/10 rounded-full w-11 h-11 text-white"
+          className="md:hidden flex justify-center items-center bg-[#03140f] border border-white/10 rounded-full w-11 h-11 text-white cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
@@ -135,7 +135,7 @@ const Navbar: React.FC = () => {
               <li key={link.id}>
                 <button
                   onClick={() => handleNav(link)}
-                  className={`w-full text-left py-3 transition duration-200 ${
+                  className={`w-full text-left py-3 transition duration-200 cursor-pointer ${
                     activeId === link.id ? "text-[#C9A84C]" : "hover:text-white"
                   }`}
                 >
