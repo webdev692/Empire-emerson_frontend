@@ -42,7 +42,7 @@ const WeeklyClasses: React.FC = () => {
         <h2 className="mb-3 font-bold text-black text-3xl md:text-4xl uppercase tracking-tight">
           21 Free &amp; Low-Cost Online Classes
         </h2>
-        <div className="bg-[#044E37] mb-5 rounded w-12 h-0.5" />
+        <div className="bg-[#041913] mb-5 rounded w-12 h-0.5" />
         <p className="mb-10 max-w-7xl text-gray-500 text-sm md:text-base leading-relaxed">
           Classes are hosted weekly on Google Meet. Free sessions run Monday–Saturday at 10 AM EDT.
           Low-cost workshops and intensives are available at 2 PM and 7 PM EDT. Fee waivers are
@@ -56,8 +56,8 @@ const WeeklyClasses: React.FC = () => {
               onClick={() => setActiveDay(day)}
               className={`cursor-pointer text-sm font-bold uppercase tracking-widest px-5 py-2 transition-all duration-200 ${
                 activeDay === day
-                  ? "bg-[#044E37] text-white"
-                  : "bg-white border border-[#044E37]/30 text-[#044E37] hover:border-[#044E37]"
+                  ? "bg-[#041913] text-white"
+                  : "bg-white border border-[#041913]/30 text-[#041913] hover:border-[#041913]"
               }`}
             >
               {day}
@@ -70,9 +70,9 @@ const WeeklyClasses: React.FC = () => {
             <div
               key={c.id}
               className="flex flex-col bg-white shadow-sm border border-gray-100 rounded-xl h-96 overflow-y-scroll"
-              style={{ borderTop: "3px solid #044E37" }}
+              style={{ borderTop: "3px solid #041913" }}
             >
-              <div className="flex justify-between items-center gap-2 bg-[#044E37] px-5 py-3">
+              <div className="flex justify-between items-center gap-2 bg-[#041913] px-5 py-3">
                 <p className="font-bold text-[#C9A84C] text-sm uppercase tracking-wider">
                   {c.day} · {c.time}
                 </p>
@@ -81,7 +81,7 @@ const WeeklyClasses: React.FC = () => {
                 </span>
               </div>
               <div className="flex flex-col flex-1 p-5">
-                <h3 className="mb-1.5 font-bold text-[#044E37] text-[16px] leading-snug">
+                <h3 className="mb-1.5 font-bold text-[#041913] text-[16px] leading-snug">
                   {c.title}
                 </h3>
                 <p className="mb-2 font-medium text-gray-400 text-sm uppercase tracking-wide">
@@ -91,13 +91,13 @@ const WeeklyClasses: React.FC = () => {
                 <div className="flex gap-2 mt-auto">
                   <button
                     onClick={() => openForm(FORM_CLASSES, "Register for a Class", c.title)}
-                    className="bg-[#C9A84C] hover:bg-[#b8943d] px-4 py-2.5 font-bold text-[#022B1F] text-sm uppercase tracking-wider transition-all duration-200 cursor-pointer"
+                    className="bg-[#C9A84C] hover:bg-[#bba963] px-4 py-2.5 font-bold text-[#022B1F] text-sm uppercase tracking-wider transition-all duration-200 cursor-pointer"
                   >
                     Register
                   </button>
                   <button
                     onClick={() => openForm(FORM_SERVICES, "Request a Fee Waiver", c.title)}
-                    className="px-4 py-2.5 border border-[#044E37]/30 hover:border-[#044E37] font-bold text-[#044E37] text-sm uppercase tracking-wider transition-all duration-200 cursor-pointer"
+                    className="px-4 py-2.5 border border-[#041913]/30 hover:border-[#041913] font-bold text-[#041913] text-sm uppercase tracking-wider transition-all duration-200 cursor-pointer"
                   >
                     Fee Waiver
                   </button>
