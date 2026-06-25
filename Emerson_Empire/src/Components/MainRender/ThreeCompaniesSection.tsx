@@ -7,6 +7,11 @@ import {
   EPDGWebp, EPDGAvif, empire, empireWebp, empireAvif,
   AgencyWebp, AgencyAvif, Logo1, Logo2, globe,
 } from '../../assets';
+import ResourceHub from './ResourceHub';
+import FeeWaiverSection from './FeeWaiverSection';
+import FormsNextSteps from './FormsNextSteps';
+import PartnerWithUs from './PartnerWithUs';
+import GetInTouch from './GetInTouch';
 
 const FIND_PATHS = [
   { icon: BookOpen,      title: 'Free resources and guidance',              href: '/about'             },
@@ -68,33 +73,6 @@ const cardVariants: Variants = {
     transition: { duration: 0.55, ease: 'easeOut' as const },
   },
 };
-
-const PLACE_PATHS = [
-  {
-    Total: "Request Services",
-    Description: "Not sure what you need? Start here. We'll help you find the right service, class, or next step during intake.",
-    Button: "Request Services",
-    href: "/contact",
-  },
-  {
-    Total: "Register for Group Classes",
-    Description: "Browse and register for free and low-cost weekly classes in career, finance, business, and professional development.",
-    Button: "Register for Group Classes",
-    href: "/classes",
-  },
-  {
-    Total: "Request a Business Consultation",
-    Description: "For entrepreneurs, small businesses, nonprofits, and organizations seeking consultation, project support, or operations help.",
-    Button: "Request Business Consultation",
-    href: "/contact",
-  },
-  {
-    Total: "Apply for the Internship Program",
-    Description: "Join a founder-led, structured global internship program and build a real-world portfolio while contributing to live systems.",
-    Button: "Apply for Internship Program",
-    href: "/global-internship",
-  },
-];
 
 // ── Global Internship ────────────────────────────────────────────────────────
 
@@ -304,140 +282,12 @@ const ThreeCompaniesSection: React.FC = () => {
 
       <GlobalReachSection />
 
-      {/* ── Weekly Classes ── */}
-      <div className="bg-[#12022A] mt-2 px-6 sm:px-2 lg:px-16 py-16 text-center">
-        <motion.p
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 16 }}
-          transition={{ duration: 0.45 }}
-          className="mb-4 font-semibold text-[#C9A84C] text-sm sm:text-base uppercase tracking-[4px]"
-        >
-          Weekly Class Series
-        </motion.p>
-
-        <motion.h2
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.55, delay: 0.08 }}
-          className="mx-auto max-w-7xl font-bold text-[36px] text-white sm:text-[52px] lg:text-[60px] uppercase leading-none tracking-tight heading"
-        >
-          FREE & LOW-COST <span className="font-semibold text-[#C9A84C]">WEEKLY CLASSES</span>
-        </motion.h2>
-
-        <motion.p
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: 0.16 }}
-          className="mx-auto mt-4 mb-14 max-w-7xl text-white text-lg sm:text-xl leading-[1.9]"
-        >
-          The Emerson Empire Weekly Class Series offers 21 free and low-cost online classes every week covering career readiness,
-          financial literacy, tax readiness, entrepreneurship, sales, digital presence, leadership, and professional development.
-          All classes are held online via Google Meet in EDT: open to anyone, no experience required.
-        </motion.p>
-
-        <a href="/classes" className="inline-flex items-center bg-[#C9A84C] hover:bg-[#D4B56A] px-5 py-2.5 rounded-sm font-semibold text-[#12022A] text-xs uppercase tracking-[0.18em] transition-colors duration-200">
-          View All 21 Classes & Register
-        </a>
-      </div>
-
-      {/* ── Business Support ── */}
-      <div className="bg-[#ededed] px-6 sm:px-10 lg:px-16 py-16 text-center">
-        <motion.p
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 16 }}
-          transition={{ duration: 0.45 }}
-          className="mb-4 font-semibold text-[#1B5E3F] text-sm sm:text-base uppercase tracking-[4px]"
-        >
-          Business Support
-        </motion.p>
-
-        <motion.h2
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.55, delay: 0.08 }}
-          className="mx-auto max-w-7xl font-bold text-[#12022A] text-[36px] sm:text-[52px] lg:text-[60px] uppercase leading-none tracking-tight heading"
-        >
-          BUSINESS SUPPORT <span className="font-semibold text-[#1B5E3F]">BUILT AROUND YOU</span>
-        </motion.h2>
-
-        <motion.p
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: 0.16 }}
-          className="mx-auto mt-4 mb-14 max-w-7xl text-[#12022A] text-lg sm:text-xl leading-[1.9]"
-        >
-          Whether you're launching a business, organizing your operations, or looking for strategic
-          direction; we offer consultation, planning, and team-supported project services for entrepreneurs,
-          small businesses, nonprofits, and organizations of all sizes.
-          No corporate coldness. Just real, practical support from people who understand what it takes.
-        </motion.p>
-
-        <a href="/classes" className="inline-flex items-center bg-[#1B5E3F] hover:bg-[#17502F] px-5 py-2.5 rounded-sm font-semibold text-white text-xs uppercase tracking-[0.18em] transition-colors duration-200">
-          View All 21 Classes & Register
-        </a>
-      </div>
-
-      {/* ── Wherever You Are — Place For You ── */}
-      <div className="bg-white px-6 sm:px-10 lg:px-16 py-16 lg:py-20 text-center">
-        <motion.h2
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.55 }}
-          className="mx-auto max-w-5xl font-bold text-[#12022A] text-[32px] sm:text-[42px] lg:text-[48px] uppercase leading-tight tracking-tight heading"
-        >
-          Wherever you are,{' '}
-          <span className="text-[#5a3e9e]">there's a place for you here.</span>
-        </motion.h2>
-
-        <motion.p
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: 0.16 }}
-          className="mx-auto mt-5 mb-14 max-w-2xl text-[#12022A]/60 text-base sm:text-lg leading-[1.8]"
-        >
-          Whether you're figuring out where to start, ready to build real skills, or
-          just need someone in your corner — we have a pathway for you.
-        </motion.p>
-
-        <div className="gap-6 grid sm:grid-cols-2 mx-auto max-w-5xl">
-          {PLACE_PATHS.map((path) => (
-            <div key={path.Total} className="flex flex-col bg-[#f0e0ca] p-7 sm:p-8 border border-[#e2cfa9] rounded-md text-left">
-              <h3 className="mb-3 font-bold text-[#1B5E3F] text-lg sm:text-xl heading">{path.Total}</h3>
-              <p className="flex-1 mb-7 text-[#12022A]/75 text-sm sm:text-base leading-[1.8]">{path.Description}</p>
-              <a
-                href={path.href}
-                className="inline-flex justify-center items-center bg-[#12022A] hover:bg-[#1E0A4A] px-5 py-3.5 rounded-sm w-full font-semibold text-white text-sm transition-colors duration-200"
-              >
-                {path.Button}
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Accessibility Banner ── */}
-      <div className="bg-[#513086] px-6 sm:px-10 lg:px-16 py-16 text-center">
-        <motion.h2
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.55, delay: 0.08 }}
-          className="mx-auto max-w-7xl font-bold text-[36px] text-white sm:text-[52px] lg:text-[60px] uppercase leading-none tracking-tight heading"
-        >
-          WE BELIEVE SUPPORT SHOULD BE ACCESSIBLE.
-        </motion.h2>
-
-        <motion.p
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: 0.16 }}
-          className="mx-auto mt-4 mb-14 max-w-7xl text-white text-lg sm:text-xl leading-[1.9]"
-        >
-          Free and reduced-cost options may be available for students, low-income individuals,
-          unemployed job seekers, single parents, caregivers, seniors, veterans, and clients referred
-          by community agencies or workforce programs. If cost is a barrier, let us know during intake
-          and we will do our best to find the right path for you.
-        </motion.p>
-      </div>
+      {/* ── Sections below the globe ── */}
+      <ResourceHub />
+      <FeeWaiverSection />
+      <FormsNextSteps />
+      <PartnerWithUs />
+      <GetInTouch />
 
     </section>
   );

@@ -79,8 +79,11 @@ import EmpersonLogo from "./emerson_ logo.png";
 import lolo from "./Mololuwa Oloyede.jpeg"
 import vincent2 from "./vincent (2).jpeg"
 import globe from "./globe.webp"
+import ResourceImg from "./ResourceImg.png";
+import GetInTouchImg from "./GetInTouch.png";
 
 export {
+  ResourceImg, GetInTouchImg,
   Emason, EmasonWebp,EmpersonLogo, sales,EmasonAvif,lidi,study,Jonathan,Hosea2,Khaishawn,form,Welcome,development,meeting,Adaobi,
   Helena, HelenaWebp, HelenaAvif,Agency1,Tax,Taxing,Consult,Workshop,lolo,vincent2 ,
   Majvin, Campaign,Logo2,Logo1,
