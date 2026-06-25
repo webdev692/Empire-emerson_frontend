@@ -11,12 +11,11 @@ const ResourceHub: React.FC = () => (
         initial={{ opacity: 0, y: 24 }}
         transition={{ duration: 0.55 }}
         viewport={{ once: true }}
-        className="rounded-2xl overflow-hidden"
       >
         <img
           src={ResourceImg}
           alt="Emerson team reviewing educational and community resources"
-          className="w-full h-full object-cover"
+          className="block w-full h-auto"
         />
       </motion.div>
 

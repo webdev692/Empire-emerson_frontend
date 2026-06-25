@@ -63,7 +63,7 @@ const FormsNextSteps: React.FC = () => (
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
-        className="gap-6 grid sm:grid-cols-2"
+        className="gap-5 sm:gap-6 grid sm:grid-cols-2"
       >
         {FORMS.map((form) => (
           <motion.a
@@ -72,7 +72,7 @@ const FormsNextSteps: React.FC = () => (
             target="_blank"
             rel="noopener noreferrer"
             variants={cardVariants}
-            className="group flex flex-col bg-[#f0e0ca] hover:bg-[#ecd8ba] p-7 sm:p-8 border border-[#e2cfa9] rounded-md transition-colors duration-200"
+            className="group flex flex-col bg-[#f0e0ca] hover:bg-[#ecd8ba] p-7 sm:p-8 border border-[#e2cfa9] border-l-4 border-l-[#C9A84C] transition-colors duration-200"
           >
             <h3
               className="mb-3 font-medium text-[#5a3e9e] text-xl sm:text-2xl"

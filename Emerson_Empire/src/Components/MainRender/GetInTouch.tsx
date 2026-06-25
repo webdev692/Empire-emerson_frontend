@@ -18,12 +18,11 @@ const GetInTouch: React.FC = () => (
         initial={{ opacity: 0, y: 24 }}
         transition={{ duration: 0.55 }}
         viewport={{ once: true }}
-        className="rounded-2xl overflow-hidden"
       >
         <img
           src={GetInTouchImg}
           alt="Emerson team connecting with the community over a video call"
-          className="w-full h-full object-cover"
+          className="block w-full h-auto"
         />
       </motion.div>
 
