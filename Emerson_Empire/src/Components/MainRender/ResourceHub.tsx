@@ -1,55 +1,38 @@
 import React from 'react';
-import { Zap, Users, BookOpen } from 'lucide-react';
+import { meeting } from '../../assets';
 
 const ResourceHub: React.FC = () => {
   return (
-    <section className="bg-[#2D1B4E] px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
+    <section className="bg-white px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl">
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <h2 className="mb-6 font-bold text-white text-4xl md:text-5xl uppercase leading-tight">
-            A Growing Public Resource Hub
-          </h2>
-          <p className="mx-auto max-w-2xl text-[#E5D4B8] text-lg">
-            Free and low-cost resources designed to help you move forward, no matter where you're starting.
-          </p>
-        </div>
-
-        {/* Features Grid */}
-        <div className="grid gap-8 grid-cols-1 md:grid-cols-3">
-          <div className="bg-[#3D2A5F] border border-[#C9A84C]/20 rounded-lg p-8">
-            <BookOpen className="mb-6 text-[#C9A84C]" size={40} />
-            <h3 className="mb-4 font-bold text-white text-xl">Free Guides & Templates</h3>
-            <p className="text-[#C9A84C]/80 text-sm leading-relaxed">
-              Downloadable resources covering career readiness, resume building, financial planning, and business setup.
-            </p>
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <div className="lg:w-1/2">
+            <div className="rounded-3xl overflow-hidden shadow-[0_80px_120px_rgba(18,2,42,0.12)]">
+              <img
+                src={meeting}
+                alt="Public resource hub"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
 
-          <div className="bg-[#3D2A5F] border border-[#C9A84C]/20 rounded-lg p-8">
-            <Zap className="mb-6 text-[#C9A84C]" size={40} />
-            <h3 className="mb-4 font-bold text-white text-xl">Weekly Workshops</h3>
-            <p className="text-[#C9A84C]/80 text-sm leading-relaxed">
-              Interactive sessions hosted by our team and community partners covering topics from tax basics to business launch.
+          <div className="lg:w-1/2">
+            <p className="mb-4 font-semibold text-[#C9A84C] text-xs uppercase tracking-[0.35em]">
+              RESOURCES
             </p>
-          </div>
-
-          <div className="bg-[#3D2A5F] border border-[#C9A84C]/20 rounded-lg p-8">
-            <Users className="mb-6 text-[#C9A84C]" size={40} />
-            <h3 className="mb-4 font-bold text-white text-xl">Community Support</h3>
-            <p className="text-[#C9A84C]/80 text-sm leading-relaxed">
-              Connect with other professionals, entrepreneurs, and learners in our growing community.
+            <h2 className="mb-6 font-medium text-[#12022A] text-5xl lg:text-[3.5rem] leading-[1.05]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              A growing public resource hub
+            </h2>
+            <p className="mb-8 max-w-xl text-[#12022A]/75 text-lg leading-[1.85]" style={{ fontFamily: "'Inter', sans-serif" }}>
+              The Emerson Empire is building a growing public resource hub to help people find educational, professional, financial, and community support resources. New resources are added as they are reviewed and organized.
             </p>
+            <a
+              href="/contact"
+              className="inline-flex items-center bg-[#12022A] hover:bg-[#1E0A4A] px-8 py-4 rounded-md font-semibold text-white text-sm uppercase tracking-[0.18em] transition-colors duration-200"
+            >
+              Request Guidance
+            </a>
           </div>
-        </div>
-
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <a
-            href="/classes"
-            className="inline-flex items-center bg-[#C9A84C] hover:bg-[#D4B555] px-8 py-4 rounded-sm font-bold text-[#12022A] text-sm uppercase tracking-[0.15em] transition-colors duration-200"
-          >
-            Explore All Resources
-          </a>
         </div>
       </div>
     </section>

@@ -26,7 +26,11 @@ const Hero: React.FC = () => {
         {/* ── LEFT: Text content ── */}
         <div className="flex flex-col justify-center lg:w-1/2 text-left">
 
-          {/* Headline */}
+          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#C9A84C]/40 bg-[#fff9eb] px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-[#12022A] shadow-sm shadow-[#C9A84C]/10">
+        WELCOME
+      </div>
+
+      {/* Headline */}
           <h1
             className="mb-5 font-medium text-5xl md:text-6xl lg:text-7xl leading-[1.05]"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}

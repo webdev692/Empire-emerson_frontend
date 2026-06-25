@@ -1,77 +1,57 @@
 import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import { EmpersonLogo } from '../../assets';
 
 const GetInTouch: React.FC = () => {
   return (
     <section className="bg-white px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-12 grid-cols-1 lg:grid-cols-2">
-          {/* Left: Image */}
-          <div className="relative rounded-2xl overflow-hidden shadow-lg h-96 lg:h-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#12022A] to-[#2D1B4E]" />
-            <div className="flex items-center justify-center w-full h-full">
-              <div className="text-center">
-                <h3 className="mb-4 font-bold text-white text-3xl">Ready to Connect?</h3>
-                <p className="text-[#C9A84C] text-lg">We're here to help you move forward.</p>
-              </div>
-            </div>
+        <div className="grid gap-12 grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] items-center">
+          <div className="rounded-3xl overflow-hidden shadow-[0_60px_120px_rgba(18,2,42,0.12)]">
+            <img
+              src={EmpersonLogo}
+              alt="Emerson Empire contact"
+              className="w-full h-full object-cover"
+            />
           </div>
 
-          {/* Right: Contact Info */}
-          <div className="flex flex-col justify-center">
-            <h2 className="mb-6 font-bold text-[#12022A] text-4xl md:text-5xl uppercase leading-tight">
-              Get in Touch
-            </h2>
-            <p className="mb-12 text-[#12022A]/70 text-lg leading-relaxed">
-              Whether you're an individual looking to grow, a business seeking support, or an organization wanting to partner with us — we're here to listen and help.
-            </p>
-
-            {/* Contact Info Cards */}
-            <div className="space-y-6 mb-12">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 mt-1">
-                  <Phone className="text-[#C9A84C]" size={24} />
-                </div>
-                <div>
-                  <p className="font-bold text-[#12022A]">Phone</p>
-                  <p className="text-[#12022A]/70">+1 (555) 123-4567</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 mt-1">
-                  <Mail className="text-[#C9A84C]" size={24} />
-                </div>
-                <div>
-                  <p className="font-bold text-[#12022A]">Email</p>
-                  <p className="text-[#12022A]/70">info@emersonempire.org</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 mt-1">
-                  <MapPin className="text-[#C9A84C]" size={24} />
-                </div>
-                <div>
-                  <p className="font-bold text-[#12022A]">Address</p>
-                  <p className="text-[#12022A]/70">Columbus, OH, United States</p>
-                </div>
-              </div>
+          <div className="space-y-8">
+            <div>
+              <p className="mb-4 font-semibold text-[#C9A84C] text-xs uppercase tracking-[0.35em]">
+                CONTACT
+              </p>
+              <h2 className="font-semibold text-[#12022A] text-5xl md:text-[3.5rem] leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                Get in Touch
+              </h2>
+              <p className="mt-6 max-w-xl text-[#12022A]/75 text-lg leading-[1.85]">
+                The fastest way to reach us is through one of the forms below. Each one routes to the right part of the Emerson ecosystem.
+              </p>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="grid gap-4 sm:grid-cols-2">
               <a
                 href="/contact"
-                className="inline-flex items-center justify-center bg-[#12022A] hover:bg-[#1E0A4A] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+                className="rounded-[28px] border border-[#12022A]/10 bg-[#12022A] px-8 py-6 text-white transition-shadow duration-200 hover:shadow-[0_16px_40px_rgba(18,2,42,0.12)]"
               >
-                Send a Message
+                <p className="font-semibold uppercase tracking-[0.18em] text-sm">Request Services</p>
               </a>
               <a
-                href="tel:+15551234567"
-                className="inline-flex items-center justify-center border-2 border-[#12022A] hover:bg-[#12022A]/5 px-8 py-4 rounded-sm font-bold text-[#12022A] text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+                href="/classes"
+                className="rounded-[28px] border border-[#12022A]/10 bg-[#12022A] px-8 py-6 text-white transition-shadow duration-200 hover:shadow-[0_16px_40px_rgba(18,2,42,0.12)]"
               >
-                Call Us
+                <p className="font-semibold uppercase tracking-[0.18em] text-sm">Register for Classes</p>
+              </a>
+              <a
+                href="/contact"
+                className="rounded-[28px] border border-[#12022A]/10 bg-[#12022A] px-8 py-6 text-white transition-shadow duration-200 hover:shadow-[0_16px_40px_rgba(18,2,42,0.12)]"
+              >
+                <p className="font-semibold uppercase tracking-[0.18em] text-sm">Partnership Inquiry</p>
+              </a>
+              <a
+                href="/global-internship"
+                className="rounded-[28px] border border-[#12022A]/10 bg-[#12022A] px-8 py-6 text-white transition-shadow duration-200 hover:shadow-[0_16px_40px_rgba(18,2,42,0.12)]"
+              >
+                <p className="font-semibold uppercase tracking-[0.18em] text-sm">Apply for Internship</p>
               </a>
             </div>
           </div>

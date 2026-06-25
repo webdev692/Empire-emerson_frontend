@@ -4,67 +4,70 @@ import { FileText, Users, CheckCircle, Award } from 'lucide-react';
 const STEPS = [
   {
     icon: FileText,
-    title: 'Register for a Class',
-    description: 'Sign up for one of our weekly classes or workshops to start building your skills.',
+    title: 'Request Services',
+    description: 'Tell us what you need. We will help guide you to the right pathway.',
+    href: '/contact',
   },
   {
     icon: Users,
-    title: 'Request a Weekly Consultation',
-    description: 'Meet one-on-one with our team to get personalized guidance and support.',
+    title: 'Register for Weekly Classes',
+    description: 'Career readiness, professional development, and workforce training.',
+    href: '/classes',
   },
   {
     icon: CheckCircle,
-    title: 'Register for Weekly Classes',
-    description: 'Join our ongoing series of professional development workshops.',
+    title: 'Request Business Consultation or Partnership',
+    description: 'For entrepreneurs, small businesses, nonprofits, and mission-aligned organizations.',
+    href: '/contact',
   },
   {
     icon: Award,
     title: 'Apply for Internship',
-    description: 'Take the next step with our immersive professional development program.',
+    description: 'For students and emerging professionals seeking structured experience.',
+    href: '/global-internship',
   },
 ];
 
 const FormsNextSteps: React.FC = () => {
   return (
-    <section className="bg-white px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
+    <section className="bg-[#f0e0ca] px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl">
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <h2 className="mb-6 font-bold text-[#12022A] text-4xl md:text-5xl uppercase leading-tight">
+        <div className="mb-14 text-center">
+          <p className="mb-3 font-semibold text-[#12022A] text-xs sm:text-sm uppercase tracking-[0.3em]">
+            Take the Next Steps
+          </p>
+          <h2 className="font-bold text-[#12022A] text-5xl md:text-6xl uppercase leading-tight">
             Forms and Next Steps
           </h2>
-          <p className="mx-auto max-w-2xl text-[#12022A]/70 text-lg">
-            Choose the pathway that's right for you and take the first step forward.
+          <p className="mx-auto mt-4 max-w-2xl text-[#12022A]/70 text-lg leading-relaxed">
+            Use the form that fits where you are. Each opens in a new tab.
           </p>
         </div>
 
-        {/* Steps Grid */}
-        <div className="grid gap-8 grid-cols-1 md:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2">
           {STEPS.map((step, idx) => {
             const Icon = step.icon;
             return (
-              <div
+              <a
                 key={idx}
-                className="bg-[#F5EFE7] border border-[#12022A]/10 rounded-lg p-8"
+                href={step.href}
+                className="group block rounded-[32px] border border-[#12022A]/10 bg-white/95 p-8 transition-shadow duration-200 hover:shadow-[0_24px_70px_rgba(18,2,42,0.12)]"
               >
-                <div className="mb-4 inline-flex items-center justify-center bg-[#C9A84C]/10 rounded-lg w-12 h-12">
-                  <Icon className="text-[#C9A84C]" size={24} />
+                <div className="mb-5 inline-flex items-center justify-center rounded-2xl bg-[#12022A]/10 w-12 h-12 text-[#12022A]">
+                  <Icon size={22} />
                 </div>
-                <h3 className="mb-4 font-bold text-[#12022A] text-lg">{step.title}</h3>
-                <p className="text-[#12022A]/70 text-sm leading-relaxed">{step.description}</p>
-              </div>
+                <h3 className="mb-4 font-semibold text-[#12022A] text-xl uppercase tracking-[0.08em]">
+                  {step.title}
+                </h3>
+                <p className="text-[#12022A]/75 text-sm leading-7">
+                  {step.description}
+                </p>
+                <span className="mt-8 inline-flex items-center gap-2 text-[#C9A84C] font-semibold text-sm uppercase tracking-[0.18em] group-hover:translate-x-1 transition-transform duration-200">
+                  Open form <span aria-hidden="true">→</span>
+                </span>
+              </a>
             );
           })}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <a
-            href="/contact"
-            className="inline-flex items-center bg-[#12022A] hover:bg-[#1E0A4A] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
-          >
-            Get Started Today
-          </a>
         </div>
       </div>
     </section>
