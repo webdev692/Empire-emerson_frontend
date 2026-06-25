@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0D0118] text-white">
+    <footer className="bg-[#010914] text-white">
 
       {/* ── Main content ── */}
       <div className="mx-auto px-6 sm:px-10 lg:px-16 pt-14 pb-10 max-w-7xl">
