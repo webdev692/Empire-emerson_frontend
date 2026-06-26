@@ -1,8 +1,9 @@
 import React from "react";
 import { logo } from "../../assets";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const navigateLinks = [
-  { label: "Weekly Classes", href: "#classes" },
+  { label: "Weekly Classes", href: "/classes" },
   { label: "Career Services", href: "#services" },
   { label: "Internship Program", href: "#internships" },
   { label: "Workforce Training", href: "#workforce" },
@@ -13,7 +14,6 @@ const formsLinks = [
   { label: "Register for Classes", href: "#contact" },
   { label: "Request Services", href: "#contact" },
   { label: "Internship Application", href: "#contact" },
-  { label: "Business Consultation", href: "#contact" },
   { label: "Business Consultation", href: "#contact" },
 ];
 
@@ -102,11 +102,40 @@ const socialIcons = [
 ];
 
 const EPDGFooter: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const onClassesPage = location.pathname === "/classes";
+
+  const handleFooterNav = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    if (href.startsWith("/")) {
+      return;
+    }
+
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+
+    if (onClassesPage) {
+      navigate("/", { state: { scrollTo: targetId } });
+    } else {
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const yOffset = -80;
+        const y =
+          targetElement.getBoundingClientRect().top +
+          window.pageYOffset +
+          yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <footer className="bg-[#0C2117] px-4 pt-16 pb-8 text-white">
       <div className="mx-auto max-w-278.5">
         <div className="gap-10 lg:gap-8 grid lg:grid-cols-[1.6fr_1fr_1fr]">
-          {/* Brand + contact + social */}
           <div>
             <div className="flex items-center gap-4 mb-9">
               <img
@@ -127,18 +156,24 @@ const EPDGFooter: React.FC = () => {
                 href="mailto:admin@theemersonempire.info"
                 className="flex items-center gap-2.5 hover:text-[#C9A84C] transition-colors"
               >
-                <span className="text-[#C9A84C]"><MailIcon /></span>
+                <span className="text-[#C9A84C]">
+                  <MailIcon />
+                </span>
                 admin@theemersonempire.info
               </a>
               <a
                 href="tel:+18034794492"
                 className="flex items-center gap-2.5 hover:text-[#C9A84C] transition-colors"
               >
-                <span className="text-[#C9A84C]"><PhoneIcon /></span>
+                <span className="text-[#C9A84C]">
+                  <PhoneIcon />
+                </span>
                 +1 (803) 479-4492
               </a>
               <p className="flex items-center gap-2.5">
-                <span className="text-[#C9A84C]"><PinIcon /></span>
+                <span className="text-[#C9A84C]">
+                  <PinIcon />
+                </span>
                 Columbia, SC United States
               </p>
             </div>
@@ -159,7 +194,6 @@ const EPDGFooter: React.FC = () => {
             </div>
           </div>
 
-          {/* Navigate */}
           <div>
             <p className="mb-5 font-bold text-[#C9A84C] text-base uppercase tracking-[0.1em]">
               Navigate
@@ -167,13 +201,28 @@ const EPDGFooter: React.FC = () => {
             <ul className="space-y-3.5 text-white/85 text-[15px]">
               {navigateLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="hover:text-[#C9A84C] transition-colors">{l.label}</a>
+                  {l.href.startsWith("/") ? (
+                    <Link
+                      to={l.href}
+                      onClick={(e) => handleFooterNav(e, l.href)}
+                      className="hover:text-[#C9A84C] transition-colors"
+                    >
+                      {l.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={l.href}
+                      onClick={(e) => handleFooterNav(e, l.href)}
+                      className="hover:text-[#C9A84C] transition-colors"
+                    >
+                      {l.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Forms & Access */}
           <div>
             <p className="mb-5 font-bold text-[#C9A84C] text-base uppercase tracking-[0.1em]">
               Forms &amp; Access
@@ -181,7 +230,13 @@ const EPDGFooter: React.FC = () => {
             <ul className="space-y-3.5 text-white/85 text-[15px]">
               {formsLinks.map((l, i) => (
                 <li key={`${l.label}-${i}`}>
-                  <a href={l.href} className="hover:text-[#C9A84C] transition-colors">{l.label}</a>
+                  <a
+                    href={l.href}
+                    onClick={(e) => handleFooterNav(e, l.href)}
+                    className="hover:text-[#C9A84C] transition-colors"
+                  >
+                    {l.label}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -189,10 +244,17 @@ const EPDGFooter: React.FC = () => {
         </div>
 
         <div className="flex sm:flex-row flex-col sm:justify-between sm:items-center gap-4 mt-14 pt-6 border-white/10 border-t text-white/60 text-sm">
-          <p>© {new Date().getFullYear()} The Emerson Empire. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} The Emerson Empire. All rights
+            reserved.
+          </p>
           <div className="flex gap-10">
-            <a href="#" className="hover:text-[#C9A84C] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#C9A84C] transition-colors">Terms of Use</a>
+            <a href="#" className="hover:text-[#C9A84C] transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-[#C9A84C] transition-colors">
+              Terms of Use
+            </a>
           </div>
         </div>
       </div>

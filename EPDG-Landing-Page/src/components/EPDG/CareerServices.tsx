@@ -71,7 +71,7 @@ const CareerServices: React.FC = () => {
   return (
     <section
       id="services"
-      className="relative bg-[#041814] px-4 py-20 sm:py-28 overflow-hidden text-white"
+      className="relative  px-4 py-20 sm:py-28 overflow-hidden text-white"
       style={{
         backgroundImage: `url(${careerBg})`,
         backgroundBlendMode: "overlay",
@@ -80,15 +80,15 @@ const CareerServices: React.FC = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="absolute inset-0 bg-[#03110f]/70" />
+      <div className="absolute" />
       <div className="relative mx-auto max-w-278.5">
         <p className="mb-3 text-[#C9A84C]/90 text-lg uppercase tracking-[0.25em] font-bold">
           Career Services
         </p>
-        <h2 className="mb-6 max-w-3xl font-bold text-white text-4xl sm:text-5xl tracking-tight heading">
-          Practical, <span className="text-[#C9A84C] italic">one-on-one</span> career support.
+        <h2 className="mb-6 max-w-3xl font-bold text-[#0D0B03] text-4xl sm:text-5xl tracking-tight heading">
+          Practical, <span className="text-[#013F0B] italic">one-on-one</span> career support.
         </h2>
-        <p className="mb-12 max-w-xl text-white/70 text-base leading-relaxed">
+        <p className="mb-12 max-w-xl text-[#595643] text-base leading-relaxed">
           Personalized services to help you take the next step in your career with clarity and confidence.
         </p>
 
@@ -106,12 +106,12 @@ const CareerServices: React.FC = () => {
 
         <button
           onClick={() => openForm(FORM_SERVICES, "Request Services", "Career & professional support services")}
-          className="bg-[#C9A84C] hover:bg-[#bda55f] px-8 py-3.5 rounded-full font-semibold text-[#07120f] text-sm uppercase tracking-[0.18em] transition duration-200 cursor-pointer hover:bg-[#ffffff] hover:text-[#07120f] hover:border hover:border-[#07120f] hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+          className="bg-[#013F0B] px-8 py-3.5 rounded-full font-semibold text-white text-sm uppercase tracking-[0.18em] transition duration-200 cursor-pointer hover:bg-[#ffffff] hover:text-[#07120f] hover:border hover:border-[#07120f] hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
         >
           Request Services
         </button>
 
-        <p className="mt-10 max-w-3xl text-white/60 text-sm leading-relaxed">
+        <p className="mt-10 max-w-3xl text-[#595643] text-sm leading-relaxed">
           Classes are for general educational purposes only and do not constitute career counseling,
           legal, financial, tax, or insurance advice. Individualized support may be requested separately.
         </p>
