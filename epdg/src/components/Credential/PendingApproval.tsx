@@ -12,7 +12,7 @@ const ROLE_MESSAGES: Record<string, { heading: string; body: string }> = {
     body: "Check your inbox for a verification link, then an admin will verify your company details. This usually takes 1–2 business days.",
   },
   school: {
-    heading: "School registration is pending approval",
+    heading: "Institution registration is pending approval",
     body: "Check your inbox for a verification link, then an admin will confirm your institution. This typically takes 1–2 business days.",
   },
 };

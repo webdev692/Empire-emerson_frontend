@@ -1,75 +1,86 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { GetInTouchImg } from '../../assets';
+import { Phone, Mail, MapPin } from 'lucide-react';
+import { AgencyAvif } from '../../assets';
 
-const CONTACT_LINKS = [
-  { label: 'Request Services', href: '/contact' },
-  { label: 'Register for Classes', href: '/classes' },
-  { label: 'Partnership Inquiry', href: '/contact' },
-  { label: 'Apply for Internship', href: '/global-internship' },
-];
+const GetInTouch: React.FC = () => {
+  return (
+    <section className="bg-white px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-12 grid-cols-1 lg:grid-cols-2">
+          {/* Left: Brand Logo */}
+          <div className="relative rounded-2xl overflow-hidden shadow-lg h-96 lg:h-auto bg-[#12022A]">
+            <div className="absolute inset-0 bg-[#12022A] opacity-90" />
+            <div className="relative flex items-center justify-center w-full h-full p-8">
+              <img
+                src={AgencyAvif}
+                alt="Agency logo"
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+          </div>
 
-const GetInTouch: React.FC = () => (
-  <div className="bg-white px-6 sm:px-10 lg:px-16 py-16 lg:py-24">
-    <div className="items-center gap-10 lg:gap-16 grid lg:grid-cols-2 mx-auto max-w-7xl">
-      {/* Left — image */}
-      <motion.div
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: 24 }}
-        transition={{ duration: 0.55 }}
-        viewport={{ once: true }}
-      >
-        <img
-          src={GetInTouchImg}
-          alt="Emerson team connecting with the community over a video call"
-          className="block w-full h-auto"
-        />
-      </motion.div>
+          {/* Right: Contact Info */}
+          <div className="flex flex-col justify-center">
+            <h2 className="mb-6 font-bold text-[#12022A] text-4xl md:text-5xl uppercase leading-tight">
+              Get in Touch
+            </h2>
+            <p className="mb-12 text-[#12022A]/70 text-lg leading-relaxed">
+              Whether you're an individual looking to grow, a business seeking support, or an organization wanting to partner with us — we're here to listen and help.
+            </p>
 
-      {/* Right — copy + buttons */}
-      <motion.div
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: 24 }}
-        transition={{ duration: 0.55, delay: 0.08 }}
-        viewport={{ once: true }}
-      >
-        <p
-          className="mb-4 font-semibold text-[#C9A84C] text-xs sm:text-sm uppercase tracking-[0.3em]"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
-        >
-          Contact
-        </p>
+            {/* Contact Info Cards */}
+            <div className="space-y-6 mb-12">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 mt-1">
+                  <Phone className="text-[#C9A84C]" size={24} />
+                </div>
+                <div>
+                  <p className="font-bold text-[#12022A]">Phone</p>
+                  <p className="text-[#12022A]/70">+1 (555) 123-4567</p>
+                </div>
+              </div>
 
-        <h2
-          className="mb-6 font-medium text-[#12022A] text-4xl sm:text-5xl"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
-        >
-          Get in Touch
-        </h2>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 mt-1">
+                  <Mail className="text-[#C9A84C]" size={24} />
+                </div>
+                <div>
+                  <p className="font-bold text-[#12022A]">Email</p>
+                  <p className="text-[#12022A]/70">info@emersonempire.org</p>
+                </div>
+              </div>
 
-        <p
-          className="mb-9 max-w-xl text-[#12022A]/70 text-base sm:text-lg leading-[1.8]"
-          style={{ fontFamily: "'Inter', sans-serif" }}
-        >
-          The fastest way to reach us is through one of the forms below. Each one
-          routes to the right part of the Emerson ecosystem.
-        </p>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 mt-1">
+                  <MapPin className="text-[#C9A84C]" size={24} />
+                </div>
+                <div>
+                  <p className="font-bold text-[#12022A]">Address</p>
+                  <p className="text-[#12022A]/70">Columbus, OH, United States</p>
+                </div>
+              </div>
+            </div>
 
-        <div className="gap-4 grid sm:grid-cols-2 max-w-md">
-          {CONTACT_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="inline-flex justify-center items-center bg-[#12022A] hover:bg-[#1E0A4A] px-5 py-3.5 rounded-sm font-semibold text-white text-sm text-center transition-colors duration-200"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
-            >
-              {link.label}
-            </a>
-          ))}
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center bg-[#12022A] hover:bg-[#1E0A4A] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+              >
+                Send a Message
+              </a>
+              <a
+                href="tel:+15551234567"
+                className="inline-flex items-center justify-center border-2 border-[#12022A] hover:bg-[#12022A]/5 px-8 py-4 rounded-sm font-bold text-[#12022A] text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+              >
+                Call Us
+              </a>
+            </div>
+          </div>
         </div>
-      </motion.div>
-    </div>
-  </div>
-);
+      </div>
+    </section>
+  );
+};
 
 export default GetInTouch;

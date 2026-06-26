@@ -85,29 +85,19 @@ const bottomRow = [
 
 const Features: React.FC = () => {
   return (
-    <section className="bg-[#044E37] py-12 px-4 border-b border-[#C9A84C]/20">
-      <div className="max-w-5xl mx-auto text-white">
-        {/* Top row — 4 items */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 text-center mb-10">
-          {topRow.map((f) => (
-            <div key={f.label} className="flex flex-col items-center gap-3">
-              <div className="text-[#C9A84C]">{f.icon}</div>
-              <p className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-white/80">
-                {f.label}
-              </p>
-            </div>
-          ))}
+    <section className="bg-[#03140f] px-4 py-16 border-white/10 border-t">
+      <div className="mx-auto max-w-278.5 text-white">
+        <div className="mb-12 text-center">
+          <p className="text-[#C9A84C]/80 text-sm uppercase tracking-[0.3em]">Why EPDG</p>
+          <h2 className="mt-4 font-bold text-white text-3xl tracking-tight">A complete pathway from class to career.</h2>
         </div>
-        {/* Divider */}
-        <div className="border-t border-white/10 mb-10" />
-        {/* Bottom row — 3 items centered */}
-        <div className="flex flex-wrap justify-center gap-x-16 gap-y-8 text-center">
-          {bottomRow.map((f) => (
-            <div key={f.label} className="flex flex-col items-center gap-3">
-              <div className="text-[#C9A84C]">{f.icon}</div>
-              <p className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-white/80">
-                {f.label}
-              </p>
+        <div className="gap-8 grid sm:grid-cols-2 lg:grid-cols-4">
+          {topRow.concat(bottomRow).map((f) => (
+            <div key={f.label} className="bg-white/5 hover:bg-white/10 backdrop-blur-sm p-8 border border-white/10 rounded-3xl text-center transition">
+              <div className="inline-flex justify-center items-center bg-[#C9A84C]/15 mx-auto mb-6 rounded-full w-14 h-14 text-[#C9A84C]">
+                {f.icon}
+              </div>
+              <p className="font-semibold text-white/80 text-sm uppercase tracking-[0.18em]">{f.label}</p>
             </div>
           ))}
         </div>

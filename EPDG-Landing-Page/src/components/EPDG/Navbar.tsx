@@ -1,21 +1,35 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/EPDG_LOGO.webp";
 
-const navLinks = [
-  { label: "HOME", id: "home" },
-  { label: "Classes", id: "classes" },
-  { label: "Services", id: "services" },
-  { label: "Internships", id: "internships" },
-  { label: "Partnerships", id: "partnerships" },
-  { label: "Contact", id: "contact" },
+type NavLink = { label: string; id: string } & (
+  | { type: "home" }
+  | { type: "route"; to: string }
+  | { type: "section" }
+);
+
+const navLinks: NavLink[] = [
+  { label: "Home", id: "home", type: "home" },
+  { label: "Classes", id: "classes", type: "route", to: "/classes" },
+  { label: "Services", id: "services", type: "section" },
+  { label: "Internships", id: "internships", type: "section" },
+  { label: "Workforce", id: "workforce", type: "section" },
+  { label: "Contact", id: "contact", type: "section" },
 ];
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
-  const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const onClasses = location.pathname === "/classes";
 
   useEffect(() => {
+    if (onClasses) {
+      setActiveId("classes");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -24,117 +38,129 @@ const Navbar: React.FC = () => {
       },
       { rootMargin: "-40% 0px -55% 0px" }
     );
-    navLinks.forEach(({ id }) => {
+
+    ["home", "services", "internships", "workforce", "contact"].forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
-    return () => observer.disconnect();
-  }, []);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    return () => observer.disconnect();
+  }, [onClasses, location.pathname]);
+
+  const handleNav = (link: NavLink) => {
+    setMenuOpen(false);
+    if (link.type === "route") {
+      navigate(link.to);
+    } else if (link.type === "home") {
+      if (onClasses) navigate("/");
+      else window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      if (onClasses) {
+        navigate("/", { state: { scrollTo: link.id } });
+      } else {
+        document.getElementById(link.id)?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
-    <nav
-      className={`sticky right-0 left-0 top-0 z-50 backdrop-blur-3xl border-b border-[#C9A84C]/20 transition-all duration-300 ${
-        scrolled ? "bg-[#022B1F] shadow-lg" : "bg-[#022B1F]"
-      }`}
-    >
-      <div className="flex justify-between items-center mx-auto px-6 max-w-7xl h-18">
-        {/* Logo */}
-        <a href="#home" className="flex items-center gap-3 shrink-0">
-          <img
-            src={logo}
-            alt="Emerson Professional Development Group"
-            className="rounded-full ring-[#C9A84C]/30 ring-2 w-12 h-12"
-          />
-          <span className="hidden lg:block max-w-30 font-bold text-[#C9A84C] text-xs uppercase leading-tight tracking-[0.2em]">
-The Emerson Professional
+    <nav className="top-0 z-50 sticky bg-[#03140f]/95 backdrop-blur-sm border-white/10 border-b">
+      <div className="flex justify-between items-center mx-auto px-4 py-4 max-w-278.5">
+        <button
+          onClick={() => handleNav(navLinks[0])}
+          className="flex items-center gap-3 shrink-0"
+          aria-label="Home"
+        >
+          <img src={logo} alt="EPDG logo" className="border border-white/10 rounded-full w-12 h-12" />
+          <span className="hidden md:inline-block font-semibold text-white text-xs uppercase tracking-[0.16em]">
+            EPDG
           </span>
-        </a>
+        </button>
 
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-8 font-bold text-xs uppercase tracking-[0.18em]">
-          {navLinks.map(({ label, id }) => (
-            <li key={id}>
-              <a
-                href={`#${id}`}
-                className={`relative pb-1 transition-colors duration-200 ${
-                  activeId === id
+        <ul className="hidden md:flex items-center gap-8 font-medium text-white/70 text-sm uppercase tracking-[0.18em]">
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <button
+                onClick={() => handleNav(link)}
+                className={`transition duration-200 ${
+                  activeId === link.id
                     ? "text-[#C9A84C]"
-                    : "text-white/85 hover:text-white"
+                    : "hover:text-white"
                 }`}
               >
-                {label}
-                {activeId === id && (
-                  <span className="right-0 -bottom-0.5 left-0 absolute bg-[#C9A84C] h-px" />
-                )}
-              </a>
+                {link.label}
+              </button>
             </li>
           ))}
         </ul>
 
-        {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
             href="https://emersonproffesionaldevelopment.netlify.app/"
             target="_blank"
             rel="noreferrer"
-            className="px-5 py-2.5 border border-white/35 hover:border-[#C9A84C]/60 rounded-md font-bold text-white/85 hover:text-[#C9A84C] text-xs uppercase tracking-[0.15em] transition-all duration-200 cursor-pointer"
+            className="px-4 py-2 border border-white/10 hover:border-[#C9A84C] rounded-full font-semibold text-white/70 hover:text-white text-xs uppercase tracking-[0.18em] transition-all duration-200"
           >
             Log In
           </a>
-          <button className="bg-[#C9A84C] hover:bg-[#b8943d] px-5 py-2.5 rounded-md font-bold text-[#022B1F] text-xs uppercase tracking-[0.15em] transition-all duration-200 cursor-pointer">
+          <a
+            href="https://emersonproffesionaldevelopment.netlify.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="bg-[#C9A84C] hover:bg-[#BDA55F] px-4 py-2 rounded-full font-semibold text-[#07120f] text-xs uppercase tracking-[0.18em] transition-all duration-200"
+          >
             Create Account
-          </button>
+          </a>
         </div>
 
-        {/* Hamburger */}
         <button
-          className="md:hidden flex flex-col justify-center items-center gap-1.5 shadow-amber-500 shadow-md rounded-b-full w-9 h-9 shrink-0"
+          className="md:hidden flex justify-center items-center bg-[#03140f] border border-white/10 rounded-full w-11 h-11 text-white"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
         >
-          <span className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+          <span className="sr-only">Toggle menu</span>
+          <div className="relative w-5 h-5">
+            <span className={`absolute left-0 top-0 h-0.5 w-5 rounded-full bg-white transition-transform ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`absolute left-0 top-2 h-0.5 w-5 rounded-full bg-white transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`absolute left-0 top-4 h-0.5 w-5 rounded-full bg-white transition-transform ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+          </div>
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#022B1F] px-6 pb-6 border-[#C9A84C]/15 border-t">
-          <ul className="flex flex-col gap-1 mt-4">
-            {navLinks.map(({ label, id }) => (
-              <li key={id}>
-                <a
-                  href={`#${id}`}
-                  className={`block py-3 text-xs font-bold uppercase tracking-[0.18em] border-b border-white/5 transition-colors duration-200 ${
-                    activeId === id ? "text-[#C9A84C]" : "text-white/85 hover:text-white"
+        <div className="md:hidden space-y-4 bg-[#03140f] px-4 pb-6 border-white/10 border-t">
+          <ul className="flex flex-col gap-2 pt-4 text-white/75 text-sm uppercase tracking-[0.18em]">
+            {navLinks.map((link) => (
+              <li key={link.id}>
+                <button
+                  onClick={() => handleNav(link)}
+                  className={`w-full text-left py-3 transition duration-200 ${
+                    activeId === link.id ? "text-[#C9A84C]" : "hover:text-white"
                   }`}
-                  onClick={() => setMenuOpen(false)}
                 >
-                  {label}
-                </a>
+                  {link.label}
+                </button>
               </li>
             ))}
           </ul>
-          <div className="flex flex-col gap-3 mt-6">
+          <div className="flex flex-col gap-3">
             <a
               href="https://emersonproffesionaldevelopment.netlify.app/"
               target="_blank"
               rel="noreferrer"
-              className="px-4 py-3 border border-white/35 hover:border-[#C9A84C]/60 font-bold text-white/85 hover:text-[#C9A84C] text-xs uppercase tracking-[0.15em] transition-all cursor-pointer"
+              className="px-4 py-3 border border-white/10 rounded-full font-semibold text-white/80 hover:text-white text-sm text-center uppercase tracking-[0.18em]"
             >
               Log In
             </a>
-            <button className="bg-[#C9A84C] hover:bg-[#b8943d] px-4 py-3 font-bold text-[#022B1F] text-xs uppercase tracking-[0.15em] transition-all cursor-pointer">
+            <a
+              href="https://emersonproffesionaldevelopment.netlify.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="bg-[#C9A84C] hover:bg-[#BDA55F] px-4 py-3 rounded-full font-semibold text-[#07120f] text-sm text-center uppercase tracking-[0.18em]"
+            >
               Create Account
-            </button>
+            </a>
           </div>
         </div>
       )}

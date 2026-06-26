@@ -56,7 +56,7 @@ const SchoolApprovals: React.FC = () => {
       setSchoolList(data.data);
     } catch (err) {
       const e = err as AxiosError<{ message: string }>;
-      setMessage(e.response?.data?.message ?? "Failed to load schools.");
+      setMessage(e.response?.data?.message ?? "Failed to load institutions.");
     } finally {
       setLoading(false);
     }
@@ -99,10 +99,10 @@ const SchoolApprovals: React.FC = () => {
       <div className="bg-[#1E0A4A] p-6 border border-[#4B1E91] rounded-3xl">
         <div className="flex md:flex-row flex-col md:justify-between md:items-center gap-4">
           <div>
-            <p className="text-[#F5F0E8] text-sm uppercase tracking-[0.25em]">School Approvals</p>
+            <p className="text-[#F5F0E8] text-sm uppercase tracking-[0.25em]">Institution Approvals</p>
             <h1 className="mt-2 font-semibold text-3xl">Institution Onboarding</h1>
             <p className="mt-2 max-w-2xl text-[#F5F0E8]">
-              Review school registrations before activating their accounts.
+              Review institution registrations before activating their accounts.
               {pending > 0 && <span className="bg-amber-500/20 ml-2 px-2 py-0.5 rounded-full text-amber-300 text-xs">{pending} pending</span>}
             </p>
           </div>
@@ -129,7 +129,7 @@ const SchoolApprovals: React.FC = () => {
             </button>
           ))}
           <span className="self-center ml-auto text-[#F5F0E8] text-sm">
-            {loading ? "Loading…" : `${filtered.length} school(s)`}
+            {loading ? "Loading…" : `${filtered.length} institution(s)`}
           </span>
         </div>
       </div>
@@ -140,7 +140,7 @@ const SchoolApprovals: React.FC = () => {
         </div>
       ) : filtered.length === 0 ? (
         <div className="bg-[#1E0A4A] p-12 border border-[#4B1E91] rounded-3xl text-[#F5F0E8] text-center">
-          No schools match this filter.
+          No institutions match this filter.
         </div>
       ) : (
         <div className="gap-4 grid xl:grid-cols-2">

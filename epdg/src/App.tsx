@@ -13,7 +13,9 @@ const RegisterCompany = lazy(() => import("./components/Credential/RegisterCompa
 const RegisterSchool  = lazy(() => import("./components/Credential/RegisterSchool"));
 const ForgotPassword  = lazy(() => import("./components/Credential/ForgotPassword"));
 const ResetPassword   = lazy(() => import("./components/Credential/ResetPassword"));
-const PendingApproval = lazy(() => import("./components/Credential/PendingApproval"));
+const ChangePassword      = lazy(() => import("./components/Credential/ChangePassword"));
+const PendingApproval     = lazy(() => import("./components/Credential/PendingApproval"));
+const CertificateVerify   = lazy(() => import("./components/CertificateVerify"));
 
 // Dashboard
 const Dashboard = lazy(() => import("./components/Dashboard"));
@@ -48,6 +50,12 @@ const MentorManagement      = lazy(() => import("./components/admin/MentorManage
 const PlacementManagement   = lazy(() => import("./components/admin/PlacementManagement"));
 const NotificationsCenter   = lazy(() => import("./components/admin/NotificationsCenter"));
 const GamificationAdmin     = lazy(() => import("./components/admin/GamificationAdmin"));
+const SlotManagement        = lazy(() => import("./components/admin/SlotManagement"));
+
+// Mentor pages
+const MentorLayout    = lazy(() => import("./components/mentor/MentorLayout"));
+const MentorDashboard = lazy(() => import("./components/mentor/MentorDashboard"));
+const MentorInterns   = lazy(() => import("./components/mentor/MentorInterns"));
 
 // Intern
 const InternProfile         = lazy(() => import("./components/InternProfile"));
@@ -99,7 +107,9 @@ function App() {
           <Route path="/register/school"  element={<RegisterSchool />} />
           <Route path="/forgot-password"  element={<ForgotPassword />} />
           <Route path="/reset-password"   element={<ResetPassword />} />
+          <Route path="/change-password"  element={<ChangePassword />} />
           <Route path="/verify-email"     element={<VerifyEmail />} />
+          <Route path="/verify/:certificateId" element={<CertificateVerify />} />
 
           {/* ── Pending approval ─────────────────────────────────────────── */}
           <Route path="/pending-approval" element={<PendingApproval />} />
@@ -222,8 +232,20 @@ function App() {
             <Route path="placements"        element={<PlacementManagement />} />
             <Route path="notifications"     element={<NotificationsCenter />} />
             <Route path="gamification"      element={<GamificationAdmin />} />
+            <Route path="slots"             element={<SlotManagement />} />
           </Route>
           
+          {/* ── Mentor dashboard ─────────────────────────────────────────── */}
+          <Route path="/mentor" element={
+            <ProtectedRoute allowedRoles={["admin"]} mentorOnly>
+              <MentorLayout />
+            </ProtectedRoute>
+          }>
+            <Route index          element={<MentorDashboard />} />
+            <Route path="interns" element={<MentorInterns />} />
+            <Route path="settings" element={<ChangePassword />} />
+          </Route>
+
           {/* ── School dashboard ──────────────────────────────────────────── */}
           <Route path="/school" element={<SchoolDashboard />} />
         </Routes>

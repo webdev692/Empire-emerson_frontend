@@ -1,5 +1,6 @@
-﻿import { useMemo, useState } from "react";
+﻿import { useMemo, useState, useEffect } from "react";
 import { Download, X } from "lucide-react";
+import api from "../../lib/axios";
 
 type PlacementStatus = "active" | "ending_soon" | "completed" | "terminated";
 
@@ -18,21 +19,17 @@ interface Placement {
   notes: string;
 }
 
-const INIT: Placement[] = [];
-
 const STATUS_META: Record<PlacementStatus, { label: string; cls: string }> = {
   active:      { label: "Active",       cls: "bg-green-500/15 text-green-300"  },
   ending_soon: { label: "Ending Soon",  cls: "bg-amber-500/15 text-amber-200"  },
   completed:   { label: "Completed",    cls: "bg-[#4B1E91]/15 text-[#D8B9FF]"  },
   terminated:  { label: "Terminated",  cls: "bg-red-500/15 text-red-300"       },
 };
-
-const ALL_DEPTS     = ["All"];
-const ALL_COMPANIES = ["All"];
-const STATUS_TABS   = ["all", "active", "ending_soon", "completed", "terminated"] as const;
+const STATUS_TABS = ["all", "active", "ending_soon", "completed", "terminated"] as const;
 
 const PlacementManagement: React.FC = () => {
-  const [placements, setPlacements]     = useState<Placement[]>(INIT);
+  const [placements, setPlacements]     = useState<Placement[]>([]);
+  const [loading, setLoading]           = useState(true);
   const [deptFilter, setDept]           = useState("All");
   const [compFilter, setComp]           = useState("All");
   const [statusTab, setStatusTab]       = useState<typeof STATUS_TABS[number]>("all");
@@ -41,20 +38,35 @@ const PlacementManagement: React.FC = () => {
   const [endReason, setEndReason]       = useState("");
   const [toast, setToast]               = useState("");
 
+  useEffect(() => {
+    api.get<{ success: boolean; data: Placement[] }>('/api/admin/placements')
+      .then(({ data }) => setPlacements(data.data))
+      .catch(() => showMsg('⚠️ Failed to load placements.'))
+      .finally(() => setLoading(false));
+  }, []);
+
   function showMsg(msg: string) { setToast(msg); setTimeout(() => setToast(""), 3000); }
 
-  function confirmEnd() {
+  async function confirmEnd() {
     if (!showEnd || !endReason.trim()) return;
-    setPlacements((prev) =>
-      prev.map((p) => p.id === showEnd.id
-        ? { ...p, status: "terminated", notes: endReason.trim() }
-        : p)
-    );
-    showMsg(`❌ ${showEnd.internName}'s placement ended early.`);
+    try {
+      await api.patch(`/api/admin/placements/${showEnd.id}/end`, { reason: endReason.trim() });
+      setPlacements((prev) =>
+        prev.map((p) => p.id === showEnd.id
+          ? { ...p, status: "terminated" as PlacementStatus, notes: endReason.trim() }
+          : p)
+      );
+      showMsg(`❌ ${showEnd.internName}'s placement ended early.`);
+    } catch {
+      showMsg('⚠️ Failed to end placement.');
+    }
     setShowEnd(null);
     setEndReason("");
     setSelected(null);
   }
+
+  const depts = useMemo(() => ["All", ...new Set(placements.map((p) => p.department).filter(Boolean))], [placements]);
+  const comps  = useMemo(() => ["All", ...new Set(placements.map((p) => p.company).filter(Boolean))],    [placements]);
 
   const stats = useMemo(() => ({
     active:      placements.filter((p) => p.status === "active").length,
@@ -123,11 +135,11 @@ const PlacementManagement: React.FC = () => {
         </div>
         <select value={deptFilter} onChange={(e) => setDept(e.target.value)}
           className="bg-[#0D0118] px-3 py-2 border border-[#4B1E91] rounded-2xl outline-none text-[#F5F0E8] text-sm">
-          {ALL_DEPTS.map((d) => <option key={d}>{d}</option>)}
+          {depts.map((d) => <option key={d}>{d}</option>)}
         </select>
         <select value={compFilter} onChange={(e) => setComp(e.target.value)}
           className="bg-[#0D0118] px-3 py-2 border border-[#4B1E91] rounded-2xl outline-none text-[#F5F0E8] text-sm">
-          {ALL_COMPANIES.map((c) => <option key={c}>{c}</option>)}
+          {comps.map((c) => <option key={c}>{c}</option>)}
         </select>
         <span className="ml-auto text-[#F5F0E8] text-xs">{filtered.length} placement(s)</span>
       </div>
@@ -147,8 +159,10 @@ const PlacementManagement: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {filtered.length === 0 ? (
-              <tr><td colSpan={7} className="px-4 py-12 text-[#F5F0E8] text-center">No placements match.</td></tr>
+            {loading ? (
+              <tr><td colSpan={7} className="px-4 py-12 text-center"><div className="inline-block w-6 h-6 border-2 border-[#4B1E91] border-t-transparent rounded-full animate-spin" /></td></tr>
+            ) : filtered.length === 0 ? (
+              <tr><td colSpan={7} className="px-4 py-12 text-[#F5F0E8] text-center">No placements yet.</td></tr>
             ) : filtered.map((p) => {
               const remaining = 100 - p.progressPercent;
               const barColor  = remaining < 20 ? "bg-amber-400" : "bg-green-500";

@@ -2,10 +2,28 @@
 
 @import "tailwindcss";
 
+/* ── Mood / theme CSS variables ─────────────────────────────────────────── */
 :root {
   --color-primary: 75 30 145;  /* #4B1E91 */
   --color-gold:    201 168 76; /* #C9A84C */
+
+  /* Imperial (default) — overridden at runtime via themeStore */
+  --bg-deep: #0D0118;
+  --bg-mid:  #12022A;
+  --bg-card: #1E0A4A;
+  --bd:      #4B1E91;
+  --ac:      #4B1E91;
+  --gd:      #C9A84C;
 }
+
+/* ── Utility classes that consume the mood vars ─────────────────────────── */
+.mood-deep  { background-color: var(--bg-deep); }
+.mood-mid   { background-color: var(--bg-mid);  }
+.mood-card  { background-color: var(--bg-card); }
+.mood-bd    { border-color:     var(--bd);      }
+.mood-ac    { background-color: var(--ac);      }
+.mood-ac-fg { color:            var(--ac);      }
+.mood-gd    { color:            var(--gd);      }
 
 html {
   scroll-behavior: smooth;

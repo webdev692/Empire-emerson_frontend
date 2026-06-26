@@ -26,6 +26,13 @@ const Hero: React.FC = () => {
         {/* ── LEFT: Text content ── */}
         <div className="flex flex-col justify-center lg:w-1/2 text-left">
 
+          {/* WELCOME Badge */}
+          <div className="mb-6 inline-flex w-fit px-4 py-2 rounded-full border border-[#C9A84C]/30 bg-[#C9A84C]/5">
+            <span className="font-semibold text-[#C9A84C] text-xs uppercase tracking-[0.15em]">
+              ★ Welcome
+            </span>
+          </div>
+
           {/* Headline */}
           <h1
             className="mb-5 font-medium text-5xl md:text-6xl lg:text-7xl leading-[1.05]"

@@ -40,37 +40,34 @@ const CTASection: React.FC = () => {
   const { openForm } = useFormModal();
 
   return (
-    <section id="contact" className="bg-[#F3F0E8] py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <p className="text-[#C9A84C] text-xs font-bold tracking-[0.25em] uppercase mb-2">
+    <section id="contact" className="bg-[#07120f] px-4 py-20 sm:py-24 text-white">
+      <div className="mx-auto max-w-278.5">
+        <p className="mb-3 text-[#C9A84C] text-xs uppercase tracking-[0.28em]">
           Get Started
         </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-[#0A1F17] mb-3 tracking-tight">
-          Ready to Take the Next Step?
+        <h2 className="mb-4 max-w-3xl font-bold text-4xl sm:text-5xl tracking-tight">
+          Ready to take the next step?
         </h2>
-        <div className="w-12 h-0.5 bg-[#044E37] mb-5" />
-        <p className="text-gray-500 text-sm md:text-base max-w-xl mb-12 leading-relaxed">
-          Use the right form below to register, apply, or request services. Each form goes directly
-          to our team for review.
+        <div className="bg-[#C9A84C] mb-10 rounded-full w-20 h-1" />
+        <p className="mb-12 max-w-xl text-white/70 text-base leading-relaxed">
+          Use the right form below to register, apply, or request services. Each form goes directly to our team for review.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        <div className="gap-6 grid sm:grid-cols-2 lg:grid-cols-4 mb-12">
           {forms.map((f) => (
             <div
               key={f.title}
-              className="bg-white shadow-sm flex flex-col"
-              style={{ borderTop: "3px solid #044E37" }}
+              className="flex flex-col bg-white/5 shadow-[0_24px_60px_rgba(255,255,255,0.05)] border border-white/10 rounded-4xl overflow-hidden"
             >
-              <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-[#044E37] font-bold leading-snug mb-3 uppercase tracking-wide text-sm">
-                  {f.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-6">
-                  {f.description}
-                </p>
+              <div className="flex flex-col flex-1 gap-5 p-6">
+                <div>
+                  <p className="text-[#C9A84C] text-xs uppercase tracking-[0.24em]">{f.subtitle}</p>
+                  <h3 className="mt-3 font-bold text-white text-lg">{f.title}</h3>
+                </div>
+                <p className="flex-1 text-white/70 text-sm leading-relaxed">{f.description}</p>
                 <button
                   onClick={() => openForm(f.formUrl, f.title, f.subtitle)}
-                  className="cursor-pointer bg-[#C9A84C] hover:bg-[#b8943d] text-[#022B1F] text-sm font-bold uppercase tracking-wider px-4 py-3 transition-all duration-200 self-start"
+                  className="inline-flex justify-center items-center bg-[#C9A84C] hover:bg-[#bda55f] mt-4 px-4 py-3 rounded-full font-semibold text-[#07120f] text-sm uppercase tracking-[0.16em] transition duration-200"
                 >
                   {f.button}
                 </button>
@@ -79,9 +76,8 @@ const CTASection: React.FC = () => {
           ))}
         </div>
 
-        <p className="text-gray-400 text-sm leading-relaxed max-w-3xl">
-          Do not submit sensitive personal documents, private financial information, Social Security
-          numbers, government ID copies, or insurance documents through general inquiry forms.
+        <p className="max-w-3xl text-white/50 text-sm leading-relaxed">
+          Do not submit sensitive personal documents, private financial information, Social Security numbers, government ID copies, or insurance documents through general inquiry forms.
         </p>
       </div>
     </section>

@@ -57,9 +57,14 @@ const Navbar: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showNotifs, setShowNotifs] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const [notifs, setNotifs] = useState(NOTIFICATIONS);
   const clearAuth = useAuthStore((s) => s.clearAuth);
-  const navigate = useNavigate();
+  const user      = useAuthStore((s) => s.user);
+  const navigate  = useNavigate();
+
+  const initials = (name?: string | null) =>
+    (name ?? "I").split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase();
 
   function handleLogout() {
     clearAuth();
@@ -183,6 +188,72 @@ const Navbar: React.FC = () => {
               </span>
             )}
           </button>
+
+          {/* Profile icon / card */}
+          <div className="relative mt-1">
+            <button
+              onClick={() => setShowProfile((v) => !v)}
+              className={`flex items-center rounded-xl border transition-all duration-150 text-left ${
+                isExpanded ? "px-3 py-2.5 gap-3 w-full" : "p-3 justify-center"
+              } ${
+                showProfile
+                  ? "bg-[#4B1E91]/30 border-[#4B1E91] text-white"
+                  : "border-[#4B1E91]/40 text-[#F5F0E8] hover:bg-[#1E0A4A] hover:text-white"
+              }`}
+              title={!isExpanded ? user?.name ?? "Profile" : ""}
+            >
+              <div className="w-7 h-7 rounded-xl bg-[#4B1E91] flex items-center justify-center text-[11px] font-bold text-white shrink-0">
+                {initials(user?.name)}
+              </div>
+              {isExpanded && (
+                <div className="min-w-0 flex-1 animate-in fade-in duration-200">
+                  <p className="text-white font-semibold truncate" style={{ ...f, fontSize: "12px" }}>{user?.name ?? "Intern"}</p>
+                  <p className="text-[#F5F0E8]/60 truncate capitalize" style={{ ...f, fontSize: "10px" }}>{user?.role ?? "intern"}</p>
+                </div>
+              )}
+            </button>
+
+            {showProfile && (
+              <div className="absolute bottom-full left-0 mb-2 w-64 bg-[#1E0A4A] border border-[#4B1E91] rounded-2xl shadow-2xl z-50 overflow-hidden">
+                <div className="bg-[#4B1E91] px-4 py-4 flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-2xl bg-white/10 border-2 border-white/20 flex items-center justify-center font-bold text-white text-sm shrink-0">
+                    {initials(user?.name)}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-white font-semibold text-sm truncate">{user?.name}</p>
+                    <p className="text-white/60 text-xs truncate">{user?.email}</p>
+                  </div>
+                </div>
+                <div className="px-4 py-3 space-y-2 text-xs">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#F5F0E8]/50 uppercase tracking-wider font-mono">Role</span>
+                    <span className="text-white font-medium capitalize">{user?.role}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#F5F0E8]/50 uppercase tracking-wider font-mono">Status</span>
+                    <span className={`px-2 py-0.5 rounded-full font-semibold text-[10px] ${
+                      user?.status === 'approved' ? 'bg-green-500/15 text-green-300' : 'bg-amber-500/15 text-amber-300'
+                    }`}>
+                      {user?.status ?? "—"}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#F5F0E8]/50 uppercase tracking-wider font-mono">Email</span>
+                    <span className="text-white font-medium max-w-36 truncate text-right">{user?.email}</span>
+                  </div>
+                </div>
+                <div className="border-t border-[#4B1E91]/40 px-4 py-3">
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center gap-2 text-red-400 hover:text-red-300 text-xs font-medium transition w-full"
+                  >
+                    <LogOut size={13} />
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
 
           <button
             onClick={handleLogout}

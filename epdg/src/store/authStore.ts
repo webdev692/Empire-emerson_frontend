@@ -10,6 +10,9 @@ export interface AuthUser {
   email: string;
   role: Role;
   status: AccountStatus;
+  is_mentor?: boolean;
+  force_password_change?: boolean;
+  admin_role?: 'admin' | 'super_admin';
 }
 
 interface AuthStore {
@@ -18,6 +21,8 @@ interface AuthStore {
   isAuthenticated: boolean;
   setAuth: (user: AuthUser, token: string) => void;
   clearAuth: () => void;
+  patchUser: (updates: Partial<AuthUser>) => void;
+  setToken: (token: string) => void;
 }
 
 export const useAuthStore = create<AuthStore>()(
@@ -35,6 +40,15 @@ export const useAuthStore = create<AuthStore>()(
       clearAuth: () => {
         localStorage.removeItem('token');
         set({ user: null, token: null, isAuthenticated: false });
+      },
+
+      patchUser: (updates) => set((s) => ({
+        user: s.user ? { ...s.user, ...updates } : s.user,
+      })),
+
+      setToken: (token) => {
+        localStorage.setItem('token', token);
+        set({ token });
       },
     }),
     {

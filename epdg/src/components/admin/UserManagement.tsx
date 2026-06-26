@@ -2,6 +2,7 @@
 import { Plus, Search, X } from "lucide-react";
 import api from "../../lib/axios";
 import type { AxiosError } from "axios";
+import { useAuthStore } from "../../store/authStore";
 
 interface User {
   id: number;
@@ -57,10 +58,12 @@ const UserManagement: React.FC = () => {
   const [filter, setFilter]           = useState<(typeof roleLabels)[number]>("all");
   const [statusFilter, setStatusFilter] = useState<(typeof statusLabels)[number]>("all");
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [deleteTarget, setDeleteTarget] = useState<number | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<{ id: number; name: string } | null>(null);
+  const currentUserId = useAuthStore((s) => s.user?.id);
   const [formValues, setFormValues]   = useState({ name: "", email: "", role: "intern", password: "" });
   const [saving, setSaving]           = useState(false);
   const [message, setMessage]         = useState("");
+  const isSuperAdmin = useAuthStore((s) => s.user?.admin_role === 'super_admin');
 
   useEffect(() => { fetchUsers(); }, []);
 
@@ -97,12 +100,22 @@ const UserManagement: React.FC = () => {
     }
   }
 
+  async function handlePromote(userId: number, newRole: 'admin' | 'super_admin') {
+    try {
+      await api.patch(`/api/admin/users/${userId}/role`, { admin_role: newRole });
+      setMessage(`✅ Admin role updated to ${newRole}.`);
+    } catch (err) {
+      const e = err as AxiosError<{ message: string }>;
+      setMessage(e.response?.data?.message ?? 'Failed to update role.');
+    }
+  }
+
   async function handleDelete() {
     if (deleteTarget === null) return;
     try {
-      await api.delete(`/api/admin/users/${deleteTarget}`);
-      setUsers((prev) => prev.filter((u) => u.id !== deleteTarget));
-      setMessage("User deleted.");
+      await api.delete(`/api/admin/users/${deleteTarget.id}`);
+      setUsers((prev) => prev.filter((u) => u.id !== deleteTarget.id));
+      setMessage(`✅ ${deleteTarget.name} has been removed.`);
     } catch (err) {
       const e = err as AxiosError<{ message: string }>;
       setMessage(e.response?.data?.message ?? "Delete failed.");
@@ -169,7 +182,7 @@ const UserManagement: React.FC = () => {
                 {roleLabels.map((l) => (
                   <button key={l} onClick={() => setFilter(l)}
                     className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${filter === l ? "bg-[#4B1E91] text-white" : "bg-[#12022A] text-[#F5F0E8]"}`}>
-                    {l === "all" ? "All" : `${l.charAt(0).toUpperCase() + l.slice(1)} (${counts[l as keyof typeof counts] ?? 0})`}
+                    {l === "all" ? "All" : `${l === "school" ? "Institution" : l.charAt(0).toUpperCase() + l.slice(1)} (${counts[l as keyof typeof counts] ?? 0})`}
                   </button>
                 ))}
               </div>
@@ -233,7 +246,7 @@ const UserManagement: React.FC = () => {
                       </td>
                       <td className="px-4 py-4">
                         <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${badgeClass(user.role)}`}>
-                          {user.role}
+                          {user.role === "school" ? "Institution" : user.role}
                         </span>
                       </td>
                       <td className="px-4 py-4">
@@ -242,12 +255,21 @@ const UserManagement: React.FC = () => {
                         </span>
                       </td>
                       <td className="px-4 py-4 text-sm text-[#F5F0E8]">{fmtLogin(user.last_login_at)}</td>
-                      <td className="px-4 py-4 space-x-2">
-                        <button
-                          onClick={() => setDeleteTarget(user.id)}
-                          className="rounded-2xl bg-red-500/10 px-3 py-2 text-xs text-red-300 hover:bg-red-500/20 transition">
-                          ⊘ Delete
-                        </button>
+                      <td className="px-4 py-4 space-x-2 whitespace-nowrap">
+                        {isSuperAdmin && user.role === 'admin' && (
+                          <button
+                            onClick={() => handlePromote(user.id, 'super_admin')}
+                            className="rounded-2xl bg-[#C9A84C]/10 px-3 py-2 text-xs text-[#C9A84C] hover:bg-[#C9A84C]/20 transition">
+                            ↑ Make Super
+                          </button>
+                        )}
+                        {isSuperAdmin && user.id !== currentUserId && (
+                          <button
+                            onClick={() => setDeleteTarget({ id: user.id, name: user.name })}
+                            className="rounded-2xl bg-red-500/10 px-3 py-2 text-xs text-red-300 hover:bg-red-500/20 transition">
+                            ⊘ Delete
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))
@@ -290,7 +312,7 @@ const UserManagement: React.FC = () => {
                   className="mt-1.5 w-full rounded-2xl border border-[#4B1E91] bg-[#0D0118] px-4 py-3 text-white outline-none">
                   <option value="intern">Intern</option>
                   <option value="company">Company</option>
-                  <option value="school">School</option>
+                  <option value="school">Institution</option>
                   <option value="admin">Admin</option>
                 </select>
               </label>
@@ -314,14 +336,23 @@ const UserManagement: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
           <div className="w-full max-w-md rounded-3xl border border-[#4B1E91] bg-[#1E0A4A] p-6">
             <h2 className="text-xl font-semibold text-white">Delete user?</h2>
+            <div className="mt-4 flex items-center gap-3 rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-red-500/20 text-sm font-semibold text-red-300 shrink-0">
+                {deleteTarget.name.split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase()}
+              </div>
+              <div>
+                <p className="font-semibold text-white text-sm">{deleteTarget.name}</p>
+                <p className="text-xs text-red-300 mt-0.5">This account will be permanently removed</p>
+              </div>
+            </div>
             <p className="mt-3 text-sm text-[#F5F0E8]">
-              This will permanently remove the account. The user will lose all access immediately.
+              The user will lose all access immediately. This action cannot be undone.
             </p>
             <div className="mt-6 flex gap-3">
-              <button onClick={handleDelete} className="flex-1 rounded-2xl bg-red-500 py-3 text-sm font-semibold text-white">
+              <button onClick={handleDelete} className="flex-1 rounded-2xl bg-red-500 py-3 text-sm font-semibold text-white hover:bg-red-600 transition">
                 Confirm Delete
               </button>
-              <button onClick={() => setDeleteTarget(null)} className="flex-1 rounded-2xl border border-[#4B1E91] py-3 text-sm text-[#F5F0E8]">
+              <button onClick={() => setDeleteTarget(null)} className="flex-1 rounded-2xl border border-[#4B1E91] py-3 text-sm text-[#F5F0E8] hover:text-white transition">
                 Cancel
               </button>
             </div>

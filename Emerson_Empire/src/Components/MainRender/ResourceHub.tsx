@@ -1,66 +1,59 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ResourceImg } from '../../assets';
+import { Zap, Users, BookOpen } from 'lucide-react';
 
-const ResourceHub: React.FC = () => (
-  <div className="bg-white px-6 sm:px-10 lg:px-16 py-16 lg:py-24">
-    <div className="items-center gap-10 lg:gap-16 grid lg:grid-cols-2 mx-auto max-w-7xl">
-      {/* Left — image */}
-      <motion.div
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: 24 }}
-        transition={{ duration: 0.55 }}
-        viewport={{ once: true }}
-      >
-        <img
-          src={ResourceImg}
-          alt="Emerson team reviewing educational and community resources"
-          className="block w-full h-auto"
-        />
-      </motion.div>
+const ResourceHub: React.FC = () => {
+  return (
+    <section className="bg-[#2D1B4E] px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <div className="mb-16 text-center">
+          <h2 className="mb-6 font-bold text-white text-4xl md:text-5xl uppercase leading-tight">
+            A Growing Public Resource Hub
+          </h2>
+          <p className="mx-auto max-w-2xl text-[#E5D4B8] text-lg">
+            Free and low-cost resources designed to help you move forward, no matter where you're starting.
+          </p>
+        </div>
 
-      {/* Right — copy */}
-      <motion.div
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: 24 }}
-        transition={{ duration: 0.55, delay: 0.08 }}
-        viewport={{ once: true }}
-      >
-        <p
-          className="mb-4 font-semibold text-[#C9A84C] text-xs sm:text-sm uppercase tracking-[0.3em]"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
-        >
-          Resources
-        </p>
+        {/* Features Grid */}
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-3">
+          <div className="bg-[#3D2A5F] border border-[#C9A84C]/20 rounded-lg p-8">
+            <BookOpen className="mb-6 text-[#C9A84C]" size={40} />
+            <h3 className="mb-4 font-bold text-white text-xl">Free Guides & Templates</h3>
+            <p className="text-[#C9A84C]/80 text-sm leading-relaxed">
+              Downloadable resources covering career readiness, resume building, financial planning, and business setup.
+            </p>
+          </div>
 
-        <h2
-          className="mb-6 font-medium text-[#12022A] text-4xl sm:text-5xl leading-[1.1]"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
-        >
-          A growing public resource hub
-        </h2>
+          <div className="bg-[#3D2A5F] border border-[#C9A84C]/20 rounded-lg p-8">
+            <Zap className="mb-6 text-[#C9A84C]" size={40} />
+            <h3 className="mb-4 font-bold text-white text-xl">Weekly Workshops</h3>
+            <p className="text-[#C9A84C]/80 text-sm leading-relaxed">
+              Interactive sessions hosted by our team and community partners covering topics from tax basics to business launch.
+            </p>
+          </div>
 
-        <p
-          className="mb-8 max-w-xl text-[#12022A]/70 text-base sm:text-lg leading-[1.8]"
-          style={{ fontFamily: "'Inter', sans-serif" }}
-        >
-          The Emerson Empire is building a growing public resource hub to help
-          people find educational, professional, financial, and community support
-          resources. New resources are added as they are reviewed and organized.
-          If you are looking for guidance, use the forms below to tell us what you
-          need and we will help point you in the right direction.
-        </p>
+          <div className="bg-[#3D2A5F] border border-[#C9A84C]/20 rounded-lg p-8">
+            <Users className="mb-6 text-[#C9A84C]" size={40} />
+            <h3 className="mb-4 font-bold text-white text-xl">Community Support</h3>
+            <p className="text-[#C9A84C]/80 text-sm leading-relaxed">
+              Connect with other professionals, entrepreneurs, and learners in our growing community.
+            </p>
+          </div>
+        </div>
 
-        <a
-          href="/contact"
-          className="inline-flex items-center gap-2 bg-[#12022A] hover:bg-[#1E0A4A] px-7 py-3.5 rounded-sm font-bold text-white text-sm transition-colors duration-200"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
-        >
-          Request Guidance <span aria-hidden="true">→</span>
-        </a>
-      </motion.div>
-    </div>
-  </div>
-);
+        {/* CTA */}
+        <div className="mt-16 text-center">
+          <a
+            href="/classes"
+            className="inline-flex items-center bg-[#C9A84C] hover:bg-[#D4B555] px-8 py-4 rounded-sm font-bold text-[#12022A] text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+          >
+            Explore All Resources
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default ResourceHub;

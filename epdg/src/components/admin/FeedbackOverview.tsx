@@ -1,5 +1,6 @@
-﻿import { useMemo, useState } from "react";
+﻿import { useMemo, useState, useEffect } from "react";
 import { MessageSquare, Star, ThumbsUp, ThumbsDown } from "lucide-react";
+import api from "../../lib/axios";
 
 interface FeedbackItem {
   id: number;
@@ -11,25 +12,42 @@ interface FeedbackItem {
   status: "new" | "reviewed" | "actioned";
 }
 
-const feedbacks: FeedbackItem[] = [];
-
 const statusFilters = ["all", "new", "reviewed", "actioned"] as const;
 
 const statusClass = (status: FeedbackItem["status"]) => {
   switch (status) {
-    case "new": return "bg-[#4B1E91]/15 text-[#D8B9FF]";
+    case "new":      return "bg-[#4B1E91]/15 text-[#D8B9FF]";
     case "reviewed": return "bg-green-500/15 text-green-200";
     case "actioned": return "bg-amber-500/15 text-amber-200";
-    default: return "bg-white/10 text-white";
+    default:         return "bg-white/10 text-white";
   }
 };
 
 const FeedbackOverview: React.FC = () => {
-  const [filter, setFilter] = useState<(typeof statusFilters)[number]>("all");
+  const [feedbacks, setFeedbacks] = useState<FeedbackItem[]>([]);
+  const [filter, setFilter]       = useState<(typeof statusFilters)[number]>("all");
+  const [toast, setToast]         = useState("");
+
+  useEffect(() => {
+    api.get<{ success: boolean; data: FeedbackItem[] }>('/api/admin/feedback')
+      .then(({ data }) => setFeedbacks(data.data))
+      .catch(() => {});
+  }, []);
+
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(""), 3000); }
+
+  async function updateStatus(id: number, status: FeedbackItem["status"]) {
+    try {
+      await api.patch(`/api/admin/feedback/${id}`, { status });
+      setFeedbacks((prev) => prev.map((f) => f.id === id ? { ...f, status } : f));
+    } catch {
+      showToast('⚠️ Failed to update feedback.');
+    }
+  }
 
   const filteredFeedback = useMemo(
     () => feedbacks.filter((item) => filter === "all" || item.status === filter),
-    [filter]
+    [feedbacks, filter]
   );
 
   return (
@@ -39,7 +57,7 @@ const FeedbackOverview: React.FC = () => {
           <div>
             <p className="text-sm uppercase tracking-[0.25em] text-[#F5F0E8]">Feedback overview</p>
             <h1 className="mt-2 text-3xl font-semibold">Stakeholder sentiment</h1>
-            <p className="mt-2 max-w-2xl text-[#F5F0E8]">Review quality signals from students, companies and schools.</p>
+            <p className="mt-2 max-w-2xl text-[#F5F0E8]">Review quality signals from students, companies and institutions.</p>
           </div>
           <button className="inline-flex items-center gap-2 rounded-2xl bg-[#4B1E91] px-5 py-3 text-sm font-semibold text-white">
             <MessageSquare size={16} /> Add note
@@ -62,6 +80,12 @@ const FeedbackOverview: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {toast && (
+        <div className="flex justify-between items-center rounded-3xl border border-[#4B1E91] bg-[#0D0118] p-4 text-sm text-[#F5F0E8]">
+          <span>{toast}</span><button onClick={() => setToast("")} className="ml-4 hover:text-white">✕</button>
+        </div>
+      )}
 
       <div className="grid gap-4">
         {filteredFeedback.length === 0 && (
@@ -86,10 +110,16 @@ const FeedbackOverview: React.FC = () => {
             </div>
             <p className="mt-4 text-sm leading-6 text-[#F5F0E8]">{feedback.comment}</p>
             <div className="mt-4 flex items-center gap-3">
-              <button className="inline-flex items-center gap-2 rounded-2xl bg-[#4B1E91] px-4 py-3 text-sm font-semibold text-white">
+              <button
+                onClick={() => updateStatus(feedback.id, "actioned")}
+                disabled={feedback.status === "actioned"}
+                className="inline-flex items-center gap-2 rounded-2xl bg-[#4B1E91] px-4 py-3 text-sm font-semibold text-white disabled:opacity-50">
                 <ThumbsUp size={16} /> Mark actioned
               </button>
-              <button className="inline-flex items-center gap-2 rounded-2xl border border-[#4B1E91] px-4 py-3 text-sm text-[#F5F0E8]">
+              <button
+                onClick={() => updateStatus(feedback.id, "reviewed")}
+                disabled={feedback.status !== "new"}
+                className="inline-flex items-center gap-2 rounded-2xl border border-[#4B1E91] px-4 py-3 text-sm text-[#F5F0E8] disabled:opacity-50">
                 <ThumbsDown size={16} /> Defer
               </button>
             </div>
