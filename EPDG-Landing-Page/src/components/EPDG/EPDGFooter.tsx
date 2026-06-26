@@ -14,11 +14,11 @@ const formsLinks = [
   { label: "Request Services", href: "#contact" },
   { label: "Internship Application", href: "#contact" },
   { label: "Business Consultation", href: "#contact" },
-  { label: "Fee Waiver Request", href: "#contact" },
+  { label: "Business Consultation", href: "#contact" },
 ];
 
 const iconProps = {
-  className: "w-4 h-4",
+  className: "w-[18px] h-[18px]",
   fill: "none",
   stroke: "currentColor",
   strokeWidth: 1.8,
@@ -26,6 +26,26 @@ const iconProps = {
   strokeLinejoin: "round" as const,
   viewBox: "0 0 24 24",
 };
+
+const MailIcon: React.FC = () => (
+  <svg {...iconProps}>
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 7-10 7L2 7" />
+  </svg>
+);
+
+const PhoneIcon: React.FC = () => (
+  <svg {...iconProps}>
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+  </svg>
+);
+
+const PinIcon: React.FC = () => (
+  <svg {...iconProps}>
+    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
+);
 
 const socialIcons = [
   {
@@ -83,68 +103,97 @@ const socialIcons = [
 
 const EPDGFooter: React.FC = () => {
   return (
-    <footer className="bg-[#03140f] px-4 pt-16 border-white/10 border-t text-white">
+    <footer className="bg-[#0C2117] px-4 pt-16 pb-8 text-white">
       <div className="mx-auto max-w-278.5">
-        <div className="flex sm:flex-row flex-col sm:justify-between sm:items-center gap-4 mb-10">
-          <div className="flex items-center gap-4">
-            <img src={logo} alt="EPDG logo" className="border border-white/10 rounded-full w-16 h-16 object-cover" />
-            <div>
-              <p className="font-semibold text-[#C9A84C] text-xs uppercase tracking-[0.24em]">EPDG</p>
-              <p className="text-white/70 text-sm">Professional development for learners, leaders, and teams.</p>
+        <div className="gap-10 lg:gap-8 grid lg:grid-cols-[1.6fr_1fr_1fr]">
+          {/* Brand + contact + social */}
+          <div>
+            <div className="flex items-center gap-4 mb-9">
+              <img
+                src={logo}
+                alt="EPDG logo"
+                className="rounded-full w-16 h-16 object-cover shrink-0"
+              />
+              <p className="max-w-[17rem] font-bold text-white text-2xl sm:text-3xl leading-[1.1] heading">
+                Emerson Professional Development Group
+              </p>
             </div>
-          </div>
-          <div className="flex gap-3">
-            {socialIcons.map((s) => (
+
+            <p className="mb-4 font-bold text-[#C9A84C] text-base uppercase tracking-[0.1em]">
+              Contact
+            </p>
+            <div className="space-y-3.5 text-white/85 text-[15px]">
               <a
-                key={s.name}
-                href={s.href}
-                target={s.href.startsWith("mailto") ? undefined : "_blank"}
-                rel={s.href.startsWith("mailto") ? undefined : "noreferrer"}
-                aria-label={s.name}
-                className="flex justify-center items-center bg-white/5 border border-white/10 hover:border-[#C9A84C] rounded-full w-11 h-11 text-white/70 hover:text-[#C9A84C] transition"
+                href="mailto:admin@theemersonempire.info"
+                className="flex items-center gap-2.5 hover:text-[#C9A84C] transition-colors"
               >
-                {s.svg}
+                <span className="text-[#C9A84C]"><MailIcon /></span>
+                admin@theemersonempire.info
               </a>
-            ))}
-          </div>
-        </div>
+              <a
+                href="tel:+18034794492"
+                className="flex items-center gap-2.5 hover:text-[#C9A84C] transition-colors"
+              >
+                <span className="text-[#C9A84C]"><PhoneIcon /></span>
+                +1 (803) 479-4492
+              </a>
+              <p className="flex items-center gap-2.5">
+                <span className="text-[#C9A84C]"><PinIcon /></span>
+                Columbia, SC United States
+              </p>
+            </div>
 
-        <div className="gap-8 grid md:grid-cols-3 mb-14 text-white/70 text-sm">
-          <div>
-            <p className="mb-4 text-[#C9A84C] text-xs uppercase tracking-[0.24em]">Contact</p>
-            <div className="space-y-3">
-              <a href="mailto:admin@theemersonempire.info" className="block hover:text-[#C9A84C]">admin@theemersonempire.info</a>
-              <a href="tel:+18034794492" className="block hover:text-[#C9A84C]">+1 (803) 479-4492</a>
-              <p>Columbia, SC United States</p>
+            <div className="flex gap-3 mt-7">
+              {socialIcons.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target={s.href.startsWith("mailto") ? undefined : "_blank"}
+                  rel={s.href.startsWith("mailto") ? undefined : "noreferrer"}
+                  aria-label={s.name}
+                  className="flex justify-center items-center border border-white/15 hover:border-[#C9A84C] rounded-xl w-11 h-11 text-white hover:text-[#C9A84C] transition"
+                >
+                  {s.svg}
+                </a>
+              ))}
             </div>
           </div>
 
+          {/* Navigate */}
           <div>
-            <p className="mb-4 text-[#C9A84C] text-xs uppercase tracking-[0.24em]">Navigate</p>
-            <ul className="space-y-3">
+            <p className="mb-5 font-bold text-[#C9A84C] text-base uppercase tracking-[0.1em]">
+              Navigate
+            </p>
+            <ul className="space-y-3.5 text-white/85 text-[15px]">
               {navigateLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="hover:text-[#C9A84C]">{l.label}</a>
+                  <a href={l.href} className="hover:text-[#C9A84C] transition-colors">{l.label}</a>
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Forms & Access */}
           <div>
-            <p className="mb-4 text-[#C9A84C] text-xs uppercase tracking-[0.24em]">Forms</p>
-            <ul className="space-y-3">
-              {formsLinks.map((l) => (
-                <li key={l.label}>
-                  <a href={l.href} className="hover:text-[#C9A84C]">{l.label}</a>
+            <p className="mb-5 font-bold text-[#C9A84C] text-base uppercase tracking-[0.1em]">
+              Forms &amp; Access
+            </p>
+            <ul className="space-y-3.5 text-white/85 text-[15px]">
+              {formsLinks.map((l, i) => (
+                <li key={`${l.label}-${i}`}>
+                  <a href={l.href} className="hover:text-[#C9A84C] transition-colors">{l.label}</a>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="flex sm:flex-row flex-col sm:justify-between gap-3 pt-6 border-white/10 border-t text-white/40 text-xs">
-          <p>© {new Date().getFullYear()} Emerson Professional Development Group</p>
-          <a href="mailto:admin@theemersonempire.info" className="hover:text-[#C9A84C]">Contact Us</a>
+        <div className="flex sm:flex-row flex-col sm:justify-between sm:items-center gap-4 mt-14 pt-6 border-white/10 border-t text-white/60 text-sm">
+          <p>© {new Date().getFullYear()} The Emerson Empire. All rights reserved.</p>
+          <div className="flex gap-10">
+            <a href="#" className="hover:text-[#C9A84C] transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-[#C9A84C] transition-colors">Terms of Use</a>
+          </div>
         </div>
       </div>
     </footer>

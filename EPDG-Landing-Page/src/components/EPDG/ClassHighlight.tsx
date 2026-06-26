@@ -25,9 +25,9 @@ const ClassHighlight: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-[#FCF5E9] px-4 py-20 sm:py-24">
+    <section className="bg-[#FCF5E9] px-4 pt-10 pb-20 sm:pt-12 sm:pb-24">
       <div className="mx-auto max-w-278.5">
-        <p className="mb-3 text-[#8c7434] text-xs uppercase tracking-[0.28em]">
+        <p className="mb-3 text-[#8c7434] text-lg uppercase tracking-[0.28em] font-bold">
           Weekly Classes
         </p>
         <h2 className="mb-6 max-w-3xl font-bold text-[#0B2018] text-4xl sm:text-5xl tracking-tight heading">
@@ -40,7 +40,7 @@ const ClassHighlight: React.FC = () => {
         <div className="gap-6 grid sm:grid-cols-3 mb-12">
           {sessions.map((s) => (
             <div key={s.time} className="bg-white shadow-[0_16px_50px_rgba(14,19,11,0.08)] p-7 border border-[#d7ceb7] rounded-4xl">
-              <span className="inline-flex bg-[#f4edda] px-3 py-2 rounded-full font-semibold text-[#9e8f52] text-[13px] uppercase tracking-[0.2em]">
+              <span className="inline-flex bg-[#f4edda] px-3 py-2 rounded-full font-semibold text-[#000000] text-[13px] uppercase tracking-[0.2em]">
                 {s.duration}
               </span>
               <p className="mt-6 mb-1 font-bold text-[#0B2018] text-3xl">{s.time}</p>
@@ -49,9 +49,9 @@ const ClassHighlight: React.FC = () => {
           ))}
         </div>
 
-        <div className="gap-6 grid sm:grid-cols-2 mb-12 max-w-3xl">
+        <div className="gap-2.5 grid sm:grid-cols-2 mb-12 max-w-3xl">
           {[...featuresLeft, ...featuresRight].map((f) => (
-            <div key={f} className="flex items-start gap-3 bg-white p-5 border border-[#e5ddc2] rounded-3xl">
+            <div key={f} className="flex items-start gap-3">
               <Check />
               <p className="text-[#4f4c42] text-sm leading-relaxed">{f}</p>
             </div>
@@ -61,13 +61,13 @@ const ClassHighlight: React.FC = () => {
         <div className="flex flex-wrap gap-4">
           <button
             onClick={() => navigate("/classes")}
-            className="bg-[#0B5C3B] hover:bg-[#094a30] px-8 py-3.5 rounded-full font-semibold text-white text-sm uppercase tracking-[0.16em] transition duration-200"
+            className="bg-[#0B5C3B] hover:bg-[#094a30] px-8 py-3.5 rounded-full font-semibold text-white text-sm uppercase tracking-[0.16em] transition duration-200 cursor-pointer"
           >
             Register for weekly classes
           </button>
           <button
             onClick={() => openForm(FORM_SERVICES, "Ask about a Fee Waiver", "Reduced cost & fee waiver options")}
-            className="bg-white hover:bg-[#f7f2e8] px-8 py-3.5 border border-[#b0a57f] rounded-full font-semibold text-[#0B2018] text-sm uppercase tracking-[0.16em] transition duration-200"
+            className="bg-white hover:bg-[#f7f2e8] px-8 py-3.5 border border-[#b0a57f] rounded-full font-semibold text-[#0B2018] text-sm uppercase tracking-[0.16em] transition duration-200 cursor-pointer"
           >
             Ask about a fee waiver
           </button>

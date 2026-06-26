@@ -82,7 +82,7 @@ const CareerServices: React.FC = () => {
     >
       <div className="absolute inset-0 bg-[#03110f]/70" />
       <div className="relative mx-auto max-w-278.5">
-        <p className="mb-3 text-[#C9A84C]/90 text-sm uppercase tracking-[0.25em]">
+        <p className="mb-3 text-[#C9A84C]/90 text-lg uppercase tracking-[0.25em] font-bold">
           Career Services
         </p>
         <h2 className="mb-6 max-w-3xl font-bold text-white text-4xl sm:text-5xl tracking-tight heading">
@@ -106,7 +106,7 @@ const CareerServices: React.FC = () => {
 
         <button
           onClick={() => openForm(FORM_SERVICES, "Request Services", "Career & professional support services")}
-          className="bg-[#C9A84C] hover:bg-[#bda55f] px-8 py-3.5 rounded-full font-semibold text-[#07120f] text-sm uppercase tracking-[0.18em] transition duration-200"
+          className="bg-[#C9A84C] hover:bg-[#bda55f] px-8 py-3.5 rounded-full font-semibold text-[#07120f] text-sm uppercase tracking-[0.18em] transition duration-200 cursor-pointer hover:bg-[#ffffff] hover:text-[#07120f] hover:border hover:border-[#07120f] hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
         >
           Request Services
         </button>

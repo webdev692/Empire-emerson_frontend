@@ -3,7 +3,7 @@ import valuesBanner from "../../assets/OurValues.png";
 
 /** Our Values banner. */
 const ValuesSection: React.FC = () => (
-  <section className="bg-[#FCF5E9] px-4 pt-10 pb-10">
+  <section className="bg-[#FCF5E9] px-4 pt-10 pb-2">
     {/* Same 1114px content line as every other section. The banner has ~1.6%
         transparent padding each side, so it is widened (w-[103.37%]) and pulled
         left (-1.64%) to make its visible card fill the container. */}
