@@ -10,7 +10,13 @@ const socials = [
   { Icon: FaEnvelope, label: 'Email', href: 'mailto:admin@theemersonempire.info' },
 ]
 
-const navLinks = ['Home', 'Classes', 'Services', 'Internship', 'About Us']
+const navLinks = [
+  { label: 'Home', href: '#' },
+  { label: 'Our Values', href: '#our-values' },
+  { label: 'Services', href: '#services' },
+  { label: 'Individuals & Families', href: '#individuals' },
+  { label: 'Small Business', href: '#small-business' },
+]
 
 export default function Footer() {
   return (
@@ -58,9 +64,9 @@ export default function Footer() {
           <div>
             <h5 className="text-sm font-bold uppercase tracking-[0.2em] text-[#d4af37]">Navigate</h5>
             <ul className="mt-6 space-y-4 text-lg text-white/90">
-              {navLinks.map((item) => (
-                <li key={item}>
-                  <a href="#" className="transition hover:text-[#d4af37]">{item}</a>
+              {navLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="transition hover:text-[#d4af37]">{link.label}</a>
                 </li>
               ))}
             </ul>
