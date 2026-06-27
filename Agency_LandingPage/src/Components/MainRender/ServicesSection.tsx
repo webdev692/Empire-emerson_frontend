@@ -69,7 +69,7 @@ const serviceCards = [
 
 export default function ServicesSection() {
   return (
-    <section className="relative overflow-hidden bg-[#f4f5f8] py-20 text-[#0A1128] lg:py-24">
+    <section id="services" className="relative overflow-hidden bg-[#f4f5f8] py-20 text-[#0A1128] lg:py-24">
       <img
         src={servicesBackground}
         alt=""

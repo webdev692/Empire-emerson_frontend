@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import logo from '../../assets/LogoAgency.png'
 import { openRequestForm } from './RequestFormModal'
 
 const NAV_LINKS = [
-  { label: 'Home', dropdown: false },
-  { label: 'Classes', dropdown: true },
-  { label: 'Services and Packages', dropdown: true },
-  { label: 'Global Internship', dropdown: true },
-  { label: 'About Us', dropdown: false },
+  { label: 'Home', href: '#' },
+  { label: 'Our Values', href: '#our-values' },
+  { label: 'Services', href: '#services' },
+  { label: 'Individuals & Families', href: '#individuals' },
+  { label: 'Small Business', href: '#small-business' },
 ]
 
 export default function Navbar() {
@@ -27,11 +27,10 @@ export default function Navbar() {
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
-              href="#"
-              className="flex items-center gap-1 transition hover:text-[#c9a24c]"
+              href={link.href}
+              className="transition hover:text-[#c9a24c]"
             >
               {link.label}
-              {link.dropdown && <ChevronDown size={12} className="text-white/60" />}
             </a>
           ))}
         </nav>
@@ -61,14 +60,20 @@ export default function Navbar() {
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
-              href="#"
-              className="flex items-center justify-between py-3 transition hover:text-[#c9a24c]"
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="block py-3 transition hover:text-[#c9a24c]"
             >
               {link.label}
-              {link.dropdown && <ChevronDown size={14} className="text-white/50" />}
             </a>
           ))}
-          <a href="https://forms.gle/VSCGHQEJSdKhYizKA" onClick={(e) => { e.preventDefault(); openRequestForm() }} className="mt-2 block py-3 font-bold text-[#c9a24c]">Contact Us</a>
+          <a
+            href="https://forms.gle/VSCGHQEJSdKhYizKA"
+            onClick={(e) => { e.preventDefault(); setMenuOpen(false); openRequestForm() }}
+            className="mt-2 block py-3 font-bold text-[#c9a24c]"
+          >
+            Contact Us
+          </a>
         </nav>
       )}
     </header>

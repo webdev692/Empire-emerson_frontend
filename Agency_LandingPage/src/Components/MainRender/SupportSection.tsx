@@ -23,7 +23,7 @@ export default function SupportSection() {
   return (
     <section className="text-[#0A1128]">
       {/* Full-bleed light section: heading + image on left, text on right */}
-      <div className="w-full bg-white">
+      <div id="individuals" className="w-full scroll-mt-24 bg-white">
         <div className="mx-auto max-w-[1320px] px-5 py-20">
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] items-start">
             <div className="flex flex-col">
