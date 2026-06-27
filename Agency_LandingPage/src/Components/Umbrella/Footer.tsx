@@ -3,11 +3,11 @@ import { FaInstagram, FaLinkedinIn, FaFacebookF, FaTiktok, FaEnvelope } from 're
 import logo from '../../assets/LogoAgency.png'
 
 const socials = [
-  { Icon: FaInstagram, label: 'Instagram' },
-  { Icon: FaLinkedinIn, label: 'LinkedIn' },
-  { Icon: FaFacebookF, label: 'Facebook' },
-  { Icon: FaTiktok, label: 'TikTok' },
-  { Icon: FaEnvelope, label: 'Email' },
+  { Icon: FaInstagram, label: 'Instagram', href: 'https://www.instagram.com/theemersonagency' },
+  { Icon: FaLinkedinIn, label: 'LinkedIn', href: 'https://www.linkedin.com/company/the-emerson-empire/' },
+  { Icon: FaFacebookF, label: 'Facebook', href: 'https://www.facebook.com/share/1S3XPRXg21/?mibextid=wwXIfr' },
+  { Icon: FaTiktok, label: 'TikTok', href: 'https://www.tiktok.com/@theemersonempire' },
+  { Icon: FaEnvelope, label: 'Email', href: 'mailto:admin@theemersonempire.info' },
 ]
 
 const navLinks = ['Home', 'Classes', 'Services', 'Internship', 'About Us']
@@ -39,10 +39,12 @@ export default function Footer() {
             </p>
 
             <div className="mt-8 flex items-center gap-3">
-              {socials.map(({ Icon, label }) => (
+              {socials.map(({ Icon, label, href }) => (
                 <a
                   key={label}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white transition hover:border-[#d4af37] hover:text-[#d4af37]"
                 >
