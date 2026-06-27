@@ -12,11 +12,11 @@ const values = [
 
 export default function ValuesSection() {
   return (
-    <section className="bg-[#f3f5fb] py-20 text-[#081224]">
+    <section className="bg-[#f3f5fb] py-20 text-[#0A1128]">
       <div className="mx-auto max-w-[1320px] px-5">
         <div className="overflow-hidden rounded-[36px] bg-white shadow-[0_40px_130px_rgba(15,23,42,0.08)]">
           <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="relative overflow-hidden rounded-[36px] bg-[#081224] px-8 py-10 lg:px-12 lg:py-16">
+            <div className="relative overflow-hidden rounded-[36px] bg-[#0A1128] px-8 py-10 lg:px-12 lg:py-16">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(212,175,55,0.14),_transparent_30%)]" />
               <div className="relative z-10 space-y-8">
                 <div className="space-y-4">
@@ -45,7 +45,7 @@ export default function ValuesSection() {
 
             <div className="relative overflow-hidden rounded-[36px] bg-slate-950">
               <img src={valuesImage} alt="Agency values" className="h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-l from-[#081224]/85 via-transparent to-[#081224]/95" />
+              <div className="absolute inset-0 bg-gradient-to-l from-[#0A1128]/85 via-transparent to-[#0A1128]/95" />
             </div>
           </div>
         </div>

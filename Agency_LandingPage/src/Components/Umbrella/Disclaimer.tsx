@@ -72,7 +72,7 @@ const Disclaimer: React.FC = () => (
   <div className="pt-16 sm:pt-20 min-h-screen bg-white font-sans antialiased">
 
     {/* Hero */}
-    <div className="bg-[#12022A] px-6 sm:px-10 lg:px-16 py-20">
+    <div className="bg-[#0A1128] px-6 sm:px-10 lg:px-16 py-20">
       <div className="mx-auto max-w-4xl">
         <p className="mb-3 font-mono text-[#C9A84C] text-xs uppercase tracking-[4px]">
           Legal
@@ -120,7 +120,7 @@ const Disclaimer: React.FC = () => (
               <span className="font-mono text-[#C9A84C]/50 text-xs pt-1 shrink-0 w-6">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <h2 className="font-bold text-[#12022A] text-lg sm:text-xl uppercase tracking-tight">
+              <h2 className="font-bold text-[#0A1128] text-lg sm:text-xl uppercase tracking-tight">
                 {s.title}
               </h2>
             </div>

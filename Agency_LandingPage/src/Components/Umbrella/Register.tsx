@@ -11,12 +11,12 @@ const Register: React.FC = () => {
   return (
     <main className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-3xl mx-auto px-6">
-        <h1 className="text-3xl font-bold text-[#12022A] mb-4">Service registration</h1>
+        <h1 className="text-3xl font-bold text-[#0A1128] mb-4">Service registration</h1>
         <p className="text-gray-700 mb-6">Please complete the short registration form to express interest in the selected service. If you have a Google Form link, replace the placeholder URL in <code>Register.tsx</code>.</p>
 
         <div className="mb-6">
           <p className="text-sm text-gray-600">Selected service:</p>
-          <div className="mt-2 font-semibold text-[#12022A]">{service || '— pick a service from the Services page'}</div>
+          <div className="mt-2 font-semibold text-[#0A1128]">{service || '— pick a service from the Services page'}</div>
         </div>
 
         <div className="bg-white border rounded-lg overflow-hidden shadow-sm">

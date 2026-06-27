@@ -65,7 +65,7 @@ const serviceCards = [
 
 export default function ServicesSection() {
   return (
-    <section className="relative overflow-hidden bg-[#eef3fb] text-[#081224] py-24">
+    <section className="relative overflow-hidden bg-[#eef3fb] text-[#0A1128] py-24">
       <div
         className="absolute inset-0 bg-cover bg-center opacity-60"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1522204506139-0a40867aed1b?auto=format&fit=crop&w=1400&q=80')" }}
@@ -76,7 +76,7 @@ export default function ServicesSection() {
         <div className="mb-12 max-w-3xl space-y-4">
           <p className="text-sm uppercase tracking-[0.45em] text-[#b18b4c]">Services</p>
           <h2 
-            className="text-4xl font-serif font-semibold leading-tight text-[#081224] sm:text-5xl"
+            className="text-4xl font-serif font-semibold leading-tight text-[#0A1128] sm:text-5xl"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
           >
             Educational and organizational<br />support
@@ -97,7 +97,7 @@ export default function ServicesSection() {
                   </div>
                   <span className="text-sm font-semibold text-[#8b97ad]">{service.number}</span>
                 </div>
-                <h3 className="mt-5 text-lg font-semibold text-[#081224]">{service.title}</h3>
+                <h3 className="mt-5 text-lg font-semibold text-[#0A1128]">{service.title}</h3>
                 <p className="mt-4 text-sm leading-7 text-[#64748b]">{service.description}</p>
               </div>
             )

@@ -65,7 +65,7 @@ function buildCalendarLink(item: ClassItem, date?: Date) {
 
 const BADGE_STYLE: Record<SessionType, string> = {
   today:    "bg-green-500 text-white",
-  tomorrow: "bg-[#C9A84C] text-[#12022A]",
+  tomorrow: "bg-[#C9A84C] text-[#0A1128]",
   soon:     "bg-[#4B1E91]/10 text-[#4B1E91]",
   later:    "bg-neutral-100 text-neutral-500",
 };
@@ -115,7 +115,7 @@ function WeeklyTimeline({ classes, activeDay, onDayClick }: WeeklyTimelineProps)
   return (
     <div className="bg-white mb-8 border border-[#4B1E91]/20 overflow-hidden">
       {/* Header */}
-      <div className="flex justify-between items-center bg-[#12022A] px-4 py-2.5">
+      <div className="flex justify-between items-center bg-[#0A1128] px-4 py-2.5">
         <div>
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest">
             Weekly Schedule
@@ -158,7 +158,7 @@ function WeeklyTimeline({ classes, activeDay, onDayClick }: WeeklyTimelineProps)
               <span className={`font-bold text-sm leading-none mb-1 ${
                 isActive ? "text-white" :
                 isPast   ? "text-neutral-300" :
-                isToday  ? "text-[#C9A84C]" : "text-[#12022A]"
+                isToday  ? "text-[#C9A84C]" : "text-[#0A1128]"
               }`}>
                 {date.getDate()}
               </span>
@@ -208,7 +208,7 @@ function RegistrationFormModal({ classItem, onClose, onComplete }: FormModalProp
 
   return (
     <div
-      className="z-50 fixed inset-0 flex justify-center items-end sm:items-center bg-[#12022A]/80 backdrop-blur-sm p-0 sm:p-4"
+      className="z-50 fixed inset-0 flex justify-center items-end sm:items-center bg-[#0A1128]/80 backdrop-blur-sm p-0 sm:p-4"
       onClick={onClose}
     >
       <div
@@ -221,7 +221,7 @@ function RegistrationFormModal({ classItem, onClose, onComplete }: FormModalProp
             <p className="mb-0.5 font-mono text-[#4B1E91] text-xs uppercase tracking-widest">
               {submitted ? "Registration Submitted" : "The Emerson Empire – Class Registration"}
             </p>
-            <h3 className="font-bold text-[#12022A] text-sm truncate leading-snug">{classItem.title}</h3>
+            <h3 className="font-bold text-[#0A1128] text-sm truncate leading-snug">{classItem.title}</h3>
             <div className="flex flex-wrap gap-3 mt-1 font-mono text-neutral-400 text-xs">
               <span> {classItem.day}</span>
               <span>{classItem.time}</span>
@@ -233,7 +233,7 @@ function RegistrationFormModal({ classItem, onClose, onComplete }: FormModalProp
           <button
             onClick={onClose}
             aria-label="Close"
-            className="mt-0.5 ml-4 text-neutral-300 hover:text-[#12022A] text-xl leading-none transition-colors shrink-0"
+            className="mt-0.5 ml-4 text-neutral-300 hover:text-[#0A1128] text-xl leading-none transition-colors shrink-0"
           >
             
           </button>
@@ -242,10 +242,10 @@ function RegistrationFormModal({ classItem, onClose, onComplete }: FormModalProp
         {/* ── Submitted confirmation ── */}
         {submitted ? (
           <div className="flex flex-col flex-1 justify-center items-center px-8 py-12 text-center">
-            <div className="flex justify-center items-center bg-[#C9A84C] mb-5 rounded-sm w-14 h-14 text-[#12022A] text-2xl"><FaCheck /></div>
-            <h3 className="mb-3 font-bold text-[#12022A] text-xl">Registration Submitted!</h3>
+            <div className="flex justify-center items-center bg-[#C9A84C] mb-5 rounded-sm w-14 h-14 text-[#0A1128] text-2xl"><FaCheck /></div>
+            <h3 className="mb-3 font-bold text-[#0A1128] text-xl">Registration Submitted!</h3>
             <p className="mb-2 max-w-sm text-neutral-500 text-sm leading-relaxed">
-              Your registration for <span className="font-semibold text-[#12022A]">{classItem.title}</span> has been received.
+              Your registration for <span className="font-semibold text-[#0A1128]">{classItem.title}</span> has been received.
             </p>
             <p className="mb-8 max-w-sm text-neutral-400 text-sm leading-relaxed">
               The Emerson Empire team will follow up at the email you provided with your Google Meet link, class details, and any next steps.
@@ -299,15 +299,15 @@ function ClassCard({ item, isRegistered, onRegister, onCancel }: ClassCardProps)
   const fillPct     = Math.round((item.spotsTaken / item.spotsTotal) * 100);
 
   const badgeStyle: React.CSSProperties = isFree
-    ? { background: "#C9A84C", color: "#12022A", borderColor: "#C9A84C" }
+    ? { background: "#C9A84C", color: "#0A1128", borderColor: "#C9A84C" }
     : isIntensive
-    ? { background: "#12022A", color: "#C9A84C", borderColor: "#12022A" }
+    ? { background: "#0A1128", color: "#C9A84C", borderColor: "#0A1128" }
     : { background: "#4B1E91", color: "#ffffff", borderColor: "#4B1E91" };
 
   const buttonCls = left === 0
     ? "bg-neutral-50 text-neutral-300 cursor-not-allowed"
     : isFree
-    ? "bg-[#C9A84C] text-[#12022A] hover:bg-[#b8933e]"
+    ? "bg-[#C9A84C] text-[#0A1128] hover:bg-[#b8933e]"
     : "bg-[#4B1E91] text-white hover:bg-[#3d1778]";
 
   return (
@@ -333,7 +333,7 @@ function ClassCard({ item, isRegistered, onRegister, onCancel }: ClassCardProps)
         </div>
 
         {/* Title */}
-        <h3 className="mb-2 font-heading font-bold text-[#12022A] text-xl leading-snug">
+        <h3 className="mb-2 font-heading font-bold text-[#0A1128] text-xl leading-snug">
           {item.title}
         </h3>
 
@@ -345,11 +345,11 @@ function ClassCard({ item, isRegistered, onRegister, onCancel }: ClassCardProps)
         {/* Schedule */}
         <div className="mb-4 pl-3 border-l-2 border-[#4B1E91]/25">
           <p className="mb-1 font-mono text-[#4B1E91]/50 text-xs uppercase tracking-wider">Schedule</p>
-          <div className="flex items-center gap-2 font-body text-[#12022A] text-sm mb-0.5">
+          <div className="flex items-center gap-2 font-body text-[#0A1128] text-sm mb-0.5">
             <FaCalendarAlt size={11} className="text-[#4B1E91] shrink-0" />
             <span>{item.day} · {MONTH_SHORT[getNextSession(item.day).getMonth()]} {getNextSession(item.day).getDate()}</span>
           </div>
-          <div className="flex items-center gap-2 font-body text-[#12022A] text-sm">
+          <div className="flex items-center gap-2 font-body text-[#0A1128] text-sm">
             <FaClock size={11} className="text-[#4B1E91] shrink-0" />
             <span>{item.time}</span>
           </div>
@@ -498,7 +498,7 @@ const ClassSearch: React.FC<ClassSearchProps> = ({ classes, showTodayFilter = tr
                   >
                     {item.ticketType}
                   </span>
-                  <h4 className="mt-2 font-bold text-[#12022A] text-sm line-clamp-1">{item.title}</h4>
+                  <h4 className="mt-2 font-bold text-[#0A1128] text-sm line-clamp-1">{item.title}</h4>
                   <p className="mt-1 font-mono text-neutral-400 text-xs flex items-center gap-1 flex-wrap">
                     <FaCalendarAlt className="inline" /> {item.day}, {MONTH_SHORT[getNextSession(item.day).getMonth()]} {getNextSession(item.day).getDate()} · <FaClock className="inline" /> {item.time}
                   </p>
@@ -595,8 +595,8 @@ const ClassSearch: React.FC<ClassSearchProps> = ({ classes, showTodayFilter = tr
                 onClick={() => setActiveTheme(null)}
                 className={`px-3 py-1 text-xs font-mono border rounded-full transition-colors ${
                   activeTheme === null
-                    ? "bg-[#C9A84C] text-[#12022A] border-[#C9A84C] font-bold"
-                    : "bg-white text-neutral-500 border-neutral-200 hover:border-[#C9A84C] hover:text-[#12022A]"
+                    ? "bg-[#C9A84C] text-[#0A1128] border-[#C9A84C] font-bold"
+                    : "bg-white text-neutral-500 border-neutral-200 hover:border-[#C9A84C] hover:text-[#0A1128]"
                 }`}
               >
                 All Themes
@@ -607,8 +607,8 @@ const ClassSearch: React.FC<ClassSearchProps> = ({ classes, showTodayFilter = tr
                   onClick={() => setActiveTheme(theme)}
                   className={`px-3 py-1 text-xs font-mono border rounded-full transition-colors ${
                     activeTheme === theme
-                      ? "bg-[#C9A84C] text-[#12022A] border-[#C9A84C] font-bold"
-                      : "bg-white text-neutral-500 border-neutral-200 hover:border-[#C9A84C] hover:text-[#12022A]"
+                      ? "bg-[#C9A84C] text-[#0A1128] border-[#C9A84C] font-bold"
+                      : "bg-white text-neutral-500 border-neutral-200 hover:border-[#C9A84C] hover:text-[#0A1128]"
                   }`}
                 >
                   {theme}

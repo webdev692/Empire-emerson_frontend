@@ -74,7 +74,7 @@ const Contact: React.FC = () => {
     <div id="contact" className="bg-white pt-16 sm:pt-20 min-h-screen font-sans antialiased">
 
       {/* ── Hero ── */}
-      <div className="bg-[#12022A] px-6 sm:px-10 lg:px-16 py-24">
+      <div className="bg-[#0A1128] px-6 sm:px-10 lg:px-16 py-24">
         <div className="mx-auto max-w-7xl">
           <motion.p
             whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 16 }}
@@ -112,10 +112,10 @@ const Contact: React.FC = () => {
 
           {/* ── Left: Info ── */}
           <div>
-            <h2 className="mb-4 font-bold text-[#12022A] text-[28px] sm:text-[36px] uppercase leading-tight heading">
+            <h2 className="mb-4 font-bold text-[#0A1128] text-[28px] sm:text-[36px] uppercase leading-tight heading">
               We're Here to Help.
             </h2>
-            <p className="mb-10 text-[#12022A]/55 text-[16px] sm:text-lg leading-[1.9]">
+            <p className="mb-10 text-[#0A1128]/55 text-[16px] sm:text-lg leading-[1.9]">
               Whether you have questions about our classes, services, internship program, fee waivers, or partnerships — fill out the form and our team will follow up promptly.
             </p>
 
@@ -136,13 +136,13 @@ const Contact: React.FC = () => {
                     <div>
                       <p className="mb-0.5 font-mono text-[#C9A84C] text-[16px] uppercase tracking-widest">{ch.label}</p>
                       {ch.href ? (
-                        <a href={ch.href} className="font-bold text-[#12022A] text-[13px] hover:text-[#4B1E91] transition-colors">
+                        <a href={ch.href} className="font-bold text-[#0A1128] text-[13px] hover:text-[#4B1E91] transition-colors">
                           {ch.value}
                         </a>
                       ) : (
-                        <p className="font-bold text-[#12022A] text-[13px]">{ch.value}</p>
+                        <p className="font-bold text-[#0A1128] text-[13px]">{ch.value}</p>
                       )}
-                      <p className="mt-1 text-[#12022A]/45 text-[13px] leading-relaxed">{ch.description}</p>
+                      <p className="mt-1 text-[#0A1128]/45 text-[13px] leading-relaxed">{ch.description}</p>
                     </div>
                   </motion.div>
                 );
@@ -198,10 +198,10 @@ const Contact: React.FC = () => {
                 className="flex flex-col justify-center items-center py-20 h-full text-center"
               >
                 <div className="flex justify-center items-center bg-[#C9A84C] mb-6 w-16 h-16">
-                  <Check size={28} className="text-[#12022A]" strokeWidth={3} />
+                  <Check size={28} className="text-[#0A1128]" strokeWidth={3} />
                 </div>
-                <h3 className="mb-3 font-bold text-[#12022A] text-2xl uppercase heading">Message Sent!</h3>
-                <p className="mb-8 max-w-sm text-[#12022A]/55 text-[14px] leading-relaxed">
+                <h3 className="mb-3 font-bold text-[#0A1128] text-2xl uppercase heading">Message Sent!</h3>
+                <p className="mb-8 max-w-sm text-[#0A1128]/55 text-[14px] leading-relaxed">
                   Thank you for reaching out to The Emerson Empire. Our team will follow up within 24–48 business hours.
                 </p>
                 <button

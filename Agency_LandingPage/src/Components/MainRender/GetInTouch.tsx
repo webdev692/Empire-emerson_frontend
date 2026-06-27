@@ -8,8 +8,8 @@ const GetInTouch: React.FC = () => {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 grid-cols-1 lg:grid-cols-2">
           {/* Left: Brand Logo */}
-          <div className="relative rounded-2xl overflow-hidden shadow-lg h-96 lg:h-auto bg-[#12022A]">
-            <div className="absolute inset-0 bg-[#12022A] opacity-90" />
+          <div className="relative rounded-2xl overflow-hidden shadow-lg h-96 lg:h-auto bg-[#0A1128]">
+            <div className="absolute inset-0 bg-[#0A1128] opacity-90" />
             <div className="relative flex items-center justify-center w-full h-full p-8">
               <img
                 src={AgencyAvif}
@@ -21,10 +21,10 @@ const GetInTouch: React.FC = () => {
 
           {/* Right: Contact Info */}
           <div className="flex flex-col justify-center">
-            <h2 className="mb-6 font-bold text-[#12022A] text-4xl md:text-5xl uppercase leading-tight">
+            <h2 className="mb-6 font-bold text-[#0A1128] text-4xl md:text-5xl uppercase leading-tight">
               Get in Touch
             </h2>
-            <p className="mb-12 text-[#12022A]/70 text-lg leading-relaxed">
+            <p className="mb-12 text-[#0A1128]/70 text-lg leading-relaxed">
               Whether you're an individual looking to grow, a business seeking support, or an organization wanting to partner with us — we're here to listen and help.
             </p>
 
@@ -35,8 +35,8 @@ const GetInTouch: React.FC = () => {
                   <Phone className="text-[#C9A84C]" size={24} />
                 </div>
                 <div>
-                  <p className="font-bold text-[#12022A]">Phone</p>
-                  <p className="text-[#12022A]/70">+1 (555) 123-4567</p>
+                  <p className="font-bold text-[#0A1128]">Phone</p>
+                  <p className="text-[#0A1128]/70">+1 (555) 123-4567</p>
                 </div>
               </div>
 
@@ -45,8 +45,8 @@ const GetInTouch: React.FC = () => {
                   <Mail className="text-[#C9A84C]" size={24} />
                 </div>
                 <div>
-                  <p className="font-bold text-[#12022A]">Email</p>
-                  <p className="text-[#12022A]/70">info@emersonempire.org</p>
+                  <p className="font-bold text-[#0A1128]">Email</p>
+                  <p className="text-[#0A1128]/70">info@emersonempire.org</p>
                 </div>
               </div>
 
@@ -55,8 +55,8 @@ const GetInTouch: React.FC = () => {
                   <MapPin className="text-[#C9A84C]" size={24} />
                 </div>
                 <div>
-                  <p className="font-bold text-[#12022A]">Address</p>
-                  <p className="text-[#12022A]/70">Columbus, OH, United States</p>
+                  <p className="font-bold text-[#0A1128]">Address</p>
+                  <p className="text-[#0A1128]/70">Columbus, OH, United States</p>
                 </div>
               </div>
             </div>
@@ -65,13 +65,13 @@ const GetInTouch: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="/contact"
-                className="inline-flex items-center justify-center bg-[#12022A] hover:bg-[#1E0A4A] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+                className="inline-flex items-center justify-center bg-[#0A1128] hover:bg-[#1b2547] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
               >
                 Send a Message
               </a>
               <a
                 href="tel:+15551234567"
-                className="inline-flex items-center justify-center border-2 border-[#12022A] hover:bg-[#12022A]/5 px-8 py-4 rounded-sm font-bold text-[#12022A] text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+                className="inline-flex items-center justify-center border-2 border-[#0A1128] hover:bg-[#0A1128]/5 px-8 py-4 rounded-sm font-bold text-[#0A1128] text-sm uppercase tracking-[0.15em] transition-colors duration-200"
               >
                 Call Us
               </a>

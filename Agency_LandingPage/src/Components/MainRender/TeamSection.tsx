@@ -22,18 +22,18 @@ const TeamSection: React.FC = () => {
             <p className="mb-4 font-semibold text-[#C9A84C] text-sm uppercase tracking-[0.15em]">
               MEET THE TEAM
             </p>
-            <h2 className="mb-6 font-bold text-[#12022A] text-4xl md:text-5xl uppercase leading-tight">
+            <h2 className="mb-6 font-bold text-[#0A1128] text-4xl md:text-5xl uppercase leading-tight">
               Real People, Real Experience, Real Results.
             </h2>
-            <p className="mb-6 text-[#12022A]/70 text-lg leading-relaxed">
+            <p className="mb-6 text-[#0A1128]/70 text-lg leading-relaxed">
               Our team is made up of professionals who have walked the same paths our clients walk. We've built businesses, navigated career transitions, managed finances under pressure, and learned what actually works in the real world.
             </p>
-            <p className="mb-8 text-[#12022A]/70 text-lg leading-relaxed">
+            <p className="mb-8 text-[#0A1128]/70 text-lg leading-relaxed">
               That's what makes us different. We're not teaching theory — we're sharing what we've learned through lived experience.
             </p>
             <a
               href="/about"
-              className="inline-flex items-center bg-[#12022A] hover:bg-[#1E0A4A] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+              className="inline-flex items-center bg-[#0A1128] hover:bg-[#1b2547] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
             >
               Meet Our Team
             </a>

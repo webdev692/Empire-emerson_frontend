@@ -79,8 +79,8 @@ const About: React.FC = () => (
   <section id="about" className="mt-20 sm:mt-24 w-full">
 
     {/* HERO */}
-    <div className="relative bg-[#12022A] mt-20 px-6 sm:px-10 lg:px-16 py-24">
-      <div className="absolute inset-0 bg-[#12022A]/70 pointer-events-none" />
+    <div className="relative bg-[#0A1128] mt-20 px-6 sm:px-10 lg:px-16 py-24">
+      <div className="absolute inset-0 bg-[#0A1128]/70 pointer-events-none" />
       <div className="relative flex flex-col justify-center items-center mx-auto max-w-7xl text-center">
         <p className="mb-6 font-semibold text-[#C9A84C] text-2xl uppercase tracking-[4px]">
           About The Emerson Empire
@@ -100,7 +100,7 @@ const About: React.FC = () => (
           <source srcSet={empireWebp} type="image/webp" />
           <img src={empire} alt="Emerson Empire" className="absolute inset-0 w-full h-full object-contain" />
         </picture>
-        <div className="absolute inset-0 bg-[#12022A]/40" />
+        <div className="absolute inset-0 bg-[#0A1128]/40" />
       </div>
 
       {/* RIGHT — What We Do */}
@@ -117,7 +117,7 @@ const About: React.FC = () => (
             <motion.h2
               whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 24 }}
               transition={{ duration: 0.5, delay: 0.07 }}
-              className="max-w-2xl font-bold text-[#12022A] text-[36px] sm:text-[52px] lg:text-[60px] uppercase leading-none tracking-tight heading"
+              className="max-w-2xl font-bold text-[#0A1128] text-[36px] sm:text-[52px] lg:text-[60px] uppercase leading-none tracking-tight heading"
             >
               Two Paths.<br />One Mission.
             </motion.h2>
@@ -138,7 +138,7 @@ const About: React.FC = () => (
                   key={audience.tag}
                   whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 28 }}
                   transition={{ duration: 0.5, delay: i * 0.12 }}
-                  className={`flex flex-col rounded-2xl overflow-hidden shadow-md ${isDark ? "bg-[#12022A]" : "bg-white"}`}
+                  className={`flex flex-col rounded-2xl overflow-hidden shadow-md ${isDark ? "bg-[#0A1128]" : "bg-white"}`}
                   style={{ borderTop: `4px solid ${audience.accentColor}` }}
                 >
                   <div className="px-8 pt-10 pb-8">
@@ -149,11 +149,11 @@ const About: React.FC = () => (
                       <div className="flex justify-center items-center rounded-xl w-12 h-12 shrink-0" style={{ background: `${audience.accentColor}20` }}>
                         <Icon size={24} style={{ color: audience.accentColor }} />
                       </div>
-                      <h3 className={`font-bold text-[28px] sm:text-[36px] leading-tight heading ${isDark ? "text-white" : "text-[#12022A]"}`}>
+                      <h3 className={`font-bold text-[28px] sm:text-[36px] leading-tight heading ${isDark ? "text-white" : "text-[#0A1128]"}`}>
                         {audience.headline}
                       </h3>
                     </div>
-                    <p className={`text-base sm:text-lg leading-[1.9] ${isDark ? "text-[#F5F0E8]/65" : "text-[#12022A]/55"}`}>
+                    <p className={`text-base sm:text-lg leading-[1.9] ${isDark ? "text-[#F5F0E8]/65" : "text-[#0A1128]/55"}`}>
                       {audience.body}
                     </p>
                   </div>
@@ -163,20 +163,20 @@ const About: React.FC = () => (
                       {audience.highlights.map((item) => (
                         <li key={item} className="flex items-start gap-3">
                           <CheckCircle2 size={18} className="mt-0.5 shrink-0" style={{ color: audience.accentColor }} />
-                          <span className={`text-sm leading-[1.7] ${isDark ? "text-[#F5F0E8]/65" : "text-[#12022A]/60"}`}>
+                          <span className={`text-sm leading-[1.7] ${isDark ? "text-[#F5F0E8]/65" : "text-[#0A1128]/60"}`}>
                             {item}
                           </span>
                         </li>
                       ))}
                     </ul>
-                    <p className="opacity-50 mb-6 text-xs uppercase tracking-[1.5px]" style={{ color: isDark ? "#F5F0E8" : "#12022A" }}>
+                    <p className="opacity-50 mb-6 text-xs uppercase tracking-[1.5px]" style={{ color: isDark ? "#F5F0E8" : "#0A1128" }}>
                       {audience.pricing}
                     </p>
                     <div className="flex sm:flex-row flex-col gap-3 mt-auto">
                       <a
                         href={audience.ctaPrimary.href}
                         className="inline-flex justify-center items-center hover:opacity-80 px-6 py-4 rounded-full font-bold text-xs uppercase tracking-[2px] transition-opacity duration-200"
-                        style={{ background: audience.accentColor, color: isDark ? "#12022A" : "#FFFFFF" }}
+                        style={{ background: audience.accentColor, color: isDark ? "#0A1128" : "#FFFFFF" }}
                       >
                         {audience.ctaPrimary.label}
                       </a>
@@ -199,7 +199,7 @@ const About: React.FC = () => (
 
     {/* VALUES */}
     <div className="bg-white px-6 sm:px-10 lg:px-16 pt-6 pb-20">
-      <h2 className="mb-12 font-bold text-[#12022A] text-[48px] text-center uppercase tracking-[0.12em] heading">
+      <h2 className="mb-12 font-bold text-[#0A1128] text-[48px] text-center uppercase tracking-[0.12em] heading">
         Our Commitment and Values
       </h2>
       <div className="gap-5 grid sm:grid-cols-2 lg:grid-cols-3 mx-auto max-w-7xl">
@@ -224,7 +224,7 @@ const About: React.FC = () => (
     </div>
 
     {/* MISSION */}
-    <div className="relative bg-[#12022A] px-6 sm:px-10 lg:px-16 py-24 lg:py-32 overflow-hidden">
+    <div className="relative bg-[#0A1128] px-6 sm:px-10 lg:px-16 py-24 lg:py-32 overflow-hidden">
       <div aria-hidden="true" className="-top-32 -right-32 absolute border border-[#C9A84C]/10 rounded-full w-120 h-120 pointer-events-none" />
       <div aria-hidden="true" className="-top-16 -right-16 absolute border border-[#C9A84C]/10 rounded-full w-80 h-80 pointer-events-none" />
 
@@ -287,7 +287,7 @@ const About: React.FC = () => (
             <motion.h2
               whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 24 }}
               transition={{ duration: 0.5, delay: 0.07 }}
-              className="font-bold text-[#12022A] text-[36px] sm:text-[52px] lg:text-[60px] uppercase leading-none tracking-tight heading"
+              className="font-bold text-[#0A1128] text-[36px] sm:text-[52px] lg:text-[60px] uppercase leading-none tracking-tight heading"
             >
               Where We're Going.
             </motion.h2>
@@ -295,7 +295,7 @@ const About: React.FC = () => (
           <motion.p
             whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:max-w-sm text-[#12022A]/55 text-lg sm:text-2xl leading-[1.9]"
+            className="lg:max-w-sm text-[#0A1128]/55 text-lg sm:text-2xl leading-[1.9]"
           >
             We're working toward a world where your background is a foundation,
             not a ceiling — and where professional success is truly within reach
@@ -311,12 +311,12 @@ const About: React.FC = () => (
               transition={{ duration: 0.45, delay: i * 0.1 }}
               className="relative bg-white shadow-[#4B1E91]/10 shadow-md px-6 pt-8 pb-10 border-[#C9A84C] border-t-2 rounded-b-2xl"
             >
-              <span aria-hidden="true" className="top-4 right-5 absolute font-bold text-[#12022A]/05 text-[72px] leading-none select-none heading">
+              <span aria-hidden="true" className="top-4 right-5 absolute font-bold text-[#0A1128]/05 text-[72px] leading-none select-none heading">
                 {pillar.number}
               </span>
               <p className="mb-3 font-bold text-[#C9A84C] text-sm uppercase tracking-[3px]">{pillar.number}</p>
-              <h3 className="mb-4 font-bold text-[#12022A] sm:text-[26px] text-2xl leading-tight heading">{pillar.title}</h3>
-              <p className="text-[#12022A]/60 text-base sm:text-lg leading-[1.8]">{pillar.description}</p>
+              <h3 className="mb-4 font-bold text-[#0A1128] sm:text-[26px] text-2xl leading-tight heading">{pillar.title}</h3>
+              <p className="text-[#0A1128]/60 text-base sm:text-lg leading-[1.8]">{pillar.description}</p>
             </motion.div>
           ))}
         </div>

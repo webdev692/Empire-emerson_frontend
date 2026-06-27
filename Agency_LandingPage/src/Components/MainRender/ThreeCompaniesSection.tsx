@@ -134,7 +134,7 @@ const GlobalReachSection: React.FC = () => (
 
         <a
           href="/global-internship#application-form"
-          className="inline-flex items-center bg-[#161228] hover:bg-[#241b45] px-7 py-3.5 rounded-lg font-bold text-white text-sm transition-colors duration-200"
+          className="inline-flex items-center bg-[#0A1128] hover:bg-[#241b45] px-7 py-3.5 rounded-lg font-bold text-white text-sm transition-colors duration-200"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
           Apply for the Internship
@@ -160,7 +160,7 @@ const ThreeCompaniesSection: React.FC = () => {
     <section className="bg-white py-0 lg:py-0">
 
       {/* ── Find Your Path ── */}
-      <div className="bg-[#12022A] px-6 sm:px-10 lg:px-16 py-16 lg:py-20">
+      <div className="bg-[#0A1128] px-6 sm:px-10 lg:px-16 py-16 lg:py-20">
         <div className="mx-auto max-w-6xl">
           <p
             className="mb-3 font-semibold text-[#C9A84C] text-xs sm:text-sm uppercase tracking-[0.3em]"
@@ -216,7 +216,7 @@ const ThreeCompaniesSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.55, delay: 0.08 }}
-          className="font-medium text-[#12022A] text-4xl sm:text-5xl lg:text-6xl"
+          className="font-medium text-[#0A1128] text-4xl sm:text-5xl lg:text-6xl"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           Three Emerson Pathways
@@ -226,7 +226,7 @@ const ThreeCompaniesSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 0.16 }}
-          className="mx-auto mt-4 mb-12 max-w-2xl text-[#12022A]/60 text-base sm:text-lg"
+          className="mx-auto mt-4 mb-12 max-w-2xl text-[#0A1128]/60 text-base sm:text-lg"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
           One ecosystem. Three doors. Choose the one that fits where you are right now.
@@ -258,20 +258,20 @@ const ThreeCompaniesSection: React.FC = () => {
               <div className="bg-[#C9A84C]/40 mb-7 w-full h-px" />
 
               <h3
-                className="mb-4 font-medium text-[#12022A] text-xl sm:text-2xl leading-snug"
+                className="mb-4 font-medium text-[#0A1128] text-xl sm:text-2xl leading-snug"
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
               >
                 {company.title}
               </h3>
               <p
-                className="flex-1 mb-7 text-[#12022A]/70 text-sm leading-[1.8]"
+                className="flex-1 mb-7 text-[#0A1128]/70 text-sm leading-[1.8]"
                 style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 {company.description}
               </p>
               <a
                 href={company.href}
-                className="inline-flex justify-center items-center bg-[#12022A] hover:bg-[#1E0A4A] px-6 py-3.5 rounded-sm w-full max-w-[240px] font-semibold text-white text-xs uppercase tracking-[0.18em] transition-colors duration-200"
+                className="inline-flex justify-center items-center bg-[#0A1128] hover:bg-[#1b2547] px-6 py-3.5 rounded-sm w-full max-w-[240px] font-semibold text-white text-xs uppercase tracking-[0.18em] transition-colors duration-200"
               >
                 Learn More
               </a>

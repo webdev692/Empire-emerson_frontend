@@ -30,10 +30,10 @@ const FormsNextSteps: React.FC = () => {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-16 text-center">
-          <h2 className="mb-6 font-bold text-[#12022A] text-4xl md:text-5xl uppercase leading-tight">
+          <h2 className="mb-6 font-bold text-[#0A1128] text-4xl md:text-5xl uppercase leading-tight">
             Forms and Next Steps
           </h2>
-          <p className="mx-auto max-w-2xl text-[#12022A]/70 text-lg">
+          <p className="mx-auto max-w-2xl text-[#0A1128]/70 text-lg">
             Choose the pathway that's right for you and take the first step forward.
           </p>
         </div>
@@ -45,13 +45,13 @@ const FormsNextSteps: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-[#F5EFE7] border border-[#12022A]/10 rounded-lg p-8"
+                className="bg-[#F5EFE7] border border-[#0A1128]/10 rounded-lg p-8"
               >
                 <div className="mb-4 inline-flex items-center justify-center bg-[#C9A84C]/10 rounded-lg w-12 h-12">
                   <Icon className="text-[#C9A84C]" size={24} />
                 </div>
-                <h3 className="mb-4 font-bold text-[#12022A] text-lg">{step.title}</h3>
-                <p className="text-[#12022A]/70 text-sm leading-relaxed">{step.description}</p>
+                <h3 className="mb-4 font-bold text-[#0A1128] text-lg">{step.title}</h3>
+                <p className="text-[#0A1128]/70 text-sm leading-relaxed">{step.description}</p>
               </div>
             );
           })}
@@ -61,7 +61,7 @@ const FormsNextSteps: React.FC = () => {
         <div className="mt-16 text-center">
           <a
             href="/contact"
-            className="inline-flex items-center bg-[#12022A] hover:bg-[#1E0A4A] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+            className="inline-flex items-center bg-[#0A1128] hover:bg-[#1b2547] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
           >
             Get Started Today
           </a>

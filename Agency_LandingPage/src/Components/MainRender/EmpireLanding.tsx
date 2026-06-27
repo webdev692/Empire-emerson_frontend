@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
     <div>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:top-4 focus:left-4 focus:z-9999 focus:fixed focus:bg-[#040915] focus:px-4 focus:py-2 focus:rounded focus:font-semibold focus:text-white focus:text-sm"
+        className="sr-only focus:not-sr-only focus:top-4 focus:left-4 focus:z-9999 focus:fixed focus:bg-[#0A1128] focus:px-4 focus:py-2 focus:rounded focus:font-semibold focus:text-white focus:text-sm"
       >
         Skip to main content
       </a>

@@ -5,7 +5,7 @@ import Footer from './Components/Umbrella/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#050c1d] text-white">
+    <div className="min-h-screen bg-[#0A1128] text-white">
       <Navbar />
       <HomePage />
       <Footer />

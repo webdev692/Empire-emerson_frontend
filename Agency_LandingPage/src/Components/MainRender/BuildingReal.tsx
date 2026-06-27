@@ -8,19 +8,19 @@ const BuildingReal: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left: Text content */}
           <div className="lg:w-1/2">
-            <h2 className="mb-6 font-bold text-[#12022A] text-4xl md:text-5xl uppercase leading-tight">
+            <h2 className="mb-6 font-bold text-[#0A1128] text-4xl md:text-5xl uppercase leading-tight">
               We're Building Something Real —<br />
               <span className="text-[#C9A84C]">And You Can Be Part of It.</span>
             </h2>
-            <p className="mb-6 text-[#12022A]/70 text-lg leading-relaxed">
+            <p className="mb-6 text-[#0A1128]/70 text-lg leading-relaxed">
               The Emerson Empire isn't just another training program. We're building a global movement of financially literate, professionally equipped individuals who are ready to lead their own futures and serve their communities.
             </p>
-            <p className="mb-8 text-[#12022A]/70 text-lg leading-relaxed">
+            <p className="mb-8 text-[#0A1128]/70 text-lg leading-relaxed">
               Whether you're an individual looking to level up, an entrepreneur building something from scratch, or a community partner looking for real solutions — we have the infrastructure, expertise, and commitment to help you succeed.
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center bg-[#12022A] hover:bg-[#1E0A4A] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+              className="inline-flex items-center bg-[#0A1128] hover:bg-[#1b2547] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
             >
               Apply for the Internship
             </a>

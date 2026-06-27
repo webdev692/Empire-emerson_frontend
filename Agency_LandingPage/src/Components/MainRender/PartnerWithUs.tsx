@@ -18,7 +18,7 @@ const PartnerWithUs: React.FC = () => {
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center bg-[#C9A84C] hover:bg-[#D4B555] w-fit px-8 py-4 rounded-sm font-bold text-[#12022A] text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+              className="inline-flex items-center bg-[#C9A84C] hover:bg-[#D4B555] w-fit px-8 py-4 rounded-sm font-bold text-[#0A1128] text-sm uppercase tracking-[0.15em] transition-colors duration-200"
             >
               Start a Conversation
             </a>

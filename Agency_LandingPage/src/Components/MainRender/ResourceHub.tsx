@@ -46,7 +46,7 @@ const ResourceHub: React.FC = () => {
         <div className="mt-16 text-center">
           <a
             href="/classes"
-            className="inline-flex items-center bg-[#C9A84C] hover:bg-[#D4B555] px-8 py-4 rounded-sm font-bold text-[#12022A] text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+            className="inline-flex items-center bg-[#C9A84C] hover:bg-[#D4B555] px-8 py-4 rounded-sm font-bold text-[#0A1128] text-sm uppercase tracking-[0.15em] transition-colors duration-200"
           >
             Explore All Resources
           </a>

@@ -222,17 +222,17 @@ const ServiceModal: React.FC<{ modal: ModalState; onClose: () => void }> = ({ mo
           <div className="flex justify-between items-center px-6 py-4 border-neutral-100 border-b shrink-0">
             <div>
               <p className="mb-0.5 font-mono text-[#C9A84C] text-xs uppercase tracking-widest">Service Request</p>
-              <h3 className="font-bold text-[#12022A] text-sm">{modal.title}</h3>
+              <h3 className="font-bold text-[#0A1128] text-sm">{modal.title}</h3>
             </div>
-            <button onClick={onClose} className="flex justify-center items-center w-8 h-8 text-neutral-400 hover:text-[#12022A] transition-colors">
+            <button onClick={onClose} className="flex justify-center items-center w-8 h-8 text-neutral-400 hover:text-[#0A1128] transition-colors">
               <X size={18} />
             </button>
           </div>
           <div className="flex-1 overflow-hidden">
             {submitted ? (
               <div className="flex flex-col justify-center items-center px-8 py-16 h-full text-center">
-                <div className="flex justify-center items-center bg-[#C9A84C] mb-6 w-16 h-16 font-bold text-[#12022A] text-2xl">âœ“</div>
-                <h4 className="mb-3 font-bold text-[#12022A] text-xl uppercase">Request Submitted!</h4>
+                <div className="flex justify-center items-center bg-[#C9A84C] mb-6 w-16 h-16 font-bold text-[#0A1128] text-2xl">âœ“</div>
+                <h4 className="mb-3 font-bold text-[#0A1128] text-xl uppercase">Request Submitted!</h4>
                 <p className="mb-8 max-w-xs text-neutral-500 text-sm leading-relaxed">
                   Our team will follow up within 24â€“48 business hours.
                 </p>
@@ -266,7 +266,7 @@ const FAQItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
   return (
     <div className="border-neutral-100 last:border-0 border-b">
       <button onClick={() => setOpen(!open)} className="flex justify-between items-center gap-4 py-5 w-full text-left">
-        <span className="font-bold text-[#12022A] text-sm">{q}</span>
+        <span className="font-bold text-[#0A1128] text-sm">{q}</span>
         <ChevronDown size={16} className={`text-[#4B1E91] shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </button>
       <AnimatePresence>
@@ -311,7 +311,7 @@ const AgencyPage: React.FC = () => {
       </Helmet>
 
       {/* â”€â”€ Hero â”€â”€ */}
-      <div className="bg-[#12022A] text-white">
+      <div className="bg-[#0A1128] text-white">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 max-w-7xl">
           <div className="items-center gap-8 lg:gap-16 grid lg:grid-cols-2">
             <div>
@@ -343,7 +343,7 @@ const AgencyPage: React.FC = () => {
               <div className="flex sm:flex-row flex-col gap-4">
                 <button
                   onClick={() => openModal('Request Services', FORM_SERVICES)}
-                  className="inline-flex justify-center items-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-3.5 font-mono font-bold text-[#12022A] text-xs uppercase tracking-wider transition-colors duration-200"
+                  className="inline-flex justify-center items-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-3.5 font-mono font-bold text-[#0A1128] text-xs uppercase tracking-wider transition-colors duration-200"
                 >
                   Request Services
                   <ArrowRight size={14} />
@@ -391,7 +391,7 @@ const AgencyPage: React.FC = () => {
       <div id="services" className="bg-[#FAFAF9] py-12 border-neutral-100 border-b">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <p className="mb-3 font-mono text-[#C9A84C] text-xs uppercase tracking-widest">What We Offer</p>
-          <h2 className="mb-8 font-black text-[#12022A] text-2xl sm:text-3xl uppercase leading-tight">
+          <h2 className="mb-8 font-black text-[#0A1128] text-2xl sm:text-3xl uppercase leading-tight">
             Four Core Service Areas.
           </h2>
           <div className="gap-4 lg:gap-6 grid grid-cols-2 lg:grid-cols-4">
@@ -412,7 +412,7 @@ const AgencyPage: React.FC = () => {
                   <p className="mb-1 font-mono text-xs uppercase tracking-widest" style={{ color: cat.color }}>
                     {cat.tagline}
                   </p>
-                  <p className="font-bold text-[#12022A] group-hover:text-[#4B1E91] text-sm leading-snug transition-colors">
+                  <p className="font-bold text-[#0A1128] group-hover:text-[#4B1E91] text-sm leading-snug transition-colors">
                     {cat.label}
                   </p>
                   <p className="mt-1 text-neutral-400 text-xs">
@@ -444,7 +444,7 @@ const AgencyPage: React.FC = () => {
                       {cat.tagline}
                     </span>
                   </div>
-                  <h2 className="mb-6 font-black text-[#12022A] text-3xl sm:text-4xl uppercase leading-tight">
+                  <h2 className="mb-6 font-black text-[#0A1128] text-3xl sm:text-4xl uppercase leading-tight">
                     {cat.title}
                   </h2>
                   <p className="mb-6 text-neutral-500 text-sm leading-relaxed">{cat.summary}</p>
@@ -466,7 +466,7 @@ const AgencyPage: React.FC = () => {
                   <div className="space-y-2 mb-8">
                     {cat.services.map((s) => (
                       <div key={s.name} className="flex justify-between items-center bg-white px-4 py-3 border border-neutral-100">
-                        <span className="font-bold text-[#12022A] text-sm">{s.name}</span>
+                        <span className="font-bold text-[#0A1128] text-sm">{s.name}</span>
                         <span className="ml-4 font-mono text-neutral-400 text-xs shrink-0">{s.note}</span>
                       </div>
                     ))}
@@ -474,7 +474,7 @@ const AgencyPage: React.FC = () => {
 
                   {/* Disclaimer */}
                   {cat.disclaimer && (
-                    <div className="bg-[#12022A]/4 mb-6 px-4 py-3 border-neutral-300 border-l-2">
+                    <div className="bg-[#0A1128]/4 mb-6 px-4 py-3 border-neutral-300 border-l-2">
                       <p className="text-neutral-500 text-xs italic leading-relaxed">{cat.disclaimer}</p>
                     </div>
                   )}
@@ -482,7 +482,7 @@ const AgencyPage: React.FC = () => {
                   <button
                     onClick={() => openModal(cat.formTitle, cat.formUrl)}
                     className="inline-flex items-center gap-2 hover:shadow-md px-8 py-4 font-mono font-bold text-xs uppercase tracking-wider transition-all duration-200"
-                    style={{ backgroundColor: cat.color, color: cat.color === '#C9A84C' ? '#12022A' : '#ffffff' }}
+                    style={{ backgroundColor: cat.color, color: cat.color === '#C9A84C' ? '#0A1128' : '#ffffff' }}
                   >
                     Request {cat.tagline}
                     <ArrowRight size={14} />
@@ -504,7 +504,7 @@ const AgencyPage: React.FC = () => {
       })}
 
       {/* â”€â”€ How to get started â”€â”€ */}
-      <section className="bg-[#12022A] py-20 text-white">
+      <section className="bg-[#0A1128] py-20 text-white">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <p className="mb-3 font-mono text-[#C9A84C] text-xs uppercase tracking-widest">Process</p>
           <h2 className="mb-12 font-black text-white text-2xl sm:text-3xl uppercase leading-tight">
@@ -547,7 +547,7 @@ const AgencyPage: React.FC = () => {
             <img src={Taxing} alt="Tax preparation and readiness services" className="w-full h-72 sm:h-80 lg:h-96 object-cover" />
             <div>
               <p className="mb-3 font-mono text-[#C9A84C] text-xs uppercase tracking-widest">Tax Season Ready</p>
-              <h2 className="mb-4 font-black text-[#12022A] text-2xl sm:text-3xl uppercase leading-tight">
+              <h2 className="mb-4 font-black text-[#0A1128] text-2xl sm:text-3xl uppercase leading-tight">
                 Don't Let Tax Season Catch You Unprepared.
               </h2>
               <p className="mb-6 text-neutral-500 text-sm leading-relaxed">
@@ -587,7 +587,7 @@ const AgencyPage: React.FC = () => {
       <section className="bg-white py-20 border-neutral-100 border-b">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
           <p className="mb-3 font-mono text-[#C9A84C] text-xs uppercase tracking-widest">FAQ</p>
-          <h2 className="mb-8 font-black text-[#12022A] text-2xl sm:text-3xl uppercase leading-tight">
+          <h2 className="mb-8 font-black text-[#0A1128] text-2xl sm:text-3xl uppercase leading-tight">
             Frequently Asked Questions.
           </h2>
           <div className="px-6 sm:px-8 border border-neutral-100">
@@ -601,32 +601,32 @@ const AgencyPage: React.FC = () => {
       {/* â”€â”€ Bottom CTA â”€â”€ */}
       <div className="bg-[#C9A84C] py-20">
         <div className="mx-auto px-6 max-w-4xl text-center">
-          <p className="mb-4 font-mono text-[#12022A]/60 text-xs uppercase tracking-widest">Ready to Get Started?</p>
-          <h2 className="mb-4 font-black text-[#12022A] text-3xl sm:text-4xl uppercase leading-tight">
+          <p className="mb-4 font-mono text-[#0A1128]/60 text-xs uppercase tracking-widest">Ready to Get Started?</p>
+          <h2 className="mb-4 font-black text-[#0A1128] text-3xl sm:text-4xl uppercase leading-tight">
             Get the Financial Support You Deserve.
           </h2>
-          <p className="mx-auto mb-8 max-w-xl text-[#12022A]/70 text-sm leading-relaxed">
+          <p className="mx-auto mb-8 max-w-xl text-[#0A1128]/70 text-sm leading-relaxed">
             Fee waivers available. No sales pressure. Education-first approach.
             Submit a request and our team will follow up within 24â€“48 business hours.
           </p>
           <div className="flex sm:flex-row flex-col justify-center gap-4">
             <button
               onClick={() => openModal('Request Services â€” The Emerson Agency', FORM_SERVICES)}
-              className="inline-flex justify-center items-center gap-2 bg-[#12022A] hover:bg-[#1E0A4A] px-8 py-4 font-mono font-bold text-white text-xs uppercase tracking-wider transition-colors duration-200"
+              className="inline-flex justify-center items-center gap-2 bg-[#0A1128] hover:bg-[#1b2547] px-8 py-4 font-mono font-bold text-white text-xs uppercase tracking-wider transition-colors duration-200"
             >
               Request Services
               <ArrowRight size={14} />
             </button>
             <Link
               to="/contact"
-              className="inline-flex justify-center items-center gap-2 hover:bg-[#12022A]/5 px-8 py-4 border border-[#12022A]/30 hover:border-[#12022A] font-mono text-[#12022A] text-xs uppercase tracking-wider transition-colors duration-200"
+              className="inline-flex justify-center items-center gap-2 hover:bg-[#0A1128]/5 px-8 py-4 border border-[#0A1128]/30 hover:border-[#0A1128] font-mono text-[#0A1128] text-xs uppercase tracking-wider transition-colors duration-200"
             >
               Have Questions? Contact Us
             </Link>
           </div>
-          <p className="mt-8 font-mono text-[#12022A]/40 text-xs">
+          <p className="mt-8 font-mono text-[#0A1128]/40 text-xs">
             The Emerson Agency LLC is not a licensed financial advisor, CPA, or insurance agency.
-            All services are education-centered. <Link to="/disclaimer" className="hover:text-[#12022A]/70 underline">Read full disclaimer.</Link>
+            All services are education-centered. <Link to="/disclaimer" className="hover:text-[#0A1128]/70 underline">Read full disclaimer.</Link>
           </p>
         </div>
       </div>

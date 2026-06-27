@@ -21,7 +21,7 @@ const businessPoints = [
 
 export default function SupportSection() {
   return (
-    <section className="text-[#081224]">
+    <section className="text-[#0A1128]">
       {/* Full-bleed light section: heading + image on left, text on right */}
       <div className="w-full bg-white">
         <div className="mx-auto max-w-[1320px] px-5 py-20">
@@ -29,7 +29,7 @@ export default function SupportSection() {
             <div className="space-y-6">
               <p className="text-sm uppercase tracking-[0.45em] text-[#b18b4c]">Individuals & Families</p>
               <h2
-                className="text-[3.75rem] font-serif font-semibold leading-tight tracking-[-0.02em] text-[#081224] sm:text-[4.25rem] lg:text-[4.75rem]"
+                className="text-[3.75rem] font-serif font-semibold leading-tight tracking-[-0.02em] text-[#0A1128] sm:text-[4.25rem] lg:text-[4.75rem]"
                 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
               >
                 Support for households,<br />parents, students, and<br />workers
@@ -61,7 +61,7 @@ export default function SupportSection() {
       </div>
 
       {/* Full-bleed dark section: description left, eyebrow+heading+image card on right */}
-      <div className="w-full bg-[#061224]">
+      <div className="w-full bg-[#0A1128]">
         <div className="mx-auto max-w-[1320px] px-5 py-24">
           <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] items-start">
             <div className="pr-4 lg:pr-12 pt-8 lg:pt-10">
@@ -97,7 +97,7 @@ export default function SupportSection() {
               </div>
 
               <div className="mt-8 w-full max-w-xl">
-                <div className="overflow-hidden rounded-[20px] border border-white/10 bg-[#081224] shadow-[0_30px_70px_rgba(0,0,0,0.25)]">
+                <div className="overflow-hidden rounded-[20px] border border-white/10 bg-[#0A1128] shadow-[0_30px_70px_rgba(0,0,0,0.25)]">
                   <img src={consultingImage} alt="Business meeting" className="w-full h-[420px] object-cover" />
                 </div>
               </div>

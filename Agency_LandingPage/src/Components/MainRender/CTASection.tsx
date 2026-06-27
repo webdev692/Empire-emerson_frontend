@@ -1,11 +1,11 @@
 export default function CTASection() {
   return (
-    <section className="bg-[#f7f9ff] text-[#081224]">
+    <section className="bg-[#f7f9ff] text-[#0A1128]">
       <div className="w-full bg-white">
         <div className="mx-auto max-w-[1320px] px-5 py-20">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm uppercase tracking-[0.35em] text-[#b18b4c]">Free and reduced-cost options</p>
-            <h2 className="mt-3 text-5xl font-serif font-semibold leading-tight text-[#081224] sm:text-6xl">
+            <h2 className="mt-3 text-5xl font-serif font-semibold leading-tight text-[#0A1128] sm:text-6xl">
               Accessible support, where possible
             </h2>
           </div>
@@ -25,7 +25,7 @@ export default function CTASection() {
         <div className="mx-auto max-w-[1320px] px-5 py-20">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm uppercase tracking-[0.35em] text-[#b18b4c]">Get in touch</p>
-            <h3 className="mt-3 text-5xl font-serif font-semibold leading-tight text-[#081224] sm:text-6xl">
+            <h3 className="mt-3 text-5xl font-serif font-semibold leading-tight text-[#0A1128] sm:text-6xl">
               Take the next step
             </h3>
             <p className="mt-6 text-lg leading-9 text-slate-600">
@@ -37,7 +37,7 @@ export default function CTASection() {
             <a href="#" className="inline-flex items-center justify-center rounded-full bg-[#0b57ff] px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-[0_15px_30px_rgba(11,87,255,0.3)] transition hover:opacity-90">
               Request Services
             </a>
-            <a href="#" className="inline-flex items-center justify-center rounded-full border border-[#d5d6e0] bg-white px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#081224] transition hover:border-[#d4af37]">
+            <a href="#" className="inline-flex items-center justify-center rounded-full border border-[#d5d6e0] bg-white px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#0A1128] transition hover:border-[#d4af37]">
               Request Business Consultation
             </a>
           </div>

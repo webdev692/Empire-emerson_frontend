@@ -26,7 +26,7 @@ const featureItems = [
 
 export default function MissionSection() {
   return (
-    <section className="bg-[#091b34] py-20 text-white">
+    <section className="bg-[#0A1128] py-20 text-white">
       <div className="mx-auto max-w-[1320px] px-5">
         <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] items-center">
           <div className="space-y-10">
@@ -47,7 +47,7 @@ export default function MissionSection() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#0b1d3d] shadow-[0_30px_70px_rgba(0,0,0,0.28)]">
+          <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#0A1128] shadow-[0_30px_70px_rgba(0,0,0,0.28)]">
             <img src={AgencyImage} alt="Team review" className="h-full w-full object-cover" />
           </div>
         </div>
