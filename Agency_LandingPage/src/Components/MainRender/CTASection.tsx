@@ -47,7 +47,8 @@ export default function CTASection() {
                 <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
-                href="#"
+                href="https://forms.gle/VSCGHQEJSdKhYizKA"
+                onClick={(e) => { e.preventDefault(); openRequestForm() }}
                 className="inline-flex items-center justify-center rounded-full border border-[#d5d6e0] bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#0A1128] transition hover:border-[#d4af37]"
               >
                 Request Business Consultation
