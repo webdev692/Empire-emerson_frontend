@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
         Skip to main content
       </a>
       <Helmet>
-        <title>The Emerson Agency | Landing Page</title>
+        <title>The Emerson Agency</title>
         <meta
           name="description"
           content="The Emerson Agency provides strategic business support, tax education, and financial clarity for families and entrepreneurs."
