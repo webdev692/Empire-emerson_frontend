@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect } from "react";
-import { FaBolt, FaCalendarAlt, FaClock, FaTimes, FaCheck, FaGraduationCap, FaArrowRight } from "react-icons/fa";
+import { Zap, Calendar, Clock, X, Check, GraduationCap, ArrowRight } from "lucide-react";
 import type { ClassItem } from "../data/classData";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -72,7 +72,7 @@ const BADGE_STYLE: Record<SessionType, string> = {
 
 function SessionBadge({ dayName }: { dayName: string }) {
   const { label, type } = sessionStatus(dayName);
-  const icon = type === "today" ? <FaBolt className="inline mr-1 text-yellow-400" /> : type === "tomorrow" ? <FaCalendarAlt className="inline mr-1" /> : null;
+  const icon = type === "today" ? <Zap className="inline mr-1 text-yellow-400" size={16} /> : type === "tomorrow" ? <Calendar className="inline mr-1" size={16} /> : null;
   return (
     <span className={`inline-block px-2 py-0.5 font-mono text-xs uppercase tracking-wider font-bold ${BADGE_STYLE[type]}`}>
       {icon}{label}
@@ -127,7 +127,7 @@ function WeeklyTimeline({ classes, activeDay, onDayClick }: WeeklyTimelineProps)
             onClick={() => onDayClick(null)}
             className="font-mono text-white/40 hover:text-white text-xs uppercase tracking-wider transition-colors"
           >
-            <>Clear filter <FaTimes className="inline ml-1" /></>
+            <>Clear filter <X className="inline ml-1" size={16} /></>
           </button>
         )}
       </div>
@@ -242,7 +242,7 @@ function RegistrationFormModal({ classItem, onClose, onComplete }: FormModalProp
         {/* ── Submitted confirmation ── */}
         {submitted ? (
           <div className="flex flex-col flex-1 justify-center items-center px-8 py-12 text-center">
-            <div className="flex justify-center items-center bg-[#C9A84C] mb-5 rounded-sm w-14 h-14 text-[#0A1128] text-2xl"><FaCheck /></div>
+            <div className="flex justify-center items-center bg-[#C9A84C] mb-5 rounded-sm w-14 h-14 text-[#0A1128] text-2xl"><Check /></div>
             <h3 className="mb-3 font-bold text-[#0A1128] text-xl">Registration Submitted!</h3>
             <p className="mb-2 max-w-sm text-neutral-500 text-sm leading-relaxed">
               Your registration for <span className="font-semibold text-[#0A1128]">{classItem.title}</span> has been received.
@@ -318,7 +318,7 @@ function ClassCard({ item, isRegistered, onRegister, onCancel }: ClassCardProps)
         <div className="flex items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2">
             <div className="flex justify-center items-center bg-[#4B1E91]/10 w-7 h-7 shrink-0">
-              <FaGraduationCap size={13} className="text-[#4B1E91]" />
+              <GraduationCap size={13} className="text-[#4B1E91]" />
             </div>
             <span className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest line-clamp-1">
               {item.theme}
@@ -346,11 +346,11 @@ function ClassCard({ item, isRegistered, onRegister, onCancel }: ClassCardProps)
         <div className="mb-4 pl-3 border-l-2 border-[#4B1E91]/25">
           <p className="mb-1 font-mono text-[#4B1E91]/50 text-xs uppercase tracking-wider">Schedule</p>
           <div className="flex items-center gap-2 font-body text-[#0A1128] text-sm mb-0.5">
-            <FaCalendarAlt size={11} className="text-[#4B1E91] shrink-0" />
+            <Calendar size={11} className="text-[#4B1E91] shrink-0" />
             <span>{item.day} · {MONTH_SHORT[getNextSession(item.day).getMonth()]} {getNextSession(item.day).getDate()}</span>
           </div>
           <div className="flex items-center gap-2 font-body text-[#0A1128] text-sm">
-            <FaClock size={11} className="text-[#4B1E91] shrink-0" />
+            <Clock size={11} className="text-[#4B1E91] shrink-0" />
             <span>{item.time}</span>
           </div>
         </div>
@@ -360,7 +360,7 @@ function ClassCard({ item, isRegistered, onRegister, onCancel }: ClassCardProps)
           <span className={`inline-block mt-1.5 rounded-full w-1.5 h-1.5 shrink-0 ${isUrgent ? "bg-red-500" : "bg-[#C9A84C]"}`} />
           <p className={`font-mono text-sm ${isUrgent ? "text-red-500 font-bold" : "text-neutral-500"}`}>
             {isUrgent
-              ? <><FaBolt className="inline mr-1" />Only {left} spots left!</>
+              ? <><Zap className="inline mr-1" size={16} />Only {left} spots left!</>
               : <>{left} of {item.spotsTotal} spots remaining</>
             }
           </p>
@@ -383,7 +383,7 @@ function ClassCard({ item, isRegistered, onRegister, onCancel }: ClassCardProps)
         {isRegistered ? (
           <div className="mt-auto space-y-2">
             <div className="flex justify-center items-center gap-2 bg-[#C9A84C]/10 px-4 py-3 border border-[#C9A84C] w-full font-mono font-bold text-[#4B1E91] text-xs uppercase tracking-wider">
-              <FaCheck className="text-[#C9A84C]" /> Registered
+              <Check className="text-[#C9A84C]" /> Registered
             </div>
             <div className="flex justify-between items-center">
               <a
@@ -398,7 +398,7 @@ function ClassCard({ item, isRegistered, onRegister, onCancel }: ClassCardProps)
                 onClick={onCancel}
                 className="font-mono text-red-400 hover:text-red-600 text-xs hover:underline uppercase"
               >
-                <>Cancel <FaTimes className="inline ml-1" /></>
+                <>Cancel <X className="inline ml-1" size={16} /></>
               </button>
             </div>
           </div>
@@ -409,7 +409,7 @@ function ClassCard({ item, isRegistered, onRegister, onCancel }: ClassCardProps)
             className={`mt-auto flex items-center justify-center gap-2 px-4 py-3 font-mono text-xs uppercase tracking-wider transition-colors duration-200 ${buttonCls}`}
           >
             {left === 0 ? "Class Full" : "Register for Class"}
-            {left > 0 && <FaArrowRight size={11} />}
+            {left > 0 && <ArrowRight size={11} />}
           </button>
         )}
       </div>
@@ -474,7 +474,7 @@ const ClassSearch: React.FC<ClassSearchProps> = ({ classes, showTodayFilter = tr
 
   const tierButtons = [
     { id: "all",       label: `All ${classes.length} Classes` },
-    ...(showTodayFilter ? [{ id: "today", label: "Today", icon: <FaBolt className="inline mr-1" /> }] : []),
+    ...(showTodayFilter ? [{ id: "today", label: "Today", icon: <Zap className="inline mr-1" size={16} /> }] : []),
     { id: "free",      label: "Free" },
     { id: "workshop",  label: "Workshops ($10�$25)" },
     { id: "intensive", label: "Intensives ($25–$50)" },
@@ -500,7 +500,7 @@ const ClassSearch: React.FC<ClassSearchProps> = ({ classes, showTodayFilter = tr
                   </span>
                   <h4 className="mt-2 font-bold text-[#0A1128] text-sm line-clamp-1">{item.title}</h4>
                   <p className="mt-1 font-mono text-neutral-400 text-xs flex items-center gap-1 flex-wrap">
-                    <FaCalendarAlt className="inline" /> {item.day}, {MONTH_SHORT[getNextSession(item.day).getMonth()]} {getNextSession(item.day).getDate()} · <FaClock className="inline" /> {item.time}
+                    <Calendar className="inline" size={16} /> {item.day}, {MONTH_SHORT[getNextSession(item.day).getMonth()]} {getNextSession(item.day).getDate()} · <Clock className="inline" size={16} /> {item.time}
                   </p>
                 </div>
                 <div className="flex justify-between mt-3">
@@ -630,7 +630,7 @@ const ClassSearch: React.FC<ClassSearchProps> = ({ classes, showTodayFilter = tr
               onClick={() => { setSearchTerm(""); setActiveFilter("all"); setActiveTheme(null); setActiveDayFilter(null); }}
               className="font-bold text-red-400 text-xs hover:underline uppercase"
             >
-              <>Clear All <FaTimes className="inline ml-1" /></>
+              <>Clear All <X className="inline ml-1" size={16} /></>
             </button>
           </div>
         )}
