@@ -2,9 +2,6 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import Hero from "../Umbrella/Hero";
 import ThreeCompaniesSection from "./ThreeCompaniesSection";
-import WhatWeOffer from "./WhatWeOffer";
-import BuildingReal from "./BuildingReal";
-import TeamSection from "./TeamSection";
 import ResourceHub from "./ResourceHub";
 import FeeWaiverSection from "./FeeWaiverSection";
 import FormsNextSteps from "./FormsNextSteps";
@@ -16,7 +13,7 @@ const HomePage: React.FC = () => {
     <div>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:top-4 focus:left-4 focus:z-9999 focus:fixed focus:bg-[#12022A] focus:px-4 focus:py-2 focus:rounded focus:font-semibold focus:text-white focus:text-sm"
+        className="sr-only focus:not-sr-only focus:top-4 focus:left-4 focus:z-9999 focus:fixed focus:bg-[#1C1336] focus:px-4 focus:py-2 focus:rounded focus:font-semibold focus:text-white focus:text-sm"
       >
         Skip to main content
       </a>
@@ -41,10 +38,7 @@ const HomePage: React.FC = () => {
 
       <main id="main-content">
         <Hero />
-        <WhatWeOffer />
         <ThreeCompaniesSection />
-        <BuildingReal />
-        <TeamSection />
         <ResourceHub />
         <FeeWaiverSection />
         <FormsNextSteps />

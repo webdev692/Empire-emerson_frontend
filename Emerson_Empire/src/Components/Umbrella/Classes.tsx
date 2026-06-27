@@ -41,7 +41,7 @@ const ClassCatalog: React.FC = () => {
     <div className="bg-white selection:bg-[#4B1E91] pt-16 sm:pt-20 min-h-screen font-body text-black selection:text-white antialiased">
 
       {/* ──────────────────────────────────────────────────────────── */}
-      <div id="weekly-classes" className="bg-[#12022A] text-white">
+      <div id="weekly-classes" className="bg-[#1C1336] text-white">
         <section className="mx-auto px-4 sm:px-6 lg:px-8 py-20 max-w-4xl text-center">
           <span className="inline-block mb-4 font-mono text-[#C9A84C] text-xs uppercase tracking-[4px]">
             Weekly Class Series
@@ -58,7 +58,7 @@ const ClassCatalog: React.FC = () => {
           <div className="flex sm:flex-row flex-col justify-center items-center gap-4">
             <button
               onClick={() => scrollToCatalog("ongoing")}
-              className="bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-3.5 w-full sm:w-auto font-mono font-bold text-[#12022A] text-xs uppercase tracking-wider transition-colors duration-200"
+              className="bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-3.5 w-full sm:w-auto font-mono font-bold text-[#1C1336] text-xs uppercase tracking-wider transition-colors duration-200"
             >
               Explore All {ongoingClasses.length} Classes <FaArrowDown className="inline ml-1" />
             </button>
@@ -80,7 +80,7 @@ const ClassCatalog: React.FC = () => {
             <div className="gap-8 grid grid-cols-1 md:grid-cols-3">
               <div className="pl-4 border-[#C9A84C] border-l-2">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="bg-[#C9A84C] px-2 py-0.5 font-mono font-bold text-[#12022A] text-xs uppercase">Free Classes</span>
+                  <span className="bg-[#C9A84C] px-2 py-0.5 font-mono font-bold text-[#1C1336] text-xs uppercase">Free Classes</span>
                   <span className="font-bold text-[#C9A84C] text-sm">FREE</span>
                 </div>
                 <h3 className="mb-1 font-heading font-bold text-white text-base">Free General Admission</h3>
@@ -129,7 +129,7 @@ const ClassCatalog: React.FC = () => {
                 <span className="block mb-4 font-black text-[#4B1E91]/10 text-[56px] leading-none select-none">
                   {step.step}
                 </span>
-                <h3 className="mb-2 font-heading font-bold text-[#12022A] text-[24px]">{step.title}</h3>
+                <h3 className="mb-2 font-heading font-bold text-[#1C1336] text-[24px]">{step.title}</h3>
                 <p className="font-body text-neutral-500 text-sm leading-relaxed">{step.body}</p>
               </div>
             ))}
@@ -179,7 +179,7 @@ const ClassCatalog: React.FC = () => {
                 </div>
                 <button
                   onClick={() => scrollToCatalog("ongoing")}
-                  className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-3.5 font-mono font-bold text-[#12022A] text-xs uppercase tracking-wider transition-colors duration-200"
+                  className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-3.5 font-mono font-bold text-[#1C1336] text-xs uppercase tracking-wider transition-colors duration-200"
                 >
                   Register for This Class <FaArrowRight className="inline ml-1" />
                 </button>
@@ -213,7 +213,7 @@ const ClassCatalog: React.FC = () => {
               <span
                 className={`text-xs px-1.5 py-0.5 rounded font-bold ${
                   activeTab === tab.id
-                    ? "bg-[#C9A84C] text-[#12022A]"
+                    ? "bg-[#C9A84C] text-[#1C1336]"
                     : "bg-neutral-100 text-neutral-500"
                 }`}
               >
