@@ -81,6 +81,7 @@ const Navbar: React.FC = () => {
               <NavLink
                 to={link.href}
                 end={link.href === '/'}
+                onClick={() => { if (link.href === '/') window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className={navClass}
               >
                 {link.label}
@@ -145,7 +146,7 @@ const Navbar: React.FC = () => {
                 <NavLink
                   to={link.href}
                   end={link.href === '/'}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => { setMenuOpen(false); if (link.href === '/') window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                   className={({ isActive }) =>
                     `flex-1 py-3 font-medium text-xs uppercase tracking-[0.2em] transition-colors duration-200 ${
                       isActive ? 'text-[#C9A84C]' : 'text-white/60 hover:text-[#C9A84C]'
