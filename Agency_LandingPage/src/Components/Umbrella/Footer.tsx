@@ -1,55 +1,98 @@
 import { Mail, Phone, MapPin } from 'lucide-react'
+import { FaInstagram, FaLinkedinIn, FaFacebookF, FaTiktok, FaEnvelope } from 'react-icons/fa'
+import logo from '../../assets/LogoAgency.png'
+
+const socials = [
+  { Icon: FaInstagram, label: 'Instagram' },
+  { Icon: FaLinkedinIn, label: 'LinkedIn' },
+  { Icon: FaFacebookF, label: 'Facebook' },
+  { Icon: FaTiktok, label: 'TikTok' },
+  { Icon: FaEnvelope, label: 'Email' },
+]
+
+const navLinks = ['Home', 'Classes', 'Services', 'Internship', 'About Us']
 
 export default function Footer() {
   return (
     <footer className="bg-[#0A1128] text-white">
       <div className="mx-auto max-w-[1320px] px-5 py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.7fr_1fr_1fr]">
-          <div className="space-y-6">
+        <div className="grid gap-12 lg:grid-cols-[1.7fr_1fr_1.3fr]">
+          {/* Brand */}
+          <div>
             <div className="flex items-center gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#d4af37] text-lg font-semibold tracking-[0.35em] text-[#d4af37]">
-                EA
-              </div>
+              <img src={logo} alt="The Emerson Agency" className="h-24 w-24 shrink-0 object-contain" />
               <div>
-                <p className="text-sm uppercase tracking-[0.3em] text-[#d4af37]">The Emerson Agency</p>
-                <p className="text-sm text-white/70">Where your financial chaos finally meets its solution.</p>
+                <p className="font-serif text-2xl font-bold uppercase tracking-wide text-white">
+                  The Emerson Agency
+                </p>
+                <p className="mt-1 font-serif text-lg italic text-white/80">
+                  Where your financial chaos finally meets its solution.
+                </p>
               </div>
             </div>
-            <p className="text-sm leading-7 text-slate-400">
-              The Emerson Agency LLC provides high-impact tax preparation, insurance education, and business operations consulting. We are part of The Emerson Empire, a global ecosystem focused on professional excellence. We turn administrative burdens into structured growth for small business owners and families.
+
+            <p className="mt-8 max-w-md text-sm leading-7 text-slate-400">
+              The Emerson Agency LLC provides high-impact tax preparation, insurance education, and business
+              operations consulting. <span className="font-bold text-white">WE ARE PART OF THE EMERSON EMPIRE</span>,
+              a global ecosystem focused on professional excellence. We turn administrative burdens into
+              structured growth for small business owners and families.
             </p>
-            <div className="flex items-center gap-4 text-[#d4af37]">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#d4af37]">in</span>
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#d4af37]">tw</span>
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#d4af37]">fb</span>
+
+            <div className="mt-8 flex items-center gap-3">
+              {socials.map(({ Icon, label }) => (
+                <a
+                  key={label}
+                  href="#"
+                  aria-label={label}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white transition hover:border-[#d4af37] hover:text-[#d4af37]"
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
             </div>
           </div>
 
+          {/* Navigate */}
           <div>
-            <h5 className="text-sm uppercase tracking-[0.35em] text-[#d4af37]">Navigate</h5>
-            <ul className="mt-5 space-y-3 text-sm text-slate-400">
-              {['Home', 'Classes', 'Services', 'Internship', 'About Us'].map((item) => (
-                <li key={item}><a href="#" className="hover:text-white transition">{item}</a></li>
+            <h5 className="text-sm font-bold uppercase tracking-[0.2em] text-[#d4af37]">Navigate</h5>
+            <ul className="mt-6 space-y-4 text-lg text-white/90">
+              {navLinks.map((item) => (
+                <li key={item}>
+                  <a href="#" className="transition hover:text-[#d4af37]">{item}</a>
+                </li>
               ))}
             </ul>
           </div>
 
+          {/* Contact */}
           <div>
-            <h5 className="text-sm uppercase tracking-[0.35em] text-[#d4af37]">Contact</h5>
-            <div className="mt-5 space-y-3 text-sm text-slate-400">
-              <p className="flex items-center gap-2"><Mail size={16} /> admin@theemersonempire.info</p>
-              <p className="flex items-center gap-2"><Phone size={16} /> +1 (803) 479-4492</p>
-              <p className="flex items-center gap-2"><MapPin size={16} /> Columbia, SC United States</p>
+            <h5 className="text-sm font-bold uppercase tracking-[0.2em] text-[#d4af37]">Contact</h5>
+            <div className="mt-6 space-y-4 text-base text-white/90">
+              <p className="flex items-center gap-3"><Mail size={18} className="shrink-0 text-[#d4af37]" /> admin@theemersonempire.info</p>
+              <p className="flex items-center gap-3"><Phone size={18} className="shrink-0 text-[#d4af37]" /> +1 (803) 479-4492</p>
+              <p className="flex items-center gap-3"><MapPin size={18} className="shrink-0 text-[#d4af37]" /> Columbia, SC United States</p>
             </div>
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/10 pt-8 text-sm text-slate-500">
+        {/* Disclaimer */}
+        <p className="mt-12 text-xs leading-6 text-slate-500">
+          Disclaimer: Pricing is provided for planning purposes and may vary based on service needs, complexity,
+          eligibility, capacity, licensing, and compliance requirements. Free or reduced-cost services may be
+          available for qualifying individuals. Insurance, tax, financial, business, educational, and workforce
+          services are subject to applicable regulations, approvals, eligibility, and availability. Participation
+          in any program or service does not guarantee employment, income, funding, tax outcomes, insurance
+          approval, financial results, business success, or other specific outcomes.{' '}
+          <a href="#" className="underline transition hover:text-white">Read full disclaimer.</a>
+        </p>
+
+        {/* Bottom bar */}
+        <div className="mt-8 border-t border-white/10 pt-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <p>© 2026 The Emerson Empire. All rights reserved.</p>
-            <div className="flex flex-wrap gap-6">
-              <a href="#" className="hover:text-white transition">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition">Terms of Use</a>
+            <p className="text-base text-white/80">© 2026 The Emerson Empire. All rights reserved.</p>
+            <div className="flex flex-wrap gap-10 text-base text-white/80">
+              <a href="#" className="transition hover:text-[#d4af37]">Privacy Policy</a>
+              <a href="#" className="transition hover:text-[#d4af37]">Terms of Use</a>
             </div>
           </div>
         </div>

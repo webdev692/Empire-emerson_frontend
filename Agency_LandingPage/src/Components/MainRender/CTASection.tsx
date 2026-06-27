@@ -38,7 +38,9 @@ export default function CTASection() {
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
-                href="#"
+                href="https://forms.gle/VSCGHQEJSdKhYizKA"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#0b57ff] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_15px_30px_rgba(11,87,255,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0a4fe0] hover:shadow-[0_22px_55px_rgba(11,87,255,0.45)]"
               >
                 Request Services

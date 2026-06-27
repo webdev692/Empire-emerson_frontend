@@ -38,7 +38,9 @@ export default function Navbar() {
         {/* CTA and Mobile Menu */}
         <div className="flex items-center gap-4">
           <a
-            href="#"
+            href="https://forms.gle/VSCGHQEJSdKhYizKA"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden rounded-md bg-[#c9a24c] px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] text-[#0A1128] shadow-md transition hover:bg-[#b8923f] lg:inline-flex"
           >
             Contact Us
@@ -66,7 +68,7 @@ export default function Navbar() {
               {link.dropdown && <ChevronDown size={14} className="text-white/50" />}
             </a>
           ))}
-          <a href="#" className="mt-2 block py-3 font-bold text-[#c9a24c]">Contact Us</a>
+          <a href="https://forms.gle/VSCGHQEJSdKhYizKA" target="_blank" rel="noopener noreferrer" className="mt-2 block py-3 font-bold text-[#c9a24c]">Contact Us</a>
         </nav>
       )}
     </header>
