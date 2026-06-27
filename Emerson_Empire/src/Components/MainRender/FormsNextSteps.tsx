@@ -1,74 +1,103 @@
 import React from 'react';
-import { FileText, Users, CheckCircle, Award } from 'lucide-react';
+import { motion, type Variants } from 'framer-motion';
 
-const STEPS = [
+const FORMS = [
   {
-    icon: FileText,
-    title: 'Register for a Class',
-    description: 'Sign up for one of our weekly classes or workshops to start building your skills.',
+    title: 'Request Services',
+    description: 'Tell us what you need. We will help guide you to the right pathway.',
+    href: '/contact',
   },
   {
-    icon: Users,
-    title: 'Request a Weekly Consultation',
-    description: 'Meet one-on-one with our team to get personalized guidance and support.',
-  },
-  {
-    icon: CheckCircle,
     title: 'Register for Weekly Classes',
-    description: 'Join our ongoing series of professional development workshops.',
+    description: 'Career readiness, professional development, and workforce training.',
+    href: '/classes',
   },
   {
-    icon: Award,
+    title: 'Request Business Consultation or Partnership',
+    description: 'For founders, small business, and mission-aligned organizations.',
+    href: '/contact',
+  },
+  {
     title: 'Apply for Internship',
-    description: 'Take the next step with our immersive professional development program.',
+    description: 'For students and emerging professionals seeking structured experience.',
+    href: '/global-internship',
   },
 ];
 
-const FormsNextSteps: React.FC = () => {
-  return (
-    <section className="bg-white px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl">
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <h2 className="mb-6 font-bold text-[#12022A] text-4xl md:text-5xl uppercase leading-tight">
-            Forms and Next Steps
-          </h2>
-          <p className="mx-auto max-w-2xl text-[#12022A]/70 text-lg">
-            Choose the pathway that's right for you and take the first step forward.
-          </p>
-        </div>
-
-        {/* Steps Grid */}
-        <div className="grid gap-8 grid-cols-1 md:grid-cols-2">
-          {STEPS.map((step, idx) => {
-            const Icon = step.icon;
-            return (
-              <div
-                key={idx}
-                className="bg-[#F5EFE7] border border-[#12022A]/10 rounded-lg p-8"
-              >
-                <div className="mb-4 inline-flex items-center justify-center bg-[#C9A84C]/10 rounded-lg w-12 h-12">
-                  <Icon className="text-[#C9A84C]" size={24} />
-                </div>
-                <h3 className="mb-4 font-bold text-[#12022A] text-lg">{step.title}</h3>
-                <p className="text-[#12022A]/70 text-sm leading-relaxed">{step.description}</p>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <a
-            href="/contact"
-            className="inline-flex items-center bg-[#12022A] hover:bg-[#1E0A4A] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
-          >
-            Get Started Today
-          </a>
-        </div>
-      </div>
-    </section>
-  );
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
 };
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
+};
+
+const FormsNextSteps: React.FC = () => (
+  <div className="bg-white px-6 sm:px-10 lg:px-16 py-16 lg:py-24">
+    <div className="mx-auto max-w-7xl">
+      <p
+        className="mb-3 font-semibold text-[#5a3e9e] text-xs sm:text-sm uppercase tracking-[0.3em]"
+        style={{ fontFamily: "'Montserrat', sans-serif" }}
+      >
+        Take the Next Steps
+      </p>
+
+      <h2
+        className="mb-4 font-medium text-[#12022A] text-4xl sm:text-5xl"
+        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+      >
+        Forms and <span className="text-[#5a3e9e]">Next Steps</span>
+      </h2>
+
+      <p
+        className="mb-12 text-[#12022A]/60 text-base sm:text-lg"
+        style={{ fontFamily: "'Inter', sans-serif" }}
+      >
+        Use the form that fits where you are. Each opens in a new tab.
+      </p>
+
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        className="gap-5 sm:gap-6 grid sm:grid-cols-2"
+      >
+        {FORMS.map((form) => (
+          <motion.a
+            key={form.title}
+            href={form.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            variants={cardVariants}
+            className="group flex flex-col bg-[#f0e0ca] hover:bg-[#ecd8ba] p-7 sm:p-8 border border-[#e2cfa9] border-l-4 border-l-[#C9A84C] transition-colors duration-200"
+          >
+            <h3
+              className="mb-3 font-medium text-[#5a3e9e] text-xl sm:text-2xl"
+              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            >
+              {form.title}
+            </h3>
+            <p
+              className="flex-1 mb-6 text-[#12022A]/75 text-sm sm:text-base leading-[1.7]"
+              style={{ fontFamily: "'Inter', sans-serif" }}
+            >
+              {form.description}
+            </p>
+            <span
+              className="inline-flex items-center gap-1 font-semibold text-[#12022A] text-sm"
+              style={{ fontFamily: "'Montserrat', sans-serif" }}
+            >
+              Open form
+              <span aria-hidden="true" className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+            </span>
+          </motion.a>
+        ))}
+      </motion.div>
+    </div>
+  </div>
+);
 
 export default FormsNextSteps;

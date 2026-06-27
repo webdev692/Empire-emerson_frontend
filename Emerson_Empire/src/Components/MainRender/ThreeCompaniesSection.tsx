@@ -7,11 +7,6 @@ import {
   EPDGWebp, EPDGAvif, empire, empireWebp, empireAvif,
   AgencyWebp, AgencyAvif, Logo1, Logo2, globe,
 } from '../../assets';
-import ResourceHub from './ResourceHub';
-import FeeWaiverSection from './FeeWaiverSection';
-import FormsNextSteps from './FormsNextSteps';
-import PartnerWithUs from './PartnerWithUs';
-import GetInTouch from './GetInTouch';
 
 const FIND_PATHS = [
   { icon: BookOpen,      title: 'Free resources and guidance',              href: '/about'             },
@@ -281,13 +276,6 @@ const ThreeCompaniesSection: React.FC = () => {
       </div>
 
       <GlobalReachSection />
-
-      {/* ── Sections below the globe ── */}
-      <ResourceHub />
-      <FeeWaiverSection />
-      <FormsNextSteps />
-      <PartnerWithUs />
-      <GetInTouch />
 
     </section>
   );
