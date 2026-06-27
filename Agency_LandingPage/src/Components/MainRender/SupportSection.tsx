@@ -61,7 +61,7 @@ export default function SupportSection() {
       </div>
 
       {/* Full-bleed dark section: description left, eyebrow+heading+image card on right */}
-      <div className="w-full bg-[#0A1128]">
+      <div id="small-business" className="w-full scroll-mt-24 bg-[#0A1128]">
         <div className="mx-auto max-w-[1320px] px-5 py-24">
           <div className="grid gap-10 lg:grid-cols-2 items-start">
             <div className="pr-4 lg:pr-12 pt-8 lg:pt-12">

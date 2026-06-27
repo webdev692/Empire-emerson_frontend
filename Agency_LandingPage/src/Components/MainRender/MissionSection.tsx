@@ -49,7 +49,7 @@ export default function MissionSection() {
                 <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
-                href="#"
+                href="#small-business"
                 className="inline-flex items-center justify-center rounded-lg border border-white/20 px-7 py-3.5 text-base font-medium text-white transition hover:border-[#c9a24c]"
               >
                 Business Consultation
