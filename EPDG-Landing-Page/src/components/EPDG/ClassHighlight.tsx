@@ -1,8 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useFormModal } from "./FormModal";
 
 const FORM_SERVICES = "https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform";
+const CLASS_REGISTRATION_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSfOGM0MZ05Em3O502rC9HxvK5qzW06ATQMcMX2Fgcn9xBpncQ/viewform"
 
 const sessions = [
   { duration: "60 minutes", time: "10 AM EDT", price: "Free" },
@@ -22,7 +22,6 @@ const Check: React.FC = () => (
 
 const ClassHighlight: React.FC = () => {
   const { openForm } = useFormModal();
-  const navigate = useNavigate();
 
   return (
     <section id="classes" className="bg-[#FCF5E9] px-4 pt-10 pb-20 sm:pt-12 sm:pb-24">
@@ -30,7 +29,7 @@ const ClassHighlight: React.FC = () => {
         <p className="mb-3 text-[#8c7434] text-lg uppercase tracking-[0.28em] font-bold">
           Weekly Classes
         </p>
-        <h2 className="mb-6 max-w-3xl font-bold text-[#0B2018] text-4xl sm:text-5xl tracking-tight heading">
+        <h2 className="mb-6 max-w-3xl font-bold text-[#0B2018] text-4xl sm:text-6xl tracking-tight heading">
           21 weekly group classes, <span className="text-[#0B5C3B] italic">every week.</span>
         </h2>
         <p className="mb-14 max-w-2xl text-[#4f4c42] text-base leading-relaxed">
@@ -60,8 +59,8 @@ const ClassHighlight: React.FC = () => {
 
         <div className="flex flex-wrap gap-4">
           <button
-            onClick={() => navigate("/classes")}
-            className="bg-[#0B5C3B] hover:bg-[#094a30] px-8 py-3.5 rounded-full font-semibold text-white text-sm uppercase tracking-[0.16em] transition duration-200 cursor-pointer"
+            onClick={() => openForm(CLASS_REGISTRATION_FORM, "Register for a Class")}
+            className="bg-[#013F0B] hover:bg-[#094a30] px-8 py-3.5 rounded-full font-semibold text-white text-sm uppercase tracking-[0.16em] transition duration-200 cursor-pointer"
           >
             Register for weekly classes
           </button>

@@ -1,28 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/EPDG_LOGO.webp";
 
-type NavLink = { label: string; id: string } & (
-  | { type: "home" }
-  | { type: "route"; to: string }
-  | { type: "section" }
-);
+type NavLink = { label: string; id: string };
 
 const navLinks: NavLink[] = [
-  { label: "Home", id: "home", type: "home" },
-  { label: "Classes", id: "classes", type: "section" },
-  { label: "Services", id: "services", type: "section" },
-  { label: "Internships", id: "internships", type: "section" },
-  { label: "Workforce", id: "workforce", type: "section" },
-  { label: "Contact", id: "contact", type: "section" },
+  { label: "Home", id: "home" },
+  { label: "Classes", id: "classes" },
+  { label: "Services", id: "services" },
+  { label: "Internships", id: "internships" },
+  { label: "Workforce", id: "workforce" },
+  { label: "Contact", id: "contact" },
 ];
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
-  const navigate = useNavigate();
-  const location = useLocation();
-  const onClassesPage = location.pathname === "/classes";
 
   useEffect(() => {
     if (menuOpen) {
@@ -36,36 +28,6 @@ const Navbar: React.FC = () => {
   }, [menuOpen]);
 
   useEffect(() => {
-    if (location.state && (location.state as any).scrollTo) {
-      const targetId = (location.state as any).scrollTo;
-      setTimeout(() => {
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          const yOffset = -80;
-          const y =
-            targetElement.getBoundingClientRect().top +
-            window.pageYOffset +
-            yOffset;
-          window.scrollTo({ top: y, behavior: "smooth" });
-        }
-      }, 300);
-
-      navigate(location.pathname, { replace: true, state: {} });
-    }
-  }, [location, navigate]);
-
-  useEffect(() => {
-    if (onClassesPage) {
-      setActiveId("classes");
-      return;
-    }
-
-    if (location.hash) {
-      const targetId = location.hash.replace("#", "");
-      setActiveId(targetId);
-      return;
-    }
-
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -77,47 +39,29 @@ const Navbar: React.FC = () => {
       { rootMargin: "-35% 0px -45% 0px" },
     );
 
-    const ids = [
-      "home",
-      "classes",
-      "services",
-      "internships",
-      "workforce",
-      "contact",
-    ];
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
+    navLinks.forEach((link) => {
+      const el = document.getElementById(link.id);
       if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
-  }, [onClassesPage, location.pathname, location.hash]);
+  }, []);
 
   const handleNav = (link: NavLink) => {
     setMenuOpen(false);
+    setActiveId(link.id);
 
-    if (link.id === "classes" || !onClassesPage) {
-      setActiveId(link.id);
-    }
-
-    if (link.type === "route") {
-      navigate(link.to);
-    } else if (link.type === "home") {
-      if (onClassesPage) navigate("/");
-      else window.scrollTo({ top: 0, behavior: "smooth" });
+    if (link.id === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      if (onClassesPage) {
-        navigate("/", { state: { scrollTo: link.id } });
-      } else {
-        const targetElement = document.getElementById(link.id);
-        if (targetElement) {
-          const yOffset = -80;
-          const y =
-            targetElement.getBoundingClientRect().top +
-            window.pageYOffset +
-            yOffset;
-          window.scrollTo({ top: y, behavior: "smooth" });
-        }
+      const targetElement = document.getElementById(link.id);
+      if (targetElement) {
+        const yOffset = -80;
+        const y =
+          targetElement.getBoundingClientRect().top +
+          window.pageYOffset +
+          yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
       }
     }
   };

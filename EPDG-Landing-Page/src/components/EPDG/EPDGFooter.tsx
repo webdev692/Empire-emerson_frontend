@@ -3,7 +3,7 @@ import { logo } from "../../assets";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const navigateLinks = [
-  { label: "Weekly Classes", href: "/classes" },
+  { label: "Weekly Classes", href: "#classes" },
   { label: "Career Services", href: "#services" },
   { label: "Internship Program", href: "#internships" },
   { label: "Workforce Training", href: "#workforce" },

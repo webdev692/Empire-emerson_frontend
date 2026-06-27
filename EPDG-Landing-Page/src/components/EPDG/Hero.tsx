@@ -1,13 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useFormModal } from "./FormModal";
 import missionBanner from "../../assets/HeroEPDG.webp";
 
 const FORM_SERVICES = "https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform";
+const CLASS_REGISTRATION_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSfOGM0MZ05Em3O502rC9HxvK5qzW06ATQMcMX2Fgcn9xBpncQ/viewform"
 
 const Hero: React.FC = () => {
   const { openForm } = useFormModal();
-  const navigate = useNavigate();
 
   return (
     <section id="home" className="relative bg-[#041913] px-4 pt-6 pb-20 sm:pt-8 sm:pb-28 overflow-hidden">
@@ -53,7 +52,7 @@ const Hero: React.FC = () => {
 
           <div className="flex flex-wrap gap-4 mt-10">
             <button
-              onClick={() => navigate("/classes")}
+              onClick={() => openForm(CLASS_REGISTRATION_FORM, "Register for a Class")}
               className="inline-flex justify-center items-center gap-2 bg-[#C9A84C] hover:bg-[#bba963] px-6 py-3.5 rounded-full font-semibold text-[#07120f] text-sm uppercase tracking-[0.16em] transition duration-200 cursor-pointer"
             >
               Register for a class
