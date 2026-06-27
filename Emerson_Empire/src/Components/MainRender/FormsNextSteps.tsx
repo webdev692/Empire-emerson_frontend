@@ -38,7 +38,7 @@ const FormsNextSteps: React.FC = () => (
   <div className="bg-white px-6 sm:px-10 lg:px-16 py-16 lg:py-24">
     <div className="mx-auto max-w-7xl">
       <p
-        className="mb-3 font-semibold text-[#5a3e9e] text-xs sm:text-sm uppercase tracking-[0.3em]"
+        className="mb-3 font-semibold text-[#C9A84C] text-xs sm:text-sm uppercase tracking-[0.3em]"
         style={{ fontFamily: "'Montserrat', sans-serif" }}
       >
         Take the Next Steps
@@ -87,7 +87,7 @@ const FormsNextSteps: React.FC = () => (
               {form.description}
             </p>
             <span
-              className="inline-flex items-center gap-1 font-semibold text-[#12022A] text-sm"
+              className="inline-flex items-center gap-1 font-semibold text-[#6B7280] text-sm"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               Open form

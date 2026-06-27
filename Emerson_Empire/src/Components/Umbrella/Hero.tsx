@@ -106,16 +106,6 @@ const Hero: React.FC = () => {
         <div className="flex justify-center w-full lg:w-1/2">
           <div className="relative w-full sm:w-[80%] lg:w-[90%] h-[400px] sm:h-[480px] lg:h-[540px]">
 
-            {/* Gold diagonal accent lines, top-right corner */}
-            <svg
-              className="-top-2 -right-2 z-10 absolute pointer-events-none"
-              width="110" height="110" viewBox="0 0 110 110" fill="none" aria-hidden="true"
-            >
-              <line x1="110" y1="20" x2="20" y2="110" stroke="#C9A84C" strokeWidth="1.5" />
-              <line x1="110" y1="42" x2="42" y2="110" stroke="#C9A84C" strokeWidth="1.5" />
-              <line x1="110" y1="64" x2="64" y2="110" stroke="#C9A84C" strokeWidth="1.5" />
-            </svg>
-
             <div className="relative bg-[#12022A] shadow-2xl rounded-2xl w-full h-full overflow-hidden">
               <picture>
                 <source srcSet={HelenaAvif} type="image/avif" />
@@ -134,14 +124,14 @@ const Hero: React.FC = () => {
                 width="150" height="90" viewBox="0 0 150 90" fill="none" aria-hidden="true"
               >
                 {/* Ascending bars */}
-                <rect x="2"   y="66" width="16" height="24" fill="#C9A84C" fillOpacity="0.35" />
-                <rect x="26"  y="54" width="16" height="36" fill="#C9A84C" fillOpacity="0.45" />
-                <rect x="50"  y="42" width="16" height="48" fill="#C9A84C" fillOpacity="0.55" />
-                <rect x="74"  y="28" width="16" height="62" fill="#C9A84C" fillOpacity="0.65" />
-                <rect x="98"  y="16" width="16" height="74" fill="#C9A84C" fillOpacity="0.8" />
+                <rect x="2"   y="66" width="16" height="24" fill="#4B5563" fillOpacity="0.35" />
+                <rect x="26"  y="54" width="16" height="36" fill="#4B5563" fillOpacity="0.45" />
+                <rect x="50"  y="42" width="16" height="48" fill="#4B5563" fillOpacity="0.55" />
+                <rect x="74"  y="28" width="16" height="62" fill="#4B5563" fillOpacity="0.65" />
+                <rect x="98"  y="16" width="16" height="74" fill="#4B5563" fillOpacity="0.8" />
                 {/* Upward trend arrow */}
-                <path d="M6 70 L42 50 L74 56 L124 14" stroke="#E8C97A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M124 14 L106 16 M124 14 L122 32" stroke="#E8C97A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M6 70 L42 50 L74 56 L124 14" stroke="#4B5563" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M124 14 L106 16 M124 14 L122 32" stroke="#4B5563" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
           </div>
