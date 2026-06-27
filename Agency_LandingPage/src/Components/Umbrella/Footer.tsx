@@ -1,13 +1,12 @@
-import { Mail, Phone, MapPin } from 'lucide-react'
-import { FaInstagram, FaLinkedinIn, FaFacebookF, FaTiktok, FaEnvelope } from 'react-icons/fa'
+import { Mail, Phone, MapPin, Camera, BriefcaseBusiness, Users, Music2 } from 'lucide-react'
 import logo from '../../assets/LogoAgency.png'
 
 const socials = [
-  { Icon: FaInstagram, label: 'Instagram', href: 'https://www.instagram.com/theemersonagency' },
-  { Icon: FaLinkedinIn, label: 'LinkedIn', href: 'https://www.linkedin.com/company/the-emerson-empire/' },
-  { Icon: FaFacebookF, label: 'Facebook', href: 'https://www.facebook.com/share/1S3XPRXg21/?mibextid=wwXIfr' },
-  { Icon: FaTiktok, label: 'TikTok', href: 'https://www.tiktok.com/@theemersonempire' },
-  { Icon: FaEnvelope, label: 'Email', href: 'mailto:admin@theemersonempire.info' },
+  { Icon: Camera, label: 'Instagram', href: 'https://www.instagram.com/theemersonagency' },
+  { Icon: BriefcaseBusiness, label: 'LinkedIn', href: 'https://www.linkedin.com/company/the-emerson-empire/' },
+  { Icon: Users, label: 'Facebook', href: 'https://www.facebook.com/share/1S3XPRXg21/?mibextid=wwXIfr' },
+  { Icon: Music2, label: 'TikTok', href: 'https://www.tiktok.com/@theemersonempire' },
+  { Icon: Mail, label: 'Email', href: 'mailto:admin@theemersonempire.info' },
 ]
 
 const navLinks = [

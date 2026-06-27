@@ -1,5 +1,5 @@
 ﻿import React, { useState } from "react";
-import { FaArrowDown, FaArrowRight, FaCalendarAlt, FaClock } from "react-icons/fa";
+import { ArrowDown, ArrowRight, Calendar, Clock } from "lucide-react";
 import { classes } from "../data/classData";
 import ClassSearch from "./ClassSearch";
 
@@ -60,7 +60,7 @@ const ClassCatalog: React.FC = () => {
               onClick={() => scrollToCatalog("ongoing")}
               className="bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-3.5 w-full sm:w-auto font-mono font-bold text-[#0A1128] text-xs uppercase tracking-wider transition-colors duration-200"
             >
-              Explore All {ongoingClasses.length} Classes <FaArrowDown className="inline ml-1" />
+              Explore All {ongoingClasses.length} Classes <ArrowDown className="inline ml-1" size={16} />
             </button>
             <button
               onClick={() => scrollToCatalog("upcoming")}
@@ -158,8 +158,8 @@ const ClassCatalog: React.FC = () => {
                   {featuredClass.title}
                 </h2>
                 <div className="flex flex-wrap gap-6 mb-4 font-mono text-white/50 text-xs">
-                  <span className="flex items-center gap-1"><FaCalendarAlt className="inline" /> {featuredClass.day}</span>
-                  <span className="flex items-center gap-1"><FaClock className="inline" /> {featuredClass.time}</span>
+                  <span className="flex items-center gap-1"><Calendar className="inline" size={16} /> {featuredClass.day}</span>
+                  <span className="flex items-center gap-1"><Clock className="inline" size={16} /> {featuredClass.time}</span>
                   <span className="font-heading font-bold text-[#C9A84C]">
                     {featuredClass.price === 0 ? "FREE" : `$${featuredClass.price}`}
                   </span>
@@ -181,7 +181,7 @@ const ClassCatalog: React.FC = () => {
                   onClick={() => scrollToCatalog("ongoing")}
                   className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-3.5 font-mono font-bold text-[#0A1128] text-xs uppercase tracking-wider transition-colors duration-200"
                 >
-                  Register for This Class <FaArrowRight className="inline ml-1" />
+                  Register for This Class <ArrowRight className="inline ml-1" size={16} />
                 </button>
               </div>
             </div>
