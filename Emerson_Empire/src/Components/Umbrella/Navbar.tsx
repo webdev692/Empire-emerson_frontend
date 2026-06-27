@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
   return (
     <nav
       aria-label="Main navigation"
-      className="top-0 z-50 fixed bg-[#12022A] border-[#C9A84C]/20 border-b w-full"
+      className="top-0 z-50 fixed bg-[#1C1336] border-[#C9A84C]/20 border-b w-full"
     >
       {/* Main bar */}
       <div className="flex justify-between items-center shadow-md shadow-white mx-auto px-4 sm:px-2 lg:px-10 w-full h-20 sm:h-20">
@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
               {/* Desktop dropdown panel */}
               {link.dropdown && openDropdown === link.label && (
                 <div className="top-full left-0 z-50 absolute pt-2 w-56">
-                  <div className="bg-[#12022A] shadow-xl border border-[#C9A84C]/20 rounded-sm">
+                  <div className="bg-[#1C1336] shadow-xl border border-[#C9A84C]/20 rounded-sm">
                     {link.dropdown.map((item) => (
                       <a
                         key={item.label}
@@ -116,7 +116,7 @@ const Navbar: React.FC = () => {
         {/* Desktop CTA */}
         <NavLink
           to="/contact"
-          className="hidden md:inline-flex items-center bg-[#C9A84C] hover:bg-[#E8C97A] px-5 py-2 rounded-sm font-bold text-[#12022A] text-xs uppercase tracking-[0.2em] transition-colors duration-200 shrink-0"
+          className="hidden md:inline-flex items-center bg-[#C9A84C] hover:bg-[#E8C97A] px-5 py-2 rounded-sm font-bold text-[#1C1336] text-xs uppercase tracking-[0.2em] transition-colors duration-200 shrink-0"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
           Contact Us
@@ -137,7 +137,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden flex flex-col bg-[#12022A] px-4 pb-5 border-[#C9A84C]/15 border-t max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="md:hidden flex flex-col bg-[#1C1336] px-4 pb-5 border-[#C9A84C]/15 border-t max-h-[calc(100vh-4rem)] overflow-y-auto">
           {NAV_LINKS.map((link) => (
             <div key={link.label}>
 
@@ -189,7 +189,7 @@ const Navbar: React.FC = () => {
           <NavLink
             to="/contact"
             onClick={() => setMenuOpen(false)}
-            className="inline-flex justify-center bg-[#C9A84C] hover:bg-[#E8C97A] mt-4 px-5 py-3 rounded-sm font-bold text-[#12022A] text-xs uppercase tracking-[0.2em] transition-colors duration-200"
+            className="inline-flex justify-center bg-[#C9A84C] hover:bg-[#E8C97A] mt-4 px-5 py-3 rounded-sm font-bold text-[#1C1336] text-xs uppercase tracking-[0.2em] transition-colors duration-200"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             Contact Us

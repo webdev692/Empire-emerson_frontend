@@ -38,7 +38,7 @@ const Hero: React.FC = () => {
             className="mb-5 font-medium text-5xl md:text-6xl lg:text-7xl leading-[1.05]"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
-            <span className="block text-[#12022A]">Welcome to</span>
+            <span className="block text-[#1C1336]">Welcome to</span>
             <span className="block text-[#C9A84C]">The Emerson Empire</span>
           </h1>
 
@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
 
           {/* Subtitle */}
           <p
-            className="mb-9 max-w-lg text-[#12022A]/75 text-base leading-[1.9]"
+            className="mb-9 max-w-lg text-[#1C1336]/75 text-base leading-[1.9]"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
             The Emerson Empire connects people, students, families, workers,
@@ -63,14 +63,14 @@ const Hero: React.FC = () => {
           <div className="flex flex-wrap items-center gap-4 mb-10">
             <a
               href="/about"
-              className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#E8C97A] px-7 py-3.5 rounded-md font-bold text-[#12022A] text-sm transition-colors duration-200"
+              className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#E8C97A] px-7 py-3.5 rounded-md font-bold text-[#1C1336] text-sm transition-colors duration-200"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               Start Here <span aria-hidden="true">→</span>
             </a>
             <a
               href="/services"
-              className="inline-flex items-center bg-[#12022A] hover:bg-[#1E0A4A] px-7 py-3.5 rounded-md font-bold text-white text-sm transition-colors duration-200"
+              className="inline-flex items-center bg-[#1C1336] hover:bg-[#1E0A4A] px-7 py-3.5 rounded-md font-bold text-white text-sm transition-colors duration-200"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               Find Emerson Services
@@ -92,7 +92,7 @@ const Hero: React.FC = () => {
                   {title}
                 </p>
                 <p
-                  className="mt-1 text-[#12022A]/60 text-[11px] leading-snug"
+                  className="mt-1 text-[#1C1336]/60 text-[11px] leading-snug"
                   style={{ fontFamily: "'Inter', sans-serif" }}
                 >
                   {subtitle}
@@ -106,7 +106,7 @@ const Hero: React.FC = () => {
         <div className="flex justify-center w-full lg:w-1/2">
           <div className="relative w-full sm:w-[80%] lg:w-[90%] h-[400px] sm:h-[480px] lg:h-[540px]">
 
-            <div className="relative bg-[#12022A] shadow-2xl rounded-2xl w-full h-full overflow-hidden">
+            <div className="relative bg-[#1C1336] shadow-2xl rounded-2xl w-full h-full overflow-hidden">
               <picture>
                 <source srcSet={HelenaAvif} type="image/avif" />
                 <source srcSet={HelenaWebp} type="image/webp" />

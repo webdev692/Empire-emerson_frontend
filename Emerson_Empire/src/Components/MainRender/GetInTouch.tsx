@@ -41,14 +41,14 @@ const GetInTouch: React.FC = () => (
         </p>
 
         <h2
-          className="mb-6 font-medium text-[#12022A] text-4xl sm:text-5xl"
+          className="mb-6 font-medium text-[#1C1336] text-4xl sm:text-5xl"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           Get in Touch
         </h2>
 
         <p
-          className="mb-9 max-w-xl text-[#12022A]/70 text-base sm:text-lg leading-[1.8]"
+          className="mb-9 max-w-xl text-[#1C1336]/70 text-base sm:text-lg leading-[1.8]"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
           The fastest way to reach us is through one of the forms below. Each one
@@ -60,7 +60,7 @@ const GetInTouch: React.FC = () => (
             <a
               key={link.label}
               href={link.href}
-              className="inline-flex justify-center items-center bg-[#12022A] hover:bg-[#1E0A4A] px-5 py-3.5 rounded-sm font-semibold text-white text-sm text-center transition-colors duration-200"
+              className="inline-flex justify-center items-center bg-[#1C1336] hover:bg-[#1E0A4A] px-5 py-3.5 rounded-sm font-semibold text-white text-sm text-center transition-colors duration-200"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               {link.label}

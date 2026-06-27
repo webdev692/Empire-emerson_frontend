@@ -222,7 +222,7 @@ const TrackCard: React.FC<(typeof TRACKS)[0] & { open: boolean; onToggle: () => 
     className="bg-white border border-neutral-100 overflow-hidden"
   >
     {/* Card header image */}
-    <div className="relative h-44 overflow-hidden bg-[#12022A]">
+    <div className="relative h-44 overflow-hidden bg-[#1C1336]">
       <img src={img} alt={title} className="w-full h-full object-cover opacity-60" />
       <div className="absolute inset-0 flex flex-col justify-end p-5">
         <div
@@ -300,10 +300,10 @@ const ApplicationForm: React.FC = () => {
     <div className="bg-white border border-neutral-100">
       {submitted ? (
         <div className="flex flex-col items-center justify-center py-20 px-8 text-center">
-          <div className="flex items-center justify-center w-16 h-16 bg-[#C9A84C] text-[#12022A] text-2xl font-bold mb-6">
+          <div className="flex items-center justify-center w-16 h-16 bg-[#C9A84C] text-[#1C1336] text-2xl font-bold mb-6">
             ✓
           </div>
-          <h3 className="font-bold text-[#12022A] text-2xl uppercase mb-3">Application Submitted!</h3>
+          <h3 className="font-bold text-[#1C1336] text-2xl uppercase mb-3">Application Submitted!</h3>
           <p className="text-neutral-500 text-sm leading-relaxed max-w-sm mb-8">
             Thank you for applying. Our team will review your application and follow up within 48 business hours.
           </p>
@@ -337,7 +337,7 @@ const FAQItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
         onClick={() => setOpen(!open)}
         className="flex items-center justify-between w-full py-5 text-left"
       >
-        <span className="font-bold text-[#12022A] text-sm pr-4">{q}</span>
+        <span className="font-bold text-[#1C1336] text-sm pr-4">{q}</span>
         <ChevronDown
           size={16}
           className={`text-[#4B1E91] shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
@@ -387,7 +387,7 @@ const GlobalInternship: React.FC = () => {
       </Helmet>
 
       {/* ── Hero ── */}
-      <div className="bg-[#12022A] text-white">
+      <div className="bg-[#1C1336] text-white">
         <div className="mx-auto px-4 sm:px-6 lg:px-16 py-24 max-w-7xl">
           <motion.span
             whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 12 }}
@@ -419,7 +419,7 @@ const GlobalInternship: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-3">
             <a
               href="#application-form"
-              className="inline-flex items-center justify-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-4 font-mono font-bold text-[#12022A] text-xs uppercase tracking-wider transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-4 font-mono font-bold text-[#1C1336] text-xs uppercase tracking-wider transition-colors duration-200"
             >
               Apply Now — It's Free
               <ArrowRight size={14} />
@@ -464,7 +464,7 @@ const GlobalInternship: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Who Can Apply</p>
-              <h2 className="font-black text-[#12022A] text-2xl sm:text-3xl uppercase leading-tight mb-4">
+              <h2 className="font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight mb-4">
                 Students, Graduates &amp; Career Changers Welcome.
               </h2>
               <p className="text-neutral-500 text-sm leading-relaxed mb-6">
@@ -494,7 +494,7 @@ const GlobalInternship: React.FC = () => {
                 alt="Internship program collaboration"
                 className="w-full h-72 sm:h-80 object-cover"
               />
-              <div className="absolute bottom-4 left-4 right-4 bg-[#12022A]/90 px-4 py-3">
+              <div className="absolute bottom-4 left-4 right-4 bg-[#1C1336]/90 px-4 py-3">
                 <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-0.5">Disclaimer</p>
                 <p className="text-white/60 text-xs leading-relaxed">
                   This is an unpaid program. No wages or stipends are provided. Completion does not guarantee employment.
@@ -509,7 +509,7 @@ const GlobalInternship: React.FC = () => {
       <section id="tracks" className="py-20 scroll-mt-20">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Internship Tracks</p>
-          <h2 className="font-black text-[#12022A] text-2xl sm:text-3xl uppercase leading-tight mb-3">
+          <h2 className="font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight mb-3">
             Choose Your Track.
           </h2>
           <p className="text-neutral-500 text-sm leading-relaxed mb-10 max-w-2xl">
@@ -530,7 +530,7 @@ const GlobalInternship: React.FC = () => {
       </section>
 
       
-      <section className="bg-[#12022A] text-white py-20">
+      <section className="bg-[#1C1336] text-white py-20">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Process</p>
           <h2 className="font-black text-white text-2xl sm:text-3xl uppercase leading-tight mb-12">
@@ -556,7 +556,7 @@ const GlobalInternship: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Portfolio & Experience</p>
-              <h2 className="font-black text-[#12022A] text-2xl sm:text-3xl uppercase leading-tight mb-4">
+              <h2 className="font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight mb-4">
                 What You'll Build &amp; Take With You.
               </h2>
               <p className="text-neutral-500 text-sm leading-relaxed mb-6">
@@ -571,7 +571,7 @@ const GlobalInternship: React.FC = () => {
                   { label: 'Track-specific deliverables', body: 'Each track produces specific outputs — code, designs, campaigns, or strategy documents — that are yours to keep.' },
                 ].map((item) => (
                   <div key={item.label} className="pl-4 border-l-2 border-[#4B1E91]/30">
-                    <p className="font-bold text-[#12022A] text-sm mb-1">{item.label}</p>
+                    <p className="font-bold text-[#1C1336] text-sm mb-1">{item.label}</p>
                     <p className="text-neutral-500 text-xs leading-relaxed">{item.body}</p>
                   </div>
                 ))}
@@ -587,7 +587,7 @@ const GlobalInternship: React.FC = () => {
       </section>
 
       {/* ── Beyond the Program ── */}
-      <section className="py-20 bg-[#12022A] text-white">
+      <section className="py-20 bg-[#1C1336] text-white">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">What Comes Next</p>
           <h2 className="font-black text-white text-2xl sm:text-3xl uppercase leading-tight mb-3">
@@ -604,7 +604,7 @@ const GlobalInternship: React.FC = () => {
               <div className="flex items-center justify-center w-10 h-10 bg-[#C9A84C]/15 mb-5">
                 <Briefcase size={18} className="text-[#C9A84C]" />
               </div>
-              <div className="inline-block px-2 py-0.5 bg-[#C9A84C] font-mono text-[#12022A] text-xs uppercase tracking-widest mb-4">
+              <div className="inline-block px-2 py-0.5 bg-[#C9A84C] font-mono text-[#1C1336] text-xs uppercase tracking-widest mb-4">
                 One-Time Gig Projects
               </div>
               <h3 className="font-black text-white text-lg uppercase leading-tight mb-3">
@@ -687,7 +687,7 @@ const GlobalInternship: React.FC = () => {
       <section id="evidence-certificates" className="py-20 scroll-mt-20 bg-[#4B1E91]/5">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Evidence &amp; Certificates</p>
-          <h2 className="font-black text-[#12022A] text-2xl sm:text-3xl uppercase leading-tight mb-3">
+          <h2 className="font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight mb-3">
             What You Receive Upon Completion.
           </h2>
           <p className="text-neutral-500 text-sm leading-relaxed mb-10 max-w-2xl">
@@ -715,12 +715,12 @@ const GlobalInternship: React.FC = () => {
                 <div className="flex items-center justify-center w-10 h-10 bg-[#4B1E91]/10 mb-4">
                   <Icon size={18} className="text-[#4B1E91]" />
                 </div>
-                <h3 className="font-bold text-[#12022A] text-sm mb-2">{title}</h3>
+                <h3 className="font-bold text-[#1C1336] text-sm mb-2">{title}</h3>
                 <p className="text-neutral-500 text-xs leading-relaxed">{body}</p>
               </div>
             ))}
           </div>
-          <div className="bg-[#12022A] px-6 py-4 border-l-4 border-[#C9A84C]">
+          <div className="bg-[#1C1336] px-6 py-4 border-l-4 border-[#C9A84C]">
             <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-1">Important Note</p>
             <p className="text-white/60 text-xs leading-relaxed">
               Completion documentation issued by Emerson Professional Development Group is not a third-party accredited
@@ -735,7 +735,7 @@ const GlobalInternship: React.FC = () => {
       <section id="application-form" className="py-20 scroll-mt-20 bg-white">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Apply Now</p>
-          <h2 className="font-black text-[#12022A] text-2xl sm:text-3xl uppercase leading-tight mb-3">
+          <h2 className="font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight mb-3">
             Start Your Application.
           </h2>
           <p className="text-neutral-500 text-sm leading-relaxed mb-8">
@@ -752,7 +752,7 @@ const GlobalInternship: React.FC = () => {
       <section className="py-20 bg-[#FAFAF9] border-t border-neutral-100">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
           <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">FAQ</p>
-          <h2 className="font-black text-[#12022A] text-2xl sm:text-3xl uppercase leading-tight mb-8">
+          <h2 className="font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight mb-8">
             Frequently Asked Questions.
           </h2>
           <div className="bg-white border border-neutral-100 px-6">
@@ -776,7 +776,7 @@ const GlobalInternship: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-3">
             <a
               href="#application-form"
-              className="inline-flex items-center justify-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-4 font-mono font-bold text-[#12022A] text-xs uppercase tracking-wider transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-4 font-mono font-bold text-[#1C1336] text-xs uppercase tracking-wider transition-colors duration-200"
             >
               Apply Now — It's Free
               <ArrowRight size={14} />

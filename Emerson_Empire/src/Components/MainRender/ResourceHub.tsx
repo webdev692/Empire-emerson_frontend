@@ -34,14 +34,14 @@ const ResourceHub: React.FC = () => (
         </p>
 
         <h2
-          className="mb-6 font-medium text-[#12022A] text-4xl sm:text-5xl leading-[1.1]"
+          className="mb-6 font-medium text-[#1C1336] text-4xl sm:text-5xl leading-[1.1]"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           A growing public resource hub
         </h2>
 
         <p
-          className="mb-8 max-w-xl text-[#12022A]/70 text-base sm:text-lg leading-[1.8]"
+          className="mb-8 max-w-xl text-[#1C1336]/70 text-base sm:text-lg leading-[1.8]"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
           The Emerson Empire is building a growing public resource hub to help
@@ -53,7 +53,7 @@ const ResourceHub: React.FC = () => (
 
         <a
           href="/contact"
-          className="inline-flex items-center gap-2 bg-[#12022A] hover:bg-[#1E0A4A] px-7 py-3.5 rounded-sm font-bold text-white text-sm transition-colors duration-200"
+          className="inline-flex items-center gap-2 bg-[#1C1336] hover:bg-[#1E0A4A] px-7 py-3.5 rounded-sm font-bold text-white text-sm transition-colors duration-200"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
           Request Guidance <span aria-hidden="true">→</span>

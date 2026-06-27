@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const PartnerWithUs: React.FC = () => (
-  <div className="bg-[#12022A] px-6 sm:px-10 lg:px-16 py-16 lg:py-24">
+  <div className="bg-[#1C1336] px-6 sm:px-10 lg:px-16 py-16 lg:py-24">
     <div className="items-center gap-10 lg:gap-16 grid lg:grid-cols-2 mx-auto max-w-7xl">
       {/* Left — copy */}
       <motion.div
@@ -59,7 +59,7 @@ const PartnerWithUs: React.FC = () => (
         </p>
         <a
           href="/contact"
-          className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#D4B56A] px-7 py-3.5 rounded-sm font-bold text-[#12022A] text-sm transition-colors duration-200"
+          className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#D4B56A] px-7 py-3.5 rounded-sm font-bold text-[#1C1336] text-sm transition-colors duration-200"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
           Request Partnership <span aria-hidden="true">→</span>

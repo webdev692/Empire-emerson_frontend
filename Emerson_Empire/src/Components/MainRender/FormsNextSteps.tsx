@@ -45,14 +45,14 @@ const FormsNextSteps: React.FC = () => (
       </p>
 
       <h2
-        className="mb-4 font-medium text-[#12022A] text-4xl sm:text-5xl"
+        className="mb-4 font-medium text-[#1C1336] text-4xl sm:text-5xl"
         style={{ fontFamily: "'Cormorant Garamond', serif" }}
       >
         Forms and <span className="text-[#5a3e9e]">Next Steps</span>
       </h2>
 
       <p
-        className="mb-12 text-[#12022A]/60 text-base sm:text-lg"
+        className="mb-12 text-[#1C1336]/60 text-base sm:text-lg"
         style={{ fontFamily: "'Inter', sans-serif" }}
       >
         Use the form that fits where you are. Each opens in a new tab.
@@ -81,7 +81,7 @@ const FormsNextSteps: React.FC = () => (
               {form.title}
             </h3>
             <p
-              className="flex-1 mb-6 text-[#12022A]/75 text-sm sm:text-base leading-[1.7]"
+              className="flex-1 mb-6 text-[#1C1336]/75 text-sm sm:text-base leading-[1.7]"
               style={{ fontFamily: "'Inter', sans-serif" }}
             >
               {form.description}

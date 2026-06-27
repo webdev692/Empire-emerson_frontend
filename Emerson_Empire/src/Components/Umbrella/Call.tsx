@@ -25,7 +25,7 @@ function FormModal({ title, subtitle, formUrl, accentColor, onClose }: FormModal
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-[#12022A]/80 backdrop-blur-sm p-0 sm:p-4"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-[#1C1336]/80 backdrop-blur-sm p-0 sm:p-4"
       onClick={onClose}
     >
       <div
@@ -39,13 +39,13 @@ function FormModal({ title, subtitle, formUrl, accentColor, onClose }: FormModal
             <p className="text-xs font-mono uppercase tracking-widest text-[#4B1E91] mb-0.5">
               {submitted ? "Submitted Successfully" : "The Emerson Empire"}
             </p>
-            <h3 className="text-sm font-bold text-[#12022A]">{title}</h3>
+            <h3 className="text-sm font-bold text-[#1C1336]">{title}</h3>
             <p className="text-xs font-mono text-neutral-400 mt-0.5">{subtitle}</p>
           </div>
           <button
             onClick={onClose}
             aria-label="Close"
-            className="text-neutral-300 hover:text-[#12022A] text-xl ml-4 shrink-0 leading-none transition-colors"
+            className="text-neutral-300 hover:text-[#1C1336] text-xl ml-4 shrink-0 leading-none transition-colors"
           >
             ✕
           </button>
@@ -55,12 +55,12 @@ function FormModal({ title, subtitle, formUrl, accentColor, onClose }: FormModal
         {submitted ? (
           <div className="flex flex-col items-center justify-center flex-1 px-8 py-12 text-center">
             <div
-              className="w-14 h-14 flex items-center justify-center text-[#12022A] text-2xl font-bold mb-5"
+              className="w-14 h-14 flex items-center justify-center text-[#1C1336] text-2xl font-bold mb-5"
               style={{ background: accentColor }}
             >
               ✓
             </div>
-            <h3 className="text-xl font-bold text-[#12022A] mb-3">Submitted!</h3>
+            <h3 className="text-xl font-bold text-[#1C1336] mb-3">Submitted!</h3>
             <p className="text-sm text-neutral-500 leading-relaxed max-w-sm mb-8">
               Thank you for reaching out to The Emerson Empire. A member of our team will follow up with you shortly at the contact information you provided.
             </p>
@@ -96,7 +96,7 @@ const Call: React.FC = () => {
     <>
       <section
         id="apply"
-        className="relative bg-[#12022A] px-6 sm:px-10 lg:px-16 py-28 lg:py-40 overflow-hidden"
+        className="relative bg-[#1C1336] px-6 sm:px-10 lg:px-16 py-28 lg:py-40 overflow-hidden"
       >
         {/* Decorative rings */}
         <div aria-hidden="true" className="-bottom-40 -left-40 absolute border border-[#C9A84C]/08 rounded-full w-140 h-140 pointer-events-none" />
@@ -157,7 +157,7 @@ const Call: React.FC = () => {
           >
             <button
               onClick={() => setOpenModal("apply")}
-              className="group inline-flex items-center gap-3 bg-[#C9A84C] hover:bg-[#b8943d] px-10 py-5 rounded-full font-bold text-[#12022A] text-base sm:text-lg uppercase tracking-[3px] active:scale-95 transition-all duration-200"
+              className="group inline-flex items-center gap-3 bg-[#C9A84C] hover:bg-[#b8943d] px-10 py-5 rounded-full font-bold text-[#1C1336] text-base sm:text-lg uppercase tracking-[3px] active:scale-95 transition-all duration-200"
             >
               Apply Now
               <ArrowRight size={20} className="transition-transform group-hover:translate-x-1 duration-200" />

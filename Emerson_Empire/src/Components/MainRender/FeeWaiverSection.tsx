@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { HeartHandshake } from 'lucide-react';
 
 const FeeWaiverSection: React.FC = () => (
-  <div className="bg-[#12022A] px-6 sm:px-10 lg:px-16 py-16 lg:py-20">
+  <div className="bg-[#1C1336] px-6 sm:px-10 lg:px-16 py-16 lg:py-20">
     <motion.div
       whileInView={{ opacity: 1, y: 0 }}
       initial={{ opacity: 0, y: 24 }}
