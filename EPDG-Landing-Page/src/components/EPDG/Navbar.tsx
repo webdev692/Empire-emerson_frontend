@@ -163,7 +163,7 @@ const Navbar: React.FC = () => {
 
           <div className="flex flex-col gap-3 mt-auto pt-8">
             <a
-              href="https://emersonproffesionaldevelopment.netlify.app/"
+              href="https://epdg.netlify.app/"
               target="_blank"
               rel="noreferrer"
               className="w-full py-3.5 border border-white/10 rounded-full font-semibold text-white/80 hover:text-white text-sm text-center uppercase tracking-[0.15em] active:bg-white/5 transition-all"
@@ -171,7 +171,7 @@ const Navbar: React.FC = () => {
               Log In
             </a>
             <a
-              href="https://emersonproffesionaldevelopment.netlify.app/"
+              href="https://epdg.netlify.app/"
               target="_blank"
               rel="noreferrer"
               className="bg-[#C9A84C] hover:bg-[#BDA55F] w-full py-3.5 rounded-full font-semibold text-[#07120f] text-sm text-center uppercase tracking-[0.15em] active:scale-[0.98] transition-all"
