@@ -11,6 +11,7 @@ const RoleSelect      = lazy(() => import("./components/Credential/RoleSelect"))
 const RegisterIntern  = lazy(() => import("./components/Credential/RegisterIntern"));
 const RegisterCompany = lazy(() => import("./components/Credential/RegisterCompany"));
 const RegisterSchool  = lazy(() => import("./components/Credential/RegisterSchool"));
+const RegisterAdmin   = lazy(() => import("./components/Credential/RegisterAdmin"));
 const ForgotPassword  = lazy(() => import("./components/Credential/ForgotPassword"));
 const ResetPassword   = lazy(() => import("./components/Credential/ResetPassword"));
 const ChangePassword      = lazy(() => import("./components/Credential/ChangePassword"));
@@ -105,6 +106,7 @@ function App() {
           <Route path="/register/intern"  element={<RegisterIntern />} />
           <Route path="/register/company" element={<RegisterCompany />} />
           <Route path="/register/school"  element={<RegisterSchool />} />
+          <Route path="/register/admin"   element={<RegisterAdmin />} />
           <Route path="/forgot-password"  element={<ForgotPassword />} />
           <Route path="/reset-password"   element={<ResetPassword />} />
           <Route path="/change-password"  element={<ChangePassword />} />

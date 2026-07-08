@@ -67,22 +67,6 @@ const TaskTracker: React.FC = () => {
     return d >= Date.now() - 14*86400000 && d < Date.now() - 7*86400000;
   }).length;
 
-  const KanbanCard = ({ task }: { task: TaskItem }) => (
-    <div onClick={() => setSelectedCardId(task.id)}
-      className={`bg-[#0D0118] border rounded-xl p-3 cursor-pointer transition-all ${
-        selectedCardId === task.id ? "border-[#4B1E91] ring-1 ring-[#4B1E91]" : "border-[#4B1E91] hover:border-neutral-400"
-      }`}>
-      <div className="flex justify-between items-start gap-2 mb-2">
-        <span className="text-[8px] font-mono font-bold uppercase tracking-wider bg-blue-900/30 text-blue-400 px-1.5 py-0.5 border border-blue-500/20 rounded">
-          {task.priority}
-        </span>
-        <span className="text-[9px] font-mono text-[#F5F0E8]">+{task.points} pts</span>
-      </div>
-      <h4 className="text-xs font-bold text-white mb-2 line-clamp-2 leading-snug">{task.title}</h4>
-      <p className="text-[10px] font-mono text-[#F5F0E8]">⏰ {dueDateLabel(task.due_date, task.status)}</p>
-    </div>
-  );
-
   if (loading) return (
     <div className="flex justify-center py-24">
       <div className="border-[#4B1E91] border-2 border-t-transparent rounded-full w-8 h-8 animate-spin" />
