@@ -4,7 +4,7 @@ import { useAuthStore } from '../store/authStore';
 import { mockLogin, logMockCredentials } from './mockAuth';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ?? 'https://the-emerson-empirebackend-production.up.railway.app',
+  baseURL: import.meta.env.VITE_API_URL ?? 'https://tranquil-tenderness-production-6010.up.railway.app',
   headers: {
     'Content-Type': 'application/json',
   },
