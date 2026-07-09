@@ -3,6 +3,8 @@ export interface ClassItem {
   title: string;
   day: string;
   time: string;
+  duration: string;
+  durationMinutes: number;
   ticketType: string;
   theme: string;
   category: string;
