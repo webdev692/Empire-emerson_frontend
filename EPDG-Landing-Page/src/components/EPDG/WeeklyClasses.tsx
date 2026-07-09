@@ -3,9 +3,9 @@ import { classes } from "./classData";
 import { useFormModal } from "./FormModal";
 
 const FORM_CLASSES  = "https://docs.google.com/forms/d/e/1FAIpQLSfOGM0MZ05Em3O502rC9HxvK5qzW06ATQMcMX2Fgcn9xBpncQ/viewform";
-const FORM_SERVICES = "https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform";
+const FORM_FEE_WAIVER = "https://forms.gle/fWm9gHownQeorkNn7";
 
-const days = ["All Days", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const days = ["All Days", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 const dayOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 const tierLabels: Record<string, string> = {
@@ -44,9 +44,9 @@ const WeeklyClasses: React.FC = () => {
         </h2>
         <div className="bg-[#041913] mb-5 rounded w-12 h-0.5" />
         <p className="mb-10 max-w-7xl text-gray-500 text-sm md:text-base leading-relaxed">
-          Classes are hosted weekly on Google Meet. Free sessions run Monday–Saturday at 10 AM EDT.
+          Classes are hosted weekly on Google Meet. Free sessions run at 10 AM EDT.
           Low-cost workshops and intensives are available at 2 PM and 7 PM EDT. Fee waivers are
-          available.
+          available for paid classes.
         </p>
 
         <div className="flex flex-wrap gap-2 mb-10 rounded">
@@ -96,7 +96,7 @@ const WeeklyClasses: React.FC = () => {
                     Register
                   </button>
                   <button
-                    onClick={() => openForm(FORM_SERVICES, "Request a Fee Waiver", c.title)}
+                    onClick={() => openForm(FORM_FEE_WAIVER, "Request a Fee Waiver", c.title)}
                     className="px-4 py-2.5 border border-[#041913]/30 hover:border-[#041913] font-bold text-[#041913] text-sm uppercase tracking-wider transition-all duration-200 cursor-pointer"
                   >
                     Fee Waiver

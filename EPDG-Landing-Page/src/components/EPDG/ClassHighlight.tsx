@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormModal } from "./FormModal";
 
-const FORM_SERVICES = "https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform";
+const FORM_FEE_WAIVER = "https://forms.gle/fWm9gHownQeorkNn7";
 
 const sessions = [
   { duration: "60 minutes", time: "10 AM EDT", price: "Free" },
@@ -66,7 +66,7 @@ const ClassHighlight: React.FC = () => {
             Register for weekly classes
           </button>
           <button
-            onClick={() => openForm(FORM_SERVICES, "Ask about a Fee Waiver", "Reduced cost & fee waiver options")}
+            onClick={() => openForm(FORM_FEE_WAIVER, "Ask about a Fee Waiver", "Reduced cost & fee waiver options")}
             className="bg-white hover:bg-[#f7f2e8] px-8 py-3.5 border border-[#b0a57f] rounded-full font-semibold text-[#0B2018] text-sm uppercase tracking-[0.16em] transition duration-200 cursor-pointer"
           >
             Ask about a fee waiver
