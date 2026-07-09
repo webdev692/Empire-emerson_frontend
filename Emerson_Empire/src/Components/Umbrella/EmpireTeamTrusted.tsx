@@ -85,10 +85,10 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       initial={{ opacity: 0, y: 28 }}
       transition={{ duration: 0.45, delay: index * 0.08 }}
-      className="group flex flex-col shadow-sm hover:shadow-[#4B1E91]/15 hover:shadow-lg border border-[#12022A]/08 rounded-2xl overflow-hidden transition-shadow duration-300"
+      className="group flex flex-col shadow-sm hover:shadow-[#4B1E91]/15 hover:shadow-lg border border-[#1C1336]/08 rounded-2xl overflow-hidden transition-shadow duration-300"
     >
       {/* Photo area */}
-      <div className="relative flex justify-center items-center bg-[#12022A] h-56 sm:h-64 overflow-hidden">
+      <div className="relative flex justify-center items-center bg-[#1C1336] h-56 sm:h-64 overflow-hidden">
         {member.photo ? (
           <img
             src={member.photo}
@@ -113,7 +113,7 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
       {/* Info */}
       <div className="flex flex-col flex-1 bg-white px-6 py-6">
         <div className="flex justify-between items-start mb-1">
-          <h3 className="font-bold text-[#12022A] text-xl sm:text-2xl leading-tight heading">
+          <h3 className="font-bold text-[#1C1336] text-xl sm:text-2xl leading-tight heading">
             {member.name}
           </h3>
           {member.linkedin && (
@@ -122,7 +122,7 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${member.name} on LinkedIn`}
-              className="mt-1 ml-3 text-[#12022A]/25 hover:text-[#4B1E91] transition-colors duration-200 shrink-0"
+              className="mt-1 ml-3 text-[#1C1336]/25 hover:text-[#4B1E91] transition-colors duration-200 shrink-0"
             >
               <ExternalLink size={18} />
             </a>
@@ -131,7 +131,7 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
         <p className="mb-4 font-semibold text-[#4B1E91] text-sm uppercase tracking-[2px]">
           {member.role}
         </p>
-        <p className="flex-1 text-[#12022A]/55 text-sm leading-[1.8]">
+        <p className="flex-1 text-[#1C1336]/55 text-sm leading-[1.8]">
           {member.bio}
         </p>
       </div>
@@ -175,7 +175,7 @@ const EmpireTeamTrusted: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   initial={{ opacity: 0, y: 24 }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className="flex flex-col items-center gap-4 bg-[#12022A]/40 px-6 py-10 border border-[#C9A84C]/20 rounded-2xl"
+                  className="flex flex-col items-center gap-4 bg-[#1C1336]/40 px-6 py-10 border border-[#C9A84C]/20 rounded-2xl"
                 >
                   <Icon size={36} className="text-[#C9A84C]" />
                   <CountUp
@@ -210,7 +210,7 @@ const EmpireTeamTrusted: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 24 }}
               transition={{ duration: 0.5, delay: 0.07 }}
-              className="max-w-2xl font-bold text-[#12022A] text-[36px] sm:text-[52px] lg:text-[60px] uppercase leading-none tracking-tight heading"
+              className="max-w-2xl font-bold text-[#1C1336] text-[36px] sm:text-[52px] lg:text-[60px] uppercase leading-none tracking-tight heading"
             >
               Meet the Team.
             </motion.h2>

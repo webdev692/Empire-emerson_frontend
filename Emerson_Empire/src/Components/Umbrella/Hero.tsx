@@ -38,7 +38,7 @@ const Hero: React.FC = () => {
             className="mb-5 font-medium text-5xl md:text-6xl lg:text-7xl leading-[1.05]"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
-            <span className="block text-[#12022A]">Welcome to</span>
+            <span className="block text-[#1C1336]">Welcome to</span>
             <span className="block text-[#C9A84C]">The Emerson Empire</span>
           </h1>
 
@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
 
           {/* Subtitle */}
           <p
-            className="mb-9 max-w-lg text-[#12022A]/75 text-base leading-[1.9]"
+            className="mb-9 max-w-lg text-[#1C1336]/75 text-base leading-[1.9]"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
             The Emerson Empire connects people, students, families, workers,
@@ -63,14 +63,14 @@ const Hero: React.FC = () => {
           <div className="flex flex-wrap items-center gap-4 mb-10">
             <a
               href="/about"
-              className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#E8C97A] px-7 py-3.5 rounded-md font-bold text-[#12022A] text-sm transition-colors duration-200"
+              className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#E8C97A] px-7 py-3.5 rounded-md font-bold text-[#1C1336] text-sm transition-colors duration-200"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               Start Here <span aria-hidden="true">→</span>
             </a>
             <a
               href="/services"
-              className="inline-flex items-center bg-[#12022A] hover:bg-[#1E0A4A] px-7 py-3.5 rounded-md font-bold text-white text-sm transition-colors duration-200"
+              className="inline-flex items-center bg-[#1C1336] hover:bg-[#1E0A4A] px-7 py-3.5 rounded-md font-bold text-white text-sm transition-colors duration-200"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               Find Emerson Services
@@ -92,7 +92,7 @@ const Hero: React.FC = () => {
                   {title}
                 </p>
                 <p
-                  className="mt-1 text-[#12022A]/60 text-[11px] leading-snug"
+                  className="mt-1 text-[#1C1336]/60 text-[11px] leading-snug"
                   style={{ fontFamily: "'Inter', sans-serif" }}
                 >
                   {subtitle}
@@ -106,17 +106,7 @@ const Hero: React.FC = () => {
         <div className="flex justify-center w-full lg:w-1/2">
           <div className="relative w-full sm:w-[80%] lg:w-[90%] h-[400px] sm:h-[480px] lg:h-[540px]">
 
-            {/* Gold diagonal accent lines, top-right corner */}
-            <svg
-              className="-top-2 -right-2 z-10 absolute pointer-events-none"
-              width="110" height="110" viewBox="0 0 110 110" fill="none" aria-hidden="true"
-            >
-              <line x1="110" y1="20" x2="20" y2="110" stroke="#C9A84C" strokeWidth="1.5" />
-              <line x1="110" y1="42" x2="42" y2="110" stroke="#C9A84C" strokeWidth="1.5" />
-              <line x1="110" y1="64" x2="64" y2="110" stroke="#C9A84C" strokeWidth="1.5" />
-            </svg>
-
-            <div className="relative bg-[#12022A] shadow-2xl rounded-2xl w-full h-full overflow-hidden">
+            <div className="relative bg-[#1C1336] shadow-2xl rounded-2xl w-full h-full overflow-hidden">
               <picture>
                 <source srcSet={HelenaAvif} type="image/avif" />
                 <source srcSet={HelenaWebp} type="image/webp" />
@@ -134,14 +124,14 @@ const Hero: React.FC = () => {
                 width="150" height="90" viewBox="0 0 150 90" fill="none" aria-hidden="true"
               >
                 {/* Ascending bars */}
-                <rect x="2"   y="66" width="16" height="24" fill="#C9A84C" fillOpacity="0.35" />
-                <rect x="26"  y="54" width="16" height="36" fill="#C9A84C" fillOpacity="0.45" />
-                <rect x="50"  y="42" width="16" height="48" fill="#C9A84C" fillOpacity="0.55" />
-                <rect x="74"  y="28" width="16" height="62" fill="#C9A84C" fillOpacity="0.65" />
-                <rect x="98"  y="16" width="16" height="74" fill="#C9A84C" fillOpacity="0.8" />
+                <rect x="2"   y="66" width="16" height="24" fill="#4B5563" fillOpacity="0.35" />
+                <rect x="26"  y="54" width="16" height="36" fill="#4B5563" fillOpacity="0.45" />
+                <rect x="50"  y="42" width="16" height="48" fill="#4B5563" fillOpacity="0.55" />
+                <rect x="74"  y="28" width="16" height="62" fill="#4B5563" fillOpacity="0.65" />
+                <rect x="98"  y="16" width="16" height="74" fill="#4B5563" fillOpacity="0.8" />
                 {/* Upward trend arrow */}
-                <path d="M6 70 L42 50 L74 56 L124 14" stroke="#E8C97A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M124 14 L106 16 M124 14 L122 32" stroke="#E8C97A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M6 70 L42 50 L74 56 L124 14" stroke="#4B5563" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M124 14 L106 16 M124 14 L122 32" stroke="#4B5563" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
           </div>

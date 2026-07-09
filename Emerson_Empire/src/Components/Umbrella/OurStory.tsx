@@ -55,7 +55,7 @@ const OurStory: React.FC = () => (
             whileInView={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 24 }}
             transition={{ duration: 0.55, delay: 0.08 }}
-            className="font-bold text-[#12022A] text-[36px] sm:text-[52px] lg:text-[64px] uppercase leading-none tracking-tight heading"
+            className="font-bold text-[#1C1336] text-[36px] sm:text-[52px] lg:text-[64px] uppercase leading-none tracking-tight heading"
           >
             Built From{' '}
             <span className="text-[#4B1E91]">Experience,</span>
@@ -67,7 +67,7 @@ const OurStory: React.FC = () => (
           whileInView={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="lg:max-w-sm text-[#12022A]/55 text-lg sm:text-xl leading-[1.9]"
+          className="lg:max-w-sm text-[#1C1336]/55 text-lg sm:text-xl leading-[1.9]"
         >
           The Emerson Empire didn't start in a boardroom. It started with a
           problem — and a refusal to accept that nothing could be done about it.
@@ -87,7 +87,7 @@ const OurStory: React.FC = () => (
       <div className="relative">
         <div
           aria-hidden="true"
-          className="hidden lg:block top-0 bottom-0 left-1/2 absolute bg-[#12022A]/10 w-px -translate-x-1/2"
+          className="hidden lg:block top-0 bottom-0 left-1/2 absolute bg-[#1C1336]/10 w-px -translate-x-1/2"
         />
 
         <div className="flex flex-col gap-16">
@@ -113,10 +113,10 @@ const OurStory: React.FC = () => (
                     <p className="mb-2 font-bold text-[#C9A84C] text-sm uppercase tracking-[3px]">
                       {item.year}
                     </p>
-                    <h3 className="mb-3 font-bold text-[#12022A] text-2xl sm:text-[26px] leading-tight heading">
+                    <h3 className="mb-3 font-bold text-[#1C1336] text-2xl sm:text-[26px] leading-tight heading">
                       {item.title}
                     </h3>
-                    <p className="text-[#12022A]/55 text-base sm:text-lg leading-[1.9]">
+                    <p className="text-[#1C1336]/55 text-base sm:text-lg leading-[1.9]">
                       {item.body}
                     </p>
                   </div>
@@ -138,7 +138,7 @@ const OurStory: React.FC = () => (
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: 24 }}
         transition={{ duration: 0.55 }}
-        className="relative bg-[#12022A] mt-24 px-8 sm:px-14 py-14 lg:py-20 rounded-2xl overflow-hidden"
+        className="relative bg-[#1C1336] mt-24 px-8 sm:px-14 py-14 lg:py-20 rounded-2xl overflow-hidden"
       >
         <div
           aria-hidden="true"

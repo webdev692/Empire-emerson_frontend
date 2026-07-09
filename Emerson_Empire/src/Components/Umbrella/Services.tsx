@@ -416,11 +416,11 @@ const FormModal: React.FC<{ modal: ModalState; onClose: () => void }> = ({ modal
               <p className="mb-0.5 font-mono text-[#C9A84C] text-xs uppercase tracking-widest">
                 Service Request
               </p>
-              <h3 className="font-bold text-[#12022A] text-sm leading-snug">{modal.title}</h3>
+              <h3 className="font-bold text-[#1C1336] text-sm leading-snug">{modal.title}</h3>
             </div>
             <button
               onClick={onClose}
-              className="flex justify-center items-center w-8 h-8 text-neutral-400 hover:text-[#12022A] transition-colors"
+              className="flex justify-center items-center w-8 h-8 text-neutral-400 hover:text-[#1C1336] transition-colors"
               aria-label="Close"
             >
               <X size={18} />
@@ -431,10 +431,10 @@ const FormModal: React.FC<{ modal: ModalState; onClose: () => void }> = ({ modal
           <div className="flex-1 overflow-hidden">
             {submitted ? (
               <div className="flex flex-col justify-center items-center px-8 py-16 h-full text-center">
-                <div className="flex justify-center items-center bg-[#C9A84C] mb-6 w-16 h-16 font-bold text-[#12022A] text-2xl">
+                <div className="flex justify-center items-center bg-[#C9A84C] mb-6 w-16 h-16 font-bold text-[#1C1336] text-2xl">
                   ✓
                 </div>
-                <h4 className="mb-3 font-bold text-[#12022A] text-xl uppercase">Request Submitted!</h4>
+                <h4 className="mb-3 font-bold text-[#1C1336] text-xl uppercase">Request Submitted!</h4>
                 <p className="mb-8 max-w-xs text-neutral-500 text-sm leading-relaxed">
                   We received your request and will follow up within 24–48 business hours.
                 </p>
@@ -477,7 +477,7 @@ const ServiceCard: React.FC<CardProps> = ({
   };
 
   const buttonCls = isClasses || isInternship
-    ? 'bg-[#C9A84C] text-[#12022A] hover:bg-[#b8933e]'
+    ? 'bg-[#C9A84C] text-[#1C1336] hover:bg-[#b8933e]'
     : 'bg-[#4B1E91] text-white hover:bg-[#3d1778]';
 
   return (
@@ -500,7 +500,7 @@ const ServiceCard: React.FC<CardProps> = ({
         </div>
 
         {/* Title */}
-        <h3 className="mb-2 font-bold text-[#12022A] text-xl leading-snug">{title}</h3>
+        <h3 className="mb-2 font-bold text-[#1C1336] text-xl leading-snug">{title}</h3>
 
         {/* Description */}
         <p className="flex-1 mb-4 text-[#4B1E91] text-base leading-relaxed text">{description}</p>
@@ -576,7 +576,7 @@ const CompanySection: React.FC<CompanySectionProps> = ({
                 {tagline}
               </span>
             </div>
-            <h2 className="mb-3 font-black text-[#12022A] text-2xl sm:text-3xl uppercase leading-tight">
+            <h2 className="mb-3 font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight">
               {company}
             </h2>
             <p className="max-w-2xl text-neutral-500 text-sm leading-relaxed">{role}</p>
@@ -642,7 +642,7 @@ const Services: React.FC = () => {
     <div className="bg-[#FAFAF9] pt-16 sm:pt-20 min-h-screen font-sans antialiased">
 
       {/* ── Hero ── */}
-      <div className="bg-[#12022A] px-4 sm:px-6 lg:px-16 py-24 text-white">
+      <div className="bg-[#1C1336] px-4 sm:px-6 lg:px-16 py-24 text-white">
         <div className="mx-auto max-w-7xl">
           <motion.span
             whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 12 }}
@@ -729,7 +729,7 @@ const Services: React.FC = () => {
           </p>
           <button
             onClick={() => openModal('Free Consultation', FORM_URLS['services-form'])}
-            className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-4 font-mono font-bold text-[#12022A] text-xs uppercase tracking-wider transition-colors duration-200"
+            className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8933e] px-8 py-4 font-mono font-bold text-[#1C1336] text-xs uppercase tracking-wider transition-colors duration-200"
           >
             Request a Free Consultation
             <ArrowRight size={14} />

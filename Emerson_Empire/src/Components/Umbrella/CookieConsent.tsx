@@ -94,7 +94,7 @@ const CookieConsent: React.FC = () => {
                 </button>
                 <button
                   onClick={() => handleConsent('accepted')}
-                  className="px-6 py-2.5 rounded-sm font-semibold text-[#12022A] text-xs uppercase tracking-[2.5px] transition-all duration-200 body"
+                  className="px-6 py-2.5 rounded-sm font-semibold text-[#1C1336] text-xs uppercase tracking-[2.5px] transition-all duration-200 body"
                   style={{ background: '#C9A84C' }}
                   onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.background = '#E8C97A')}
                   onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.background = '#C9A84C')}
