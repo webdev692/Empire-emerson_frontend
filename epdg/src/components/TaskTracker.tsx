@@ -14,7 +14,7 @@ interface TaskItem {
 function dueDateLabel(dateStr: string, status: string): string {
   if (status === "done") return "Completed";
   const diff = Math.ceil((new Date(dateStr).getTime() - Date.now()) / 86400000);
-  if (diff < 0)  return `${Math.abs(diff)}d overdue`;
+  if (diff < 0) return `${Math.abs(diff)}d overdue`;
   if (diff === 0) return "Due today";
   if (diff === 1) return "Due tomorrow";
   return `In ${diff} days`;
@@ -40,13 +40,12 @@ const TaskTracker: React.FC = () => {
   }, []);
 
   const kanban = useMemo(() => ({
-    todo:       tasks.filter(t => t.status === "pending"),
+    todo: tasks.filter(t => t.status === "pending"),
     inProgress: tasks.filter(t => t.status === "in_progress"),
-    review:     tasks.filter(t => t.status === "review"),
-    done:       tasks.filter(t => t.status === "done"),
+    review: tasks.filter(t => t.status === "review"),
+    done: tasks.filter(t => t.status === "done"),
   }), [tasks]);
 
-  // Weekly chart: group completed tasks by week
   const chartData = useMemo(() => {
     const map: Record<string, number> = {};
     tasks.filter(t => t.completed_at).forEach(t => {
@@ -60,28 +59,12 @@ const TaskTracker: React.FC = () => {
 
   const maxCount = Math.max(...chartData.map(d => d.count), 1);
   const overdue = tasks.filter(t => t.status !== "done" && new Date(t.due_date) < new Date()).length;
-  const thisWeekDone  = kanban.done.filter(t => t.completed_at && new Date(t.completed_at) >= new Date(Date.now() - 7*86400000)).length;
-  const lastWeekDone  = kanban.done.filter(t => {
+  const thisWeekDone = kanban.done.filter(t => t.completed_at && new Date(t.completed_at) >= new Date(Date.now() - 7 * 86400000)).length;
+  const lastWeekDone = kanban.done.filter(t => {
     if (!t.completed_at) return false;
     const d = new Date(t.completed_at).getTime();
-    return d >= Date.now() - 14*86400000 && d < Date.now() - 7*86400000;
+    return d >= Date.now() - 14 * 86400000 && d < Date.now() - 7 * 86400000;
   }).length;
-
-  const KanbanCard = ({ task }: { task: TaskItem }) => (
-    <div onClick={() => setSelectedCardId(task.id)}
-      className={`bg-[#0D0118] border rounded-xl p-3 cursor-pointer transition-all ${
-        selectedCardId === task.id ? "border-[#4B1E91] ring-1 ring-[#4B1E91]" : "border-[#4B1E91] hover:border-neutral-400"
-      }`}>
-      <div className="flex justify-between items-start gap-2 mb-2">
-        <span className="text-[8px] font-mono font-bold uppercase tracking-wider bg-blue-900/30 text-blue-400 px-1.5 py-0.5 border border-blue-500/20 rounded">
-          {task.priority}
-        </span>
-        <span className="text-[9px] font-mono text-[#F5F0E8]">+{task.points} pts</span>
-      </div>
-      <h4 className="text-xs font-bold text-white mb-2 line-clamp-2 leading-snug">{task.title}</h4>
-      <p className="text-[10px] font-mono text-[#F5F0E8]">⏰ {dueDateLabel(task.due_date, task.status)}</p>
-    </div>
-  );
 
   if (loading) return (
     <div className="flex justify-center py-24">
@@ -120,10 +103,10 @@ const TaskTracker: React.FC = () => {
       {view === "kanban" ? (
         <div className="flex gap-4 overflow-x-auto pb-4">
           {([
-            { label: "To Do Lane",   color: "text-neutral-400",  badge: "bg-neutral-800 text-neutral-400",       tasks: kanban.todo },
-            { label: "In Progress",  color: "text-[#F59E0B]",    badge: "bg-[#F59E0B]/10 text-[#F59E0B]",        tasks: kanban.inProgress },
-            { label: "Under Review", color: "text-[#4B1E91]",    badge: "bg-[#4B1E91]/20 text-[#F5F0E8]",        tasks: kanban.review },
-            { label: "Completed",    color: "text-[#22C55E]",    badge: "bg-[#22C55E]/10 text-[#22C55E]",        tasks: kanban.done },
+            { label: "To Do Lane", color: "text-neutral-400", badge: "bg-neutral-800 text-neutral-400", tasks: kanban.todo },
+            { label: "In Progress", color: "text-[#F59E0B]", badge: "bg-[#F59E0B]/10 text-[#F59E0B]", tasks: kanban.inProgress },
+            { label: "Under Review", color: "text-[#4B1E91]", badge: "bg-[#4B1E91]/20 text-[#F5F0E8]", tasks: kanban.review },
+            { label: "Completed", color: "text-[#22C55E]", badge: "bg-[#22C55E]/10 text-[#22C55E]", tasks: kanban.done },
           ] as const).map(col => (
             <div key={col.label} className="min-w-62 flex-1 bg-[#1E0A4A] border border-[#4B1E91] rounded-2xl p-4">
               <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#4B1E91]">
