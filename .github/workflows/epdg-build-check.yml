@@ -32,5 +32,27 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Build EPDG platform
-        run: npm run build
+      - name: Capture EPDG build output
+        id: build
+        shell: bash
+        run: |
+          set +e
+          npm run build > build-output.log 2>&1
+          BUILD_EXIT_CODE=$?
+          echo "exit_code=$BUILD_EXIT_CODE" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload compiler diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: epdg-build-diagnostics
+          path: epdg/build-output.log
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Fail when build fails
+        if: steps.build.outputs.exit_code != '0'
+        run: |
+          echo "EPDG build failed. Review the epdg-build-diagnostics artifact."
+          exit 1
