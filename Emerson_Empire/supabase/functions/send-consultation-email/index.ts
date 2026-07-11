@@ -1,207 +1,225 @@
 import { Resend } from 'resend'
 
-declare const Deno: { env: { get(key: string): string | undefined }; serve(handler: (req: Request) => Response | Promise<Response>): void }
+declare const Deno: {
+  env: { get(key: string): string | undefined }
+  serve(handler: (req: Request) => Response | Promise<Response>): void
+}
 declare const EdgeRuntime: { waitUntil(promise: Promise<unknown>): void }
 
-const resend = new Resend(Deno.env.get('RESEND_API_KEY'))
-
-const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!
-const SUPABASE_SERVICE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-
-const CORS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+type LeadPayload = {
+  firstName?: unknown
+  lastName?: unknown
+  fullName?: unknown
+  email?: unknown
+  phone?: unknown
+  message?: unknown
+  serviceInterest?: unknown
+  urgency?: unknown
+  intentDescription?: unknown
+  trackInterest?: unknown
+  division?: unknown
+  divisionLabel?: unknown
+  website?: unknown
 }
 
-async function insertLead(data: Record<string, string | null>) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+const requireEnv = (name: string): string => {
+  const value = Deno.env.get(name)?.trim()
+  if (!value) throw new Error(`Missing required environment variable: ${name}`)
+  return value
+}
+
+const RESEND_API_KEY = requireEnv('RESEND_API_KEY')
+const SUPABASE_URL = requireEnv('SUPABASE_URL')
+const SUPABASE_SERVICE_KEY = requireEnv('SUPABASE_SERVICE_ROLE_KEY')
+const ADMIN_EMAIL = Deno.env.get('LEAD_NOTIFICATION_EMAIL')?.trim() || 'webdev@theemersonempire.info'
+const resend = new Resend(RESEND_API_KEY)
+
+const DEFAULT_ORIGINS = [
+  'https://theemerson.netlify.app',
+  'https://emersonagency.netlify.app',
+  'https://emersonprofessionaldevelopment.netlify.app',
+  'https://epdg.netlify.app',
+  'https://theemersonempire.info',
+  'https://www.theemersonempire.info',
+  'http://localhost:5173',
+  'http://localhost:3000',
+]
+
+const ALLOWED_ORIGINS = new Set(
+  (Deno.env.get('ALLOWED_ORIGINS') || DEFAULT_ORIGINS.join(','))
+    .split(',')
+    .map((origin) => origin.trim().replace(/\/$/, ''))
+    .filter(Boolean),
+)
+
+const isAllowedOrigin = (origin: string | null): boolean =>
+  !origin || ALLOWED_ORIGINS.has(origin.replace(/\/$/, ''))
+
+const corsHeaders = (origin: string | null): Record<string, string> => {
+  const headers: Record<string, string> = {
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    Vary: 'Origin',
+  }
+  if (origin && isAllowedOrigin(origin)) headers['Access-Control-Allow-Origin'] = origin
+  return headers
+}
+
+const jsonResponse = (body: Record<string, unknown>, status: number, origin: string | null): Response =>
+  new Response(JSON.stringify(body), {
+    status,
+    headers: { ...corsHeaders(origin), 'Content-Type': 'application/json; charset=utf-8' },
+  })
+
+const cleanText = (value: unknown, maxLength: number): string | null => {
+  if (typeof value !== 'string') return null
+  const cleaned = value.replace(/\u0000/g, '').trim()
+  return cleaned ? cleaned.slice(0, maxLength) : null
+}
+
+const escapeHtml = (value: string | null | undefined): string =>
+  (value || '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;')
+
+const sha256 = async (value: string): Promise<string> => {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(value))
+  return Array.from(new Uint8Array(digest))
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('')
+}
+
+async function postToSupabase(path: string, body: Record<string, unknown>): Promise<Response> {
+  return fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'apikey': SUPABASE_SERVICE_KEY,
-      'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
-      'Prefer': 'return=minimal',
+      apikey: SUPABASE_SERVICE_KEY,
+      Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
+      Prefer: 'return=minimal',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(body),
   })
-  if (!res.ok) {
-    const text = await res.text()
-    throw new Error(`DB insert failed: ${text}`)
+}
+
+async function enforceRateLimit(requestHash: string): Promise<boolean> {
+  const response = await postToSupabase('rpc/check_lead_rate_limit', {
+    request_hash: requestHash,
+    max_requests: 5,
+    window_minutes: 15,
+  })
+  if (!response.ok) {
+    console.error('Lead rate-limit check failed', { status: response.status })
+    return false
+  }
+  return (await response.json()) === true
+}
+
+async function insertLead(data: Record<string, string | null>): Promise<void> {
+  const response = await postToSupabase('leads', data)
+  if (!response.ok) {
+    console.error('Lead insert failed', { status: response.status })
+    throw new Error('Unable to store inquiry')
+  }
+}
+
+async function sendEmail(input: Parameters<typeof resend.emails.send>[0]): Promise<void> {
+  const result = await resend.emails.send(input)
+  if (result.error) {
+    console.error('Email delivery failed', { name: result.error.name, message: result.error.message })
+    throw new Error('Unable to send email')
   }
 }
 
 Deno.serve(async (req: Request) => {
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: CORS })
-  }
+  const origin = req.headers.get('origin')
+  const requestId = crypto.randomUUID()
+
+  if (!isAllowedOrigin(origin)) return jsonResponse({ error: 'Origin not allowed', requestId }, 403, origin)
+  if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: corsHeaders(origin) })
+  if (req.method !== 'POST') return jsonResponse({ error: 'Method not allowed', requestId }, 405, origin)
+
+  const contentLength = Number(req.headers.get('content-length') || '0')
+  if (contentLength > 20_000) return jsonResponse({ error: 'Submission is too large', requestId }, 413, origin)
 
   try {
-    const {
-      firstName,
-      lastName,
-      fullName,
+    const payload = (await req.json()) as LeadPayload
+
+    // Honeypot field: silently accept bot submissions without storing or emailing them.
+    if (cleanText(payload.website, 200)) return jsonResponse({ success: true, requestId }, 200, origin)
+
+    const firstName = cleanText(payload.firstName, 80)
+    const lastName = cleanText(payload.lastName, 80)
+    const fullName = cleanText(payload.fullName, 160)
+    const email = cleanText(payload.email, 254)?.toLowerCase() || null
+    const phone = cleanText(payload.phone, 40)
+    const message = cleanText(payload.message, 4000)
+    const serviceInterest = cleanText(payload.serviceInterest, 200)
+    const urgency = cleanText(payload.urgency, 100)
+    const intentDescription = cleanText(payload.intentDescription, 2000)
+    const trackInterest = cleanText(payload.trackInterest, 200)
+    const requestedDivision = cleanText(payload.division, 40)?.toLowerCase() || ''
+    const division = ['agency', 'epdg', 'empire'].includes(requestedDivision) ? requestedDivision : null
+    const divisionLabel = cleanText(payload.divisionLabel, 120)
+    const displayName = fullName || `${firstName || ''} ${lastName || ''}`.trim() || 'Website visitor'
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return jsonResponse({ error: 'Please provide a valid email address', requestId }, 400, origin)
+    }
+    if (!message && !intentDescription && !serviceInterest && !trackInterest) {
+      return jsonResponse({ error: 'Please describe how we can assist you', requestId }, 400, origin)
+    }
+
+    const forwardedFor = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+    const requesterHash = await sha256(`${SUPABASE_SERVICE_KEY.slice(-24)}:${forwardedFor || email}`)
+    if (!(await enforceRateLimit(requesterHash))) {
+      return jsonResponse({ error: 'Too many submissions. Please try again later.', requestId }, 429, origin)
+    }
+
+    await insertLead({
+      first_name: firstName,
+      last_name: lastName,
+      full_name: fullName,
       email,
       phone,
       message,
-      serviceInterest,
+      service_interest: serviceInterest,
       urgency,
-      intentDescription,
-      trackInterest,
+      intent_description: intentDescription,
+      track_interest: trackInterest,
       division,
-      divisionLabel,
-    } = await req.json()
-
-    const displayName = fullName || `${firstName ?? ''} ${lastName ?? ''}`.trim() || 'Unknown'
-
-    // 1. Store lead in database
-    await insertLead({
-      first_name: firstName ?? null,
-      last_name: lastName ?? null,
-      full_name: fullName ?? null,
-      email,
-      phone: phone ?? null,
-      message: message ?? null,
-      service_interest: serviceInterest ?? null,
-      urgency: urgency ?? null,
-      intent_description: intentDescription ?? null,
-      track_interest: trackInterest ?? null,
-      division: division ?? null,
-      division_label: divisionLabel ?? null,
+      division_label: divisionLabel,
     })
 
-    const firstName_ = firstName ?? displayName.split(' ')[0]
+    const safeName = escapeHtml(displayName)
+    const safeFirstName = escapeHtml(firstName || displayName.split(' ')[0] || 'there')
+    const safeEmail = escapeHtml(email)
+    const safePhone = escapeHtml(phone)
+    const safeDivision = escapeHtml(divisionLabel || division || 'General inquiry')
+    const safeMessage = escapeHtml(intentDescription || message || serviceInterest || trackInterest)
 
-    const divisionTagline: Record<string, string> = {
-      agency: 'Tax preparation, insurance education &amp; business consulting built for results.',
-      epdg: 'Internship tracks and career development that get you hired.',
-    }
-    const tagline = divisionTagline[division ?? ''] ?? 'Building legacies across business, finance, and professional development.'
-
-    const divisionUrl: Record<string, string> = {
-      agency: 'https://theemersonempire.info/agency',
-      epdg: 'https://theemersonempire.info/epdg',
-    }
-    const ctaUrl = divisionUrl[division ?? ''] ?? 'https://theemersonempire.info'
-
-    const submissionRows = [
-      serviceInterest && `<tr><td style="padding:10px 0;color:#888;font-size:13px;width:140px;border-bottom:1px solid #f0f0f0">Service</td><td style="padding:10px 0;font-size:13px;color:#12022A;border-bottom:1px solid #f0f0f0">${serviceInterest}</td></tr>`,
-      trackInterest && `<tr><td style="padding:10px 0;color:#888;font-size:13px;width:140px;border-bottom:1px solid #f0f0f0">Track</td><td style="padding:10px 0;font-size:13px;color:#12022A;border-bottom:1px solid #f0f0f0">${trackInterest}</td></tr>`,
-      urgency && `<tr><td style="padding:10px 0;color:#888;font-size:13px;width:140px;border-bottom:1px solid #f0f0f0">Urgency</td><td style="padding:10px 0;font-size:13px;color:#12022A;border-bottom:1px solid #f0f0f0">${urgency}</td></tr>`,
-      (intentDescription || message) && `<tr><td style="padding:10px 0;color:#888;font-size:13px;width:140px">Your message</td><td style="padding:10px 0;font-size:13px;color:#12022A">${intentDescription ?? message}</td></tr>`,
-    ].filter(Boolean).join('')
-
-    const confirmationHtml = `<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f5f5f5;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:40px 20px">
-    <tr><td align="center">
-      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:4px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)">
-
-        <!-- Header -->
-        <tr>
-          <td style="background:#12022A;padding:32px 40px 28px">
-            <p style="margin:0;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px">THE EMERSON EMPIRE</p>
-            <p style="margin:0;font-size:22px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#ffffff">${divisionLabel ?? 'The Emerson Empire'}</p>
-          </td>
-        </tr>
-
-        <!-- Body -->
-        <tr>
-          <td style="padding:36px 40px 0">
-            <p style="margin:0 0 6px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#888">Message received</p>
-            <h1 style="margin:0 0 20px;font-size:28px;font-weight:700;color:#12022A;line-height:1.2">Thank you, ${firstName_}.</h1>
-            <p style="margin:0 0 28px;font-size:15px;color:#555;line-height:1.8">
-              We've received your inquiry and one of our team members will be in touch within <strong style="color:#12022A">24 hours</strong>.
-            </p>
-
-            <!-- Divider -->
-            <div style="height:1px;background:#f0f0f0;margin-bottom:28px"></div>
-
-            <!-- Submission summary -->
-            ${submissionRows ? `
-            <p style="margin:0 0 12px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#888">Your submission</p>
-            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px">
-              ${submissionRows}
-            </table>` : ''}
-
-            <!-- Tagline -->
-            <p style="margin:0 0 32px;font-size:14px;color:#888;line-height:1.8;border-left:3px solid #12022A;padding-left:16px">
-              ${tagline}
-            </p>
-
-            <!-- CTA -->
-            <table cellpadding="0" cellspacing="0" style="margin-bottom:36px">
-              <tr>
-                <td style="background:#12022A;border-radius:3px">
-                  <a href="${ctaUrl}" style="display:inline-block;padding:14px 28px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#ffffff;text-decoration:none">
-                    Learn More
-                  </a>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-        <!-- Footer -->
-        <tr>
-          <td style="background:#fafafa;border-top:1px solid #f0f0f0;padding:24px 40px">
-            <p style="margin:0 0 4px;font-size:12px;color:#12022A;font-weight:600;letter-spacing:1px">THE EMERSON EMPIRE</p>
-            <p style="margin:0;font-size:11px;color:#aaa;line-height:1.6">
-              This is a confirmation of your inquiry. Please do not reply to this email.<br>
-              &copy; ${new Date().getFullYear()} The Emerson Empire. All rights reserved.
-            </p>
-          </td>
-        </tr>
-
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>`
-
-    // 2. Admin notification
-    await resend.emails.send({
+    await sendEmail({
       from: 'The Emerson Empire <noreply@theemersonempire.info>',
-      to: 'webdev@theemersonempire.info',
-      subject: `New lead — ${divisionLabel ?? division ?? 'Contact'} — ${displayName}`,
-      html: `
-        <div style="font-family:sans-serif;max-width:560px;margin:0 auto">
-          <h2 style="color:#12022A">New Lead Received</h2>
-          <table style="width:100%;border-collapse:collapse">
-            <tr><td style="padding:6px 0;color:#555;width:160px">Name</td><td style="padding:6px 0;font-weight:600">${displayName}</td></tr>
-            <tr><td style="padding:6px 0;color:#555">Email</td><td style="padding:6px 0;font-weight:600">${email}</td></tr>
-            ${phone ? `<tr><td style="padding:6px 0;color:#555">Phone</td><td style="padding:6px 0">${phone}</td></tr>` : ''}
-            <tr><td style="padding:6px 0;color:#555">Division</td><td style="padding:6px 0">${divisionLabel ?? division ?? 'N/A'}</td></tr>
-            ${serviceInterest ? `<tr><td style="padding:6px 0;color:#555">Service Interest</td><td style="padding:6px 0">${serviceInterest}</td></tr>` : ''}
-            ${trackInterest ? `<tr><td style="padding:6px 0;color:#555">Track Interest</td><td style="padding:6px 0">${trackInterest}</td></tr>` : ''}
-            ${urgency ? `<tr><td style="padding:6px 0;color:#555">Urgency</td><td style="padding:6px 0">${urgency}</td></tr>` : ''}
-            ${intentDescription ? `<tr><td style="padding:6px 0;color:#555">Intent</td><td style="padding:6px 0">${intentDescription}</td></tr>` : ''}
-            ${message ? `<tr><td style="padding:6px 0;color:#555">Message</td><td style="padding:6px 0">${message}</td></tr>` : ''}
-          </table>
-          <hr style="margin:20px 0;border:none;border-top:1px solid #eee"/>
-          <p style="color:#999;font-size:12px">The Emerson Empire — Lead Management</p>
-        </div>
-      `,
+      to: ADMIN_EMAIL,
+      subject: `New website inquiry — ${safeDivision} — ${safeName}`,
+      html: `<div style="font-family:Arial,sans-serif;max-width:620px"><h2 style="color:#12022A">New Website Inquiry</h2><p><strong>Name:</strong> ${safeName}</p><p><strong>Email:</strong> ${safeEmail}</p>${safePhone ? `<p><strong>Phone:</strong> ${safePhone}</p>` : ''}<p><strong>Division:</strong> ${safeDivision}</p><p style="white-space:pre-wrap"><strong>Message:</strong><br>${safeMessage}</p><hr><p style="font-size:12px;color:#777">Request ID: ${requestId}</p></div>`,
     })
 
-    // 3. Branded visitor confirmation — fire-and-forget so it never blocks the response
     EdgeRuntime.waitUntil(
-      resend.emails.send({
+      sendEmail({
         from: 'The Emerson Empire <noreply@theemersonempire.info>',
         to: email,
-        subject: `We received your message — ${divisionLabel ?? 'The Emerson Empire'}`,
-        html: confirmationHtml,
-      })
+        subject: `We received your message — ${safeDivision}`,
+        html: `<div style="font-family:Arial,sans-serif;max-width:560px;margin:auto"><div style="background:#12022A;color:#fff;padding:28px"><small style="letter-spacing:3px">THE EMERSON EMPIRE</small><h2 style="margin-bottom:0">${safeDivision}</h2></div><div style="padding:30px;border:1px solid #eee"><h1 style="color:#12022A">Thank you, ${safeFirstName}.</h1><p style="line-height:1.7;color:#555">We received your inquiry. A team member will review it and follow up using the contact information you provided.</p><p style="font-size:12px;color:#777">Please do not send sensitive financial, tax, insurance, identity, or employment documents by reply.</p></div></div>`,
+      }).catch((error) => console.error('Visitor confirmation failed', { requestId, message: (error as Error).message })),
     )
 
-    return new Response(JSON.stringify({ success: true }), {
-      headers: { ...CORS, 'Content-Type': 'application/json' },
-    })
-  } catch (err) {
-    return new Response(JSON.stringify({ error: (err as Error).message }), {
-      status: 500,
-      headers: { ...CORS, 'Content-Type': 'application/json' },
-    })
+    return jsonResponse({ success: true, requestId }, 200, origin)
+  } catch (error) {
+    console.error('Lead function error', { requestId, message: (error as Error).message })
+    return jsonResponse({ error: 'We could not process your inquiry. Please try again later.', requestId }, 500, origin)
   }
 })
