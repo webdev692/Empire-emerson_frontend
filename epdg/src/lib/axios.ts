@@ -4,7 +4,7 @@ import { useAuthStore } from '../store/authStore';
 import { mockLogin, logMockCredentials } from './mockAuth';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ?? 'https://tranquil-tenderness-production-6010.up.railway.app',
+  baseURL: import.meta.env.VITE_API_URL ?? 'https://the-emerson-empirebackend-production.up.railway.app',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -62,7 +62,7 @@ api.interceptors.response.use(
   (error: unknown) => {
     if (axios.isAxiosError(error) && error.response?.status === 401) {
       const url = error.config?.url ?? '';
-      const isAuthEndpoint = AUTH_ENDPOINTS.some((e) => url.includes(e));
+      const isAuthEndpoint = AUTH_ENDPOINTS.some((endpoint) => url.includes(endpoint));
       if (!isAuthEndpoint) {
         useAuthStore.getState().clearAuth();
         window.location.href = '/login';
