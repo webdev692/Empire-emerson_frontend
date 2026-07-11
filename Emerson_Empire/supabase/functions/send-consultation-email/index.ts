@@ -3,10 +3,15 @@ import { Resend } from 'resend'
 declare const Deno: { env: { get(key: string): string | undefined }; serve(handler: (req: Request) => Response | Promise<Response>): void }
 declare const EdgeRuntime: { waitUntil(promise: Promise<unknown>): void }
 
-const resend = new Resend(Deno.env.get('RESEND_API_KEY'))
+const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
+const SUPABASE_URL = Deno.env.get('SUPABASE_URL')
+const SUPABASE_SERVICE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
 
-const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!
-const SUPABASE_SERVICE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+if (!RESEND_API_KEY || !SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
+  throw new Error('Missing required environment variables: RESEND_API_KEY, SUPABASE_URL, or SUPABASE_SERVICE_ROLE_KEY')
+}
+
+const resend = new Resend(RESEND_API_KEY)
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',

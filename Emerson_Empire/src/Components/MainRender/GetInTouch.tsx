@@ -70,7 +70,7 @@ const GetInTouch: React.FC = () => {
                 Send a Message
               </a>
               <a
-                href="tel:+15551234567"
+                href="tel:+18034794492"
                 className="inline-flex items-center justify-center border-2 border-[#12022A] hover:bg-[#12022A]/5 px-8 py-4 rounded-sm font-bold text-[#12022A] text-sm uppercase tracking-[0.15em] transition-colors duration-200"
               >
                 Call Us

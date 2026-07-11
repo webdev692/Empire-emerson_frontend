@@ -26,3 +26,5 @@ CREATE POLICY "allow_insert" ON leads
 -- Only authenticated users can read (admin dashboard)
 CREATE POLICY "allow_authenticated_read" ON leads
   FOR SELECT TO authenticated USING (true);
+
+CREATE INDEX IF NOT EXISTS idx_leads_created_at ON leads (created_at);

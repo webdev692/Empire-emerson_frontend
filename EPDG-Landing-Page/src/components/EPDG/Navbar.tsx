@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
 
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="https://emersonproffesionaldevelopment.netlify.app/"
+            href="https://emersonprofessionaldevelopment.netlify.app/"
             target="_blank"
             rel="noreferrer"
             className="px-4 py-2 border border-white/10 hover:border-[#C9A84C] rounded-full font-semibold text-white/70 hover:text-white text-xs uppercase tracking-[0.18em] transition-all duration-200"
@@ -104,7 +104,7 @@ const Navbar: React.FC = () => {
             Log In
           </a>
           <a
-            href="https://emersonproffesionaldevelopment.netlify.app/"
+            href="https://emersonprofessionaldevelopment.netlify.app/"
             target="_blank"
             rel="noreferrer"
             className="bg-[#C9A84C] hover:bg-[#BDA55F] px-4 py-2 rounded-full font-semibold text-[#07120f] text-xs uppercase tracking-[0.18em] transition-all duration-200"
@@ -146,7 +146,7 @@ const Navbar: React.FC = () => {
           </ul>
           <div className="flex flex-col gap-3">
             <a
-              href="https://emersonproffesionaldevelopment.netlify.app/"
+              href="https://emersonprofessionaldevelopment.netlify.app/"
               target="_blank"
               rel="noreferrer"
               className="px-4 py-3 border border-white/10 rounded-full font-semibold text-white/80 hover:text-white text-sm text-center uppercase tracking-[0.18em]"
@@ -154,7 +154,7 @@ const Navbar: React.FC = () => {
               Log In
             </a>
             <a
-              href="https://emersonproffesionaldevelopment.netlify.app/"
+              href="https://emersonprofessionaldevelopment.netlify.app/"
               target="_blank"
               rel="noreferrer"
               className="bg-[#C9A84C] hover:bg-[#BDA55F] px-4 py-3 rounded-full font-semibold text-[#07120f] text-sm text-center uppercase tracking-[0.18em]"

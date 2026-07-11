@@ -1,8 +1,7 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-// Replace this with your actual Google Form share URL when ready.
-const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?usp=sharing';
+const GOOGLE_FORM_URL = import.meta.env.VITE_GOOGLE_REGISTER_FORM_URL as string | undefined;
 
 const Register: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -21,15 +20,27 @@ const Register: React.FC = () => {
 
         <div className="bg-white border rounded-lg overflow-hidden shadow-sm">
           <div style={{ aspectRatio: '4/3' }}>
-            <iframe
-              title="Google Form"
-              src={GOOGLE_FORM_URL}
-              className="w-full h-full border-0"
-            />
+            {GOOGLE_FORM_URL ? (
+              <iframe
+                title="Google Form"
+                src={GOOGLE_FORM_URL}
+                className="w-full h-full border-0"
+              />
+            ) : (
+              <div className="flex items-center justify-center p-10 text-center text-sm text-slate-600">
+                The registration form is not configured yet. Please contact us at{' '}
+                <a href="mailto:webdev@theemersonempire.info" className="text-[#C9A84C] hover:underline">webdev@theemersonempire.info</a>{' '}
+                for access information.
+              </div>
+            )}
           </div>
         </div>
 
-        <p className="text-xs text-gray-500 mt-4">Note: The iframe currently points to a placeholder Google Form URL. Create a Google Form, copy its "Send" → "Embed" link or full form URL, and paste it into `GOOGLE_FORM_URL` inside <code>src/Components/Umbrella/Register.tsx</code>. The Register buttons already pass the selected service as a query parameter.</p>
+        {!GOOGLE_FORM_URL && (
+          <p className="text-xs text-gray-500 mt-4">
+            No form is available because the registration form URL has not been configured in the environment. Set <code>VITE_GOOGLE_REGISTER_FORM_URL</code> in your deployment settings, or contact the site owner for next steps.
+          </p>
+        )}
       </div>
     </main>
   );

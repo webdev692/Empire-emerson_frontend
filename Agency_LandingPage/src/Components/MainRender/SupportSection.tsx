@@ -1,7 +1,6 @@
 import { Check, CheckCircle2 } from 'lucide-react'
 import studyImage from '../../assets/study.jpeg'
 import consultingImage from '../../assets/consulting.jpeg'
-import emblem from '../../assets/EmersonAgency.avif'
 
 const individualPoints = [
   'Households organizing bills, statements, and important records',

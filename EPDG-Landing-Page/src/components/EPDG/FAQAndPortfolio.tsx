@@ -14,7 +14,7 @@ const faqs = [
   {
     question: "Will I be able to earn a JOB after completing the program?",
     answer:
-      "Many EPDG graduates secure employment within weeks of program completion. We provide job search support, employer connections, and ongoing coaching to maximize your placement chances.",
+      "Many EPDG participants pursue new opportunities within weeks of completing the program. We provide job search support, employer connections, and ongoing coaching to maximize your placement chances.",
   },
   {
     question: "What makes EPDG different from other professional development programs?",
