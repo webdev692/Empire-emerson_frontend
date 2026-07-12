@@ -140,7 +140,14 @@ const RegisterIntern: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center bg-[#12022A] px-5 py-14 min-h-screen">
+    <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:font-semibold focus:text-[#12022A] focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
+      <main id="main-content" tabIndex={-1} className="flex justify-center items-center bg-[#12022A] px-5 py-14 min-h-screen">
       <div className="w-full max-w-md">
 
         {/* Logo */}
@@ -161,8 +168,8 @@ const RegisterIntern: React.FC = () => {
           <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
 
             <div>
-              <label className={labelCls}>Full Name</label>
-              <input type="text" placeholder="Jane Doe" autoComplete="name" className={inputCls}
+              <label htmlFor="intern-name" className={labelCls}>Full Name</label>
+              <input id="intern-name" type="text" placeholder="Jane Doe" autoComplete="name" className={inputCls}
                 {...register("name", {
                   required: "Full name is required",
                   minLength: { value: 2, message: "Name must be at least 2 characters" },
@@ -171,8 +178,8 @@ const RegisterIntern: React.FC = () => {
             </div>
 
             <div>
-              <label className={labelCls}>Email Address</label>
-              <input type="email" placeholder="jane@example.com" autoComplete="email" className={inputCls}
+              <label htmlFor="intern-email" className={labelCls}>Email Address</label>
+              <input id="intern-email" type="email" placeholder="jane@example.com" autoComplete="email" className={inputCls}
                 {...register("email", {
                   required: "Email address is required",
                   pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Enter a valid email address" },
@@ -181,8 +188,8 @@ const RegisterIntern: React.FC = () => {
             </div>
 
             <div>
-              <label className={labelCls}>Phone Number</label>
-              <input type="tel" placeholder="+1 (555) 000-0000" autoComplete="tel" className={inputCls}
+              <label htmlFor="intern-phone" className={labelCls}>Phone Number</label>
+              <input id="intern-phone" type="tel" placeholder="+1 (555) 000-0000" autoComplete="tel" className={inputCls}
                 {...register("phone", {
                   required: "Phone number is required",
                   pattern: { value: /^\+?[\d\s\-().]{7,20}$/, message: "Enter a valid phone number" },
@@ -191,10 +198,10 @@ const RegisterIntern: React.FC = () => {
             </div>
 
             <div>
-              <label className={labelCls}>
+              <label htmlFor="intern-cv" className={labelCls}>
                 CV / Resume <span className="normal-case font-normal">(PDF, DOC or DOCX — max 5 MB)</span>
               </label>
-              <label className={`flex items-center gap-3 cursor-pointer rounded-xl border transition px-4 py-3
+              <label htmlFor="intern-cv" className={`flex items-center gap-3 cursor-pointer rounded-xl border transition px-4 py-3
                 ${cvFile ? "border-[#4B1E91] bg-[#4B1E91]/10 lg:bg-[#4B1E91]/5" : "border-white/10 bg-white/5 lg:bg-white lg:border-[#12022A]/15"}
               `}>
                 <span className="text-[13px] shrink-0">
@@ -204,6 +211,7 @@ const RegisterIntern: React.FC = () => {
                   {cvFile ? cvFile.name : "No file chosen"}
                 </span>
                 <input
+                  id="intern-cv"
                   type="file"
                   accept=".pdf,.doc,.docx"
                   className="hidden"
@@ -214,8 +222,9 @@ const RegisterIntern: React.FC = () => {
             </div>
 
             <div>
-              <label className={labelCls}>Cover Letter <span className="normal-case font-normal">(optional but recommended)</span></label>
+              <label htmlFor="intern-cover-letter" className={labelCls}>Cover Letter <span className="normal-case font-normal">(optional but recommended)</span></label>
               <textarea
+                id="intern-cover-letter"
                 rows={5}
                 placeholder="Tell us why you want to join the EPDG program, your goals, and what you bring to the table…"
                 className={inputCls + " resize-none"}
@@ -227,15 +236,18 @@ const RegisterIntern: React.FC = () => {
             </div>
 
             <div>
-              <label className={labelCls}>Password</label>
+              <label htmlFor="intern-password" className={labelCls}>Password</label>
               <div className="relative">
-                <input type={showPassword ? "text" : "password"} placeholder="••••••••"
+                <input id="intern-password" type={showPassword ? "text" : "password"} placeholder="••••••••"
                   autoComplete="new-password" className={inputCls}
                   {...register("password", {
                     required: "Password is required",
                     minLength: { value: 8, message: "Password must be at least 8 characters" },
                   })} />
                 <button type="button" onClick={() => setShowPassword((v) => !v)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-controls="intern-password"
+                  aria-pressed={showPassword}
                   className="top-1/2 right-4 absolute text-[#F5F0E8]/50 text-[12px] lg:hover:text-[#12022A] lg:text-[#12022A]/40 hover:text-white transition -translate-y-1/2">
                   {showPassword ? "Hide" : "Show"}
                 </button>
@@ -256,15 +268,18 @@ const RegisterIntern: React.FC = () => {
             </div>
 
             <div>
-              <label className={labelCls}>Confirm Password</label>
+              <label htmlFor="intern-confirm-password" className={labelCls}>Confirm Password</label>
               <div className="relative">
-                <input type={showConfirm ? "text" : "password"} placeholder="••••••••"
+                <input id="intern-confirm-password" type={showConfirm ? "text" : "password"} placeholder="••••••••"
                   autoComplete="new-password" className={inputCls}
                   {...register("confirmPassword", {
                     required: "Please confirm your password",
                     validate: (value) => value === passwordValue || "Passwords do not match",
                   })} />
                 <button type="button" onClick={() => setShowConfirm((v) => !v)}
+                  aria-label={showConfirm ? "Hide password confirmation" : "Show password confirmation"}
+                  aria-controls="intern-confirm-password"
+                  aria-pressed={showConfirm}
                   className="top-1/2 right-4 absolute text-[#F5F0E8]/50 text-[12px] lg:hover:text-[#12022A] lg:text-[#12022A]/40 hover:text-white transition -translate-y-1/2">
                   {showConfirm ? "Hide" : "Show"}
                 </button>
@@ -304,7 +319,8 @@ const RegisterIntern: React.FC = () => {
           <a href="/register" className="font-semibold text-[#C9A84C] lg:hover:text-[#3d1778] hover:text-[#E8C97A] transition-colors">Change role</a>
         </p>
       </div>
-    </div>
+      </main>
+    </>
   );
 };
 

@@ -104,7 +104,14 @@ const Login: React.FC = () => {
         <meta name="description" content="Sign in to your Emerson Professional account as an Intern, Company, or Admin." />
       </Helmet>
 
-      <div className="flex bg-[#0a011a] min-h-screen">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:font-semibold focus:text-[#12022A] focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
+
+      <main id="main-content" tabIndex={-1} className="flex bg-[#0a011a] min-h-screen">
 
         {/* Left branding panel — desktop only */}
         <div className="hidden lg:flex flex-col justify-between bg-[#12022A] shadow-md shadow-white p-12 border-white/5 border-r w-[45%]">
@@ -207,10 +214,11 @@ const Login: React.FC = () => {
             {/* Form */}
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
-                <label className="block mb-1.5 font-medium text-[12px] uppercase tracking-wider text-[#F5F0E8]/60 lg:text-[#12022A]/50">
+                <label htmlFor="login-email" className="block mb-1.5 font-medium text-[12px] uppercase tracking-wider text-[#F5F0E8]/60 lg:text-[#12022A]/50">
                   Email address
                 </label>
                 <input
+                  id="login-email"
                   type="email"
                   required
                   autoComplete="email"
@@ -225,11 +233,12 @@ const Login: React.FC = () => {
 
               <div>
                 <div className="flex justify-between items-center mb-1.5">
-                  <label className="font-medium text-[12px] uppercase tracking-wider text-[#F5F0E8]/60 lg:text-[#12022A]/50">Password</label>
+                  <label htmlFor="login-password" className="font-medium text-[12px] uppercase tracking-wider text-[#F5F0E8]/60 lg:text-[#12022A]/50">Password</label>
                   <a href="/forgot-password" className="text-[12px] text-[#C9A84C] hover:text-[#E8C97A] lg:text-[#4B1E91] lg:hover:text-[#3d1778] transition">Forgot password?</a>
                 </div>
                 <div className="relative">
                   <input
+                    id="login-password"
                     type={showPassword ? "text" : "password"}
                     required
                     autoComplete="current-password"
@@ -244,7 +253,9 @@ const Login: React.FC = () => {
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute top-1/2 right-4 -translate-y-1/2 text-sm transition text-[#F5F0E8]/50 hover:text-white lg:text-[#12022A]/40 lg:hover:text-[#12022A]"
-                    aria-label="Toggle password visibility"
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    aria-controls="login-password"
+                    aria-pressed={showPassword}
                   >
                     {showPassword ? "Hide" : "Show"}
                   </button>
@@ -307,7 +318,7 @@ const Login: React.FC = () => {
 
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };

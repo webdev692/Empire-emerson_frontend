@@ -3,9 +3,17 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
-  VITE_API_URL = "https://tranquil-tenderness-productionepdg.up.railway.app"
+  NODE_VERSION = "22.23.1"
+  NPM_VERSION = "11.17.0"
   VITE_MOCK_AUTH = "false"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), geolocation=(), microphone=()"
 
 [[headers]]
   for = "/assets/*"
@@ -21,12 +29,6 @@
   for = "/sw.js"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
-
-[[redirects]]
-  from = "/api/*"
-  to = "https://tranquil-tenderness-productionepdg.up.railway.app/api/:splat"
-  status = 200
-  force = true
 
 [[redirects]]
   from = "/*"
