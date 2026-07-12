@@ -1,6 +1,6 @@
 import financialImage from '../../assets/Finacial.png'
 import { ArrowRight, BookOpen, DollarSign, Home, Users } from 'lucide-react'
-import { openRequestForm } from '../Umbrella/RequestFormModal'
+import { openRequestForm } from '../Umbrella/RequestFormEvents'
 
 const featureItems = [
   {

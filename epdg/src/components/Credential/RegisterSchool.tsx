@@ -1,7 +1,8 @@
 ﻿import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import api from "../../lib/axios";
+import { API_ORIGIN } from "../../lib/apiConfig";
 import type { AxiosError } from "axios";
 import logo from "../../assets/epd_logo.png";
 
@@ -55,13 +56,19 @@ const RegisterSchool: React.FC = () => {
   const [apiError,     setApiError]     = useState("");
   const [loading,      setLoading]      = useState(false);
 
-  const { register, handleSubmit, watch, formState: { errors, isValid } } =
+  const { register, handleSubmit, control, formState: { errors, isValid } } =
     useForm<FormValues>({ mode: "onChange" });
 
-  const passwordValue = watch("password", "");
+  const passwordValue = useWatch({ control, name: "password", defaultValue: "" });
 
   const onSubmit = async (data: FormValues) => {
     setApiError("");
+
+    if (!API_ORIGIN) {
+      setApiError("Account registration is unavailable because the backend is not configured.");
+      return;
+    }
+
     setLoading(true);
     try {
       await api.post("/api/auth/register", {

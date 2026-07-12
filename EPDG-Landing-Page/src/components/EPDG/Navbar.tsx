@@ -25,12 +25,10 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const onClasses = location.pathname === "/classes";
+  const visibleActiveId = onClasses ? "classes" : activeId;
 
   useEffect(() => {
-    if (onClasses) {
-      setActiveId("classes");
-      return;
-    }
+    if (onClasses) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -47,7 +45,7 @@ const Navbar: React.FC = () => {
     });
 
     return () => observer.disconnect();
-  }, [onClasses, location.pathname]);
+  }, [onClasses]);
 
   const handleNav = (link: NavLink) => {
     setMenuOpen(false);
@@ -85,7 +83,7 @@ const Navbar: React.FC = () => {
               <button
                 onClick={() => handleNav(link)}
                 className={`cursor-pointer transition duration-200 ${
-                  activeId === link.id
+                  visibleActiveId === link.id
                     ? "text-[#C9A84C]"
                     : "hover:text-white"
                 }`}
@@ -138,7 +136,7 @@ const Navbar: React.FC = () => {
                 <button
                   onClick={() => handleNav(link)}
                   className={`w-full text-left py-3 transition duration-200 cursor-pointer ${
-                    activeId === link.id ? "text-[#C9A84C]" : "hover:text-white"
+                    visibleActiveId === link.id ? "text-[#C9A84C]" : "hover:text-white"
                   }`}
                 >
                   {link.label}

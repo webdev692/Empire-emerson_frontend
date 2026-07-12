@@ -1,5 +1,12 @@
 import { Resend } from 'resend'
 
+import {
+  createLeadStore,
+  InvalidJsonBodyError,
+  readJsonBodyWithinLimit,
+  RequestBodyTooLargeError,
+} from './lead-store.mjs'
+
 declare const Deno: {
   env: { get(key: string): string | undefined }
   serve(handler: (req: Request) => Response | Promise<Response>): void
@@ -33,6 +40,12 @@ const SUPABASE_URL = requireEnv('SUPABASE_URL')
 const SUPABASE_SERVICE_KEY = requireEnv('SUPABASE_SERVICE_ROLE_KEY')
 const ADMIN_EMAIL = Deno.env.get('LEAD_NOTIFICATION_EMAIL')?.trim() || 'webdev@theemersonempire.info'
 const resend = new Resend(RESEND_API_KEY)
+const leadStore = createLeadStore({
+  fetcher: fetch,
+  supabaseUrl: SUPABASE_URL,
+  serviceKey: SUPABASE_SERVICE_KEY,
+})
+const MAX_REQUEST_BYTES = 20_000
 
 const DEFAULT_ORIGINS = [
   'https://theemerson.netlify.app',
@@ -73,7 +86,7 @@ const jsonResponse = (body: Record<string, unknown>, status: number, origin: str
 
 const cleanText = (value: unknown, maxLength: number): string | null => {
   if (typeof value !== 'string') return null
-  const cleaned = value.replace(/\u0000/g, '').trim()
+  const cleaned = value.split('\u0000').join('').trim()
   return cleaned ? cleaned.slice(0, maxLength) : null
 }
 
@@ -92,34 +105,17 @@ const sha256 = async (value: string): Promise<string> => {
     .join('')
 }
 
-async function postToSupabase(path: string, body: Record<string, unknown>): Promise<Response> {
-  return fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      apikey: SUPABASE_SERVICE_KEY,
-      Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
-      Prefer: 'return=minimal',
-    },
-    body: JSON.stringify(body),
-  })
-}
-
 async function enforceRateLimit(requestHash: string): Promise<boolean> {
-  const response = await postToSupabase('rpc/check_lead_rate_limit', {
-    request_hash: requestHash,
-    max_requests: 5,
-    window_minutes: 15,
-  })
-  if (!response.ok) {
-    console.error('Lead rate-limit check failed', { status: response.status })
+  const decision = await leadStore.checkRateLimit(requestHash)
+  if (!decision.ok) {
+    console.error('Lead rate-limit check failed', { status: decision.status })
     return false
   }
-  return (await response.json()) === true
+  return decision.allowed
 }
 
 async function insertLead(data: Record<string, string | null>): Promise<void> {
-  const response = await postToSupabase('leads', data)
+  const response = await leadStore.insertLead(data)
   if (!response.ok) {
     console.error('Lead insert failed', { status: response.status })
     throw new Error('Unable to store inquiry')
@@ -142,11 +138,8 @@ Deno.serve(async (req: Request) => {
   if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: corsHeaders(origin) })
   if (req.method !== 'POST') return jsonResponse({ error: 'Method not allowed', requestId }, 405, origin)
 
-  const contentLength = Number(req.headers.get('content-length') || '0')
-  if (contentLength > 20_000) return jsonResponse({ error: 'Submission is too large', requestId }, 413, origin)
-
   try {
-    const payload = (await req.json()) as LeadPayload
+    const payload = (await readJsonBodyWithinLimit(req, MAX_REQUEST_BYTES)) as LeadPayload
 
     // Honeypot field: silently accept bot submissions without storing or emailing them.
     if (cleanText(payload.website, 200)) return jsonResponse({ success: true, requestId }, 200, origin)
@@ -201,12 +194,21 @@ Deno.serve(async (req: Request) => {
     const safeDivision = escapeHtml(divisionLabel || division || 'General inquiry')
     const safeMessage = escapeHtml(intentDescription || message || serviceInterest || trackInterest)
 
-    await sendEmail({
-      from: 'The Emerson Empire <noreply@theemersonempire.info>',
-      to: ADMIN_EMAIL,
-      subject: `New website inquiry — ${safeDivision} — ${safeName}`,
-      html: `<div style="font-family:Arial,sans-serif;max-width:620px"><h2 style="color:#12022A">New Website Inquiry</h2><p><strong>Name:</strong> ${safeName}</p><p><strong>Email:</strong> ${safeEmail}</p>${safePhone ? `<p><strong>Phone:</strong> ${safePhone}</p>` : ''}<p><strong>Division:</strong> ${safeDivision}</p><p style="white-space:pre-wrap"><strong>Message:</strong><br>${safeMessage}</p><hr><p style="font-size:12px;color:#777">Request ID: ${requestId}</p></div>`,
-    })
+    let adminNotificationSent = true
+    try {
+      await sendEmail({
+        from: 'The Emerson Empire <noreply@theemersonempire.info>',
+        to: ADMIN_EMAIL,
+        subject: `New website inquiry — ${safeDivision} — ${safeName}`,
+        html: `<div style="font-family:Arial,sans-serif;max-width:620px"><h2 style="color:#12022A">New Website Inquiry</h2><p><strong>Name:</strong> ${safeName}</p><p><strong>Email:</strong> ${safeEmail}</p>${safePhone ? `<p><strong>Phone:</strong> ${safePhone}</p>` : ''}<p><strong>Division:</strong> ${safeDivision}</p><p style="white-space:pre-wrap"><strong>Message:</strong><br>${safeMessage}</p><hr><p style="font-size:12px;color:#777">Request ID: ${requestId}</p></div>`,
+      })
+    } catch (error) {
+      adminNotificationSent = false
+      console.error('Lead stored but admin notification failed', {
+        requestId,
+        message: (error as Error).message,
+      })
+    }
 
     EdgeRuntime.waitUntil(
       sendEmail({
@@ -217,8 +219,17 @@ Deno.serve(async (req: Request) => {
       }).catch((error) => console.error('Visitor confirmation failed', { requestId, message: (error as Error).message })),
     )
 
+    if (!adminNotificationSent) {
+      return jsonResponse({ success: true, requestId, notificationStatus: 'unavailable' }, 200, origin)
+    }
     return jsonResponse({ success: true, requestId }, 200, origin)
   } catch (error) {
+    if (error instanceof RequestBodyTooLargeError) {
+      return jsonResponse({ error: 'Submission is too large', requestId }, 413, origin)
+    }
+    if (error instanceof InvalidJsonBodyError) {
+      return jsonResponse({ error: 'Submission must be valid JSON', requestId }, 400, origin)
+    }
     console.error('Lead function error', { requestId, message: (error as Error).message })
     return jsonResponse({ error: 'We could not process your inquiry. Please try again later.', requestId }, 500, origin)
   }

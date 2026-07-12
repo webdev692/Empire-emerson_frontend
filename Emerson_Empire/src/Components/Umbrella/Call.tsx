@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone, Users } from "lucide-react";
 
@@ -21,7 +21,6 @@ function FormModal({ title, subtitle, formUrl, accentColor, onClose }: FormModal
   const [loadCount, setLoadCount] = useState(0);
   const submitted = loadCount >= 2;
   const handleLoad = () => setLoadCount((n) => n + 1);
-  useEffect(() => { setLoadCount(0); }, [formUrl]);
 
   return (
     <div

@@ -1,7 +1,8 @@
 ﻿import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import api from "../../lib/axios";
+import { API_ORIGIN } from "../../lib/apiConfig";
 import type { AxiosError } from "axios";
 import logo from "../../assets/epd_logo.png";
 
@@ -59,10 +60,10 @@ const RegisterIntern: React.FC = () => {
   const [cvError,      setCvError]      = useState("");
   const [uploadStep,   setUploadStep]   = useState<"idle" | "uploading" | "done">("idle");
 
-  const { register, handleSubmit, watch, formState: { errors, isValid } } =
+  const { register, handleSubmit, control, formState: { errors, isValid } } =
     useForm<FormValues>({ mode: "onChange" });
 
-  const passwordValue = watch("password", "");
+  const passwordValue = useWatch({ control, name: "password", defaultValue: "" });
   const strength      = getStrength(passwordValue);
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -88,6 +89,12 @@ const RegisterIntern: React.FC = () => {
 
   const onSubmit = async (data: FormValues) => {
     setApiError(""); setCvError("");
+
+    if (!API_ORIGIN) {
+      setApiError("Account registration is unavailable because the backend is not configured.");
+      return;
+    }
+
     setLoading(true);
 
     let cv_url: string | undefined;

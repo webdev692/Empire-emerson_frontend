@@ -1,9 +1,8 @@
 import React, { Suspense, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import HomePage from './Components/MainRender/EmpireLanding';
 import Services from './Components/Umbrella/Services';
-import Register from './Components/Umbrella/Register';
 import Disclaimer from './Components/Umbrella/Disclaimer';
 import GlobalInternship from './Components/Umbrella/GlobalInternship';
 import AgencyPage from './Components/Umbrella/AgencyPage';
@@ -36,7 +35,7 @@ function AppShell() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Navigate to="/" replace />} />
         <Route path="/about" element={<BelowFold />} />
         <Route path="/classes" element={<ClassCatalog />} />
         <Route path="/contact" element={<Contact />} />

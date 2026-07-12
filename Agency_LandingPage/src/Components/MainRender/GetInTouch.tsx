@@ -1,10 +1,11 @@
 import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { AgencyAvif } from '../../assets';
+import { openRequestForm } from '../Umbrella/RequestFormEvents';
 
 const GetInTouch: React.FC = () => {
   return (
-    <section className="bg-white px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
+    <section id="contact" className="bg-white px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 grid-cols-1 lg:grid-cols-2">
           <div className="relative rounded-2xl overflow-hidden shadow-lg h-96 lg:h-auto bg-[#0A1128]">
@@ -63,12 +64,13 @@ const GetInTouch: React.FC = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/contact"
+              <button
+                type="button"
+                onClick={openRequestForm}
                 className="inline-flex items-center justify-center bg-[#0A1128] hover:bg-[#1b2547] px-8 py-4 rounded-sm font-bold text-white text-sm uppercase tracking-[0.15em] transition-colors duration-200"
               >
                 Send a Message
-              </a>
+              </button>
               <a
                 href="tel:+18034794492"
                 className="inline-flex items-center justify-center border-2 border-[#0A1128] hover:bg-[#0A1128]/5 px-8 py-4 rounded-sm font-bold text-[#0A1128] text-sm uppercase tracking-[0.15em] transition-colors duration-200"

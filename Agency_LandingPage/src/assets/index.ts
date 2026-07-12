@@ -17,7 +17,7 @@ import EPDG from "./Professional.png";
 import EPDGWebp from "./Professional.webp";
 import EPDGAvif from "./Professional.avif";
 
-import Agency from "./LogoAgency.png"
+import Agency from "./LogoAgency.png";
 import AgencyWebp from "./Agency.webp";
 import AgencyAvif from "./Agency.avif";
 

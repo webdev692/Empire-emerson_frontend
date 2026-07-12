@@ -54,20 +54,28 @@ const MentorManagement: React.FC = () => {
   const [resetting, setResetting]        = useState(false);
 
   useEffect(() => {
-    fetchMentors();
-  }, []);
+    let active = true;
+    let toastTimer: number | undefined;
 
-  async function fetchMentors() {
-    setLoading(true);
-    try {
-      const { data } = await api.get<{ success: boolean; data: Mentor[] }>("/api/admin/mentors");
-      setMentors(data.data);
-    } catch {
-      showToast("Failed to load mentors.", false);
-    } finally {
-      setLoading(false);
-    }
-  }
+    api.get<{ success: boolean; data: Mentor[] }>("/api/admin/mentors")
+      .then(({ data }) => {
+        if (active) setMentors(data.data);
+      })
+      .catch(() => {
+        if (active) {
+          setToast({ msg: "Failed to load mentors.", ok: false });
+          toastTimer = window.setTimeout(() => setToast(null), 3500);
+        }
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+      if (toastTimer !== undefined) window.clearTimeout(toastTimer);
+    };
+  }, []);
 
   function showToast(msg: string, ok = true) {
     setToast({ msg, ok });

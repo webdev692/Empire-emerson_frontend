@@ -1,23 +1,17 @@
 import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
+import { OPEN_REQUEST_FORM_EVENT } from './RequestFormEvents'
 
 const FORM_EMBED_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSe1vxhxD7fpf3-_blUZ6xRaTIGzyeRLSLztwSD0y4S-zP56kg/viewform?embedded=true'
-
-const OPEN_EVENT = 'open-request-form'
-
-/** Call from any button to open the request form modal. */
-export function openRequestForm() {
-  window.dispatchEvent(new CustomEvent(OPEN_EVENT))
-}
 
 export default function RequestFormModal() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
     const onOpen = () => setOpen(true)
-    window.addEventListener(OPEN_EVENT, onOpen)
-    return () => window.removeEventListener(OPEN_EVENT, onOpen)
+    window.addEventListener(OPEN_REQUEST_FORM_EVENT, onOpen)
+    return () => window.removeEventListener(OPEN_REQUEST_FORM_EVENT, onOpen)
   }, [])
 
   useEffect(() => {

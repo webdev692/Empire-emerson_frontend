@@ -11,9 +11,9 @@ interface TaskItem {
   completed_at: string | null;
 }
 
-function dueDateLabel(dateStr: string, status: string): string {
+function dueDateLabel(dateStr: string, status: string, referenceTime: number): string {
   if (status === "done") return "Completed";
-  const diff = Math.ceil((new Date(dateStr).getTime() - Date.now()) / 86400000);
+  const diff = Math.ceil((new Date(dateStr).getTime() - referenceTime) / 86400000);
   if (diff < 0) return `${Math.abs(diff)}d overdue`;
   if (diff === 0) return "Due today";
   if (diff === 1) return "Due tomorrow";
@@ -32,11 +32,17 @@ const TaskTracker: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<"kanban" | "chart">("kanban");
   const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
+  const [referenceTime, setReferenceTime] = useState(() => Date.now());
 
   useEffect(() => {
     api.get<{ success: boolean; data: TaskItem[] }>("/api/intern/tasks")
       .then(r => setTasks(r.data.data ?? []))
       .finally(() => setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setReferenceTime(Date.now()), 60_000);
+    return () => window.clearInterval(timer);
   }, []);
 
   const kanban = useMemo(() => ({
@@ -58,12 +64,13 @@ const TaskTracker: React.FC = () => {
   }, [tasks]);
 
   const maxCount = Math.max(...chartData.map(d => d.count), 1);
-  const overdue = tasks.filter(t => t.status !== "done" && new Date(t.due_date) < new Date()).length;
-  const thisWeekDone = kanban.done.filter(t => t.completed_at && new Date(t.completed_at) >= new Date(Date.now() - 7 * 86400000)).length;
+  const weekMs = 7 * 86400000;
+  const overdue = tasks.filter(t => t.status !== "done" && new Date(t.due_date).getTime() < referenceTime).length;
+  const thisWeekDone = kanban.done.filter(t => t.completed_at && new Date(t.completed_at).getTime() >= referenceTime - weekMs).length;
   const lastWeekDone = kanban.done.filter(t => {
     if (!t.completed_at) return false;
     const d = new Date(t.completed_at).getTime();
-    return d >= Date.now() - 14 * 86400000 && d < Date.now() - 7 * 86400000;
+    return d >= referenceTime - (2 * weekMs) && d < referenceTime - weekMs;
   }).length;
 
   if (loading) return (
@@ -129,7 +136,7 @@ const TaskTracker: React.FC = () => {
                       {t.title}
                     </h4>
                     <p className={`text-[10px] font-mono ${col.label === "Completed" ? "text-[#22C55E]" : "text-[#F5F0E8]"}`}>
-                      {col.label === "Completed" ? "✓" : "⏰"} {dueDateLabel(t.due_date, t.status)}
+                      {col.label === "Completed" ? "✓" : "⏰"} {dueDateLabel(t.due_date, t.status, referenceTime)}
                     </p>
                   </div>
                 ))}

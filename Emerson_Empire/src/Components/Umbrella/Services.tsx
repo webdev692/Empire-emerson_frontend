@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -379,21 +379,15 @@ const EPDG_SERVICES: ServiceItem[] = [
 
 type ModalState = { title: string; formUrl: string } | null;
 
-const FormModal: React.FC<{ modal: ModalState; onClose: () => void }> = ({ modal, onClose }) => {
+const FormModal: React.FC<{ modal: NonNullable<ModalState>; onClose: () => void }> = ({ modal, onClose }) => {
   const [loadCount, setLoadCount] = useState(0);
   const submitted = loadCount >= 2;
-
-  useEffect(() => {
-    if (modal) setLoadCount(0);
-  }, [modal]);
 
   const handleLoad = () =>
     setLoadCount((n) => {
       const next = n + 1;
       return next;
     });
-
-  if (!modal) return null;
 
   return (
     <AnimatePresence>
@@ -738,7 +732,7 @@ const Services: React.FC = () => {
       </div>
 
       {/* ── Modal ── */}
-      <FormModal modal={modal} onClose={closeModal} />
+      {modal && <FormModal modal={modal} onClose={closeModal} />}
 
     </div>
   );

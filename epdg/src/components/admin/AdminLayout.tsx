@@ -48,6 +48,16 @@ const ALL_MENU = [
 
 const f: React.CSSProperties = { fontFamily: "Inter" };
 
+interface CurrentUserResponse {
+  success: boolean;
+  user: {
+    profile?: {
+      admin_role?: "admin" | "super_admin";
+      is_mentor?: boolean;
+    };
+  };
+}
+
 const AdminLayout: React.FC = () => {
   const [open, setOpen]           = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -78,7 +88,7 @@ const AdminLayout: React.FC = () => {
         if (refreshData?.token) setToken(refreshData.token);
 
         // 2. Fetch current user details — admin_role + is_mentor live in profile
-        const { data: meData } = await api.get<{ success: boolean; user: any }>('/api/auth/me');
+        const { data: meData } = await api.get<CurrentUserResponse>('/api/auth/me');
         if (meData?.user?.profile) {
           const { admin_role, is_mentor } = meData.user.profile;
           patchUser({ admin_role, is_mentor: is_mentor ?? false });
@@ -87,7 +97,7 @@ const AdminLayout: React.FC = () => {
         // silently ignore — stale data is still usable
       }
     })();
-  }, []);
+  }, [patchUser, setToken]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {

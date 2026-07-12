@@ -35,16 +35,21 @@ const Leaderboard: React.FC = () => {
   const [deptFilter, setDeptFilter] = useState("all");
 
   useEffect(() => {
-    setLoading(true);
+    let active = true;
     Promise.allSettled([
       api.get<{ success: boolean; data: InternItem[] }>(`/api/intern/leaderboard?period=${view}`),
       api.get<{ success: boolean; data: MyRank }>(`/api/intern/leaderboard/me?period=${view}`),
       api.get<{ success: boolean; data: Badge[] }>("/api/intern/badges"),
     ]).then(([lb, mr, bg]) => {
+      if (!active) return;
       if (lb.status === "fulfilled") setInterns(lb.value.data.data ?? []);
       if (mr.status === "fulfilled") setMyRank(mr.value.data.data ?? null);
       if (bg.status === "fulfilled") setBadges(bg.value.data.data ?? []);
-    }).finally(() => setLoading(false));
+    }).finally(() => {
+      if (active) setLoading(false);
+    });
+
+    return () => { active = false; };
   }, [view]);
 
   const departments = useMemo(() => ["all", ...new Set(interns.map(i => i.department))], [interns]);
@@ -80,7 +85,10 @@ const Leaderboard: React.FC = () => {
         </div>
         <div className="flex bg-[#1E0A4A] border border-[#4B1E91] p-1 rounded-xl self-start sm:self-auto">
           {(["week", "alltime"] as const).map(v => (
-            <button key={v} onClick={() => setView(v)}
+            <button key={v} onClick={() => {
+              if (v !== view) setLoading(true);
+              setView(v);
+            }}
               className={`px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider rounded-lg transition-colors ${
                 view === v ? "bg-[#4B1E91] text-white" : "text-[#F5F0E8] hover:text-white"
               }`}>

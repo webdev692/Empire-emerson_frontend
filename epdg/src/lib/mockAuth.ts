@@ -1,4 +1,5 @@
 import type { AuthUser } from '../store/authStore';
+import { IS_DEVELOPMENT_MOCK_MODE } from './runtimeFlags';
 
 export interface MockLoginRequest {
   email: string;
@@ -82,6 +83,10 @@ export function isRealAccount(email: string): boolean {
 }
 
 export function mockLogin(request: MockLoginRequest): MockLoginResponse {
+  if (!IS_DEVELOPMENT_MOCK_MODE) {
+    throw new Error('Mock authentication is available only in an explicitly enabled development session.');
+  }
+
   const { email, password, role } = request;
 
   // Real admin account must always use the real backend
@@ -110,6 +115,8 @@ export function mockLogin(request: MockLoginRequest): MockLoginResponse {
  * Log available mock credentials to console
  */
 export function logMockCredentials(): void {
+  if (!IS_DEVELOPMENT_MOCK_MODE) return;
+
   console.group('📋 Mock Authentication Credentials (Development Only)');
   Object.entries(MOCK_USERS).forEach(([role, users]) => {
     console.group(`${role.toUpperCase()}`);

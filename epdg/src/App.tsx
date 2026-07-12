@@ -1,6 +1,7 @@
 ﻿import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
+import DevelopmentFixtureGate from "./components/DevelopmentFixtureGate";
 import DiscoveryDashboard from "./components/DiscoveryDashboard";
 import DailyOverview from "./components/DailyOverview";
 
@@ -117,63 +118,82 @@ function App() {
           {/* ── Company-only routes ──────────────────────────────────────── */}
           <Route path="/company" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <CompanyDashboard />
-        
+              <DevelopmentFixtureGate feature="Company dashboard">
+                <CompanyDashboard />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
             
           } />
 
           <Route path="/company/interns" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <InternManagement />
+              <DevelopmentFixtureGate feature="Intern management">
+                <InternManagement />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/slots" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <SlotsManagement />
+              <DevelopmentFixtureGate feature="Internship slot management">
+                <SlotsManagement />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/applications" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <CompanyApplications />
+              <DevelopmentFixtureGate feature="Application review">
+                <CompanyApplications />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/tasks" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <TaskManagement />
+              <DevelopmentFixtureGate feature="Task management">
+                <TaskManagement />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/submissions" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <SubmissionReview />
+              <DevelopmentFixtureGate feature="Submission review">
+                <SubmissionReview />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/sessions" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <SessionsManagement />
+              <DevelopmentFixtureGate feature="Session management">
+                <SessionsManagement />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/analytics" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <CompanyAnalytics />
+              <DevelopmentFixtureGate feature="Company analytics">
+                <CompanyAnalytics />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/feedback" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <CompanyFeedback />
+              <DevelopmentFixtureGate feature="Feedback management">
+                <CompanyFeedback />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/settings" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <CompanySettings />
+              <DevelopmentFixtureGate feature="Company settings">
+                <CompanySettings />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
@@ -193,7 +213,11 @@ function App() {
             <Route index                  element={<DailyOverview />} />
             <Route path="overview"        element={<DailyOverview />} />
             <Route path="discovery"       element={<DiscoveryDashboard />} />
-            <Route path="onboarding"      element={<Onboarding />} />
+            <Route path="onboarding"      element={
+              <DevelopmentFixtureGate feature="Intern onboarding">
+                <Onboarding />
+              </DevelopmentFixtureGate>
+            } />
             <Route path="roadmap"         element={<Roadmap />} />
             <Route path="tasks"           element={<Tasks />} />
             <Route path="task-tracker"    element={<TaskTracker />} />
@@ -247,7 +271,13 @@ function App() {
           </Route>
 
           {/* ── School dashboard ──────────────────────────────────────────── */}
-          <Route path="/school" element={<SchoolDashboard />} />
+          <Route path="/school" element={
+            <ProtectedRoute>
+              <DevelopmentFixtureGate feature="School dashboard">
+                <SchoolDashboard />
+              </DevelopmentFixtureGate>
+            </ProtectedRoute>
+          } />
         </Routes>
       </Suspense>
     </Router>

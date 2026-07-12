@@ -2,16 +2,19 @@ import axios from 'axios';
 import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { useAuthStore } from '../store/authStore';
 import { mockLogin, logMockCredentials } from './mockAuth';
+import type { MockLoginRequest } from './mockAuth';
+import { IS_DEVELOPMENT_MOCK_MODE } from './runtimeFlags';
+import { API_ORIGIN, ApiConfigurationError } from './apiConfig';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ?? 'https://the-emerson-empirebackend-production.up.railway.app',
+  baseURL: API_ORIGIN ?? undefined,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Log mock credentials in development
-if (import.meta.env.DEV) {
+// Log mock credentials only in an explicitly enabled development demo.
+if (IS_DEVELOPMENT_MOCK_MODE) {
   logMockCredentials();
 }
 
@@ -20,26 +23,22 @@ if (import.meta.env.DEV) {
 // 2. Attach the Bearer token from the auth store to every outgoing request.
 
 api.interceptors.request.use(
-  (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
-    // Mock interceptor — only runs when VITE_MOCK_AUTH=true
-    if (import.meta.env.VITE_MOCK_AUTH === 'true' && config.url === '/api/auth/login' && config.method === 'post') {
-      const data = config.data;
+  (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig | Promise<InternalAxiosRequestConfig> => {
+    // Mock interceptor — requires Vite development mode and VITE_MOCK_AUTH=true.
+    if (IS_DEVELOPMENT_MOCK_MODE && config.url === '/api/auth/login' && config.method === 'post') {
+      const data = config.data as MockLoginRequest;
       try {
         const response = mockLogin({ email: data.email, password: data.password, role: data.role });
-        return new Promise((resolve) => {
-          config.adapter = () =>
-            Promise.resolve({ data: response, status: 200, statusText: 'OK', headers: {}, config } as AxiosResponse);
-          resolve(config);
-        }) as any;
+        config.adapter = () =>
+          Promise.resolve({ data: response, status: 200, statusText: 'OK', headers: {}, config } as AxiosResponse);
+        return config;
       } catch (error) {
-        return new Promise((_, reject) => {
-          config.adapter = () =>
-            Promise.reject({
-              response: { data: { message: (error as Error).message }, status: 401, statusText: 'Unauthorized', headers: {}, config },
-            });
-          reject(error);
-        }) as any;
+        return Promise.reject(error);
       }
+    }
+
+    if (!API_ORIGIN) {
+      return Promise.reject(new ApiConfigurationError());
     }
 
     const token = useAuthStore.getState().token;

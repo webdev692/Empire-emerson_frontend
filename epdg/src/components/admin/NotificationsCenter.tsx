@@ -29,6 +29,25 @@ interface Preference {
   enabled: boolean;
 }
 
+interface AnnouncementResponse {
+  id: number;
+  subject: string;
+  message: string;
+  target_audience: Audience;
+  created_at: string;
+  total_recipients: number;
+}
+
+interface AuditEventResponse {
+  id: number;
+  action: string;
+  target_type: string | null;
+  target_id: number | string | null;
+  created_at: string;
+  admin_name: string | null;
+  admin_email: string | null;
+}
+
 const ACTION_TYPE = (action: string): EventType => {
   if (action.includes('delete') || action.includes('revoke')) return 'error';
   if (action.includes('reject'))                              return 'warning';
@@ -71,13 +90,13 @@ const NotificationsCenter: React.FC = () => {
   const [toast,     setToast]    = useState("");
 
   useEffect(() => {
-    api.get<{ success: boolean; data: any[] }>('/api/admin/announcements')
+    api.get<{ success: boolean; data: AnnouncementResponse[] }>('/api/admin/announcements')
       .then(({ data }) => setAnnouncements(
         data.data.map((a) => ({
           id:              a.id,
           subject:         a.subject,
           message:         a.message,
-          targetAudience:  a.target_audience as Audience,
+          targetAudience:  a.target_audience,
           sentDate:        new Date(a.created_at).toISOString().slice(0, 10),
           totalRecipients: a.total_recipients,
           readCount:       0,
@@ -85,7 +104,7 @@ const NotificationsCenter: React.FC = () => {
       ))
       .catch(() => {});
 
-    api.get<{ success: boolean; data: any[] }>('/api/admin/audit-log?limit=30')
+    api.get<{ success: boolean; data: AuditEventResponse[] }>('/api/admin/audit-log?limit=30')
       .then(({ data }) => setEvents(
         data.data.map((e) => ({
           id:          e.id,
@@ -103,7 +122,7 @@ const NotificationsCenter: React.FC = () => {
   async function handleSend() {
     if (!subject.trim() || !message.trim()) return;
     try {
-      const { data } = await api.post<{ success: boolean; data: any }>('/api/admin/announcements', {
+      const { data } = await api.post<{ success: boolean; data: AnnouncementResponse }>('/api/admin/announcements', {
         subject:        subject.trim(),
         message:        message.trim(),
         targetAudience: audience,
@@ -113,7 +132,7 @@ const NotificationsCenter: React.FC = () => {
         id:              a.id,
         subject:         a.subject,
         message:         a.message,
-        targetAudience:  a.target_audience as Audience,
+        targetAudience:  a.target_audience,
         sentDate:        new Date(a.created_at).toISOString().slice(0, 10),
         totalRecipients: a.total_recipients,
         readCount:       0,

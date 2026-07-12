@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import logo from '../../assets/LogoAgency.png'
-import { openRequestForm } from './RequestFormModal'
+import { openRequestForm } from './RequestFormEvents'
 
 const NAV_LINKS = [
   { label: 'Home', href: '#' },

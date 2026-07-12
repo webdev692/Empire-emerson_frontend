@@ -1,12 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-
-interface FormModalContextValue {
-  openForm: (url: string, title?: string, subtitle?: string) => void;
-}
-
-const FormModalContext = createContext<FormModalContextValue>({ openForm: () => {} });
-
-export const useFormModal = () => useContext(FormModalContext);
+import React, { useState, useEffect } from "react";
+import { FormModalContext } from "./FormModalContext";
 
 export const FormModalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [formUrl, setFormUrl]       = useState<string | null>(null);

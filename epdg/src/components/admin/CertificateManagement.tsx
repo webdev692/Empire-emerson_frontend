@@ -122,8 +122,9 @@ const CertificateManagement: React.FC = () => {
       setShowModal(false);
       setForm({ intern_id: "", program_name: "", issue_date: today, template_id: "" });
       setInternSearch("");
-    } catch (e: any) {
-      setMessage(e.response?.data?.message ?? "Failed to issue certificate.");
+    } catch (error) {
+      const requestError = error as AxiosError<{ message?: string }>;
+      setMessage(requestError.response?.data?.message ?? "Failed to issue certificate.");
     } finally {
       setIssuing(false);
     }
@@ -136,8 +137,9 @@ const CertificateManagement: React.FC = () => {
       await api.patch(`/api/admin/certificates/${id}/revoke`);
       setCerts((prev) => prev.map((c) => c.id === id ? { ...c, status: "revoked" as const } : c));
       if (issued?.id === id) setIssued((prev) => prev ? { ...prev, status: "revoked" as const } : null);
-    } catch (e: any) {
-      setMessage(e.response?.data?.message ?? "Revoke failed.");
+    } catch (error) {
+      const requestError = error as AxiosError<{ message?: string }>;
+      setMessage(requestError.response?.data?.message ?? "Revoke failed.");
     } finally {
       setRevoking(null);
     }

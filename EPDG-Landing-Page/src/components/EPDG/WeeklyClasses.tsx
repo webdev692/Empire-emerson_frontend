@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { classes } from "./classData";
-import { useFormModal } from "./FormModal";
+import { useFormModal } from "./FormModalContext";
 
 const FORM_CLASSES  = "https://docs.google.com/forms/d/e/1FAIpQLSfOGM0MZ05Em3O502rC9HxvK5qzW06ATQMcMX2Fgcn9xBpncQ/viewform";
 const FORM_FEE_WAIVER = "https://forms.gle/fWm9gHownQeorkNn7";

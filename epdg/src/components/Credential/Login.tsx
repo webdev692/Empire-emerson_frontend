@@ -7,8 +7,9 @@ import { useAuthStore } from "../../store/authStore";
 import logo from "../../assets/epd_logo.png";
 import learningImg from "../../assets/epds-learning.png";
 import { mockLogin, logMockCredentials, isRealAccount } from "../../lib/mockAuth";
+import { IS_DEVELOPMENT_MOCK_MODE } from "../../lib/runtimeFlags";
 
-const MOCK_MODE = import.meta.env.VITE_MOCK_AUTH === "true";
+const MOCK_MODE = IS_DEVELOPMENT_MOCK_MODE;
 
 type UserType = "Intern" | "Company" | "School" | "Admin";
 

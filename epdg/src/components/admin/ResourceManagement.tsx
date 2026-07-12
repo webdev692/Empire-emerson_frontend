@@ -12,6 +12,16 @@ interface Resource {
   url?:    string;
 }
 
+interface ResourceResponse {
+  id: number;
+  title: string;
+  type: Resource["type"];
+  owner: string | null;
+  updated_at: string;
+  status: Resource["status"];
+  url: string | null;
+}
+
 const statusClass = (status: Resource["status"]) => {
   switch (status) {
     case "published": return "bg-green-500/15 text-green-200";
@@ -58,21 +68,21 @@ const ResourceManagement: React.FC = () => {
     setSaving(true);
     try {
       if (editTarget) {
-        const { data } = await api.patch<{ success: boolean; data: any }>(`/api/admin/resources/${editTarget.id}`, form);
+        const { data } = await api.patch<{ success: boolean; data: ResourceResponse }>(`/api/admin/resources/${editTarget.id}`, form);
         const updated = data.data;
         setResources((prev) => prev.map((r) => r.id === editTarget.id ? {
           id: updated.id, title: updated.title, type: updated.type,
           owner: updated.owner || '', updated: new Date(updated.updated_at).toLocaleDateString(),
-          status: updated.status, url: updated.url,
+          status: updated.status, url: updated.url ?? undefined,
         } : r));
         showMsg('✅ Resource updated.');
       } else {
-        const { data } = await api.post<{ success: boolean; data: any }>('/api/admin/resources', form);
+        const { data } = await api.post<{ success: boolean; data: ResourceResponse }>('/api/admin/resources', form);
         const created = data.data;
         setResources((prev) => [{
           id: created.id, title: created.title, type: created.type,
           owner: created.owner || '', updated: new Date(created.updated_at).toLocaleDateString(),
-          status: created.status, url: created.url,
+          status: created.status, url: created.url ?? undefined,
         }, ...prev]);
         showMsg('✅ Resource created.');
       }

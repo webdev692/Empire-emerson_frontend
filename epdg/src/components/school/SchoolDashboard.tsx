@@ -22,8 +22,6 @@ type PendingStudent = {
 const SchoolDashboard = () => {
   const [pipelineFilter, setPipelineFilter] = useState<string>('all');
 
-  const isApproved = true;
-
   const stats = [
     {
       label: 'Active Students',
@@ -103,24 +101,7 @@ const SchoolDashboard = () => {
     },
   ];
 
-  const pendingScreen = (
-    <div className='flex min-h-screen items-center justify-center bg-[#0D0618] p-6'>
-      <div className='w-full max-w-md rounded-2xl border border-[#3A1D73] bg-[#1A0D35] p-8 text-center'>
-        <div className='mb-4 text-5xl'>⏳</div>
-
-        <h2 className='mb-2 text-2xl font-bold text-white'>
-          Approval Pending
-        </h2>
-
-        <p className='text-[#A78BCC]'>
-          Your institution account is currently awaiting approval from the admin
-          team.
-        </p>
-      </div>
-    </div>
-  );
-
-  const dashboardContent = (
+  return (
     <div className='min-h-screen bg-[#0D0618] px-4 py-6 text-white sm:px-6 lg:px-10'>
       {/* Header */}
       <div className='mb-8 flex flex-col gap-4 rounded-2xl border border-[#3A1D73] bg-[#1A0D35] p-6 lg:flex-row lg:items-center lg:justify-between'>
@@ -337,7 +318,6 @@ const SchoolDashboard = () => {
     </div>
   );
 
-  return isApproved ? dashboardContent : pendingScreen;
 };
 
 export default SchoolDashboard;

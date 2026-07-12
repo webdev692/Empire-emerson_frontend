@@ -18,11 +18,11 @@ const fmtDate = (iso: string) =>
 
 const CertificateVerify: React.FC = () => {
   const { certificateId } = useParams<{ certificateId: string }>();
-  const [state, setState]   = useState<PageState>("loading");
+  const [state, setState]   = useState<PageState>(() => certificateId ? "loading" : "invalid");
   const [result, setResult] = useState<VerifyResult | null>(null);
 
   useEffect(() => {
-    if (!certificateId) { setState("invalid"); return; }
+    if (!certificateId) return;
 
     api.get<{ success: boolean; data: VerifyResult }>(`/api/verify/${certificateId}`)
       .then(({ data }) => {

@@ -61,6 +61,17 @@ const emptyForm = (internId = "", track: Track = "web_design") => ({
   live_url: "",
 });
 
+async function fetchSubmissions(
+  track: Track | "all",
+  status: Status | "all",
+): Promise<Submission[]> {
+  const params: Record<string, string> = {};
+  if (track !== "all") params.track = track;
+  if (status !== "all") params.status = status;
+  const { data } = await api.get<Submission[]>("/api/portfolio/submissions", { params });
+  return data;
+}
+
 export default function AdminPortfolioBuilder() {
   const [submissions, setSubmissions]   = useState<Submission[]>([]);
   const [filterTrack, setFilterTrack]   = useState<Track | "all">("all");
@@ -77,19 +88,17 @@ export default function AdminPortfolioBuilder() {
   const [success, setSuccess]           = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => { fetchAll(); }, []);
+  useEffect(() => {
+    let active = true;
 
-  async function fetchAll() {
-    try {
-      const params: Record<string, string> = {};
-      if (filterTrack !== "all")  params.track  = filterTrack;
-      if (filterStatus !== "all") params.status = filterStatus;
-      const { data } = await api.get<Submission[]>("/api/portfolio/submissions", { params });
-      setSubmissions(data);
-    } catch { /* silent */ }
-  }
+    fetchSubmissions(filterTrack, filterStatus)
+      .then((data) => {
+        if (active) setSubmissions(data);
+      })
+      .catch(() => {});
 
-  useEffect(() => { fetchAll(); }, [filterTrack, filterStatus]);
+    return () => { active = false; };
+  }, [filterTrack, filterStatus]);
 
   function setF(field: string, value: unknown) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -129,7 +138,8 @@ export default function AdminPortfolioBuilder() {
       setSuccess("Submission created for intern.");
       setShowBuilder(false);
       setForm(emptyForm());
-      fetchAll();
+      const refreshed = await fetchSubmissions(filterTrack, filterStatus);
+      setSubmissions(refreshed);
       setTimeout(() => setSuccess(""), 3000);
     } catch { setError("Save failed."); }
     finally { setSaving(false); }
