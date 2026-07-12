@@ -3,56 +3,131 @@ name: EPDG Build Check
 on:
   pull_request:
     paths:
+      - "Emerson_Empire/**"
+      - "Agency_LandingPage/**"
+      - "EPDG-Landing-Page/**"
       - "epdg/**"
+      - "scripts/**"
+      - ".nvmrc"
       - ".github/workflows/epdg-build-check.yml"
+      - ".github/workflows/deploy-epdg.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: stabilization-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
+  applications:
+    name: ${{ matrix.name }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Emerson Empire
+            directory: Emerson_Empire
+          - name: Agency Landing Page
+            directory: Agency_LandingPage
+          - name: EPDG Landing Page
+            directory: EPDG-Landing-Page
+          - name: EPDG Platform
+            directory: epdg
     defaults:
       run:
-        working-directory: epdg
+        working-directory: ${{ matrix.directory }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node.js 22.23.1
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22.23.1
           cache: npm
-          cache-dependency-path: epdg/package-lock.json
+          cache-dependency-path: ${{ matrix.directory }}/package-lock.json
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
+      - name: Set up npm 11.17.0
+        run: npm install --global npm@11.17.0 --ignore-scripts --no-audit --no-fund
 
-      - name: Capture EPDG build output
-        id: build
+      - name: Verify toolchain
         shell: bash
         run: |
-          set +e
-          npm run build > build-output.log 2>&1
-          BUILD_EXIT_CODE=$?
-          echo "exit_code=$BUILD_EXIT_CODE" >> "$GITHUB_OUTPUT"
-          exit 0
+          test "$(node --version)" = "v22.23.1"
+          test "$(npm --version)" = "11.17.0"
 
-      - name: Upload compiler diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run targeted smoke checks
+        run: npm run smoke
+
+  edge-functions:
+    name: Supabase Edge Functions
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22.23.1
+        uses: actions/setup-node@v4
         with:
-          name: epdg-build-diagnostics
-          path: epdg/build-output.log
-          if-no-files-found: error
-          retention-days: 7
+          node-version: 22.23.1
 
-      - name: Fail when build fails
-        if: steps.build.outputs.exit_code != '0'
+      - name: Set up Deno 2.8.1
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.8.1
+
+      - name: Run Edge regression tests
+        run: >-
+          node --test
+          Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs
+          Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.test.mjs
+
+      - name: Verify mirrored Edge sources
+        shell: bash
         run: |
-          echo "EPDG build failed. Review the epdg-build-diagnostics artifact."
-          exit 1
+          cmp Emerson_Empire/supabase/functions/send-consultation-email/index.ts Agency_LandingPage/supabase/functions/send-consultation-email/index.ts
+          cmp Emerson_Empire/supabase/functions/send-consultation-email/lead-store.mjs Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.mjs
+          cmp Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.test.mjs
+          cmp Emerson_Empire/supabase/functions/send-consultation-email/deno.json Agency_LandingPage/supabase/functions/send-consultation-email/deno.json
+          cmp Emerson_Empire/supabase/functions/send-consultation-email/deno.lock Agency_LandingPage/supabase/functions/send-consultation-email/deno.lock
+
+      - name: Lint Edge Functions
+        run: >-
+          deno lint
+          Emerson_Empire/supabase/functions/send-consultation-email
+          Agency_LandingPage/supabase/functions/send-consultation-email
+
+      - name: Type-check Edge Functions
+        run: |
+          deno check --frozen --config Emerson_Empire/supabase/functions/send-consultation-email/deno.json --lock Emerson_Empire/supabase/functions/send-consultation-email/deno.lock Emerson_Empire/supabase/functions/send-consultation-email/index.ts
+          deno check --frozen --config Agency_LandingPage/supabase/functions/send-consultation-email/deno.json --lock Agency_LandingPage/supabase/functions/send-consultation-email/deno.lock Agency_LandingPage/supabase/functions/send-consultation-email/index.ts
+
+  build:
+    name: build
+    if: ${{ always() }}
+    needs:
+      - applications
+      - edge-functions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require every stabilization check to pass
+        shell: bash
+        run: |
+          test "${{ needs.applications.result }}" = "success"
+          test "${{ needs.edge-functions.result }}" = "success"
