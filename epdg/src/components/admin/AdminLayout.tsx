@@ -64,7 +64,6 @@ const AdminLayout: React.FC = () => {
   const profileRef                = useRef<HTMLDivElement>(null);
   const clearAuth    = useAuthStore((s) => s.clearAuth);
   const patchUser    = useAuthStore((s) => s.patchUser);
-  const setToken     = useAuthStore((s) => s.setToken);
   const user         = useAuthStore((s) => s.user);
   const adminRole    = user?.admin_role;
   const isSuperAdmin = adminRole === 'super_admin';
@@ -74,20 +73,13 @@ const AdminLayout: React.FC = () => {
   const mood         = useThemeStore((s) => s.mood);
   const moodDef      = MOODS.find((m) => m.id === mood) ?? MOODS[0];
 
-  // Silently refresh JWT and sync admin_role + is_mentor from DB on every mount.
-  // Fixes stale cached tokens where admin_role changed after login (e.g. super_admin seed).
+  // Sync admin_role + is_mentor from the live database on every mount. The
+  // backend validates current account state for each protected request.
   useEffect(() => {
     const currentToken = useAuthStore.getState().token;
     if (!currentToken) return;
     (async () => {
       try {
-        // 1. Get a fresh JWT from the DB (re-queries admins table for admin_role)
-        const { data: refreshData } = await api.post<{ success: boolean; token: string }>(
-          '/api/auth/refresh', { token: currentToken }
-        );
-        if (refreshData?.token) setToken(refreshData.token);
-
-        // 2. Fetch current user details — admin_role + is_mentor live in profile
         const { data: meData } = await api.get<CurrentUserResponse>('/api/auth/me');
         if (meData?.user?.profile) {
           const { admin_role, is_mentor } = meData.user.profile;
@@ -97,7 +89,7 @@ const AdminLayout: React.FC = () => {
         // silently ignore — stale data is still usable
       }
     })();
-  }, [patchUser, setToken]);
+  }, [patchUser]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {

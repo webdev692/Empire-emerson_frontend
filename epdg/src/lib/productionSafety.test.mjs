@@ -52,3 +52,10 @@ test("intern registration does not offer the unowned CV upload workflow", () => 
   assert.equal(registration.includes('type="file"'), false);
   assert.match(registration, /Private CV upload is temporarily unavailable/);
 });
+
+test("the frontend does not extend bearer-token lifetime through the disabled refresh route", () => {
+  const adminLayout = read("../components/admin/AdminLayout.tsx");
+  assert.equal(adminLayout.includes("/api/auth/refresh"), false);
+  assert.equal(adminLayout.includes("setToken"), false);
+  assert.match(adminLayout, /api\.get<CurrentUserResponse>\('\/api\/auth\/me'\)/);
+});
