@@ -80,7 +80,7 @@ const RegisterSchool: React.FC = () => {
         city:           data.city,
         school_type:    data.schoolType,
         contact_person: data.contactPerson,
-        phone:          data.phone,
+        contact_phone:  data.phone,
         website:        data.website || undefined,
       });
       navigate("/pending-approval");

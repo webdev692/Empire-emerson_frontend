@@ -71,7 +71,11 @@ const Mentors: React.FC = () => {
     e.preventDefault();
     setRequesting(true);
     try {
-      const r = await api.post<{ success: boolean; data: Session }>("/api/intern/mentor/sessions", formData);
+      const r = await api.post<{ success: boolean; data: Session }>("/api/intern/mentor/sessions", {
+        date: formData.date,
+        time: formData.time,
+        notes: formData.topic,
+      });
       setUpcoming(prev => [...prev, r.data.data]);
       setFormData({ date: "", time: "", topic: "" });
       setShowToast(true);

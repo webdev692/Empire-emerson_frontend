@@ -199,14 +199,16 @@ function App() {
 
           <Route path="/company/portfolio" element={
             <ProtectedRoute allowedRoles={["company", "admin"]}>
-              <PublicPortfolioView />
+              <DevelopmentFixtureGate feature="Portfolio publishing">
+                <PublicPortfolioView />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
           
 
           {/* ── Intern dashboard ─────────────────────────────────────────── */}
           <Route path="/dashboard" element={
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={["intern"]}>
               <Dashboard />
             </ProtectedRoute>
           }>
@@ -223,7 +225,11 @@ function App() {
             <Route path="task-tracker"    element={<TaskTracker />} />
             <Route path="mentors"         element={<Mentors />} />
             <Route path="community"       element={<Placeholder title="Community" />} />
-            <Route path="portfolio"       element={<PortfolioSubmit />} />
+            <Route path="portfolio"       element={
+              <DevelopmentFixtureGate feature="Portfolio publishing">
+                <PortfolioSubmit />
+              </DevelopmentFixtureGate>
+            } />
             <Route path="profile"         element={<InternProfile />} />
             <Route path="career"          element={<Placeholder title="Career" />} />
             <Route path="leaderboard"     element={<Leaderboard />} />
@@ -247,11 +253,19 @@ function App() {
             <Route path="companies"         element={<CompanyApprovals />} />
             <Route path="schools"           element={<SchoolApprovals />} />
             <Route path="analytics"         element={<CohortAnalytics />} />
-            <Route path="certificates"      element={<CertificateManagement />} />
+            <Route path="certificates"      element={
+              <DevelopmentFixtureGate feature="Certificate issuance">
+                <CertificateManagement />
+              </DevelopmentFixtureGate>
+            } />
             <Route path="resources"         element={<ResourceManagement />} />
             <Route path="feedback"          element={<FeedbackOverview />} />
             <Route path="settings"          element={<PlatformSettings />} />
-            <Route path="portfolio"         element={<AdminPortfolioBuilder />} />
+            <Route path="portfolio"         element={
+              <DevelopmentFixtureGate feature="Portfolio publishing">
+                <AdminPortfolioBuilder />
+              </DevelopmentFixtureGate>
+            } />
             <Route path="mentors"           element={<MentorManagement />} />
             <Route path="placements"        element={<PlacementManagement />} />
             <Route path="notifications"     element={<NotificationsCenter />} />
@@ -272,7 +286,7 @@ function App() {
 
           {/* ── School dashboard ──────────────────────────────────────────── */}
           <Route path="/school" element={
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={["school"]}>
               <DevelopmentFixtureGate feature="School dashboard">
                 <SchoolDashboard />
               </DevelopmentFixtureGate>

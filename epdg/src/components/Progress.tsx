@@ -42,11 +42,6 @@ const Progress: React.FC = () => {
   const maxWeekly        = Math.max(...weekly.map(d => d.count), 1);
   const avgRating        = stats?.sessions.avg_rating ? parseFloat(stats.sessions.avg_rating) : null;
 
-  // Fake weekly sessions data for the mentor evaluation curve (from past sessions)
-  const sessionRatingData = [avgRating, avgRating, avgRating, avgRating].filter(Boolean).map((r, i) => ({
-    session: `Session ${i + 1}`, rating: Math.round(r!), date: "—",
-  }));
-
   return (
     <div className="bg-[#0D0118] min-h-screen text-white font-sans antialiased p-2">
       <header className="mb-8">
@@ -155,17 +150,13 @@ const Progress: React.FC = () => {
           {stats?.sessions.total === 0 || !avgRating ? (
             <p className="text-[#F5F0E8]/40 text-xs font-mono">No sessions rated yet.</p>
           ) : (
-            <div className="space-y-2.5">
-              {sessionRatingData.slice(0, 4).map((item, i) => (
-                <div key={i} className="bg-[#0D0118] border border-[#4B1E91]/60 p-3 rounded-xl flex items-center justify-between gap-4">
-                  <div>
-                    <h4 className="text-xs font-bold text-white tracking-tight">{item.session}</h4>
-                  </div>
-                  <div className="flex gap-0.5 text-[#F59E0B] text-xs select-none tracking-wider">
-                    {[1,2,3,4,5].map(star => <span key={star}>{star <= item.rating ? "★" : "☆"}</span>)}
-                  </div>
-                </div>
-              ))}
+            <div className="bg-[#0D0118] border border-[#4B1E91]/60 p-4 rounded-xl space-y-2">
+              <p className="text-sm font-semibold text-white">
+                {stats?.sessions.total ?? 0} rated session{stats?.sessions.total === 1 ? "" : "s"}
+              </p>
+              <p className="text-xs text-[#F5F0E8]/70">
+                The API currently provides an aggregate average only. Individual session history is unavailable.
+              </p>
             </div>
           )}
         </div>

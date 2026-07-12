@@ -51,7 +51,7 @@ const Login: React.FC = () => {
     admin:   "/admin",
     company: "/company",
     intern:  "/dashboard",
-    school:  "/dashboard",
+    school:  "/school",
   };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {

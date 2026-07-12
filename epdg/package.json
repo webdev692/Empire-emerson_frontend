@@ -13,7 +13,7 @@
     "build": "tsc -b && vite build",
     "optimize-images": "node scripts/optimize-images.mjs",
     "lint": "eslint .",
-    "smoke": "node --experimental-strip-types --test src/lib/apiConfig.test.mjs && node ../scripts/smoke-check.mjs epdg",
+    "smoke": "node --experimental-strip-types --test src/lib/apiConfig.test.mjs src/lib/productionSafety.test.mjs && node ../scripts/smoke-check.mjs epdg",
     "preview": "vite preview"
   },
   "dependencies": {

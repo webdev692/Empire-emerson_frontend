@@ -55,40 +55,14 @@ const RegisterIntern: React.FC = () => {
   const [apiError,     setApiError]     = useState("");
   const [loading,      setLoading]      = useState(false);
 
-  // CV file upload state (outside react-hook-form)
-  const [cvFile,       setCvFile]       = useState<File | null>(null);
-  const [cvError,      setCvError]      = useState("");
-  const [uploadStep,   setUploadStep]   = useState<"idle" | "uploading" | "done">("idle");
-
   const { register, handleSubmit, control, formState: { errors, isValid } } =
     useForm<FormValues>({ mode: "onChange" });
 
   const passwordValue = useWatch({ control, name: "password", defaultValue: "" });
   const strength      = getStrength(passwordValue);
 
-  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    setCvError("");
-    if (!file) { setCvFile(null); return; }
-
-    const allowed = [".pdf", ".doc", ".docx"];
-    const ext = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-    if (!allowed.includes(ext)) {
-      setCvError("Only PDF, DOC or DOCX files are accepted.");
-      setCvFile(null);
-      return;
-    }
-    if (file.size > 5 * 1024 * 1024) {
-      setCvError("File must be under 5 MB.");
-      setCvFile(null);
-      return;
-    }
-    setCvFile(file);
-    setUploadStep("idle");
-  }
-
   const onSubmit = async (data: FormValues) => {
-    setApiError(""); setCvError("");
+    setApiError("");
 
     if (!API_ORIGIN) {
       setApiError("Account registration is unavailable because the backend is not configured.");
@@ -97,36 +71,12 @@ const RegisterIntern: React.FC = () => {
 
     setLoading(true);
 
-    let cv_url: string | undefined;
-
-    // Upload CV if a file was selected
-    if (cvFile) {
-      setUploadStep("uploading");
-      try {
-        const form = new FormData();
-        form.append("file", cvFile);
-        const { data: uploadData } = await api.post<{ success: boolean; url: string }>(
-          "/api/upload/cv", form,
-          { headers: { "Content-Type": "multipart/form-data" } }
-        );
-        cv_url = uploadData.url;
-        setUploadStep("done");
-      } catch (err) {
-        const axiosErr = err as AxiosError<ApiErrorResponse>;
-        setCvError(axiosErr.response?.data?.message ?? "CV upload failed. Please try again.");
-        setUploadStep("idle");
-        setLoading(false);
-        return;
-      }
-    }
-
     try {
       await api.post("/api/auth/register", {
         name:          data.name,
         email:         data.email,
         password:      data.password,
         contact_phone: data.phone,
-        cv_url,
         cover_letter:  data.cover_letter || undefined,
         role:          "intern",
       });
@@ -189,7 +139,7 @@ const RegisterIntern: React.FC = () => {
 
             <div>
               <label htmlFor="intern-phone" className={labelCls}>Phone Number</label>
-              <input id="intern-phone" type="tel" placeholder="+1 (555) 000-0000" autoComplete="tel" className={inputCls}
+              <input id="intern-phone" type="tel" placeholder="Enter your phone number" autoComplete="tel" className={inputCls}
                 {...register("phone", {
                   required: "Phone number is required",
                   pattern: { value: /^\+?[\d\s\-().]{7,20}$/, message: "Enter a valid phone number" },
@@ -198,27 +148,10 @@ const RegisterIntern: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="intern-cv" className={labelCls}>
-                CV / Resume <span className="normal-case font-normal">(PDF, DOC or DOCX — max 5 MB)</span>
-              </label>
-              <label htmlFor="intern-cv" className={`flex items-center gap-3 cursor-pointer rounded-xl border transition px-4 py-3
-                ${cvFile ? "border-[#4B1E91] bg-[#4B1E91]/10 lg:bg-[#4B1E91]/5" : "border-white/10 bg-white/5 lg:bg-white lg:border-[#12022A]/15"}
-              `}>
-                <span className="text-[13px] shrink-0">
-                  {uploadStep === "uploading" ? "⏳ Uploading…" : uploadStep === "done" ? "✅ Uploaded" : "📎 Choose file"}
-                </span>
-                <span className="text-[13px] truncate text-[#F5F0E8]/60 lg:text-[#12022A]/50">
-                  {cvFile ? cvFile.name : "No file chosen"}
-                </span>
-                <input
-                  id="intern-cv"
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  className="hidden"
-                  onChange={handleFileChange}
-                />
-              </label>
-              {cvError && <p className={errorCls}>{cvError}</p>}
+              <p className={labelCls}>CV / Resume</p>
+              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[13px] text-[#F5F0E8]/70 lg:border-[#12022A]/15 lg:bg-white lg:text-[#12022A]/60">
+                Private CV upload is temporarily unavailable. You can register now without uploading a document.
+              </div>
             </div>
 
             <div>

@@ -16,6 +16,7 @@ interface Application {
   rejection_reason: string;
   department: string;
   mentor: string;
+  mentor_id: number | null;
   cover_letter: string | null;
   cv_url: string | null;
 }
@@ -116,16 +117,16 @@ const ApplicationsReview: React.FC = () => {
 
   async function approveApplication(id: number) {
     const app = applications.find((a) => a.id === id);
-    if (!app?.department || !app?.mentor) {
+    if (!app?.department || !app?.mentor_id) {
       setMessage("Assign a department and mentor before approving.");
       return;
     }
     const updated = await updateUser(id, {
       status: "approved",
       department: app.department,
-      mentor: app.mentor,
+      mentor_id: app.mentor_id,
     });
-    if (updated) setMessage(`✅ ${updated.name} approved — invite sent.`);
+    if (updated) setMessage(`✅ ${updated.name} approved. Notification delivery is processed separately.`);
   }
 
   async function rejectApplication(id: number) {
@@ -143,20 +144,20 @@ const ApplicationsReview: React.FC = () => {
 
   async function approveSelected() {
     const toApprove = applications.filter(
-      (a) => selectedIds.includes(a.id) && a.department && a.mentor
+      (a) => selectedIds.includes(a.id) && a.department && a.mentor_id
     );
     if (toApprove.length === 0) {
       setMessage("All selected applicants need a department and mentor assigned first.");
       return;
     }
     await Promise.all(
-      toApprove.map((a) => updateUser(a.id, { status: "approved", department: a.department, mentor: a.mentor }))
+      toApprove.map((a) => updateUser(a.id, { status: "approved", department: a.department, mentor_id: a.mentor_id }))
     );
     setSelectedIds([]);
     setMessage(`✅ ${toApprove.length} application(s) approved.`);
   }
 
-  function setLocalField(id: number, field: "department" | "mentor", value: string, fromSuggestion = false) {
+  function setLocalField(id: number, field: "department", value: string, fromSuggestion = false) {
     setApplications((prev) => prev.map((a) => a.id === id ? { ...a, [field]: value } : a));
     if (field === "department" && fromSuggestion) {
       setAssignedDept((prev) => ({ ...prev, [id]: value }));
@@ -166,6 +167,14 @@ const ApplicationsReview: React.FC = () => {
       // Clear the flash after 3 seconds
       setTimeout(() => setAssignedDept((prev) => { const n = { ...prev }; delete n[id]; return n; }), 3000);
     }
+  }
+
+  function setLocalMentor(id: number, value: string) {
+    const mentorId = value ? Number(value) : null;
+    const mentorName = mentors.find((mentor) => mentor.id === mentorId)?.name ?? "";
+    setApplications((prev) => prev.map((application) => application.id === id
+      ? { ...application, mentor_id: mentorId, mentor: mentorName }
+      : application));
   }
 
   async function analyseCv(id: number) {
@@ -254,7 +263,7 @@ const ApplicationsReview: React.FC = () => {
       ) : (
         <div className="space-y-4">
           {filtered.map((app) => {
-            const canApprove = !!app.department && !!app.mentor && app.status === "pending";
+            const canApprove = !!app.department && !!app.mentor_id && app.status === "pending";
             const isSaving   = saving === app.id;
             return (
               <div key={app.id} className="rounded-3xl border border-[#4B1E91] bg-[#1E0A4A] p-6">
@@ -360,13 +369,13 @@ const ApplicationsReview: React.FC = () => {
                     <label className="space-y-2 text-sm text-[#F5F0E8]">
                       Assign Mentor
                       <select
-                        value={app.mentor}
-                        onChange={(e) => setLocalField(app.id, "mentor", e.target.value)}
+                        value={app.mentor_id ?? ""}
+                        onChange={(e) => setLocalMentor(app.id, e.target.value)}
                         className="w-full rounded-3xl border border-[#4B1E91] bg-[#0D0118] px-4 py-3 text-white outline-none"
                       >
                         <option value="">Select mentor</option>
                         {mentors.length > 0
-                          ? mentors.map((m) => <option key={m.id} value={m.name}>{m.name}</option>)
+                          ? mentors.map((m) => <option key={m.id} value={m.id}>{m.name}</option>)
                           : <option disabled>No mentors configured</option>
                         }
                       </select>
