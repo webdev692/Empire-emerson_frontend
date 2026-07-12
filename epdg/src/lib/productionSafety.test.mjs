@@ -20,6 +20,8 @@ test("production dashboards do not present fixture notifications or session hist
 test("role and unavailable-feature boundaries fail closed in production", () => {
   const app = read("../App.tsx");
   const login = read("../components/Credential/Login.tsx");
+  const protectedRoute = read("../components/ProtectedRoute.tsx");
+  const companyDashboard = read("../components/company/CompanyDashboard.tsx");
 
   assert.match(app, /<ProtectedRoute allowedRoles=\{\["intern"\]\}>/);
   assert.match(app, /<ProtectedRoute allowedRoles=\{\["school"\]\}>/);
@@ -27,6 +29,22 @@ test("role and unavailable-feature boundaries fail closed in production", () => 
   assert.match(app, /DevelopmentFixtureGate feature="Certificate issuance"/);
   assert.match(login, /school:\s+"\/school"/);
   assert.equal(login.includes('school:  "/dashboard"'), false);
+  assert.match(protectedRoute, /school:\s+['"]\/school['"]/);
+  assert.doesNotMatch(protectedRoute, /school:\s+['"]\/dashboard['"]/);
+  assert.doesNotMatch(companyDashboard, /\bisApproved\s*=\s*true\b/);
+});
+
+test("production auth excludes mock credentials and preserves meaningful auth errors", () => {
+  const login = read("../components/Credential/Login.tsx");
+  const axios = read("./axios.ts");
+
+  assert.doesNotMatch(login, /from ["']\.\.\/\.\.\/lib\/mockAuth["']/);
+  assert.match(login, /await import\(["']\.\.\/\.\.\/lib\/mockAuth["']\)/);
+  assert.match(login, /if \(user\.status === "rejected"\)[\s\S]*?clearAuth\(\)[\s\S]*?return;[\s\S]*?setAuth\(user, data\.token\)/);
+  assert.match(login, /err instanceof ApiConfigurationError/);
+  assert.doesNotMatch(axios, /import \{ mockLogin/);
+  assert.match(axios, /return import\(['"]\.\/mockAuth['"]\)/);
+  assert.match(axios, /['"]\/api\/auth\/verify-email['"]/);
 });
 
 test("school registration and mentor approval use backend-owned field contracts", () => {

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -24,6 +24,9 @@ switch (app) {
       /<Route\s+path=["']\/register["']\s+element=\{<Register\s*\/?>\}/,
       "The placeholder Emerson registration component is still routable",
     );
+    const callSource = read("src/Components/Umbrella/Call.tsx");
+    assert.doesNotMatch(callSource, /loadCount\s*>=\s*2/, "Google Form reloads are still treated as confirmed submissions");
+    assert.doesNotMatch(callSource, /Submitted Successfully/, "The parent page still claims an unverifiable form result");
     break;
   }
   case "Agency_LandingPage": {
@@ -39,10 +42,27 @@ switch (app) {
       "The Agency message CTA is not connected to the request modal",
     );
     assert.doesNotMatch(contactSource, /href=["']\/contact["']/, "The Agency contact CTA still points to a nonexistent route");
+    const callSource = read("src/Components/Umbrella/Call.tsx");
+    assert.doesNotMatch(callSource, /loadCount\s*>=\s*2/, "Google Form reloads are still treated as confirmed submissions");
+    assert.doesNotMatch(callSource, /Submitted Successfully/, "The parent page still claims an unverifiable form result");
     break;
   }
   case "EPDG-Landing-Page": {
     assert.match(read("src/App.tsx"), /<Route\s+path=["']\/classes["']/, "The classes route is missing");
+    const builtIndex = read("dist/index.html");
+    assert.match(builtIndex, /(?:src|href)="\/assets\//, "The default landing build does not target the site root");
+    assert.doesNotMatch(builtIndex, /\/Empire-emerson_frontend\//, "The Netlify/default build still uses the GitHub Pages base path");
+    const pagesWorkflow = readFileSync(join(repositoryRoot, ".github", "workflows", "deploy-epdg.yml"), "utf8");
+    assert.match(
+      pagesWorkflow,
+      /DEPLOY_BASE_PATH:\s*\/Empire-emerson_frontend\//,
+      "The GitHub Pages workflow does not supply its repository base path",
+    );
+    assert.match(
+      pagesWorkflow,
+      /cp dist\/index\.html dist\/404\.html/,
+      "The GitHub Pages workflow does not preserve SPA deep-link routing",
+    );
     break;
   }
   case "epdg": {
@@ -109,6 +129,27 @@ switch (app) {
       /const res = await fetch[\s\S]*?if\s*\(\s*!res\.ok\s*\)[\s\S]*?setSuccess\(true\)/,
       "Registration can report success before an HTTP-success response",
     );
+
+    const assetDirectory = join(appRoot, "dist", "assets");
+    const productionJavaScript = readdirSync(assetDirectory)
+      .filter((file) => file.endsWith(".js"))
+      .map((file) => readFileSync(join(assetDirectory, file), "utf8"))
+      .join("\n");
+    for (const marker of [
+      "intern@test.com",
+      "company@test.com",
+      "school@test.com",
+      "admin@test.com",
+      "mock-signature",
+      "Alice Mwangi",
+      "University of Nebraska",
+    ]) {
+      assert.doesNotMatch(
+        productionJavaScript,
+        new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+        `Production JavaScript contains development fixture marker: ${marker}`,
+      );
+    }
     break;
   }
   default:

@@ -70,6 +70,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Run application tests when present
+        run: npm test --if-present
+
       - name: Run targeted smoke checks
         run: npm run smoke
 
@@ -91,6 +94,9 @@ jobs:
         uses: denoland/setup-deno@v2
         with:
           deno-version: v2.8.1
+
+      - name: Verify manifest and lockfile parity
+        run: node scripts/verify-manifest-lock-parity.mjs
 
       - name: Run Edge and migration regression tests
         run: >-

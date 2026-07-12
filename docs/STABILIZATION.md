@@ -18,6 +18,7 @@ Run these commands inside each of `Emerson_Empire`, `Agency_LandingPage`, `EPDG-
 npm ci --no-audit --no-fund
 npm run build
 npm run lint
+npm test --if-present
 npm run smoke
 ```
 

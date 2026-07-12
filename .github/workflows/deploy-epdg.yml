@@ -38,6 +38,8 @@ jobs:
 
       - name: Build
         working-directory: EPDG-Landing-Page
+        env:
+          DEPLOY_BASE_PATH: /Empire-emerson_frontend/
         run: npm run build
 
       - name: Lint
@@ -47,6 +49,10 @@ jobs:
       - name: Run targeted smoke checks
         working-directory: EPDG-Landing-Page
         run: npm run smoke
+
+      - name: Add GitHub Pages SPA fallback
+        working-directory: EPDG-Landing-Page
+        run: cp dist/index.html dist/404.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

@@ -1,10 +1,10 @@
 import axios from 'axios';
 import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { useAuthStore } from '../store/authStore';
-import { mockLogin, logMockCredentials } from './mockAuth';
 import type { MockLoginRequest } from './mockAuth';
-import { IS_DEVELOPMENT_MOCK_MODE } from './runtimeFlags';
 import { API_ORIGIN, ApiConfigurationError } from './apiConfig';
+
+const MOCK_MODE = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === 'true';
 
 const api = axios.create({
   baseURL: API_ORIGIN ?? undefined,
@@ -14,10 +14,6 @@ const api = axios.create({
 });
 
 // Log mock credentials only in an explicitly enabled development demo.
-if (IS_DEVELOPMENT_MOCK_MODE) {
-  logMockCredentials();
-}
-
 // ── Request interceptor ───────────────────────────────────────────────────────
 // 1. Mock /auth/login in development mode
 // 2. Attach the Bearer token from the auth store to every outgoing request.
@@ -25,16 +21,14 @@ if (IS_DEVELOPMENT_MOCK_MODE) {
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig | Promise<InternalAxiosRequestConfig> => {
     // Mock interceptor — requires Vite development mode and VITE_MOCK_AUTH=true.
-    if (IS_DEVELOPMENT_MOCK_MODE && config.url === '/api/auth/login' && config.method === 'post') {
+    if (MOCK_MODE && config.url === '/api/auth/login' && config.method === 'post') {
       const data = config.data as MockLoginRequest;
-      try {
+      return import('./mockAuth').then(({ mockLogin }) => {
         const response = mockLogin({ email: data.email, password: data.password, role: data.role });
         config.adapter = () =>
           Promise.resolve({ data: response, status: 200, statusText: 'OK', headers: {}, config } as AxiosResponse);
         return config;
-      } catch (error) {
-        return Promise.reject(error);
-      }
+      });
     }
 
     if (!API_ORIGIN) {
@@ -54,7 +48,13 @@ api.interceptors.request.use(
 // On 401, clear auth and redirect — but NOT for auth endpoints themselves
 // (login failures must surface to the form as an error, not a silent redirect).
 
-const AUTH_ENDPOINTS = ['/api/auth/login', '/api/auth/register', '/api/auth/forgot-password', '/api/auth/reset-password'];
+const AUTH_ENDPOINTS = [
+  '/api/auth/login',
+  '/api/auth/register',
+  '/api/auth/forgot-password',
+  '/api/auth/reset-password',
+  '/api/auth/verify-email',
+];
 
 api.interceptors.response.use(
   (response: AxiosResponse): AxiosResponse => response,

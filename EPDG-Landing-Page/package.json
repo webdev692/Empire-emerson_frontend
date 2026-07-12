@@ -12,6 +12,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "test": "node --experimental-strip-types --test deploymentBase.test.mjs",
     "smoke": "node ../scripts/smoke-check.mjs EPDG-Landing-Page",
     "preview": "vite preview"
   },

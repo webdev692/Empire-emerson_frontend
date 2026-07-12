@@ -14,7 +14,7 @@ const VerifyEmail: React.FC = () => {
 
   useEffect(() => {
     if (!token) return;
-    api.get(`/api/auth/verify-email?token=${token}`)
+    api.get('/api/auth/verify-email', { params: { token } })
       .then(() => setState("success"))
       .catch((err) => {
         setState("error");

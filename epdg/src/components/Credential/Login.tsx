@@ -6,10 +6,9 @@ import type { AxiosError } from "axios";
 import { useAuthStore } from "../../store/authStore";
 import logo from "../../assets/epd_logo.png";
 import learningImg from "../../assets/epds-learning.png";
-import { mockLogin, logMockCredentials, isRealAccount } from "../../lib/mockAuth";
-import { IS_DEVELOPMENT_MOCK_MODE } from "../../lib/runtimeFlags";
+import { ApiConfigurationError } from "../../lib/apiConfig";
 
-const MOCK_MODE = IS_DEVELOPMENT_MOCK_MODE;
+const MOCK_MODE = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === "true";
 
 type UserType = "Intern" | "Company" | "School" | "Admin";
 
@@ -42,9 +41,12 @@ const Login: React.FC = () => {
 
   const navigate = useNavigate();
   const setAuth = useAuthStore((s) => s.setAuth);
+  const clearAuth = useAuthStore((s) => s.clearAuth);
 
   useEffect(() => {
-    if (MOCK_MODE) logMockCredentials();
+    if (MOCK_MODE) {
+      void import("../../lib/mockAuth").then(({ logMockCredentials }) => logMockCredentials());
+    }
   }, []);
 
   const HOME: Record<string, string> = {
@@ -59,12 +61,15 @@ const Login: React.FC = () => {
     setError("");
     setLoading(true);
     try {
-      if (MOCK_MODE && !isRealAccount(email)) {
-        // Bypass backend — use mock credentials (real accounts always hit the API)
-        const { user, token } = mockLogin({ email, password, role: userType.toLowerCase() });
-        setAuth(user, token);
-        navigate(HOME[user.role] ?? "/dashboard");
-        return;
+      if (MOCK_MODE) {
+        const { isRealAccount, mockLogin } = await import("../../lib/mockAuth");
+        if (!isRealAccount(email)) {
+          // Bypass backend — use mock credentials (real accounts always hit the API)
+          const { user, token } = mockLogin({ email, password, role: userType.toLowerCase() });
+          setAuth(user, token);
+          navigate(HOME[user.role] ?? "/dashboard");
+          return;
+        }
       }
 
       const { data } = await api.post<LoginResponse>("/api/auth/login", {
@@ -73,11 +78,15 @@ const Login: React.FC = () => {
         role: userType.toLowerCase(),
       });
       const user = data.user as Parameters<typeof setAuth>[0];
+      if (user.status === "rejected") {
+        clearAuth();
+        setError("Your account has been rejected. Contact support@theemersonempire.info for help.");
+        return;
+      }
+
       setAuth(user, data.token);
       if (user.status === "pending") {
         navigate("/pending-approval");
-      } else if (user.status === "rejected") {
-        setError("Your account has been rejected. Contact support@theemersonempire.info for help.");
       } else if (user.force_password_change) {
         navigate("/change-password");
       } else if (user.role === "admin" && user.is_mentor) {
@@ -86,7 +95,9 @@ const Login: React.FC = () => {
         navigate(HOME[user.role] ?? "/dashboard");
       }
     } catch (err) {
-      if (MOCK_MODE) {
+      if (err instanceof ApiConfigurationError) {
+        setError(err.message);
+      } else if (MOCK_MODE) {
         setError((err as Error).message);
       } else {
         const axiosErr = err as AxiosError<ApiErrorResponse>;

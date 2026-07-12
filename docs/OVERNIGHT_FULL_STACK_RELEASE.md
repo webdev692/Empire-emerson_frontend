@@ -99,3 +99,41 @@ Preview evidence belongs to the application commit above. The documentation-only
 - Metadata-only `core` audit completed without reading rows; no live migration, Edge deployment, environment update, merge, or production deployment occurred.
 
 These local commits are not release evidence until pushed and associated with fresh current-head GitHub and Netlify results.
+
+## 2026-07-12 — PR #27 technical handoff verification
+
+### Authoritative workspace and review state
+
+- Created a clean dedicated worktree from exact remote head `7590df7`; the preserved working directory and its local documentation/migration status were not modified or discarded.
+- Confirmed `origin/main` is already an ancestor of the PR branch, so no merge from main was necessary.
+- Confirmed PR #27 has 118 changed files, no submitted reviews, and no unresolved inline review threads.
+- Confirmed the existing root `package.json` is unchanged from main and did not add or use Freebuff preview scripts.
+
+### Confirmed follow-up fixes
+
+- Disproved the Vite-starter finding: both Agency and EPDG landing `App.tsx` files already mount their completed application components.
+- Replaced the landing page's unconditional GitHub Pages base with a validated deployment-specific base. Netlify/local builds use `/`; the main-only GitHub Pages workflow supplies `/Empire-emerson_frontend/` and publishes `404.html` for SPA deep links.
+- Changed production `epdg` imports so development-only company, school, onboarding, portfolio, and certificate fixture modules are not emitted in production chunks.
+- Changed mock authentication to a development-only dynamic import. Production artifacts no longer contain the known mock accounts or token marker.
+- Removed the remaining company `isApproved = true` bypass, corrected the school role redirect to `/school`, and prevented rejected login responses from being persisted as authenticated state.
+- Preserved login, registration, and email-verification errors by exempting verification from global 401 redirection and using encoded request parameters.
+- Removed the iframe reload-count heuristic that claimed a Google Form submission without authoritative confirmation. Google now owns validation and success/failure rendering inside the embedded form.
+
+### Exact local verification
+
+- Toolchain: Node `22.23.1`, npm `11.17.0`, Deno `2.8.1`.
+- All four `npm ci --no-audit --no-fund` commands passed without lockfile changes.
+- All four application lint, build, `npm test --if-present`, and smoke commands exited `0`.
+- EPDG landing deployment-base tests passed `3/3`; `epdg` API/auth/production-safety tests passed `10/10`.
+- A separate GitHub Pages build emitted `/Empire-emerson_frontend/assets/`; the normal landing build emitted root `/assets/` paths.
+- Edge and migration regression tests passed `9/9`; Deno lint checked six files; both frozen Deno checks passed.
+- Seven requested Edge/migration mirror pairs were byte-identical by SHA-256.
+- Manifest/lockfile parity passed for all four applications; the high-confidence names-only credential scan and `git diff --check` passed.
+
+### Netlify evidence and external boundary
+
+- Exact head `7590df7` has a ready `epdg` preview at `https://deploy-preview-27--epdg.netlify.app`.
+- `theemerson` deploy `6a53a74494c10100082a0870` and `emersonagency` deploy `6a53a743b6b5a700083fe3fe` both report `state: error`, no publication time, and no provider summary message even though the GitHub deploy-preview contexts are green.
+- The associated detailed Netlify build API returned `Unauthorized`; the repository has no evidence proving whether cancellation was deduplication, path filtering, supersession, or another provider setting.
+- The EPDG landing site still has no PR #27 Netlify context. Its repository build/base configuration is now verified, but provider Git integration remains external.
+- No Netlify production setting, environment variable, domain, form permission, deployment, Supabase function, or database migration was changed. PR #27 remains unmerged.
