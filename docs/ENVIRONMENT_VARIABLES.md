@@ -12,6 +12,15 @@ This inventory records names and purposes only. A listed name does not prove tha
 | `VITE_SUPABASE_URL` | Emerson and Agency | Public Supabase project URL |
 | `VITE_SUPABASE_ANON_KEY` | Emerson and Agency | Legacy public browser key name pending coordinated publishable-key migration |
 
+## Netlify build configuration
+
+| Name | Purpose |
+|---|---|
+| `NODE_VERSION` | Pinned build-time Node.js toolchain |
+| `NPM_VERSION` | Pinned build-time npm toolchain |
+
+The EPDG platform's committed Netlify configuration no longer supplies a backend origin or an external `/api` proxy. `VITE_API_URL` must come from a verified provider context; when it is absent or invalid, registration and API access remain fail-closed. This source change did not change any production provider value.
+
 ## Lead-intake Edge Function
 
 | Name | Purpose |

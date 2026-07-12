@@ -44,6 +44,24 @@ Remote history contains:
 
 Both repository mirrors use a different timestamp for the second migration. The live schema effects appear consistent with the local SQL, but the remote body is not available through the connector. Do not rename history, run migration repair, or push migrations until the remote SQL identity is proven and the drift is reconciled safely.
 
+## Prepared but not applied — 2026-07-12
+
+Both repository mirrors now contain the new, byte-identical forward migration `20260712012321_serialize_lead_rate_limit_and_index_cleanup.sql`. It was generated with Supabase CLI 2.101.0 and does not modify either existing migration file.
+
+The prepared migration adds a `requested_at` cleanup index and takes a transaction-scoped, requester-specific advisory lock before the rate-limit count and insert. It preserves the existing RPC signature, defaults, boolean response, `SECURITY DEFINER` setting, empty search path, and service-role-only execute boundary.
+
+`scripts/verify-lead-rate-limit.sql` is a metadata-only post-deployment check for the index, function settings, lock call, and execute privileges. It does not read lead or rate-limit rows. The Edge and migration regression suite passes 9/9. The migration has not been applied, and live metadata still shows the pre-migration function without the advisory lock and without the new cleanup index.
+
+The compensating plan is forward-only: if the lock causes an unexpected regression after a reviewed deployment, create a new migration restoring the prior function body while leaving the additive index in place. Do not place an automatic reversion after the forward migration or rewrite migration history.
+
+## Live `core` schema boundary
+
+The metadata-only audit found three `core` tables (`branches`, `users`, and `user_branch_roles`), two enums, two foreign keys, and eight expected primary/unique/partial/foreign-key indexes. The live columns, enum values, constraints, and indexes match the tracked backend contract.
+
+RLS is disabled on all three tables, but `anon`, `authenticated`, `service_role`, and `authenticator` currently have no effective schema, table, sequence, or column access. No `core` policies, functions, triggers, column grants, or custom default ACLs were found. This is not a demonstrated Data API exposure, but it is a latent boundary that must not be expanded without the real database connection role and authorization model.
+
+Because there are no database triggers, `core.users` and `epdg.users` identity synchronization is application-managed. Metadata-only inspection cannot prove the required EPDG branch row, sequence position, migration-ledger state, or row-by-row ID/password-hash parity. Those checks remain blocked because they require approved private row-level verification.
+
 ## Role test matrix
 
 No EPDG end-user ownership or role policy can be written safely yet. `epdg.users.id` uses a custom integer identity and has no verified mapping to Supabase Auth UUIDs. Backend JWT/session claims, database connection role, password hashing, ownership fields, and the final founder-approved role matrix must be confirmed first. Service-only hardening, deny-by-default RLS, and privilege revocation can be prepared independently but still require review before live application.
@@ -77,7 +95,7 @@ The missing foreign-key indexes cover announcements, badges, career data, certif
 7. Add role policies only after the real authentication/ownership mapping and role matrix are approved.
 8. Add idempotency and a private notification outbox after request-key, retry, and ownership contracts are approved.
 
-This sequence is prepared guidance only. No database migration, policy, grant, function, or row was changed during the audit.
+This sequence is prepared guidance only. A new migration file is committed for review, but no live database migration, policy, grant, function, or row was changed during the audit.
 
 ## Migration requirements
 

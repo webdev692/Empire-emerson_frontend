@@ -77,3 +77,25 @@ Preview evidence belongs to the application commit above. The documentation-only
 - The repository contains a limited root service and a broader nested EPDG core. Their Railway source mapping is not yet proven.
 - Railway CLI identity is not authenticated in this environment, so service ownership, deployed revision, environment mapping, and production deployment remain blocked rather than guessed.
 - Public route behavior can narrow candidates but cannot by itself establish the authoritative service or intended database.
+
+## 2026-07-11 21:20 EDT — Logged-out browser verification
+
+- Emerson `/register` redirected to `/` without showing the removed placeholder form or internal instructions.
+- Logged-out EPDG `/school`, `/dashboard`, `/company`, and `/admin` requests all resolved to `/login`; no private dashboard content appeared.
+- The Agency contact section was visible, and `Send a Message` opened and closed the intended existing request-form modal without submitting data.
+- The live preview exposed a modal focus defect: focus remained on the background trigger and was not restored on close. A local follow-up moves focus to the close control, supports Escape, and restores the trigger; current-head preview verification is still required.
+- At a 390 by 844 viewport, Emerson, Agency, and the EPDG login had no horizontal document overflow. The EPDG public landing page remains untested because it has no PR preview.
+- The inspected Agency page emitted no console warnings/errors and no failed initial network requests.
+- No account was created, no form was submitted, and no private/authenticated page was opened.
+
+## 2026-07-11 21:36 EDT — Safe frontend and database follow-up
+
+- Created local commit `432ce17` (`fix: harden previews and public accessibility`).
+- Removed invalid image metadata/preloads, added public form label associations and EPDG auth landmarks, fixed Agency modal focus lifecycle, added conservative non-CSP headers, and added EPDG landing file-based Netlify configuration.
+- Removed the unverified hard-coded EPDG Railway origin and `/api` proxy without inventing a replacement.
+- All four local builds passed; all four lints passed; all four smoke checks passed; EPDG API-origin tests passed 2/2.
+- Created local commit `3b700bc` (`fix: serialize lead rate limiting`).
+- Prepared byte-identical forward-only rate-limit migrations, a metadata-only verification query, and CI regression coverage. The combined Edge/migration Node suite passed 9/9.
+- Metadata-only `core` audit completed without reading rows; no live migration, Edge deployment, environment update, merge, or production deployment occurred.
+
+These local commits are not release evidence until pushed and associated with fresh current-head GitHub and Netlify results.

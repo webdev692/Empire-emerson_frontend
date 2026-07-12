@@ -10,14 +10,16 @@ The application commit reviewed before this documentation-only update is `f23aab
 - The three available Netlify deploy records and preview aliases matched that application commit.
 - A new release decision requires checks and previews to be re-associated with the latest PR head; older success is retained as evidence, not treated as a substitute.
 
+Follow-up commits `432ce17` and `3b700bc` pass local verification for all four builds, lints, and smoke checks plus 9/9 combined Edge/migration regressions. They are not accepted as release evidence until verified at the new PR head.
+
 ## Frontend applications
 
 | Application | Preview evidence for `f23aab8` | Production root | Browser/private-route verification | Release status |
 |---|---|---|---|---|
-| Emerson Empire | [Ready preview](https://deploy-preview-27--theemerson.netlify.app/) | Responded, but PR code is not released | Browser runtime unavailable | Blocked |
-| Emerson Agency | [Ready preview](https://deploy-preview-27--emersonagency.netlify.app/) | Responded, but PR code is not released | Browser runtime unavailable | Blocked |
+| Emerson Empire | [Ready preview](https://deploy-preview-27--theemerson.netlify.app/) | Responded, but PR code is not released | `/register` redirect and mobile overflow checked on `f23aab8`; follow-up head pending | Blocked |
+| Emerson Agency | [Ready preview](https://deploy-preview-27--emersonagency.netlify.app/) | Responded, but PR code is not released | Contact/modal/mobile checked on `f23aab8`; focus fix pending current-head preview | Blocked |
 | EPDG landing | No PR deploy record; expected mapped preview alias returned `404` | Responded, but PR code is not released | No current preview | Failed preview gate |
-| EPDG platform | [Ready preview](https://deploy-preview-27--epdg.netlify.app/) | Responded, but PR code is not released | Logged-out route behavior not interactively verified | Blocked |
+| EPDG platform | [Ready preview](https://deploy-preview-27--epdg.netlify.app/) | Responded, but PR code is not released | Logged-out private routes and mobile overflow checked on `f23aab8`; follow-up head pending | Blocked |
 
 Static route and bundle checks passed for the three available previews. They do not replace interactive verification.
 
@@ -44,9 +46,16 @@ Static route and bundle checks passed for the three available previews. They do 
 - Live Edge Function version was inventoried, but the corrected local function has not been deployed or live-tested.
 - No migration, policy, grant, function, or production data was changed.
 
-## Blocked interactive matrix
+## Browser evidence on the ready `f23aab8` previews
 
-The following remain unverified: Emerson registration redirect, logged-out EPDG private routes, Agency request-modal focus/close behavior, desktop/mobile layout, keyboard traversal, contrast, browser console, and browser network behavior. No authenticated account or private record was used.
+- Emerson `/register` redirected to `/` without exposing the removed placeholder form.
+- EPDG `/school`, `/dashboard`, `/company`, and `/admin` redirected logged-out visitors to `/login`; no private content was visible.
+- Agency contact information was visible and the existing request modal opened, loaded, and closed without submission.
+- The preview modal failed initial/return focus behavior. Commit `432ce17` contains the fix; a current-head preview must verify it.
+- Emerson, Agency, and EPDG login showed no horizontal document overflow at a 390 by 844 viewport.
+- The inspected Agency page showed no console warnings/errors and no failed initial network requests.
+
+Still unverified: EPDG landing browser behavior, current-head modal focus, full keyboard traversal, contrast, and console/network behavior across every route. No authenticated account, private record, or form submission was used.
 
 ## Release acceptance
 

@@ -50,3 +50,7 @@
 The schema-only audit found 46 tables across `public` and `epdg`, no RLS policies, four career tables with RLS disabled, and overly broad latent browser-role grants. `docs/DATABASE_SCHEMA_AND_RLS.md` contains the evidence and the forward-only hardening sequence. No migration was applied.
 
 The final role matrix, custom-user-to-authentication mapping, backend database role, authoritative Railway service, and certificate/public-profile boundaries remain blocked pending founder and backend confirmation.
+
+The EPDG backend also uses a private `core` schema for branches, identities, and branch-role assignments. Live metadata matches the tracked three-table contract and shows no browser/API role privileges, but RLS is disabled and no trigger synchronizes `core.users` with `epdg.users`. The backend must keep each identity mirror update in one transaction; live row parity remains a separately approved verification step.
+
+The frontend source no longer embeds or proxies to an unverified Railway candidate. The production API origin remains provider-owned and must not be populated until Railway repository linkage, deployed revision, route behavior, environment, and database ownership are proven.
