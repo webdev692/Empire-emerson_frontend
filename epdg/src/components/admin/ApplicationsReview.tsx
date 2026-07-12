@@ -95,7 +95,7 @@ const ApplicationsReview: React.FC = () => {
       setApplications(data.data);
     } catch (err) {
       const e = err as AxiosError<{ message: string }>;
-      setMessage(e.response?.data?.message ?? "Failed to load applications.");
+      setMessage(e.response?.data?.message ?? "Failed to load intern accounts.");
     } finally {
       setLoading(false);
     }
@@ -126,7 +126,7 @@ const ApplicationsReview: React.FC = () => {
       department: app.department,
       mentor_id: app.mentor_id,
     });
-    if (updated) setMessage(`✅ ${updated.name} approved. Notification delivery is processed separately.`);
+    if (updated) setMessage(`✅ ${updated.name}'s intern account approved. Notification delivery is processed separately.`);
   }
 
   async function rejectApplication(id: number) {
@@ -136,7 +136,7 @@ const ApplicationsReview: React.FC = () => {
       rejection_reason: rejectionReason,
     });
     if (updated) {
-      setMessage(`❌ ${updated.name} rejected.`);
+      setMessage(`❌ ${updated.name}'s intern account rejected.`);
       setRejectingId(null);
       setRejectionReason("");
     }
@@ -147,14 +147,14 @@ const ApplicationsReview: React.FC = () => {
       (a) => selectedIds.includes(a.id) && a.department && a.mentor_id
     );
     if (toApprove.length === 0) {
-      setMessage("All selected applicants need a department and mentor assigned first.");
+      setMessage("All selected intern accounts need a department and mentor assigned first.");
       return;
     }
     await Promise.all(
       toApprove.map((a) => updateUser(a.id, { status: "approved", department: a.department, mentor_id: a.mentor_id }))
     );
     setSelectedIds([]);
-    setMessage(`✅ ${toApprove.length} application(s) approved.`);
+    setMessage(`✅ ${toApprove.length} intern account(s) approved.`);
   }
 
   function setLocalField(id: number, field: "department", value: string, fromSuggestion = false) {
@@ -196,10 +196,10 @@ const ApplicationsReview: React.FC = () => {
       <div className="rounded-3xl border border-[#4B1E91] bg-[#1E0A4A] p-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.25em] text-[#F5F0E8]">Applications Review</p>
-            <h1 className="mt-2 text-3xl font-semibold">Intern Applications</h1>
+            <p className="text-sm uppercase tracking-[0.25em] text-[#F5F0E8]">Intern Account Approvals</p>
+            <h1 className="mt-2 text-3xl font-semibold">Intern Account Access</h1>
             <p className="mt-2 max-w-2xl text-[#F5F0E8]">
-              Review each applicant, assign mentors and approve.
+              Review pending intern accounts, assign a department and mentor, then approve or reject account access.
             </p>
           </div>
           <div className="inline-flex items-center gap-3 rounded-3xl bg-[#0D0118] px-4 py-3">
@@ -243,12 +243,12 @@ const ApplicationsReview: React.FC = () => {
               disabled={selectedIds.length === 0}
               className="inline-flex items-center gap-2 rounded-2xl bg-[#4B1E91] px-4 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Approve Selected <ArrowRight size={16} />
+              Approve Selected Accounts <ArrowRight size={16} />
             </button>
           </div>
         </div>
         <p className="mt-4 text-sm text-[#F5F0E8]">
-          {loading ? "Loading…" : `${filtered.length} application(s) shown`}
+          {loading ? "Loading…" : `${filtered.length} intern account(s) shown`}
         </p>
       </div>
 
@@ -258,7 +258,7 @@ const ApplicationsReview: React.FC = () => {
         </div>
       ) : filtered.length === 0 ? (
         <div className="rounded-3xl border border-[#4B1E91] bg-[#1E0A4A] p-12 text-center text-[#F5F0E8]">
-          No applications match this filter.
+          No intern accounts match this filter.
         </div>
       ) : (
         <div className="space-y-4">
@@ -387,13 +387,13 @@ const ApplicationsReview: React.FC = () => {
                         disabled={!canApprove || isSaving}
                         className="w-full rounded-3xl bg-[#22C55E] px-4 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
                       >
-                        {isSaving ? "Approving…" : "Approve & Send Invite"}
+                        {isSaving ? "Approving…" : "Approve Intern Account"}
                       </button>
                       <button
                         onClick={() => { setRejectingId(app.id); setRejectionReason(""); }}
                         className="w-full rounded-3xl bg-[#F59E0B]/15 px-4 py-3 text-sm text-[#F59E0B]"
                       >
-                        Reject with Reason
+                        Reject Account with Reason
                       </button>
                     </div>
                   </div>
@@ -414,7 +414,7 @@ const ApplicationsReview: React.FC = () => {
                         disabled={!rejectionReason.trim() || isSaving}
                         className="rounded-3xl bg-red-500 px-4 py-3 text-sm text-white disabled:cursor-not-allowed disabled:opacity-50"
                       >
-                        {isSaving ? "Rejecting…" : "Confirm Reject"}
+                        {isSaving ? "Rejecting…" : "Confirm Account Rejection"}
                       </button>
                       <button onClick={() => setRejectingId(null)} className="rounded-3xl border border-[#4B1E91] px-4 py-3 text-sm text-[#F5F0E8]">
                         Cancel

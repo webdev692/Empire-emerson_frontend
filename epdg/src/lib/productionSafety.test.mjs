@@ -40,6 +40,16 @@ test("school registration and mentor approval use backend-owned field contracts"
   assert.equal(applications.includes("invite sent"), false);
 });
 
+test("intern account approval copy does not claim application transitions or invitation delivery", () => {
+  const approvals = read("../components/admin/ApplicationsReview.tsx");
+
+  assert.match(approvals, /Intern Account Approvals/);
+  assert.match(approvals, /Approve Intern Account/);
+  assert.equal(approvals.includes("Applications Review"), false);
+  assert.equal(approvals.includes("Approve & Send Invite"), false);
+  assert.equal(approvals.includes("/api/admin/applications"), false);
+});
+
 test("mentor session topics use the backend notes field", () => {
   const mentors = read("../components/Mentors.tsx");
   assert.match(mentors, /notes: formData\.topic/);
