@@ -92,9 +92,10 @@ jobs:
         with:
           deno-version: v2.8.1
 
-      - name: Run Edge regression tests
+      - name: Run Edge and migration regression tests
         run: >-
           node --test
+          scripts/lead-rate-limit-migration.test.mjs
           Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs
           Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.test.mjs
 
