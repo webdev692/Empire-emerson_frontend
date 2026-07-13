@@ -271,7 +271,14 @@ function App() {
             <Route path="leaderboard"     element={<Leaderboard />} />
             <Route path="progress"        element={<Progress />} />
             <Route path="feedback"        element={<Feedback />} />
-            <Route path="submission-hub"  element={<SubmissionHub />} />
+            <Route
+              path="submission-hub"
+              element={(
+                <DevelopmentFixtureGate feature="Submission Hub">
+                  <SubmissionHub />
+                </DevelopmentFixtureGate>
+              )}
+            />
             <Route path="certificates"    element={<Placeholder title="Certificates" />} />
             <Route path="checkins"        element={<Placeholder title="Check-ins" />} />
           </Route>

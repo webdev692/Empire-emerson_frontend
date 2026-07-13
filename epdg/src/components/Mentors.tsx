@@ -42,13 +42,6 @@ const Mentors: React.FC = () => {
   const [loading, setLoading]         = useState(true);
   const [error, setError]             = useState("");
 
-  const [showModal, setShowModal]         = useState(false);
-  const [ratingTarget, setRatingTarget]   = useState<number | null>(null);
-  const [hoveredStar, setHoveredStar]     = useState(0);
-  const [selectedRating, setSelectedRating] = useState(0);
-  const [feedbackText, setFeedbackText]   = useState("");
-  const [submitting, setSubmitting]       = useState(false);
-
   const [formData, setFormData] = useState({ date: "", time: "", topic: "" });
   const [showToast, setShowToast] = useState(false);
   const [requesting, setRequesting] = useState(false);
@@ -84,22 +77,6 @@ const Mentors: React.FC = () => {
       setError("Failed to request session.");
     } finally {
       setRequesting(false);
-    }
-  };
-
-  const handleSubmitRating = async () => {
-    if (!ratingTarget || selectedRating === 0) return;
-    setSubmitting(true);
-    try {
-      const r = await api.patch<{ success: boolean; data: Session }>(`/api/intern/mentor/sessions/${ratingTarget}/rate`, {
-        rating: selectedRating, notes: feedbackText,
-      });
-      setPast(prev => prev.map(s => s.id === ratingTarget ? r.data.data : s));
-      setShowModal(false);
-    } catch {
-      setError("Failed to submit rating.");
-    } finally {
-      setSubmitting(false);
     }
   };
 
@@ -264,50 +241,13 @@ const Mentors: React.FC = () => {
                       {[1,2,3,4,5].map(star => <span key={star}>{star <= s.intern_rating! ? "★" : "☆"}</span>)}
                     </div>
                   ) : (
-                    <button onClick={() => { setRatingTarget(s.id); setSelectedRating(0); setHoveredStar(0); setFeedbackText(""); setShowModal(true); }}
-                      className="bg-[#4B1E91] text-white font-mono text-[9px] uppercase tracking-wider px-2.5 py-1 rounded-lg hover:bg-[#683cb0] transition-colors">
-                      Rate this session
-                    </button>
+                    <span className="max-w-36 text-right text-[9px] font-mono uppercase leading-relaxed text-[#F5F0E8]/60">
+                      Session feedback is temporarily unavailable
+                    </span>
                   )}
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      )}
-
-      {/* Rating modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-xs">
-          <div className="bg-[#1E0A4A] border border-[#4B1E91] rounded-2xl p-6 max-w-sm w-full space-y-4">
-            <div className="text-center">
-              <h4 className="text-base font-bold text-white tracking-tight">Evaluate Session Pipeline</h4>
-              <p className="text-xs text-[#F5F0E8] mt-0.5">Provide feedback indicators for data logging</p>
-            </div>
-            <div className="flex justify-center gap-1.5 text-2xl text-[#F59E0B] py-2">
-              {[1,2,3,4,5].map(star => (
-                <button key={star} type="button" onClick={() => setSelectedRating(star)}
-                  onMouseEnter={() => setHoveredStar(star)} onMouseLeave={() => setHoveredStar(0)}
-                  className="transition-transform active:scale-95 focus:outline-none">
-                  {star <= (hoveredStar || selectedRating) ? "★" : "☆"}
-                </button>
-              ))}
-            </div>
-            <textarea value={feedbackText} onChange={e => setFeedbackText(e.target.value)}
-              placeholder="Optional: Provide comments regarding track optimization guidelines..."
-              className="bg-[#0D0118] border border-[#4B1E91] rounded-xl text-white text-xs p-2.5 w-full h-20 resize-none focus:outline-none placeholder-neutral-600" />
-            <div className="flex gap-3 pt-2">
-              <button type="button" onClick={() => setShowModal(false)}
-                className="flex-1 bg-[#0D0118] border border-[#4B1E91] text-[#F5F0E8] font-mono text-xs uppercase tracking-wider py-2 rounded-xl hover:text-white transition-colors">
-                Cancel
-              </button>
-              <button type="button" disabled={selectedRating === 0 || submitting} onClick={handleSubmitRating}
-                className={`flex-1 font-mono text-xs uppercase tracking-wider py-2 rounded-xl transition-colors ${
-                  selectedRating > 0 ? "bg-[#4B1E91] text-white hover:bg-[#683cb0]" : "bg-neutral-800 text-neutral-500 border border-neutral-700 cursor-not-allowed"
-                }`}>
-                {submitting ? "Saving…" : "Submit Score"}
-              </button>
-            </div>
           </div>
         </div>
       )}

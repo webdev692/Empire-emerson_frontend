@@ -27,6 +27,7 @@ test("role and unavailable-feature boundaries fail closed in production", () => 
   assert.match(app, /<ProtectedRoute allowedRoles=\{\["school"\]\}>/);
   assert.ok((app.match(/DevelopmentFixtureGate feature="Portfolio publishing"/g) ?? []).length >= 3);
   assert.match(app, /DevelopmentFixtureGate feature="Certificate issuance"/);
+  assert.match(app, /DevelopmentFixtureGate feature="Submission Hub"/);
   assert.match(login, /school:\s+"\/school"/);
   assert.equal(login.includes('school:  "/dashboard"'), false);
   assert.match(protectedRoute, /school:\s+['"]\/school['"]/);
@@ -52,6 +53,11 @@ test("school registration and mentor approval use backend-owned field contracts"
   const applications = read("../components/admin/ApplicationsReview.tsx");
 
   assert.match(school, /contact_phone:\s+data\.phone/);
+  for (const schoolType of ["university", "college", "polytechnic", "tvet"]) {
+    assert.match(school, new RegExp(`value: ["']${schoolType}["']`));
+  }
+  assert.equal(school.includes('value: "High School"'), false);
+  assert.equal(school.includes('value: "Other"'), false);
   assert.equal(applications.includes("mentor: app.mentor"), false);
   assert.match(applications, /mentor_id: app\.mentor_id/);
   assert.match(applications, /value=\{m\.id\}/);
@@ -72,6 +78,8 @@ test("mentor session topics use the backend notes field", () => {
   const mentors = read("../components/Mentors.tsx");
   assert.match(mentors, /notes: formData\.topic/);
   assert.equal(mentors.includes('api.post<{ success: boolean; data: Session }>("/api/intern/mentor/sessions", formData)'), false);
+  assert.equal(mentors.includes("/api/intern/mentor/sessions/${ratingTarget}/rate"), false);
+  assert.match(mentors, /Session feedback is temporarily unavailable/);
 });
 
 test("intern registration does not offer the unowned CV upload workflow", () => {

@@ -24,7 +24,10 @@ interface ApiErrorResponse {
 }
 
 const SCHOOL_TYPES = [
-  "University", "College", "Polytechnic", "Vocational Institute", "High School", "Other",
+  { value: "university", label: "University" },
+  { value: "college", label: "College" },
+  { value: "polytechnic", label: "Polytechnic" },
+  { value: "tvet", label: "TVET / Vocational Institute" },
 ] as const;
 
 const inputCls =
@@ -181,7 +184,9 @@ const RegisterSchool: React.FC = () => {
                   <select id="school-type" className={selectCls} defaultValue=""
                     {...register("schoolType", { required: "Please select institution type" })}>
                     <option value="" disabled>Select type…</option>
-                    {SCHOOL_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+                    {SCHOOL_TYPES.map(({ value, label }) => (
+                      <option key={value} value={value}>{label}</option>
+                    ))}
                   </select>
                   <div className="top-1/2 right-4 absolute text-[#F5F0E8]/40 lg:text-[#12022A]/40 -translate-y-1/2 pointer-events-none">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
