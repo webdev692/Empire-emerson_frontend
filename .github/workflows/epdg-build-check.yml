@@ -102,6 +102,7 @@ jobs:
         run: >-
           node --test
           scripts/lead-rate-limit-migration.test.mjs
+          scripts/database-boundary-migration.test.mjs
           Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs
           Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.test.mjs
 

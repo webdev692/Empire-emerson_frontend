@@ -100,6 +100,17 @@ Preview evidence belongs to the application commit above. The documentation-only
 
 These local commits are not release evidence until pushed and associated with fresh current-head GitHub and Netlify results.
 
+## 2026-07-12 - Backend preview and database hardening continuation
+
+- Verified frontend head `afb7afff4669cf55fac9c8a52f89c7a23c0baeff` and backend head `48f6e40a95375532c7194217a7454230f8f8f30d`; both isolated worktrees were clean before this phase.
+- Added only the public Netlify production and PR #27 origins to the Railway backend PR environment's `CORS_ORIGINS` variable. No secret value was read or recorded.
+- Railway exact-head preview deployment `d568acc8-4eb6-481e-8ede-921ed27132ac` built successfully but failed its `/health` check because the process exited during startup. The provider's automated diagnosis blamed required configuration despite all 16 variable names being present; privacy-safe application logs exposed no values and did not identify the startup stage.
+- Backend commit `f6f8670` adds a privacy-safe startup stage (`environment`, `database`, or `application`) plus error type and a focused regression test. Railway started replacement exact-head deployment `88ab1ee3-5606-442e-80e2-f0a3ef973cf1`; it must pass before any backend merge or production deployment.
+- Proved the live `20260711212426_reconcile_leads_and_rate_limits` ledger statement matches the tracked SQL and reconciled the two tracked filenames to that existing identity. Live migration history was not edited or rewritten.
+- Prepared mirrored `20260712090000_harden_career_data_boundary.sql` migrations: enable RLS and revoke browser roles on four career tables, fix `update_timestamp()` search path/execute grants, and add two catalog-confirmed missing career foreign-key indexes. No end-user policy or data mutation is included.
+- Added metadata-only verification SQL and three focused migration regression tests. The combined local Edge/migration suite passed 12/12 on Node.js 22.23.1.
+- No merge, production backend deployment, live migration, or Edge Function deployment occurred in this phase.
+
 ## 2026-07-12 — PR #27 technical handoff verification
 
 ### Authoritative workspace and review state

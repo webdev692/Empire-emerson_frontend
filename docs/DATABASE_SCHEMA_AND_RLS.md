@@ -42,7 +42,7 @@ Remote history contains:
 - `20260518000000_create_leads`
 - `20260711212426_reconcile_leads_and_rate_limits`
 
-Both repository mirrors use a different timestamp for the second migration. The live schema effects appear consistent with the local SQL, but the remote body is not available through the connector. Do not rename history, run migration repair, or push migrations until the remote SQL identity is proven and the drift is reconciled safely.
+The provider migration ledger exposed the complete stored statement for the second migration. It matches the tracked SQL body; only the tracked filename timestamp differed. Both repository mirrors now use the existing remote identity `20260711212426` without modifying the live ledger or rewriting applied history.
 
 ## Prepared but not applied — 2026-07-12
 
@@ -53,6 +53,8 @@ The prepared migration adds a `requested_at` cleanup index and takes a transacti
 `scripts/verify-lead-rate-limit.sql` is a metadata-only post-deployment check for the index, function settings, lock call, and execute privileges. It does not read lead or rate-limit rows. The Edge and migration regression suite passes 9/9. The migration has not been applied, and live metadata still shows the pre-migration function without the advisory lock and without the new cleanup index.
 
 The compensating plan is forward-only: if the lock causes an unexpected regression after a reviewed deployment, create a new migration restoring the prior function body while leaving the additive index in place. Do not place an automatic reversion after the forward migration or rewrite migration history.
+
+Both mirrors also contain the byte-identical forward migration `20260712090000_harden_career_data_boundary.sql`. It enables RLS and revokes browser-role privileges on the four career tables, fixes the `public.update_timestamp()` search path and execute boundary, and adds the two missing indexes confirmed on career-data foreign keys. It adds no end-user policies and changes no application rows. `scripts/verify-database-boundary.sql` is metadata-only verification. If a verified backend operation loses access, the compensating action is a new migration granting only that operation to `service_role`; browser grants and disabled RLS must not be restored.
 
 ## Live `core` schema boundary
 
@@ -86,7 +88,7 @@ The missing foreign-key indexes cover announcements, badges, career data, certif
 
 ## Prepared safe sequence
 
-1. Prove and reconcile migration-history identity without changing live history blindly.
+1. Reconcile the tracked migration filename with the proven live identity without changing live history. Completed in the prepared branch.
 2. Harden future default privileges for the known object-creator roles.
 3. Enable RLS and revoke browser privileges on the four career tables before any schema exposure.
 4. Harden `update_timestamp` with an empty search path and minimum execute privileges.
