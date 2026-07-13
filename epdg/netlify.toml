@@ -1,3 +1,4 @@
+# App-local Netlify configuration; deploy-preview evidence must match the PR head.
 [build]
   command = "npm run build"
   publish = "dist"

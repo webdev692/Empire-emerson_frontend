@@ -111,6 +111,14 @@ These local commits are not release evidence until pushed and associated with fr
 - Added metadata-only verification SQL and three focused migration regression tests. The combined local Edge/migration suite passed 12/12 on Node.js 22.23.1.
 - No merge, production backend deployment, live migration, or Edge Function deployment occurred in this phase.
 
+### Exact-head provider follow-up
+
+- Frontend head `18daad2d0c94c8142349f0cafd742f7cd669c791` passed GitHub Actions run `29218914769` and all four GitHub Netlify contexts.
+- Netlify API evidence overruled the context summary for verification purposes: Emerson and Agency produced ready deploys at that head, while EPDG Landing deploy `6a5448d29dca9b00088b80ec` and EPDG platform deploy `6a5448d26c39660008503fdb` were canceled for no content change. The two canceled deploys are not counted as passing previews.
+- Added the same app-local deploy-preview evidence comment to all four `netlify.toml` files so each application path changes together and Netlify must evaluate one final shared head. All four local builds, lints, targeted tests, and smoke checks passed with Node.js 22.23.1 and npm 11.17.0.
+- Railway production and PR deployments both fail at the database connection boundary. The production deploy log reports PostgreSQL code `28P01` (authentication failed); no credential value was read or printed. Production database credential correction remains blocked on the backend/founder owner, and no database password was changed.
+- Because backend connectivity is not proven, the prepared Supabase migrations and Edge Function remain unapplied and undeployed.
+
 ## 2026-07-12 — PR #27 technical handoff verification
 
 ### Authoritative workspace and review state
