@@ -39,18 +39,24 @@ export default function PublicPortfolioView() {
   const [selected, setSelected]   = useState<PublishedEntry | null>(null);
   const [loading, setLoading]     = useState(true);
 
-  useEffect(() => { fetchPublished(); }, [filter]);
+  useEffect(() => {
+    let active = true;
 
-  async function fetchPublished() {
-    setLoading(true);
-    try {
-      const params: Record<string, string> = {};
-      if (filter !== "all") params.track = filter;
-      const { data } = await api.get<PublishedEntry[]>("/api/portfolio/submissions/published", { params });
-      setEntries(data);
-    } catch { /* silent */ }
-    finally { setLoading(false); }
-  }
+    async function loadPublished() {
+      try {
+        const params: Record<string, string> = {};
+        if (filter !== "all") params.track = filter;
+        const { data } = await api.get<PublishedEntry[]>("/api/portfolio/submissions/published", { params });
+        if (active) setEntries(data);
+      } catch { /* silent */ }
+      finally {
+        if (active) setLoading(false);
+      }
+    }
+
+    void loadPublished();
+    return () => { active = false; };
+  }, [filter]);
 
   const visible = entries.filter((e) =>
     !search || e.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -88,7 +94,10 @@ export default function PublicPortfolioView() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
             {TRACKS.map((t) => (
-              <button key={t.value} onClick={() => setFilter(t.value)}
+              <button key={t.value} onClick={() => {
+                if (t.value !== filter) setLoading(true);
+                setFilter(t.value);
+              }}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl font-semibold text-[12px] uppercase tracking-wider whitespace-nowrap transition ${
                   filter === t.value
                     ? "bg-[#4B1E91] text-white"

@@ -9,16 +9,12 @@ const VerifyEmail: React.FC = () => {
   const [searchParams]  = useSearchParams();
   const navigate        = useNavigate();
   const token           = searchParams.get("token");
-  const [state, setState]     = useState<State>("verifying");
-  const [message, setMessage] = useState("");
+  const [state, setState]     = useState<State>(() => token ? "verifying" : "error");
+  const [message, setMessage] = useState(() => token ? "" : "No verification token found in this link.");
 
   useEffect(() => {
-    if (!token) {
-      setState("error");
-      setMessage("No verification token found in this link.");
-      return;
-    }
-    api.get(`/api/auth/verify-email?token=${token}`)
+    if (!token) return;
+    api.get('/api/auth/verify-email', { params: { token } })
       .then(() => setState("success"))
       .catch((err) => {
         setState("error");

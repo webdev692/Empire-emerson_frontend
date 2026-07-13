@@ -6,6 +6,7 @@ import ValuesSection from "./ValuesSection";
 import ServicesSection from "./ServicesSection";
 import SupportSection from "./SupportSection";
 import CTASection from "./CTASection";
+import GetInTouch from "./GetInTouch";
 
 const HomePage: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ const HomePage: React.FC = () => {
         <ServicesSection />
         <SupportSection />
         <CTASection />
+        <GetInTouch />
       </main>
     </div>
   );

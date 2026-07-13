@@ -17,18 +17,18 @@ const navLinks: NavLink[] = [
   { label: "Contact", id: "contact", type: "section" },
 ];
 
+const PLATFORM_URL = "https://epdg.netlify.app/";
+
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
   const navigate = useNavigate();
   const location = useLocation();
   const onClasses = location.pathname === "/classes";
+  const visibleActiveId = onClasses ? "classes" : activeId;
 
   useEffect(() => {
-    if (onClasses) {
-      setActiveId("classes");
-      return;
-    }
+    if (onClasses) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
     });
 
     return () => observer.disconnect();
-  }, [onClasses, location.pathname]);
+  }, [onClasses]);
 
   const handleNav = (link: NavLink) => {
     setMenuOpen(false);
@@ -83,7 +83,7 @@ const Navbar: React.FC = () => {
               <button
                 onClick={() => handleNav(link)}
                 className={`cursor-pointer transition duration-200 ${
-                  activeId === link.id
+                  visibleActiveId === link.id
                     ? "text-[#C9A84C]"
                     : "hover:text-white"
                 }`}
@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
 
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="https://emersonproffesionaldevelopment.netlify.app/"
+            href={PLATFORM_URL}
             target="_blank"
             rel="noreferrer"
             className="px-4 py-2 border border-white/10 hover:border-[#C9A84C] rounded-full font-semibold text-white/70 hover:text-white text-xs uppercase tracking-[0.18em] transition-all duration-200"
@@ -104,7 +104,7 @@ const Navbar: React.FC = () => {
             Log In
           </a>
           <a
-            href="https://emersonproffesionaldevelopment.netlify.app/"
+            href={PLATFORM_URL}
             target="_blank"
             rel="noreferrer"
             className="bg-[#C9A84C] hover:bg-[#BDA55F] px-4 py-2 rounded-full font-semibold text-[#07120f] text-xs uppercase tracking-[0.18em] transition-all duration-200"
@@ -136,7 +136,7 @@ const Navbar: React.FC = () => {
                 <button
                   onClick={() => handleNav(link)}
                   className={`w-full text-left py-3 transition duration-200 cursor-pointer ${
-                    activeId === link.id ? "text-[#C9A84C]" : "hover:text-white"
+                    visibleActiveId === link.id ? "text-[#C9A84C]" : "hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -146,7 +146,7 @@ const Navbar: React.FC = () => {
           </ul>
           <div className="flex flex-col gap-3">
             <a
-              href="https://emersonproffesionaldevelopment.netlify.app/"
+              href={PLATFORM_URL}
               target="_blank"
               rel="noreferrer"
               className="px-4 py-3 border border-white/10 rounded-full font-semibold text-white/80 hover:text-white text-sm text-center uppercase tracking-[0.18em]"
@@ -154,7 +154,7 @@ const Navbar: React.FC = () => {
               Log In
             </a>
             <a
-              href="https://emersonproffesionaldevelopment.netlify.app/"
+              href={PLATFORM_URL}
               target="_blank"
               rel="noreferrer"
               className="bg-[#C9A84C] hover:bg-[#BDA55F] px-4 py-3 rounded-full font-semibold text-[#07120f] text-sm text-center uppercase tracking-[0.18em]"

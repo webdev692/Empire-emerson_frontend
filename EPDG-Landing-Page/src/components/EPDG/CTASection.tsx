@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormModal } from "./FormModal";
+import { useFormModal } from "./FormModalContext";
 import {
   CLASS_REGISTRATION_FORM,
   CAREER_SERVICES_FORM,

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useFormModal } from "./FormModal";
+import { useFormModal } from "./FormModalContext";
 
 const FORM_FEE_WAIVER = "https://forms.gle/fWm9gHownQeorkNn7";
 

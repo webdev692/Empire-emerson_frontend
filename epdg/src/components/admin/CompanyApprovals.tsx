@@ -29,17 +29,11 @@ const statusBadge = (status: Company["status"]) => {
   }
 };
 
-const emptyForm = {
-  name: "", contact: "", domain: "", size: "50-100", focus: "",
-  identityValidated: false, applicationReviewed: false, teamReviewPending: false,
-};
-
 const CompanyApprovals: React.FC = () => {
   const [companyList, setCompanyList]   = useState<Company[]>([]);
   const [loading, setLoading]           = useState(true);
   const [statusFilter, setStatusFilter] = useState<(typeof statusFilters)[number]>("pending");
   const [showAddModal, setShowAddModal] = useState(false);
-  const [_formValues, _setFormValues]     = useState(emptyForm);
   const [rejectingId, setRejectingId]   = useState<number | null>(null);
   const [rejectionReason, setRejectionReason] = useState("");
   const [saving, setSaving]             = useState<number | null>(null);

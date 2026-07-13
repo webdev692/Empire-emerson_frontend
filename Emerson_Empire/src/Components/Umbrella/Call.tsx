@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone, Users } from "lucide-react";
 
@@ -18,11 +18,6 @@ interface FormModalProps {
 }
 
 function FormModal({ title, subtitle, formUrl, accentColor, onClose }: FormModalProps) {
-  const [loadCount, setLoadCount] = useState(0);
-  const submitted = loadCount >= 2;
-  const handleLoad = () => setLoadCount((n) => n + 1);
-  useEffect(() => { setLoadCount(0); }, [formUrl]);
-
   return (
     <div
       className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-[#1C1336]/80 backdrop-blur-sm p-0 sm:p-4"
@@ -37,7 +32,7 @@ function FormModal({ title, subtitle, formUrl, accentColor, onClose }: FormModal
         <div className="flex items-start justify-between px-5 py-4 border-b border-neutral-100 shrink-0">
           <div>
             <p className="text-xs font-mono uppercase tracking-widest text-[#4B1E91] mb-0.5">
-              {submitted ? "Submitted Successfully" : "The Emerson Empire"}
+              The Emerson Empire
             </p>
             <h3 className="text-sm font-bold text-[#1C1336]">{title}</h3>
             <p className="text-xs font-mono text-neutral-400 mt-0.5">{subtitle}</p>
@@ -51,37 +46,13 @@ function FormModal({ title, subtitle, formUrl, accentColor, onClose }: FormModal
           </button>
         </div>
 
-        {/* Submitted state */}
-        {submitted ? (
-          <div className="flex flex-col items-center justify-center flex-1 px-8 py-12 text-center">
-            <div
-              className="w-14 h-14 flex items-center justify-center text-[#1C1336] text-2xl font-bold mb-5"
-              style={{ background: accentColor }}
-            >
-              ✓
-            </div>
-            <h3 className="text-xl font-bold text-[#1C1336] mb-3">Submitted!</h3>
-            <p className="text-sm text-neutral-500 leading-relaxed max-w-sm mb-8">
-              Thank you for reaching out to The Emerson Empire. A member of our team will follow up with you shortly at the contact information you provided.
-            </p>
-            <button
-              onClick={onClose}
-              className="border font-mono text-xs uppercase tracking-wider py-3 px-8 hover:opacity-80 transition-opacity"
-              style={{ borderColor: accentColor, color: accentColor }}
-            >
-              Done
-            </button>
-          </div>
-        ) : (
-          /* Embedded Google Form */
-          <iframe
-            src={formUrl}
-            onLoad={handleLoad}
-            title={title}
-            className="flex-1 w-full border-none"
-            allow="camera; microphone"
-          />
-        )}
+        {/* Google owns validation and the authoritative submission result inside the iframe. */}
+        <iframe
+          src={formUrl}
+          title={title}
+          className="flex-1 w-full border-none"
+          allow="camera; microphone"
+        />
       </div>
     </div>
   );

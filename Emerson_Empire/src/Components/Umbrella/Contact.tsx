@@ -218,11 +218,13 @@ const Contact: React.FC = () => {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="gap-5 grid sm:grid-cols-2">
                     <div>
-                      <label className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
+                      <label htmlFor="contact-name" className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
                         Full Name <span className="text-red-400">*</span>
                       </label>
                       <input
+                        id="contact-name"
                         type="text"
+                        autoComplete="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Your full name"
@@ -231,11 +233,13 @@ const Contact: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
+                      <label htmlFor="contact-email" className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
                         Email Address <span className="text-red-400">*</span>
                       </label>
                       <input
+                        id="contact-email"
                         type="email"
+                        autoComplete="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="your@email.com"
@@ -246,10 +250,11 @@ const Contact: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
+                    <label htmlFor="contact-subject" className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
                       Subject
                     </label>
                     <input
+                      id="contact-subject"
                       type="text"
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)}
@@ -259,10 +264,11 @@ const Contact: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
+                    <label htmlFor="contact-message" className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
                       Message <span className="text-red-400">*</span>
                     </label>
                     <textarea
+                      id="contact-message"
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Tell us how we can help you..."

@@ -6,9 +6,9 @@ import type { AxiosError } from "axios";
 import { useAuthStore } from "../../store/authStore";
 import logo from "../../assets/epd_logo.png";
 import learningImg from "../../assets/epds-learning.png";
-import { mockLogin, logMockCredentials, isRealAccount } from "../../lib/mockAuth";
+import { ApiConfigurationError } from "../../lib/apiConfig";
 
-const MOCK_MODE = import.meta.env.VITE_MOCK_AUTH === "true";
+const MOCK_MODE = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === "true";
 
 type UserType = "Intern" | "Company" | "School" | "Admin";
 
@@ -41,16 +41,19 @@ const Login: React.FC = () => {
 
   const navigate = useNavigate();
   const setAuth = useAuthStore((s) => s.setAuth);
+  const clearAuth = useAuthStore((s) => s.clearAuth);
 
   useEffect(() => {
-    if (MOCK_MODE) logMockCredentials();
+    if (MOCK_MODE) {
+      void import("../../lib/mockAuth").then(({ logMockCredentials }) => logMockCredentials());
+    }
   }, []);
 
   const HOME: Record<string, string> = {
     admin:   "/admin",
     company: "/company",
     intern:  "/dashboard",
-    school:  "/dashboard",
+    school:  "/school",
   };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -58,12 +61,15 @@ const Login: React.FC = () => {
     setError("");
     setLoading(true);
     try {
-      if (MOCK_MODE && !isRealAccount(email)) {
-        // Bypass backend — use mock credentials (real accounts always hit the API)
-        const { user, token } = mockLogin({ email, password, role: userType.toLowerCase() });
-        setAuth(user, token);
-        navigate(HOME[user.role] ?? "/dashboard");
-        return;
+      if (MOCK_MODE) {
+        const { isRealAccount, mockLogin } = await import("../../lib/mockAuth");
+        if (!isRealAccount(email)) {
+          // Bypass backend — use mock credentials (real accounts always hit the API)
+          const { user, token } = mockLogin({ email, password, role: userType.toLowerCase() });
+          setAuth(user, token);
+          navigate(HOME[user.role] ?? "/dashboard");
+          return;
+        }
       }
 
       const { data } = await api.post<LoginResponse>("/api/auth/login", {
@@ -72,11 +78,15 @@ const Login: React.FC = () => {
         role: userType.toLowerCase(),
       });
       const user = data.user as Parameters<typeof setAuth>[0];
+      if (user.status === "rejected") {
+        clearAuth();
+        setError("Your account has been rejected. Contact support@theemersonempire.info for help.");
+        return;
+      }
+
       setAuth(user, data.token);
       if (user.status === "pending") {
         navigate("/pending-approval");
-      } else if (user.status === "rejected") {
-        setError("Your account has been rejected. Contact support@theemersonempire.info for help.");
       } else if (user.force_password_change) {
         navigate("/change-password");
       } else if (user.role === "admin" && user.is_mentor) {
@@ -85,7 +95,9 @@ const Login: React.FC = () => {
         navigate(HOME[user.role] ?? "/dashboard");
       }
     } catch (err) {
-      if (MOCK_MODE) {
+      if (err instanceof ApiConfigurationError) {
+        setError(err.message);
+      } else if (MOCK_MODE) {
         setError((err as Error).message);
       } else {
         const axiosErr = err as AxiosError<ApiErrorResponse>;
@@ -103,7 +115,14 @@ const Login: React.FC = () => {
         <meta name="description" content="Sign in to your Emerson Professional account as an Intern, Company, or Admin." />
       </Helmet>
 
-      <div className="flex bg-[#0a011a] min-h-screen">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:font-semibold focus:text-[#12022A] focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
+
+      <main id="main-content" tabIndex={-1} className="flex bg-[#0a011a] min-h-screen">
 
         {/* Left branding panel — desktop only */}
         <div className="hidden lg:flex flex-col justify-between bg-[#12022A] shadow-md shadow-white p-12 border-white/5 border-r w-[45%]">
@@ -206,10 +225,11 @@ const Login: React.FC = () => {
             {/* Form */}
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
-                <label className="block mb-1.5 font-medium text-[12px] uppercase tracking-wider text-[#F5F0E8]/60 lg:text-[#12022A]/50">
+                <label htmlFor="login-email" className="block mb-1.5 font-medium text-[12px] uppercase tracking-wider text-[#F5F0E8]/60 lg:text-[#12022A]/50">
                   Email address
                 </label>
                 <input
+                  id="login-email"
                   type="email"
                   required
                   autoComplete="email"
@@ -224,11 +244,12 @@ const Login: React.FC = () => {
 
               <div>
                 <div className="flex justify-between items-center mb-1.5">
-                  <label className="font-medium text-[12px] uppercase tracking-wider text-[#F5F0E8]/60 lg:text-[#12022A]/50">Password</label>
+                  <label htmlFor="login-password" className="font-medium text-[12px] uppercase tracking-wider text-[#F5F0E8]/60 lg:text-[#12022A]/50">Password</label>
                   <a href="/forgot-password" className="text-[12px] text-[#C9A84C] hover:text-[#E8C97A] lg:text-[#4B1E91] lg:hover:text-[#3d1778] transition">Forgot password?</a>
                 </div>
                 <div className="relative">
                   <input
+                    id="login-password"
                     type={showPassword ? "text" : "password"}
                     required
                     autoComplete="current-password"
@@ -243,7 +264,9 @@ const Login: React.FC = () => {
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute top-1/2 right-4 -translate-y-1/2 text-sm transition text-[#F5F0E8]/50 hover:text-white lg:text-[#12022A]/40 lg:hover:text-[#12022A]"
-                    aria-label="Toggle password visibility"
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    aria-controls="login-password"
+                    aria-pressed={showPassword}
                   >
                     {showPassword ? "Hide" : "Show"}
                   </button>
@@ -306,7 +329,7 @@ const Login: React.FC = () => {
 
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };

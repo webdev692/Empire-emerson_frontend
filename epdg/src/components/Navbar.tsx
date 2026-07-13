@@ -44,12 +44,12 @@ const menuItems = [
   { name: "Certificates",   path: "/dashboard/certificates",     icon: Award           },
 ];
 
-const NOTIFICATIONS = [
-  { id: 1, text: "Your application was viewed by Nova Studio.", time: "2m ago",    unread: true  },
-  { id: 2, text: "New internship posted: AI Research Program.", time: "1h ago",    unread: true  },
-  { id: 3, text: "Mentor session reminder at 3:00 PM today.",   time: "3h ago",    unread: false },
-  { id: 4, text: "Portfolio review feedback is ready.",          time: "Yesterday", unread: false },
-];
+interface NotificationItem {
+  id: number;
+  text: string;
+  time: string;
+  unread: boolean;
+}
 
 const f: React.CSSProperties = { fontFamily: "Inter" };
 
@@ -58,7 +58,9 @@ const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showNotifs, setShowNotifs] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const [notifs, setNotifs] = useState(NOTIFICATIONS);
+  // The backend does not expose a notification feed yet. Keep production empty
+  // instead of presenting fixture activity as real account data.
+  const [notifs, setNotifs] = useState<NotificationItem[]>([]);
   const clearAuth = useAuthStore((s) => s.clearAuth);
   const user      = useAuthStore((s) => s.user);
   const navigate  = useNavigate();
@@ -323,7 +325,7 @@ const Navbar: React.FC = () => {
                   <Bell size={24} />
                 </div>
                 <p className="text-[#F5F0E8] text-xs font-mono uppercase tracking-wider" style={f}>
-                  Feed Matrix Caught Up
+                  Notifications are not connected yet
                 </p>
               </div>
             ) : (

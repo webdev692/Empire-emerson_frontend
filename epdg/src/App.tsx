@@ -1,8 +1,13 @@
 ﻿import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
+import DevelopmentFixtureGate from "./components/DevelopmentFixtureGate";
 import DiscoveryDashboard from "./components/DiscoveryDashboard";
 import DailyOverview from "./components/DailyOverview";
+
+const DEVELOPMENT_FIXTURES_ENABLED =
+  import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === "true";
+const DisabledFixture = () => null;
 
 // Auth pages
 const Login           = lazy(() => import("./components/Credential/Login"));
@@ -21,16 +26,36 @@ const CertificateVerify   = lazy(() => import("./components/CertificateVerify"))
 const Dashboard = lazy(() => import("./components/Dashboard"));
 
 // Company
-const CompanyDashboard = lazy(() => import("./components/company/CompanyDashboard"));
-const InternManagement   = lazy(() => import("./components/company/InternManagement"));
-const SlotsManagement     = lazy(() => import("./components/company/SlotsManagement"));
-const CompanyApplications = lazy(() => import("./components/company/ApplicationsReview")); // changed name to avoid clash with admin import
-const TaskManagement      = lazy(() => import("./components/company/TaskManagement"));
-const SubmissionReview    = lazy(() => import("./components/company/SubmissionReview"));
-const SessionsManagement  = lazy(() => import("./components/company/SessionsManagement")); 
-const CompanyAnalytics       = lazy(() => import("./components/company/CompanyAnalytics"));
-const CompanyFeedback        = lazy(() => import("./components/company/FeedbackManagement"));
-const CompanySettings        = lazy(() => import("./components/company/CompanySettings"));
+const CompanyDashboard = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/company/CompanyDashboard"))
+  : DisabledFixture;
+const InternManagement = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/company/InternManagement"))
+  : DisabledFixture;
+const SlotsManagement = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/company/SlotsManagement"))
+  : DisabledFixture;
+const CompanyApplications = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/company/ApplicationsReview"))
+  : DisabledFixture;
+const TaskManagement = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/company/TaskManagement"))
+  : DisabledFixture;
+const SubmissionReview = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/company/SubmissionReview"))
+  : DisabledFixture;
+const SessionsManagement = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/company/SessionsManagement"))
+  : DisabledFixture;
+const CompanyAnalytics = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/company/CompanyAnalytics"))
+  : DisabledFixture;
+const CompanyFeedback = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/company/FeedbackManagement"))
+  : DisabledFixture;
+const CompanySettings = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/company/CompanySettings"))
+  : DisabledFixture;
 
 
 
@@ -42,7 +67,9 @@ const ApplicationsReview    = lazy(() => import("./components/admin/Applications
 const CompanyApprovals      = lazy(() => import("./components/admin/CompanyApprovals"));
 const SchoolApprovals       = lazy(() => import("./components/admin/SchoolApprovals"));
 const CohortAnalytics       = lazy(() => import("./components/admin/CohortAnalytics"));
-const CertificateManagement = lazy(() => import("./components/admin/CertificateManagement"));
+const CertificateManagement = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/admin/CertificateManagement"))
+  : DisabledFixture;
 const ResourceManagement    = lazy(() => import("./components/admin/ResourceManagement"));
 const FeedbackOverview      = lazy(() => import("./components/admin/FeedbackOverview"));
 const PlatformSettings      = lazy(() => import("./components/admin/PlatformSettings"));
@@ -61,12 +88,20 @@ const MentorInterns   = lazy(() => import("./components/mentor/MentorInterns"));
 const InternProfile         = lazy(() => import("./components/InternProfile"));
 
 // Portfolio
-const PortfolioSubmit       = lazy(() => import("./components/portfolio/PortfolioSubmit"));
-const AdminPortfolioBuilder = lazy(() => import("./components/portfolio/AdminPortfolioBuilder"));
-const PublicPortfolioView   = lazy(() => import("./components/portfolio/PublicPortfolioView"));
+const PortfolioSubmit = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/portfolio/PortfolioSubmit"))
+  : DisabledFixture;
+const AdminPortfolioBuilder = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/portfolio/AdminPortfolioBuilder"))
+  : DisabledFixture;
+const PublicPortfolioView = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/portfolio/PublicPortfolioView"))
+  : DisabledFixture;
 
 // Intern dashboard pages (Hosea's PR)
-const Onboarding    = lazy(() => import("./components/Onboarding"));
+const Onboarding = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/Onboarding"))
+  : DisabledFixture;
 const Roadmap       = lazy(() => import("./components/Roadmap"));
 const Tasks         = lazy(() => import("./components/Tasks"));
 const TaskTracker   = lazy(() => import("./components/TaskTracker"));
@@ -77,7 +112,9 @@ const Feedback      = lazy(() => import("./components/Feedback"));
 const SubmissionHub = lazy(() => import("./components/SubmissionHub"));
 
 //School dashboard pages 
-const SchoolDashboard = lazy(() => import("./components/school/SchoolDashboard"));
+const SchoolDashboard = DEVELOPMENT_FIXTURES_ENABLED
+  ? lazy(() => import("./components/school/SchoolDashboard"))
+  : DisabledFixture;
 
 // Placeholder for pages not yet built
 const Placeholder = ({ title }: { title: string }) => (
@@ -117,95 +154,131 @@ function App() {
           {/* ── Company-only routes ──────────────────────────────────────── */}
           <Route path="/company" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <CompanyDashboard />
-        
+              <DevelopmentFixtureGate feature="Company dashboard">
+                <CompanyDashboard />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
             
           } />
 
           <Route path="/company/interns" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <InternManagement />
+              <DevelopmentFixtureGate feature="Intern management">
+                <InternManagement />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/slots" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <SlotsManagement />
+              <DevelopmentFixtureGate feature="Internship slot management">
+                <SlotsManagement />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/applications" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <CompanyApplications />
+              <DevelopmentFixtureGate feature="Application review">
+                <CompanyApplications />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/tasks" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <TaskManagement />
+              <DevelopmentFixtureGate feature="Task management">
+                <TaskManagement />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/submissions" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <SubmissionReview />
+              <DevelopmentFixtureGate feature="Submission review">
+                <SubmissionReview />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/sessions" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <SessionsManagement />
+              <DevelopmentFixtureGate feature="Session management">
+                <SessionsManagement />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/analytics" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <CompanyAnalytics />
+              <DevelopmentFixtureGate feature="Company analytics">
+                <CompanyAnalytics />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/feedback" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <CompanyFeedback />
+              <DevelopmentFixtureGate feature="Feedback management">
+                <CompanyFeedback />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/settings" element={
             <ProtectedRoute allowedRoles={["company"]}>
-              <CompanySettings />
+              <DevelopmentFixtureGate feature="Company settings">
+                <CompanySettings />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
 
           <Route path="/company/portfolio" element={
             <ProtectedRoute allowedRoles={["company", "admin"]}>
-              <PublicPortfolioView />
+              <DevelopmentFixtureGate feature="Portfolio publishing">
+                <PublicPortfolioView />
+              </DevelopmentFixtureGate>
             </ProtectedRoute>
           } />
           
 
           {/* ── Intern dashboard ─────────────────────────────────────────── */}
           <Route path="/dashboard" element={
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={["intern"]}>
               <Dashboard />
             </ProtectedRoute>
           }>
             <Route index                  element={<DailyOverview />} />
             <Route path="overview"        element={<DailyOverview />} />
             <Route path="discovery"       element={<DiscoveryDashboard />} />
-            <Route path="onboarding"      element={<Onboarding />} />
+            <Route path="onboarding"      element={
+              <DevelopmentFixtureGate feature="Intern onboarding">
+                <Onboarding />
+              </DevelopmentFixtureGate>
+            } />
             <Route path="roadmap"         element={<Roadmap />} />
             <Route path="tasks"           element={<Tasks />} />
             <Route path="task-tracker"    element={<TaskTracker />} />
             <Route path="mentors"         element={<Mentors />} />
             <Route path="community"       element={<Placeholder title="Community" />} />
-            <Route path="portfolio"       element={<PortfolioSubmit />} />
+            <Route path="portfolio"       element={
+              <DevelopmentFixtureGate feature="Portfolio publishing">
+                <PortfolioSubmit />
+              </DevelopmentFixtureGate>
+            } />
             <Route path="profile"         element={<InternProfile />} />
             <Route path="career"          element={<Placeholder title="Career" />} />
             <Route path="leaderboard"     element={<Leaderboard />} />
             <Route path="progress"        element={<Progress />} />
             <Route path="feedback"        element={<Feedback />} />
-            <Route path="submission-hub"  element={<SubmissionHub />} />
+            <Route
+              path="submission-hub"
+              element={(
+                <DevelopmentFixtureGate feature="Submission Hub">
+                  <SubmissionHub />
+                </DevelopmentFixtureGate>
+              )}
+            />
             <Route path="certificates"    element={<Placeholder title="Certificates" />} />
             <Route path="checkins"        element={<Placeholder title="Check-ins" />} />
           </Route>
@@ -223,11 +296,19 @@ function App() {
             <Route path="companies"         element={<CompanyApprovals />} />
             <Route path="schools"           element={<SchoolApprovals />} />
             <Route path="analytics"         element={<CohortAnalytics />} />
-            <Route path="certificates"      element={<CertificateManagement />} />
+            <Route path="certificates"      element={
+              <DevelopmentFixtureGate feature="Certificate issuance">
+                <CertificateManagement />
+              </DevelopmentFixtureGate>
+            } />
             <Route path="resources"         element={<ResourceManagement />} />
             <Route path="feedback"          element={<FeedbackOverview />} />
             <Route path="settings"          element={<PlatformSettings />} />
-            <Route path="portfolio"         element={<AdminPortfolioBuilder />} />
+            <Route path="portfolio"         element={
+              <DevelopmentFixtureGate feature="Portfolio publishing">
+                <AdminPortfolioBuilder />
+              </DevelopmentFixtureGate>
+            } />
             <Route path="mentors"           element={<MentorManagement />} />
             <Route path="placements"        element={<PlacementManagement />} />
             <Route path="notifications"     element={<NotificationsCenter />} />
@@ -247,7 +328,13 @@ function App() {
           </Route>
 
           {/* ── School dashboard ──────────────────────────────────────────── */}
-          <Route path="/school" element={<SchoolDashboard />} />
+          <Route path="/school" element={
+            <ProtectedRoute allowedRoles={["school"]}>
+              <DevelopmentFixtureGate feature="School dashboard">
+                <SchoolDashboard />
+              </DevelopmentFixtureGate>
+            </ProtectedRoute>
+          } />
         </Routes>
       </Suspense>
     </Router>
