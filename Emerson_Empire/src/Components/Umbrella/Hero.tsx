@@ -28,7 +28,10 @@ const Hero: React.FC = () => {
 
           {/* WELCOME Badge */}
           <div className="mb-6 inline-flex w-fit px-4 py-2 rounded-full border border-[#C9A84C]/30 bg-[#C9A84C]/5">
-            <span className="font-semibold text-[#C9A84C] text-xs uppercase tracking-[0.15em]">
+            <span
+              className="font-semibold text-[#C9A84C] text-xs uppercase tracking-[0.15em]"
+              style={{ fontFamily: "var(--font-label)" }}
+            >
               ★ Welcome
             </span>
           </div>
@@ -36,7 +39,7 @@ const Hero: React.FC = () => {
           {/* Headline */}
           <h1
             className="mb-5 font-medium text-5xl md:text-6xl lg:text-7xl leading-[1.05]"
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             <span className="block text-[#1C1336]">Welcome to</span>
             <span className="block text-[#C9A84C]">The Emerson Empire</span>
@@ -52,7 +55,7 @@ const Hero: React.FC = () => {
           {/* Subtitle */}
           <p
             className="mb-9 max-w-lg text-[#1C1336]/75 text-base leading-[1.9]"
-            style={{ fontFamily: "'Inter', sans-serif" }}
+            style={{ fontFamily: "var(--font-body)" }}
           >
             The Emerson Empire connects people, students, families, workers,
             entrepreneurs, and community partners with education, resources,
@@ -64,14 +67,14 @@ const Hero: React.FC = () => {
             <a
               href="/about"
               className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#E8C97A] px-7 py-3.5 rounded-md font-bold text-[#1C1336] text-sm transition-colors duration-200"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
+              style={{ fontFamily: "var(--font-label)" }}
             >
               Start Here <span aria-hidden="true">→</span>
             </a>
             <a
               href="/services"
               className="inline-flex items-center bg-[#1C1336] hover:bg-[#1E0A4A] px-7 py-3.5 rounded-md font-bold text-white text-sm transition-colors duration-200"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
+              style={{ fontFamily: "var(--font-label)" }}
             >
               Find Emerson Services
             </a>
@@ -87,13 +90,13 @@ const Hero: React.FC = () => {
                 <Icon className="mb-2 text-[#C9A84C]" size={22} strokeWidth={1.5} />
                 <p
                   className="font-bold text-[#C9A84C] text-xs uppercase tracking-[0.15em]"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  style={{ fontFamily: "var(--font-label)" }}
                 >
                   {title}
                 </p>
                 <p
                   className="mt-1 text-[#1C1336]/60 text-[11px] leading-snug"
-                  style={{ fontFamily: "'Inter', sans-serif" }}
+                  style={{ fontFamily: "var(--font-body)" }}
                 >
                   {subtitle}
                 </p>

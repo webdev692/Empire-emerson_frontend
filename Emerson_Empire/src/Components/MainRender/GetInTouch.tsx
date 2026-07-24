@@ -35,21 +35,21 @@ const GetInTouch: React.FC = () => (
       >
         <p
           className="mb-4 font-semibold text-[#C9A84C] text-xs sm:text-sm uppercase tracking-[0.3em]"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
+          style={{ fontFamily: "var(--font-label)" }}
         >
           Contact
         </p>
 
         <h2
           className="mb-6 font-medium text-[#1C1336] text-4xl sm:text-5xl"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Get in Touch
         </h2>
 
         <p
           className="mb-9 max-w-xl text-[#1C1336]/70 text-base sm:text-lg leading-[1.8]"
-          style={{ fontFamily: "'Inter', sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           The fastest way to reach us is through one of the forms below. Each one
           routes to the right part of the Emerson ecosystem.
@@ -61,7 +61,7 @@ const GetInTouch: React.FC = () => (
               key={link.label}
               href={link.href}
               className="inline-flex justify-center items-center bg-[#1C1336] hover:bg-[#1E0A4A] px-5 py-3.5 rounded-sm font-semibold text-white text-sm text-center transition-colors duration-200"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
+              style={{ fontFamily: "var(--font-label)" }}
             >
               {link.label}
             </a>

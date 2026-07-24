@@ -13,21 +13,21 @@ const PartnerWithUs: React.FC = () => (
       >
         <p
           className="mb-4 font-semibold text-[#C9A84C] text-xs sm:text-sm uppercase tracking-[0.3em]"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
+          style={{ fontFamily: "var(--font-label)" }}
         >
           Collaboration
         </p>
 
         <h2
           className="mb-6 font-medium text-white text-4xl sm:text-5xl"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Partner With Us
         </h2>
 
         <p
           className="max-w-xl text-white/70 text-base sm:text-lg leading-[1.8]"
-          style={{ fontFamily: "'Inter', sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           Organizations, schools, libraries, community groups, and mission-aligned
           partners can request collaboration or workshops. We work with partners to
@@ -46,13 +46,13 @@ const PartnerWithUs: React.FC = () => (
       >
         <h3
           className="mb-3 font-semibold text-white text-2xl"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Start a conversation
         </h3>
         <p
           className="mb-7 text-white/60 text-sm sm:text-base leading-[1.7]"
-          style={{ fontFamily: "'Inter', sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           Share a little about your organization and what you are looking to build
           together.
@@ -60,7 +60,7 @@ const PartnerWithUs: React.FC = () => (
         <a
           href="/contact"
           className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#D4B56A] px-7 py-3.5 rounded-sm font-bold text-[#1C1336] text-sm transition-colors duration-200"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
+          style={{ fontFamily: "var(--font-label)" }}
         >
           Request Partnership <span aria-hidden="true">→</span>
         </a>

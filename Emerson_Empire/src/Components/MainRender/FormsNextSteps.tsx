@@ -39,21 +39,21 @@ const FormsNextSteps: React.FC = () => (
     <div className="mx-auto max-w-7xl">
       <p
         className="mb-3 font-semibold text-[#C9A84C] text-xs sm:text-sm uppercase tracking-[0.3em]"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}
+        style={{ fontFamily: "var(--font-label)" }}
       >
         Take the Next Steps
       </p>
 
       <h2
         className="mb-4 font-medium text-[#1C1336] text-4xl sm:text-5xl"
-        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+        style={{ fontFamily: "var(--font-display)" }}
       >
         Forms and <span className="text-[#5a3e9e]">Next Steps</span>
       </h2>
 
       <p
         className="mb-12 text-[#1C1336]/60 text-base sm:text-lg"
-        style={{ fontFamily: "'Inter', sans-serif" }}
+        style={{ fontFamily: "var(--font-body)" }}
       >
         Use the form that fits where you are. Each opens in a new tab.
       </p>
@@ -76,19 +76,19 @@ const FormsNextSteps: React.FC = () => (
           >
             <h3
               className="mb-3 font-medium text-[#5a3e9e] text-xl sm:text-2xl"
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               {form.title}
             </h3>
             <p
               className="flex-1 mb-6 text-[#1C1336]/75 text-sm sm:text-base leading-[1.7]"
-              style={{ fontFamily: "'Inter', sans-serif" }}
+              style={{ fontFamily: "var(--font-body)" }}
             >
               {form.description}
             </p>
             <span
               className="inline-flex items-center gap-1 font-semibold text-[#6B7280] text-sm"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
+              style={{ fontFamily: "var(--font-label)" }}
             >
               Open form
               <span aria-hidden="true" className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
