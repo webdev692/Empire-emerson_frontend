@@ -96,14 +96,14 @@ const GlobalReachSection: React.FC = () => (
       >
         <p
           className="mb-5 font-bold text-[#4B3FA0] text-xs sm:text-sm uppercase tracking-[0.25em]"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
+          style={{ fontFamily: "var(--font-label)" }}
         >
           Global Internship
         </p>
 
         <h2
           className="mb-6 font-medium text-[#1c1a17] text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.08]"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           We're Building Something Real —
           <span className="block text-[#5a3e9e]">And You Can Be Part of It.</span>
@@ -111,7 +111,7 @@ const GlobalReachSection: React.FC = () => (
 
         <p
           className="mb-5 max-w-xl text-[#44423c] text-base sm:text-lg leading-[1.7]"
-          style={{ fontFamily: "'Inter', sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           The Emerson Empire Global Internship Program is founder-led and
           intern-supported. Students, career changers, and emerging professionals
@@ -121,7 +121,7 @@ const GlobalReachSection: React.FC = () => (
 
         <p
           className="mb-8 max-w-xl text-[#44423c] text-base sm:text-lg leading-[1.7]"
-          style={{ fontFamily: "'Inter', sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           Internship participation is free. You'll gain structured onboarding, real
           project experience, portfolio-ready work, and completion documentation.
@@ -130,7 +130,7 @@ const GlobalReachSection: React.FC = () => (
         <a
           href="/global-internship#application-form"
           className="inline-flex items-center bg-[#161228] hover:bg-[#241b45] px-7 py-3.5 rounded-lg font-bold text-white text-sm transition-colors duration-200"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
+          style={{ fontFamily: "var(--font-label)" }}
         >
           Apply for the Internship
         </a>
@@ -159,13 +159,13 @@ const ThreeCompaniesSection: React.FC = () => {
         <div className="mx-auto max-w-6xl">
           <p
             className="mb-3 font-semibold text-[#C9A84C] text-xs sm:text-sm uppercase tracking-[0.3em]"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
+            style={{ fontFamily: "var(--font-label)" }}
           >
             Find Your Path
           </p>
           <h2
             className="mb-12 font-medium text-white text-4xl sm:text-5xl"
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             What do you need help finding?
           </h2>
@@ -181,7 +181,7 @@ const ThreeCompaniesSection: React.FC = () => {
                 <div>
                   <p
                     className="font-semibold text-white text-sm leading-snug"
-                    style={{ fontFamily: "'Inter', sans-serif" }}
+                    style={{ fontFamily: "var(--font-body)" }}
                   >
                     {title}
                   </p>
@@ -202,7 +202,7 @@ const ThreeCompaniesSection: React.FC = () => {
           initial={{ opacity: 0, y: 16 }}
           transition={{ duration: 0.45 }}
           className="mb-3 font-semibold text-[#C9A84C] text-xs sm:text-sm uppercase tracking-[0.3em]"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
+          style={{ fontFamily: "var(--font-label)" }}
         >
           The Ecosystem
         </motion.p>
@@ -212,7 +212,7 @@ const ThreeCompaniesSection: React.FC = () => {
           initial={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.55, delay: 0.08 }}
           className="font-medium text-[#1C1336] text-4xl sm:text-5xl lg:text-6xl"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Three Emerson Pathways
         </motion.h2>
@@ -222,7 +222,7 @@ const ThreeCompaniesSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 0.16 }}
           className="mx-auto mt-4 mb-12 max-w-2xl text-[#1C1336]/60 text-base sm:text-lg"
-          style={{ fontFamily: "'Inter', sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           One ecosystem. Three doors. Choose the one that fits where you are right now.
         </motion.p>
@@ -254,13 +254,13 @@ const ThreeCompaniesSection: React.FC = () => {
 
               <h3
                 className="mb-4 font-medium text-[#1C1336] text-xl sm:text-2xl leading-snug"
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                style={{ fontFamily: "var(--font-display)" }}
               >
                 {company.title}
               </h3>
               <p
                 className="flex-1 mb-7 text-[#1C1336]/70 text-sm leading-[1.8]"
-                style={{ fontFamily: "'Inter', sans-serif" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 {company.description}
               </p>
