@@ -3,7 +3,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import test from 'node:test';
 
 const migrationFile =
-  '20260712012321_serialize_lead_rate_limit_and_index_cleanup.sql';
+  '20260725225312_serialize_lead_rate_limit_and_index_cleanup.sql';
 const migrationDirectories = [
   new URL('../Emerson_Empire/supabase/migrations/', import.meta.url),
   new URL('../Agency_LandingPage/supabase/migrations/', import.meta.url),

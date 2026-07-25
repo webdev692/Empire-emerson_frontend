@@ -22,8 +22,20 @@ The handler enforces a 20,000-byte limit against bytes read from the request
 stream and returns `413` when that boundary is exceeded. It does not rely on
 the caller-provided `Content-Length` header.
 
-Run the focused helper regression tests with Node 20 or newer:
+Lead storage uses the service-role-only `store_lead_request` RPC installed by
+`20260725230658_add_lead_idempotency_contract.sql`. The RPC serializes
+identical requests, checks duplicates before consuming another rate-limit
+slot, and writes the request key and lead in one transaction. Callers may send
+an `Idempotency-Key` header; otherwise the function derives a privacy-safe
+daily key from the normalized payload. Neither raw key nor service credential
+is returned.
+
+Requests without an exact configured `Origin` are rejected. User-controlled
+labels are stripped of email-header control characters before notification
+subjects are created.
+
+Run the focused helper regression tests with the repository-pinned Node:
 
 ```text
-node --test lead-store.test.mjs
+node --test lead-store.test.mjs notification.test.mjs request-security.test.mjs
 ```

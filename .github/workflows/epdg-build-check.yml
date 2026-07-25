@@ -102,18 +102,18 @@ jobs:
         run: >-
           node --test
           scripts/lead-rate-limit-migration.test.mjs
+          scripts/lead-idempotency-migration.test.mjs
           scripts/database-boundary-migration.test.mjs
+          scripts/classes-contract.test.mjs
           Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs
+          Emerson_Empire/supabase/functions/send-consultation-email/notification.test.mjs
+          Emerson_Empire/supabase/functions/send-consultation-email/request-security.test.mjs
           Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.test.mjs
+          Agency_LandingPage/supabase/functions/send-consultation-email/notification.test.mjs
+          Agency_LandingPage/supabase/functions/send-consultation-email/request-security.test.mjs
 
       - name: Verify mirrored Edge sources
-        shell: bash
-        run: |
-          cmp Emerson_Empire/supabase/functions/send-consultation-email/index.ts Agency_LandingPage/supabase/functions/send-consultation-email/index.ts
-          cmp Emerson_Empire/supabase/functions/send-consultation-email/lead-store.mjs Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.mjs
-          cmp Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.test.mjs
-          cmp Emerson_Empire/supabase/functions/send-consultation-email/deno.json Agency_LandingPage/supabase/functions/send-consultation-email/deno.json
-          cmp Emerson_Empire/supabase/functions/send-consultation-email/deno.lock Agency_LandingPage/supabase/functions/send-consultation-email/deno.lock
+        run: node scripts/verify-edge-mirrors.mjs
 
       - name: Lint Edge Functions
         run: >-

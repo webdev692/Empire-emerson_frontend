@@ -1,5 +1,23 @@
 # Production verification
 
+## Current status — 2026-07-25
+
+- Supabase production received the three reviewed forward migrations and active
+  `send-consultation-email` Edge Function version 13. The function's five
+  deployed files exactly match the reviewed source, and non-persisting smoke
+  cases passed.
+- No Netlify production promotion, Railway production code deployment, PR
+  merge, environment-value change, real lead submission, or notification email
+  occurred in this sprint.
+- PR #27 still requires fresh final-head GitHub and four-site Netlify evidence.
+  PR #2 remains draft because Railway PostgreSQL authentication fails with
+  `28P01`.
+- The current database/RLS evidence is maintained in
+  `DATABASE_SCHEMA_AND_RLS.md`; current platform and release evidence supersedes
+  the historical snapshot retained below.
+
+## Historical July 11–12 snapshot
+
 No production result is recorded as passing until it corresponds to the released commit and verified provider configuration. No merge or production deployment has been performed during this release work.
 
 ## Application-commit evidence

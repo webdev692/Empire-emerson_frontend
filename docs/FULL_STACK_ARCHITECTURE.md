@@ -31,11 +31,11 @@
 
 ## Request flows
 
-### Public lead intake in PR #27 (not yet deployed to production)
+### Public lead intake
 
 1. Emerson or Agency submits a bounded JSON request to the Supabase Edge Function.
-2. The function validates origin, method, fields, body size, honeypot, and rate limit.
-3. The function inserts the lead with a minimal insert response.
+2. The function validates origin, method, fields, body size, honeypot, and idempotency input.
+3. A service-only database RPC serializes the rate-limit decision and lead insert, returning the same success contract for a matching retry.
 4. Notification delivery is attempted after storage; a notification failure does not instruct the visitor to duplicate the stored request.
 
 ### EPDG platform in PR #27 (not yet deployed to production)
@@ -47,7 +47,7 @@
 
 ## Verified database boundary
 
-The schema-only audit found 46 tables across `public` and `epdg`, no RLS policies, four career tables with RLS disabled, and overly broad latent browser-role grants. `docs/DATABASE_SCHEMA_AND_RLS.md` contains the evidence and the forward-only hardening sequence. No migration was applied.
+The schema-only audit found 46 tables across `public` and `epdg`, one private rate-limit table, and three `core` tables. The reviewed July 25 migrations are applied: all 47 API-facing/private tables have RLS enabled without permissive end-user policies, browser grants on the four career tables are revoked, `update_timestamp()` is hardened, the confirmed foreign-key indexes are present, and lead intake uses the atomic idempotency contract. The three `core` tables remain server-only with RLS disabled. `docs/DATABASE_SCHEMA_AND_RLS.md` contains the current evidence and remaining policy boundary.
 
 The final role matrix, custom-user-to-authentication mapping, backend database role, authoritative Railway service, and certificate/public-profile boundaries remain blocked pending founder and backend confirmation.
 

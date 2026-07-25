@@ -27,11 +27,14 @@ npm run smoke
 Edge checks are intentionally separate from browser-app ESLint:
 
 ```text
-node --test Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.test.mjs
+node scripts/verify-edge-mirrors.mjs
+node --test scripts/lead-rate-limit-migration.test.mjs scripts/lead-idempotency-migration.test.mjs scripts/database-boundary-migration.test.mjs Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs Emerson_Empire/supabase/functions/send-consultation-email/notification.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/notification.test.mjs
 deno lint Emerson_Empire/supabase/functions/send-consultation-email Agency_LandingPage/supabase/functions/send-consultation-email
 deno check --frozen --config Emerson_Empire/supabase/functions/send-consultation-email/deno.json --lock Emerson_Empire/supabase/functions/send-consultation-email/deno.lock Emerson_Empire/supabase/functions/send-consultation-email/index.ts
 deno check --frozen --config Agency_LandingPage/supabase/functions/send-consultation-email/deno.json --lock Agency_LandingPage/supabase/functions/send-consultation-email/deno.lock Agency_LandingPage/supabase/functions/send-consultation-email/index.ts
 ```
+
+The mirror check compares the complete two-directory file inventory and then compares every shared file byte-for-byte. Its tree digest is evidence for the checked source state, not a deployed-function digest.
 
 ## Environment-variable names
 
@@ -64,16 +67,17 @@ The platform accepts `VITE_API_URL` only when it is a credential-free HTTP(S) or
 
 The notification recipient and approved origin list require founder/backend confirmation. Do not copy any privileged Edge value into a frontend environment file.
 
-## Completed local safeguards
+## Completed safeguards
 
 - **Request-size enforcement:** the Edge Function reads the request stream with a 20,000-byte cap, returns `413` when the observed bytes exceed it, and does not trust `Content-Length` as the boundary. The focused regression test covers a misleading header.
-- **Response-specific PostgREST preferences:** rate-limit RPC calls preserve their boolean response; only lead inserts request a minimal response.
-- **Notification failure response:** once a lead is stored, admin-email failure is logged and returned as successful storage with `notificationStatus: unavailable`, avoiding duplicate-submission retries.
+- **Atomic rate limiting and storage:** the live `store_lead_request` RPC serializes the per-client rate-limit decision, stores the lead, and resolves idempotent retries in one database transaction. Browser roles cannot execute the service-only function.
+- **Idempotent lead intake:** `public.leads.idempotency_key` has a validated optional contract and partial unique index. The Edge Function accepts `Idempotency-Key` and derives a stable daily fallback when the caller omits it.
+- **Notification failure response:** once a lead is stored, admin-email failure is logged and returned as successful storage with `notificationStatus: unavailable`, avoiding duplicate-submission retries. The behavior is isolated in a focused, tested helper.
 - **Dependency pinning:** all direct npm specifications are exact, npm lockfiles are used with `npm ci`, and Edge transitive dependencies are frozen with committed Deno lockfiles.
+- **Live boundary hardening:** the three reviewed July 25 migrations are applied, Edge Function version 13 is active with JWT verification disabled by design for validated public intake, and transaction-only contract verification left no synthetic lead behind.
 
-## Prepared follow-up work that remains unapplied
+## Remaining follow-up work
 
-- **Idempotent lead intake:** introduce a client submission identifier and a unique database constraint in a new reviewed migration. Do not create or apply the live migration until the general intake workflow and schema are approved.
 - **Durable notifications:** store notification state or use an outbox so failed delivery can be audited and retried after the lead is saved.
 - **Workflow supply-chain pinning:** separately review pinning third-party GitHub Actions by commit SHA before changing workflow trust policy.
 - **Bot protection:** verify a selected challenge provider server-side only after the provider and credentials are approved.
@@ -88,8 +92,7 @@ The notification recipient and approved origin list require founder/backend conf
 - Internship form URL or Google Form permissions
 - Canonical company domains
 - Bot-protection provider and credentials
-- Final role and permissions matrix
-- Live Supabase migration application
+- End-user identity mapping and role-specific RLS policies
 - Legal-page content and destinations
 
 ## Preview verification rule

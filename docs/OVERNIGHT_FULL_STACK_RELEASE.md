@@ -156,3 +156,14 @@ These local commits are not release evidence until pushed and associated with fr
 - The associated detailed Netlify build API returned `Unauthorized`; the repository has no evidence proving whether cancellation was deduplication, path filtering, supersession, or another provider setting.
 - The EPDG landing site still has no PR #27 Netlify context. Its repository build/base configuration is now verified, but provider Git integration remains external.
 - No Netlify production setting, environment variable, domain, form permission, deployment, Supabase function, or database migration was changed. PR #27 remains unmerged.
+
+## 2026-07-25 — final infrastructure sprint reconciliation
+
+This entry supersedes older statements above that the prepared Supabase work was still unapplied. The historical entries remain unchanged as evidence of what was true when each earlier review occurred.
+
+- Applied `20260725225312_serialize_lead_rate_limit_and_index_cleanup`, `20260725225336_harden_career_data_boundary`, and `20260725230658_add_lead_idempotency_contract` to project `gqlyofoazfkumirhbnmc`.
+- Verified the atomic lead RPC with a transaction-only first-write/retry contract test; the transaction rolled back and left zero synthetic rows.
+- Deployed active `send-consultation-email` Edge Function version 13 and verified preflight, honeypot, malformed payload, invalid email, size limit, missing/disallowed origins, and method handling without submitting a real lead or sending an email.
+- Verified that all tracked backend migrations `001`–`033` match the live `public.migrations` ledger by identity and normalized content hash.
+- Enabled RLS and revoked browser access on the four career tables, hardened `update_timestamp()`, and added the catalog-confirmed foreign-key indexes. End-user RLS policies remain intentionally blocked until the custom integer identity model is mapped safely to Supabase Auth UUIDs.
+- Railway remains blocked at PostgreSQL authentication with code `28P01`; no database credential value was read, printed, or changed. The backend PR remains draft and unmerged.

@@ -1,4 +1,5 @@
 -- Forward-only remediation for the lead-intake rate limiter.
+-- Remote history identity: 20260725225312.
 --
 -- The transaction-scoped advisory lock serializes the count-and-insert
 -- decision for a single requester without changing the RPC signature or

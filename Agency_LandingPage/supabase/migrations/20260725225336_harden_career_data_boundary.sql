@@ -1,4 +1,5 @@
 -- Forward-only, deny-by-default hardening for the EPDG career-data boundary.
+-- Remote history identity: 20260725225336.
 -- No end-user policy is added because the application JWT/ownership mapping is
 -- not yet proven. The backend continues to use the service role.
 

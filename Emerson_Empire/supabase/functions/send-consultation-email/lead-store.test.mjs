@@ -8,19 +8,16 @@ import {
   RequestBodyTooLargeError,
 } from './lead-store.mjs'
 
-test('keeps the RPC boolean body and applies return=minimal only to lead inserts', async () => {
+test('uses one atomic storage RPC without suppressing its state response', async () => {
   /** @type {Array<{ url: RequestInfo | URL, init: RequestInit }>} */
   const requests = []
   /** @type {typeof fetch} */
   const fetcher = (url, init) => {
     if (!init) throw new Error('Expected request initialization')
     requests.push({ url, init })
-    if (String(url).endsWith('/rpc/check_lead_rate_limit')) {
-      return Promise.resolve(
-        new Response('true', { status: 200, headers: { 'Content-Type': 'application/json' } }),
-      )
-    }
-    return Promise.resolve(new Response(null, { status: 201 }))
+    return Promise.resolve(
+      new Response('"inserted"', { status: 200, headers: { 'Content-Type': 'application/json' } }),
+    )
   }
   const store = createLeadStore({
     fetcher,
@@ -28,14 +25,24 @@ test('keeps the RPC boolean body and applies return=minimal only to lead inserts
     serviceKey: 'fixture',
   })
 
-  const decision = await store.checkRateLimit('request-hash')
-  const insertResponse = await store.insertLead({ email: 'person@example.com' })
+  const result = await store.storeLeadRequest('request-hash', 'request-key', {
+    email: 'person@example.com',
+  })
 
-  assert.deepEqual(decision, { ok: true, allowed: true, status: 200 })
-  assert.equal(insertResponse.status, 201)
-  assert.equal(requests.length, 2)
+  assert.deepEqual(result, { ok: true, state: 'inserted', status: 200 })
+  assert.equal(requests.length, 1)
+  assert.equal(
+    String(requests[0].url),
+    'https://example.supabase.co/rest/v1/rpc/store_lead_request',
+  )
   assert.equal(new Headers(requests[0].init.headers).has('Prefer'), false)
-  assert.equal(new Headers(requests[1].init.headers).get('Prefer'), 'return=minimal')
+  assert.deepEqual(JSON.parse(String(requests[0].init.body)), {
+    p_request_hash: 'request-hash',
+    p_request_key: 'request-key',
+    p_email: 'person@example.com',
+    p_max_requests: 5,
+    p_window_minutes: 15,
+  })
 })
 
 test('enforces the observed request-body byte limit even when Content-Length is misleading', async () => {

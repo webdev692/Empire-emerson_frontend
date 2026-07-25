@@ -1,5 +1,3 @@
-const RETURN_MINIMAL = 'return=minimal'
-
 export class RequestBodyTooLargeError extends Error {
   constructor() {
     super('Request body exceeds the allowed size')
@@ -47,25 +45,39 @@ export function createLeadStore({ fetcher, supabaseUrl, serviceKey }) {
   }
 
   return {
-    /** @param {string} requestHash */
-    async checkRateLimit(requestHash) {
-      const response = await post('rpc/check_lead_rate_limit', {
-        request_hash: requestHash,
-        max_requests: 5,
-        window_minutes: 15,
+    /**
+     * Atomically enforce the rate limit, deduplicate retries, and store a lead.
+     *
+     * @param {string} requestHash
+     * @param {string} requestKey
+     * @param {Record<string, string | null>} data
+     */
+    async storeLeadRequest(requestHash, requestKey, data) {
+      const response = await post('rpc/store_lead_request', {
+        p_request_hash: requestHash,
+        p_request_key: requestKey,
+        p_first_name: data.first_name,
+        p_last_name: data.last_name,
+        p_full_name: data.full_name,
+        p_email: data.email,
+        p_phone: data.phone,
+        p_message: data.message,
+        p_service_interest: data.service_interest,
+        p_urgency: data.urgency,
+        p_intent_description: data.intent_description,
+        p_track_interest: data.track_interest,
+        p_division: data.division,
+        p_division_label: data.division_label,
+        p_max_requests: 5,
+        p_window_minutes: 15,
       })
 
       if (!response.ok) {
-        return { ok: false, allowed: false, status: response.status }
+        return { ok: false, state: null, status: response.status }
       }
 
-      const result = await response.json()
-      return { ok: true, allowed: result === true, status: response.status }
-    },
-
-    /** @param {Record<string, string | null>} data */
-    insertLead(data) {
-      return post('leads', data, { prefer: RETURN_MINIMAL })
+      const state = await response.json()
+      return { ok: true, state, status: response.status }
     },
   }
 }

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import test from 'node:test';
 
-const migrationFile = '20260712090000_harden_career_data_boundary.sql';
+const migrationFile = '20260725225336_harden_career_data_boundary.sql';
 const migrationDirectories = [
   new URL('../Emerson_Empire/supabase/migrations/', import.meta.url),
   new URL('../Agency_LandingPage/supabase/migrations/', import.meta.url),

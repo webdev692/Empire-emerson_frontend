@@ -6,6 +6,11 @@ import {
   readJsonBodyWithinLimit,
   RequestBodyTooLargeError,
 } from './lead-store.mjs'
+import { attemptNotification } from './notification.mjs'
+import {
+  isAllowedRequestOrigin,
+  sanitizeSubjectLabel,
+} from './request-security.mjs'
 
 declare const Deno: {
   env: { get(key: string): string | undefined }
@@ -66,11 +71,11 @@ const ALLOWED_ORIGINS = new Set(
 )
 
 const isAllowedOrigin = (origin: string | null): boolean =>
-  !origin || ALLOWED_ORIGINS.has(origin.replace(/\/$/, ''))
+  isAllowedRequestOrigin(origin, ALLOWED_ORIGINS)
 
 const corsHeaders = (origin: string | null): Record<string, string> => {
   const headers: Record<string, string> = {
-    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, idempotency-key',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     Vary: 'Origin',
   }
@@ -103,23 +108,6 @@ const sha256 = async (value: string): Promise<string> => {
   return Array.from(new Uint8Array(digest))
     .map((byte) => byte.toString(16).padStart(2, '0'))
     .join('')
-}
-
-async function enforceRateLimit(requestHash: string): Promise<boolean> {
-  const decision = await leadStore.checkRateLimit(requestHash)
-  if (!decision.ok) {
-    console.error('Lead rate-limit check failed', { status: decision.status })
-    return false
-  }
-  return decision.allowed
-}
-
-async function insertLead(data: Record<string, string | null>): Promise<void> {
-  const response = await leadStore.insertLead(data)
-  if (!response.ok) {
-    console.error('Lead insert failed', { status: response.status })
-    throw new Error('Unable to store inquiry')
-  }
 }
 
 async function sendEmail(input: Parameters<typeof resend.emails.send>[0]): Promise<void> {
@@ -168,11 +156,27 @@ Deno.serve(async (req: Request) => {
 
     const forwardedFor = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
     const requesterHash = await sha256(`${SUPABASE_SERVICE_KEY.slice(-24)}:${forwardedFor || email}`)
-    if (!(await enforceRateLimit(requesterHash))) {
-      return jsonResponse({ error: 'Too many submissions. Please try again later.', requestId }, 429, origin)
-    }
+    const clientRequestKey = cleanText(req.headers.get('idempotency-key'), 200)
+    const canonicalPayload = JSON.stringify({
+      firstName,
+      lastName,
+      fullName,
+      email,
+      phone,
+      message,
+      serviceInterest,
+      urgency,
+      intentDescription,
+      trackInterest,
+      division,
+      divisionLabel,
+    })
+    const requestKeySeed = clientRequestKey
+      ? `client:${email}:${clientRequestKey}`
+      : `daily:${new Date().toISOString().slice(0, 10)}:${canonicalPayload}`
+    const requestKey = await sha256(`${SUPABASE_SERVICE_KEY.slice(-24)}:${requestKeySeed}`)
 
-    await insertLead({
+    const storage = await leadStore.storeLeadRequest(requesterHash, requestKey, {
       first_name: firstName,
       last_name: lastName,
       full_name: fullName,
@@ -186,29 +190,38 @@ Deno.serve(async (req: Request) => {
       division,
       division_label: divisionLabel,
     })
+    if (!storage.ok) {
+      console.error('Lead storage RPC failed', { status: storage.status })
+      throw new Error('Unable to store inquiry')
+    }
+    if (storage.state === 'rate_limited') {
+      return jsonResponse({ error: 'Too many submissions. Please try again later.', requestId }, 429, origin)
+    }
+    if (storage.state === 'duplicate') {
+      return jsonResponse({ success: true, requestId }, 200, origin)
+    }
+    if (storage.state !== 'inserted') throw new Error('Lead storage rejected the request')
 
     const safeName = escapeHtml(displayName)
     const safeFirstName = escapeHtml(firstName || displayName.split(' ')[0] || 'there')
     const safeEmail = escapeHtml(email)
     const safePhone = escapeHtml(phone)
-    const safeDivision = escapeHtml(divisionLabel || division || 'General inquiry')
+    const subjectDivision = sanitizeSubjectLabel(divisionLabel || division)
+    const safeDivision = escapeHtml(subjectDivision)
     const safeMessage = escapeHtml(intentDescription || message || serviceInterest || trackInterest)
 
-    let adminNotificationSent = true
-    try {
-      await sendEmail({
+    const adminNotificationSent = await attemptNotification(
+      () => sendEmail({
         from: 'The Emerson Empire <noreply@theemersonempire.info>',
         to: ADMIN_EMAIL,
         subject: `New website inquiry — ${safeDivision} — ${safeName}`,
         html: `<div style="font-family:Arial,sans-serif;max-width:620px"><h2 style="color:#12022A">New Website Inquiry</h2><p><strong>Name:</strong> ${safeName}</p><p><strong>Email:</strong> ${safeEmail}</p>${safePhone ? `<p><strong>Phone:</strong> ${safePhone}</p>` : ''}<p><strong>Division:</strong> ${safeDivision}</p><p style="white-space:pre-wrap"><strong>Message:</strong><br>${safeMessage}</p><hr><p style="font-size:12px;color:#777">Request ID: ${requestId}</p></div>`,
-      })
-    } catch (error) {
-      adminNotificationSent = false
-      console.error('Lead stored but admin notification failed', {
-        requestId,
-        message: (error as Error).message,
-      })
-    }
+      }),
+      (error) => console.error('Lead stored but admin notification failed', {
+          requestId,
+          message: error instanceof Error ? error.message : 'Notification failed',
+        }),
+    )
 
     EdgeRuntime.waitUntil(
       sendEmail({
