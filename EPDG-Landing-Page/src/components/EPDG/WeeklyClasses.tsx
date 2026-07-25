@@ -36,7 +36,7 @@ const WeeklyClasses: React.FC = () => {
   return (
     <section id="classes" className="bg-white px-4 py-20">
       <div className="mx-auto max-w-278.5">
-        <p className="mb-2 font-bold text-[#C9A84C] text-[13px] uppercase tracking-[0.25em]">
+        <p className="mb-2 font-bold text-gold-on-light text-[13px] uppercase tracking-[0.25em]">
           Weekly Class Series
         </p>
         <h2 className="mb-3 font-bold text-black text-3xl md:text-4xl uppercase tracking-tight">

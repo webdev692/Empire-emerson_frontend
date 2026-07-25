@@ -1,0 +1,182 @@
+/*
+ * Shared Emerson presentation and accessibility tokens.
+ *
+ * Load the approved web fonts from each application's index.html, then import
+ * this file after Tailwind. The legacy utility aliases keep existing intern
+ * components visually coherent while they are migrated to semantic classes.
+ */
+:root {
+  --font-display: "Libertinus Serif Display", "Libertinus Serif", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-label: "Work Sans", "Inter", system-ui, sans-serif;
+
+  --radius-control: 12px;
+  --radius-surface: 16px;
+  --radius-pill: 999px;
+
+  --color-emerson-gold: #c9a84c;
+  --color-emerson-gold-on-light: #8a6d20;
+  --color-emerson-focus: #4b1e91;
+}
+
+body,
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+.heading,
+.font-heading,
+.font-serif,
+.text-main-heading,
+.text-sub-heading {
+  font-family: var(--font-display) !important;
+}
+
+h4,
+h5,
+h6,
+label,
+button,
+summary,
+nav,
+.nav,
+.mini-heading,
+.eyebrow,
+.font-label,
+.font-mono {
+  font-family: var(--font-label) !important;
+}
+
+.body,
+.font-body,
+.font-sans,
+.text-main-content,
+.text-sub-content {
+  font-family: var(--font-body) !important;
+}
+
+.rounded-sm,
+.rounded,
+.rounded-md,
+.rounded-lg,
+.radius-control {
+  border-radius: var(--radius-control) !important;
+}
+
+.rounded-xl,
+.rounded-2xl,
+.rounded-3xl,
+.radius-surface {
+  border-radius: var(--radius-surface) !important;
+}
+
+.rounded-full,
+.radius-pill {
+  border-radius: var(--radius-pill) !important;
+}
+
+.rounded-t-lg {
+  border-start-start-radius: var(--radius-control) !important;
+  border-start-end-radius: var(--radius-control) !important;
+}
+
+.rounded-t-xl,
+.rounded-t-2xl,
+.rounded-t-3xl {
+  border-start-start-radius: var(--radius-surface) !important;
+  border-start-end-radius: var(--radius-surface) !important;
+}
+
+.rounded-b-xl,
+.rounded-b-2xl,
+.rounded-b-3xl {
+  border-end-start-radius: var(--radius-surface) !important;
+  border-end-end-radius: var(--radius-surface) !important;
+}
+
+.rounded-l-2xl,
+.rounded-l-3xl {
+  border-start-start-radius: var(--radius-surface) !important;
+  border-end-start-radius: var(--radius-surface) !important;
+}
+
+.rounded-r-2xl,
+.rounded-r-3xl {
+  border-start-end-radius: var(--radius-surface) !important;
+  border-end-end-radius: var(--radius-surface) !important;
+}
+
+:where(button, [role="button"], input, select).rounded-xl,
+:where(button, [role="button"], input, select).rounded-2xl,
+:where(button, [role="button"], input, select).rounded-3xl {
+  border-radius: var(--radius-control) !important;
+}
+
+:where(button, [role="button"]).rounded-b-xl,
+:where(button, [role="button"]).rounded-b-2xl,
+:where(button, [role="button"]).rounded-b-3xl {
+  border-end-start-radius: var(--radius-control) !important;
+  border-end-end-radius: var(--radius-control) !important;
+}
+
+.gold-on-light,
+.text-gold-on-light {
+  color: var(--color-emerson-gold-on-light) !important;
+}
+
+.hover-gold-on-light:hover {
+  color: var(--color-emerson-gold-on-light) !important;
+}
+
+:where(
+  a[href],
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [role="button"],
+  [tabindex]:not([tabindex="-1"])
+):focus-visible {
+  outline: 3px solid #ffffff !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px var(--color-emerson-focus) !important;
+}
+
+:where(
+  button,
+  [role="button"],
+  input:not([type="checkbox"]):not([type="radio"]),
+  select
+) {
+  min-height: 44px;
+}
+
+:where(button, [role="button"]) {
+  min-width: 44px;
+}
+
+textarea {
+  min-height: 88px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}

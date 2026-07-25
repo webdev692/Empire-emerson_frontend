@@ -275,11 +275,11 @@ const TrackCard: React.FC<(typeof TRACKS)[0] & { open: boolean; onToggle: () => 
           >
             <div className="pt-3 space-y-3">
               <div>
-                <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-1">What You'll Build</p>
+                <p className="font-mono text-gold-on-light text-xs uppercase tracking-widest mb-1">What You'll Build</p>
                 <p className="text-xs text-neutral-600 leading-relaxed">{build}</p>
               </div>
               <div>
-                <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-1">Best For</p>
+                <p className="font-mono text-gold-on-light text-xs uppercase tracking-widest mb-1">Best For</p>
                 <p className="text-xs text-neutral-600 leading-relaxed">{bestFor}</p>
               </div>
             </div>
@@ -463,7 +463,7 @@ const GlobalInternship: React.FC = () => {
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Who Can Apply</p>
+              <p className="font-mono text-gold-on-light text-xs uppercase tracking-widest mb-3">Who Can Apply</p>
               <h2 className="font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight mb-4">
                 Students, Graduates &amp; Career Changers Welcome.
               </h2>
@@ -482,7 +482,7 @@ const GlobalInternship: React.FC = () => {
                   'Professionals seeking to expand into new skill areas',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <CheckCircle size={14} className="text-[#C9A84C] mt-0.5 shrink-0" />
+                    <CheckCircle size={14} className="text-gold-on-light mt-0.5 shrink-0" />
                     <span className="text-sm text-neutral-600">{item}</span>
                   </li>
                 ))}
@@ -508,7 +508,7 @@ const GlobalInternship: React.FC = () => {
       {/* ── Tracks ── */}
       <section id="tracks" className="py-20 scroll-mt-20">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Internship Tracks</p>
+          <p className="font-mono text-gold-on-light text-xs uppercase tracking-widest mb-3">Internship Tracks</p>
           <h2 className="font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight mb-3">
             Choose Your Track.
           </h2>
@@ -555,7 +555,7 @@ const GlobalInternship: React.FC = () => {
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Portfolio & Experience</p>
+              <p className="font-mono text-gold-on-light text-xs uppercase tracking-widest mb-3">Portfolio & Experience</p>
               <h2 className="font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight mb-4">
                 What You'll Build &amp; Take With You.
               </h2>
@@ -686,7 +686,7 @@ const GlobalInternship: React.FC = () => {
       {/* ── Evidence & Certificates ── */}
       <section id="evidence-certificates" className="py-20 scroll-mt-20 bg-[#4B1E91]/5">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Evidence &amp; Certificates</p>
+          <p className="font-mono text-gold-on-light text-xs uppercase tracking-widest mb-3">Evidence &amp; Certificates</p>
           <h2 className="font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight mb-3">
             What You Receive Upon Completion.
           </h2>
@@ -734,7 +734,7 @@ const GlobalInternship: React.FC = () => {
       {/* ── Application Form ── */}
       <section id="application-form" className="py-20 scroll-mt-20 bg-white">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-          <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">Apply Now</p>
+          <p className="font-mono text-gold-on-light text-xs uppercase tracking-widest mb-3">Apply Now</p>
           <h2 className="font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight mb-3">
             Start Your Application.
           </h2>
@@ -751,7 +751,7 @@ const GlobalInternship: React.FC = () => {
       {/* ── FAQ ── */}
       <section className="py-20 bg-[#FAFAF9] border-t border-neutral-100">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-          <p className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest mb-3">FAQ</p>
+          <p className="font-mono text-gold-on-light text-xs uppercase tracking-widest mb-3">FAQ</p>
           <h2 className="font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight mb-8">
             Frequently Asked Questions.
           </h2>

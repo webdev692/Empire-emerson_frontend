@@ -48,7 +48,7 @@ const FormsNextSteps: React.FC = () => {
                 className="bg-[#F5EFE7] border border-[#0A1128]/10 rounded-lg p-8"
               >
                 <div className="mb-4 inline-flex items-center justify-center bg-[#C9A84C]/10 rounded-lg w-12 h-12">
-                  <Icon className="text-[#C9A84C]" size={24} />
+                  <Icon className="text-gold-on-light" size={24} />
                 </div>
                 <h3 className="mb-4 font-bold text-[#0A1128] text-lg">{step.title}</h3>
                 <p className="text-[#0A1128]/70 text-sm leading-relaxed">{step.description}</p>

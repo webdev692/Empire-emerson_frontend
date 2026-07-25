@@ -1,6 +1,7 @@
 
 
 @import "tailwindcss";
+@import "../../shared/emerson-design-system.css";
 
 /* ── Mood / theme CSS variables ─────────────────────────────────────────── */
 :root {
@@ -31,19 +32,19 @@ html {
 }
 
 .heading {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 400;
   font-style: normal;
 }
 
 .body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
   font-style: normal;
 }
 
 .nav {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
+  font-family: var(--font-label);
+  font-weight: 600;
   font-style: normal;
 }

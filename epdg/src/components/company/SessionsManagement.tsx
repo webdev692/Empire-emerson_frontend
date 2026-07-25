@@ -260,7 +260,7 @@ export default function SessionsManagement() {
   return (
     <div
       className="min-h-screen bg-[#0D0618] text-white p-4 lg:p-8"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
+      style={{ fontFamily: "var(--font-body)" }}
     >
      
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">

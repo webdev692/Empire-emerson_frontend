@@ -166,7 +166,7 @@ export default function CompanySettings() {
   return (
     <div
       className="min-h-screen bg-[#0D0618] text-white p-4 lg:p-8"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
+      style={{ fontFamily: "var(--font-body)" }}
     >
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-white">Company Settings</h1>

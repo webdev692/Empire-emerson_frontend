@@ -57,7 +57,7 @@ export default function MissionSection() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[20px]">
+          <div className="overflow-hidden rounded-2xl">
             <img
               src={financialImage}
               alt="Financial advisors collaborating with clients"

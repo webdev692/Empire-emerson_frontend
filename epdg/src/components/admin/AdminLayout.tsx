@@ -46,7 +46,7 @@ const ALL_MENU = [
   { name: "Settings",      path: "/admin/settings",       icon: Settings2,       superOnly: false },
 ];
 
-const f: React.CSSProperties = { fontFamily: "Inter" };
+const f: React.CSSProperties = { fontFamily: "var(--font-body)" };
 
 interface CurrentUserResponse {
   success: boolean;

@@ -112,7 +112,7 @@ const Login: React.FC = () => {
     <>
       <Helmet>
         <title>Log In | Emerson Professional</title>
-        <meta name="description" content="Sign in to your Emerson Professional account as an Intern, Company, or Admin." />
+        <meta name="description" content="Sign in to an approved Emerson Professional participant or administrator account." />
       </Helmet>
 
       <a

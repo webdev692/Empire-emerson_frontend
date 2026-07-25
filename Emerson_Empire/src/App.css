@@ -1,2 +1,2 @@
  
-@import "tailwindcss";
+/* App-specific overrides belong here; Tailwind and shared tokens load in index.css. */

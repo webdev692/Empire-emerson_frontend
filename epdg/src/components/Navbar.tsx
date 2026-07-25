@@ -51,7 +51,7 @@ interface NotificationItem {
   unread: boolean;
 }
 
-const f: React.CSSProperties = { fontFamily: "Inter" };
+const f: React.CSSProperties = { fontFamily: "var(--font-label)" };
 
 const Navbar: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(true);

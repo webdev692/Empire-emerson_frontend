@@ -7,7 +7,7 @@ export default function Hero() {
         <img
           src={heroCard}
           alt="The Emerson Agency — Our mission: empowering individuals, families, and entrepreneurs with ethical financial guidance, strategic business support, and practical services that help build stability, confidence, and long-term growth."
-          className="w-full rounded-[24px] shadow-[0_30px_80px_rgba(15,23,51,0.25)]"
+          className="w-full rounded-2xl shadow-[0_30px_80px_rgba(15,23,51,0.25)]"
         />
       </div>
     </section>

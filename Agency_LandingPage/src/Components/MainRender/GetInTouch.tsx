@@ -30,7 +30,7 @@ const GetInTouch: React.FC = () => {
             <div className="space-y-6 mb-12">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 mt-1">
-                  <Phone className="text-[#C9A84C]" size={24} />
+                  <Phone className="text-gold-on-light" size={24} />
                 </div>
                 <div>
                   <p className="font-bold text-[#0A1128]">Phone / WhatsApp</p>
@@ -42,7 +42,7 @@ const GetInTouch: React.FC = () => {
 
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 mt-1">
-                  <Mail className="text-[#C9A84C]" size={24} />
+                  <Mail className="text-gold-on-light" size={24} />
                 </div>
                 <div>
                   <p className="font-bold text-[#0A1128]">Email</p>
@@ -54,7 +54,7 @@ const GetInTouch: React.FC = () => {
 
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 mt-1">
-                  <MapPin className="text-[#C9A84C]" size={24} />
+                  <MapPin className="text-gold-on-light" size={24} />
                 </div>
                 <div>
                   <p className="font-bold text-[#0A1128]">Location</p>

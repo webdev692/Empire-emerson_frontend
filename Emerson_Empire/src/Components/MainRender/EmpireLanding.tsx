@@ -18,22 +18,22 @@ const HomePage: React.FC = () => {
         Skip to main content
       </a>
       <Helmet>
-        <title>
-          The Emerson Empire | Agency &amp; Professional Development
-        </title>
+        <title>The Emerson Empire | Community, Financial &amp; Career Pathways</title>
         <meta
           name="description"
-          content="The Emerson Empire — building pathways for professional growth, business development, financial education, and global opportunity."
+          content="The Emerson Empire is the umbrella organization connecting communities with financial education and services, workforce development, internships, and career-readiness programs."
         />
         <meta
           property="og:title"
-          content="The Emerson Empire | Agency & Professional Development"
+          content="The Emerson Empire | Community, Financial & Career Pathways"
         />
         <meta
           property="og:description"
-          content="Building pathways for professional growth, business development, financial education, and global opportunity."
+          content="Explore financial education and services, workforce development, internships, and career-readiness programs across the Emerson ecosystem."
         />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://theemerson.netlify.app/" />
+        <link rel="canonical" href="https://theemerson.netlify.app/" />
       </Helmet>
 
       <main id="main-content">

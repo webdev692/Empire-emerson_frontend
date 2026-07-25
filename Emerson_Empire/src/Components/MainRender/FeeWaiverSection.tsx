@@ -18,14 +18,14 @@ const FeeWaiverSection: React.FC = () => (
 
       <h2
         className="mb-6 font-medium text-white text-4xl sm:text-5xl leading-[1.15]"
-        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+        style={{ fontFamily: "var(--font-display)" }}
       >
         Fee Waiver And Reduced-Cost Support
       </h2>
 
       <p
         className="mx-auto mb-10 max-w-2xl text-white/65 text-base sm:text-lg leading-[1.7]"
-        style={{ fontFamily: "'Inter', sans-serif" }}
+        style={{ fontFamily: "var(--font-body)" }}
       >
         We believe access matters. Some classes, services, and support options may
         have fee waiver or reduced-cost pathways available for people who cannot
@@ -35,7 +35,7 @@ const FeeWaiverSection: React.FC = () => (
       <a
         href="/contact"
         className="inline-flex items-center bg-[#B8954A] hover:bg-[#C9A84C] px-8 py-3.5 rounded-md font-semibold text-white text-sm transition-colors duration-200"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}
+        style={{ fontFamily: "var(--font-label)" }}
       >
         Request Services
       </a>

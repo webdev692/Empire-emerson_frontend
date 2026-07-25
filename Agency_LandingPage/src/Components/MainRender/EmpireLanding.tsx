@@ -18,17 +18,19 @@ const HomePage: React.FC = () => {
         Skip to main content
       </a>
       <Helmet>
-        <title>The Emerson Agency</title>
+        <title>The Emerson Agency LLC | Financial Services &amp; Education</title>
         <meta
           name="description"
-          content="The Emerson Agency provides strategic business support, tax education, and financial clarity for families and entrepreneurs."
+          content="The Emerson Agency LLC provides tax preparation, insurance education, financial education, and community-centered financial support."
         />
-        <meta property="og:title" content="The Emerson Agency | Landing Page" />
+        <meta property="og:title" content="The Emerson Agency LLC | Financial Services & Education" />
         <meta
           property="og:description"
-          content="Ethical guidance, practical services, and strategic support for families, learners, and business owners."
+          content="Tax preparation, insurance education, financial education, and community-centered pathways toward financial stability."
         />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://emersonagency.netlify.app/" />
+        <link rel="canonical" href="https://emersonagency.netlify.app/" />
       </Helmet>
 
       <main id="main-content">

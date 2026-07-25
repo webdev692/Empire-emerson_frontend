@@ -29,13 +29,13 @@ export default function SupportSection() {
               <p className="text-sm uppercase tracking-[0.45em] text-[#b18b4c]">Individuals & Families</p>
               <h2
                 className="mt-5 text-[2.25rem]! font-semibold leading-[1.08]! tracking-[-0.01em] text-[#0A1128] sm:text-[2.5rem]! lg:text-[2.75rem]!"
-                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+                style={{ fontFamily: "var(--font-display)" }}
               >
                 Support for households,<br />parents, students, and<br />workers
               </h2>
 
               <div className="mt-8 w-full max-w-[20rem]">
-                <img src={studyImage} alt="Student at desk" className="h-[260px] w-full rounded-[18px] object-cover shadow-md sm:h-[300px] lg:h-[217px]" />
+                <img src={studyImage} alt="Student at desk" className="h-[260px] w-full rounded-2xl object-cover shadow-md sm:h-[300px] lg:h-[217px]" />
               </div>
             </div>
 
@@ -82,13 +82,13 @@ export default function SupportSection() {
               <p className="text-sm uppercase tracking-[0.45em] text-[#b18b4c]">Small Business</p>
               <h3
                 className="mt-4 text-[2.25rem]! font-semibold leading-[1.08]! tracking-[-0.01em] text-white sm:text-[2.5rem]! lg:text-[2.75rem]!"
-                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+                style={{ fontFamily: "var(--font-display)" }}
               >
                 Support for small business<br />owners and early-stage<br />entrepreneurs
               </h3>
 
               <div className="mt-8 w-full max-w-[30rem]">
-                <img src={consultingImage} alt="Business meeting" className="h-[320px] w-full rounded-[18px] object-cover" />
+                <img src={consultingImage} alt="Business meeting" className="h-[320px] w-full rounded-2xl object-cover" />
               </div>
             </div>
           </div>

@@ -7,7 +7,9 @@ const FORM_EMBED_URL =
 
 export default function RequestFormModal() {
   const [open, setOpen] = useState(false)
+  const dialogRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
   const previousFocusRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -26,6 +28,14 @@ export default function RequestFormModal() {
     closeButtonRef.current?.focus()
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false)
+      if (
+        e.key === 'Tab'
+        && e.shiftKey
+        && document.activeElement === closeButtonRef.current
+      ) {
+        e.preventDefault()
+        iframeRef.current?.focus()
+      }
     }
     window.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
@@ -45,27 +55,39 @@ export default function RequestFormModal() {
       onClick={(e) => {
         if (e.target === e.currentTarget) setOpen(false)
       }}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Request services form"
     >
-      <div className="relative flex h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
+      <div
+        ref={dialogRef}
+        className="relative flex h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-[0_40px_120px_rgba(0,0,0,0.5)]"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Request services form"
+      >
         <button
           ref={closeButtonRef}
           type="button"
           onClick={() => setOpen(false)}
           aria-label="Close form"
-          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-[#0A1128] text-white shadow-md transition hover:bg-[#1b2547]"
+          className="absolute right-3 top-3 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-[#0A1128] text-white shadow-md transition hover:bg-[#1b2547]"
         >
           <X size={18} />
         </button>
         <iframe
+          ref={iframeRef}
           src={FORM_EMBED_URL}
           title="Request Services Form"
           className="h-full w-full border-0"
         >
           Loading…
         </iframe>
+        <span
+          data-focus-guard
+          tabIndex={0}
+          className="sr-only"
+          onFocus={() => closeButtonRef.current?.focus()}
+        >
+          End of request form dialog
+        </span>
       </div>
     </div>
   )

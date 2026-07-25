@@ -104,7 +104,7 @@ function ClassCard({ item }: { item: ClassItem }) {
           </span>
         </div>
 
-        <div className="mb-4 flex items-center gap-2 text-[#C9A84C]">
+        <div className="mb-4 flex items-center gap-2 text-gold-on-light">
           <FaGraduationCap />
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#4B1E91]/70 line-clamp-1">
             {item.theme}
@@ -222,7 +222,7 @@ const ClassSearch: React.FC<ClassSearchProps> = ({ classes }) => {
         <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="mb-2 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-[#4B1E91]">
-              <FaFilter className="text-[#C9A84C]" /> Find the right class
+              <FaFilter className="text-gold-on-light" /> Find the right class
             </p>
             <h2 className="font-heading text-3xl font-black text-[#1C1336]">Browse the weekly schedule</h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-600">

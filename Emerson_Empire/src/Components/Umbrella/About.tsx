@@ -314,7 +314,7 @@ const About: React.FC = () => (
               <span aria-hidden="true" className="top-4 right-5 absolute font-bold text-[#1C1336]/05 text-[72px] leading-none select-none heading">
                 {pillar.number}
               </span>
-              <p className="mb-3 font-bold text-[#C9A84C] text-sm uppercase tracking-[3px]">{pillar.number}</p>
+              <p className="mb-3 font-bold text-gold-on-light text-sm uppercase tracking-[3px]">{pillar.number}</p>
               <h3 className="mb-4 font-bold text-[#1C1336] sm:text-[26px] text-2xl leading-tight heading">{pillar.title}</h3>
               <p className="text-[#1C1336]/60 text-base sm:text-lg leading-[1.8]">{pillar.description}</p>
             </motion.div>

@@ -107,10 +107,10 @@ const OurStory: React.FC = () => (
                 <div className={`lg:w-[calc(50%-48px)] ${isEven ? 'lg:pr-10' : 'lg:pl-10'}`}>
                   <div className="pl-6 border-[#C9A84C] border-l-2 hover:border-[#4B1E91] transition-colors duration-300">
                     {/* Numbered badge */}
-                    <span className="block mb-1 font-bold text-[#C9A84C]/30 text-[52px] sm:text-[60px] leading-none select-none heading">
+                    <span className="block mb-1 font-bold text-gold-on-light opacity-30 text-[52px] sm:text-[60px] leading-none select-none heading">
                       {item.num}
                     </span>
-                    <p className="mb-2 font-bold text-[#C9A84C] text-sm uppercase tracking-[3px]">
+                    <p className="mb-2 font-bold text-gold-on-light text-sm uppercase tracking-[3px]">
                       {item.year}
                     </p>
                     <h3 className="mb-3 font-bold text-[#1C1336] text-2xl sm:text-[26px] leading-tight heading">
