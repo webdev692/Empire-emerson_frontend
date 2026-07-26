@@ -20,6 +20,18 @@ All four frontend applications import `shared/emerson-design-system.css`.
 EPDG's Great Vibes `.script` class is retained only as a decorative treatment. It is
 not part of the heading, body, or navigation hierarchy.
 
+## Shared class catalog
+
+The Emerson Empire class experience and the active EPDG `/classes` route now
+consume one reviewed source at `shared/class-catalog.ts`. The catalog contains
+exactly three recurring sessions per day, Monday through Sunday: 10 AM/free/60
+minutes, 2 PM/$10/90 minutes, and 7 PM/$20/120 minutes.
+
+The active EPDG route no longer renders its older 5 PM/6 PM catalog or fixed
+two-hour labels. Fee-waiver controls appear only on paid classes, and the public
+copy states that waiver requests do not ask for sensitive documents. Contract
+tests cover both application entry points and the active rendered component.
+
 ## Modal accessibility
 
 The EPDG form modal and Agency request modal now expose dialog semantics, support
@@ -57,6 +69,9 @@ Static metadata uses the verified Netlify project mappings and existing assets:
 No placeholder poster, nonexistent logo, or unverified custom-domain reference is
 used in the four application entry documents. Dedicated raster Open Graph artwork
 remains deferred until an approved, factually reviewed asset is available.
+Each entry document owns exactly one canonical URL and one set of homepage
+description/Open Graph metadata; homepage React components do not duplicate those
+static tags.
 
 ## Attribution and unavailable artifacts
 

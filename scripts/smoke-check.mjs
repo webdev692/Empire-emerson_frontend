@@ -21,9 +21,19 @@ assert.equal(
   1,
   `${app} must declare exactly one static canonical URL`,
 );
+assert.equal(
+  (sourceIndex.match(/<meta\s+name=["']description["']/gi) ?? []).length,
+  1,
+  `${app} must declare exactly one static description`,
+);
+assert.equal(
+  (sourceIndex.match(/<meta\s+property=["']og:url["']/gi) ?? []).length,
+  1,
+  `${app} must declare exactly one static Open Graph URL`,
+);
 assert.match(
   sourceIndex,
-  /<meta\s+name=["']emerson-release["']\s+content=["']2026-07-25-digital-infrastructure-sprint-r3["']/i,
+  /<meta\s+name=["']emerson-release["']\s+content=["']2026-07-25-digital-infrastructure-sprint-r4["']/i,
   `${app} is missing the exact-head release marker`,
 );
 
@@ -32,8 +42,8 @@ switch (app) {
     const appSource = read("src/App.tsx");
     assert.doesNotMatch(
       read("src/Components/MainRender/EmpireLanding.tsx"),
-      /<link\s+rel=["']canonical["']/i,
-      "The Empire runtime metadata duplicates the static canonical URL",
+      /<(?:Helmet|meta|title|link)\b/,
+      "The Empire homepage runtime duplicates metadata owned by index.html",
     );
     assert.doesNotMatch(
       appSource,
@@ -48,8 +58,8 @@ switch (app) {
   case "Agency_LandingPage": {
     assert.doesNotMatch(
       read("src/Components/MainRender/EmpireLanding.tsx"),
-      /<link\s+rel=["']canonical["']/i,
-      "The Agency runtime metadata duplicates the static canonical URL",
+      /<(?:Helmet|meta|title|link)\b/,
+      "The Agency homepage runtime duplicates metadata owned by index.html",
     );
     assert.match(
       read("src/Components/MainRender/EmpireLanding.tsx"),
