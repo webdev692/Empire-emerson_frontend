@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'EPDG-Landing-Page/**'
+      - 'shared/**'
       - '.github/workflows/deploy-epdg.yml'
 
 permissions:
