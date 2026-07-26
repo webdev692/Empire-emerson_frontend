@@ -33,7 +33,7 @@ assert.equal(
 );
 assert.match(
   sourceIndex,
-  /<meta\s+name=["']emerson-release["']\s+content=["']2026-07-25-digital-infrastructure-sprint-r4["']/i,
+  /<meta\s+name=["']emerson-release["']\s+content=["']2026-07-25-digital-infrastructure-sprint-r5["']/i,
   `${app} is missing the exact-head release marker`,
 );
 
@@ -98,6 +98,11 @@ switch (app) {
   }
   case "epdg": {
     const appSource = read("src/App.tsx");
+    assert.doesNotMatch(
+      read("src/components/Credential/Login.tsx"),
+      /<meta\s+name=["']description["']/i,
+      "The platform login route duplicates the static application description",
+    );
     assert.match(
       appSource,
       /<Route\s+path=["']\/school["'][\s\S]*?<ProtectedRoute[\s\S]*?<SchoolDashboard\s*\/>[\s\S]*?<\/ProtectedRoute>/,
