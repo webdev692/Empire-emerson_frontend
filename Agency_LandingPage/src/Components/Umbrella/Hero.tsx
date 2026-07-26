@@ -2,7 +2,13 @@ import heroCard from '../../assets/Agency_Hero.png'
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-b from-white via-[#eef3fa] to-[#cfddef] py-10 sm:py-14 lg:py-16">
+    <section
+      aria-labelledby="agency-hero-heading"
+      className="bg-gradient-to-b from-white via-[#eef3fa] to-[#cfddef] py-10 sm:py-14 lg:py-16"
+    >
+      <h1 id="agency-hero-heading" className="sr-only">
+        The Emerson Agency LLC
+      </h1>
       <div className="mx-auto max-w-[1320px] px-5">
         <img
           src={heroCard}

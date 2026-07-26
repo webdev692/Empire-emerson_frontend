@@ -72,12 +72,12 @@ const Navbar: React.FC = () => {
           aria-label="Home"
         >
           <img src={logo} alt="EPDG logo" className="border border-white/10 rounded-full w-12 h-12" />
-          <span className="hidden md:inline-block font-semibold text-white text-xs uppercase tracking-[0.16em]">
+          <span className="hidden xl:inline-block font-semibold text-white text-xs uppercase tracking-[0.16em]">
             EPDG
           </span>
         </button>
 
-        <ul className="hidden md:flex items-center gap-8 font-medium text-white/70 text-sm uppercase tracking-[0.18em]">
+        <ul className="hidden xl:flex items-center gap-8 font-medium text-white/70 text-sm uppercase tracking-[0.18em]">
           {navLinks.map((link) => (
             <li key={link.id}>
               <button
@@ -94,7 +94,7 @@ const Navbar: React.FC = () => {
           ))}
         </ul>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden xl:flex items-center gap-3">
           <a
             href={PLATFORM_URL}
             target="_blank"
@@ -114,7 +114,7 @@ const Navbar: React.FC = () => {
         </div>
 
         <button
-          className="md:hidden flex justify-center items-center bg-[#03140f] border border-white/10 rounded-full w-11 h-11 text-white cursor-pointer"
+          className="xl:hidden flex justify-center items-center bg-[#03140f] border border-white/10 rounded-full w-11 h-11 text-white cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
@@ -129,7 +129,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden space-y-4 bg-[#03140f] px-4 pb-6 border-white/10 border-t">
+        <div className="xl:hidden space-y-4 bg-[#03140f] px-4 pb-6 border-white/10 border-t">
           <ul className="flex flex-col gap-2 pt-4 text-white/75 text-sm uppercase tracking-[0.18em]">
             {navLinks.map((link) => (
               <li key={link.id}>
