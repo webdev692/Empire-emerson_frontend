@@ -2,14 +2,14 @@ import { useEffect, useRef, useState } from 'react'
 import { X } from 'lucide-react'
 import { OPEN_REQUEST_FORM_EVENT } from './RequestFormEvents'
 
-const FORM_EMBED_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSe1vxhxD7fpf3-_blUZ6xRaTIGzyeRLSLztwSD0y4S-zP56kg/viewform?embedded=true'
+const FORM_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSe1vxhxD7fpf3-_blUZ6xRaTIGzyeRLSLztwSD0y4S-zP56kg/viewform'
+const FORM_EMBED_URL = `${FORM_URL}?embedded=true`
 
 export default function RequestFormModal() {
   const [open, setOpen] = useState(false)
-  const dialogRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
-  const iframeRef = useRef<HTMLIFrameElement>(null)
+  const openFormLinkRef = useRef<HTMLAnchorElement>(null)
   const previousFocusRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -28,13 +28,13 @@ export default function RequestFormModal() {
     closeButtonRef.current?.focus()
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false)
-      if (
-        e.key === 'Tab'
-        && e.shiftKey
-        && document.activeElement === closeButtonRef.current
-      ) {
+      if (e.key !== 'Tab') return
+      if (e.shiftKey && document.activeElement === closeButtonRef.current) {
         e.preventDefault()
-        iframeRef.current?.focus()
+        openFormLinkRef.current?.focus()
+      } else if (!e.shiftKey && document.activeElement === openFormLinkRef.current) {
+        e.preventDefault()
+        closeButtonRef.current?.focus()
       }
     }
     window.addEventListener('keydown', onKey)
@@ -57,7 +57,6 @@ export default function RequestFormModal() {
       }}
     >
       <div
-        ref={dialogRef}
         className="relative flex h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-[0_40px_120px_rgba(0,0,0,0.5)]"
         role="dialog"
         aria-modal="true"
@@ -72,11 +71,26 @@ export default function RequestFormModal() {
         >
           <X size={18} />
         </button>
+        <div className="flex shrink-0 flex-col gap-2 border-b border-neutral-200 bg-white p-4 pr-16 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-[#0A1128]/70">
+            The embedded form is available for pointer users.
+          </p>
+          <a
+            ref={openFormLinkRef}
+            href={FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[#0A1128] px-4 py-2 text-center text-xs font-bold uppercase tracking-[0.12em] text-[#0A1128] transition hover:bg-[#0A1128] hover:text-white"
+          >
+            Open form in new tab
+          </a>
+        </div>
         <iframe
-          ref={iframeRef}
           src={FORM_EMBED_URL}
           title="Request Services Form"
-          className="h-full w-full border-0"
+          tabIndex={-1}
+          aria-hidden="true"
+          className="min-h-0 flex-1 w-full border-0"
         >
           Loading…
         </iframe>

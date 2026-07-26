@@ -105,6 +105,7 @@ jobs:
           scripts/lead-idempotency-migration.test.mjs
           scripts/database-boundary-migration.test.mjs
           scripts/classes-contract.test.mjs
+          scripts/modal-accessibility.test.mjs
           Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs
           Emerson_Empire/supabase/functions/send-consultation-email/notification.test.mjs
           Emerson_Empire/supabase/functions/send-consultation-email/request-security.test.mjs

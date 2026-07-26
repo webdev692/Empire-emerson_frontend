@@ -14,7 +14,6 @@ const formsLinks = [
   { label: "Request Services", href: "#contact" },
   { label: "Internship Application", href: "#contact" },
   { label: "Business Consultation", href: "#contact" },
-  { label: "Business Consultation", href: "#contact" },
 ];
 
 const iconProps = {
@@ -190,9 +189,9 @@ const EPDGFooter: React.FC = () => {
 
         <div className="flex sm:flex-row flex-col sm:justify-between sm:items-center gap-4 mt-14 pt-6 border-white/10 border-t text-white/60 text-sm">
           <p>© {new Date().getFullYear()} The Emerson Empire. All rights reserved.</p>
-          <div className="flex gap-10">
-            <a href="#" className="hover:text-[#C9A84C] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#C9A84C] transition-colors">Terms of Use</a>
+          <div className="flex flex-wrap gap-6 text-white/50">
+            <span>Privacy Policy (publication pending)</span>
+            <span>Terms of Use (publication pending)</span>
           </div>
         </div>
       </div>

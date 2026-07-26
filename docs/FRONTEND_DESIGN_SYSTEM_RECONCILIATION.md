@@ -23,13 +23,15 @@ not part of the heading, body, or navigation hierarchy.
 ## Modal accessibility
 
 The EPDG form modal and Agency request modal now expose dialog semantics, support
-Escape, establish and restore focus, prevent background scrolling, keep the
-embedded Google Form in the keyboard sequence, and use 44px close controls. The
-EPDG success state is announced and receives focus when the embedded form reports
-completion.
+Escape, establish and restore focus, prevent background scrolling, and use 44px
+close controls.
 
-Because Google Forms is a cross-origin iframe, the surrounding focus guards should
-receive a final keyboard pass in each supported browser during release preview.
+Google Forms is a cross-origin iframe, so the parent page cannot reliably capture
+Escape after focus enters it or prove that a submission completed. The embedded
+form remains available for pointer use, while keyboard and assistive-technology
+users receive an explicit form link that opens the verified Google Form in a new
+tab. The iframe is removed from the parent dialog's keyboard and accessibility
+sequence, and the parent no longer infers or announces submission success.
 
 ## PR #28 disposition
 

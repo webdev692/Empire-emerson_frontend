@@ -4,7 +4,7 @@ import logo from '../../assets/LogoAgency.png'
 import { openRequestForm } from './RequestFormEvents'
 
 const NAV_LINKS = [
-  { label: 'Home', href: '#' },
+  { label: 'Home', href: '#main-content' },
   { label: 'Our Values', href: '#our-values' },
   { label: 'Services', href: '#services' },
   { label: 'Individuals & Families', href: '#individuals' },
@@ -18,7 +18,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-[#0A1128] shadow-lg">
       <div className="mx-auto flex max-w-[1320px] items-center justify-between gap-6 px-5 py-2.5 lg:px-8">
         {/* Logo */}
-        <a href="#" className="flex items-center" aria-label="The Emerson Agency home">
+        <a href="#main-content" className="flex items-center" aria-label="The Emerson Agency home">
           <img src={logo} alt="The Emerson Agency" className="h-14 w-14 object-contain" />
         </a>
 

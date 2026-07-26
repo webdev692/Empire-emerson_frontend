@@ -10,7 +10,7 @@ const socials = [
 ]
 
 const navLinks = [
-  { label: 'Home', href: '#' },
+  { label: 'Home', href: '#main-content' },
   { label: 'Our Values', href: '#our-values' },
   { label: 'Services', href: '#services' },
   { label: 'Individuals & Families', href: '#individuals' },
@@ -89,17 +89,17 @@ export default function Footer() {
           available for qualifying individuals. Insurance, tax, financial, business, educational, and workforce
           services are subject to applicable regulations, approvals, eligibility, and availability. Participation
           in any program or service does not guarantee employment, income, funding, tax outcomes, insurance
-          approval, financial results, business success, or other specific outcomes.{' '}
-          <a href="#" className="underline transition hover:text-white">Read full disclaimer.</a>
+          approval, financial results, business success, or other specific outcomes. Full disclaimer publication
+          is pending founder approval.
         </p>
 
         {/* Bottom bar */}
         <div className="mt-8 border-t border-white/10 pt-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <p className="text-base text-white/80">© 2026 The Emerson Empire. All rights reserved.</p>
-            <div className="flex flex-wrap gap-10 text-base text-white/80">
-              <a href="#" className="transition hover:text-[#d4af37]">Privacy Policy</a>
-              <a href="#" className="transition hover:text-[#d4af37]">Terms of Use</a>
+            <div className="flex flex-wrap gap-10 text-base text-white/60">
+              <span>Privacy Policy (publication pending)</span>
+              <span>Terms of Use (publication pending)</span>
             </div>
           </div>
         </div>
