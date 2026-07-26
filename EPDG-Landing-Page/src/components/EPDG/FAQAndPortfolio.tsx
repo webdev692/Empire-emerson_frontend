@@ -32,7 +32,7 @@ const FAQAndPortfolio: React.FC = () => {
 
         {/* LEFT — FAQ */}
         <div className="flex-1">
-          <p className="text-[#C9A84C] text-xs font-bold tracking-[0.25em] uppercase mb-2">
+          <p className="text-gold-on-light text-xs font-bold tracking-[0.25em] uppercase mb-2">
             Have Questions?
           </p>
           <h2 className="text-3xl font-bold text-[#0A1F17] mb-3 tracking-tight">FAQs</h2>
@@ -72,7 +72,7 @@ const FAQAndPortfolio: React.FC = () => {
 
         {/* RIGHT — Portfolio */}
         <div className="flex-1">
-          <p className="text-[#C9A84C] text-xs font-bold tracking-[0.25em] uppercase mb-2">
+          <p className="text-gold-on-light text-xs font-bold tracking-[0.25em] uppercase mb-2">
             Your Work, Showcased
           </p>
           <h2 className="text-3xl font-bold text-[#0A1F17] mb-3 tracking-tight">Portfolio</h2>

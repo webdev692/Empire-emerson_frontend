@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import type { AxiosError } from "axios";
 import api from "../lib/axios";
 
 interface Slot {
@@ -104,8 +105,9 @@ const DiscoveryDashboard: React.FC = () => {
         { id: slot.id, role: slot.title, company: slot.company_name ?? "EPDG", status: "Applied" },
       ]);
       setSlotMessage(`Applied to "${slot.title}" successfully!`);
-    } catch (err: any) {
-      setSlotMessage(err?.response?.data?.message ?? "Application failed.");
+    } catch (err) {
+      const requestError = err as AxiosError<{ message?: string }>;
+      setSlotMessage(requestError.response?.data?.message ?? "Application failed.");
     } finally {
       setApplying(null);
     }

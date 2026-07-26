@@ -30,7 +30,6 @@ interface Feedback {
 }
 
 const CompanyDashboard = () => {
-  const isApproved = true;
   const clearAuth = useAuthStore((s) => s.clearAuth);
   const navigate = useNavigate();
 
@@ -99,18 +98,6 @@ const CompanyDashboard = () => {
       </div>
     );
   };
-
-  if (!isApproved) {
-    return (
-      <div className="flex justify-center items-center bg-[#0D0118] p-4 min-h-screen">
-        <div className="bg-[#1E0A4A] p-8 border border-[#4B1E91] rounded-2xl max-w-md text-center">
-          <p className="mb-4 text-4xl">⏳</p>
-          <h1 className="mb-2 font-semibold text-[#FFFFFF] text-xl">Pending Approval</h1>
-          <p className="text-[#F5F0E8]">Your company account is pending admin approval.</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="bg-[#0D0118] min-h-screen flex flex-col text-[#FFFFFF]">

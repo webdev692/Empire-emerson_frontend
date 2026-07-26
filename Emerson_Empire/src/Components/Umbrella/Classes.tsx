@@ -129,8 +129,8 @@ const ClassCatalog: React.FC = () => {
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-[#C9A84C]/25 bg-white p-4 text-[#1C1336] shadow-2xl lg:p-5">
-            <div className="rounded-[1.5rem] bg-[#F8F5EE] p-5">
+          <div className="rounded-2xl border border-[#C9A84C]/25 bg-white p-4 text-[#1C1336] shadow-2xl lg:p-5">
+            <div className="rounded-xl bg-[#F8F5EE] p-5">
               <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-[#4B1E91]">Correct weekly schedule</p>
               <div className="space-y-3">
                 {CLASS_TIERS.map((tier) => {

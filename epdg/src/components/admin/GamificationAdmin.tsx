@@ -35,6 +35,14 @@ interface BadgeType {
   timesAwarded: number;
 }
 
+interface BadgeResponse {
+  id: number;
+  name: string;
+  emoji: string;
+  description: string;
+  times_awarded: number;
+}
+
 const RULES = [
   { action: "Task completed",          points: 30 },
   { action: "Portfolio submitted",     points: 80 },
@@ -77,7 +85,7 @@ const GamificationAdmin: React.FC = () => {
     Promise.allSettled([
       api.get<{ success: boolean; data: LeaderboardIntern[] }>('/api/admin/gamification/leaderboard'),
       api.get<{ success: boolean; data: AuditEvent[] }>('/api/admin/gamification/audit'),
-      api.get<{ success: boolean; data: any[] }>('/api/admin/gamification/badges'),
+      api.get<{ success: boolean; data: BadgeResponse[] }>('/api/admin/gamification/badges'),
     ]).then(([lb, audit, bdg]) => {
       if (lb.status    === 'fulfilled') setLeaderboard(lb.value.data.data);
       if (audit.status === 'fulfilled') setAuditLog(audit.value.data.data);
@@ -122,7 +130,7 @@ const GamificationAdmin: React.FC = () => {
     try {
       await api.post(`/api/admin/gamification/badges/${badgeTarget.id}/award`, { userId: badgeIntern.id });
       showMsg(`🏅 ${badgeTarget.emoji} ${badgeTarget.name} awarded to ${badgeIntern.name}.`);
-      const { data } = await api.get<{ success: boolean; data: any[] }>('/api/admin/gamification/badges');
+      const { data } = await api.get<{ success: boolean; data: BadgeResponse[] }>('/api/admin/gamification/badges');
       setBadges(data.data.map((b) => ({
         id: b.id, name: b.name, emoji: b.emoji,
         description: b.description, timesAwarded: b.times_awarded,

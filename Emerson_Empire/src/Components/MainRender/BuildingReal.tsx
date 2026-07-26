@@ -10,7 +10,7 @@ const BuildingReal: React.FC = () => {
           <div className="lg:w-1/2">
             <h2 className="mb-6 font-bold text-[#1C1336] text-4xl md:text-5xl uppercase leading-tight">
               We're Building Something Real —<br />
-              <span className="text-[#C9A84C]">And You Can Be Part of It.</span>
+              <span className="text-gold-on-light">And You Can Be Part of It.</span>
             </h2>
             <p className="mb-6 text-[#1C1336]/70 text-lg leading-relaxed">
               The Emerson Empire isn't just another training program. We're building a global movement of financially literate, professionally equipped individuals who are ready to lead their own futures and serve their communities.

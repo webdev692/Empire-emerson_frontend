@@ -2,10 +2,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['Montserrat', 'sans-serif'],
-        serif:   ['Cormorant Garamond', 'Georgia', 'serif'],
-        body:    ['DM Sans', 'sans-serif'],
+        heading: ['Libertinus Serif Display', 'Libertinus Serif', 'Georgia', 'serif'],
+        serif:   ['Libertinus Serif Display', 'Libertinus Serif', 'Georgia', 'serif'],
+        body:    ['Inter', 'system-ui', 'sans-serif'],
         sans:    ['Inter', 'system-ui', 'sans-serif'],
+        label:   ['Work Sans', 'Inter', 'system-ui', 'sans-serif'],
+        mono:    ['Work Sans', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         // Core brand

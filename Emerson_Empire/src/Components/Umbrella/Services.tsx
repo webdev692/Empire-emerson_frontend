@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -379,21 +379,15 @@ const EPDG_SERVICES: ServiceItem[] = [
 
 type ModalState = { title: string; formUrl: string } | null;
 
-const FormModal: React.FC<{ modal: ModalState; onClose: () => void }> = ({ modal, onClose }) => {
+const FormModal: React.FC<{ modal: NonNullable<ModalState>; onClose: () => void }> = ({ modal, onClose }) => {
   const [loadCount, setLoadCount] = useState(0);
   const submitted = loadCount >= 2;
-
-  useEffect(() => {
-    if (modal) setLoadCount(0);
-  }, [modal]);
 
   const handleLoad = () =>
     setLoadCount((n) => {
       const next = n + 1;
       return next;
     });
-
-  if (!modal) return null;
 
   return (
     <AnimatePresence>
@@ -413,7 +407,7 @@ const FormModal: React.FC<{ modal: ModalState; onClose: () => void }> = ({ modal
           {/* Modal header */}
           <div className="flex justify-between items-center px-6 py-4 border-neutral-100 border-b shrink-0">
             <div>
-              <p className="mb-0.5 font-mono text-[#C9A84C] text-xs uppercase tracking-widest">
+              <p className="mb-0.5 font-mono text-gold-on-light text-xs uppercase tracking-widest">
                 Service Request
               </p>
               <h3 className="font-bold text-[#1C1336] text-sm leading-snug">{modal.title}</h3>
@@ -494,7 +488,7 @@ const ServiceCard: React.FC<CardProps> = ({
           <div className="flex justify-center items-center bg-[#4B1E91]/8 w-7 h-7 shrink-0">
             <Icon size={13} className="text-[#4B1E91]" />
           </div>
-          <span className="font-mono text-[#C9A84C] text-xs uppercase tracking-widest">
+          <span className="font-mono text-gold-on-light text-xs uppercase tracking-widest">
             {category}
           </span>
         </div>
@@ -738,7 +732,7 @@ const Services: React.FC = () => {
       </div>
 
       {/* ── Modal ── */}
-      <FormModal modal={modal} onClose={closeModal} />
+      {modal && <FormModal modal={modal} onClose={closeModal} />}
 
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormModal } from "./FormModal";
+import { useFormModal } from "./FormModalContext";
 import experienceImg from "../../assets/Experience.png";
 
 const FORM_INTERNSHIP = "https://docs.google.com/forms/d/e/1FAIpQLSct0beq8VHPv9zhRreBFv8fK8HWGIGNp2YmuRGiOiL7RPoGFQ/viewform";

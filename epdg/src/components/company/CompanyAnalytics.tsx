@@ -212,7 +212,7 @@ export default function CompanyAnalytics() {
   return (
     <div
       className="min-h-screen bg-[#0D0618] text-white p-4 lg:p-8"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
+      style={{ fontFamily: "var(--font-body)" }}
     >
       {/* ── Header ─────────────────────────────────────────────────────── */}
       <div className="mb-6">

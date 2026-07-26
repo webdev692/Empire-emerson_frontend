@@ -105,7 +105,7 @@ const Disclaimer: React.FC = () => (
               href={`#${s.id}`}
               className="flex items-center gap-2 py-1.5 text-xs text-neutral-500 hover:text-[#4B1E91] transition-colors duration-150"
             >
-              <span className="text-[#C9A84C] text-xs">â†’</span>
+              <span className="text-gold-on-light text-xs">â†’</span>
               {s.title}
             </a>
           ))}
@@ -117,7 +117,7 @@ const Disclaimer: React.FC = () => (
         {SECTIONS.map((s, i) => (
           <div key={s.id} id={s.id} className="scroll-mt-24">
             <div className="flex items-start gap-4 mb-3">
-              <span className="font-mono text-[#C9A84C]/50 text-xs pt-1 shrink-0 w-6">
+              <span className="font-mono text-gold-on-light opacity-60 text-xs pt-1 shrink-0 w-6">
                 {String(i + 1).padStart(2, '0')}
               </span>
               <h2 className="font-bold text-[#1C1336] text-lg sm:text-xl uppercase tracking-tight">

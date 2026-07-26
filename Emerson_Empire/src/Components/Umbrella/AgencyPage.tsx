@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -198,11 +198,9 @@ const CATEGORIES = [
 
 type ModalState = { title: string; formUrl: string } | null;
 
-const ServiceModal: React.FC<{ modal: ModalState; onClose: () => void }> = ({ modal, onClose }) => {
+const ServiceModal: React.FC<{ modal: NonNullable<ModalState>; onClose: () => void }> = ({ modal, onClose }) => {
   const [loadCount, setLoadCount] = useState(0);
   const submitted = loadCount >= 2;
-  useEffect(() => { setLoadCount(0); }, [modal]);
-  if (!modal) return null;
 
   return (
     <AnimatePresence>
@@ -221,7 +219,7 @@ const ServiceModal: React.FC<{ modal: ModalState; onClose: () => void }> = ({ mo
         >
           <div className="flex justify-between items-center px-6 py-4 border-neutral-100 border-b shrink-0">
             <div>
-              <p className="mb-0.5 font-mono text-[#C9A84C] text-xs uppercase tracking-widest">Service Request</p>
+              <p className="mb-0.5 font-mono text-gold-on-light text-xs uppercase tracking-widest">Service Request</p>
               <h3 className="font-bold text-[#1C1336] text-sm">{modal.title}</h3>
             </div>
             <button onClick={onClose} className="flex justify-center items-center w-8 h-8 text-neutral-400 hover:text-[#1C1336] transition-colors">
@@ -390,7 +388,7 @@ const AgencyPage: React.FC = () => {
       {/* â”€â”€ Service category quick-jump â”€â”€ */}
       <div id="services" className="bg-[#FAFAF9] py-12 border-neutral-100 border-b">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <p className="mb-3 font-mono text-[#C9A84C] text-xs uppercase tracking-widest">What We Offer</p>
+          <p className="mb-3 font-mono text-gold-on-light text-xs uppercase tracking-widest">What We Offer</p>
           <h2 className="mb-8 font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight">
             Four Core Service Areas.
           </h2>
@@ -546,7 +544,7 @@ const AgencyPage: React.FC = () => {
           <div className="items-center gap-12 lg:gap-16 grid lg:grid-cols-2">
             <img src={Taxing} alt="Tax preparation and readiness services" className="w-full h-72 sm:h-80 lg:h-96 object-cover" />
             <div>
-              <p className="mb-3 font-mono text-[#C9A84C] text-xs uppercase tracking-widest">Tax Season Ready</p>
+              <p className="mb-3 font-mono text-gold-on-light text-xs uppercase tracking-widest">Tax Season Ready</p>
               <h2 className="mb-4 font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight">
                 Don't Let Tax Season Catch You Unprepared.
               </h2>
@@ -566,7 +564,7 @@ const AgencyPage: React.FC = () => {
                   'Business tax prep support',
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-2">
-                    <CheckCircle size={12} className="text-[#C9A84C] shrink-0" />
+                    <CheckCircle size={12} className="text-gold-on-light shrink-0" />
                     <span className="text-neutral-600 text-xs">{item}</span>
                   </div>
                 ))}
@@ -586,7 +584,7 @@ const AgencyPage: React.FC = () => {
       {/* â”€â”€ FAQ â”€â”€ */}
       <section className="bg-white py-20 border-neutral-100 border-b">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-          <p className="mb-3 font-mono text-[#C9A84C] text-xs uppercase tracking-widest">FAQ</p>
+          <p className="mb-3 font-mono text-gold-on-light text-xs uppercase tracking-widest">FAQ</p>
           <h2 className="mb-8 font-black text-[#1C1336] text-2xl sm:text-3xl uppercase leading-tight">
             Frequently Asked Questions.
           </h2>
@@ -632,7 +630,7 @@ const AgencyPage: React.FC = () => {
       </div>
 
       {/* â”€â”€ Modal â”€â”€ */}
-      <ServiceModal modal={modal} onClose={closeModal} />
+      {modal && <ServiceModal modal={modal} onClose={closeModal} />}
 
     </div>
   );

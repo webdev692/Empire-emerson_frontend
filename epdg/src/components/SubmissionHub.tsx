@@ -80,8 +80,8 @@ const SubmissionHub: React.FC = () => {
       if (fileRef.current) fileRef.current.value = "";
       setToast("Deliverable package mounted successfully!");
       setTimeout(() => setToast(""), 4000);
-    } catch (err: any) {
-      setToast(`Error: ${err.message ?? "Upload failed."}`);
+    } catch (err) {
+      setToast(`Error: ${err instanceof Error ? err.message : "Upload failed."}`);
     } finally {
       setUploading(false);
     }
@@ -99,8 +99,8 @@ const SubmissionHub: React.FC = () => {
       setResubmitId(null); setResubmitFile(null); setResubmitNotes("");
       setToast("Resubmission sent for review.");
       setTimeout(() => setToast(""), 4000);
-    } catch (err: any) {
-      setToast(`Error: ${err.message}`);
+    } catch (err) {
+      setToast(`Error: ${err instanceof Error ? err.message : "Resubmission failed."}`);
     } finally {
       setResubmitting(false);
     }

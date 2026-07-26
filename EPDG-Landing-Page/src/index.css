@@ -1,8 +1,9 @@
 @import "tailwindcss";
+@import "../../shared/emerson-design-system.css";
 
 :root {
   color-scheme: dark;
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-body);
   background: #0b1310;
   color: #111d18;
 }
@@ -24,19 +25,20 @@ body {
 }
 
 .heading {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 400;
 }
 
 .body {
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-body);
 }
 
 .nav {
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
+  font-family: var(--font-label);
+  font-weight: 600;
 }
 
+/* Great Vibes remains only for the existing decorative script treatment. */
 .script {
   font-family: "Great Vibes", cursive;
 }

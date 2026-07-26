@@ -19,7 +19,7 @@ const TeamSection: React.FC = () => {
 
           {/* Right: Text content */}
           <div className="lg:w-1/2 order-1 lg:order-2">
-            <p className="mb-4 font-semibold text-[#C9A84C] text-sm uppercase tracking-[0.15em]">
+            <p className="mb-4 font-semibold text-gold-on-light text-sm uppercase tracking-[0.15em]">
               MEET THE TEAM
             </p>
             <h2 className="mb-6 font-bold text-[#1C1336] text-4xl md:text-5xl uppercase leading-tight">

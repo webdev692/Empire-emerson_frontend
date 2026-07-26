@@ -1,46 +1,66 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-
-interface FormModalContextValue {
-  openForm: (url: string, title?: string, subtitle?: string) => void;
-}
-
-const FormModalContext = createContext<FormModalContextValue>({ openForm: () => {} });
-
-export const useFormModal = () => useContext(FormModalContext);
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { FormModalContext } from "./FormModalContext";
 
 export const FormModalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [formUrl, setFormUrl]       = useState<string | null>(null);
   const [title, setTitle]           = useState("");
   const [subtitle, setSubtitle]     = useState("");
-  const [loadCount, setLoadCount]   = useState(0);
-
-  const submitted = loadCount >= 2;
+  const dialogRef                   = useRef<HTMLDivElement>(null);
+  const closeButtonRef              = useRef<HTMLButtonElement>(null);
+  const openFormLinkRef             = useRef<HTMLAnchorElement>(null);
+  const previousFocusRef            = useRef<HTMLElement | null>(null);
 
   const openForm = (url: string, t = "", s = "") => {
+    previousFocusRef.current = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
     setFormUrl(url);
     setTitle(t);
     setSubtitle(s);
-    setLoadCount(0);
   };
 
-  const close = () => setFormUrl(null);
+  const close = useCallback(() => setFormUrl(null), []);
 
-  // Lock body scroll while modal is open
+  // Lock body scroll, establish initial focus, and restore focus on close.
   useEffect(() => {
-    if (formUrl) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [formUrl]);
+    if (!formUrl) return;
 
-  // Close on Escape key
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        close();
+        return;
+      }
+
+      if (e.key !== "Tab" || !dialogRef.current) return;
+
+      const focusable = Array.from(
+        dialogRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([data-focus-guard])'
+        )
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
+    };
+
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+      previousFocusRef.current?.focus();
+      previousFocusRef.current = null;
+    };
+  }, [close, formUrl]);
 
   return (
     <FormModalContext.Provider value={{ openForm }}>
@@ -52,61 +72,65 @@ export const FormModalProvider: React.FC<{ children: React.ReactNode }> = ({ chi
           onClick={close}
         >
           <div
-            className="bg-white w-full sm:max-w-2xl h-[92vh] sm:h-[88vh] flex flex-col shadow-2xl overflow-hidden sm:rounded-sm"
+            ref={dialogRef}
+            className="bg-white w-full sm:max-w-2xl h-[92vh] sm:h-[88vh] flex flex-col shadow-2xl overflow-hidden rounded-2xl"
             style={{ borderTop: "4px solid #C9A84C" }}
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="epdg-form-dialog-title"
+            aria-describedby={subtitle ? "epdg-form-dialog-description" : undefined}
           >
             {/* Header */}
             <div className="flex items-start justify-between px-6 py-4 border-b border-gray-100 shrink-0">
               <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-[#044E37] mb-0.5">
-                  {submitted ? "Submitted Successfully" : "Emerson Professional Development Group"}
+                <p id="epdg-form-dialog-title" className="text-sm font-bold uppercase tracking-wider text-[#044E37] mb-0.5">
+                  Emerson Professional Development Group
                 </p>
                 {title && (
                   <h3 className="text-sm font-bold text-[#0A1F17]">{title}</h3>
                 )}
                 {subtitle && (
-                  <p className="text-sm text-gray-400 mt-0.5 tracking-wide">{subtitle}</p>
+                  <p id="epdg-form-dialog-description" className="text-sm text-gray-500 mt-0.5 tracking-wide">{subtitle}</p>
                 )}
               </div>
+              <a
+                ref={openFormLinkRef}
+                href={formUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="ml-auto inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl border border-[#044E37] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.1em] text-[#044E37] transition hover:bg-[#044E37] hover:text-white"
+                aria-label={`Open ${title || "EPDG form"} in a new tab`}
+              >
+                Open form in new tab
+              </a>
               <button
+                ref={closeButtonRef}
+                type="button"
                 onClick={close}
-                aria-label="Close"
-                className="text-gray-300 hover:text-[#0A1F17] text-xl ml-4 shrink-0 leading-none transition-colors"
+                aria-label="Close form"
+                className="ml-2 inline-flex h-11 w-11 items-center justify-center text-gray-500 hover:text-[#0A1F17] text-xl shrink-0 leading-none transition-colors rounded-full"
               >
                 ✕
               </button>
             </div>
 
-            {/* Submitted state */}
-            {submitted ? (
-              <div className="flex flex-col items-center justify-center flex-1 px-8 py-12 text-center">
-                <div
-                  className="w-14 h-14 flex items-center justify-center text-white text-2xl font-bold mb-5 bg-[#044E37]"
-                >
-                  ✓
-                </div>
-                <h3 className="text-xl font-bold text-[#0A1F17] mb-3">Submitted!</h3>
-                <p className="text-sm text-gray-500 leading-relaxed max-w-sm mb-8">
-                  Thank you for reaching out to EPDG. A member of our team will follow up with you
-                  shortly at the contact information you provided.
-                </p>
-                <button
-                  onClick={close}
-                  className="border border-[#044E37] text-[#044E37] font-bold text-sm uppercase tracking-wider py-3 px-8 hover:bg-[#044E37] hover:text-white transition-all duration-200"
-                >
-                  Done
-                </button>
-              </div>
-            ) : (
-              <iframe
-                src={`${formUrl}?embedded=true`}
-                onLoad={() => setLoadCount((n) => n + 1)}
-                title={title || "EPDG Form"}
-                className="flex-1 w-full border-none"
-                allow="camera; microphone"
-              />
-            )}
+            <iframe
+              src={`${formUrl}?embedded=true`}
+              title={title || "EPDG Form"}
+              tabIndex={-1}
+              aria-hidden="true"
+              className="flex-1 w-full border-none"
+              allow="camera; microphone"
+            />
+            <span
+              data-focus-guard
+              tabIndex={0}
+              className="sr-only"
+              onFocus={() => closeButtonRef.current?.focus()}
+            >
+              End of form dialog
+            </span>
           </div>
         </div>
       )}

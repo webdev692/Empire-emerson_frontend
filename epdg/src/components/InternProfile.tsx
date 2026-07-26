@@ -49,21 +49,27 @@ export default function InternProfile() {
   const [error, setError]      = useState("");
   const [editMode, setEditMode]= useState(false);
 
-  useEffect(() => { fetchProfile(); }, []);
+  useEffect(() => {
+    let active = true;
 
-  async function fetchProfile() {
-    setLoading(true);
-    try {
-      const { data } = await api.get<{ success: boolean; data: Profile }>("/api/intern/profile");
-      setProfile(data.data);
-      setForm(data.data);
-    } catch (err) {
-      const e = err as AxiosError<{ message: string }>;
-      setError(e.response?.data?.message ?? "Failed to load profile.");
-    } finally {
-      setLoading(false);
+    async function loadProfile() {
+      try {
+        const { data } = await api.get<{ success: boolean; data: Profile }>("/api/intern/profile");
+        if (!active) return;
+        setProfile(data.data);
+        setForm(data.data);
+      } catch (err) {
+        if (!active) return;
+        const requestError = err as AxiosError<{ message: string }>;
+        setError(requestError.response?.data?.message ?? "Failed to load profile.");
+      } finally {
+        if (active) setLoading(false);
+      }
     }
-  }
+
+    void loadProfile();
+    return () => { active = false; };
+  }, []);
 
   async function handleSave() {
     setSaving(true); setError(""); setSuccess("");

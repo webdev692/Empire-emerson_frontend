@@ -1,0 +1,195 @@
+import assert from "node:assert/strict";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const repositoryRoot = dirname(dirname(fileURLToPath(import.meta.url)));
+const app = process.argv[2];
+
+if (!app) {
+  throw new Error("Usage: node scripts/smoke-check.mjs <application-directory>");
+}
+
+const appRoot = join(repositoryRoot, app);
+const read = (relativePath) => readFileSync(join(appRoot, relativePath), "utf8");
+const sourceIndex = read("index.html");
+
+assert.ok(existsSync(join(appRoot, "dist", "index.html")), `${app} build output is missing dist/index.html`);
+assert.match(read("dist/index.html"), /<script\b[^>]*\bsrc=/i, `${app} build output has no JavaScript entry`);
+assert.equal(
+  (sourceIndex.match(/<link\s+rel=["']canonical["']/gi) ?? []).length,
+  1,
+  `${app} must declare exactly one static canonical URL`,
+);
+assert.equal(
+  (sourceIndex.match(/<meta\s+name=["']description["']/gi) ?? []).length,
+  1,
+  `${app} must declare exactly one static description`,
+);
+assert.equal(
+  (sourceIndex.match(/<meta\s+property=["']og:url["']/gi) ?? []).length,
+  1,
+  `${app} must declare exactly one static Open Graph URL`,
+);
+assert.match(
+  sourceIndex,
+  /<meta\s+name=["']emerson-release["']\s+content=["']2026-07-25-digital-infrastructure-sprint-r5["']/i,
+  `${app} is missing the exact-head release marker`,
+);
+
+switch (app) {
+  case "Emerson_Empire": {
+    const appSource = read("src/App.tsx");
+    assert.doesNotMatch(
+      read("src/Components/MainRender/EmpireLanding.tsx"),
+      /<(?:Helmet|meta|title|link)\b/,
+      "The Empire homepage runtime duplicates metadata owned by index.html",
+    );
+    assert.doesNotMatch(
+      appSource,
+      /<Route\s+path=["']\/register["']\s+element=\{<Register\s*\/?>\}/,
+      "The placeholder Emerson registration component is still routable",
+    );
+    const callSource = read("src/Components/Umbrella/Call.tsx");
+    assert.doesNotMatch(callSource, /loadCount\s*>=\s*2/, "Google Form reloads are still treated as confirmed submissions");
+    assert.doesNotMatch(callSource, /Submitted Successfully/, "The parent page still claims an unverifiable form result");
+    break;
+  }
+  case "Agency_LandingPage": {
+    assert.doesNotMatch(
+      read("src/Components/MainRender/EmpireLanding.tsx"),
+      /<(?:Helmet|meta|title|link)\b/,
+      "The Agency homepage runtime duplicates metadata owned by index.html",
+    );
+    assert.match(
+      read("src/Components/MainRender/EmpireLanding.tsx"),
+      /<GetInTouch\s*\/>/,
+      "The verified Agency contact section is not mounted in the active landing page",
+    );
+    const contactSource = read("src/Components/MainRender/GetInTouch.tsx");
+    assert.match(
+      contactSource,
+      /onClick=\{openRequestForm\}/,
+      "The Agency message CTA is not connected to the request modal",
+    );
+    assert.doesNotMatch(contactSource, /href=["']\/contact["']/, "The Agency contact CTA still points to a nonexistent route");
+    const callSource = read("src/Components/Umbrella/Call.tsx");
+    assert.doesNotMatch(callSource, /loadCount\s*>=\s*2/, "Google Form reloads are still treated as confirmed submissions");
+    assert.doesNotMatch(callSource, /Submitted Successfully/, "The parent page still claims an unverifiable form result");
+    break;
+  }
+  case "EPDG-Landing-Page": {
+    assert.match(read("src/App.tsx"), /<Route\s+path=["']\/classes["']/, "The classes route is missing");
+    const builtIndex = read("dist/index.html");
+    assert.match(builtIndex, /(?:src|href)="\/assets\//, "The default landing build does not target the site root");
+    assert.doesNotMatch(builtIndex, /\/Empire-emerson_frontend\//, "The Netlify/default build still uses the GitHub Pages base path");
+    const pagesWorkflow = readFileSync(join(repositoryRoot, ".github", "workflows", "deploy-epdg.yml"), "utf8");
+    assert.match(
+      pagesWorkflow,
+      /DEPLOY_BASE_PATH:\s*\/Empire-emerson_frontend\//,
+      "The GitHub Pages workflow does not supply its repository base path",
+    );
+    assert.match(
+      pagesWorkflow,
+      /cp dist\/index\.html dist\/404\.html/,
+      "The GitHub Pages workflow does not preserve SPA deep-link routing",
+    );
+    break;
+  }
+  case "epdg": {
+    const appSource = read("src/App.tsx");
+    assert.doesNotMatch(
+      read("src/components/Credential/Login.tsx"),
+      /<meta\s+name=["']description["']/i,
+      "The platform login route duplicates the static application description",
+    );
+    assert.match(
+      appSource,
+      /<Route\s+path=["']\/school["'][\s\S]*?<ProtectedRoute[\s\S]*?<SchoolDashboard\s*\/>[\s\S]*?<\/ProtectedRoute>/,
+      "The school dashboard is not protected by authentication",
+    );
+    assert.match(
+      appSource,
+      /<Route\s+path=["']\/school["'][\s\S]*?<DevelopmentFixtureGate\s+feature=["']School dashboard["']>/,
+      "The school fixture dashboard is not gated outside development mock mode",
+    );
+    assert.match(
+      appSource,
+      /<Route\s+path=["']\/company["'][\s\S]*?<DevelopmentFixtureGate\s+feature=["']Company dashboard["']>/,
+      "The company fixture dashboard is not gated outside development mock mode",
+    );
+    assert.match(
+      appSource,
+      /<Route\s+path=["']onboarding["'][\s\S]*?<DevelopmentFixtureGate\s+feature=["']Intern onboarding["']>/,
+      "The intern onboarding fallback is not gated outside development mock mode",
+    );
+    assert.match(
+      read("src/lib/runtimeFlags.ts"),
+      /import\.meta\.env\.DEV\s*&&\s*import\.meta\.env\.VITE_MOCK_AUTH\s*===\s*["']true["']/,
+      "Mock authentication and fixture data are not restricted to an explicit development session",
+    );
+    assert.doesNotMatch(
+      read("src/components/school/SchoolDashboard.tsx"),
+      /\bisApproved\s*=\s*true\b/,
+      "The school dashboard still forces approval",
+    );
+    const axiosSource = read("src/lib/axios.ts");
+    assert.doesNotMatch(
+      axiosSource,
+      /\.up\.railway\.app/,
+      "The API client still contains an unconfirmed production fallback origin",
+    );
+    assert.match(
+      axiosSource,
+      /if\s*\(\s*!API_ORIGIN\s*\)\s*\{[\s\S]*?Promise\.reject\(new ApiConfigurationError\(\)\)/,
+      "The API client does not fail closed when its origin is unavailable",
+    );
+
+    for (const registrationFile of ["RegisterIntern.tsx", "RegisterCompany.tsx", "RegisterSchool.tsx"]) {
+      const registrationSource = read(`src/components/Credential/${registrationFile}`);
+      assert.match(
+        registrationSource,
+        /if\s*\(\s*!API_ORIGIN\s*\)\s*\{[\s\S]*?return;[\s\S]*?await api\.post\(["']\/api\/auth\/register["']/,
+        `${registrationFile} does not stop before registration when backend configuration is unavailable`,
+      );
+      assert.match(
+        registrationSource,
+        /await api\.post\(["']\/api\/auth\/register["'][\s\S]*?navigate\(["']\/pending-approval["']\)/,
+        `${registrationFile} can navigate to success before the backend request resolves`,
+      );
+    }
+
+    const signUpSource = read("src/components/Credential/SignUp.tsx");
+    assert.match(
+      signUpSource,
+      /const res = await fetch[\s\S]*?if\s*\(\s*!res\.ok\s*\)[\s\S]*?setSuccess\(true\)/,
+      "Registration can report success before an HTTP-success response",
+    );
+
+    const assetDirectory = join(appRoot, "dist", "assets");
+    const productionJavaScript = readdirSync(assetDirectory)
+      .filter((file) => file.endsWith(".js"))
+      .map((file) => readFileSync(join(assetDirectory, file), "utf8"))
+      .join("\n");
+    for (const marker of [
+      "intern@test.com",
+      "company@test.com",
+      "school@test.com",
+      "admin@test.com",
+      "mock-signature",
+      "Alice Mwangi",
+      "University of Nebraska",
+    ]) {
+      assert.doesNotMatch(
+        productionJavaScript,
+        new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+        `Production JavaScript contains development fixture marker: ${marker}`,
+      );
+    }
+    break;
+  }
+  default:
+    throw new Error(`Unknown application directory: ${app}`);
+}
+
+console.log(`${app}: smoke checks passed`);

@@ -17,18 +17,18 @@ const navLinks: NavLink[] = [
   { label: "Contact", id: "contact", type: "section" },
 ];
 
+const PLATFORM_URL = "https://epdg.netlify.app/";
+
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
   const navigate = useNavigate();
   const location = useLocation();
   const onClasses = location.pathname === "/classes";
+  const visibleActiveId = onClasses ? "classes" : activeId;
 
   useEffect(() => {
-    if (onClasses) {
-      setActiveId("classes");
-      return;
-    }
+    if (onClasses) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
     });
 
     return () => observer.disconnect();
-  }, [onClasses, location.pathname]);
+  }, [onClasses]);
 
   const handleNav = (link: NavLink) => {
     setMenuOpen(false);
@@ -72,18 +72,18 @@ const Navbar: React.FC = () => {
           aria-label="Home"
         >
           <img src={logo} alt="EPDG logo" className="border border-white/10 rounded-full w-12 h-12" />
-          <span className="hidden md:inline-block font-semibold text-white text-xs uppercase tracking-[0.16em]">
+          <span className="hidden xl:inline-block font-semibold text-white text-xs uppercase tracking-[0.16em]">
             EPDG
           </span>
         </button>
 
-        <ul className="hidden md:flex items-center gap-8 font-medium text-white/70 text-sm uppercase tracking-[0.18em]">
+        <ul className="hidden xl:flex items-center gap-8 font-medium text-white/70 text-sm uppercase tracking-[0.18em]">
           {navLinks.map((link) => (
             <li key={link.id}>
               <button
                 onClick={() => handleNav(link)}
                 className={`cursor-pointer transition duration-200 ${
-                  activeId === link.id
+                  visibleActiveId === link.id
                     ? "text-[#C9A84C]"
                     : "hover:text-white"
                 }`}
@@ -94,9 +94,9 @@ const Navbar: React.FC = () => {
           ))}
         </ul>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden xl:flex items-center gap-3">
           <a
-            href="https://emersonproffesionaldevelopment.netlify.app/"
+            href={PLATFORM_URL}
             target="_blank"
             rel="noreferrer"
             className="px-4 py-2 border border-white/10 hover:border-[#C9A84C] rounded-full font-semibold text-white/70 hover:text-white text-xs uppercase tracking-[0.18em] transition-all duration-200"
@@ -104,7 +104,7 @@ const Navbar: React.FC = () => {
             Log In
           </a>
           <a
-            href="https://emersonproffesionaldevelopment.netlify.app/"
+            href={PLATFORM_URL}
             target="_blank"
             rel="noreferrer"
             className="bg-[#C9A84C] hover:bg-[#BDA55F] px-4 py-2 rounded-full font-semibold text-[#07120f] text-xs uppercase tracking-[0.18em] transition-all duration-200"
@@ -114,7 +114,7 @@ const Navbar: React.FC = () => {
         </div>
 
         <button
-          className="md:hidden flex justify-center items-center bg-[#03140f] border border-white/10 rounded-full w-11 h-11 text-white cursor-pointer"
+          className="xl:hidden flex justify-center items-center bg-[#03140f] border border-white/10 rounded-full w-11 h-11 text-white cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
@@ -129,14 +129,14 @@ const Navbar: React.FC = () => {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden space-y-4 bg-[#03140f] px-4 pb-6 border-white/10 border-t">
+        <div className="xl:hidden space-y-4 bg-[#03140f] px-4 pb-6 border-white/10 border-t">
           <ul className="flex flex-col gap-2 pt-4 text-white/75 text-sm uppercase tracking-[0.18em]">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <button
                   onClick={() => handleNav(link)}
                   className={`w-full text-left py-3 transition duration-200 cursor-pointer ${
-                    activeId === link.id ? "text-[#C9A84C]" : "hover:text-white"
+                    visibleActiveId === link.id ? "text-[#C9A84C]" : "hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -146,7 +146,7 @@ const Navbar: React.FC = () => {
           </ul>
           <div className="flex flex-col gap-3">
             <a
-              href="https://emersonproffesionaldevelopment.netlify.app/"
+              href={PLATFORM_URL}
               target="_blank"
               rel="noreferrer"
               className="px-4 py-3 border border-white/10 rounded-full font-semibold text-white/80 hover:text-white text-sm text-center uppercase tracking-[0.18em]"
@@ -154,7 +154,7 @@ const Navbar: React.FC = () => {
               Log In
             </a>
             <a
-              href="https://emersonproffesionaldevelopment.netlify.app/"
+              href={PLATFORM_URL}
               target="_blank"
               rel="noreferrer"
               className="bg-[#C9A84C] hover:bg-[#BDA55F] px-4 py-3 rounded-full font-semibold text-[#07120f] text-sm text-center uppercase tracking-[0.18em]"

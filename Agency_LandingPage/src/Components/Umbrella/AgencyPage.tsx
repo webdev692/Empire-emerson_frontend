@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -198,11 +198,9 @@ const CATEGORIES = [
 
 type ModalState = { title: string; formUrl: string } | null;
 
-const ServiceModal: React.FC<{ modal: ModalState; onClose: () => void }> = ({ modal, onClose }) => {
+const ServiceModal: React.FC<{ modal: NonNullable<ModalState>; onClose: () => void }> = ({ modal, onClose }) => {
   const [loadCount, setLoadCount] = useState(0);
   const submitted = loadCount >= 2;
-  useEffect(() => { setLoadCount(0); }, [modal]);
-  if (!modal) return null;
 
   return (
     <AnimatePresence>
@@ -632,7 +630,7 @@ const AgencyPage: React.FC = () => {
       </div>
 
       {/* â”€â”€ Modal â”€â”€ */}
-      <ServiceModal modal={modal} onClose={closeModal} />
+      {modal && <ServiceModal modal={modal} onClose={closeModal} />}
 
     </div>
   );

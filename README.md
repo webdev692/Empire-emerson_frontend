@@ -21,14 +21,17 @@ This repository contains the public frontend applications for The Emerson Empire
 
 ## Environment Notes
 
-The `epdg` dashboard requires:
+Environment values are deployment-specific and must not be committed. The `epdg` dashboard uses these variable names:
 
-```env
-VITE_API_URL=https://the-emerson-empirebackend-production.up.railway.app
-VITE_MOCK_AUTH=false
+```text
+VITE_API_URL
+VITE_MOCK_AUTH
+VITE_EMPIRE_URL
 ```
 
-The current backend deployment must be healthy on Railway for the dashboard to function correctly. If Railway is crashed or sleeping, the dashboard may load while API-backed login, registration, dashboard data, or admin functions fail.
+The canonical EPDG backend origin is intentionally unresolved in PR #27 and requires backend confirmation. Registration fails closed when the API configuration is absent or invalid. Production builds must not enable mock authentication.
+
+See [`docs/STABILIZATION.md`](docs/STABILIZATION.md) for the pinned local toolchain, names-only environment inventory, deterministic checks, and blocked decisions.
 
 ## Current Stabilization Notes
 

@@ -28,7 +28,7 @@ const BlogsNews: React.FC = () => {
   return (
     <section className="bg-[#F9F7F2] py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <p className="text-[#C9A84C] text-xs font-bold tracking-[0.25em] uppercase mb-2">
+        <p className="text-gold-on-light text-xs font-bold tracking-[0.25em] uppercase mb-2">
           Resources
         </p>
         <h2 className="text-3xl md:text-4xl font-bold text-[#0A1F17] mb-3 tracking-tight">
@@ -65,7 +65,7 @@ const BlogsNews: React.FC = () => {
                 </h3>
                 <p className="text-gray-500 text-sm leading-relaxed flex-1">{p.excerpt}</p>
                 <div className="mt-5 pt-4 border-t border-gray-100">
-                  <span className="text-[#044E37] text-sm font-bold uppercase tracking-wider group-hover:text-[#C9A84C] transition-colors">
+                  <span className="text-[#044E37] text-sm font-bold uppercase tracking-wider hover-gold-on-light transition-colors">
                     Read More →
                   </span>
                 </div>

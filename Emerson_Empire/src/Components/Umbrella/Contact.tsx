@@ -134,7 +134,7 @@ const Contact: React.FC = () => {
                       <Icon size={18} className="text-[#4B1E91]" />
                     </div>
                     <div>
-                      <p className="mb-0.5 font-mono text-[#C9A84C] text-[16px] uppercase tracking-widest">{ch.label}</p>
+                      <p className="mb-0.5 font-mono text-gold-on-light text-[16px] uppercase tracking-widest">{ch.label}</p>
                       {ch.href ? (
                         <a href={ch.href} className="font-bold text-[#1C1336] text-[13px] hover:text-[#4B1E91] transition-colors">
                           {ch.value}
@@ -180,7 +180,7 @@ const Contact: React.FC = () => {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-neutral-500 hover:border-[#C9A84C] font-mono text-neutral-700 hover:text-[#C9A84C] text-xs uppercase tracking-wider transition-colors duration-200"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-neutral-500 hover:border-[#C9A84C] font-mono text-neutral-700 hover-gold-on-light text-xs uppercase tracking-wider transition-colors duration-200"
                   >
                     {label}
                     <ExternalLink size={10} />
@@ -218,11 +218,13 @@ const Contact: React.FC = () => {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="gap-5 grid sm:grid-cols-2">
                     <div>
-                      <label className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
+                      <label htmlFor="contact-name" className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
                         Full Name <span className="text-red-400">*</span>
                       </label>
                       <input
+                        id="contact-name"
                         type="text"
+                        autoComplete="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Your full name"
@@ -231,11 +233,13 @@ const Contact: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
+                      <label htmlFor="contact-email" className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
                         Email Address <span className="text-red-400">*</span>
                       </label>
                       <input
+                        id="contact-email"
                         type="email"
+                        autoComplete="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="your@email.com"
@@ -246,10 +250,11 @@ const Contact: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
+                    <label htmlFor="contact-subject" className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
                       Subject
                     </label>
                     <input
+                      id="contact-subject"
                       type="text"
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)}
@@ -259,10 +264,11 @@ const Contact: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
+                    <label htmlFor="contact-message" className="block mb-1.5 font-mono text-[#4B1E91] text-[14px] uppercase tracking-wider">
                       Message <span className="text-red-400">*</span>
                     </label>
                     <textarea
+                      id="contact-message"
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Tell us how we can help you..."
@@ -288,7 +294,7 @@ const Contact: React.FC = () => {
 
                   <p className="font-mono text-neutral-400 text-xs text-center">
                     Or email us at{" "}
-                    <a href="mailto:webdev@theemersonempire.info" className="text-[#C9A84C] hover:underline">
+                    <a href="mailto:webdev@theemersonempire.info" className="text-gold-on-light hover:underline">
                       webdev@theemersonempire.info
                     </a>
                   </p>

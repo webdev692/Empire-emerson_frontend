@@ -28,24 +28,30 @@ const Onboarding: React.FC = () => {
   const [saving, setSaving]       = useState<number | null>(null);
   const [error, setError]         = useState("");
 
-  useEffect(() => { fetchProgress(); }, []);
+  useEffect(() => {
+    let active = true;
 
-  async function fetchProgress() {
-    setLoading(true);
-    try {
-      const { data } = await api.get<OnboardingStep[]>("/api/intern/onboarding");
-      setSteps(data);
-      setAllDone(data.every((s) => s.status === "completed"));
-    } catch (err) {
-      const e = err as AxiosError<{ message: string }>;
-      // If endpoint not yet built, fall back to default steps silently
-      if ((e.response?.status ?? 0) !== 404) {
-        setError(e.response?.data?.message ?? "");
+    async function loadProgress() {
+      try {
+        const { data } = await api.get<OnboardingStep[]>("/api/intern/onboarding");
+        if (!active) return;
+        setSteps(data);
+        setAllDone(data.every((s) => s.status === "completed"));
+      } catch (err) {
+        if (!active) return;
+        const requestError = err as AxiosError<{ message: string }>;
+        // If endpoint not yet built, fall back to default steps silently
+        if ((requestError.response?.status ?? 0) !== 404) {
+          setError(requestError.response?.data?.message ?? "");
+        }
+      } finally {
+        if (active) setLoading(false);
       }
-    } finally {
-      setLoading(false);
     }
-  }
+
+    void loadProgress();
+    return () => { active = false; };
+  }, []);
 
   async function handleCompleteStep(id: number) {
     setSaving(id);

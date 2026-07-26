@@ -1,6 +1,6 @@
 import financialImage from '../../assets/Finacial.png'
 import { ArrowRight, BookOpen, DollarSign, Home, Users } from 'lucide-react'
-import { openRequestForm } from '../Umbrella/RequestFormModal'
+import { openRequestForm } from '../Umbrella/RequestFormEvents'
 
 const featureItems = [
   {
@@ -57,7 +57,7 @@ export default function MissionSection() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[20px]">
+          <div className="overflow-hidden rounded-2xl">
             <img
               src={financialImage}
               alt="Financial advisors collaborating with clients"

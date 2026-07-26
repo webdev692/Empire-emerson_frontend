@@ -45,7 +45,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles,
       admin:   user.is_mentor ? "/mentor" : "/admin",
       company: "/company",
       intern:  "/dashboard",
-      school:  "/dashboard",
+      school:  "/school",
     };
     return <Navigate to={HOME[user.role] ?? "/dashboard"} replace />;
   }

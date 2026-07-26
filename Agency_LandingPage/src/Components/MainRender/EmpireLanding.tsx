@@ -1,11 +1,11 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
 import Hero from "../Umbrella/Hero";
 import MissionSection from "./MissionSection";
 import ValuesSection from "./ValuesSection";
 import ServicesSection from "./ServicesSection";
 import SupportSection from "./SupportSection";
 import CTASection from "./CTASection";
+import GetInTouch from "./GetInTouch";
 
 const HomePage: React.FC = () => {
   return (
@@ -16,20 +16,6 @@ const HomePage: React.FC = () => {
       >
         Skip to main content
       </a>
-      <Helmet>
-        <title>The Emerson Agency</title>
-        <meta
-          name="description"
-          content="The Emerson Agency provides strategic business support, tax education, and financial clarity for families and entrepreneurs."
-        />
-        <meta property="og:title" content="The Emerson Agency | Landing Page" />
-        <meta
-          property="og:description"
-          content="Ethical guidance, practical services, and strategic support for families, learners, and business owners."
-        />
-        <meta property="og:type" content="website" />
-      </Helmet>
-
       <main id="main-content">
         <Hero />
         <MissionSection />
@@ -37,6 +23,7 @@ const HomePage: React.FC = () => {
         <ServicesSection />
         <SupportSection />
         <CTASection />
+        <GetInTouch />
       </main>
     </div>
   );

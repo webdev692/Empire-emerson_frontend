@@ -1,5 +1,4 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
 import Hero from "../Umbrella/Hero";
 import ThreeCompaniesSection from "./ThreeCompaniesSection";
 import ResourceHub from "./ResourceHub";
@@ -17,25 +16,6 @@ const HomePage: React.FC = () => {
       >
         Skip to main content
       </a>
-      <Helmet>
-        <title>
-          The Emerson Empire | Agency &amp; Professional Development
-        </title>
-        <meta
-          name="description"
-          content="The Emerson Empire — building pathways for professional growth, business development, financial education, and global opportunity."
-        />
-        <meta
-          property="og:title"
-          content="The Emerson Empire | Agency & Professional Development"
-        />
-        <meta
-          property="og:description"
-          content="Building pathways for professional growth, business development, financial education, and global opportunity."
-        />
-        <meta property="og:type" content="website" />
-      </Helmet>
-
       <main id="main-content">
         <Hero />
         <ThreeCompaniesSection />

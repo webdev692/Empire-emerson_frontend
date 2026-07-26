@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react'
-import { openRequestForm } from '../Umbrella/RequestFormModal'
+import { openRequestForm } from '../Umbrella/RequestFormEvents'
 
 export default function CTASection() {
   return (

@@ -7,7 +7,7 @@ export default function ValuesSection() {
         <img
           src={valuesCard}
           alt="Our Values — The Emerson Agency values integrity, clarity, professionalism, empowerment, trust, and results-driven service."
-          className="w-full rounded-[24px] shadow-[0_30px_80px_rgba(15,23,51,0.18)]"
+          className="w-full rounded-2xl shadow-[0_30px_80px_rgba(15,23,51,0.18)]"
         />
       </div>
     </section>

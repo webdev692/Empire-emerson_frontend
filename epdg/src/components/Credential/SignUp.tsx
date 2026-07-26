@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_ORIGIN } from "../../lib/apiConfig";
 
 type UserType = "Intern" | "Company";
 
@@ -32,10 +33,9 @@ const SignUp: React.FC = () => {
       return;
     }
 
-    const apiUrl = import.meta.env.VITE_API_URL;
+    const apiUrl = API_ORIGIN;
     if (!apiUrl) {
-      // No backend configured yet — show success stub
-      setSuccess(true);
+      setError("Account registration is unavailable because the backend is not configured.");
       return;
     }
 
@@ -46,7 +46,7 @@ const SignUp: React.FC = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userType, userRole: userType, ...form }),
       });
-      if (!res.ok) throw new Error(`${res.status}`);
+      if (!res.ok) throw new Error(`Signup request failed with status ${res.status}`);
       setSuccess(true);
     } catch (err) {
       setError("Signup failed. Please try again.");

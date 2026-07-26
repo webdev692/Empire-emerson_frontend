@@ -117,7 +117,7 @@ const Navbar: React.FC = () => {
         <NavLink
           to="/contact"
           className="hidden md:inline-flex items-center bg-[#C9A84C] hover:bg-[#E8C97A] px-5 py-2 rounded-sm font-bold text-[#12022A] text-xs uppercase tracking-[0.2em] transition-colors duration-200 shrink-0"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
+          style={{ fontFamily: "var(--font-label)" }}
         >
           Contact Us
         </NavLink>
@@ -190,7 +190,7 @@ const Navbar: React.FC = () => {
             to="/contact"
             onClick={() => setMenuOpen(false)}
             className="inline-flex justify-center bg-[#C9A84C] hover:bg-[#E8C97A] mt-4 px-5 py-3 rounded-sm font-bold text-[#12022A] text-xs uppercase tracking-[0.2em] transition-colors duration-200"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
+            style={{ fontFamily: "var(--font-label)" }}
           >
             Contact Us
           </NavLink>
