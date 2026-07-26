@@ -12,13 +12,29 @@ if (!app) {
 
 const appRoot = join(repositoryRoot, app);
 const read = (relativePath) => readFileSync(join(appRoot, relativePath), "utf8");
+const sourceIndex = read("index.html");
 
 assert.ok(existsSync(join(appRoot, "dist", "index.html")), `${app} build output is missing dist/index.html`);
 assert.match(read("dist/index.html"), /<script\b[^>]*\bsrc=/i, `${app} build output has no JavaScript entry`);
+assert.equal(
+  (sourceIndex.match(/<link\s+rel=["']canonical["']/gi) ?? []).length,
+  1,
+  `${app} must declare exactly one static canonical URL`,
+);
+assert.match(
+  sourceIndex,
+  /<meta\s+name=["']emerson-release["']\s+content=["']2026-07-25-digital-infrastructure-sprint-r3["']/i,
+  `${app} is missing the exact-head release marker`,
+);
 
 switch (app) {
   case "Emerson_Empire": {
     const appSource = read("src/App.tsx");
+    assert.doesNotMatch(
+      read("src/Components/MainRender/EmpireLanding.tsx"),
+      /<link\s+rel=["']canonical["']/i,
+      "The Empire runtime metadata duplicates the static canonical URL",
+    );
     assert.doesNotMatch(
       appSource,
       /<Route\s+path=["']\/register["']\s+element=\{<Register\s*\/?>\}/,
@@ -30,6 +46,11 @@ switch (app) {
     break;
   }
   case "Agency_LandingPage": {
+    assert.doesNotMatch(
+      read("src/Components/MainRender/EmpireLanding.tsx"),
+      /<link\s+rel=["']canonical["']/i,
+      "The Agency runtime metadata duplicates the static canonical URL",
+    );
     assert.match(
       read("src/Components/MainRender/EmpireLanding.tsx"),
       /<GetInTouch\s*\/>/,

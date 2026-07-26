@@ -33,7 +33,6 @@ const HomePage: React.FC = () => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://theemerson.netlify.app/" />
-        <link rel="canonical" href="https://theemerson.netlify.app/" />
       </Helmet>
 
       <main id="main-content">
