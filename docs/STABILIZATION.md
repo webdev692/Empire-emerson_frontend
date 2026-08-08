@@ -29,11 +29,14 @@ Edge checks are intentionally separate from browser-app ESLint:
 ```text
 node scripts/verify-edge-mirrors.mjs
 node scripts/scan-credential-patterns.mjs
-node --test scripts/lead-rate-limit-migration.test.mjs scripts/lead-idempotency-migration.test.mjs scripts/database-boundary-migration.test.mjs Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs Emerson_Empire/supabase/functions/send-consultation-email/notification.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/notification.test.mjs
+node --test scripts/lead-rate-limit-migration.test.mjs scripts/lead-idempotency-migration.test.mjs scripts/database-boundary-migration.test.mjs scripts/classes-contract.test.mjs scripts/modal-accessibility.test.mjs Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs Emerson_Empire/supabase/functions/send-consultation-email/notification.test.mjs Emerson_Empire/supabase/functions/send-consultation-email/request-security.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/notification.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/request-security.test.mjs
 deno lint Emerson_Empire/supabase/functions/send-consultation-email Agency_LandingPage/supabase/functions/send-consultation-email
 deno check --frozen --config Emerson_Empire/supabase/functions/send-consultation-email/deno.json --lock Emerson_Empire/supabase/functions/send-consultation-email/deno.lock Emerson_Empire/supabase/functions/send-consultation-email/index.ts
 deno check --frozen --config Agency_LandingPage/supabase/functions/send-consultation-email/deno.json --lock Agency_LandingPage/supabase/functions/send-consultation-email/deno.lock Agency_LandingPage/supabase/functions/send-consultation-email/index.ts
 ```
+
+The Node test command covers 11 files and is expected to report 31 passing
+tests for the current source tree.
 
 The mirror check compares the complete two-directory file inventory and then compares every shared file byte-for-byte. Its tree digest is evidence for the checked source state, not a deployed-function digest.
 
