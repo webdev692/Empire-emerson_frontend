@@ -2,6 +2,13 @@
 
 This repository contains the public frontend applications for The Emerson Empire ecosystem.
 
+Frontend PR #27 was merged to `main` on July 26, 2026 (`bc93411`, reviewed
+release head `11cc79e`). A read-only August 8 audit found that the public
+Netlify identities do not consistently match this source, including a
+cross-site Agency/Empire mismatch. Treat production provenance as unverified
+until the authenticated Netlify mapping and deploy SHAs are checked. See
+[`docs/PLATFORM_AUDIT_2026-08-08.md`](docs/PLATFORM_AUDIT_2026-08-08.md).
+
 ## Deployment Map
 
 | Organization / Site | Local Folder | Netlify Project | Public URL |
@@ -29,9 +36,27 @@ VITE_MOCK_AUTH
 VITE_EMPIRE_URL
 ```
 
-The canonical EPDG backend origin is intentionally unresolved in PR #27 and requires backend confirmation. Registration fails closed when the API configuration is absent or invalid. Production builds must not enable mock authentication.
+The July 26 backend release evidence records a canonical production API and the
+`epdg-backend-core` Railway entrypoint. The current Netlify `VITE_API_URL`
+presence and deployed frontend-to-backend connection still require an
+authenticated provider check. A read-only August 8 probe reached that API but
+received HTTP `503` from `/health` three times, so current readiness diagnosis
+is urgent and dashboard-owned. Registration fails closed when API
+configuration is absent or invalid. Production builds must not enable mock
+authentication, and environment examples remain names-only.
 
 See [`docs/STABILIZATION.md`](docs/STABILIZATION.md) for the pinned local toolchain, names-only environment inventory, deterministic checks, and blocked decisions.
+
+## Deployment Identity Checks
+
+The machine-readable four-site contract is
+[`config/site-identities.json`](config/site-identities.json). After locked
+installs, `node scripts/verify-site-identity.mjs` builds and validates every
+site. `node scripts/verify-site-identity.mjs --remote --report-only` performs an
+optional read-only public drift audit; it never submits forms or changes a
+provider. See
+[`docs/DEPLOYMENT_SOURCE_OF_TRUTH.md`](docs/DEPLOYMENT_SOURCE_OF_TRUTH.md) and
+[`SECURITY.md`](SECURITY.md).
 
 ## Current Stabilization Notes
 

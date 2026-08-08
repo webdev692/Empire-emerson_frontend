@@ -39,4 +39,9 @@
 
 ## Stop conditions
 
-Stop a release step when a required check fails, provider identity is unverified, a migration would destroy data, authorization behavior is unclear, or rollback cannot be stated safely. Migration identity drift, unverified Railway source linkage, absent EPDG landing preview coverage, incomplete browser QA, and unresolved authentication/role mapping are explicit stop gates. Continue independent workstreams.
+Stop a release step when a required check fails, provider identity is
+unverified, a migration would destroy data, authorization behavior is unclear,
+or rollback cannot be stated safely. Current Railway source/health drift,
+Netlify deployment-identity drift, absent exact-head preview coverage,
+incomplete browser QA, and unresolved authentication/role mapping are explicit
+stop gates. Continue independent workstreams.
