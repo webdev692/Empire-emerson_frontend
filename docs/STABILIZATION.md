@@ -1,4 +1,4 @@
-# PR #27 stabilization guide
+# PR #27 stabilization guide (historical, merged July 26, 2026)
 
 This document records the local, non-deploying stabilization work for PR #27. It does not authorize a merge, deployment, production configuration change, Google Form change, live database migration, or secret rotation.
 
@@ -28,11 +28,15 @@ Edge checks are intentionally separate from browser-app ESLint:
 
 ```text
 node scripts/verify-edge-mirrors.mjs
-node --test scripts/lead-rate-limit-migration.test.mjs scripts/lead-idempotency-migration.test.mjs scripts/database-boundary-migration.test.mjs Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs Emerson_Empire/supabase/functions/send-consultation-email/notification.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/notification.test.mjs
+node scripts/scan-credential-patterns.mjs
+node --test scripts/lead-rate-limit-migration.test.mjs scripts/lead-idempotency-migration.test.mjs scripts/database-boundary-migration.test.mjs scripts/classes-contract.test.mjs scripts/modal-accessibility.test.mjs Emerson_Empire/supabase/functions/send-consultation-email/lead-store.test.mjs Emerson_Empire/supabase/functions/send-consultation-email/notification.test.mjs Emerson_Empire/supabase/functions/send-consultation-email/request-security.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/lead-store.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/notification.test.mjs Agency_LandingPage/supabase/functions/send-consultation-email/request-security.test.mjs
 deno lint Emerson_Empire/supabase/functions/send-consultation-email Agency_LandingPage/supabase/functions/send-consultation-email
 deno check --frozen --config Emerson_Empire/supabase/functions/send-consultation-email/deno.json --lock Emerson_Empire/supabase/functions/send-consultation-email/deno.lock Emerson_Empire/supabase/functions/send-consultation-email/index.ts
 deno check --frozen --config Agency_LandingPage/supabase/functions/send-consultation-email/deno.json --lock Agency_LandingPage/supabase/functions/send-consultation-email/deno.lock Agency_LandingPage/supabase/functions/send-consultation-email/index.ts
 ```
+
+The Node test command covers 11 files and is expected to report 31 passing
+tests for the current source tree.
 
 The mirror check compares the complete two-directory file inventory and then compares every shared file byte-for-byte. Its tree digest is evidence for the checked source state, not a deployed-function digest.
 
@@ -51,11 +55,19 @@ Values belong only in the appropriate local or hosted environment. Never place a
 - `VITE_MOCK_AUTH`
 - `VITE_EMPIRE_URL`
 
-Mock mode must be disabled in any production build. The canonical API origin remains a blocked backend decision; this PR must not change the production value.
+Mock mode must be disabled in any production build. The July 26 release evidence
+records the canonical API origin; this repository work must not change the
+production provider value.
 
-The platform accepts `VITE_API_URL` only when it is a credential-free HTTP(S) origin. Missing or invalid configuration causes API requests and all active registration forms to fail closed; no fallback host is embedded in the client.
+The platform accepts `VITE_API_URL` only when it is a credential-free HTTP(S)
+origin. Missing or invalid configuration causes API requests and all active
+registration forms to fail closed; no fallback host is embedded in the client.
+The current Netlify variable presence and deployed frontend bundle still
+require an authenticated August provider check.
 
-`epdg/netlify.toml` still contains a legacy production build Node pin that does not match the repository toolchain. It remains unchanged because altering production environment configuration requires deployment-owner confirmation.
+The tracked `epdg/netlify.toml` matches the repository Node/npm toolchain. Any
+ignored app-local `.netlify/` snapshot is machine-generated local state, may be
+stale, and must not be committed or treated as production evidence.
 
 ### Supabase Edge Function
 
@@ -85,7 +97,7 @@ The notification recipient and approved origin list require founder/backend conf
 
 ## Explicitly blocked decisions
 
-- Canonical EPDG backend origin
+- Current Netlify `VITE_API_URL` presence and deploy provenance
 - Production environment-variable changes
 - Deployment build-environment alignment
 - General inquiry recipient and intake workflow

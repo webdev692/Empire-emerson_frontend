@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "releaseMarker": "2026-07-25-digital-infrastructure-sprint-r5",
+  "sites": [
+    {
+      "id": "emerson-empire",
+      "displayName": "The Emerson Empire",
+      "sourceDirectory": "Emerson_Empire",
+      "outputDirectory": "dist",
+      "netlifyProject": "theemerson",
+      "netlifyConfigPath": "Emerson_Empire/netlify.toml",
+      "productionUrl": "https://theemerson.netlify.app/",
+      "title": "The Emerson Empire | Community, Financial & Career Pathways",
+      "canonicalUrl": "https://theemerson.netlify.app/",
+      "openGraphTitle": "The Emerson Empire | Community, Financial & Career Pathways",
+      "openGraphUrl": "https://theemerson.netlify.app/",
+      "openGraphSiteName": "The Emerson Empire"
+    },
+    {
+      "id": "emerson-agency",
+      "displayName": "The Emerson Agency LLC",
+      "sourceDirectory": "Agency_LandingPage",
+      "outputDirectory": "dist",
+      "netlifyProject": "emersonagency",
+      "netlifyConfigPath": "Agency_LandingPage/netlify.toml",
+      "productionUrl": "https://emersonagency.netlify.app/",
+      "title": "The Emerson Agency LLC | Financial Services & Education",
+      "canonicalUrl": "https://emersonagency.netlify.app/",
+      "openGraphTitle": "The Emerson Agency LLC | Financial Services & Education",
+      "openGraphUrl": "https://emersonagency.netlify.app/",
+      "openGraphSiteName": "The Emerson Agency LLC"
+    },
+    {
+      "id": "epdg-landing",
+      "displayName": "Emerson Professional Development Group",
+      "sourceDirectory": "EPDG-Landing-Page",
+      "outputDirectory": "dist",
+      "netlifyProject": "emersonprofessionaldevelopment",
+      "netlifyConfigPath": "EPDG-Landing-Page/netlify.toml",
+      "productionUrl": "https://emersonprofessionaldevelopment.netlify.app/",
+      "title": "Emerson Professional Development Group | Workforce Development",
+      "canonicalUrl": "https://emersonprofessionaldevelopment.netlify.app/",
+      "openGraphTitle": "Emerson Professional Development Group | Workforce Development",
+      "openGraphUrl": "https://emersonprofessionaldevelopment.netlify.app/",
+      "openGraphSiteName": "Emerson Professional Development Group"
+    },
+    {
+      "id": "epdg-platform",
+      "displayName": "Emerson Professional",
+      "sourceDirectory": "epdg",
+      "outputDirectory": "dist",
+      "netlifyProject": "epdg",
+      "netlifyConfigPath": "epdg/netlify.toml",
+      "productionUrl": "https://epdg.netlify.app/",
+      "title": "Emerson Professional | EPDG Platform",
+      "canonicalUrl": "https://epdg.netlify.app/",
+      "openGraphTitle": "Emerson Professional | EPDG Platform",
+      "openGraphUrl": "https://epdg.netlify.app/",
+      "openGraphSiteName": "Emerson Professional"
+    }
+  ]
+}
