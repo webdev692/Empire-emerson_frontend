@@ -5,6 +5,7 @@ import EducationHero from './EducationMain/EducationHero';
 import EducationOverview from './EducationMain/EducationOverview';
 import ResourceGrid from './EducationMain/ResourceGrid';
 import HelpBanner from './EducationMain/HelpBanner';
+import EducationConsentBanner from './EducationMain/EducationConsentBanner';
 export default function EducationPage() {
   return (
     <div>
@@ -13,6 +14,7 @@ export default function EducationPage() {
       <EducationOverview />
       <ResourceGrid />
       <HelpBanner />
+      <EducationConsentBanner />
       <EducationFooter />
       
     </div>
