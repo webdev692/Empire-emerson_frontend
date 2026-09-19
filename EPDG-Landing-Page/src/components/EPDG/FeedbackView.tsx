@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import type { FeedbackEntry, RevisionStatus, ViewState } from "../../Types/feedback";
-import { mockFeedbackEntries, mockEmptyFeedbackEntry } from "././mockFeedbackData";
+import { mockFeedbackEntries, mockEmptyFeedbackEntry, Fixtures_Week_3 } from "./mockFeedbackData.ts";
 
 /**
  * EPDG feedback & revision view.
@@ -17,14 +17,14 @@ import { mockFeedbackEntries, mockEmptyFeedbackEntry } from "././mockFeedbackDat
 
 const STATUS_LABEL: Record<RevisionStatus, string> = {
   pending: "Pending review",
-  returned: "Returned — needs changes",
+  returned: "Returned for changes",
   completed: "Completed",
 };
 
 const STATUS_STYLE: Record<RevisionStatus, string> = {
-  pending: "bg-amber-50 text-amber-800 border-amber-200",
-  returned: "bg-rose-50 text-rose-800 border-rose-200",
-  completed: "bg-emerald-50 text-emerald-800 border-emerald-200",
+  pending: "bg-orange-50 text-orange-800 border-orange-200",
+  returned: "bg-red-50 text-red-800 border-red-200",
+  completed: "bg-green-50 text-green-800 border-green-200",
 };
 
 function StatusBadge({ status }: { status: RevisionStatus }) {
@@ -118,7 +118,9 @@ function useFeedbackData(assignmentId: string | undefined): ViewState {
     if (assignmentId === "empty-feedback-demo") {
       return { kind: "ready", entries: [mockEmptyFeedbackEntry] };
     }
-    const entries = mockFeedbackEntries.filter((e) => e.assignmentId === assignmentId);
+    const entries = [...mockFeedbackEntries, ...Fixtures_Week_3].filter(
+      (e) => e.assignmentId === assignmentId
+    );
     return entries.length > 0 ? { kind: "ready", entries } : { kind: "empty" };
   }, [assignmentId]);
 }
@@ -129,7 +131,7 @@ export default function FeedbackView() {
   const { assignmentId } = useParams<{ assignmentId: string }>();
   const [filter, setFilter] = useState<RevisionStatus | "all">("all");
 
-  const state = useFeedbackData(assignmentId ?? "ASG-118");
+  const state = useFeedbackData(assignmentId);
 
   return (
     <section aria-labelledby="feedback-view-heading" className="mx-auto max-w-2xl p-4">

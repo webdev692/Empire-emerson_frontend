@@ -16,7 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/classes" element={<ClassesPage />} />
-            <Route path="/assignments/:assignmentId/feedback" element={<FeedbackView />} />
+            <Route path="/assignments/:assignmentId?/feedback" element={<FeedbackView />} />
           </Routes>
         </div>
       </FormModalProvider>
