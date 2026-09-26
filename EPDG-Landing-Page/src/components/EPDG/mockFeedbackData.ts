@@ -1,4 +1,4 @@
-import type { FeedbackEntry } from "../../Types/feedback";
+import type { FeedbackEntry } from "../../Types/feedback.ts";
 
 // Fictional mock data only — for demonstrating states, not real
 // participant data. Do not connect this file to a live data source.
@@ -54,9 +54,7 @@ export const mockEmptyFeedbackEntry: FeedbackEntry = {
   updatedAt: "2026-09-08T11:00:00Z",
 };
 
-// WEEK 3 — SYNTHETIC v0.1 FIXTURES (NOT Tim's real fixtures)
-//The following link is the Week 3 Form with all the explanation of the code and how to see the seven Fixtures 
-//https://docs.google.com/document/d/1zxYNB4wqgsn7-02lsS8R9BtC1pPR6vdY3lngExFICoE/edit?usp=drive_link
+// Fixtures that i keep for week 3 that cover  Tim's Fixtures
 
 export const Fixtures_Week_3: FeedbackEntry[] = [
   {
@@ -90,5 +88,60 @@ export const Fixtures_Week_3: FeedbackEntry[] = [
     reviewer: { reviewerName: "Test Reviewer", reviewerRole: "Peer Reviewer" },
     comment: "",
     updatedAt: "2026-09-14T09:15:00Z",
+  },
+];
+
+/* For the week 4  two scenarios adapted from Tim's real fixtures
+// (learnerFlow.ts). 
+// Tim built these against a different, already-shipped component (Feedback.tsx) by
+// mistake; only the scenario design is reused here, not his data.
+/*/
+
+export const Fixtures_Week_4_FromTim: FeedbackEntry[] = [
+  {
+    // Adapted from Tim's `returnedRound1` — first round of a
+    // multi-round exchange on the same submission.
+    id: "f5", submissionId: "SYN-F5", assignmentId: "F5-multiround",
+    assignmentTitle: "Synthetic Fixture 5 — multi-round", revisionStep: 1, status: "returned",
+    reviewer: { reviewerName: "Test Reviewer", reviewerRole: "Peer Reviewer" },
+    comment: "Add the permission-denied row before resubmitting.",
+    updatedAt: "2026-09-06T15:30:00Z",
+  },
+  {
+    // Adapted from Tim's `returnedRound2` — second round, same
+    // submission/assignment, later revisionStep. This is how "multi
+    // round" is expressed here: several entries sharing an
+    // assignmentId, distinguished by revisionStep.
+    id: "f6", submissionId: "SYN-F5", assignmentId: "F5-multiround",
+    assignmentTitle: "Synthetic Fixture 5 — multi-round", revisionStep: 2, status: "returned",
+    reviewer: { reviewerName: "Test Reviewer", reviewerRole: "Peer Reviewer" },
+    comment: "Closer. The empty state still needs a contact route.",
+    updatedAt: "2026-09-07T10:15:00Z",
+  },
+  {
+    // Adapted from Tim's `orphanedReviewer` — reviewerDisplayName is
+    // null because the reviewer left the program. 
+    id: "f7", submissionId: "SYN-F3", assignmentId: "F3-completed",
+    assignmentTitle: "Synthetic Fixture 3", revisionStep: 0, status: "completed",
+    reviewer: { reviewerName: null, reviewerRole: "Peer Reviewer" },
+    comment: "Earlier note from a reviewer no longer in the program.",
+    updatedAt: "2026-09-02T08:00:00Z",
+  },
+];
+
+/*
+// One real fixture for the "recovery" state category.
+// assignmentId "error-recover" is special-cased in
+// feedbackViewState.ts to fail on attempt 1 and succeed on attempt
+// 2+.
+/*/
+
+export const Fixtures_Week_4_States: FeedbackEntry[] = [
+  {
+    id: "f8", submissionId: "SYN-F8", assignmentId: "error-recover",
+    assignmentTitle: "Synthetic Fixture 8 — recovers after retry", revisionStep: 1, status: "completed",
+    reviewer: { reviewerName: "Test Reviewer", reviewerRole: "Peer Reviewer" },
+    comment: "Loaded successfully after a retry.",
+    updatedAt: "2026-09-20T09:00:00Z",
   },
 ];

@@ -1,18 +1,48 @@
-import { useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
-import type { FeedbackEntry, RevisionStatus, ViewState } from "../../Types/feedback";
-import { mockFeedbackEntries, mockEmptyFeedbackEntry, Fixtures_Week_3 } from "./mockFeedbackData.ts";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import type { FeedbackEntry, RevisionStatus, ViewState } from "../../Types/feedback.ts";
+import { initialViewState, fetchFeedbackViewState } from "./feedbackViewState.ts";
 
 /**
- * EPDG feedback & revision view.
- *
- * Shows learners what was reviewed and what to do next: reviewer,
+ * Creation of Buttons to jump directly to each fixture's URL. In week 3 User need to open the URL of each fixture manually
+ */
+const FIXTURE_LINKS: { label: string; assignmentId: string | null }[] = [
+  { label: "F1 · Pending", assignmentId: "F1-pending" },
+  { label: "F2 · Returned", assignmentId: "F2-returned" },
+  { label: "F3 · Completed", assignmentId: "F3-completed" },
+  { label: "F4 · Empty feedback", assignmentId: "F4-empty-feedback" },
+  { label: "F5 · No match (empty)", assignmentId: "F5-no-match" },
+  { label: "F5b · Multi-round", assignmentId: "F5-multiround" },
+  { label: "F6 · No id given", assignmentId: null },
+  { label: "F7 · No access", assignmentId: "no-access" },
+  { label: "Error (permanent)", assignmentId: "error-permanent" },
+  { label: "Error (recovers on retry)", assignmentId: "error-recover" },
+];
+
+function FixtureQuickNav() {
+  return (
+    <nav
+      aria-label="Fixture quick navigation (QA only)"
+      className="mb-4 flex flex-wrap gap-2 rounded-lg border border-dashed border-slate-300 bg-slate-50 p-3"
+    >
+      {FIXTURE_LINKS.map(({ label, assignmentId }) => (
+        <Link
+          key={label}
+          to={assignmentId ? `/assignments/${assignmentId}/feedback` : "/assignments/feedback"}
+          className="rounded-md border border-slate-300 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-400"
+        >
+          {label}
+        </Link>
+      ))}
+    </nav>
+  );
+}
+
+/**
+ *  * Shows learners what was reviewed and what to do next: reviewer,
  * revision step, and status (pending / returned / completed).
  *
- * Data here is fictional/mock (see mockFeedbackData.ts). Real wiring
- * to Joshan's assignment source and Zuhair's submission IDs happens
- * where `useFeedbackData` is swapped for a real fetch — left as a
- * clearly marked seam below.
+ * All the data here is fictional
  */
 
 const STATUS_LABEL: Record<RevisionStatus, string> = {
@@ -53,7 +83,10 @@ function FeedbackCard({ entry }: { entry: FeedbackEntry }) {
       </div>
 
       <p className="mt-2 text-sm text-slate-600">
-        Reviewer: <span className="font-medium text-slate-800">{entry.reviewer.reviewerName}</span>{" "}
+        Reviewer:{" "}
+        <span className="font-medium text-slate-800">
+          {entry.reviewer.reviewerName ?? "Former reviewer"}
+        </span>{" "}
         ({entry.reviewer.reviewerRole})
       </p>
 
@@ -95,34 +128,44 @@ function EmptyState() {
   );
 }
 
+function ErrorState({ message, onRetry }: { message: string; onRetry: () => void }) {
+  return (
+    <div role="alert" className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900">
+      <p className="font-semibold">Something went wrong</p>
+      <p className="mt-1 text-sm">{message}</p>
+      <button
+        type="button"
+        onClick={onRetry}
+        className="mt-3 rounded-md border border-amber-400 bg-white px-3 py-1.5 text-sm font-medium text-amber-900 hover:bg-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
+      >
+        Retry
+      </button>
+    </div>
+  );
+}
+
 /**
- * Mock data hook — this is the seam to replace with a real fetch
- * against Joshan's assignment source / Zuhair's submission IDs.
- * `assignmentId` is read from the route so this view can be linked
- * per-assignment; passing an unknown id simulates an access error.
+ * This is the seam to replace with a real fetch
+ * against Joshan's assignment source / Zuhair's submission IDs 
  */
-function useFeedbackData(assignmentId: string | undefined): ViewState {
-  return useMemo(() => {
-    if (!assignmentId) {
-      return { kind: "access-error", message: "No assignment was specified." };
-    }
-    if (assignmentId === "no-access") {
-      return {
-        kind: "access-error",
-        message: "You don't have access to this assignment's feedback. Ask your lead to check your permissions.",
-      };
-    }
-    if (assignmentId === "empty-demo") {
-      return { kind: "ready", entries: [] };
-    }
-    if (assignmentId === "empty-feedback-demo") {
-      return { kind: "ready", entries: [mockEmptyFeedbackEntry] };
-    }
-    const entries = [...mockFeedbackEntries, ...Fixtures_Week_3].filter(
-      (e) => e.assignmentId === assignmentId
-    );
-    return entries.length > 0 ? { kind: "ready", entries } : { kind: "empty" };
-  }, [assignmentId]);
+function useFeedbackData(assignmentId: string | undefined) {
+  const [state, setState] = useState<ViewState>(initialViewState());
+  const [attempt, setAttempt] = useState(1);
+
+  useEffect(() => {
+    let cancelled = false;
+    setState(initialViewState());
+    fetchFeedbackViewState(assignmentId, undefined, { attempt }).then((result) => {
+      if (!cancelled) setState(result);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [assignmentId, attempt]);
+
+  const retry = () => setAttempt((a) => a + 1);
+
+  return { state, retry };
 }
 
 export default function FeedbackView() {
@@ -131,10 +174,11 @@ export default function FeedbackView() {
   const { assignmentId } = useParams<{ assignmentId: string }>();
   const [filter, setFilter] = useState<RevisionStatus | "all">("all");
 
-  const state = useFeedbackData(assignmentId);
+  const { state, retry } = useFeedbackData(assignmentId);
 
   return (
     <section aria-labelledby="feedback-view-heading" className="mx-auto max-w-2xl p-4">
+      <FixtureQuickNav />
       <h2 id="feedback-view-heading" className="text-xl font-semibold text-slate-900">
         Feedback and revision
       </h2>
@@ -170,6 +214,8 @@ export default function FeedbackView() {
         )}
 
         {state.kind === "access-error" && <AccessErrorState message={state.message} />}
+
+        {state.kind === "error" && <ErrorState message={state.message} onRetry={retry} />}
 
         {state.kind === "empty" && <EmptyState />}
 
