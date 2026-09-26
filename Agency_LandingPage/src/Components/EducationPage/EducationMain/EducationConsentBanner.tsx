@@ -6,24 +6,37 @@ export default function EducationConsentBanner() {
   const [consent, setConsent] = useState<ConsentState>('not_provided');
   const [isVisible, setIsVisible] = useState<boolean>(true);
 
-  // Load saved state on mount
+  // Load saved state on mount with safety check
   useEffect(() => {
-    const savedConsent = localStorage.getItem('tea_education_consent') as ConsentState;
-    if (savedConsent) {
-      setConsent(savedConsent);
-      console.log(`[Consent System] Loaded saved state from localStorage: ${savedConsent}`);
-    } else {
-      console.log('[Consent System] Initialized state: not_provided');
+    try {
+      const savedConsent = localStorage.getItem('tea_education_consent') as ConsentState;
+      if (savedConsent) {
+        setConsent(savedConsent);
+        console.log(`[Consent System] Loaded saved state from localStorage: ${savedConsent}`);
+      } else {
+        console.log('[Consent System] Initialized state: not_provided');
+      }
+    } catch (error) {
+      console.warn('[Consent System] Storage read blocked; using default state.', error);
     }
   }, []);
 
-  // Handler for state transitions matching David's backend system
+  // Handler for state transitions with storage safety & custom event dispatch
   const handleTransition = (nextState: ConsentState, actionName: string) => {
     console.log(
       `[Consent Transition] Action: "${actionName}" | State changed from "${consent}" -> "${nextState}"`
     );
     setConsent(nextState);
-    localStorage.setItem('tea_education_consent', nextState);
+
+    try {
+      localStorage.setItem('tea_education_consent', nextState);
+    } catch (error) {
+      console.warn('[Consent System] Storage write failed; state updated in memory.', error);
+    }
+
+    window.dispatchEvent(
+      new CustomEvent('tea_consent_changed', { detail: nextState })
+    );
   };
 
   if (!isVisible) return null;
@@ -60,9 +73,8 @@ export default function EducationConsentBanner() {
         [unresolved copy text - pending legal review]
       </p>
 
-      {/* Action Buttons with responsive flex layout */}
+      {/* Action Buttons */}
       <div className="flex flex-col xs:flex-row sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
-        {/* State 1: not_provided */}
         {consent === 'not_provided' && (
           <button
             onClick={() => handleTransition('pending', 'request_consent')}
@@ -72,7 +84,6 @@ export default function EducationConsentBanner() {
           </button>
         )}
 
-        {/* State 2: pending */}
         {consent === 'pending' && (
           <>
             <button
@@ -90,7 +101,6 @@ export default function EducationConsentBanner() {
           </>
         )}
 
-        {/* State 3: granted */}
         {consent === 'granted' && (
           <button
             onClick={() => handleTransition('withdrawn', 'withdraw_consent')}
@@ -100,7 +110,6 @@ export default function EducationConsentBanner() {
           </button>
         )}
 
-        {/* State 4: withdrawn */}
         {consent === 'withdrawn' && (
           <button
             onClick={() => handleTransition('granted', 'reconfirm_consent')}
