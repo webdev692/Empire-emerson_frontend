@@ -6,7 +6,7 @@ This inventory records names and purposes only. A listed name does not prove tha
 
 | Name | Scope | Purpose |
 |---|---|---|
-| `VITE_API_URL` | EPDG platform | Required backend API origin; canonical production choice remains blocked |
+| `VITE_API_URL` | EPDG platform | Required backend API origin; July 26 release evidence records a canonical origin, while current Netlify configuration remains an authenticated provider check |
 | `VITE_MOCK_AUTH` | EPDG local development only | Explicit development fixture/auth opt-in |
 | `VITE_EMPIRE_URL` | EPDG platform | Public umbrella-site link; canonical destination requires founder confirmation |
 | `VITE_SUPABASE_URL` | Emerson and Agency | Public Supabase project URL |
@@ -19,7 +19,12 @@ This inventory records names and purposes only. A listed name does not prove tha
 | `NODE_VERSION` | Pinned build-time Node.js toolchain |
 | `NPM_VERSION` | Pinned build-time npm toolchain |
 
-The EPDG platform's committed Netlify configuration no longer supplies a backend origin or an external `/api` proxy. `VITE_API_URL` must come from a verified provider context; when it is absent or invalid, registration and API access remain fail-closed. This source change did not change any production provider value.
+The EPDG platform's committed Netlify configuration does not supply a backend
+origin or an external `/api` proxy. `VITE_API_URL` must come from the verified
+provider context associated with the July 26 release record; its current
+presence and deployed value were not read during the August 8 audit. When it is
+absent or invalid, registration and API access remain fail-closed. This source
+work did not change any production provider value.
 
 ## Lead-intake Edge Function
 
@@ -76,4 +81,8 @@ The following names are used by non-production test/seed utilities and are not r
 
 Provider configuration changes must record only the variable name, target service/site/context, verification result, and rollback action. Never record the old or new value.
 
-The canonical EPDG backend origin, production provider mappings, notification recipient, bot-protection provider, and final allowed-origin set remain unverified. No production environment variable was changed while preparing this inventory.
+The July 26 release record establishes the canonical EPDG API coordinate. The
+current Netlify value presence, production provider mappings, notification
+recipient, bot-protection provider, and final allowed-origin set remain
+dashboard-only checks. No production environment variable was read or changed
+while preparing this inventory.

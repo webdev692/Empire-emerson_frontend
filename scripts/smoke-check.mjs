@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { verifyPublicSurface } from "./public-surface-smoke.mjs";
 
 const repositoryRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const app = process.argv[2];
@@ -192,4 +193,5 @@ switch (app) {
     throw new Error(`Unknown application directory: ${app}`);
 }
 
+verifyPublicSurface(app);
 console.log(`${app}: smoke checks passed`);

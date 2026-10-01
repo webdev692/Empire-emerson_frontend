@@ -1,20 +1,43 @@
 # Production verification
 
-## Current status — 2026-07-25
+## Current status - 2026-08-08
+
+- Frontend PR #27 and backend PR #2 were merged to `main` on July 26, 2026.
+  Recorded merge coordinates are frontend `bc93411` (reviewed release head
+  `11cc79e`) and backend `7bfdb11`.
+- The July 26 final release evidence records Railway production deployment
+  `cbb535d2-bff0-43af-839b-26e53e5a97dc`, the `epdg-backend-core` entrypoint,
+  a canonical production API, and successful database, TLS, health, CORS,
+  authentication-boundary, cleanup, and secret-leak checks. This is historical
+  July evidence, not a fresh August dashboard health check.
+- At approximately 12:07 EDT on August 8, the recorded canonical production
+  API was publicly reachable but returned application-level HTTP `503` for
+  three `/health` requests. The response identified `epdg-backend-core` and
+  status `unavailable` without a cause. Current deploy SHA, source, runtime,
+  logs, database cause, and provider settings remain urgent dashboard checks.
+- Read-only public checks on August 8 found Netlify identity drift. The Agency
+  property served the Empire title and canonical; the Empire and EPDG landing
+  titles also differed from current `main`; and canonical metadata was missing
+  from the two EPDG public responses checked. See
+  `PLATFORM_AUDIT_2026-08-08.md`.
+- This governance branch adds deterministic four-site identity and public
+  surface checks plus post-merge `main` CI. It does not deploy, submit a form,
+  change an environment value, or change a provider dashboard.
+- The database/RLS evidence in `DATABASE_SCHEMA_AND_RLS.md` remains a historical
+  frontend-repository record. The separate Supabase policy-design audit owns
+  current RLS/policy decisions.
+
+## Historical status - 2026-07-25
 
 - Supabase production received the three reviewed forward migrations and active
   `send-consultation-email` Edge Function version 13. The function's five
-  deployed files exactly match the reviewed source, and non-persisting smoke
+  deployed files exactly matched the reviewed source, and non-persisting smoke
   cases passed.
 - No Netlify production promotion, Railway production code deployment, PR
   merge, environment-value change, real lead submission, or notification email
-  occurred in this sprint.
-- PR #27 still requires fresh final-head GitHub and four-site Netlify evidence.
-  PR #2 remains draft because Railway PostgreSQL authentication fails with
-  `28P01`.
-- The current database/RLS evidence is maintained in
-  `DATABASE_SCHEMA_AND_RLS.md`; current platform and release evidence supersedes
-  the historical snapshot retained below.
+  occurred during that July 25 sprint phase.
+- At that time PR #27 still required final-head evidence and PR #2 remained
+  draft. The August status above supersedes those release-candidate statements.
 
 ## Historical July 11–12 snapshot
 

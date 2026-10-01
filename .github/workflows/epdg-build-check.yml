@@ -1,17 +1,46 @@
 name: EPDG Build Check
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "Emerson_Empire/**"
+      - "Agency_LandingPage/**"
+      - "EPDG-Landing-Page/**"
+      - "epdg/**"
+      - "config/**"
+      - "docs/**"
+      - "shared/**"
+      - "scripts/**"
+      - ".github/workflows/**"
+      - ".gitignore"
+      - ".nvmrc"
+      - "AGENTS.md"
+      - "README.md"
+      - "SECURITY.md"
+      - "netlify.toml"
+      - "package.json"
+      - "package-lock.json"
   pull_request:
     paths:
       - "Emerson_Empire/**"
       - "Agency_LandingPage/**"
       - "EPDG-Landing-Page/**"
       - "epdg/**"
+      - "config/**"
+      - "docs/**"
       - "shared/**"
       - "scripts/**"
+      - ".github/workflows/**"
+      - ".gitignore"
       - ".nvmrc"
-      - ".github/workflows/epdg-build-check.yml"
-      - ".github/workflows/deploy-epdg.yml"
+      - "AGENTS.md"
+      - "README.md"
+      - "SECURITY.md"
+      - "netlify.toml"
+      - "package.json"
+      - "package-lock.json"
   workflow_dispatch:
 
 permissions:
@@ -77,6 +106,9 @@ jobs:
       - name: Run targeted smoke checks
         run: npm run smoke
 
+      - name: Verify built site identity
+        run: node ../scripts/verify-site-identity.mjs --site "${{ matrix.directory }}" --no-build
+
   edge-functions:
     name: Supabase Edge Functions
     runs-on: ubuntu-latest
@@ -98,6 +130,12 @@ jobs:
 
       - name: Verify manifest and lockfile parity
         run: node scripts/verify-manifest-lock-parity.mjs
+
+      - name: Verify deployment identity manifest
+        run: node scripts/verify-site-identity.mjs --manifest-only
+
+      - name: Scan tracked files for credential patterns
+        run: node scripts/scan-credential-patterns.mjs
 
       - name: Run Edge and migration regression tests
         run: >-

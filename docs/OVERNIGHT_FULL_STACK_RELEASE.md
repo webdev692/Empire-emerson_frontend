@@ -167,3 +167,44 @@ This entry supersedes older statements above that the prepared Supabase work was
 - Verified that all tracked backend migrations `001`–`033` match the live `public.migrations` ledger by identity and normalized content hash.
 - Enabled RLS and revoked browser access on the four career tables, hardened `update_timestamp()`, and added the catalog-confirmed foreign-key indexes. End-user RLS policies remain intentionally blocked until the custom integer identity model is mapped safely to Supabase Auth UUIDs.
 - Railway remains blocked at PostgreSQL authentication with code `28P01`; no database credential value was read, printed, or changed. The backend PR remains draft and unmerged.
+
+## 2026-08-08 - Frontend deployment identity governance
+
+This entry supersedes the historical release-candidate statements above only
+where the July 26 release record provides later evidence. Historical entries
+remain unchanged as a record of what was known at their time.
+
+- Confirmed frontend PR #27 and backend PR #2 were merged July 26. Recorded
+  coordinates are frontend merge `bc93411`, reviewed frontend head `11cc79e`,
+  backend merge `7bfdb11`, and Railway deployment
+  `cbb535d2-bff0-43af-839b-26e53e5a97dc`.
+- Added a four-site identity manifest and local validator for source directory,
+  output directory, title, canonical URL, Open Graph title/URL/site name, and
+  release marker. All four local built identities passed.
+- The optional read-only remote audit completed with known drift on 4/4 public
+  roots: Empire 6 fields, Agency 6 fields, EPDG landing 6 fields, and EPDG
+  platform 4 fields. `--report-only` returned zero because collection completed;
+  the production identity check did not pass.
+- At approximately 12:07 EDT, three read-only canonical API `/health` requests
+  returned application-level HTTP `503` with service `epdg-backend-core` and
+  status `unavailable`. Public reachability is proven; cause, current deploy
+  SHA/source/runtime/log/database/provider state remain urgent dashboard checks.
+- Added static, non-submitting link/route/fragment/responsive coverage to every
+  app smoke command and repaired the missing EPDG home `#classes` target.
+- Exact toolchain verification used Node `22.23.1`, npm `11.17.0`, and Deno
+  `2.8.1`. Four locked installs, four builds, four lints, 13 application tests,
+  four smoke suites (64 static links), 31 Edge/migration/accessibility tests,
+  manifest/lock parity, 11-file Edge mirror parity, Deno lint over 14 files,
+  and both frozen Deno checks passed.
+- Edge mirror tree SHA-256:
+  `334720b268c41b27a4d8016ce90b319335adffd0b3000733219d01eff89a4775`.
+- A credential-pattern scan found no real credential. The only match was an
+  existing synthetic credential-bearing `api.example.com` URL used to prove
+  API-origin rejection.
+- Added a frontend security policy, deployment/Lovable governance, a dated
+  platform audit, names-only environment reconciliation, provider decision
+  register, and draft evidence comments for Issues #20, #21, and #22.
+- No form was submitted. No deployment, provider setting, environment value,
+  secret, database object, migration, policy, record, issue, or public link was
+  changed. Rollback is a normal revert of these focused commits; provider rollback
+  is unnecessary because no provider mutation occurred.
