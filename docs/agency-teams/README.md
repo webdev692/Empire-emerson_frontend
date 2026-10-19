@@ -13,7 +13,7 @@ This is the source repository for:
 - EPDG member dashboard: Netlify project **epdg**, separate app folder **epdg**. Handle this separately from the public EPDG site; sensitive login/auth work requires special review under [EPDG.md](EPDG.md).
 These Netlify project mappings are observed account/project names plus known repository folders; **verify each site's effective base/publish settings** before a Build run.
 
-Repository-level \`AGENTS.md\` always takes precedence, including privacy restrictions, intern-authorship protection, validation, and release logging. Public site files must not be treated as permission to view private applicant/student/client data.
+Repository-level `AGENTS.md` always takes precedence, including privacy restrictions, intern-authorship protection, validation, and release logging. Public site files must not be treated as permission to view private applicant/student/client data.
 
 ## Role selection
 
