@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "purpose": "Reviewable role references for Netlify Agent Runner task prompts; NOT automatically installed, invoked, or scheduled.",
+  "upstream_repository": "https://github.com/msitarzewski/agency-agents",
+  "upstream_commit": "4e3ac3ca6604c75113f52c695dbddcc7af928b46",
+  "source_note": "These are references to the actual upstream Agency Agents Markdown profiles at a fixed revision; individual Netlify tasks must explicitly load only the relevant profiles. Do not assume Agent Runners automatically spawn independent agents.",
+  "roles": [
+    {
+      "name": "studio-producer",
+      "teams": [
+        "shared"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/project-management/project-management-studio-producer.md"
+    },
+    {
+      "name": "project-shepherd",
+      "teams": [
+        "shared"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/project-management/project-management-project-shepherd.md"
+    },
+    {
+      "name": "brand-guardian",
+      "teams": [
+        "shared"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/design/design-brand-guardian.md"
+    },
+    {
+      "name": "frontend-developer",
+      "teams": [
+        "shared"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/engineering/engineering-frontend-developer.md"
+    },
+    {
+      "name": "code-reviewer",
+      "teams": [
+        "shared"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/engineering/engineering-code-reviewer.md"
+    },
+    {
+      "name": "evidence-collector",
+      "teams": [
+        "shared"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/testing/testing-evidence-collector.md"
+    },
+    {
+      "name": "reality-checker",
+      "teams": [
+        "shared"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/testing/testing-reality-checker.md"
+    },
+    {
+      "name": "research-synthesist",
+      "teams": [
+        "TEE"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/research/research-synthesist.md"
+    },
+    {
+      "name": "content-creator",
+      "teams": [
+        "TEE",
+        "TEA"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/marketing/marketing-content-creator.md"
+    },
+    {
+      "name": "ux-researcher",
+      "teams": [
+        "TEE"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/design/design-ux-researcher.md"
+    },
+    {
+      "name": "search-relevance-engineer",
+      "teams": [
+        "TEE"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/engineering/engineering-search-relevance-engineer.md"
+    },
+    {
+      "name": "ux-architect",
+      "teams": [
+        "TEA"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/design/design-ux-architect.md"
+    },
+    {
+      "name": "proposal-strategist",
+      "teams": [
+        "TEA"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/sales/sales-proposal-strategist.md"
+    },
+    {
+      "name": "product-manager",
+      "teams": [
+        "TEA",
+        "EPDG"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/product/product-manager.md"
+    },
+    {
+      "name": "corporate-training-designer",
+      "teams": [
+        "EPDG"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/specialized/corporate-training-designer.md"
+    },
+    {
+      "name": "backend-architect",
+      "teams": [
+        "EPDG"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/engineering/engineering-backend-architect.md"
+    },
+    {
+      "name": "identity-access-engineer",
+      "teams": [
+        "EPDG"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/engineering/engineering-identity-access-engineer.md"
+    },
+    {
+      "name": "privacy-engineer",
+      "teams": [
+        "EPDG"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/engineering/engineering-privacy-engineer.md"
+    },
+    {
+      "name": "accessibility-auditor",
+      "teams": [
+        "EPDG"
+      ],
+      "source": "https://raw.githubusercontent.com/msitarzewski/agency-agents/4e3ac3ca6604c75113f52c695dbddcc7af928b46/testing/testing-accessibility-auditor.md"
+    }
+  ]
+}
