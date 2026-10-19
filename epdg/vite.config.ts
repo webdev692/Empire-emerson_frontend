@@ -3,11 +3,23 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from 'vite-plugin-pwa';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
+    {
+      name: 'isolated-portal-design-preview',
+      transformIndexHtml: {
+        order: 'pre',
+        handler(html) {
+          return mode === 'design-preview'
+            ? html.replace('/src/main.tsx', '/src/design-preview/main.tsx')
+            : html;
+        },
+      },
+    },
     tailwindcss(),
     react(),
     VitePWA({
+      disable: mode === 'design-preview',
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {
@@ -45,4 +57,4 @@ export default defineConfig({
       },
     }),
   ],
-})
+}))
