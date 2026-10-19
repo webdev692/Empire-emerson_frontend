@@ -3,17 +3,29 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from 'vite-plugin-pwa';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
+    {
+      name: 'isolated-portal-design-preview',
+      transformIndexHtml: {
+        order: 'pre',
+        handler(html) {
+          return mode === 'design-preview'
+            ? html.replace('/src/main.tsx', '/src/design-preview/main.tsx')
+            : html;
+        },
+      },
+    },
     tailwindcss(),
     react(),
     VitePWA({
+      disable: mode === 'design-preview',
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {
-        name: 'Emerson Professional',
-        short_name: 'EmerPro',
-        description: 'The Emerson Empire Professional Platform — internships, leadership development, and global careers.',
+        name: 'EPDG Learning & Program Portal',
+        short_name: 'EPDG Portal',
+        description: 'Individual access to the EPDG Learning & Program Portal.',
         theme_color: '#12022A',
         background_color: '#12022A',
         display: 'standalone',
@@ -26,8 +38,13 @@ export default defineConfig({
         ],
       },
       workbox: {
+        navigateFallbackDenylist: [/^\/api(?:\/|$)/],
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,woff2}'],
         runtimeCaching: [
+          {
+            urlPattern: ({ url }) => /^\/api(?:\/|$)/.test(url.pathname),
+            handler: 'NetworkOnly',
+          },
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
             handler: 'CacheFirst',
@@ -40,4 +57,4 @@ export default defineConfig({
       },
     }),
   ],
-})
+}))

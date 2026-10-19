@@ -65,8 +65,28 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
 
+      - name: Clean isolated EPDG artifact directories
+        if: matrix.directory == 'epdg'
+        run: node -e "const fs = require('node:fs'); for (const dir of ['dist', 'dist-design-preview']) fs.rmSync(dir, {recursive:true, force:true})"
+
       - name: Build
         run: npm run build
+
+      - name: Verify normal EPDG compiled artifact
+        if: matrix.directory == 'epdg'
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/verify-portal-build.mjs normal dist
+
+      - name: Build isolated EPDG design preview
+        if: matrix.directory == 'epdg'
+        run: npm run build -- --mode design-preview --outDir dist-design-preview
+
+      - name: Verify design preview compiled artifact
+        if: matrix.directory == 'epdg'
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/verify-portal-build.mjs design-preview dist-design-preview
 
       - name: Lint
         run: npm run lint
@@ -76,6 +96,16 @@ jobs:
 
       - name: Run targeted smoke checks
         run: npm run smoke
+
+      - name: Upload verified EPDG build modes
+        if: matrix.directory == 'epdg'
+        uses: actions/upload-artifact@v4
+        with:
+          name: epdg-build-modes-${{ github.sha }}
+          path: |
+            epdg/dist/
+            epdg/dist-design-preview/
+          if-no-files-found: error
 
   edge-functions:
     name: Supabase Edge Functions
