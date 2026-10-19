@@ -1,6 +1,6 @@
 # TEA — The Emerson Agency
 
-**Target:** Netlify \`emersonagency\`; app directory \`Agency_LandingPage\`. Motto: **People over profit**.
+**Target:** Netlify `emersonagency`; app directory `Agency_LandingPage`. Motto: **People over profit**.
 
 ## Priority workstreams
 1. Pathways public pages and applicant/client intake clarity; do not invent accepted participants or program outcomes.
