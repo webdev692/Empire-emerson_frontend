@@ -1,7 +1,7 @@
 # EPDG — Emerson Professional Development Group
 
-**Public project:** Netlify \`emersonprofessionaldevelopment\`, folder \`EPDG-Landing-Page\`.
-**Separate login/dashboard project:** Netlify \`epdg\`, folder \`epdg\`.
+**Public project:** Netlify `emersonprofessionaldevelopment`, folder `EPDG-Landing-Page`.
+**Separate login/dashboard project:** Netlify `epdg`, folder `epdg`.
 Motto: **Education Without Borders**. Educational, workforce and professional-development focus; **do not add sales pipelines here**.
 
 ## Priorities
@@ -26,4 +26,4 @@ Use fictitious test records; never ingest real school, minor, intern, applicant 
 
 **Recommended first Ask task — public EPDG:** Inventory existing public program/class pages and draft an accurate hierarchy, navigation plan and content gaps; no edits.
 
-**Recommended separate Ask task — EPDG login:** Audit the existing \`epdg\` app's auth, roles, RLS, least-privilege data flows and UI states. Propose a phased blueprint for school reviewers and student submissions with threat model and privacy controls. NO implementation, database writes, permission changes or test accounts until reviewed.
+**Recommended separate Ask task — EPDG login:** Audit the existing `epdg` app's auth, roles, RLS, least-privilege data flows and UI states. Propose a phased blueprint for school reviewers and student submissions with threat model and privacy controls. NO implementation, database writes, permission changes or test accounts until reviewed.
