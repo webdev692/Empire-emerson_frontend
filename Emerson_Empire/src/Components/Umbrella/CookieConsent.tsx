@@ -54,7 +54,7 @@ const CookieConsent: React.FC = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 120, opacity: 0 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="right-0 bottom-0 left-0 z-100 fixed"
+          className="cookie-consent right-0 bottom-0 left-0 z-40 fixed"
           role="dialog"
           aria-label="Cookie consent"
         >

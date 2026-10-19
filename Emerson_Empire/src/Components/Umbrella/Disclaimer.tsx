@@ -69,7 +69,7 @@ const SECTIONS = [
 // â”€â”€ Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const Disclaimer: React.FC = () => (
-  <div className="pt-16 sm:pt-20 min-h-screen bg-white font-sans antialiased">
+  <div className="min-h-screen bg-white font-sans antialiased">
 
     {/* Hero */}
     <div className="bg-[#1C1336] px-6 sm:px-10 lg:px-16 py-20">
@@ -115,7 +115,7 @@ const Disclaimer: React.FC = () => (
       {/* Sections */}
       <div className="space-y-12">
         {SECTIONS.map((s, i) => (
-          <div key={s.id} id={s.id} className="scroll-mt-24">
+          <div key={s.id} id={s.id}>
             <div className="flex items-start gap-4 mb-3">
               <span className="font-mono text-gold-on-light opacity-60 text-xs pt-1 shrink-0 w-6">
                 {String(i + 1).padStart(2, '0')}

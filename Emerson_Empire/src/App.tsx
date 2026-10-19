@@ -14,8 +14,21 @@ import Contact from './Components/Umbrella/Contact';
 const BelowFold = React.lazy(() => import('./Components/MainRender/BelowFold'));
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) { window.scrollTo({ top: 0, behavior: 'instant' }); return; }
+    // Wait for lazy routes as well as ordinary client-side route transitions.
+    const scrollToTarget = () => {
+      const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (!target) return false;
+      target.scrollIntoView({ behavior: 'instant' });
+      return true;
+    };
+    if (scrollToTarget()) return;
+    const observer = new MutationObserver(() => { if (scrollToTarget()) observer.disconnect(); });
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, [pathname, hash]);
   return null;
 }
 
@@ -28,22 +41,25 @@ function PageLoader() {
 }
 
 function AppShell() {
+  const location = useLocation();
   return (
     <Suspense fallback={<PageLoader />}>
       <ScrollToTop />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/register" element={<Navigate to="/" replace />} />
-        <Route path="/about" element={<BelowFold />} />
-        <Route path="/classes" element={<ClassCatalog />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/disclaimer" element={<Disclaimer />} />
-        <Route path="/global-internship" element={<GlobalInternship />} />
-        <Route path="/epdg" element={<GlobalInternship />} />
-        <Route path="/agency" element={<AgencyPage />} />
-      </Routes>
+      <Navbar key={location.key} />
+      <div className="page-offset">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/register" element={<Navigate to="/" replace />} />
+          <Route path="/about" element={<BelowFold />} />
+          <Route path="/classes" element={<ClassCatalog />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/global-internship" element={<GlobalInternship />} />
+          <Route path="/epdg" element={<GlobalInternship />} />
+          <Route path="/agency" element={<AgencyPage />} />
+        </Routes>
+      </div>
       <Footer />
       <CookieConsent />
     </Suspense>

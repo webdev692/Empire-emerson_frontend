@@ -3,6 +3,7 @@
 @import "../../shared/emerson-design-system.css";
 
 :root {
+  --site-header-height: 5rem;
   --color-primary: 91 95 240;
 
   /* ── Typography scale ── */
@@ -14,7 +15,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: calc(var(--site-header-height) + 1rem);
 }
 
 /* ── Global typography ── */
@@ -78,7 +79,141 @@ h5, h6 { font-family: var(--font-label); }
   .text-\[24px\]  { font-size: 1rem     !important; } /* → 16px */
 }
 
-/* Make anchored sections offset so fixed navbar doesn't cover headings */
-section[id] {
-  scroll-margin-top: 6rem; /* matches navbar height + small gap */
+/* Anchor clearance lives only on html, avoiding additive section margins. */
+.page-offset { padding-top: var(--site-header-height); }
+
+/* Layer order: page, cookie banner (40), navigation (50), native modal top layer. */
+.site-navigation {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  height: var(--site-header-height);
+  background: #12022a;
+  color: white;
+  border-bottom: 1px solid rgb(201 168 76 / 20%);
 }
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 100%;
+  max-width: 100rem;
+  margin: auto;
+  padding-inline: max(1rem, env(safe-area-inset-left)) max(1rem, env(safe-area-inset-right));
+}
+.nav-logo { display: block; flex: 0 1 12rem; height: 4rem; min-width: 0; }
+.nav-menu-trigger, .nav-disclosure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: #c9a84c;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.nav-panel { display: none; }
+.nav-panel.is-open {
+  display: block;
+  position: absolute;
+  inset: var(--site-header-height) 0 auto;
+  height: calc(100vh - var(--site-header-height));
+  height: calc(100dvh - var(--site-header-height));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #12022a;
+  padding: 1rem max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+}
+.nav-list, .nav-dropdown { list-style: none; margin: 0; padding: 0; }
+.nav-group { position: relative; border-bottom: 1px solid rgb(201 168 76 / 15%); }
+.nav-row { display: flex; align-items: center; }
+.nav-link {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-height: 44px;
+  padding-block: .75rem;
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.nav-dropdown { background: #190733; padding-inline: .75rem; }
+.nav-dropdown[hidden] { display: none; }
+.nav-dropdown a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: .75rem;
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: rgb(255 255 255 / 80%);
+}
+.nav-dropdown a:hover { background: rgb(201 168 76 / 10%); color: #c9a84c; }
+.nav-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 1rem;
+  padding: .75rem 1rem;
+  border-radius: var(--radius-control);
+  background: #c9a84c;
+  color: #12022a;
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  white-space: nowrap;
+}
+.nav-contact:hover { background: #e8c97a; }
+/* Measured complete-header fit; paired with DESKTOP_QUERY in Navbar.tsx. */
+@media (min-width: 80rem) {
+  .nav-bar { padding-inline: 2rem; gap: 1.5rem; }
+  .nav-logo { flex: 0 0 10rem; }
+  .nav-menu-trigger { display: none; }
+  .nav-panel, .nav-panel.is-open {
+    display: flex;
+    position: static;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    height: auto;
+    overflow: visible;
+    padding: 0;
+    flex: 1;
+  }
+  .nav-list { display: flex; align-items: center; gap: 1rem; }
+  .nav-group { border: 0; }
+  .nav-link { white-space: nowrap; }
+  .nav-dropdown { position: absolute; top: 100%; left: 0; width: 16rem; padding: .5rem; border: 1px solid rgb(201 168 76 / 20%); box-shadow: 0 12px 24px rgb(0 0 0 / 25%); }
+  .nav-contact { margin-top: 0; }
+}
+.service-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  padding: 0;
+  width: calc(100% - 2rem);
+  max-width: 40rem;
+  height: min(48rem, calc(100vh - 2rem));
+  height: min(48rem, calc(100dvh - 2rem));
+  max-height: calc(100vh - 2rem);
+  max-height: calc(100dvh - 2rem);
+  border: 0;
+  border-top: 4px solid #c9a84c;
+  background: white;
+  color: #1c1336;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.service-dialog::backdrop { background: rgb(18 2 42 / 70%); }
+.service-dialog-layout { display: flex; flex-direction: column; height: 100%; }
+.service-dialog-layout > header, .service-dialog-layout > footer { flex-shrink: 0; }
+.service-dialog-form { flex: 1; min-height: 6rem; }
+.service-dialog-form iframe { display: block; border: 0; width: 100%; height: 100%; }
+.service-dialog-layout > footer { padding-bottom: max(.75rem, env(safe-area-inset-bottom)); }
+.cookie-consent { max-height: calc(100vh - var(--site-header-height)); max-height: calc(100dvh - var(--site-header-height)); overflow-y: auto; padding-bottom: env(safe-area-inset-bottom); }

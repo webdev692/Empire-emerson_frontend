@@ -1,10 +1,11 @@
-﻿import React, { useState } from 'react';
+import ServiceFormDialog, { type ServiceForm } from '../shared/ServiceFormDialog';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Shield, FileText, TrendingUp, Briefcase,
-  CheckCircle, ArrowRight, ChevronDown, X,
+  CheckCircle, ArrowRight, ChevronDown,
   BookOpen, Home, DollarSign, Users,
 } from 'lucide-react';
 import { Agency1, Tax, Taxing, Consult, study } from '../../assets';
@@ -196,66 +197,7 @@ const CATEGORIES = [
 
 // â”€â”€ Form modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-type ModalState = { title: string; formUrl: string } | null;
-
-const ServiceModal: React.FC<{ modal: NonNullable<ModalState>; onClose: () => void }> = ({ modal, onClose }) => {
-  const [loadCount, setLoadCount] = useState(0);
-  const submitted = loadCount >= 2;
-
-  return (
-    <AnimatePresence>
-      <motion.div
-        key="overlay"
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-        className="z-50 fixed inset-0 flex justify-center items-center bg-black/60 p-4"
-        onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 16 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96 }}
-          transition={{ duration: 0.25 }}
-          className="relative flex flex-col bg-white border-[#C9A84C] border-t-4 w-full max-w-xl max-h-[90vh] overflow-hidden"
-        >
-          <div className="flex justify-between items-center px-6 py-4 border-neutral-100 border-b shrink-0">
-            <div>
-              <p className="mb-0.5 font-mono text-gold-on-light text-xs uppercase tracking-widest">Service Request</p>
-              <h3 className="font-bold text-[#1C1336] text-sm">{modal.title}</h3>
-            </div>
-            <button onClick={onClose} className="flex justify-center items-center w-8 h-8 text-neutral-400 hover:text-[#1C1336] transition-colors">
-              <X size={18} />
-            </button>
-          </div>
-          <div className="flex-1 overflow-hidden">
-            {submitted ? (
-              <div className="flex flex-col justify-center items-center px-8 py-16 h-full text-center">
-                <div className="flex justify-center items-center bg-[#C9A84C] mb-6 w-16 h-16 font-bold text-[#1C1336] text-2xl">âœ“</div>
-                <h4 className="mb-3 font-bold text-[#1C1336] text-xl uppercase">Request Submitted!</h4>
-                <p className="mb-8 max-w-xs text-neutral-500 text-sm leading-relaxed">
-                  Our team will follow up within 24â€“48 business hours.
-                </p>
-                <button
-                  onClick={onClose}
-                  className="hover:bg-[#4B1E91] px-8 py-3 border border-[#4B1E91] font-mono text-[#4B1E91] hover:text-white text-xs uppercase tracking-wider transition-colors"
-                >
-                  Close
-                </button>
-              </div>
-            ) : (
-              <iframe
-                src={modal.formUrl}
-                title="Service Request Form"
-                onLoad={() => setLoadCount((n) => n + 1)}
-                className="border-0 w-full h-135"
-                allow="camera; microphone"
-              />
-            )}
-          </div>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
-  );
-};
+type ModalState = ServiceForm | null;
 
 // â”€â”€ FAQ accordion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
@@ -291,7 +233,7 @@ const AgencyPage: React.FC = () => {
   const closeModal = () => setModal(null);
 
   return (
-    <div className="bg-white pt-16 sm:pt-20 min-h-screen font-sans antialiased">
+    <div className="bg-white min-h-screen font-sans antialiased">
 
       {/* â”€â”€ SEO â”€â”€ */}
       <Helmet>
@@ -430,7 +372,7 @@ const AgencyPage: React.FC = () => {
           <section
             key={cat.id}
             id={cat.id}
-            className={`py-16 sm:py-20 lg:py-24 scroll-mt-20 border-b border-neutral-100 ${isEven ? 'bg-white' : 'bg-[#FAFAF9]'}`}
+            className={`py-16 sm:py-20 lg:py-24 border-b border-neutral-100 ${isEven ? 'bg-white' : 'bg-[#FAFAF9]'}`}
           >
             <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
               <div className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-start ${!isEven ? 'lg:grid-flow-dense' : ''}`}>
@@ -463,9 +405,9 @@ const AgencyPage: React.FC = () => {
                   {/* Services list */}
                   <div className="space-y-2 mb-8">
                     {cat.services.map((s) => (
-                      <div key={s.name} className="flex justify-between items-center bg-white px-4 py-3 border border-neutral-100">
+                      <div key={s.name} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 bg-white px-4 py-3 border border-neutral-100">
                         <span className="font-bold text-[#1C1336] text-sm">{s.name}</span>
-                        <span className="ml-4 font-mono text-neutral-400 text-xs shrink-0">{s.note}</span>
+                        <span className="sm:ml-4 font-mono text-neutral-400 text-xs">{s.note}</span>
                       </div>
                     ))}
                   </div>
@@ -630,7 +572,7 @@ const AgencyPage: React.FC = () => {
       </div>
 
       {/* â”€â”€ Modal â”€â”€ */}
-      {modal && <ServiceModal modal={modal} onClose={closeModal} />}
+      {modal && <ServiceFormDialog modal={modal} onClose={closeModal} />}
 
     </div>
   );

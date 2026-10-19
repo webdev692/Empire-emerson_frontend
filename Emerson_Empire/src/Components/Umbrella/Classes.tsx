@@ -69,7 +69,7 @@ const ClassCatalog: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F5EE] pt-16 font-body text-[#1C1336] antialiased selection:bg-[#4B1E91] selection:text-white sm:pt-20">
+    <div className="min-h-screen bg-[#F8F5EE] font-body text-[#1C1336] antialiased selection:bg-[#4B1E91] selection:text-white">
       <section id="weekly-classes" className="relative overflow-hidden bg-[#1C1336] text-white">
         <div className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-[#C9A84C]/20 blur-3xl" />
         <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-[#4B1E91]/40 blur-3xl" />
@@ -209,7 +209,7 @@ const ClassCatalog: React.FC = () => {
         </div>
       </section>
 
-      <main id="class-catalog" className="mx-auto max-w-7xl scroll-mt-24 px-4 py-16 sm:px-6 lg:px-8">
+      <main id="class-catalog" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <ClassSearch classes={classes} />
       </main>
     </div>

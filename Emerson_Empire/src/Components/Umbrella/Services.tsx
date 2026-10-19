@@ -1,10 +1,11 @@
+import ServiceFormDialog, { type ServiceForm } from '../shared/ServiceFormDialog';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   ArrowRight, Users, BookOpen, Briefcase, Shield,
   TrendingUp, Award, Target, FileText, Building, Globe,
-  Star, ChevronRight, X,
+  Star, ChevronRight,
 } from 'lucide-react';
 import { empire, Agency1, Logo2} from '../../assets';
 
@@ -377,83 +378,7 @@ const EPDG_SERVICES: ServiceItem[] = [
 
 // ── Form Modal ────────────────────────────────────────────────────────────────
 
-type ModalState = { title: string; formUrl: string } | null;
-
-const FormModal: React.FC<{ modal: NonNullable<ModalState>; onClose: () => void }> = ({ modal, onClose }) => {
-  const [loadCount, setLoadCount] = useState(0);
-  const submitted = loadCount >= 2;
-
-  const handleLoad = () =>
-    setLoadCount((n) => {
-      const next = n + 1;
-      return next;
-    });
-
-  return (
-    <AnimatePresence>
-      <motion.div
-        key="overlay"
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-        className="z-50 fixed inset-0 flex justify-center items-center bg-black/60 p-4"
-        onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 16 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96 }}
-          transition={{ duration: 0.25 }}
-          className="relative flex flex-col bg-white border-[#C9A84C] border-t-4 w-full max-w-xl max-h-[90vh] overflow-hidden"
-        >
-          {/* Modal header */}
-          <div className="flex justify-between items-center px-6 py-4 border-neutral-100 border-b shrink-0">
-            <div>
-              <p className="mb-0.5 font-mono text-gold-on-light text-xs uppercase tracking-widest">
-                Service Request
-              </p>
-              <h3 className="font-bold text-[#1C1336] text-sm leading-snug">{modal.title}</h3>
-            </div>
-            <button
-              onClick={onClose}
-              className="flex justify-center items-center w-8 h-8 text-neutral-400 hover:text-[#1C1336] transition-colors"
-              aria-label="Close"
-            >
-              <X size={18} />
-            </button>
-          </div>
-
-          {/* Form or success */}
-          <div className="flex-1 overflow-hidden">
-            {submitted ? (
-              <div className="flex flex-col justify-center items-center px-8 py-16 h-full text-center">
-                <div className="flex justify-center items-center bg-[#C9A84C] mb-6 w-16 h-16 font-bold text-[#1C1336] text-2xl">
-                  ✓
-                </div>
-                <h4 className="mb-3 font-bold text-[#1C1336] text-xl uppercase">Request Submitted!</h4>
-                <p className="mb-8 max-w-xs text-neutral-500 text-sm leading-relaxed">
-                  We received your request and will follow up within 24–48 business hours.
-                </p>
-                <button
-                  onClick={onClose}
-                  className="hover:bg-[#4B1E91] px-8 py-3 border border-[#4B1E91] font-mono text-[#4B1E91] hover:text-white text-xs uppercase tracking-wider transition-colors duration-200"
-                >
-                  Close
-                </button>
-              </div>
-            ) : (
-              <iframe
-                src={modal.formUrl}
-                title="Service Request Form"
-                onLoad={handleLoad}
-                className="border-0 w-full h-135"
-                allow="camera; microphone"
-              />
-            )}
-          </div>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
-  );
-};
+type ModalState = ServiceForm | null;
 
 // ── ServiceCard ───────────────────────────────────────────────────────────────
 
@@ -559,7 +484,7 @@ const CompanySection: React.FC<CompanySectionProps> = ({
   const filtered = active === 'All' ? services : services.filter((s) => s.category === active);
 
   return (
-    <section id={id} className="py-20 border-neutral-100 border-b scroll-mt-20">
+    <section id={id} className="py-20 border-neutral-100 border-b">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 
         {/* Company header */}
@@ -633,7 +558,7 @@ const Services: React.FC = () => {
   const closeModal = () => setModal(null);
 
   return (
-    <div className="bg-[#FAFAF9] pt-16 sm:pt-20 min-h-screen font-sans antialiased">
+    <div className="bg-[#FAFAF9] min-h-screen font-sans antialiased">
 
       {/* ── Hero ── */}
       <div className="bg-[#1C1336] px-4 sm:px-6 lg:px-16 py-24 text-white">
@@ -732,7 +657,7 @@ const Services: React.FC = () => {
       </div>
 
       {/* ── Modal ── */}
-      {modal && <FormModal modal={modal} onClose={closeModal} />}
+      {modal && <ServiceFormDialog modal={modal} onClose={closeModal} />}
 
     </div>
   );
