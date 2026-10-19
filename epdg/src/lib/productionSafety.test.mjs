@@ -1,10 +1,39 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import { portalAvailability } from './portalAvailability.ts';
 
 function read(relativePath) {
   return readFileSync(new URL(relativePath, import.meta.url), "utf8");
 }
+
+test('blocked entry point cannot load legacy authentication or dashboards', () => {
+  const entry = read('../main.tsx');
+  const screen = read('../components/PortalAccessHold.tsx');
+  assert.match(entry, /import PortalAccessHold from/);
+  assert.match(entry, /<PortalAccessHold\s*\/>/);
+  assert.doesNotMatch(entry, /import App|<App\b/);
+  assert.doesNotMatch(screen, /import.*(?:authStore|axios|App|Dashboard|mockAuth)/);
+  assert.doesNotMatch(screen, /localStorage|sessionStorage|fetch\(|<form|<input/);
+});
+
+test('all historical private routes resolve to a closed state without role input', () => {
+  for (const path of ['/school', '/company', '/admin/users', '/mentor', '/dashboard/profile', '/dashboard/tasks', '/verify/example', '/portfolio/example', '/unknown']) {
+    assert.equal(portalAvailability(path).title, 'Secure access is being prepared');
+  }
+  for (const path of ['/register', '/register/intern', '/register/company', '/register/school', '/signup']) {
+    assert.equal(portalAvailability(path).title, 'An invitation is required');
+  }
+  for (const path of ['/forgot-password', '/reset-password', '/change-password', '/verify-email', '/callback']) {
+    assert.equal(portalAvailability(path).title, 'Account recovery is unavailable');
+  }
+});
+
+test('private API paths bypass service-worker caching and navigation fallback', () => {
+  const config = read('../../vite.config.ts');
+  assert.match(config, /navigateFallbackDenylist:/);
+  assert.match(config, /urlPattern: \(\{ url \}\) =>[^\n]+\n\s*handler: 'NetworkOnly'/);
+});
 
 test("production dashboards do not present fixture notifications or session history", () => {
   const navbar = read("../components/Navbar.tsx");
