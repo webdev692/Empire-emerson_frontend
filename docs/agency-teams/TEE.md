@@ -1,6 +1,6 @@
 # TEE — The Emerson Empire
 
-**Target:** Netlify \`theemerson\`; app directory \`Emerson_Empire\`. Public-facing community services and resources. Motto: **Global Resources 4 All**.
+**Target:** Netlify `theemerson`; app directory `Emerson_Empire`. Public-facing community services and resources. Motto: **Global Resources 4 All**.
 
 ## Priority workstreams
 1. Verified South Carolina resources directory; searchable records, provenance, stale-link monitoring plan, accessible filters, and no fabricated listings.
