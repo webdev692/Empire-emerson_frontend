@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaChevronDown } from 'react-icons/fa';
+import { Menu, X } from 'lucide-react';
 import { EmpersonLogo } from '../../assets';
- 
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
+
 const navClass = ({ isActive }: { isActive: boolean }) =>
-  `flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.15em] transition-colors duration-200 ${
-    isActive ? 'text-[#C9A84C]' : 'text-white/60 hover:text-white'
-  }`;
+  `nav-link ${isActive ? 'text-[#C9A84C]' : 'text-white/75 hover:text-white'}`;
 
 const NAV_LINKS = [
   { label: 'HOME', href: '/' },
@@ -41,161 +41,112 @@ const NAV_LINKS = [
  
 ];
 
+// Keep this query aligned with the desktop navigation media query in index.css.
+const DESKTOP_QUERY = '(min-width: 80rem)';
+
 const Navbar: React.FC = () => {
-  const [menuOpen,     setMenuOpen]     = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const menuTrigger = useRef<HTMLButtonElement>(null);
+  const pointerDown = useRef(false);
+  useBodyScrollLock(menuOpen);
+
+  // Pointer clicks finish before collapsing an accordion, so lower links do not move under the pointer.
+  const closeMenus = () => { setMenuOpen(false); setOpenDropdown(null); };
+
+  useEffect(() => {
+    const media = window.matchMedia(DESKTOP_QUERY);
+    const reset = () => { setMenuOpen(false); setOpenDropdown(null); };
+    const releasePointer = () => { pointerDown.current = false; };
+    const outside = (event: PointerEvent) => {
+      pointerDown.current = true;
+      if (!navRef.current?.contains(event.target as Node)) reset();
+    };
+    media.addEventListener('change', reset);
+    document.addEventListener('pointerdown', outside);
+    document.addEventListener('click', releasePointer);
+    document.addEventListener('keydown', releasePointer, true);
+    document.addEventListener('pointercancel', releasePointer);
+    return () => {
+      media.removeEventListener('change', reset);
+      document.removeEventListener('pointerdown', outside);
+      document.removeEventListener('click', releasePointer);
+      document.removeEventListener('keydown', releasePointer, true);
+      document.removeEventListener('pointercancel', releasePointer);
+    };
+  }, []);
 
   return (
-    <nav
-      aria-label="Main navigation"
-      className="top-0 z-50 fixed bg-[#12022A] border-[#C9A84C]/20 border-b w-full"
+    <nav ref={navRef} aria-label="Main navigation" className="site-navigation"
+      onBlur={(event) => {
+        if (!pointerDown.current && !event.currentTarget.contains(event.relatedTarget as Node | null)) closeMenus();
+      }}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape' && menuOpen && !openDropdown) {
+          event.preventDefault();
+          closeMenus();
+          menuTrigger.current?.focus();
+        }
+      }}
     >
-      {/* Main bar */}
-      <div className="flex justify-between items-center shadow-md shadow-white mx-auto px-4 sm:px-2 lg:px-10 w-full h-20 sm:h-20">
-
-        {/* Logo */}
-          <div className="m-1 w-[80%] sm:w-[20%] h-full">
-
-
-             <img
-              src={EmpersonLogo}
-              alt="Emerson Empire Logo"
-             
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-            />
-          </div>
-           
-         
-          
-         
-
-        {/* Desktop nav links */}
-        <ul className="hidden md:flex items-center gap-6 lg:gap-8 m-0 p-0 list-none">
-          {NAV_LINKS.map((link) => (
-            <li
-              key={link.label}
-              className="relative"
-              onMouseEnter={() => link.dropdown && setOpenDropdown(link.label)}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <NavLink
-                to={link.href}
-                end={link.href === '/'}
-                onClick={() => { if (link.href === '/') window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className={navClass}
-              >
-                {link.label}
-                {link.dropdown && (
-                  <FaChevronDown
-                    size={9}
-                    className={`transition-transform duration-200 ${openDropdown === link.label ? 'rotate-180' : ''}`}
-                  />
-                )}
-              </NavLink>
-
-              {/* Desktop dropdown panel */}
-              {link.dropdown && openDropdown === link.label && (
-                <div className="top-full left-0 z-50 absolute pt-2 w-56">
-                  <div className="bg-[#12022A] shadow-xl border border-[#C9A84C]/20 rounded-sm">
-                    {link.dropdown.map((item) => (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        className="block hover:bg-[#C9A84C]/10 px-4 py-3 border-[#C9A84C]/10 border-b last:border-b-0 font-semibold text-xs text-white/60 hover:text-[#C9A84C] uppercase tracking-[0.15em] transition-colors duration-200"
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
-
-        {/* Desktop CTA */}
-        <NavLink
-          to="/contact"
-          className="hidden md:inline-flex items-center bg-[#C9A84C] hover:bg-[#E8C97A] px-5 py-2 rounded-sm font-bold text-[#12022A] text-xs uppercase tracking-[0.2em] transition-colors duration-200 shrink-0"
-          style={{ fontFamily: "var(--font-label)" }}
-        >
-          Contact Us
+      <div className="nav-bar">
+        <NavLink to="/" aria-label="The Emerson Empire home" className="nav-logo" onClick={closeMenus}>
+          <img src={EmpersonLogo} alt="Emerson Empire Logo" className="h-full w-full object-contain" />
         </NavLink>
-
-        {/* Hamburger */}
-        <button
-          className="md:hidden flex flex-col justify-center items-center gap-1.25 shadow-md shadow-white rounded-b-3xl focus-visible:outline-none focus-visible:ring-[#C9A84C] focus-visible:ring-2 w-10 h-10 shrink-0"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
-        >
-          <span className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-300 origin-center ${menuOpen ? 'rotate-45 translate-y-1.75' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-300 origin-center ${menuOpen ? '-rotate-45 -translate-y-1.75' : ''}`} />
+        <button ref={menuTrigger} type="button" className="nav-menu-trigger"
+          aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+          aria-expanded={menuOpen} aria-controls="primary-navigation"
+          onClick={() => { setMenuOpen(!menuOpen); setOpenDropdown(null); }}>
+          <span aria-hidden="true">{menuOpen ? <X size={24} /> : <Menu size={24} />}</span>
         </button>
-      </div>
-
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden flex flex-col bg-[#12022A] px-4 pb-5 border-[#C9A84C]/15 border-t max-h-[calc(100vh-4rem)] overflow-y-auto">
-          {NAV_LINKS.map((link) => (
-            <div key={link.label}>
-
-              {/* Main row */}
-              <div className="flex justify-between items-center border-[#C9A84C]/10 border-b">
-                <NavLink
-                  to={link.href}
-                  end={link.href === '/'}
-                  onClick={() => { setMenuOpen(false); if (link.href === '/') window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className={({ isActive }) =>
-                    `flex-1 py-3 font-medium text-xs uppercase tracking-[0.2em] transition-colors duration-200 ${
-                      isActive ? 'text-[#C9A84C]' : 'text-white/60 hover:text-[#C9A84C]'
-                    }`
-                  }
-                >
-                  {link.label}
-                </NavLink>
-
-                {/* Arrow — only if has dropdown */}
-                {link.dropdown && (
-                  <button
-                    type="button"
-                    onClick={() => setOpenDropdown(openDropdown === link.label ? null : link.label)}
-                    className="px-3 py-3 text-[#C9A84C] text-xs"
-                  >
-                    {openDropdown === link.label ? <FaChevronUp size={9} /> : <FaChevronDown size={9} />}
-                  </button>
-                )}
-              </div>
-
-              {/* Sub-links */}
-              {link.dropdown && openDropdown === link.label && (
-                <div className="bg-[#C9A84C]/5 pl-4">
-                  {link.dropdown.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="block py-2.5 border-[#C9A84C]/10 border-b last:border-b-0 text-xs text-white/50 hover:text-[#C9A84C] uppercase tracking-[0.15em] transition-colors duration-200"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-
-          <NavLink
-            to="/contact"
-            onClick={() => setMenuOpen(false)}
-            className="inline-flex justify-center bg-[#C9A84C] hover:bg-[#E8C97A] mt-4 px-5 py-3 rounded-sm font-bold text-[#12022A] text-xs uppercase tracking-[0.2em] transition-colors duration-200"
-            style={{ fontFamily: "var(--font-label)" }}
-          >
-            Contact Us
-          </NavLink>
+        <div id="primary-navigation" className={`nav-panel ${menuOpen ? 'is-open' : ''}`}>
+          <ul className="nav-list">
+            {NAV_LINKS.map((link, index) => {
+              const expanded = openDropdown === link.label;
+              const panelId = `nav-dropdown-${index}`;
+              return (
+                <li key={link.label} className="nav-group"
+                  onBlur={(event) => {
+                    if (!pointerDown.current && !event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                      setOpenDropdown((current) => current === link.label ? null : current);
+                    }
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Escape' && expanded) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      setOpenDropdown(null);
+                      event.currentTarget.querySelector<HTMLButtonElement>('button')?.focus();
+                    }
+                  }}>
+                  <div className="nav-row">
+                    <NavLink to={link.href} end={link.href === '/'} className={navClass}
+                      onClick={() => { closeMenus(); if (link.href === '/') window.scrollTo(0, 0); }}>
+                      {link.label}
+                    </NavLink>
+                    {link.dropdown && (
+                      <button type="button" className="nav-disclosure" aria-label={`${link.label} submenu`}
+                        aria-expanded={expanded} aria-controls={panelId}
+                        onClick={() => setOpenDropdown(expanded ? null : link.label)}>
+                        <FaChevronDown aria-hidden="true" size={12} className={expanded ? 'rotate-180' : ''} />
+                      </button>
+                    )}
+                  </div>
+                  {link.dropdown && (
+                    <ul id={panelId} hidden={!expanded} className="nav-dropdown">
+                      {link.dropdown.map((item) => (
+                        <li key={item.label}><NavLink to={item.href} onClick={closeMenus}>{item.label}</NavLink></li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+          <NavLink to="/contact" onClick={closeMenus} className="nav-contact">Contact Us</NavLink>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

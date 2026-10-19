@@ -71,7 +71,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div id="contact" className="bg-white pt-16 sm:pt-20 min-h-screen font-sans antialiased">
+    <div id="contact" className="bg-white min-h-screen font-sans antialiased">
 
       {/* ── Hero ── */}
       <div className="bg-[#1C1336] px-6 sm:px-10 lg:px-16 py-24">
@@ -108,7 +108,7 @@ const Contact: React.FC = () => {
 
       {/* ── Body ── */}
       <div className="mx-auto px-6 sm:px-10 lg:px-16 py-20 max-w-7xl">
-        <div className="gap-16 grid lg:grid-cols-2">
+        <div className="gap-16 grid grid-cols-1 lg:grid-cols-2">
 
           {/* ── Left: Info ── */}
           <div>
@@ -133,7 +133,7 @@ const Contact: React.FC = () => {
                     <div className="flex justify-center items-center bg-[#4B1E91]/10 rounded-xl w-10 h-10 shrink-0">
                       <Icon size={18} className="text-[#4B1E91]" />
                     </div>
-                    <div>
+                    <div className="min-w-0 [overflow-wrap:anywhere]">
                       <p className="mb-0.5 font-mono text-gold-on-light text-[16px] uppercase tracking-widest">{ch.label}</p>
                       {ch.href ? (
                         <a href={ch.href} className="font-bold text-[#1C1336] text-[13px] hover:text-[#4B1E91] transition-colors">

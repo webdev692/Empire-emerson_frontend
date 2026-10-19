@@ -10,7 +10,7 @@ const FEATURES = [
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative bg-white pt-20 w-full overflow-hidden">
+    <section className="relative bg-white w-full overflow-hidden">
       {/* Soft warm glow behind the portrait */}
       <div
         className="top-0 right-0 absolute w-[55%] h-full pointer-events-none"
