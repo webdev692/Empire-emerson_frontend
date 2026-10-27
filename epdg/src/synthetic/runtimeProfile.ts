@@ -1,8 +1,9 @@
 export type PracticeEnvironment = 'synthetic-local' | 'synthetic-hosted';
 export interface HostedPracticeProfile { environment: 'synthetic-hosted'; portalOrigins: readonly string[] }
 declare const __EPDG_HOSTED_PRACTICE_PROFILE__: HostedPracticeProfile | null;
+declare const __EPDG_HOSTED_PRACTICE_ENABLED__: boolean;
 const profile = typeof __EPDG_HOSTED_PRACTICE_PROFILE__ === 'undefined' ? null : __EPDG_HOSTED_PRACTICE_PROFILE__;
-export const HOSTED_PRACTICE = profile !== null;
+export const HOSTED_PRACTICE = typeof __EPDG_HOSTED_PRACTICE_ENABLED__ !== 'undefined' && __EPDG_HOSTED_PRACTICE_ENABLED__ === true;
 export const PRACTICE_ENVIRONMENT: PracticeEnvironment = HOSTED_PRACTICE ? 'synthetic-hosted' : 'synthetic-local';
 export const PRACTICE_API_ORIGIN = HOSTED_PRACTICE ? '' : 'http://127.0.0.1:58000';
 export const HOSTED_PORTAL_ORIGINS = profile?.portalOrigins ?? [];

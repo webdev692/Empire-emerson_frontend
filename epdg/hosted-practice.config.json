@@ -5,5 +5,5 @@
     "https://epdg.netlify.app",
     "https://hosted-practice--epdg.netlify.app"
   ],
-  "backendOrigin": ""
+  "backendOrigin": "https://epdg-practice-api-synthetic-hosted.up.railway.app"
 }

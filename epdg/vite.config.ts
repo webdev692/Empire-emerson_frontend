@@ -79,7 +79,10 @@ export default defineConfig(({ mode, command, isPreview }) => {
   return {
   ...(hostedProfile ? {
     envPrefix: [],
-    define: { __EPDG_HOSTED_PRACTICE_PROFILE__: JSON.stringify({ environment: hostedProfile.environment, portalOrigins: hostedProfile.portalOrigins }) },
+    define: {
+      __EPDG_HOSTED_PRACTICE_ENABLED__: true,
+      __EPDG_HOSTED_PRACTICE_PROFILE__: JSON.stringify({ environment: hostedProfile.environment, portalOrigins: hostedProfile.portalOrigins }),
+    },
     build: { outDir: HOSTED_PRACTICE_OUTPUT, sourcemap: false, emptyOutDir: true },
   } : {}),
   ...(synthetic ? {

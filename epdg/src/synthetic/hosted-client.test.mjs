@@ -4,6 +4,7 @@ import test from 'node:test';
 // Node's module boundary stands in for the Vite compile-time profile. No network,
 // runtime secrets or local login alias are read by this suite.
 globalThis.__EPDG_HOSTED_PRACTICE_PROFILE__ = { environment: 'synthetic-hosted', portalOrigins: ['https://portal.example.com'] };
+globalThis.__EPDG_HOSTED_PRACTICE_ENABLED__ = true;
 const { API_ORIGIN, createPortalClient, loginAlias, parseSession, resolveLoginEmail } = await import('./client.ts');
 const { hostedContextAllowed, PRACTICE_ENVIRONMENT } = await import('./runtimeProfile.ts');
 const { parseDashboard, createLearningClient } = await import('./learningClient.ts');

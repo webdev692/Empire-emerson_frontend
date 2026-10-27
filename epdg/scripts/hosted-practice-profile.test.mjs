@@ -47,3 +47,18 @@ test('hosted entry and profile have no private alias, runtime config or automati
   const profile = JSON.parse(readFileSync(new URL('../hosted-practice.config.json', import.meta.url), 'utf8'));
   assert.deepEqual(Object.keys(profile).sort(), ['backendOrigin', 'environment', 'portalOrigins', 'version']);
 });
+
+test('reviewed hosted build emits a literal isolation flag without a local alias definition', async () => {
+  const root = fileURLToPath(new URL('../', import.meta.url));
+  const previous = process.env.EPDG_HOSTED_PRACTICE_ENABLED;
+  process.env.EPDG_HOSTED_PRACTICE_ENABLED = '1';
+  try {
+    const config = await resolveConfig({ root, mode: 'hosted-practice', logLevel: 'silent' }, 'build');
+    assert.equal(config.define.__EPDG_HOSTED_PRACTICE_ENABLED__, true);
+    assert.equal(Object.hasOwn(config.define, '__EPDG_SYNTHETIC_LOGIN_ALIAS__'), false);
+    assert.deepEqual(config.envPrefix, []);
+  } finally {
+    if (previous === undefined) delete process.env.EPDG_HOSTED_PRACTICE_ENABLED;
+    else process.env.EPDG_HOSTED_PRACTICE_ENABLED = previous;
+  }
+});

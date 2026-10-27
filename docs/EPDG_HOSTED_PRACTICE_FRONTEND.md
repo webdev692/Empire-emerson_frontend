@@ -10,11 +10,18 @@ Owner/admin controls remain closed in the hosted practice UI.
 `epdg/hosted-practice.config.json` contains only version, expected environment,
 an exact HTTPS portal-origin allowlist and an isolated backend HTTPS origin. Its
 release candidate pins the verified portal origins `https://epdg.netlify.app`
-and `https://hosted-practice--epdg.netlify.app`. Its backend origin remains empty,
-so the profile still fails closed. The operator must verify the isolated backend
-provider origin before populating that field. The build additionally requires
+and `https://hosted-practice--epdg.netlify.app`, with the authorized isolated backend
+origin `https://epdg-practice-api-synthetic-hosted.up.railway.app`. The provider
+endpoint was verified while sealed; private synthetic database bootstrap and
+actual HTTPS session/CRM acceptance remain separate release gates. The build additionally requires
 `EPDG_HOSTED_PRACTICE_ENABLED=1`; no environment variable can override the pinned
 browser API target. `npm run build:hosted-practice` writes `dist-hosted-practice`.
+
+Only the validated hosted build receives a literal compile-time isolation flag.
+This permits the compiler to remove local-only branches, alias symbols, loopback
+URLs and fixture literals from the emitted browser code. The object-valued origin
+profile is used for the runtime HTTPS origin gate, not as the compilation flag.
+The existing strict artifact verifier rejects any retained local-only markers.
 
 The browser calls fixed same-origin `/api/...` paths with cookies, no-store,
 no redirects and the existing CSRF headers. Generated `_redirects` proxy only
@@ -68,8 +75,8 @@ published-artifact acceptance.
 
 Run the pinned Node 22.23.1/npm 11.17.0 toolchain, full tests, lint, TypeScript,
 fresh normal and design builds, both existing artifact guards and smoke checks.
-The hosted build must remain unavailable until its real profile is pinned. After
-pinning, run the hosted build and `scripts/verify-hosted-practice-build.mjs`, then
+With its actual profile pinned, run the hosted build and
+`scripts/verify-hosted-practice-build.mjs`, then
 verify actual HTTPS cookie/CSRF, learner/mentor scope, clearance/withdrawal,
 network failure and installed-worker behavior against the reviewed backend.
 Source/build evidence belongs to its current revision and working-tree hashes.

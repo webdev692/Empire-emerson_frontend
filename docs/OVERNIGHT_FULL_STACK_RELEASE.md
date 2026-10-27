@@ -2,6 +2,32 @@
 
 This journal records the non-sensitive evidence for the July 11, 2026 stabilization and release work. It must never contain secret values, private user records, intern records, or production row contents.
 
+## 2026-10-27 — Verified isolated backend origin pinned for hosted build
+
+The source candidate was committed at
+`fd507c6c1053bfc4b5662a86497a1f31fb20d48b` on the existing PR #33 branch;
+GitHub CI run `40523303941` passed. The user subsequently approved the isolated
+public endpoint and exact private credential destinations. The operator created
+and verified `https://epdg-practice-api-synthetic-hosted.up.railway.app` while
+the application remained sealed. The frontend profile now pins that exact backend
+origin, preserving both verified portal origins and fixed same-origin API paths.
+
+The first actual hosted compilation was correctly rejected by the unchanged
+artifact verifier because object-derived mode detection retained inactive local
+branches. A literal compile-time flag is now emitted only after profile
+validation; corresponding client/configuration tests cover that boundary. Local
+branches must be absent from the actual bundle before this candidate is accepted.
+The strict verifier was preserved and no failed artifact was deployed.
+
+This bounded source change does not unseal the API, provision a database, deploy
+Netlify output, change production, or enable owner/admin controls. Private
+synthetic bootstrap and actual hosted login, recovery, cookie/CSRF, learning,
+review and CRM handoff acceptance remain separate operator work. Real HR records
+and credentials remain excluded from frontend source and artifacts. Fresh
+compiled hosted checks and revision-tagged manifests are recorded in workspace
+`build-evidence/epdg-synthetic-2026-10-27/frontend-hosted-build/`; those checks
+alone do not establish hosted backend or browser acceptance.
+
 ## 2026-10-27 — Isolated frontend source release candidate
 
 Prepared `exchange/epdg-frontend-release-20261027` from existing PR #33 base
