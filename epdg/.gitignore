@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 dist-design-preview
+dist-hosted-practice
+.netlify
 *.local
 
 # Editor directories and files

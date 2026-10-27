@@ -1,0 +1,13 @@
+# Explicit hosted synthetic profile. Use this config only after the exact origins
+# in hosted-practice.config.json and isolated backend have been verified.
+[build]
+  command = "npm run build:hosted-practice"
+  publish = "dist-hosted-practice"
+
+[build.environment]
+  NODE_VERSION = "22.23.1"
+  NPM_VERSION = "11.17.0"
+  EPDG_HOSTED_PRACTICE_ENABLED = "1"
+
+# Vite emits reviewed _headers and _redirects into this profile's output.
+# No default deployment context is changed by this separate configuration.

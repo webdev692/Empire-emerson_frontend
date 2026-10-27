@@ -1,0 +1,46 @@
+.sp-mentor { margin-top: 34px; min-width: 0; }
+.sp-mentor-top { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 20px; }
+.sp-mentor-top > div { min-width: 0; }
+.sp-mentor-top h2, .sp-mentor-top h5 { margin-bottom: 0; overflow-wrap: anywhere; }
+.sp-mentor-top button { flex-shrink: 0; }
+.sp-mentor-test { font-size: 12px; padding: 13px 16px; border: 1px solid #705a7f; background: #251333; border-radius: 9px; margin: 10px 0 28px; color: #e3d6ed; }
+.sp-mentor-state { padding: 26px; border: 1px dashed #705a7f; border-radius: 12px; background: #1b0e2a; margin: 24px 0; }
+.sp-mentor-state p { font-size: 14px; }
+.sp-mentor-queue { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 24px 0; }
+.sp-mentor-queue li { display: flex; flex-direction: column; min-width: 0; }
+.sp-mentor-queue h3, .sp-mentor-detail h3 { font-size: 24px; font-weight: 400; overflow-wrap: anywhere; line-height: 1.4; }
+.sp-mentor-queue li > button { margin-top: auto; align-self: flex-start; }
+.sp-mentor-facts { display: grid; gap: 16px; margin: 20px 0 26px; }
+.sp-mentor-facts dt { font-size: 11px; color: #c6b7d4; }
+.sp-mentor-facts dd { font-size: 14px; margin: 6px 0 0; overflow-wrap: anywhere; }
+.sp-mentor-facts code { font-size: 12px; }
+.sp-mentor-detail { display: grid; gap: 24px; margin: 24px 0; min-width: 0; }
+.sp-mentor-detail > section { min-width: 0; }
+.sp-mentor-detail h4 { font-size: 17px; font-weight: 500; margin-top: 28px; }
+.sp-mentor-copy { white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; font-size: 14px !important; line-height: 1.8; padding: 20px; background: #1b0e2a; border: 1px solid #705a7f; border-radius: 10px; }
+.sp-mentor-files { list-style: none; padding: 0; display: grid; gap: 16px; }
+.sp-mentor-files li { padding: 18px; border: 1px solid #705a7f; background: #1b0e2a; border-radius: 10px; min-width: 0; overflow-wrap: anywhere; }
+.sp-mentor-files strong { font-size: 14px; font-weight: 550; }
+.sp-mentor-files p { font-size: 12px; margin: 10px 0; }
+.sp-mentor-files summary { min-height: 44px; padding: 12px 0; cursor: pointer; color: #edcf83; font-size: 12px; }
+.sp-mentor-files dl { display: grid; gap: 12px; margin: 10px 0 20px; }
+.sp-mentor-files dt { font-size: 11px; color: #c6b7d4; }
+.sp-mentor-files dd { font-size: 12px; margin: 6px 0 0; overflow-wrap: anywhere; }
+.sp-mentor-files code { font-size: 11px; }
+.sp-mentor-detail label { display: block; font-size: 15px; font-weight: 550; margin: 18px 0 10px; }
+.sp-mentor-detail textarea { display: block; box-sizing: border-box; width: 100%; min-height: 200px; resize: vertical; color: #f4eaf9; background: #1b0e2a; border: 1px solid #947aa4; border-radius: 10px; padding: 16px; font: inherit; font-size: 16px; line-height: 1.7; }
+.sp-mentor-detail textarea:disabled { opacity: .75; }
+.sp-mentor-detail textarea:focus-visible, .sp-mentor h2:focus-visible, .sp-mentor-detail h3:focus-visible, .sp-mentor-files summary:focus-visible { outline: 3px solid #e9c773; outline-offset: 4px; }
+.sp-mentor-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 14px; }
+.sp-mentor-meta { font-size: 11px !important; color: #c6b7d4; margin-top: 10px; }
+.sp-mentor-saved { color: #edcf83; font-size: 13px !important; }
+.sp-mentor-error { border-left: 3px solid #ffb8ad; background: #361b31; color: #ffe5df; padding: 14px 16px; font-size: 14px !important; overflow-wrap: anywhere; }
+.sp-mentor-reload { border-top: 1px dashed #705a7f; margin-top: 24px; padding-top: 16px; }
+.sp-mentor-reload p { font-size: 13px; }
+.sp-assignment-feedback { border-top: 1px solid #705a7f; padding-top: 24px; margin-top: 28px; }
+.sp-assignment-feedback .sp-mentor-top { margin-bottom: 16px; }
+.sp-assignment-feedback .sp-mentor-top h5 { font-size: 17px; margin-top: 0; }
+.sp-feedback-published { list-style: none; padding: 0; display: grid; gap: 16px; margin-top: 20px; }
+.sp-feedback-published .sp-mentor-copy { margin-bottom: 12px; }
+@media (max-width: 760px) { .sp-mentor-queue { grid-template-columns: minmax(0, 1fr); } .sp-mentor-top { flex-direction: column; align-items: flex-start; gap: 16px; } }
+@media (max-width: 440px) { .sp-mentor-actions { flex-direction: column; align-items: stretch; } .sp-mentor-actions button, .sp-mentor-reload button { width: 100%; } .sp-mentor-copy { padding: 16px; } .sp-mentor-state { padding: 22px; } }

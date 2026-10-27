@@ -1,0 +1,236 @@
+{
+  "generatedAt": "2026-10-24T15:50:57.161Z",
+  "scope": "Local synthetic uncommitted working trees; browser and API acceptance passed; no remote CI or hosted acceptance claim",
+  "acceptanceStatus": "local_synthetic_passed",
+  "frontend": {
+    "verifiedAt": "2026-10-24T15:36:11.877Z",
+    "baseCommit": "2397c6e276e8ce111b70148333cec2682a4d4166",
+    "sourceFingerprintSha256": "c0e66636a09eaa1bf6b613abc16cccc5c009860f3cb1b1985393a963b4b467dd",
+    "sourceFiles": 25,
+    "testsPassed": 56,
+    "lintErrors": 0,
+    "lintWarnings": 0,
+    "normalAndDesignBuilds": true,
+    "bothArtifactVerifiers": true,
+    "smoke": true,
+    "compiledIsolation": true,
+    "sourceUnchangedDuringValidation": true,
+    "publishableArtifactsUnchanged": true,
+    "verificationReference": "build-evidence/epdg-synthetic-2026-10-24/mentor-reviews/frontend/verification.json",
+    "finalFingerprintMatchesVerification": true
+  },
+  "backend": {
+    "verifiedAt": "2026-10-24T15:41:19.730Z",
+    "baseCommit": "7bfdb114363147ec2998d151dff22a786b2122ba",
+    "sourceFingerprintSha256": "ff97cb608201f977df884c9c477be0b11b377646e409daa19507b46a48157bb6",
+    "sourceFiles": 181,
+    "testedAppSourceFingerprintSha256": "3b2ce1013d76be7934e87cf48049e7543ec52240f30de34315d5cb589c34bf0d",
+    "testedAppSourceFiles": 122,
+    "currentAppMatchesLiveQa": true,
+    "coreTestsPassed": 97,
+    "rootTestsPassed": 9,
+    "build": true,
+    "lintErrors": 0,
+    "existingLintWarnings": 161,
+    "multerVersion": "2.5.0",
+    "dependencyOrInstallPolicyChangedForMentorMilestone": false,
+    "learningRlsTables": 13,
+    "browserPolicies": 0,
+    "mentorMappings": 3,
+    "accountsAdded": 0,
+    "passwordsChanged": false,
+    "rolesChanged": false,
+    "seedRepeatAdded": 0,
+    "migrationRepeatApplied": [],
+    "migrations": [
+      {
+        "file": "001-synthetic-learning.sql",
+        "version": "2026-10-24-synthetic-learning-v1",
+        "sha256": "db3ab105acccb5e6f82bc3bca1a96eb93d4eb3993d6713f87bf8c374bc71a8fb"
+      },
+      {
+        "file": "002-synthetic-assignment-submissions.sql",
+        "version": "2026-10-24-synthetic-assignments-v1",
+        "sha256": "2f781d51154eb64a026c75ea0ef4cfbb265e9e77a6881f0b9d828c0a5f245d21"
+      },
+      {
+        "file": "003-synthetic-assignment-prompt-lines.sql",
+        "version": "2026-10-24-synthetic-assignment-prompt-lines-v1",
+        "sha256": "ef724c0ce559585ff70208283558959b9de6ce9bbe9386dd7e113c7c30c37a90"
+      },
+      {
+        "file": "004-synthetic-assignment-attachments.sql",
+        "version": "2026-10-24-synthetic-assignment-attachments-v1",
+        "sha256": "1a0623618a408181e32e2ffb9c9784ddbd3b0ef7e81bbec32bf92f12eb2f7bdc"
+      },
+      {
+        "file": "005-synthetic-mentor-review.sql",
+        "version": "2026-10-24-synthetic-mentor-review-v1",
+        "sha256": "1af6773a8c6b1c30c705032fe9d5f656bdd75027a70830a6812c3361004ded1e"
+      }
+    ],
+    "priorAppliedMigrationHashesUnchanged": true,
+    "original50TableMetadataDifferences": 0,
+    "verificationReference": "exchange/THE-EMERSON-EMPIRE_Backend/docs/MENTOR_REVIEW_EVIDENCE_2026-10-24.json"
+  },
+  "automatedTests": {
+    "totalPassed": 162,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "liveScenarioGroups": {
+    "mentors": 18,
+    "uploads": 17,
+    "textSubmissions": 15,
+    "learners": 10,
+    "totalPassed": 60,
+    "fullDatabaseBackendRestartTested": true,
+    "learnerAPasswordOrSessionAccessed": false,
+    "identityAccessStatementScope": "Independent API QA scripts only; root browser used learner session normally before normal sign-out"
+  },
+  "browser": {
+    "checkedAt": "2026-10-24T15:48:29.295Z",
+    "scope": "Local synthetic portal browser acceptance; uncommitted current working tree",
+    "baseFrontendCommit": "2397c6e276e8ce111b70148333cec2682a4d4166",
+    "frontendFingerprint": "c0e66636a09eaa1bf6b613abc16cccc5c009860f3cb1b1985393a963b4b467dd",
+    "backendTestedAppFingerprint": "3b2ce1013d76be7934e87cf48049e7543ec52240f30de34315d5cb589c34bf0d",
+    "url": "http://127.0.0.1:58080/dashboard",
+    "passed": true,
+    "learnerChecks": [
+      "Own submitted receipt displayed no private mentor draft before publication",
+      "Refresh feedback displayed the same feedback after normal scoped mentor publication",
+      "Program dashboard displayed the published assignment feedback entry",
+      "Lesson progress remained three of five",
+      "Normal UI submitted a separate text-only synthetic practice assignment"
+    ],
+    "mentorChecks": [
+      "Existing school-A fixture signed in through normal login with unchanged authority",
+      "Queue showed exactly three school-A submitted receipts, no foreign-school work",
+      "Frozen career submission displayed the submitted answer, revision and two attachment manifests",
+      "PDF download completed integrity verification in browser",
+      "A fresh page with one mentor editor and 174 synthetic comment characters hid and retained that editor on offline event",
+      "Same-identity and scope access revalidation restored all 174 unsaved characters",
+      "Private draft saved successfully and survived full page reload",
+      "390 by 844 viewport had 375 CSS pixel content width and no horizontal overflow",
+      "Keyboard review moved focus to review heading; edit returned focus to textarea; Tab reached publish",
+      "Explicit publication displayed learner-visible read-only feedback and focused the published heading",
+      "Full page reload preserved published feedback and removed editing controls",
+      "1100 by 900 viewport had 1085 CSS pixel content width and no horizontal overflow",
+      "Separate synthetic practice receipt left awaiting review with blank unsaved feedback form"
+    ],
+    "developmentObservation": {
+      "initialOfflineAttempt": "An already-running development page lost unsaved synthetic text and emitted the generic offline message.",
+      "resolution": "Full page reload with unchanged tested source; subsequent offline/revalidation test passed.",
+      "likelyCause": "Stale hot-reloaded event handler; this cause is not proven.",
+      "sourceEditRequired": false,
+      "independentReview": "frontend/offline-retention-review.json"
+    },
+    "humanAccess": {
+      "learnerAPasswordReadOrChanged": false,
+      "learnerASessionCookieExported": false,
+      "learnerAUiSession": "Used normally for learner acceptance, then explicitly signed out through the normal UI",
+      "currentBrowserIdentity": "Existing synthetic school-A mentor fixture",
+      "preferredPrivateLearnerLoginAliasUnchanged": true,
+      "accountsOrRolesCreated": false
+    },
+    "handoff": {
+      "itemId": "30000000-0000-4000-8000-000000000011",
+      "receiptId": "df5859af-d668-4425-99f7-5a9bd4e75131",
+      "submissionRevision": 1,
+      "submittedFiles": 0,
+      "title": "SYNTHETIC Upload Practice",
+      "status": "Awaiting mentor review; no private draft or published feedback",
+      "browserTabKeptOpen": true,
+      "networkRestored": true,
+      "viewportOverrideReset": true
+    },
+    "screenshots": [
+      "browser/learner-published-feedback.png",
+      "browser/mentor-mobile-review.png",
+      "browser/mentor-mobile-published.png",
+      "browser/mentor-published-feedback.png",
+      "browser/mentor-ready-to-review.png"
+    ],
+    "limitations": [
+      "Synthetic practice feedback only; no grades, credit, awards, qualifications, reopening or resubmission",
+      "No production deployment or owner/admin activation",
+      "No human learner sign-in automated after the normal sign-out"
+    ],
+    "status": "passed",
+    "finalBrowserAcceptancePassed": true,
+    "screenshotArtifacts": [
+      {
+        "file": "browser/learner-published-feedback.png",
+        "bytes": 38589,
+        "sha256": "d42617bac5c85a8d4688e28c93bc9b1182f87a49b01b96e295de31d7482ef5df"
+      },
+      {
+        "file": "browser/mentor-mobile-review.png",
+        "bytes": 40691,
+        "sha256": "cf539260895c58aef80cbd72250dffc19ea5392157753649d530eb3a82dd375b"
+      },
+      {
+        "file": "browser/mentor-mobile-published.png",
+        "bytes": 48277,
+        "sha256": "9aa28e14571cc1616949ce7489627490fc2e23c31c5014c9cef65680f829e3ea"
+      },
+      {
+        "file": "browser/mentor-published-feedback.png",
+        "bytes": 181242,
+        "sha256": "ddc4be3f246f51a0d430b86c7168fa26d9c59345410247c0df53911e8d889fdc"
+      },
+      {
+        "file": "browser/mentor-ready-to-review.png",
+        "bytes": 166952,
+        "sha256": "e63874ab09e8fb68c17f45e3996045ff89591c7cb95a119fa0bbb023ee01082a"
+      }
+    ],
+    "verificationReference": "build-evidence/epdg-synthetic-2026-10-24/mentor-reviews/browser-verification.json"
+  },
+  "production": {
+    "checkedAt": "2026-10-24T15:46:43.344Z",
+    "siteId": "44a83e1b-501c-4c5e-8aa8-e9ce58e44967",
+    "publishedDeployId": "6a385b7fac8ea70008ef72d6",
+    "deployId": "6a385b7fac8ea70008ef72d6",
+    "state": "ready",
+    "commit": "9e2bbb0cbae7de3eabc27da0bcea37bebed449a2",
+    "locked": true,
+    "readOnly": true,
+    "publishingAuthorized": false,
+    "privilegedControlsEnabled": false
+  },
+  "localPolicy": {
+    "mentorAccessRequiresCurrentMappingAndBothScopes": true,
+    "learnerPublishedFeedbackSurvivesMentorRevocation": true,
+    "learnerCurrentEnrollmentAndMembershipRequired": true,
+    "noGradesOrAwards": true
+  },
+  "privilegedControlsEnabled": false,
+  "committedPushedOrDeployed": false,
+  "evidenceDirectory": "build-evidence/epdg-synthetic-2026-10-24/mentor-reviews",
+  "guide": "docs/SYNTHETIC_MENTOR_REVIEW.md",
+  "limitations": [
+    "Local synthetic school fixture identities only; production mentor permissions remain undefined",
+    "No grading, outcomes, credit, awards, enrollment administration or resubmission",
+    "File signature checks are not malware scanning",
+    "Existing dependency audit findings and backend lint warnings remain",
+    "Previous upload evidence is historical and preserved",
+    "An initial already-running development page lost unsaved synthetic text; a full current-code page reload passed retention without source changes. Stale hot-reload handler remains a likely, unproven cause."
+  ],
+  "finalReadOnlySafety": {
+    "checkedAt": "2026-10-24T15:50:18.212Z",
+    "backendApplicationFingerprintMatchesTests": true,
+    "originalTableMetadataDifferences": 0,
+    "learningRlsTables": 13,
+    "browserPolicies": 0,
+    "browserColumnGrants": 0,
+    "syntheticAccounts": 4,
+    "nonSyntheticDatabaseEmails": 0,
+    "privilegedOrUnapprovedRoles": 0,
+    "allFiveListenersLoopback": true,
+    "healthHttpStatus": 200,
+    "servicesRestarted": false,
+    "evidenceReference": "build-evidence/epdg-synthetic-2026-10-24/mentor-reviews/backend/final-state.json"
+  }
+}

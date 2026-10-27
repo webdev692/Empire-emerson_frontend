@@ -1,0 +1,180 @@
+{
+  "createdAt": "2026-10-24T14:19:38.753Z",
+  "status": "LOCAL_SYNTHETIC_LEARNER_DASHBOARD_VERIFIED",
+  "frontend": {
+    "baseCommit": "2397c6e276e8ce111b70148333cec2682a4d4166",
+    "workingSourceSha256": "d0503cfc881bfc9f086acdace21685f7e9cc90650f2338d2254f4c43c6c61108",
+    "sourceFileCount": 16,
+    "uncommitted": true,
+    "tests": {
+      "passed": 34,
+      "failed": 0,
+      "skipped": 0
+    },
+    "lint": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "normalAndDesignBuilds": "passed",
+    "artifactChecks": "passed; synthetic learning markers, private alias and known runtime secrets excluded",
+    "smoke": "passed"
+  },
+  "backend": {
+    "baseCommit": "7bfdb114363147ec2998d151dff22a786b2122ba",
+    "workingSourceSha256": "a2904fb333cd142846bdff12d1701ae94a8ca0c0138454a6e2017a74f12538e7",
+    "sourceFileCount": 164,
+    "sourceHashExcludes": [
+      "Git-ignored data",
+      "docs/OVERNIGHT_FULL_STACK_RELEASE.md",
+      "paths containing EVIDENCE or REVALIDATION"
+    ],
+    "uncommitted": true,
+    "learningServiceSha256": "d2097facbc468f5a452b70f2abab5b492ffbc00e092a6e3562ff64537f6d7ce0",
+    "compiledLearningServiceSha256": "706ab44860a7c036d3dad2e62c450015038e00d5c63fbe31282a807b9e914bf0",
+    "coreTests": {
+      "passed": 76,
+      "failed": 0,
+      "skipped": 0
+    },
+    "rootTests": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    "lint": {
+      "errors": 0,
+      "existingWarnings": 161
+    },
+    "build": "passed",
+    "testInvocation": "Pinned Node build and direct Node test runner from core; portable nested npm wrapper failed before equivalent invocation passed",
+    "liveScenarioGroups": {
+      "passed": 11,
+      "failed": 0,
+      "fullBackendAndDatabaseRestart": true,
+      "verifiedAt": "2026-10-24T14:11:30.750Z",
+      "checks": [
+        "anonymous/bearer/unknown-cookie denied",
+        "own B program and school-account denial",
+        "user/institution selector overrides rejected; foreign records404",
+        "session CSRF and exact origin",
+        "read-only assignments",
+        "empty enrollment state and restoration",
+        "idempotent own lesson completion; lessons-only progress",
+        "session/completion persistence across final-build restart",
+        "seven RLS tables; no browser grants; runtime reads and bounded inserts",
+        "logout revocation",
+        "privileged routes closed"
+      ]
+    },
+    "originalSchemaParity": {
+      "verifiedAt": "2026-10-24T14:17:53.938Z",
+      "differences": [],
+      "productionRowsRead": 0
+    }
+  },
+  "migration": {
+    "version": "2026-10-24-synthetic-learning-v1",
+    "sha256": "db3ab105acccb5e6f82bc3bca1a96eb93d4eb3993d6713f87bf8c374bc71a8fb",
+    "schema": "synthetic_learning",
+    "localOnly": true,
+    "explicitOperatorApplied": true,
+    "startupMigrations": false,
+    "originalTablesModified": false,
+    "seed": {
+      "programs": 3,
+      "enrollments": 3,
+      "lessons": 7,
+      "readOnlyAssignments": 3,
+      "feedback": 2,
+      "resources": 3,
+      "passwordsOrAccountPermissionsChanged": false
+    }
+  },
+  "browser": {
+    "currentLearner": "existing synthetic learner A",
+    "sessionExtraction": "Attempt to export active cookie was automatically rejected; no export file exists; browser used normal session only",
+    "ownPrograms": 2,
+    "initialSummary": {
+      "completedLessons": 1,
+      "totalLessons": 5,
+      "percent": 20
+    },
+    "firstCompletion": {
+      "program": "Synthetic workplace communication",
+      "beforePercent": 33,
+      "afterPercent": 67,
+      "reloadPreserved": true
+    },
+    "finalBuildCompletion": {
+      "program": "Synthetic workplace communication",
+      "completedLessons": 3,
+      "totalLessons": 3,
+      "percent": 100,
+      "reloadPreserved": true,
+      "continueActionRemoved": true
+    },
+    "finalSummary": {
+      "programsInProgress": 1,
+      "completedLessons": 3,
+      "totalLessons": 5,
+      "percent": 60
+    },
+    "feedbackAndResources": "only own enrollment records observed; plain local resource opened",
+    "assignment": "read-only preview; no submission or grade controls",
+    "keyboard": {
+      "resourceToggleWithEnter": "passed",
+      "programOpenAndBackWithEnter": "passed",
+      "detailHeadingFocus": "passed"
+    },
+    "responsive": {
+      "mobile": {
+        "requestedWidth": 390,
+        "measuredDocumentWidth": 375,
+        "measuredViewportWidth": 375,
+        "horizontalOverflow": false
+      },
+      "desktop": {
+        "requestedWidth": 1280,
+        "measuredDocumentWidth": 1265,
+        "measuredViewportWidth": 1265,
+        "programColumns": "568px 568px",
+        "horizontalOverflow": false
+      },
+      "temporaryViewportRestored": true
+    },
+    "screenshots": [
+      "workspace build-evidence/epdg-synthetic-2026-10-24/learner-dashboard/browser/dashboard-mobile.png",
+      "workspace build-evidence/epdg-synthetic-2026-10-24/learner-dashboard/browser/programs-desktop.png"
+    ],
+    "selectorCorrections": [
+      "Completion toast selector updated to current saved copy; observed100%progress and reload persistence independently",
+      "Native summary resource activated with summary locator after adapter button-role mismatch"
+    ],
+    "noCredentialsChangedOrCopied": true
+  },
+  "productionLock": {
+    "checkedAt": "2026-10-24T14:10:35.891Z",
+    "siteId": "44a83e1b-501c-4c5e-8aa8-e9ce58e44967",
+    "currentDeployId": "6a385b7fac8ea70008ef72d6",
+    "id": "6a385b7fac8ea70008ef72d6",
+    "locked": true,
+    "state": "ready",
+    "commit_ref": "9e2bbb0cbae7de3eabc27da0bcea37bebed449a2",
+    "published_at": "2026-06-21T21:46:09.193Z"
+  },
+  "runtime": {
+    "portal": "http://127.0.0.1:58080/dashboard",
+    "backend": "http://127.0.0.1:58000",
+    "mailpit": "loopback sink only",
+    "ready": true
+  },
+  "noRemoteMutations": true,
+  "ownerAdminControls": "closed",
+  "limitations": [
+    "Local synthetic milestone only; no hosted, proxy/HTTPS, installed-worker upgrade or production acceptance.",
+    "Self-reported lesson completion gives no grade, credit, qualification or certificate.",
+    "Assignments, uploads, grading, invitations, profile writes and owner/admin controls remain closed.",
+    "Empty enrollment was verified via API/client tests; browser empty/error states were not separately forced in this milestone.",
+    "All Git working changes remain local and uncommitted."
+  ]
+}

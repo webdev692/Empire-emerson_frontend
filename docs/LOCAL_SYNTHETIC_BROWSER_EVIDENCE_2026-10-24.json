@@ -1,0 +1,86 @@
+{
+  "createdAt": "2026-10-24T13:31:25.199Z",
+  "status": "LOCAL_SYNTHETIC_FRONTEND_CONNECTED_RECOVERY_REAUTH_PENDING",
+  "frontendBase": "2397c6e276e8ce111b70148333cec2682a4d4166",
+  "frontendWorkingSourceSha256": "f19069171730b637f397db924c5b4aab3c761aad76c78c9a077a0e06398db8ad",
+  "backendBase": "7bfdb114363147ec2998d151dff22a786b2122ba",
+  "backendWorkingSourceSha256": "deeaab7266abd583830af3c250ee8406558abcbb58f4397ae44fd9bbd7982216",
+  "uncommittedLocalWork": true,
+  "portalOrigin": "http://127.0.0.1:58080",
+  "backendOrigin": "http://127.0.0.1:58000",
+  "checks": {
+    "incorrectPassword": "passed",
+    "learnerAAndBLiveLogin": "passed",
+    "ownAccountAndDistinctSchoolScopes": "passed",
+    "sessionReloadRestoration": "passed",
+    "cookie": {
+      "name": "epdg_synthetic_session",
+      "httpOnly": true,
+      "sameSite": "Strict",
+      "secure": false,
+      "secureFalseReason": "Exact loopback-only synthetic HTTP contract"
+    },
+    "readOnlyAccount": "passed",
+    "adminNavigationClosed": "passed",
+    "logoutConfirmation": "passed",
+    "signedOutDashboardDenial": "passed",
+    "genericKnownUnknownRecoveryResponse": "passed",
+    "localMailpitDelivery": "passed",
+    "resetFragmentImmediatelyRemoved": "passed",
+    "passwordResetSubmission": "completed by human after required browser handoff; successful confirmation observed",
+    "newPasswordSignIn": "pending human private credential entry",
+    "resetClearedBrowserCookie": "passed; existing dashboard refresh required sign-in",
+    "keyboardEmailPasswordButtonOrder": "passed",
+    "narrowLoginLayout": {
+      "passed": true,
+      "requestedViewportWidth": 390,
+      "measuredDocumentAndClientWidth": 375,
+      "noHorizontalOverflow": true
+    },
+    "observedReloadRequestOrigins": [
+      "http://127.0.0.1:58080",
+      "http://127.0.0.1:58000"
+    ],
+    "offlineUnavailableAndOnlineRecheck": "passed on signed-out dashboard route",
+    "knownRuntimeSecretScan": {
+      "textFiles": 24,
+      "hits": 0
+    },
+    "automatedFrontend": {
+      "tests": 26,
+      "lintErrors": 0,
+      "lintWarnings": 0,
+      "normalDesignBuilds": "passed",
+      "artifactChecks": "passed",
+      "smoke": "passed"
+    },
+    "automatedBackend": {
+      "tests": 76,
+      "scenarioGroups": 17,
+      "lintErrors": 0,
+      "existingLintWarnings": 161,
+      "ranBeforeHumanReset": true
+    }
+  },
+  "productionLock": {
+    "checkedAt": "2026-10-24T13:19:20.509Z",
+    "siteId": "44a83e1b-501c-4c5e-8aa8-e9ce58e44967",
+    "currentDeployId": "6a385b7fac8ea70008ef72d6",
+    "id": "6a385b7fac8ea70008ef72d6",
+    "locked": true,
+    "state": "ready",
+    "commit_ref": "9e2bbb0cbae7de3eabc27da0bcea37bebed449a2",
+    "published_at": "2026-06-21T21:46:09.193Z"
+  },
+  "limitations": [
+    "New-password reauthentication awaits the human's private sign-in; no secret requested in chat.",
+    "Authenticated mobile dashboard and logout/network-failure browser scenarios remain unverified.",
+    "Direct browser localStorage/sessionStorage inspection is unsupported by the available browser adapter; source/client tests establish no persistence calls in the new entry.",
+    "Recovery replay/concurrency and expiry were covered by backend API/SQL suite, not a new browser password submission.",
+    "No hosted synthetic, proxy/HTTPS, installed-worker upgrade or production acceptance.",
+    "Human-reset learner A credential may differ from scripted fixture default; do not silently overwrite it."
+  ],
+  "screenshot": "workspace build-evidence/epdg-synthetic-2026-10-24/browser/login-desktop.png",
+  "noRemoteMutations": true,
+  "ownerAdminControls": "closed"
+}

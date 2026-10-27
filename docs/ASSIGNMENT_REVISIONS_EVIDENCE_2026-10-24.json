@@ -1,0 +1,266 @@
+{
+  "status": "PASSED_LOCAL_SYNTHETIC",
+  "scope": "Local synthetic uncommitted working trees; no hosted or production acceptance",
+  "frontend": {
+    "verifiedAt": "2026-10-24T16:07:15.009Z",
+    "baseCommit": "2397c6e276e8ce111b70148333cec2682a4d4166",
+    "sourceFingerprintSha256": "544ca927c1a7efabfbbfbd4fc3590d0d6ac1ab6e753bde8a99030a93168db5f4",
+    "sourceFiles": 28,
+    "uncommitted": true,
+    "node": "22.23.1",
+    "npm": "11.17.0",
+    "testsPassed": 63,
+    "testsFailed": 0,
+    "testsSkipped": 0,
+    "lintErrors": 0,
+    "lintWarnings": 0,
+    "normalAndDesignBuilds": true,
+    "bothArtifactVerifiers": true,
+    "smoke": true,
+    "diffCheck": true,
+    "sourceUnchangedDuringValidation": true,
+    "artifactFilesScanned": 20,
+    "selectedLearnerUploadMentorRevisionMarkersAbsent": true,
+    "privateLoginAliasAbsent": true,
+    "configuredRuntimeSecretValuesChecked": 7,
+    "privateValuesRecorded": false,
+    "evidenceDirectory": "workspace build-evidence/epdg-synthetic-2026-10-24/revisions-resubmissions/frontend",
+    "limitations": [
+      "Unit/configuration/build evidence; browser and backend acceptance are separate.",
+      "Exact configured private values and selected markers only; not comprehensive secret detection.",
+      "No API/runtime request, login, remote repository write or deployment was performed by this frontend validation."
+    ]
+  },
+  "backend": {
+    "status": "PASSED",
+    "baseCommit": "7bfdb114363147ec2998d151dff22a786b2122ba",
+    "branch": "local-synthetic-environment",
+    "sourceFingerprintSha256": "3cc611494dcec5502de8cb06a06d52116c9a8a18e382028550c8fd3619a72ec8",
+    "sourceFilesHashed": 186,
+    "testedApplicationFingerprint": "15b3fefb5a827d37d1e86a35c8da6064aeb2cc5551d3618d31532f92d7f9d0cc",
+    "testedApplicationFiles": 125,
+    "coreTests": {
+      "passed": 101,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "rootTests": {
+      "passed": 9,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "build": {
+      "passed": true,
+      "method": "TypeScript compile and migration safety artifact copy"
+    },
+    "lint": {
+      "errors": 0,
+      "existingWarnings": 161
+    },
+    "migrations": [
+      {
+        "file": "001-synthetic-learning.sql",
+        "version": "2026-10-24-synthetic-learning-v1",
+        "sha256": "db3ab105acccb5e6f82bc3bca1a96eb93d4eb3993d6713f87bf8c374bc71a8fb"
+      },
+      {
+        "file": "002-synthetic-assignment-submissions.sql",
+        "version": "2026-10-24-synthetic-assignments-v1",
+        "sha256": "2f781d51154eb64a026c75ea0ef4cfbb265e9e77a6881f0b9d828c0a5f245d21"
+      },
+      {
+        "file": "003-synthetic-assignment-prompt-lines.sql",
+        "version": "2026-10-24-synthetic-assignment-prompt-lines-v1",
+        "sha256": "ef724c0ce559585ff70208283558959b9de6ce9bbe9386dd7e113c7c30c37a90"
+      },
+      {
+        "file": "004-synthetic-assignment-attachments.sql",
+        "version": "2026-10-24-synthetic-assignment-attachments-v1",
+        "sha256": "1a0623618a408181e32e2ffb9c9784ddbd3b0ef7e81bbec32bf92f12eb2f7bdc"
+      },
+      {
+        "file": "005-synthetic-mentor-review.sql",
+        "version": "2026-10-24-synthetic-mentor-review-v1",
+        "sha256": "1af6773a8c6b1c30c705032fe9d5f656bdd75027a70830a6812c3361004ded1e"
+      },
+      {
+        "file": "006-synthetic-assignment-revisions.sql",
+        "version": "2026-10-24-synthetic-assignment-revisions-v1",
+        "sha256": "cfa51624a3c7e8e3b552f12cb5dc6c2a5769fa78fd64258da4e62151f6c92b0b"
+      }
+    ],
+    "priorAppliedMigrationsUnchanged": true,
+    "migrationPreservation": {
+      "oldImmutableRows": 37,
+      "beforeSha256": "9dcb73a4ba522625a599a9bae649eb9e80badaa1353365979aa7be62a52081a2",
+      "afterSha256": "9dcb73a4ba522625a599a9bae649eb9e80badaa1353365979aa7be62a52081a2",
+      "allOldRowsUnchanged": true
+    },
+    "learningRlsTables": 13,
+    "browserPolicies": 0,
+    "browserColumnGrants": 0,
+    "original50TableMetadataDifferences": 0,
+    "independentReadOnlyReview": {
+      "findings": 0,
+      "at": "2026-10-24T16:19:11.518Z",
+      "evidence": "revisions-resubmissions/backend/independent-final-state.json"
+    },
+    "verificationReference": "build-evidence/epdg-synthetic-2026-10-24/revisions-resubmissions/backend/current-source-and-tests.json"
+  },
+  "liveScenarioGroups": {
+    "status": "PASSED",
+    "revisionGroupsPassed": 13,
+    "revisionAt": "2026-10-24T16:12:35.194Z",
+    "revisionChecks": [
+      "revision routes reject anonymous bearer school and foreign assignment access",
+      "guarded B-only fixtures begin at attempt one without published feedback",
+      "only published latest feedback enables revision and binding selectors are strict",
+      "concurrent exact revision starts create one monotonic copied draft and no inherited files",
+      "earlier frozen files remain receipt-scoped and cannot be removed restored or reassigned",
+      "an intervening edit makes the earlier start retry stale without altering the attempt chain",
+      "new attempt file quotas are isolated and remain three active six lifetime records",
+      "resubmission creates a distinct frozen receipt with no inherited mentor review",
+      "latest-only feedback gate and five-attempt cap preserve every prior publication",
+      "current enrollment withdrawal hides revision history files and mentor reviews",
+      "runtime cannot forge receipt or file attempts and published immutable records remain protected",
+      "fresh B browser practice retains first receipt files and published feedback ready for revision two",
+      "attempt chain historical bytes feedback and authenticated sessions survive a full local restart"
+    ],
+    "fullRuntimeRestartTested": true,
+    "mentorGroupsPassed": 17,
+    "mentorAt": "2026-10-24T16:23:09.533Z",
+    "uploadGroupsPassed": 17,
+    "uploadAt": "2026-10-24T16:23:46.287Z",
+    "textSubmissionGroupsPassed": 15,
+    "textAt": "2026-10-24T16:24:00.431Z",
+    "learnerGroupsPassed": 10,
+    "learnerAt": "2026-10-24T16:29:18.895Z",
+    "totalFreshGroupsPassed": 72,
+    "oldRegressionsRanAfterBrowserWithoutRestart": true,
+    "countNote": "72 fresh groups: one restart group in revisions; the no-restart mentor suite has 17 instead of its historical 18.",
+    "retryNote": "Initial learner regression reached the shared normal login throttle after browser plus earlier suites; retried after its window expired, without restart or limiter change.",
+    "learnerAPasswordOrSessionAccessed": false
+  },
+  "browser": {
+    "checkedAt": "2026-10-24T16:19:49.458Z",
+    "status": "passed",
+    "scope": "Local synthetic browser acceptance on current uncommitted source",
+    "frontendFingerprint": "544ca927c1a7efabfbbfbd4fc3590d0d6ac1ab6e753bde8a99030a93168db5f4",
+    "backendApplicationFingerprint": "15b3fefb5a827d37d1e86a35c8da6064aeb2cc5551d3618d31532f92d7f9d0cc",
+    "itemId": "76f588df-7a32-44d8-8852-16eb704c18e5",
+    "programId": "10000000-0000-4000-8000-000000000003",
+    "original": {
+      "receiptId": "3daa35b9-a122-43dd-a886-ee00da169cc4",
+      "attempt": 1,
+      "revision": 2,
+      "files": [
+        {
+          "filename": "synthetic-original-plan.txt",
+          "bytes": 57
+        }
+      ],
+      "publishedFeedback": true
+    },
+    "resubmitted": {
+      "receiptId": "cf5b4ced-edab-4679-a924-3eef5344c50d",
+      "attempt": 2,
+      "revision": 5,
+      "answerCharacters": 234,
+      "files": [
+        {
+          "filename": "synthetic-revised-plan.txt",
+          "bytes": 123
+        }
+      ],
+      "publishedFeedback": false
+    },
+    "checks": [
+      "Normal existing fixture sign-ins and sign-outs; no human learner credential read/reset or cookie export",
+      "Published feedback on latest attempt enabled explicit keyboard start",
+      "Start copied frozen prior answer, advanced attempt to two and revision to three, and attached no files",
+      "Expanded original history retained frozen answer, file metadata and feedback",
+      "Offline shell hid and retained all 234 unsaved characters; same-scope recheck restored them",
+      "Saved revised answer and explicitly uploaded a separate synthetic file",
+      "Page reload preserved revised text and saved file",
+      "390 by 844 mobile viewport had no horizontal overflow at 375 CSS pixels",
+      "Keyboard review focused saved-answer heading and explicit keyboard submit created a distinct receipt",
+      "Attempt two contained only its own new file and did not inherit feedback or permit a third attempt",
+      "Original receipt file downloaded with size/hash verification both during revision draft and after resubmission",
+      "Page reload preserved the new receipt and rendered zero editable answer fields",
+      "Mentor queue displayed attempt one as published and attempt two awaiting review separately",
+      "Mentor attempt two showed its frozen revised answer and new file, with no private draft",
+      "Mentor download of the new attempt file passed integrity verification"
+    ],
+    "automationObservations": [
+      "A role-based locator intentionally could not see the hidden editor during offline state; a read-only DOM check verified retention before recovery.",
+      "The mentor file download completed after an initial short wait expired; subsequent visible success state verified the result."
+    ],
+    "currentBrowser": {
+      "fixture": "school-b@epdg.invalid",
+      "view": "Attempt two awaiting mentor review",
+      "unsavedMentorComment": false
+    },
+    "humanPreferredLoginAliasUnchanged": true,
+    "networkRestored": true,
+    "viewportOverrideReset": true,
+    "realHrRecordsImported": false,
+    "screenshots": [
+      "browser/revision-mobile-review.png",
+      "browser/resubmission-mobile-receipt.png",
+      "browser/mentor-resubmission-awaiting-review.png"
+    ],
+    "postRegressionNormalSignInVerified": true,
+    "finalBrowserAcceptancePassed": true,
+    "verificationReference": "build-evidence/epdg-synthetic-2026-10-24/revisions-resubmissions/browser-verification.json",
+    "postRegressionReceiptVerified": "cf5b4ced-edab-4679-a924-3eef5344c50d"
+  },
+  "syntheticPolicy": {
+    "maximumPracticeAttempts": 5,
+    "maximumActiveFilesPerAttempt": 3,
+    "maximumLifetimeFileRecordsPerAttempt": 6,
+    "maximumFileBytes": 1048576,
+    "priorAnswerCopied": true,
+    "priorFilesCopied": false,
+    "latestPublishedFeedbackRequired": true,
+    "historicalHrSingleRevisionNoteIsApprovedProductionPolicy": false,
+    "productionRevisionPolicy": "UNDEFINED_PENDING_SEPARATE_APPROVAL",
+    "noRealHrDataOrAccountsImported": true
+  },
+  "releaseRestrictions": {
+    "productionInstruction": "KEEP_LOCKED",
+    "freshProductionLockObservation": {
+      "checkedAt": "2026-10-24T17:12:59.05Z",
+      "siteId": "44a83e1b-501c-4c5e-8aa8-e9ce58e44967",
+      "publishedDeployId": "6a385b7fac8ea70008ef72d6",
+      "deployId": "6a385b7fac8ea70008ef72d6",
+      "state": "ready",
+      "commit": "9e2bbb0cbae7de3eabc27da0bcea37bebed449a2",
+      "locked": true,
+      "readOnly": true
+    },
+    "normalBuildRetainsAccessHold": true,
+    "designPreviewDisconnected": true,
+    "ownerAdminControls": "CLOSED",
+    "invitationsRegistrationProfileWrites": "CLOSED",
+    "gradesCreditCertificates": "UNAVAILABLE",
+    "remotePublicationAuthorizedByThisReceipt": false,
+    "recommendation": "DO_NOT_PUBLISH_YET"
+  },
+  "compensation": "Stop only managed local services while retaining additive drafts, receipts, files and feedback. Use reviewed forward database corrections; do not delete history, point clients at production or unlock publishing.",
+  "generatedAt": "2026-10-24T16:41:43.913Z",
+  "automatedTests": {
+    "totalPassed": 173,
+    "frontendPassed": 63,
+    "backendCorePassed": 101,
+    "backendRootPassed": 9,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "committedPushedMergedOrDeployed": false,
+  "realHrProfilesCreated": 0,
+  "passwordsGeneratedOrSent": 0,
+  "evidenceDirectory": "build-evidence/epdg-synthetic-2026-10-24/revisions-resubmissions"
+}
