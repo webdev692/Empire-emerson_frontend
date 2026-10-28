@@ -35,3 +35,15 @@ test('public release opens only the founder-confirmed form paths and functional 
 test('the public schedule has exactly the three confirmed daily sessions', async () => {
   await policy('public-release','true',p => assert.deepEqual(p.dailySessions.map(s=>[s.time,s.minutes,s.price]),[['10:00 AM',60,0],['2:00 PM',90,10],['7:00 PM',120,20]]));
 });
+
+test('unconfirmed public request links lead to the contact page while review links stay held', async () => {
+  for (const [mode, expected] of [['public-release', '/inquiry'], ['protected-review', '#intake-held']]) {
+    const server = await createServer({root:fileURLToPath(new URL('..',import.meta.url)),configFile:false,optimizeDeps:{noDiscovery:true,include:[]},define:{'import.meta.env.MODE':JSON.stringify(mode),'import.meta.env.VITE_COMPANY_PLATFORM':'"true"','import.meta.env.VITE_PUBLIC_INTAKE_RELEASE':'"true"','import.meta.env.DEV':'false'},server:{middlewareMode:true,watch:null,hmr:false},appType:'custom'});
+    try {
+      const page = await server.ssrLoadModule('/shared/development-preview.ts');
+      assert.equal(page.intakeHref('https://example.org/unverified-form'), expected);
+      const intake = await server.ssrLoadModule('/shared/public-intake.ts');
+      assert.equal(page.intakeHref(intake.publicForms.internship), mode === 'public-release' ? intake.publicForms.internship : '#intake-held');
+    } finally { await server.close(); }
+  }
+});

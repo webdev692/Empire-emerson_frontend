@@ -1,4 +1,5 @@
 import { isApprovedPublicDestination, publicIntakeEnabled } from './public-intake';
+import { localHref } from './platform-format';
 // Review is a production-compiled artifact, not an authentication mechanism.
 // Its entire hosting perimeter must be protected before any upload.
 export const reviewPreview = import.meta.env.MODE === 'protected-review';
@@ -10,7 +11,7 @@ export const intakeHoldMessage = publicIntakeEnabled
   : publicRelease
   ? 'Registration and live intake are currently closed. No information has been sent. Explore the resources and learning pages while service availability is confirmed.'
   : 'Live intake and registration are disabled in this review preview. No form was loaded and no request was sent. Use the learning and resource pages while destinations and operating details are reviewed.';
-export const intakeHref = (value: string) => integratedPreview && !isApprovedPublicDestination(value) ? '#intake-held' : value;
+export const intakeHref = (value: string) => integratedPreview && !isApprovedPublicDestination(value) ? publicIntakeEnabled ? localHref('/inquiry') : '#intake-held' : value;
 export function isIntakeDestination(value: string) {
   if (value === '#intake-held') return true;
   try {
