@@ -6,6 +6,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from 'vite-plugin-pwa';
 import { validateHostedPracticeProfile, hostedPracticeRedirects, hostedPracticeHeaders, HOSTED_PRACTICE_OUTPUT } from './scripts/hosted-practice-profile.mjs';
+import { staticPortalRedirects, staticPortalHeaders } from './scripts/netlify-static-rules.mjs';
 
 const syntheticOrigin = 'http://127.0.0.1:58080';
 const syntheticRoot = fileURLToPath(new URL('.', import.meta.url));
@@ -132,6 +133,12 @@ export default defineConfig(({ mode, command, isPreview }) => {
     } satisfies Plugin] : []),
     {
       name: 'isolated-portal-design-preview',
+      generateBundle() {
+        if (!hosted && !synthetic) {
+          this.emitFile({ type: 'asset', fileName: '_redirects', source: staticPortalRedirects });
+          this.emitFile({ type: 'asset', fileName: '_headers', source: staticPortalHeaders });
+        }
+      },
       transformIndexHtml: {
         order: 'pre',
         handler(html) {
