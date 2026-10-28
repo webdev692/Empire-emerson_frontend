@@ -1,7 +1,7 @@
 # Explicit hosted synthetic profile. Use this config only after the exact origins
 # in hosted-practice.config.json and isolated backend have been verified.
 [build]
-  command = "npm run build:hosted-practice"
+  command = 'test -n "$COMMIT_REF" && GITHUB_SHA="$COMMIT_REF" npm run build:hosted-practice'
   publish = "dist-hosted-practice"
 
 [build.environment]
