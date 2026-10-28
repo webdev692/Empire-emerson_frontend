@@ -1,0 +1,91 @@
+{
+  "generatedAt": "2026-10-24T14:43:55.429Z",
+  "scope": "Local synthetic uncommitted working trees; no remote CI claim",
+  "frontendBaseCommit": "2397c6e276e8ce111b70148333cec2682a4d4166",
+  "frontendSourceFingerprintSha256": "4a4a7a60155027cb209889341ecf6bf75b505c0b57ba6ded1daef61f38a473e5",
+  "frontendSourceFiles": 20,
+  "backendBaseCommit": "7bfdb114363147ec2998d151dff22a786b2122ba",
+  "backendSourceFingerprintSha256": "08693bfa1956d95780d761716078943354ddd02595303e4d77529744fb7bc040",
+  "backendSourceFiles": 170,
+  "automatedTests": {
+    "frontend": 41,
+    "backendCore": 82,
+    "backendRoot": 9,
+    "totalPassed": 132,
+    "failed": 0,
+    "skipped": 0
+  },
+  "liveScenarios": {
+    "assignments": 16,
+    "learnerRegression": 10,
+    "totalPassed": 26,
+    "fullDatabaseBackendRestartTested": true
+  },
+  "checks": {
+    "frontendLint": true,
+    "backendLint": {
+      "errors": 0,
+      "existingWarnings": 161
+    },
+    "normalBuild": true,
+    "designBuild": true,
+    "normalArtifactVerifier": true,
+    "designArtifactVerifier": true,
+    "smoke": true,
+    "original50TableMetadataParityDifferences": 0,
+    "nineLearningTablesRls": true
+  },
+  "browser": {
+    "completedAt": "2026-10-24T14:41:01.000Z",
+    "localOrigin": "http://127.0.0.1:58080",
+    "existingHumanSessionUsedNormally": true,
+    "activeCookieExported": false,
+    "passwordReadOrChanged": false,
+    "checksPassed": [
+      "own assignment prompt and text editor",
+      "review disabled for unsaved answer",
+      "unsaved answer retained but hidden during offline state",
+      "same answer recovered after explicit access recheck",
+      "explicit saved draft survives full page reload",
+      "keyboard review and edit return focus",
+      "second saved revision reviewed and submitted",
+      "mobile review and receipt no horizontal overflow at 375px content viewport",
+      "receipt and read-only answer persist after reload",
+      "submitted assignment removed from upcoming work",
+      "overall lesson progress stays 3/5 and 60%",
+      "temporary viewport and offline overrides reset"
+    ],
+    "receiptReference": "08aab9e0-30c1-401f-aafd-3dc367d11796",
+    "submittedRevision": 2,
+    "syntheticAnswerRetained": true,
+    "screenshots": [
+      "review-mobile.png",
+      "submitted-mobile.png",
+      "submitted-desktop.png",
+      "receipt-after-reload.png"
+    ]
+  },
+  "production": {
+    "observedAt": "2026-10-24T14:41:30.529Z",
+    "siteCurrentDeploy": [
+      "6a385b7fac8ea70008ef72d6"
+    ],
+    "deploys": [
+      {
+        "id": "6a385b7fac8ea70008ef72d6",
+        "locked": true,
+        "state": "ready",
+        "commit_ref": "9e2bbb0cbae7de3eabc27da0bcea37bebed449a2"
+      }
+    ]
+  },
+  "ownerAdminControlsEnabled": false,
+  "committedPushedOrDeployed": false,
+  "evidenceDirectory": "build-evidence/epdg-synthetic-2026-10-24/assignment-submissions",
+  "limitations": [
+    "Local synthetic text only; no hosted acceptance",
+    "No uploads, grading, resubmission, awards or certificates",
+    "Existing backend lint warnings remain",
+    "Publishable CSS and asset hashes changed from prior learner milestone; isolation scans passed"
+  ]
+}

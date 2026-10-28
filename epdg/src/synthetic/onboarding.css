@@ -1,0 +1,15 @@
+.sp-onboarding { margin-bottom: 30px; }
+.sp-onboarding-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.sp-onboarding-heading > div { min-width: 0; }
+.sp-onboarding-heading h2 { margin-bottom: 18px; }
+.sp-onboarding-heading > button { flex-shrink: 0; }
+.sp-onboarding-heading .sp-eyebrow { margin-bottom: 12px; }
+.sp-onboarding-result { border-top: 1px solid #4b365d; padding-top: 20px; }
+.sp-onboarding-result p { overflow-wrap: anywhere; }
+.sp-onboarding-badge { display: inline-block; border: 1px solid #927747; border-radius: 20px; color: #f0d494; background: #30243a; padding: 7px 13px; font-size: 13px; line-height: 1.5; }
+.sp-onboarding-ready { color: #c9e7d1; border-color: #6e9a7a; background: #1b3027; }
+.sp-onboarding-withdrawn { color: #f4c7d0; border-color: #ba8290; background: #36212d; }
+.sp-onboarding-program { font-size: 15px; color: #f7f2e9; }
+.sp-onboarding .sp-note { margin-top: 16px; }
+@media (max-width: 760px) { .sp-onboarding-heading { flex-direction: column; gap: 8px; } .sp-onboarding-heading > button { margin-bottom: 20px; } }
+@media (max-width: 440px) { .sp-onboarding-heading > button { width: 100%; } }

@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-10-24T13:19:20.509Z",
+  "siteId": "44a83e1b-501c-4c5e-8aa8-e9ce58e44967",
+  "currentDeployId": "6a385b7fac8ea70008ef72d6",
+  "id": "6a385b7fac8ea70008ef72d6",
+  "locked": true,
+  "state": "ready",
+  "commit_ref": "9e2bbb0cbae7de3eabc27da0bcea37bebed449a2",
+  "published_at": "2026-06-21T21:46:09.193Z"
+}

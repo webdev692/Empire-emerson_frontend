@@ -1,0 +1,115 @@
+diff --git a/.github/workflows/epdg-build-check.yml b/.github/workflows/epdg-build-check.yml
+index 0541a65..3b4d0f6 100644
+--- a/.github/workflows/epdg-build-check.yml
++++ b/.github/workflows/epdg-build-check.yml
+@@ -65,9 +65,29 @@ jobs:
+       - name: Install locked dependencies
+         run: npm ci --no-audit --no-fund
+ 
++      - name: Clean isolated EPDG artifact directories
++        if: matrix.directory == 'epdg'
++        run: node -e "const fs = require('node:fs'); for (const dir of ['dist', 'dist-design-preview']) fs.rmSync(dir, {recursive:true, force:true})"
++
+       - name: Build
+         run: npm run build
+ 
++      - name: Verify normal EPDG compiled artifact
++        if: matrix.directory == 'epdg'
++        env:
++          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
++        run: node scripts/verify-portal-build.mjs normal dist
++
++      - name: Build isolated EPDG design preview
++        if: matrix.directory == 'epdg'
++        run: npm run build -- --mode design-preview --outDir dist-design-preview
++
++      - name: Verify design preview compiled artifact
++        if: matrix.directory == 'epdg'
++        env:
++          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
++        run: node scripts/verify-portal-build.mjs design-preview dist-design-preview
++
+       - name: Lint
+         run: npm run lint
+ 
+@@ -77,6 +97,16 @@ jobs:
+       - name: Run targeted smoke checks
+         run: npm run smoke
+ 
++      - name: Upload verified EPDG build modes
++        if: matrix.directory == 'epdg'
++        uses: actions/upload-artifact@v4
++        with:
++          name: epdg-build-modes-${{ github.sha }}
++          path: |
++            epdg/dist/
++            epdg/dist-design-preview/
++          if-no-files-found: error
++
+   edge-functions:
+     name: Supabase Edge Functions
+     runs-on: ubuntu-latest
+diff --git a/Agency_LandingPage/package-lock.json b/Agency_LandingPage/package-lock.json
+index efe6dd3..2be298c 100644
+--- a/Agency_LandingPage/package-lock.json
++++ b/Agency_LandingPage/package-lock.json
+@@ -302,6 +302,39 @@
+       "integrity": "sha512-uekIGetywIgopfD97oDL5PfeezkFpNhwlzlaEYNOA0N6ghdsOvh/HYjSMek5Q2O1PYvRSDFcqFVJl4r4ZBwOow==",
+       "license": "Apache-2.0"
+     },
++    "node_modules/@emnapi/core": {
++      "version": "1.11.3",
++      "resolved": "https://registry.npmjs.org/@emnapi/core/-/core-1.11.3.tgz",
++      "integrity": "sha512-zLpS5asjEb7lq8jYLq37N6XKaE41DIexlY1rF/z4/tIl3wo13Sqm28fRyfIsKZD+NZ8mM5RoKkpW/rBcuoSZSg==",
++      "license": "MIT",
++      "optional": true,
++      "peer": true,
++      "dependencies": {
++        "@emnapi/wasi-threads": "1.2.3",
++        "tslib": "^2.4.0"
++      }
++    },
++    "node_modules/@emnapi/core/node_modules/@emnapi/wasi-threads": {
++      "version": "1.2.3",
++      "resolved": "https://registry.npmjs.org/@emnapi/wasi-threads/-/wasi-threads-1.2.3.tgz",
++      "integrity": "sha512-ELEBe8PsLvvJ6QMr0zLt8ffvOHW/dc1m3CEzNMg7aJUv3bMaoDtw2TXyDAwkYBuroxxuHEwhRTLJSe5sya547g==",
++      "license": "MIT",
++      "optional": true,
++      "peer": true,
++      "dependencies": {
++        "tslib": "^2.4.0"
++      }
++    },
++    "node_modules/@emnapi/runtime": {
++      "version": "1.11.3",
++      "resolved": "https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.11.3.tgz",
++      "integrity": "sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==",
++      "license": "MIT",
++      "optional": true,
++      "dependencies": {
++        "tslib": "^2.4.0"
++      }
++    },
+     "node_modules/@emnapi/wasi-threads": {
+       "version": "1.2.2",
+       "resolved": "https://registry.npmjs.org/@emnapi/wasi-threads/-/wasi-threads-1.2.2.tgz",
+diff --git a/docs/OVERNIGHT_FULL_STACK_RELEASE.md b/docs/OVERNIGHT_FULL_STACK_RELEASE.md
+index 6652ff2..1a8030f 100644
+--- a/docs/OVERNIGHT_FULL_STACK_RELEASE.md
++++ b/docs/OVERNIGHT_FULL_STACK_RELEASE.md
+@@ -167,3 +167,15 @@ This entry supersedes older statements above that the prepared Supabase work was
+ - Verified that all tracked backend migrations `001`–`033` match the live `public.migrations` ledger by identity and normalized content hash.
+ - Enabled RLS and revoked browser access on the four career tables, hardened `update_timestamp()`, and added the catalog-confirmed foreign-key indexes. End-user RLS policies remain intentionally blocked until the custom integer identity model is mapped safely to Supabase Auth UUIDs.
+ - Railway remains blocked at PostgreSQL authentication with code `28P01`; no database credential value was read, printed, or changed. The backend PR remains draft and unmerged.
++
++## 2026-10-19 — Restore omitted PR #33 repository-level fixes
++
++Read-only GitHub inspection confirmed remote head `454e1fa27c62e0e7d819a97c8dbd551b09b63138` on `agent-secure-access-and-dashboard-shells-1bcd`, with Agency and aggregate CI failing in run `39327003644`. The workflow, Agency lockfile, and this release log were absent from the remote PR diff and matched the runner's unmodified copies. Local snapshot `ccf75f8f4b94f8fc4559745a89a98dea974c5645` and its development branch were preserved; no checkout, commit, push, or history change was performed. Direct Git/PR mutation and terminal builds were prohibited in this environment. The job-log endpoint returned 403, so the actual missing-lock dependency failure was reproduced with the required local toolchain rather than inferred from an inaccessible log.
++
++Restored the focused root workflow additions for clean separate normal/design output directories, both compiled-artifact verifications, and checksum/revision-tagged uploads, preserving all required jobs, npm ci, lint, tests, and smoke. Added exactly three missing Agency lock records: core/runtime `1.11.3` and core's nested wasi-threads `1.2.3`. Existing records, package versions/metadata, and package.json were unchanged. The WASM runtime peer requirements and exact core-to-threads dependency explained the missing resolutions; existing older exact nested versions were retained. No application or design code changed.
++
++Using Node `22.23.1` and isolated npm `11.17.0`, reproduced the original Agency ci failure, then passed Agency ci (283 packages) and EPDG ci (471 packages). EPDG's 16 tests, lint, both no-emit TypeScript checks, artifact-dependent smoke, and the four-app manifest/lockfile parity check passed. Agency lint and both TypeScript checks passed; no Agency test script existed. Agency smoke failed because no dist/index.html was available. Fresh production/design builds and a fresh normal artifact check remained unexecuted because terminal builds were prohibited. npm's default sharp install-script warning was not overridden.
++
++The existing design artifact verifier passed against seven files. Its JavaScript entry matched the live PR #33 design preview byte-for-byte, and provider metadata tied deploy `6ad68a2017faa794e8e4d0b0` to remote head `454e1fa27c62e0e7d819a97c8dbd551b09b63138`. This established existing design-artifact evidence, not a new build of the pending repository fixes. Browser/keyboard/mobile/request/installed-worker behavior and backend security acceptance remained pending. Production stayed locked at `9e2bbb0cbae7de3eabc27da0bcea37bebed449a2`.
++
++Because prior platform submissions omitted root files, a reviewable patch containing exactly these three repository-level diffs was also prepared under epdg/docs for handoff. It was dry-run checked against a separate directory containing the exact remote baseline files. This did not apply or push the patch remotely. A repository-capable workflow must apply and submit those three files to the existing PR branch, confirm the remote diff, rerun CI, update the title/description, and convert the existing PR to draft. No new remote commit was claimed. Compensation is a focused revert of the CI changes while preserving a valid lockfile and the existing production access hold. Public content/designs, backend/provider configuration, database/storage permissions, and live records were preserved; no infrastructure or email action occurred. Phase 1 remained incomplete. Recommendation: **DO NOT PUBLISH YET**.

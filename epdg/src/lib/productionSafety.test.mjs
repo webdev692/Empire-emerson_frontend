@@ -1,10 +1,70 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import { portalAvailability } from './portalAvailability.ts';
+import { roleLayouts, previewNotice } from '../design-preview/layouts.ts';
+import { readdirSync } from 'node:fs';
 
 function read(relativePath) {
   return readFileSync(new URL(relativePath, import.meta.url), "utf8");
 }
+
+test('design preview is a separate opt-in build entry, never a normal route', () => {
+  const config = read('../../vite.config.ts');
+  assert.match(config, /order: 'pre'/);
+  assert.match(config, /mode === 'design-preview'[\s\S]*?html\.replace\('\/src\/main\.tsx', '\/src\/design-preview\/main\.tsx'\)[\s\S]*?: html/);
+  assert.match(config, /disable: mode === 'design-preview'/);
+  assert.doesNotMatch(read('../main.tsx'), /design-preview|Presentation|import\(/);
+  assert.match(read('../../index.html'), /src="\/src\/main.tsx"/);
+});
+
+test('design layouts contain required areas without participant records', () => {
+  assert.equal(Object.keys(roleLayouts).length, 4);
+  assert.deepEqual([...roleLayouts.learner.sections], ['Active programs', 'Upcoming work', 'Feedback', 'Progress', 'Resources']);
+  assert.ok(roleLayouts.school.sections.includes('Authorized-student reporting'));
+  assert.equal(previewNotice, 'Design preview — authentication and participant data are not connected.');
+});
+
+test('preview module boundary has no authentication, network, storage, or legacy fixture dependencies', () => {
+  const directory = new URL('../design-preview/', import.meta.url);
+  for (const file of readdirSync(directory).filter(file => /\.tsx?$/.test(file))) {
+    const source = readFileSync(new URL(file, directory), 'utf8');
+    assert.doesNotMatch(source, /\b(?:fetch|XMLHttpRequest|WebSocket|localStorage|sessionStorage|indexedDB)\b|axios|mockAuth|authStore|supabase|@netlify\//i, file);
+    const imports = [...source.matchAll(/from ['"]([^'"]+)['"]/g)].map(match => match[1]);
+    assert.ok(imports.every(name => name === 'react' || name === 'react-dom/client' || name.startsWith('./') || name === '../assets/epd_logo.png'), file);
+  }
+  const presentation = read('../design-preview/Presentation.tsx');
+  assert.match(presentation, /<fieldset disabled/);
+  assert.doesNotMatch(presentation, /type="password"|onSubmit|mailto:/);
+});
+
+test('blocked entry point cannot load legacy authentication or dashboards', () => {
+  const entry = read('../main.tsx');
+  const screen = read('../components/PortalAccessHold.tsx');
+  assert.match(entry, /import PortalAccessHold from/);
+  assert.match(entry, /<PortalAccessHold\s*\/>/);
+  assert.doesNotMatch(entry, /import App|<App\b/);
+  assert.doesNotMatch(screen, /import.*(?:authStore|axios|App|Dashboard|mockAuth)/);
+  assert.doesNotMatch(screen, /localStorage|sessionStorage|fetch\(|<form|<input/);
+});
+
+test('all historical private routes resolve to a closed state without role input', () => {
+  for (const path of ['/school', '/company', '/admin/users', '/mentor', '/dashboard/profile', '/dashboard/tasks', '/verify/example', '/portfolio/example', '/unknown']) {
+    assert.equal(portalAvailability(path).title, 'Secure access is being prepared');
+  }
+  for (const path of ['/register', '/register/intern', '/register/company', '/register/school', '/signup']) {
+    assert.equal(portalAvailability(path).title, 'An invitation is required');
+  }
+  for (const path of ['/forgot-password', '/reset-password', '/change-password', '/verify-email', '/callback']) {
+    assert.equal(portalAvailability(path).title, 'Account recovery is unavailable');
+  }
+});
+
+test('private API paths bypass service-worker caching and navigation fallback', () => {
+  const config = read('../../vite.config.ts');
+  assert.match(config, /navigateFallbackDenylist:/);
+  assert.match(config, /urlPattern: \(\{ url \}\) =>[^\n]+\n\s*handler: 'NetworkOnly'/);
+});
 
 test("production dashboards do not present fixture notifications or session history", () => {
   const navbar = read("../components/Navbar.tsx");

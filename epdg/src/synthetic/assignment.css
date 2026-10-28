@@ -1,0 +1,58 @@
+.sp-assignment { min-width: 0; border-top: 1px solid #5a426b; padding-top: 22px; margin-top: 24px; }
+.sp-assignment-scope { color: #edcf83; font-size: 12px !important; }
+.sp-assignment form { min-width: 0; }
+.sp-assignment label { display: block; color: #f4eaf9; margin: 20px 0 10px; font-weight: 550; font-size: 15px; }
+.sp-assignment textarea { display: block; box-sizing: border-box; width: 100%; min-height: 200px; resize: vertical; color: #f4eaf9; background: #1b0e2a; border: 1px solid #947aa4; border-radius: 10px; padding: 16px; font: inherit; font-size: 16px; line-height: 1.7; }
+.sp-assignment textarea:focus-visible, .sp-assignment h4:focus-visible { outline: 3px solid #e9c773; outline-offset: 4px; }
+.sp-assignment textarea:disabled { opacity: .75; }
+.sp-assignment-count { color: #c6b7d4; font-size: 11px !important; margin-top: 10px; }
+.sp-assignment-state { color: #edcf83; font-size: 13px !important; }
+.sp-assignment-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 20px 0 12px; }
+.sp-assignment-error { border-left: 3px solid #ffb8ad; background: #361b31; color: #ffe5df; padding: 14px 16px; font-size: 14px !important; overflow-wrap: anywhere; }
+.sp-assignment h4 { font-size: 22px; line-height: 1.4; font-weight: 500; margin: 22px 0 14px; }
+.sp-assignment h5 { font-size: 15px; margin: 24px 0 12px; font-weight: 550; }
+.sp-assignment-answer { white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; line-height: 1.8; background: #1b0e2a; border: 1px solid #705a7f; border-radius: 10px; padding: 20px; font-size: 14px !important; }
+.sp-assignment-receipt dl { display: grid; gap: 16px; margin: 24px 0; }
+.sp-assignment-receipt dt { color: #c6b7d4; font-size: 12px; }
+.sp-assignment-receipt dd { margin: 6px 0 0; font-size: 14px; overflow-wrap: anywhere; }
+.sp-assignment-receipt code { font-size: 12px; overflow-wrap: anywhere; }
+.sp-assignment-reload { border-top: 1px dashed #705a7f; padding-top: 16px; margin-top: 24px; }
+.sp-assignment-reload p { font-size: 13px; }
+.sp-assignment-attachments { border-top: 1px solid #5a426b; padding-top: 8px; margin-top: 28px; min-width: 0; }
+.sp-assignment input[type="file"] { display: block; width: 100%; min-width: 0; box-sizing: border-box; padding: 12px; border: 1px solid #947aa4; border-radius: 10px; color: #f4eaf9; background: #1b0e2a; font: inherit; font-size: 13px; }
+.sp-assignment input[type="file"]:focus-visible { outline: 3px solid #e9c773; outline-offset: 4px; }
+.sp-assignment input[type="file"]:disabled { opacity: .65; }
+.sp-assignment input[type="file"]::file-selector-button { min-height: 44px; border: 1px solid #947aa4; border-radius: 7px; background: #382147; color: #f4eaf9; padding: 10px 14px; margin-right: 12px; font: inherit; cursor: pointer; }
+.sp-assignment-selected { border: 1px dashed #947aa4; border-radius: 10px; padding: 16px; margin-top: 16px; overflow-wrap: anywhere; }
+.sp-assignment-selected > p { font-size: 13px; }
+.sp-assignment-files { list-style: none; padding: 0; margin: 16px 0 24px; display: grid; gap: 16px; }
+.sp-assignment-files > li { padding: 18px; border: 1px solid #705a7f; border-radius: 10px; background: #1b0e2a; min-width: 0; }
+.sp-assignment-file-heading { display: grid; gap: 8px; overflow-wrap: anywhere; }
+.sp-assignment-file-heading strong { color: #f4eaf9; font-size: 14px; font-weight: 550; }
+.sp-assignment-file-heading span { color: #c6b7d4; font-size: 12px; }
+.sp-assignment-files summary { color: #edcf83; cursor: pointer; font-size: 12px; min-height: 44px; padding: 12px 0; }
+.sp-assignment-files summary:focus-visible { outline: 3px solid #e9c773; outline-offset: 4px; }
+.sp-assignment-files dl { margin: 10px 0 16px; display: grid; gap: 12px; }
+.sp-assignment-files dt { color: #c6b7d4; font-size: 11px; }
+.sp-assignment-files dd { color: #f4eaf9; margin: 6px 0 0; font-size: 12px; overflow-wrap: anywhere; }
+.sp-assignment-files code { font-size: 11px; }
+.sp-assignment-files .sp-assignment-actions { margin-bottom: 0; }
+.sp-start-revision { border-top: 1px solid #705a7f; padding-top: 18px; margin-top: 24px; }
+.sp-start-revision > button { margin: 0 12px 12px 0; }
+.sp-attempt-history { border-top: 1px solid #705a7f; padding-top: 24px; margin-top: 28px; min-width: 0; }
+.sp-attempt-history-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 16px; }
+.sp-attempt-history-top h5 { margin: 0; font-size: 17px; }
+.sp-attempt-history-top > button { flex-shrink: 0; }
+.sp-attempt-list { list-style: none; display: grid; gap: 18px; padding: 0; margin-top: 24px; }
+.sp-attempt-list > li { border: 1px solid #705a7f; border-radius: 10px; padding: 18px; min-width: 0; }
+.sp-attempt-list > li > details > summary { color: #edcf83; padding: 10px 0; min-height: 44px; cursor: pointer; font-size: 15px; overflow-wrap: anywhere; }
+.sp-attempt-list > li > details > summary span { color: #c6b7d4; font-size: 12px; }
+.sp-attempt-list summary:focus-visible { outline: 3px solid #e9c773; outline-offset: 4px; }
+.sp-attempt-list h6 { font-size: 15px; font-weight: 550; margin: 24px 0 12px; }
+.sp-attempt-facts { display: grid; gap: 14px; margin: 18px 0; }
+.sp-attempt-facts dt { font-size: 11px; color: #c6b7d4; }
+.sp-attempt-facts dd { font-size: 12px; margin: 6px 0 0; overflow-wrap: anywhere; }
+.sp-attempt-facts code { font-size: 11px; }
+@media (max-width: 440px) { .sp-assignment-actions { align-items: stretch; flex-direction: column; } .sp-assignment-actions button, .sp-assignment-reload button { width: 100%; } .sp-assignment-answer { padding: 16px; } .sp-assignment input[type="file"] { font-size: 12px; padding: 10px; } .sp-assignment input[type="file"]::file-selector-button { margin-right: 8px; padding: 10px; } .sp-assignment-files > li { padding: 16px; } }
+@media (max-width: 760px) { .sp-attempt-history-top { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 440px) { .sp-start-revision > button { display: block; width: 100%; margin-right: 0; } .sp-attempt-list > li { padding: 16px; } .sp-attempt-list > li > details > summary span { display: block; margin-top: 8px; } }
