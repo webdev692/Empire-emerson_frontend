@@ -3,6 +3,8 @@ import { createInquiryController } from './inquiry';
 import type { InquiryState, InquiryTopic } from './inquiry';
 import { Empty } from './PlatformUI';
 import { localHref as href } from './platform-format';
+import { contactMailboxes, publicIntakeEnabled } from './public-intake';
+import { CollectionNotice, InternshipApplication } from './PublicAccess';
 
 function createLocalTestSink() {
   let outcome = 'fail';
@@ -31,6 +33,13 @@ function LocalSinkForm() {
 }
 export default function InquiryPage() {
   const [test, setTest] = useState(false);
+  if (publicIntakeEnabled) return <><div className="cp-page-title"><p className="cp-eyebrow">Contact the Emerson team</p><h1>Contact & next steps</h1><p>Choose the team that matches your question. Email links open a draft for you to review and send. No message is sent by this website.</p></div><div className="cp-grid">{[
+    ['Services & business development', contactMailboxes.sales],
+    ['Applications & onboarding', contactMailboxes.hr],
+    ['Administration & privacy', contactMailboxes.admin],
+    ['Partnerships & outreach', contactMailboxes.outreach],
+    ['Website support', contactMailboxes.technical],
+  ].map(([label, mailbox]) => <article className="cp-card" key={mailbox}><h2>{label}</h2><a href={`mailto:${mailbox}`}>{mailbox}</a></article>)}</div><section className="cp-callout"><h2>Classes & workshops</h2><a href={href('/classes')}>View the daily class schedule and register</a><CollectionNotice /></section><InternshipApplication /></>;
   return <><div className="cp-page-title"><p className="cp-eyebrow">Corrections · program information · speaking</p><h1>Inquiry availability</h1><p>Share only the minimum needed to route a request. This interface does not accept personal documents, financial details or sensitive narratives.</p></div><Empty title="The delivery route is awaiting verification.">No message has been submitted. A verified support destination must be connected before live inquiries can be accepted.</Empty>
     <section className="cp-callout"><h2>Service questions by email</h2><p>The services catalog can open an editable email draft to the existing published business contact, with a company and offering selected. You review and send it in your email app. The website does not send messages or collect documents.</p><a href={href('/services-pricing')}>Choose a service & review inquiry options</a></section>
     {import.meta.env.DEV && <><button onClick={() => setTest(!test)}>{test ? 'Close local test sink' : 'Open local test sink'}</button>{test && <LocalSinkForm />}</>}

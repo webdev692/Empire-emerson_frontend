@@ -1,5 +1,7 @@
 import { localHref } from '../../../../shared/platform-format';
 import { integratedPreview, intakeHoldMessage } from '../../../../shared/development-preview';
+import { isApprovedPublicDestination, publicIntakeEnabled } from '../../../../shared/public-intake';
+import { CollectionNotice } from '../../../../shared/PublicAccess';
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FormModalContext } from "./FormModalContext";
 
@@ -11,6 +13,7 @@ export const FormModalProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const closeButtonRef              = useRef<HTMLButtonElement>(null);
   const openFormLinkRef             = useRef<HTMLAnchorElement>(null);
   const previousFocusRef            = useRef<HTMLElement | null>(null);
+  const publicFormAvailable = !!formUrl && publicIntakeEnabled && isApprovedPublicDestination(formUrl);
 
   const openForm = (url: string, t = "", s = "") => {
     previousFocusRef.current = document.activeElement instanceof HTMLElement
@@ -70,12 +73,12 @@ export const FormModalProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
       {formUrl && (
         <div
-          className="fixed inset-0 z-999 flex items-end sm:items-center justify-center bg-[#022B1F]/80 backdrop-blur-sm p-0 sm:p-4"
+          className="fixed inset-0 z-999 flex items-center justify-center bg-[#022B1F]/80 backdrop-blur-sm p-4"
           onClick={close}
         >
           <div
             ref={dialogRef}
-            className="bg-white w-full sm:max-w-2xl h-[92vh] sm:h-[88vh] flex flex-col shadow-2xl overflow-hidden rounded-2xl"
+            className="bg-white w-full min-w-0 sm:max-w-2xl max-h-[88dvh] flex flex-col shadow-2xl overflow-auto rounded-2xl"
             style={{ borderTop: "4px solid #C9A84C" }}
             onClick={(e) => e.stopPropagation()}
             role="dialog"
@@ -84,8 +87,8 @@ export const FormModalProvider: React.FC<{ children: React.ReactNode }> = ({ chi
             aria-describedby={subtitle ? "epdg-form-dialog-description" : undefined}
           >
             {/* Header */}
-            <div className="flex items-start justify-between px-6 py-4 border-b border-gray-100 shrink-0">
-              <div>
+            <div className="flex flex-wrap items-start gap-3 justify-between px-4 py-4 border-b border-gray-100 shrink-0">
+              <div className="min-w-0 basis-full sm:basis-auto sm:flex-1">
                 <p id="epdg-form-dialog-title" className="text-sm font-bold uppercase tracking-wider text-[#044E37] mb-0.5">
                   Emerson Professional Development Group
                 </p>
@@ -98,13 +101,13 @@ export const FormModalProvider: React.FC<{ children: React.ReactNode }> = ({ chi
               </div>
               <a
                 ref={openFormLinkRef}
-                href={integratedPreview ? localHref("/inquiry") : formUrl}
+                href={publicFormAvailable ? formUrl : integratedPreview ? localHref("/inquiry") : formUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="ml-auto inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl border border-[#044E37] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.1em] text-[#044E37] transition hover:bg-[#044E37] hover:text-white"
-                aria-label={integratedPreview ? "Check support availability in a new tab" : `Open ${title || "EPDG form"} in a new tab`}
+                aria-label={publicFormAvailable ? `Open ${title || "EPDG form"} in a new tab` : integratedPreview ? "Check support availability in a new tab" : `Open ${title || "EPDG form"} in a new tab`}
               >
-                {integratedPreview ? "Check support availability" : "Open form in new tab"}
+                {publicFormAvailable ? "Open Google Form" : integratedPreview ? "Contact the team" : "Open form in new tab"}
               </a>
               <button
                 ref={closeButtonRef}
@@ -117,13 +120,12 @@ export const FormModalProvider: React.FC<{ children: React.ReactNode }> = ({ chi
               </button>
             </div>
 
-            {integratedPreview ? <p role="status" className="p-6 text-[#1c1336]">{intakeHoldMessage}</p> : (<iframe
+            {publicFormAvailable ? <div className="p-6 text-[#1c1336]"><p>Continue in Google Forms to complete this request. No information has been sent by this website.</p><CollectionNotice /></div> : publicIntakeEnabled ? <div className="p-6 text-[#1c1336]"><p>Use the contact page to choose the right team for a service or partnership inquiry. No information has been sent.</p><a href={localHref('/inquiry')}>Contact & next steps</a><CollectionNotice /></div> : integratedPreview ? <p role="status" className="p-6 text-[#1c1336]">{intakeHoldMessage}</p> : (<iframe
               src={`${formUrl}?embedded=true`}
               title={title || "EPDG Form"}
               tabIndex={-1}
               aria-hidden="true"
               className="flex-1 w-full border-none"
-              allow="camera; microphone"
             />)}
             <span
               data-focus-guard

@@ -1,3 +1,4 @@
+import PublicWebsiteRecovery from '../../shared/PublicWebsiteRecovery';
 import { lazy, StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import { HelmetProvider } from 'react-helmet-async'
@@ -8,11 +9,11 @@ const App = !platformEnabled || import.meta.env.DEV || (import.meta.env.MODE ===
 const enhanced = platformEnabled && ((import.meta.env.MODE === 'protected-review' || import.meta.env.MODE === 'public-release' || import.meta.env.MODE === 'studio-local') || (import.meta.env.DEV && !new URLSearchParams(window.location.search).has('legacy')))
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  <StrictMode><PublicWebsiteRecovery>
     <HelmetProvider>
       <Suspense fallback={<p role="status">Loading existing site…</p>}>
         {App ? <App enhanced={enhanced} /> : <CompanyPlatform entity="TEE" />}
       </Suspense>
     </HelmetProvider>
-  </StrictMode>,
+  </PublicWebsiteRecovery></StrictMode>,
 )

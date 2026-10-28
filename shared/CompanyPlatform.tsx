@@ -138,7 +138,7 @@ export default function CompanyPlatform({ entity, resourcesSupplement, routePath
     else if (path.startsWith('/programs/')) page = <ProgramPages catalog={catalog} id={path.split('/')[2]} />;
     else if (path === '/learn' || path.startsWith('/learn/')) page = <LearningPages catalog={catalog} entity={entity} id={path.split('/')[2]} worksheet={state.worksheet} />;
     else if (['founder','leadership','research','speaking','journal'].includes(path.split('/')[1])) page = <ProfilePages catalog={catalog} entity={entity} kind={path.split('/')[1]} id={path.split('/')[2]} />;
-    else if (path === '/corrections' || path === '/inquiry') page = <InquiryPage />;
+    else if (path === '/corrections' || path === '/inquiry' || path === '/contact') page = <InquiryPage />;
     else page = <Empty title="This page is not available."><a href={href('/')}>Return to the company home</a>.</Empty>;
   }
   if (embedded) return <div className={`company-platform cp-${entity.toLowerCase()} cp-embedded`}><main id="cp-main" tabIndex={-1}>{page}</main></div>;

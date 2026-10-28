@@ -1,3 +1,4 @@
+import PublicLegalPages from '../../shared/PublicLegalPages';
 import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { PreviewBoundary, PreviewNotice, ExperienceLinks } from '../../shared/InternSiteIntegration'
@@ -30,6 +31,12 @@ function Site({ enhanced }: { enhanced: boolean }) {
       {enhanced && (projectStudioLocal ? <StudioReviewNotice entity="TEA" /> : <PreviewNotice />)}
       <Suspense fallback={<p role="status">Loading education…</p>}>
         <Routes>
+        <Route path="/disclaimer" element={<PublicLegalPages kind="disclaimer" />} />
+        <Route path="/privacy" element={<PublicLegalPages kind="privacy" />} />
+        <Route path="/privacy-policy" element={<PublicLegalPages kind="privacy" />} />
+        <Route path="/terms" element={<PublicLegalPages kind="terms" />} />
+        <Route path="/terms-of-use" element={<PublicLegalPages kind="terms" />} />
+
           {enhanced && threeProgramsEnabled && <Route path="/pathways" element={<ProgramExperience entity="TEA" />} />}
         {enhanced && projectStudioEnabled && <Route path="/project-studio" element={<ProjectStudioPage entity="TEA" />} />}
           <Route path="/" element={<HomePage enhanced={enhanced} />} />

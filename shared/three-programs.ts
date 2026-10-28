@@ -1,3 +1,4 @@
+import { publicIntakeEnabled } from './public-intake';
 import data from './three-programs.preview.json';
 import publicData from './three-programs.public.json';
 import { companyHref } from './company-links';
@@ -6,7 +7,7 @@ import { threeProgramsEnabled, type ProgramCompany } from './three-programs-mode
 export type ProgramRecord = typeof data.programs[number];
 export const programs = import.meta.env.VITE_THREE_PROGRAMS_PREVIEW === 'true' ? data.programs : (import.meta.env.MODE === 'public-release' && import.meta.env.VITE_THREE_PROGRAMS_RELEASE === 'true') ? publicData.programs : [];
 export const companyNames = { TEE: 'The Emerson Empire', TEA: 'The Emerson Agency', EPDG: 'Emerson Professional Development Group' };
-export function programFor(entity: ProgramCompany) { return programs.find(program => program.brand === entity)!; }
+export function programFor(entity: ProgramCompany) { const program = programs.find(program => program.brand === entity)!; return publicIntakeEnabled && entity === 'EPDG' ? { ...program, status: 'Applications open · Free internship participation', availability: 'Apply through the Google Form. HR confirms the available term, track, supervision and onboarding details separately.', participantFee: 'Internship participation is free. Optional paid services are separate.' } : program; }
 
 export function programHref(entity: ProgramCompany, locationHref = typeof window === 'undefined' ? '' : window.location.href) {
   const program = programFor(entity);

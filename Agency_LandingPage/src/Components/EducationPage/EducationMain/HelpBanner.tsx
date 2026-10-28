@@ -1,3 +1,4 @@
+import { publicIntakeEnabled } from '../../../../../shared/public-intake';
 import { integratedPreview } from '../../../../../shared/development-preview'
 import { ShieldCheck } from 'lucide-react'
 
@@ -18,7 +19,7 @@ export default function HelpBanner() {
             {candidate ? 'A clear boundary for your next step' : 'Need Qualified Help?'}
           </h4>
           <p className={candidate ? 'mt-1 text-xs text-slate-300 sm:text-sm' : 'mt-1 text-xs text-amber-700 sm:text-sm'}>
-            {candidate ? 'Use these materials for general learning. Qualified help and service availability require current jurisdiction-specific review. The inquiry destination is not connected; no message has been sent.' : 'unresolved copy text'}
+            {publicIntakeEnabled ? 'Use these materials for general learning. Qualified help and service availability require current jurisdiction-specific review. Choose the appropriate team on the contact page; email links prepare a draft for you to review and send.' : candidate ? 'Use these materials for general learning. Qualified help and service availability require current jurisdiction-specific review. The inquiry destination is not connected; no message has been sent.' : 'unresolved copy text'}
           </p>
         </div>
       </div>
@@ -29,7 +30,7 @@ export default function HelpBanner() {
         onClick={candidate ? undefined : (e) => e.preventDefault()}
         className="inline-flex shrink-0 items-center justify-center rounded-xl bg-[#c9a24c] px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-[#0A1128] transition hover:bg-[#b8923f] sm:w-auto"
       >
-        {candidate ? 'View inquiry status' : 'Request Help'} &rarr;
+        {publicIntakeEnabled ? 'Contact the team' : candidate ? 'View inquiry status' : 'Request Help'} &rarr;
       </a>
 
     </section>

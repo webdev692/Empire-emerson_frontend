@@ -1,3 +1,4 @@
+import PublicLegalPages from '../../shared/PublicLegalPages';
 import { lazy, Suspense } from 'react';
 import ProgramExperience from '../../shared/ThreeProgramsEntry';
 import { threeProgramsEnabled } from '../../shared/three-programs-mode';
@@ -28,6 +29,12 @@ function App({ enhanced = false }: { enhanced?: boolean }) {
         <ScrollManager />
         <div className="font-sans">
           <Routes>
+        <Route path="/disclaimer" element={<PublicLegalPages kind="disclaimer" />} />
+        <Route path="/privacy" element={<PublicLegalPages kind="privacy" />} />
+        <Route path="/privacy-policy" element={<PublicLegalPages kind="privacy" />} />
+        <Route path="/terms" element={<PublicLegalPages kind="terms" />} />
+        <Route path="/terms-of-use" element={<PublicLegalPages kind="terms" />} />
+
             {enhanced && threeProgramsEnabled && <Route path="/global-internship-program" element={<ProgramPage />} />}
             <Route path="/" element={<LandingPage enhanced={enhanced} />} />
             <Route path="/classes" element={enhanced ? <FeaturePage /> : <ClassesPage />} />

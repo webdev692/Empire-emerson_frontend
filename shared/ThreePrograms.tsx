@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { publicIntakeEnabled } from './public-intake';
+import { InternshipApplication } from './PublicAccess';
 import { localHref } from './platform-format';
 import { companyHref } from './company-links';
 import type { ProgramCompany } from './three-programs-mode';
@@ -57,10 +59,10 @@ export default function ThreePrograms({ entity, view }: { entity: ProgramCompany
     {view === 'card' ? <h2>{program.name}</h2> : <h1>{program.name}</h1>}
     <p>{program.summary}</p><p className="tp-status">{program.status}</p>
     {url && <a className="tp-button" href={url}>Explore {program.shortName}<span aria-hidden="true"> →</span></a>}
-    <p>The full learning model, participation information and inquiry options are on {companyNames[entity]}.</p>
+    <p>The full learning model, participation information and inquiry options are on {companyNames[entity]}.</p>{publicIntakeEnabled && entity === 'EPDG' && <InternshipApplication />}
     {view === 'referral' && entity === 'EPDG' && url && <nav className="tp-actions" aria-label="Internship information"><a id="application-form" href={`${url}#program-contact`}>Ask about participation</a><a id="tracks" href={`${url}#program-curriculum`}>Explore tracks</a><a id="portfolio" href={`${url}#program-participation`}>Learning & portfolio evidence</a><a id="evidence-certificates" href={`${url}#program-faq`}>Completion questions</a></nav>}
   </article>;
-  if (view === 'gateway') return <section className={`tp tp-${entity.toLowerCase()} tp-gateway`} aria-labelledby="featured-program-title"><div className="tp-wrap"><p className="tp-eyebrow">Featured program · {companyNames[entity]}</p><div className="tp-gateway-layout"><div><h2 id="featured-program-title">{program.name}</h2><p className="tp-tagline">{program.tagline}</p><p>{program.summary}</p><a className="tp-button" href={localHref(program.route)}>Explore {program.shortName}<span aria-hidden="true"> →</span></a></div><aside className="tp-card"><p className="tp-status">{program.status}</p><p>{program.availability}</p><p>Program information and email inquiries are available. Registration and live intake remain closed.</p></aside></div></div></section>;
+  if (view === 'gateway') return <section className={`tp tp-${entity.toLowerCase()} tp-gateway`} aria-labelledby="featured-program-title"><div className="tp-wrap"><p className="tp-eyebrow">Featured program · {companyNames[entity]}</p><div className="tp-gateway-layout"><div><h2 id="featured-program-title">{program.name}</h2><p className="tp-tagline">{program.tagline}</p><p>{program.summary}</p><a className="tp-button" href={localHref(program.route)}>Explore {program.shortName}<span aria-hidden="true"> →</span></a></div><aside className="tp-card"><p className="tp-status">{program.status}</p><p>{program.availability}</p><p>{publicIntakeEnabled ? 'Class registration and internship applications are open through the linked Google Forms.' : 'Program information and email inquiries are available. Registration and live intake remain closed.'}</p></aside></div></div></section>;
   const primary = program.actions[0];
   return <main id="main-content" className={`tp tp-${entity.toLowerCase()} tp-page`}>
     <ProgramMetadata entity={entity} />
@@ -82,8 +84,8 @@ export default function ThreePrograms({ entity, view }: { entity: ProgramCompany
       <section id="program-contact" className="tp-section tp-contact"><p className="tp-eyebrow">Start a conversation</p><h2>{program.contactLabel}</h2><p>Choose an inquiry below. Your email app opens a draft; you decide whether to send it. This website does not submit, store or confirm an inquiry.</p><p className="tp-mailbox">{program.contactEmail}</p><div className="tp-grid">{program.actions.map(action => {
         const draft = programInquiryText(entity, action.id)!;
         return <article className="tp-card" key={action.id}><h3>{action.label}</h3><p>{action.question}</p><a className="tp-button" href={programInquiryHref(entity, action.id)}>{action.label}<span className="tp-small">Opens an email draft</span></a><details><summary>No email app? Read and copy the draft</summary><p>To: {program.contactEmail}</p><p>Subject: {draft.subject}</p><pre className="tp-draft">{draft.body}</pre></details></article>;
-      })}</div><p>Please use a general question for this first conversation. Do not send student records, identity documents or other sensitive information.</p><p>No current application destination is linked. Registration and live intake remain closed.</p></section>
-      <SisterPrograms entity={entity} />
+      })}</div><p>Please use a general question for this first conversation. Do not send student records, identity documents or other sensitive information.</p><p>{publicIntakeEnabled ? (entity === 'EPDG' ? 'Use the internship application below to apply. General questions use the email drafts above.' : 'Class registration and internship application links are available on the Contact & next steps page. Use the email drafts above for questions about this program.') : 'No current application destination is linked. Registration and live intake remain closed.'}</p></section>
+      {publicIntakeEnabled && entity === 'EPDG' && <InternshipApplication />}<SisterPrograms entity={entity} />
       <p className="tp-credit">Program descriptions prepared from founder-provided source records{threeProgramsLocal ? ' for local review' : ''} on October 18, 2026. The intern teams’ original site designs and contributions are retained.</p>
     </div>
   </main>;

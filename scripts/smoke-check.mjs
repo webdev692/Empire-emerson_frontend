@@ -33,7 +33,7 @@ assert.equal(
 );
 assert.match(
   sourceIndex,
-  /<meta\s+name=["']emerson-release["']\s+content=["']2026-07-25-digital-infrastructure-sprint-r5["']/i,
+  new RegExp(`<meta\\s+name=["']emerson-release["']\\s+content=["']${app === 'epdg' ? '2026-07-25-digital-infrastructure-sprint-r5' : '2026-10-28-public-website-repairs'}["']`, 'i'),
   `${app} is missing the exact-head release marker`,
 );
 

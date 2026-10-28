@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-28",
+  "scope": [
+    "Emerson_Empire",
+    "Agency_LandingPage",
+    "EPDG-Landing-Page"
+  ],
+  "excluded": [
+    "epdg",
+    "CRM",
+    "media studio projects"
+  ],
+  "authorization": {
+    "source": "Direct user messages in the current chat",
+    "intake_request": "repair existing contact routes and open applications and registrations",
+    "destination_confirmation": "application destination is the google form",
+    "schedule_confirmation": "every day 10am 60 min free 2pm 90 min 10 or fee waiver 7pm 2hrs 20 or fee waiver",
+    "proceed": "please proceed",
+    "figma_sequence": "We can align the figma last."
+  },
+  "timezone": "America/New_York",
+  "currency": "USD",
+  "class_registration_route": "Existing class-registration Google Form",
+  "application_route": "Existing internship-application Google Form",
+  "portal_activation_authorized": false,
+  "crm_changes_authorized": false,
+  "media_studio_changes_authorized": false,
+  "legal_publication_approved": false,
+  "legal_sources": [
+    "Existing company Website Privacy Policy and Website Terms of Use working drafts; source links retained in private local release evidence."
+  ],
+  "legal_source_path": "shared/PublicLegalPages.tsx",
+  "legal_source_sha256_lf": "460227496a924c2a8097a5495a352d5aeeaeba4d7e9bdf0796278f0f510fc37a"
+}

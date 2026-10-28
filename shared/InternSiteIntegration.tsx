@@ -5,6 +5,8 @@ import { intakeHoldMessage, isIntakeDestination, publicRelease } from './develop
 import { companyHref } from './company-links';
 import { isServiceInquiryHref } from './service-inquiry';
 import { isProgramInquiryHref } from './three-programs';
+import { isApprovedPublicDestination, publicIntakeEnabled } from './public-intake';
+import './public-website.css';
 import './intern-site-integration.css';
 type Entity = 'TEE' | 'TEA' | 'EPDG';
 export function PreviewBoundary({ children, entity }: { children: ReactNode; entity: Entity }) {
@@ -24,17 +26,18 @@ export function PreviewBoundary({ children, entity }: { children: ReactNode; ent
     }
   }} onClickCapture={event => {
     const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
-    if (link && isIntakeDestination(link.getAttribute('href') || '') && !isServiceInquiryHref(link.getAttribute('href') || '', entity) && !((import.meta.env.VITE_THREE_PROGRAMS_PREVIEW === 'true' || (import.meta.env.MODE === 'public-release' && import.meta.env.VITE_THREE_PROGRAMS_RELEASE === 'true')) && isProgramInquiryHref(link.getAttribute('href') || '', entity))) {
+    if (link && isIntakeDestination(link.getAttribute('href') || '') && !isApprovedPublicDestination(link.getAttribute('href') || '') && !isServiceInquiryHref(link.getAttribute('href') || '', entity) && !((import.meta.env.VITE_THREE_PROGRAMS_PREVIEW === 'true' || (import.meta.env.MODE === 'public-release' && import.meta.env.VITE_THREE_PROGRAMS_RELEASE === 'true')) && isProgramInquiryHref(link.getAttribute('href') || '', entity))) {
       event.preventDefault(); event.stopPropagation(); previousFocus.current = link as HTMLElement; setHeld(true);
     }
-  }}>{children}{held && <div className="is-hold-backdrop"><div role="alertdialog" aria-modal="true" aria-labelledby="intake-held-title" className="is-hold-dialog"><h2 id="intake-held-title">Live intake is held</h2><p>{intakeHoldMessage}</p><button ref={close} onClick={() => setHeld(false)}>Close</button></div></div>}</div>;
+  }}>{children}{held && <div className="is-hold-backdrop"><div role="alertdialog" aria-modal="true" aria-labelledby="intake-held-title" className="is-hold-dialog"><h2 id="intake-held-title">{publicIntakeEnabled ? "Choose a contact route" : "Live intake is held"}</h2><p>{intakeHoldMessage}</p><button ref={close} onClick={() => setHeld(false)}>Close</button></div></div>}</div>;
 }
 export function PreviewNotice() {
+  if (publicIntakeEnabled) return <aside className="is-preview-notice" aria-label="Site availability">Daily classes and internship applications · Registration opens in Google Forms · <a href={href('/classes')}>View the schedule</a> · <a href={href('/privacy')}>Privacy</a></aside>;
   if (publicRelease) return <aside className="is-preview-notice" aria-label="Site availability">Explore services, resources & learning · Service inquiries open an email draft · Registration and live intake are currently closed.</aside>;
   return <aside className="is-preview-notice" aria-label="Review preview">REVIEW PREVIEW · Existing intern designs + new learning tools · No live submissions. Registration disabled. Draft content and earlier service, schedule and pricing copy await approval.</aside>;
 }
 export function ExperienceLinks() {
-  return <section className="is-experience-links" aria-label="Learning and company information"><nav><a href={href('/services-pricing')}>Services & pricing</a><a href={href('/classes')}>Classes & workshops</a><a href={href('/resources')}>Resources</a><a href={href('/programs')}>{publicRelease ? 'Programs' : 'Program drafts'}</a><a href={href('/learn')}>Guided learning</a><a href={href('/coverage')}>Coverage</a><a href={href('/founder')}>Founder</a><a href={href('/leadership')}>Leadership</a><a href={href('/research')}>Research</a><a href={href('/speaking')}>Speaking</a><a href={href('/inquiry')}>Support availability</a></nav><nav aria-label={publicRelease ? "Emerson companies" : "Emerson company previews"}>{([['TEE','The Emerson Empire'],['TEA','The Emerson Agency'],['EPDG','EPDG']] as const).map(([entity,name]) => companyHref(entity) ? <a key={entity} href={companyHref(entity)!}>{name}</a> : <span key={entity}>{name} · preview link pending</span>)}</nav><p>Existing design and code by the intern teams; learning and directory integration assisted by Codex. Build {import.meta.env.VITE_BUILD_ID || 'working tree'}.</p></section>;
+  return <section className="is-experience-links" aria-label="Learning and company information"><nav><a href={href('/services-pricing')}>Services & pricing</a><a href={href('/classes')}>Classes & workshops</a><a href={href('/resources')}>Resources</a><a href={href('/programs')}>{publicRelease ? 'Programs' : 'Program drafts'}</a><a href={href('/learn')}>Guided learning</a><a href={href('/coverage')}>Coverage</a><a href={href('/founder')}>Founder</a><a href={href('/leadership')}>Leadership</a><a href={href('/research')}>Research</a><a href={href('/speaking')}>Speaking</a><a href={href('/inquiry')}>Contact & support</a><a href={href('/privacy')}>Privacy Policy</a><a href={href('/terms')}>Terms of Use</a><a href={href('/disclaimer')}>Disclaimer</a></nav><nav aria-label={publicRelease ? "Emerson companies" : "Emerson company previews"}>{([['TEE','The Emerson Empire'],['TEA','The Emerson Agency'],['EPDG','EPDG']] as const).map(([entity,name]) => companyHref(entity) ? <a key={entity} href={companyHref(entity)!}>{name}</a> : <span key={entity}>{name} · preview link pending</span>)}</nav><p>Existing design and code by the intern teams; learning and directory integration assisted by Codex. Build {import.meta.env.VITE_BUILD_ID || 'working tree'}.</p></section>;
 }
 export function LearningGateway({ entity }: { entity: Entity }) {
   const cards = entity === 'EPDG' ? [
@@ -46,5 +49,5 @@ export function LearningGateway({ entity }: { entity: Entity }) {
     ['Check a financial source', '/learn/financial-source-literacy', 'Practice checking who published information and what it can establish.'],
     ['Education resources', '/resources', 'Check provider sources, eligibility, geography and review status.'],
   ];
-  return <section className="is-learning-gateway" aria-labelledby="learning-gateway-title"><div><p className="is-eyebrow">Explore at your own pace</p><h2 id="learning-gateway-title">{entity === 'EPDG' ? 'Learning resources for your next step' : 'Build financial understanding'}</h2><p>Start with a resource or a guided practice. Program drafts do not open registration.</p><div className="is-gateway-grid">{cards.map(([title, url, description]) => <article key={url}><h3>{title}</h3><p>{description}</p><a href={href(url)}>Explore <span className="is-sr-only">{title}</span><span aria-hidden="true"> →</span></a></article>)}</div></div></section>;
+  return <section className="is-learning-gateway" aria-labelledby="learning-gateway-title"><div><p className="is-eyebrow">Explore at your own pace</p><h2 id="learning-gateway-title">{entity === 'EPDG' ? 'Learning resources for your next step' : 'Build financial understanding'}</h2><p>Start with a resource or a guided practice. {publicIntakeEnabled ? 'Use the class schedule and application links for current registration options.' : 'Program drafts do not open registration.'}</p><div className="is-gateway-grid">{cards.map(([title, url, description]) => <article key={url}><h3>{title}</h3><p>{description}</p><a href={href(url)}>Explore <span className="is-sr-only">{title}</span><span aria-hidden="true"> →</span></a></article>)}</div></div></section>;
 }

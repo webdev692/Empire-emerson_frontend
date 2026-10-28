@@ -1,4 +1,4 @@
-name: Frozen public company content
+name: Public company website release
 on:
   pull_request:
   workflow_dispatch:

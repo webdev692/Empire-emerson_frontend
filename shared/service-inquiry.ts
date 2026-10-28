@@ -1,4 +1,5 @@
 import catalog from './services-catalog.public.json';
+import { contactMailboxes, publicIntakeEnabled } from './public-intake';
 export type ServiceCompany = 'TEE' | 'TEA' | 'EPDG';
 // This address is already published in the three original company footers.
 export const serviceMailbox = 'admin@theemersonempire.info';
@@ -12,7 +13,7 @@ export function serviceInquiryHref(entity: ServiceCompany, id: string, access = 
     body: `Company: ${entity}\nOffering: ${title}\n\nI would like information about ${access ? 'free, reduced-cost or fee-waiver options and their review conditions' : 'current availability, scope and a planning estimate'}.\n\nMy goal (optional):\n\nPlease do not include identity documents, tax returns, account numbers, medical information or other sensitive records in this initial email.`,
   });
   // mailto headers use percent-encoded spaces, rather than form-urlencoded '+'.
-  return `mailto:${serviceMailbox}?${params.toString().replaceAll('+', '%20')}`;
+  return `mailto:${publicIntakeEnabled ? contactMailboxes.sales : serviceMailbox}?${params.toString().replaceAll('+', '%20')}`;
 }
 // Permit only exact generated email drafts. Other forms, mail links and live intake remain held.
 export function isServiceInquiryHref(value: string, entity: ServiceCompany) {

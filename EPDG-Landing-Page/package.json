@@ -18,7 +18,8 @@
     "test": "node --experimental-strip-types --test deploymentBase.test.mjs collegesDirectory.test.mjs freeLearningLibrary.test.mjs",
     "smoke": "node ../scripts/smoke-check.mjs EPDG-Landing-Page",
     "preview": "vite preview",
-    "build:live": "node ../scripts/company-platform.mjs build-live"
+    "build:live": "node ../scripts/company-platform.mjs build-live",
+    "build:website": "node ../scripts/company-platform.mjs build-website"
   },
   "dependencies": {
     "@tailwindcss/vite": "4.3.0",

@@ -27,7 +27,7 @@ html=html.replace(/<link\b[^>]*rel=["']canonical["'][^>]*>/gi,'').replace(/<meta
 writeFileSync(resolve(out,'index.html'),html);
 writeFileSync(resolve(out,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${site.origin}/sitemap.xml\n`);
 const catalog=JSON.parse(readFileSync(resolve(root,'shared/catalog.public.json'),'utf8'));
-const common=['/','/services-pricing','/classes','/resources','/learn','/programs','/founder','/leadership','/research','/coverage'];
+const common=['/','/services-pricing','/classes','/resources','/learn','/programs','/founder','/leadership','/research','/coverage','/privacy','/terms','/disclaimer','/inquiry','/contact'];
 const studio = validateStudioPublication(root);
 const studioEnabled = studio.entities.includes(entity);
 if (studioEnabled) common.push('/project-studio');
@@ -44,10 +44,11 @@ writeFileSync(resolve(out,'_redirects'),'/* /index.html 200\n');
 const git=args=>spawnSync('git',['-c',`safe.directory=${root.replaceAll('\\','/').replace(/\/$/,'')}`,'-C',root,...args],{encoding:'utf8'});
 const commit=git(['rev-parse','HEAD']); const status=git(['status','--porcelain']);
 assert.equal(commit.status,0); assert.equal(status.status,0);
-const manifest={schema_version:'1.0.0',entity,app,site_id:site.site_id,origin:site.origin,commit:commit.stdout.trim(),working_tree_dirty:!!status.stdout.trim(),mode:'public-release',content_revision:publicBoundary.published[entity].content_revision,public_boundary_sha256:publicBoundarySha256,built_at:new Date().toISOString(),node:process.version,public_release_approved:true,approval_record:'shared/release-approval.json',registration_enabled:false,live_intake_enabled:false,
+const manifest={schema_version:'1.0.0',entity,app,site_id:site.site_id,origin:site.origin,commit:commit.stdout.trim(),working_tree_dirty:!!status.stdout.trim(),mode:'public-release',content_revision:publicBoundary.published[entity].content_revision,public_boundary_sha256:publicBoundarySha256,built_at:new Date().toISOString(),node:process.version,public_release_approved:true,approval_record:'shared/release-approval.json',registration_enabled:process.env.VITE_PUBLIC_INTAKE_RELEASE === 'true',live_intake_enabled:process.env.VITE_PUBLIC_INTAKE_RELEASE === 'true',
+  website_repair:process.env.VITE_PUBLIC_INTAKE_RELEASE === 'true' ? {authorization_record:'docs/PUBLIC_WEBSITE_REPAIR_2026-10-28.json',legal_approved:process.env.VITE_PUBLIC_LEGAL_APPROVED === 'true',forms:'External Google Forms only',portal_changed:false,crm_changed:false,media_studio_changed:false} : null,
   project_studio:studioEnabled ? {approval_record:'docs/PROJECT_STUDIO_PUBLICATION_APPROVAL.json',example_ids:studio.example_ids,data_sha256_lf:studio.data_sha256_lf,planning_only:true} : null,
-  three_programs:{approval_record:'docs/THREE_PROGRAMS_PUBLICATION_APPROVAL.json',data_sha256_lf:programApproval.data_sha256_lf,primary_route:primaryProgram.route,program_ids:programApproval.programs.map(program=>program.id),email_drafts_only:true},
+  three_programs:{approval_record:'docs/THREE_PROGRAMS_PUBLICATION_APPROVAL.json',data_sha256_lf:programApproval.data_sha256_lf,primary_route:primaryProgram.route,program_ids:programApproval.programs.map(program=>program.id),email_drafts_only:process.env.VITE_PUBLIC_INTAKE_RELEASE !== 'true'},
   research:research ? {approval_record:'docs/TEE_RESEARCH_PUBLICATION_APPROVAL.json',reviewed_commit:research.reviewed_commit,data_sha256_lf:research.public_data_sha256_lf,work_ids:research.work_ids,conference_summaries_only:true} : null,
   files:files(out).map(path=>({path:relative(out,path).replaceAll('\\','/'),bytes:statSync(path).size,sha256:createHash('sha256').update(readFileSync(path)).digest('hex')}))};
 writeFileSync(resolve(out,'release-build.json'),JSON.stringify(manifest,null,2)+'\n');
-console.log(`${entity}: approved public artifacts prepared; registration and live intake remain closed.`);
+console.log(`${entity}: approved public artifacts prepared; current website intake state recorded.`);

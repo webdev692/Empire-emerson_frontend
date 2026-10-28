@@ -1,3 +1,5 @@
+import PublicLegalPages from '../../shared/PublicLegalPages';
+import { publicIntakeEnabled } from '../../shared/public-intake';
 import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter, Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import ProjectStudioPage, { StudioReviewNotice } from '../../shared/ProjectStudioEntry';
@@ -47,6 +49,11 @@ function AppShell({ enhanced }: { enhanced: boolean }) {
       {enhanced && (projectStudioLocal ? <StudioReviewNotice entity="TEE" /> : <PreviewNotice />)}
       <Navbar />
       <Routes>
+        <Route path="/privacy" element={<PublicLegalPages kind="privacy" />} />
+        <Route path="/privacy-policy" element={<PublicLegalPages kind="privacy" />} />
+        <Route path="/terms" element={<PublicLegalPages kind="terms" />} />
+        <Route path="/terms-of-use" element={<PublicLegalPages kind="terms" />} />
+
         {enhanced && threeProgramsEnabled && <Route path="/career-readiness" element={<ProgramExperience entity="TEE" />} />}
         {enhanced && projectStudioEnabled && <Route path="/project-studio" element={<ProjectStudioPage entity="TEE" />} />}
         <Route path="/" element={<HomePage />} />
@@ -54,8 +61,8 @@ function AppShell({ enhanced }: { enhanced: boolean }) {
         <Route path="/register" element={<Navigate to="/" replace />} />
         <Route path="/about" element={<BelowFold />} />
         <Route path="/classes" element={enhanced && IntegratedFeatures ? <IntegratedFeatures /> : <ClassCatalog />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/disclaimer" element={<Disclaimer />} />
+        <Route path="/contact" element={publicIntakeEnabled && IntegratedFeatures ? <IntegratedFeatures /> : <Contact />} />
+        <Route path="/disclaimer" element={publicIntakeEnabled ? <PublicLegalPages kind="disclaimer" /> : <Disclaimer />} />
         <Route path="/global-internship" element={enhanced && threeProgramsEnabled ? <main id="main-content" className="pt-24"><ProgramExperience entity="EPDG" view="referral" /></main> : <GlobalInternship />} />
         <Route path="/epdg" element={enhanced && threeProgramsEnabled ? <main id="main-content" className="pt-24"><ProgramExperience entity="EPDG" view="referral" /></main> : <GlobalInternship />} />
         <Route path="/agency" element={<AgencyPage />} />

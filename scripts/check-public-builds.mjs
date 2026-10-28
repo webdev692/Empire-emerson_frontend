@@ -14,17 +14,17 @@ mkdirSync(evidence, { recursive: true });
 const checks = [];
 function run(name, args, cwd = root) {
   const result = spawnSync(process.execPath, args, { cwd, env: { ...process.env, NO_COLOR: '1' }, encoding: 'utf8' });
-  writeFileSync(resolve(evidence, name + '.txt'), (result.stdout || '') + (result.stderr || ''));
+  writeFileSync(resolve(evidence, name.replaceAll(':', '-') + '.txt'), (result.stdout || '') + (result.stderr || ''));
   checks.push({ name, exit_code: result.status });
   console.log(`${name}: ${result.status === 0 ? 'PASS' : 'FAIL'}`);
   if (result.status !== 0) console.error((result.stdout || '') + (result.stderr || ''));
 }
-run('public-regression', ['--experimental-strip-types', '--test', '--test-concurrency=1', 'shared/content.test.mjs', 'shared/inquiry.test.mjs', 'shared/lesson-blocks.test.mjs', 'scripts/route-links.test.mjs', 'scripts/public-source-boundary.test.mjs', 'scripts/services-catalog.test.mjs', 'scripts/project-studio.test.mjs', 'Emerson_Empire/scCommunityDirectory.test.mjs', 'EPDG-Landing-Page/collegesDirectory.test.mjs', 'EPDG-Landing-Page/freeLearningLibrary.test.mjs']);
+run('public-regression', ['--experimental-strip-types', '--test', '--test-concurrency=1', 'shared/content.test.mjs', 'shared/inquiry.test.mjs', 'shared/lesson-blocks.test.mjs', 'scripts/route-links.test.mjs', 'scripts/public-website-intake.test.mjs', 'scripts/public-source-boundary.test.mjs', 'scripts/services-catalog.test.mjs', 'scripts/project-studio.test.mjs', 'Emerson_Empire/scCommunityDirectory.test.mjs', 'EPDG-Landing-Page/collegesDirectory.test.mjs', 'EPDG-Landing-Page/freeLearningLibrary.test.mjs']);
 run('public-shared-lint', ['Emerson_Empire/node_modules/eslint/bin/eslint.js', '--config', 'Emerson_Empire/eslint.config.js', 'shared/**/*.ts', 'shared/**/*.tsx', '--max-warnings', '0']);
 for (const app of ['Emerson_Empire', 'Agency_LandingPage', 'EPDG-Landing-Page']) {
-  for (const action of ['build', 'lint', 'smoke']) run(app + '-' + action, [npm, 'run', action], resolve(root, app));
+  for (const action of ['build:website', 'lint', 'smoke']) run(app + '-' + action, [npm, 'run', action], resolve(root, app));
 }
-run('published-artifact-equality', ['--experimental-strip-types', 'scripts/scan-frozen-public-artifacts.mjs']);
+run('website-artifact-integrity', ['--experimental-strip-types', 'scripts/scan-website-artifacts.mjs']);
 const git = args => spawnSync('git', ['-c', `safe.directory=${root.replaceAll('\\', '/').replace(/\/$/, '')}`, '-C', root, ...args], { encoding: 'utf8' });
-writeFileSync(resolve(evidence, 'public-verification.json'), JSON.stringify({ scope: 'Existing approved public company content only; private authoring unavailable', checked_out_revision: git(['rev-parse', 'HEAD']).stdout.trim(), working_tree_dirty: !!git(['status', '--porcelain']).stdout.trim(), observed_at: new Date().toISOString(), node: process.version, result: checks.every(check => check.exit_code === 0) ? 'PASS' : 'FAIL', checks }, null, 2) + '\n');
+writeFileSync(resolve(evidence, 'public-verification.json'), JSON.stringify({ scope: 'Three public websites with founder-confirmed intake and schedule; private authoring unavailable', checked_out_revision: git(['rev-parse', 'HEAD']).stdout.trim(), working_tree_dirty: !!git(['status', '--porcelain']).stdout.trim(), observed_at: new Date().toISOString(), node: process.version, result: checks.every(check => check.exit_code === 0) ? 'PASS' : 'FAIL', checks }, null, 2) + '\n');
 process.exitCode = checks.every(check => check.exit_code === 0) ? 0 : 1;

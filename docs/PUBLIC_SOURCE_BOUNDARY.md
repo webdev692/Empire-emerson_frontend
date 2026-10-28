@@ -94,3 +94,10 @@ published manifests, verify the candidate deployment/source, then use the
 coordinated release process. Retain the immutable deployment receipts and assets
 as evidence; recovery uses a separately reviewed fix-forward release. Production
 has not been changed by local source preparation.
+
+
+## October 28 public website repair amendment
+
+The user subsequently authorized repairing contact routes and opening the existing internship application and class registration Google Forms, with the confirmed daily Eastern Time schedule. `docs/PUBLIC_WEBSITE_REPAIR_2026-10-28.json` records this new scope. Only these three public websites use it; portal activation, CRM and media studio changes remain excluded.
+
+The frozen data payload hashes and privacy checks remain mandatory. Historical published artifact equality is a receipt for the previous release; it cannot certify intentionally repaired interface files. `npm run check:public` now checks current website artifacts and their exact manifest hashes, and the website build label identifies the current source. The legacy artifact comparison remains available for historical reproduction only. Legal wording remains marked for founder review until exact-wording approval is recorded. External Google Forms handle submissions; website CSP still blocks inline submission transports. No CRM transport, new permissions or automatic learner activation is added.

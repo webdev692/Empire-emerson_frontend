@@ -4,21 +4,25 @@ import { FileText, Users, CheckCircle, Award } from 'lucide-react';
 const STEPS = [
   {
     icon: FileText,
+    href: '/classes',
     title: 'Register for a Class',
-    description: 'Sign up for one of our weekly classes or workshops to start building your skills.',
+    description: 'Sign up for one of our daily classes or workshops to start building your skills.',
   },
   {
     icon: Users,
+    href: '/inquiry',
     title: 'Request a Weekly Consultation',
     description: 'Meet one-on-one with our team to get personalized guidance and support.',
   },
   {
     icon: CheckCircle,
-    title: 'Register for Weekly Classes',
+    href: '/classes',
+    title: 'Register for Daily Classes',
     description: 'Join our ongoing series of professional development workshops.',
   },
   {
     icon: Award,
+    href: '/global-internship',
     title: 'Apply for Internship',
     description: 'Take the next step with our immersive professional development program.',
   },
@@ -50,7 +54,7 @@ const FormsNextSteps: React.FC = () => {
                 <div className="mb-4 inline-flex items-center justify-center bg-[#C9A84C]/10 rounded-lg w-12 h-12">
                   <Icon className="text-gold-on-light" size={24} />
                 </div>
-                <h3 className="mb-4 font-bold text-[#0A1128] text-lg">{step.title}</h3>
+                <h3 className="mb-4 font-bold text-[#0A1128] text-lg"><a href={step.href} className="underline underline-offset-4">{step.title}</a></h3>
                 <p className="text-[#0A1128]/70 text-sm leading-relaxed">{step.description}</p>
               </div>
             );

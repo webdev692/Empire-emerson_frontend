@@ -18,7 +18,8 @@
     "lint": "eslint .",
     "smoke": "node ../scripts/smoke-check.mjs Agency_LandingPage",
     "preview": "vite preview",
-    "build:live": "node ../scripts/company-platform.mjs build-live"
+    "build:live": "node ../scripts/company-platform.mjs build-live",
+    "build:website": "node ../scripts/company-platform.mjs build-website"
   },
   "dependencies": {
     "@react-three/drei": "10.7.7",
