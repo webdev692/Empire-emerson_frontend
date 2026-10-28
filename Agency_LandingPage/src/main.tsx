@@ -11,7 +11,7 @@ const enhanced = platformEnabled && ((import.meta.env.MODE === 'protected-review
 createRoot(document.getElementById('root')!).render(
   <StrictMode><PublicWebsiteRecovery>
     <HelmetProvider>
-      <Suspense fallback={<p role="status">Loading existing education interface…</p>}>
+      <Suspense fallback={<p role="status">Loading the company website…</p>}>
         {App ? <App enhanced={enhanced} /> : <CompanyPlatform entity="TEA" />}
       </Suspense>
     </HelmetProvider>

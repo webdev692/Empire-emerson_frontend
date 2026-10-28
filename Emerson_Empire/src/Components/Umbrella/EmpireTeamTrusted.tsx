@@ -1,4 +1,5 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import { publicIntakeEnabled } from '../../../../shared/public-intake';
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Award, Handshake, Users, Globe, ExternalLink } from "lucide-react";
 import Helena2 from "../../assets/Helena.jpeg";
@@ -146,7 +147,7 @@ const EmpireTeamTrusted: React.FC = () => {
   return (
     <section id="team">
       {/* â”€â”€ ACHIEVEMENTS â”€â”€ */}
-      <div className="bg-[#4B1E91] px-6 sm:px-10 lg:px-16 py-20">
+      {!publicIntakeEnabled && <div className="bg-[#4B1E91] px-6 sm:px-10 lg:px-16 py-20">
         <div className="mx-auto max-w-7xl">
           <motion.p
             whileInView={{ opacity: 1, y: 0 }}
@@ -190,7 +191,7 @@ const EmpireTeamTrusted: React.FC = () => {
             })}
           </div>
         </div>
-      </div>
+      </div>}
 
       {/* â”€â”€ TEAM â”€â”€ */}
       <div className="bg-white px-6 sm:px-10 lg:px-16 py-24 lg:py-32">

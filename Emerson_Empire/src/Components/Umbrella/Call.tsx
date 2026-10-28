@@ -155,7 +155,7 @@ const Call: React.FC = () => {
             <div className="flex items-center gap-2 text-[#F5F0E8]/40">
               <Users size={14} />
               <p className="text-sm uppercase tracking-[2px]">
-                Join 500+ students already building their future
+                Explore classes and professional development
               </p>
             </div>
             <p className="text-[#F5F0E8]/25 text-xs uppercase tracking-[2px]">

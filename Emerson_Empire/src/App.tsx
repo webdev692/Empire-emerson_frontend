@@ -1,3 +1,4 @@
+import ServicesPricing from '../../shared/ServicesPricing';
 import PublicLegalPages from '../../shared/PublicLegalPages';
 import { publicIntakeEnabled } from '../../shared/public-intake';
 import React, { Suspense, useEffect } from 'react';
@@ -65,7 +66,7 @@ function AppShell({ enhanced }: { enhanced: boolean }) {
         <Route path="/disclaimer" element={publicIntakeEnabled ? <PublicLegalPages kind="disclaimer" /> : <Disclaimer />} />
         <Route path="/global-internship" element={enhanced && threeProgramsEnabled ? <main id="main-content" className="pt-24"><ProgramExperience entity="EPDG" view="referral" /></main> : <GlobalInternship />} />
         <Route path="/epdg" element={enhanced && threeProgramsEnabled ? <main id="main-content" className="pt-24"><ProgramExperience entity="EPDG" view="referral" /></main> : <GlobalInternship />} />
-        <Route path="/agency" element={<AgencyPage />} />
+        <Route path="/agency" element={publicIntakeEnabled ? <div className="company-platform cp-tea"><main id="main-content"><ServicesPricing entity="TEA" /></main></div> : <AgencyPage />} />
         {enhanced && IntegratedFeatures && <Route path="*" element={<IntegratedFeatures />} />}
       </Routes>
       {enhanced && <ProgramExperience entity="TEE" view="footer" />}

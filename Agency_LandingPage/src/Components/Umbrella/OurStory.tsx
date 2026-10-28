@@ -25,7 +25,7 @@ const TIMELINE = [
     num: '04',
     year: 'Today',
     title: 'A Growing Empire',
-    body: 'With hundreds of students trained, partnerships across multiple sectors, and a team built on lived experience, The Emerson Empire continues to close the gap — one person, one business, one community at a time.',
+    body: 'The Emerson Empire brings education, professional development and business support together — one person, one business, one community at a time.',
   },
 ];
 

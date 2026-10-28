@@ -18,8 +18,8 @@ const NAV_LINKS = [
     label: 'Classes', href: '/classes',
     dropdown: [
       { label: 'Class descriptions',  href: '/classes'  },
-      { label: integratedPreview ? 'Class availability' : 'Register Today',  href: '/classes#class-catalog'   },
-      { label: 'Free Workshop',   href: '/classes#class-catalog'   },
+      { label: integratedPreview ? 'Class availability' : 'Register Today',  href: '/classes#daily-class-schedule'   },
+      { label: 'Free daily class',   href: '/classes#class-01'   },
     ]
   },
   {

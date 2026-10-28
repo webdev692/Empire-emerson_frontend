@@ -194,3 +194,5 @@ This entry supersedes older statements above that the prepared Supabase work was
 - Legal pages are exact-wording review drafts adapted from the company Privacy and Terms drafts. Publication approval is pending. Figma is last at the user's request.
 - Final clean-commit checks, protected preview deployment IDs and public release receipts must be recorded before publication. Earlier working-tree checks do not certify this source revision.
 - Correct defects forward with a reviewed commit and fresh three-website builds. Never restore an older deploy or change the excluded applications' release settings.
+
+The October 28 content follow-up removes unverified achievement counters and student totals from public presentation, normalizes visible response-time wording, labels service prices in USD without changing approved amounts, gives the class menu distinct schedule/free-class anchors and replaces the legacy TEE Agency route with the current approved TEA service catalog. Visitor loading wording is consistent. Public data payloads and protected projects remain unchanged.
