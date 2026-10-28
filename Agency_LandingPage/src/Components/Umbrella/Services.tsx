@@ -1,3 +1,4 @@
+import { intakeHref } from '../../../../shared/development-preview';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -25,9 +26,9 @@ type ServiceItem = {
 // ── Form URLs (embedded) ──────────────────────────────────────────────────────
 
 const FORM_URLS: Record<string, string> = {
-  'services-form':   'https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform?embedded=true',
-  'business-form':   'https://docs.google.com/forms/d/e/1FAIpQLSc3j8G8Ed-9KluUeKwfcNVgoo8QR7CQWdifSwpuBeS1Bm3AMA/viewform?embedded=true',
-  'internship-form': 'https://docs.google.com/forms/d/e/1FAIpQLSct0beq8VHPv9zhRreBFv8fK8HWGIGNp2YmuRGiOiL7RPoGFQ/viewform?embedded=true',
+  'services-form':   intakeHref('https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform?embedded=true'),
+  'business-form':   intakeHref('https://docs.google.com/forms/d/e/1FAIpQLSc3j8G8Ed-9KluUeKwfcNVgoo8QR7CQWdifSwpuBeS1Bm3AMA/viewform?embedded=true'),
+  'internship-form': intakeHref('https://docs.google.com/forms/d/e/1FAIpQLSct0beq8VHPv9zhRreBFv8fK8HWGIGNp2YmuRGiOiL7RPoGFQ/viewform?embedded=true'),
 };
 
 // ── Category → icon ───────────────────────────────────────────────────────────

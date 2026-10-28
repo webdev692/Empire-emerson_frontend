@@ -1,3 +1,4 @@
+import { intakeHref } from '../../../../shared/development-preview';
 import React, { useMemo, useState } from "react";
 import {
   FaArrowRight,
@@ -12,8 +13,8 @@ import {
 } from "react-icons/fa";
 import type { ClassItem } from "../data/classData";
 
-const REGISTRATION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfOGM0MZ05Em3O502rC9HxvK5qzW06ATQMcMX2Fgcn9xBpncQ/viewform";
-const FEE_WAIVER_URL = "https://forms.gle/fWm9gHownQeorkNn7";
+const REGISTRATION_URL = intakeHref("https://docs.google.com/forms/d/e/1FAIpQLSfOGM0MZ05Em3O502rC9HxvK5qzW06ATQMcMX2Fgcn9xBpncQ/viewform");
+const FEE_WAIVER_URL = intakeHref("https://forms.gle/fWm9gHownQeorkNn7");
 
 const DAY_ORDER = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 const DAY_INDEX = DAY_ORDER.reduce<Record<string, number>>((acc, day, index) => {

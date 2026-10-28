@@ -1,3 +1,5 @@
+import { companyInformationHref } from '../../../../shared/company-links';
+import { integratedPreview } from '../../../../shared/development-preview';
 import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import {
@@ -9,7 +11,7 @@ import {
 } from '../../assets';
 
 const FIND_PATHS = [
-  { icon: BookOpen,      title: 'Free resources and guidance',              href: '/about'             },
+  { icon: BookOpen,      title: 'Free resources and guidance',              href: integratedPreview ? '/resources' : '/about' },
   { icon: GraduationCap, title: 'Career classes and professional development', href: '/classes'        },
   { icon: Wallet,        title: 'Financial education and organization',     href: '/agency'            },
   { icon: Briefcase,     title: 'Internship opportunities',                 href: '/global-internship' },
@@ -26,7 +28,7 @@ const COMPANIES = [
     imgWebp: EPDGWebp,
     imgAvif: EPDGAvif,
     alt: 'Emerson Professional Development Group',
-    href: '/global-internship',
+    href: integratedPreview ? companyInformationHref('EPDG') : '/global-internship',
     logoCls: '',
   },
   {
@@ -48,7 +50,7 @@ const COMPANIES = [
     imgWebp: AgencyWebp,
     imgAvif: AgencyAvif,
     alt: 'The Emerson Agency LLC',
-    href: '/agency',
+    href: integratedPreview ? companyInformationHref('TEA') : '/agency',
     logoCls: '',
   },
 ];

@@ -1,4 +1,6 @@
-﻿import React, { useState } from "react";
+import { publicIntakeEnabled } from '../../../../shared/public-intake';
+import InquiryPage from '../../../../shared/InquiryPage';
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Clock, Send, ExternalLink, Check } from "lucide-react";
 
@@ -8,16 +10,16 @@ const CONTACT_CHANNELS = [
   {
     icon: Mail,
     label: "Email",
-    value: "webdev@theemersonempire.info",
-    href: "mailto:webdev@theemersonempire.info",
+    value: "sales@theemersonempire.info",
+    href: "mailto:sales@theemersonempire.info",
     description: "For general inquiries, program questions, and partnership requests.",
   },
   {
     icon: Clock,
     label: "Response Time",
-    value: "24–48 Business Hours",
+    value: "Response times vary",
     href: null,
-    description: "We respond to all inquiries within one to two business days, Monday through Saturday.",
+    description: "Our team responds as availability permits. Use the appropriate functional mailbox for your question.",
   },
 ];
 
@@ -70,6 +72,7 @@ const Contact: React.FC = () => {
     }
   };
 
+  if (publicIntakeEnabled) return <InquiryPage />;
   return (
     <div id="contact" className="bg-white pt-16 sm:pt-20 min-h-screen font-sans antialiased">
 
@@ -288,8 +291,8 @@ const Contact: React.FC = () => {
 
                   <p className="font-mono text-neutral-400 text-xs text-center">
                     Or email us at{" "}
-                    <a href="mailto:webdev@theemersonempire.info" className="text-[#C9A84C] hover:underline">
-                      webdev@theemersonempire.info
+                    <a href="mailto:sales@theemersonempire.info" className="text-[#C9A84C] hover:underline">
+                      sales@theemersonempire.info
                     </a>
                   </p>
                 </form>

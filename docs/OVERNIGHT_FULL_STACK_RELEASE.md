@@ -2,6 +2,22 @@
 
 This journal records the non-sensitive evidence for the July 11, 2026 stabilization and release work. It must never contain secret values, private user records, intern records, or production row contents.
 
+## 2026-10-28 — company public-source alignment preparation
+
+The company source review branch preserves public `origin/main` history and keeps
+the earlier private authoring branch recoverable without publishing its private
+inputs or evidence. Approved company runtime content, intern contributions and
+the original exact-version feature validators are retained. The additive frozen
+public boundary binds 23 public payloads and all 217 existing published files;
+only fresh `release-build.json` metadata is exempt from the prior output hashes.
+
+See [Public source boundary](PUBLIC_SOURCE_BOUNDARY.md) for the three exact target
+mappings, content revisions, local verification recipe, exclusions, operating
+holds and fix-forward recovery. Local preparation does not publish, change a
+Netlify setting, modify a database, enable intake, send email or alter the EPDG
+learner portal. Fresh commit-specific checks and independent diff review are
+required before the coordinated remote handoff.
+
 ## 2026-07-11 20:21 EDT — Phase 1: preserve frontend remediation
 
 - Confirmed repository: `webdev692/Empire-emerson_frontend`.
@@ -167,3 +183,18 @@ This entry supersedes older statements above that the prepared Supabase work was
 - Verified that all tracked backend migrations `001`–`033` match the live `public.migrations` ledger by identity and normalized content hash.
 - Enabled RLS and revoked browser access on the four career tables, hardened `update_timestamp()`, and added the catalog-confirmed foreign-key indexes. End-user RLS policies remain intentionally blocked until the custom integer identity model is mapped safely to Supabase Auth UUIDs.
 - Railway remains blocked at PostgreSQL authentication with code `28P01`; no database credential value was read, printed, or changed. The backend PR remains draft and unmerged.
+
+
+## 2026-10-28 — Three public website repairs
+
+- Scope: Emerson_Empire, Agency_LandingPage and EPDG-Landing-Page. No portal, CRM, media studio, database, authentication or role changes. The epdg tree and shared/emerson-design-system.css match main.
+- Repairs build on the public-only source boundary in PR #34; private authoring history and inputs remain local. Approved data payloads, original intern contributions, Studio implementation and historical publication receipts are preserved.
+- Add the founder-confirmed existing Google Forms, functional contact mailboxes and daily Eastern schedule: 10 AM/free/60 minutes, 2 PM/$10 USD or fee waiver/90 minutes, 7 PM/$20 USD or fee waiver/two hours. No application or registration test submission was created.
+- Repair legal links, mobile dialog layout, CSP-blocked inline font loading, obsolete automatic GitHub Pages deployment and restore code, loading contrast and offline recovery messaging. Resource directories load only on resource routes.
+- Legal pages are exact-wording review drafts adapted from the company Privacy and Terms drafts. Publication approval is pending. Figma is last at the user's request.
+- Final clean-commit checks, protected preview deployment IDs and public release receipts must be recorded before publication. Earlier working-tree checks do not certify this source revision.
+- Correct defects forward with a reviewed commit and fresh three-website builds. Never restore an older deploy or change the excluded applications' release settings.
+
+The October 28 content follow-up removes unverified achievement counters and student totals from public presentation, normalizes visible response-time wording, labels service prices in USD without changing approved amounts, gives the class menu distinct schedule/free-class anchors and replaces the legacy TEE Agency route with the current approved TEA service catalog. Visitor loading wording is consistent. Public data payloads and protected projects remain unchanged.
+
+The founder approved the exact Privacy Policy, Terms of Use and Disclaimer wording on October 28: SHA-256 (LF) 3b48c6c45da2dba8f5db119716c2575d86eef857d5dfcd79c1dd204bb501f134, reviewed on protected TEE deploy 6ae226d8dac0500318ccc883. This approval applies only to the three public company websites. Unconfirmed legacy request links now lead to the functional contact page; historical protected-review builds retain their hold. Current Netlify credit balance was 2,873.4/3,000 with auto recharge disabled before this release.

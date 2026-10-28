@@ -1,4 +1,5 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import { publicIntakeEnabled } from '../../../../shared/public-intake';
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Award, Handshake, Users, Globe, ExternalLink } from "lucide-react";
 import Helena2 from "../../assets/Helena.jpeg";
@@ -23,14 +24,14 @@ const TEAM = [
     photo: Vincent ,
     name: "Vincent Majembe",
     role: "Head of web Development",
-    bio: "Architecting fast, scalable web experiences from frontend to backend â€” turning complex ideas into clean, functional products that work.",
+    bio: "Architecting fast, scalable web experiences from frontend to backend — turning complex ideas into clean, functional products that work.",
     linkedin: "#",
   },
   {
     photo: Matheous ,
     name: "Matheus Alves",
     role: " Web Design",
-    bio: "Designing web experiences that don't just look good â€” they guide users, build trust, and turn visitors into customers.",
+    bio: "Designing web experiences that don't just look good — they guide users, build trust, and turn visitors into customers.",
     linkedin: "#",
   },
   {
@@ -146,7 +147,7 @@ const EmpireTeamTrusted: React.FC = () => {
   return (
     <section id="team">
       {/* â”€â”€ ACHIEVEMENTS â”€â”€ */}
-      <div className="bg-[#4B1E91] px-6 sm:px-10 lg:px-16 py-20">
+      {!publicIntakeEnabled && <div className="bg-[#4B1E91] px-6 sm:px-10 lg:px-16 py-20">
         <div className="mx-auto max-w-7xl">
           <motion.p
             whileInView={{ opacity: 1, y: 0 }}
@@ -190,7 +191,7 @@ const EmpireTeamTrusted: React.FC = () => {
             })}
           </div>
         </div>
-      </div>
+      </div>}
 
       {/* â”€â”€ TEAM â”€â”€ */}
       <div className="bg-white px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
@@ -224,14 +225,14 @@ const EmpireTeamTrusted: React.FC = () => {
             />
           </div>
 
-          {/* First row â€” 3 cards */}
+          {/* First row — 3 cards */}
           <div className="gap-6 grid sm:grid-cols-2 lg:grid-cols-3">
             {firstRow.map((member, i) => (
               <TeamCard key={member.name} member={member} index={i} />
             ))}
           </div>
 
-          {/* Last row â€” centered */}
+          {/* Last row — centered */}
           {lastRow.length > 0 && (
             <div
               className={`gap-6 grid mt-6 mx-auto ${

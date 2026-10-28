@@ -9,12 +9,17 @@
     "npm": "11.17.0"
   },
   "scripts": {
+    "dev:platform": "node ../scripts/company-platform.mjs dev",
+    "build:platform": "node ../scripts/company-platform.mjs build",
+    "build:review": "node ../scripts/company-platform.mjs build-review",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "node ../scripts/company-platform.mjs build-live",
     "lint": "eslint .",
-    "test": "node --experimental-strip-types --test deploymentBase.test.mjs",
+    "test": "node --experimental-strip-types --test deploymentBase.test.mjs collegesDirectory.test.mjs freeLearningLibrary.test.mjs",
     "smoke": "node ../scripts/smoke-check.mjs EPDG-Landing-Page",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:live": "node ../scripts/company-platform.mjs build-live",
+    "build:website": "node ../scripts/company-platform.mjs build-website"
   },
   "dependencies": {
     "@tailwindcss/vite": "4.3.0",

@@ -1,3 +1,5 @@
+import { publicIntakeEnabled } from '../../../../shared/public-intake';
+import { useNavigate } from 'react-router-dom';
 import React from "react";
 import { useFormModal } from "./FormModalContext";
 import {
@@ -58,7 +60,7 @@ const BuildingIcon: React.FC = () => (
 );
 
 const forms = [
-  { title: "Register for Classes", Icon: CapIcon, url: CLASS_REGISTRATION_FORM, subtitle: "Free & low-cost weekly classes" },
+  { title: "Register for Classes", Icon: CapIcon, url: CLASS_REGISTRATION_FORM, subtitle: "Free & low-cost daily classes" },
   { title: "Request Career Services", Icon: BriefcaseIcon, url: CAREER_SERVICES_FORM, subtitle: "Resume, coaching & interview prep" },
   { title: "Apply for Internship", Icon: UsersIcon, url: INTERNSHIP_APPLICATION_FORM, subtitle: "Free semester-long program" },
   { title: "Workforce Training", Icon: BuildingIcon, url: WORKFORCE_PARTNERSHIP_FORM, subtitle: "Schools, libraries & organizations" },
@@ -66,6 +68,7 @@ const forms = [
 
 const CTASection: React.FC = () => {
   const { openForm } = useFormModal();
+  const navigate = useNavigate();
 
   return (
     <section id="contact" className="bg-[#F1F0EB] px-4 py-20 sm:py-24">
@@ -74,18 +77,18 @@ const CTASection: React.FC = () => {
           Get in touch
         </p>
         <h2 className="mb-6 max-w-3xl text-[#1A1A1A] text-5xl sm:text-6xl leading-[1.05] heading">
-          Reach us through the form that{" "}
+          Choose the next step that{" "}
           <span className="text-[#2E6B3E] italic">fits your need.</span>
         </h2>
         <p className="mb-12 max-w-xl text-[#555] text-base leading-relaxed">
-          Each link opens a secure Google Form so we can route your request to the right team.
+          Classes and internship applications open in Google Forms. Career services and workforce questions use the contact page.
         </p>
 
         <div className="gap-5 grid sm:grid-cols-2 lg:grid-cols-4">
           {forms.map(({ title, Icon, url, subtitle }) => (
             <button
               key={title}
-              onClick={() => openForm(url, title, subtitle)}
+              onClick={() => publicIntakeEnabled && title === 'Request Career Services' ? navigate('/services-pricing') : publicIntakeEnabled && title === 'Workforce Training' ? navigate('/inquiry') : openForm(url, title, subtitle)}
               className="flex flex-col items-start bg-[#FBFAF6] hover:bg-white shadow-[0_8px_24px_rgba(20,30,20,0.04)] p-6 border border-[#E6E4DC] rounded-2xl text-left transition duration-200 cursor-pointer"
             >
               <span className="flex justify-center items-center bg-[#E9F1E6] rounded-full w-11 h-11 text-[#2E6B3E]">
@@ -93,7 +96,7 @@ const CTASection: React.FC = () => {
               </span>
               <p className="mt-5 font-semibold text-[#1A1A1A] text-base">{title}</p>
               <span className="inline-flex items-center gap-1.5 mt-1.5 font-medium text-[#2E6B3E] text-sm">
-                Open form <span aria-hidden>→</span>
+                {publicIntakeEnabled && ['Request Career Services', 'Workforce Training'].includes(title) ? 'View options' : 'Open form'} <span aria-hidden>→</span>
               </span>
             </button>
           ))}

@@ -1,0 +1,5 @@
+# These published SVG bytes originated in CRLF company-site checkouts.
+# Keep the existing public asset hashes reproducible on Windows and Linux.
+Emerson_Empire/**/*.svg text eol=crlf
+Agency_LandingPage/**/*.svg text eol=crlf
+EPDG-Landing-Page/**/*.svg text eol=crlf

@@ -1,0 +1,36 @@
+name: Public company website release
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  company:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.1
+      - run: npm install --global npm@11.17.0
+      - run: npm ci
+      - run: npm ci
+        working-directory: Emerson_Empire
+      - run: npm ci
+        working-directory: Agency_LandingPage
+      - run: npm ci
+        working-directory: EPDG-Landing-Page
+      - run: npm run check:public
+      - name: Retain public output for failed artifact comparison
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: company-public-output-${{ github.sha }}
+          retention-days: 3
+          path: |
+            Emerson_Empire/dist/
+            Agency_LandingPage/dist/
+            EPDG-Landing-Page/dist/
+            !**/*.map
+            !**/.env*

@@ -1,3 +1,4 @@
+import { intakeHref } from '../../../../shared/development-preview';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -207,7 +208,7 @@ const FAQS = SCHEMA_FAQ.mainEntity.map((q) => ({
 // ── Application form URL ──────────────────────────────────────────────────────
 
 const APPLY_FORM =
-  'https://docs.google.com/forms/d/e/1FAIpQLSct0beq8VHPv9zhRreBFv8fK8HWGIGNp2YmuRGiOiL7RPoGFQ/viewform?embedded=true';
+  intakeHref('https://docs.google.com/forms/d/e/1FAIpQLSct0beq8VHPv9zhRreBFv8fK8HWGIGNp2YmuRGiOiL7RPoGFQ/viewform?embedded=true');
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 

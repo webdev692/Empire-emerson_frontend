@@ -1,4 +1,6 @@
-﻿import React, { useState } from 'react';
+import { intakeHref } from '../../../../shared/development-preview';
+import { integratedPreview, intakeHoldMessage } from '../../../../shared/development-preview';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -87,8 +89,8 @@ const SCHEMA_FAQ = {
 
 // â”€â”€ Form URLs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-const FORM_SERVICES = 'https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform?embedded=true';
-const FORM_BUSINESS = 'https://docs.google.com/forms/d/e/1FAIpQLSc3j8G8Ed-9KluUeKwfcNVgoo8QR7CQWdifSwpuBeS1Bm3AMA/viewform?embedded=true';
+const FORM_SERVICES = intakeHref('https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform?embedded=true');
+const FORM_BUSINESS = intakeHref('https://docs.google.com/forms/d/e/1FAIpQLSc3j8G8Ed-9KluUeKwfcNVgoo8QR7CQWdifSwpuBeS1Bm3AMA/viewform?embedded=true');
 
 // â”€â”€ Service categories â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
@@ -232,7 +234,7 @@ const ServiceModal: React.FC<{ modal: NonNullable<ModalState>; onClose: () => vo
                 <div className="flex justify-center items-center bg-[#C9A84C] mb-6 w-16 h-16 font-bold text-[#1C1336] text-2xl">âœ“</div>
                 <h4 className="mb-3 font-bold text-[#1C1336] text-xl uppercase">Request Submitted!</h4>
                 <p className="mb-8 max-w-xs text-neutral-500 text-sm leading-relaxed">
-                  Our team will follow up within 24â€“48 business hours.
+                  Response times vary with team availability.
                 </p>
                 <button
                   onClick={onClose}
@@ -242,13 +244,13 @@ const ServiceModal: React.FC<{ modal: NonNullable<ModalState>; onClose: () => vo
                 </button>
               </div>
             ) : (
-              <iframe
+              integratedPreview ? <p role="status" className="p-6 text-[#1c1336]">{intakeHoldMessage}</p> : (<iframe
                 src={modal.formUrl}
                 title="Service Request Form"
                 onLoad={() => setLoadCount((n) => n + 1)}
                 className="border-0 w-full h-135"
                 allow="camera; microphone"
-              />
+              />)
             )}
           </div>
         </motion.div>
@@ -517,7 +519,7 @@ const AgencyPage: React.FC = () => {
               },
               {
                 step: '02',
-                title: 'We Follow Up Within 48 Hours',
+                title: 'We Review Your Inquiry',
                 body: 'Our team reviews your request and follows up to confirm the right service, clarify any details, and discuss pricing or fee waiver options.',
               },
               {
@@ -605,7 +607,7 @@ const AgencyPage: React.FC = () => {
           </h2>
           <p className="mx-auto mb-8 max-w-xl text-[#1C1336]/70 text-sm leading-relaxed">
             Fee waivers available. No sales pressure. Education-first approach.
-            Submit a request and our team will follow up within 24â€“48 business hours.
+            Choose the appropriate contact route. Our team responds as availability permits.
           </p>
           <div className="flex sm:flex-row flex-col justify-center gap-4">
             <button

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "entity": "TEE",
+  "selection": "replace-current-three",
+  "publicationApproved": false,
+  "checkedAt": "2026-10-19",
+  "works": [
+    {
+      "id": "administrative-records",
+      "title": "Administrative Records Are Not Neutral Evidence: Classification, Missingness, and Democratic Answerability in Policymaking",
+      "author": "Lyric Helena Emerson",
+      "kind": "Conference research",
+      "summary": "Examines how institutional categories, procedural burdens, and exclusions shape administrative evidence. The project develops the concept of evidentiary circularity and argues for category transparency, burden-sensitive interpretation, and democratic contestability in policymaking.",
+      "venue": "Philosophy, Evidence and Policymaking · The Hague, Netherlands",
+      "date": "2026-09-25",
+      "role": "Conference presentation",
+      "version": "Conference abstract, presentation materials, and separate manuscript sections located. A complete integrated final manuscript has not been verified.",
+      "availability": "Research summary and conference record available here. A complete paper download is awaiting selection of the final manuscript.",
+      "links": [{ "label": "Workshop record", "url": "https://philevents.org/event/show/151165" }]
+    },
+    {
+      "id": "ordered-liberty-datafication",
+      "title": "Ordered Liberty After Datafication: Personhood, Evidentiary Circularity, and Answerable Power",
+      "author": "Lyric Helena Emerson",
+      "kind": "Conference paper draft",
+      "summary": "Develops a response to personhood-centered data governance by examining how institutional classifications become evidence for consequential decisions. It argues that answerable power requires provenance-sensitive reasons, timely contestation, and consequential correction.",
+      "venue": "JIS Symposium 2026 · The Future of Democracy: Renewing Ordered Liberty · Online",
+      "date": "2026-10-17",
+      "role": "Keynote respondent",
+      "version": "Revised conference manuscript, Batch 3. The source is a working draft prepared before the keynote; a final post-keynote version has not been verified.",
+      "availability": "Research summary and presentation details available here. The private Drive draft is retained for author review; no public manuscript download is connected.",
+      "links": []
+    },
+    {
+      "id": "reciprocity-without-justice",
+      "title": "Reciprocity Without Justice: Tommie Shelby on Law, Obligation, and Structural Injustice",
+      "author": "Lyric Helena Emerson",
+      "kind": "Repository manuscript",
+      "summary": "Examines Shelby’s account of civic obligation under structural injustice. It argues that demands for legal compliance and participation in work depend on fair social cooperation, and considers the implications for institutional legitimacy and resistance.",
+      "venue": "PhilArchive / PhilPapers",
+      "date": "2026-01-13",
+      "role": "Author",
+      "version": "PhilArchive manuscript; archived January 13, 2026. Repository availability does not establish peer review or journal publication.",
+      "availability": "The public repository record provides the abstract, citation information, version history, and the archived paper.",
+      "links": [{ "label": "Read the paper on PhilArchive", "url": "https://philarchive.org/rec/EMERWJ" }, { "label": "Original PhilPapers record", "url": "https://philpapers.org/rec/EMERWJ" }]
+    }
+  ]
+}

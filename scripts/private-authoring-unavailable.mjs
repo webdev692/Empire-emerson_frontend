@@ -1,0 +1,1 @@
+throw new Error('Private content authoring/review is unavailable in this public checkout. The full reviewed workflow remains preserved on its private source branch. Use the frozen public build and preview; no exports, approvals or roles were created.');

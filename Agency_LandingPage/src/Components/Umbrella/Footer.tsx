@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom'
+import { localHref } from '../../../../shared/platform-format'
 import { Mail, Phone, MapPin, Camera, BriefcaseBusiness, Users, Music2 } from 'lucide-react'
 import logo from '../../assets/LogoAgency.png'
 
@@ -18,6 +20,7 @@ const navLinks = [
 ]
 
 export default function Footer() {
+  const { pathname } = useLocation()
   return (
     <footer className="bg-[#0A1128] text-white">
       <div className="mx-auto max-w-[1320px] px-5 py-16">
@@ -65,7 +68,7 @@ export default function Footer() {
             <ul className="mt-6 space-y-4 text-lg text-white/90">
               {navLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="transition hover:text-[#d4af37]">{link.label}</a>
+                  <a href={pathname === '/' ? link.href : localHref('/' + link.href)} className="transition hover:text-[#d4af37]">{link.label}</a>
                 </li>
               ))}
             </ul>
@@ -89,8 +92,7 @@ export default function Footer() {
           available for qualifying individuals. Insurance, tax, financial, business, educational, and workforce
           services are subject to applicable regulations, approvals, eligibility, and availability. Participation
           in any program or service does not guarantee employment, income, funding, tax outcomes, insurance
-          approval, financial results, business success, or other specific outcomes. Full disclaimer publication
-          is pending founder approval.
+          approval, financial results, business success, or other specific outcomes. <a href="/disclaimer">Read the website disclaimer.</a>
         </p>
 
         {/* Bottom bar */}
@@ -98,8 +100,8 @@ export default function Footer() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <p className="text-base text-white/80">© 2026 The Emerson Empire. All rights reserved.</p>
             <div className="flex flex-wrap gap-10 text-base text-white/60">
-              <span>Privacy Policy (publication pending)</span>
-              <span>Terms of Use (publication pending)</span>
+              <a href="/privacy">Privacy Policy</a>
+              <a href="/terms">Terms of Use</a>
             </div>
           </div>
         </div>

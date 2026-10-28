@@ -1,0 +1,212 @@
+{
+  "programs": [
+    {
+      "id": "emerson-pathways",
+      "brand": "TEA",
+      "route": "/pathways",
+      "name": "Emerson Pathways",
+      "shortName": "Pathways",
+      "tagline": "Practical support for your next step.",
+      "status": "Developing program · Partnership inquiries welcome",
+      "summary": "Explore education, work and life opportunities with free resource navigation, financial capability education, digital skills and career readiness support. Start with one useful next step or a broader plan built around goals you choose.",
+      "audience": "Adults aged 18 and older seeking practical support, and community or institutional partners exploring a suitable arrangement.",
+      "geography": "An initial South Carolina model is being developed with potential partners. Current participant service areas and launch arrangements are not confirmed.",
+      "audienceGroups": [
+        {"title":"For adults","body":"Explore navigation or learning connected to your own education, work and transition goals. You can ask about a single need without committing to a full learning sequence."},
+        {"title":"For organizations","body":"Discuss referral, workshop, transition, facility-delivery or opportunity partnerships. These are collaboration possibilities, not a list of contracted partners."},
+        {"title":"Future adaptations","body":"Youth-specific and facility-based versions are developing possibilities. Additional populations and delivery settings require their own arrangements before they are available."}
+      ],
+      "focus": ["Resource navigation and warm referrals", "GED, college, vocational training, scholarship and certificate research", "Budgeting, banking, credit, paychecks, taxes and consumer-awareness education", "Digital access and everyday life administration", "Career mapping and transferable skills", "Résumé, interview and job-search practice", "Professional communication and self-advocacy", "Optional portfolio or supervised experiential learning", "Transition planning and optional follow-up"],
+      "modes": [
+        {"title":"Navigation Only","body":"Focused help finding verified resources and identifying a useful next step."},
+        {"title":"Guided Pathway","body":"Selected learning modules and navigator support connected to specific goals."},
+        {"title":"Full Pathways Program","body":"A broader individual sequence of education, career readiness and transition planning."},
+        {"title":"Transition / Alumni Support","body":"Optional follow-up, refresher learning, referrals and next-step troubleshooting."}
+      ],
+      "curriculumTitle": "A flexible twelve-module framework.",
+      "curriculumIntro": "Select the modules that support your goals, schedule and access needs. Modules can be reordered, shortened or skipped; practical resource navigation does not wait for a course to be completed.",
+      "unitLabel": "Module",
+      "units": [
+        {"title":"Orientation, Rights & Individual Opportunity Plan","body":"Establish participant goals, choices and a practical plan."},
+        {"title":"Digital Access & Life Administration","body":"Build confidence with digital tools and everyday administrative tasks."},
+        {"title":"Financial Capability & Practical Grounding","body":"Explore budgeting, banking, paychecks, credit and consumer awareness."},
+        {"title":"Education & Training Navigation","body":"Compare education and training options and research next steps."},
+        {"title":"Career Mapping & Transferable Skills","body":"Connect existing strengths and interests to possible roles."},
+        {"title":"Professional Communication, Boundaries & Self-Advocacy","body":"Practice communication, questions and workplace boundaries."},
+        {"title":"Résumé, Professional Profile & Portfolio Evidence","body":"Develop materials that describe actual skills and experience."},
+        {"title":"Interviewing, Workplace Readiness & Disclosure Choices","body":"Practice interviews and informed professional decisions."},
+        {"title":"Digital Job Search & Application Systems","body":"Organize opportunity searches and applications."},
+        {"title":"Opportunity Literacy, Pay/Benefits, Scams & Ethical Outreach","body":"Evaluate opportunities and understand common employment information."},
+        {"title":"Applied Professional Learning / Optional Experience","body":"Explore an appropriate project or experiential opportunity when useful."},
+        {"title":"Transition Plan, Completion Evidence & Follow-Up","body":"Review learning and plan the next step."}
+      ],
+      "phases": [],
+      "workshops": [
+        {"title":"Information session","body":"A 30–45 minute introduction."},
+        {"title":"Standalone skill workshop","body":"A focused 60-minute workshop."},
+        {"title":"Applied workshop","body":"A 75–90 minute practice session."},
+        {"title":"Mini-series","body":"Three sessions of 60–75 minutes."},
+        {"title":"Broader modular pathway","body":"A tailored learning sequence with a schedule agreed for the arrangement."}
+      ],
+      "pathways": [],
+      "duration": "A flexible twelve-module framework, adapted to your goals, schedule and access needs. Use selected modules or follow a broader pathway; this is not a mandatory fixed twelve-week course.",
+      "participantFee": "Free and voluntary. Purchasing Emerson services is not required.",
+      "compensation": "Free participation describes participant fees. It does not promise wages, stipends, paid experience or employment.",
+      "availability": "A participant launch, schedule, capacity and current service area have not been confirmed. Partnership conversations can explore fit and delivery requirements.",
+      "boundary": "Pathways is educational and navigational. It does not replace clinical treatment, legal representation, emergency services, statutory case management or licensed financial advice. It is separate from the Global Internship Program; internship participation or performing work is not a condition of receiving Pathways support.",
+      "localConnection": "",
+      "faqs": [
+        {"title":"What does Pathways cost?","body":"It is free and voluntary. You do not need to purchase Emerson services."},
+        {"title":"Do I need to complete every module?","body":"No. Modules can be selected and adapted to your goals. A useful resource connection can be a complete next step on its own."},
+        {"title":"Do I have to join an internship?","body":"No. Experiential opportunities are optional and separate from access to Pathways support."},
+        {"title":"Who can inquire?","body":"Adults aged 18 and older seeking support, and organizations exploring an appropriate partnership. Youth and facility-specific adaptations are still being developed."},
+        {"title":"Is there a confirmed start date?","body":"A participant start date is not established. Ask about current availability before making plans."},
+        {"title":"Does Pathways guarantee an external outcome?","body":"No. Jobs, scholarships, admissions, housing, internships and other external decisions are not guaranteed."},
+        {"title":"Can a school or facility discuss an adaptation?","body":"Yes. A partnership conversation can explore participant needs, institutional requirements, accessibility and the adaptations that would be needed."}
+      ],
+      "contactEmail": "humanresources@theemersonempire.info",
+      "contactLabel": "Email the Pathways Team",
+      "actions": [
+        {"id":"partnership","label":"Discuss a Pathways Partnership","question":"I would like to discuss a possible Pathways partnership and the requirements for an appropriate arrangement."},
+        {"id":"availability","label":"Ask About Program Availability","question":"I would like information about current Pathways availability and suitable next steps."}
+      ]
+    },
+    {
+      "id": "sc-career-readiness",
+      "brand": "TEE",
+      "route": "/career-readiness",
+      "name": "South Carolina Career Exploration & Remote Readiness Program",
+      "shortName": "High School Career Readiness",
+      "tagline": "Explore a field. Practice its skills. Choose your next step.",
+      "status": "School partnerships in development",
+      "summary": "A developing program for South Carolina high school students to explore career interests, practice professional communication and remote collaboration, and build learning evidence through guided projects. Schools and families can discuss how a supervised local pilot could support their students.",
+      "audience": "South Carolina high school students and schools, with information for counselors, career centers, educators, parents and guardians.",
+      "geography": "South Carolina. Eligibility, grades, student ages and participation arrangements would be agreed with each school; no universal school approval is claimed.",
+      "audienceGroups": [
+        {"title":"For schools","body":"Discuss student interests, customization, supervision, accessible technology and useful learning evidence. A twenty-minute requirements conversation can help establish fit."},
+        {"title":"For families","body":"Explore the proposed student experience and how participation would be coordinated with the applicable school arrangement."},
+        {"title":"For students","body":"Preview the learning topics and ask the program or your school about participation. Discovering that another interest fits better can be a useful outcome."}
+      ],
+      "focus": ["Professional communication", "Understanding a project brief", "Planning and documentation", "Research and source verification", "Responsible technology and AI use, with AI-free alternatives", "Feedback and revision", "Collaboration and crediting contributions", "Career reflection and next-step planning"],
+      "modes": [],
+      "curriculumTitle": "A proposed sixteen-week learning model.",
+      "curriculumIntro": "An adaptable common foundation alongside a guided career-exploration project. These are teaching weeks, not fixed calendar dates. Scheduling, tools, supervision and expectations are agreed with the participating school.",
+      "unitLabel": "Week",
+      "units": [
+        {"title":"Orientation and Career Question","body":"Identify an interest and shape a question to explore."},
+        {"title":"Professional Communication","body":"Practice professional messages, meetings and asking for clarification."},
+        {"title":"Understanding a Project Brief","body":"Identify the task, audience, limits and expected learning evidence."},
+        {"title":"Planning and Milestones","body":"Break a project into manageable steps and document progress."},
+        {"title":"Research and Source Quality","body":"Find relevant sources and check what they can establish."},
+        {"title":"Ethical AI and Technology","body":"Follow school technology rules, verify information and use an AI-free alternative when needed."},
+        {"title":"Audience and Stakeholder Awareness","body":"Consider who will use or be affected by a project."},
+        {"title":"Midpoint Review and Career-Fit Decision","body":"Reflect on progress and consider continuing or requesting a different pathway."},
+        {"title":"Collaboration and Dependencies","body":"Coordinate contributions and identify what depends on other work."},
+        {"title":"Decision Documentation","body":"Record a choice, its evidence and its limitations."},
+        {"title":"Feedback and Revision","body":"Use feedback to improve the project and explain changes."},
+        {"title":"Accessibility, Ethics and Professional Boundaries","body":"Review who can use the work and the boundaries of an educational project."},
+        {"title":"Presenting and Defending Professional Work","body":"Explain choices and respond to questions with evidence."},
+        {"title":"Education, Training and Career Next-Step Research","body":"Compare possible next learning and career steps."},
+        {"title":"Portfolio Development and Contribution Evidence","body":"Organize work samples and credit actual contributions."},
+        {"title":"Final Career Reflection, Evaluation and Transition Plan","body":"Review learning, present evidence and plan a useful next step."}
+      ],
+      "phases": [
+        {"title":"Weeks 1–2","body":"Identify an interest, create a learning plan and practice remote professionalism."},
+        {"title":"Weeks 3–6","body":"Develop a guided introductory project with feedback and revision."},
+        {"title":"Weeks 7–8","body":"Review progress, career fit and whether to continue or request a pathway change."},
+        {"title":"Weeks 9–14","body":"Deepen a project or explore a different approved interest."},
+        {"title":"Weeks 15–16","body":"Present learning evidence and plan the next step."}
+      ],
+      "workshops": [],
+      "pathways": [
+        {"title":"Marketing & Communications","body":"Explore audience research, campaign objectives, messaging, channel selection, accessible content, measurement and ethical communication. Sample evidence can include a campaign brief, message map, content plan, sample assets, measurement plan and revisions."},
+        {"title":"Entrepreneurship & Business Exploration","body":"Explore needs and customer questions, a fictional business concept, ethical discovery, basic pricing and delivery planning. Sample evidence can include source research, a value proposition, a simple business model, mock discovery, an operations plan and a presentation."}
+      ],
+      "duration": "A proposed sixteen-week model, adapted with each participating school. Shorter workshops or guided-project formats may be discussed. Weekly hours are agreed for the arrangement rather than promised universally.",
+      "participantFee": "The source proposes no program fee; final participation terms need confirmation before applications open.",
+      "compensation": "The source proposes an unpaid educational pathway. Current terms must be confirmed before participation; no paid placement or employment is promised.",
+      "availability": "Participating schools, opening dates, approved student groups and mentor capacity have not been confirmed. A school logo, outreach contact or discussion does not establish a partnership.",
+      "boundary": "This is a separate school initiative, not the Global Internship Program. Activities use suitable scenarios, public information and supervised practice. Students are not presented as licensed practitioners or responsible for clients. Credit and recognition are determined by the school.",
+      "localConnection": "Founder Lyric Helena Emerson was born and raised in Beaufort County and attended Midlands Technical College before transferring to her current university. That background informs the proposed local program; it does not imply a school endorsement or a completed MTC degree.",
+      "faqs": [
+        {"title":"Is this the Global Internship Program?","body":"No. This is a separate South Carolina high school initiative with its own school arrangement and participation process."},
+        {"title":"Is it running at my school?","body":"No participating-school list is confirmed here. Ask your school or the program about current discussions and requirements."},
+        {"title":"Can a student change interests?","body":"A review can help decide whether to deepen an interest or request a revised learning plan. A change needs to fit the school arrangement and available guidance."},
+        {"title":"How long is the program?","body":"The curriculum proposes sixteen teaching weeks. Each participating school would agree the schedule, hours and any shorter format."},
+        {"title":"What technology is needed?","body":"Tools, access needs, communication, supervision and technology rules are agreed with the school. AI-free learning alternatives are part of the curriculum."},
+        {"title":"Does it provide school credit?","body":"The school decides credit and recognition. Participation alone does not establish academic credit."},
+        {"title":"What are the fees and compensation?","body":"No program fee and an unpaid educational pathway are proposed. Final terms need confirmation before any application opens; no wages or paid placement are promised."},
+        {"title":"Is completion a professional qualification?","body":"Completion evidence should describe actual learning. No professional accreditation, license or guaranteed employment is claimed."}
+      ],
+      "contactEmail": "admin@theemersonempire.info",
+      "contactLabel": "Email the School Program Team",
+      "actions": [
+        {"id":"school-pilot","label":"Discuss a School Pilot","question":"I would like to discuss a possible South Carolina school pilot and the school's requirements."},
+        {"id":"information","label":"Request Program Information","question":"I would like information about the proposed school program and its learning model."},
+        {"id":"participation","label":"Ask About Student Participation","question":"I would like general information about student participation through a school arrangement. I am not sending student records."}
+      ]
+    },
+    {
+      "id": "epdg-global-internship",
+      "brand": "EPDG",
+      "route": "/global-internship-program",
+      "name": "Global Internship Program",
+      "shortName": "Global Internship Program",
+      "tagline": "Build skills. Develop your portfolio. Learn across borders.",
+      "status": "Explore the learning model · Ask about 2027 participation",
+      "summary": "Structured remote learning, guided projects and professional development through Emerson Professional Development Group. College students and emerging professionals can practice useful skills, collaborate, receive feedback and document their growth.",
+      "audience": "College students are the primary audience. Recent graduates, early-career professionals, career changers and emerging leaders can also inquire about fit.",
+      "geography": "Remote and international in outlook. Eligibility, access, available tracks and participation expectations depend on the applicable term and individual arrangement.",
+      "audienceGroups": [
+        {"title":"For students","body":"Explore a track, guided assignments, feedback and portfolio evidence. Ask about fit and the details of the term you are considering."},
+        {"title":"For emerging professionals","body":"Recent graduates, early-career professionals, career changers and emerging leaders can inquire about a suitable learning pathway."},
+        {"title":"For colleges and universities","body":"Discuss learning objectives, supervision, participation expectations, assessment, evidence and your institution's own credit requirements. An exploratory conversation is not a confirmed partnership."}
+      ],
+      "focus": ["Defined learning goals and guided assignments", "Feedback, revision and reflection", "Collaboration across disciplines and locations", "Portfolio evidence tied to actual contributions", "Completion recognition or references where warranted by learning evidence", "College coordination when the institution permits credit or recognition"],
+      "modes": [],
+      "curriculumTitle": "Explore the internship track library.",
+      "curriculumIntro": "These seven track families describe the broader learning library. Current openings, available supervision and term-specific tracks are confirmed separately; a listed track is not an open seat.",
+      "unitLabel": "Track",
+      "units": [
+        {"title":"Web Development","body":"Websites, forms, testing, deployment practice and digital infrastructure."},
+        {"title":"UX/UI Design","body":"User flows, design assets, visual systems and accessibility."},
+        {"title":"Digital Marketing & Growth","body":"Audience research, content planning, captions and visibility systems."},
+        {"title":"Sales & Business Development","body":"Ethical outreach practice, lead-tracking workflows and follow-up systems."},
+        {"title":"Operations & HR","body":"Recruitment and onboarding workflows, documentation and coordination."},
+        {"title":"Podcast & Media","body":"Interview preparation, editing and publishing assets, and storytelling."},
+        {"title":"Global Outreach","body":"Resource research, partner briefs and public-source research."}
+      ],
+      "phases": [
+        {"title":"Weeks 1–4 · Foundation Academy","body":"Company understanding, professional communication, privacy, responsible AI, role training and initial portfolio development."},
+        {"title":"Weeks 5–8 · Controlled Application Labs","body":"Guided practice in staging, sandbox and synthetic-data environments, with reviewed learning evidence."},
+        {"title":"Weeks 9–13 · Enterprise Integration","body":"Cross-functional learning, research, analytics, quality review and company-specific labs."},
+        {"title":"Weeks 14–18 · Capstone & Career Launch","body":"Capstone work, review, portfolio presentation, reflection and evidence-based completion decisions."}
+      ],
+      "workshops": [],
+      "pathways": [],
+      "duration": "The documented Fall 2026 framework lasts eighteen weeks. It is a source example, not a confirmed schedule or weekly-hours commitment for Spring, Summer or Fall 2027.",
+      "participantFee": "No-fee participation is the stated program direction. Confirm the applicable term's participation terms before applying.",
+      "compensation": "The Fall framework describes unpaid learning. Paid assignments are separate and need a written scope and disclosed compensation before work begins. Joining does not guarantee paid work or employment.",
+      "availability": "You can ask about Spring, Summer and Fall 2027. Specific 2027 dates, deadlines, hours, track openings and an applicant-facing application destination are not confirmed here.",
+      "boundary": "EPDG is the program's operating home in the Fall handbook. Completion recognition and references depend on actual learning evidence; college credit depends on the student's institution. The school program and Pathways are separate opportunities, not required stages before GIP.",
+      "localConnection": "",
+      "faqs": [
+        {"title":"Who can inquire?","body":"College students and emerging professionals are the main audience. Recent graduates, career changers and other early-career learners can ask about fit and current eligibility."},
+        {"title":"Which tracks are available?","body":"The track library shows documented learning families. Current term-specific availability, supervision and capacity must be confirmed with the program."},
+        {"title":"What does remote participation involve?","body":"An agreed learning plan, guided assignments, feedback, collaboration, communication and documentation of your own contributions. Confirm the applicable schedule, access needs and expectations before applying."},
+        {"title":"What does it cost, and is it compensated?","body":"No-fee participation is the stated direction. The Fall model describes unpaid learning; paid assignments are separate and not guaranteed. Confirm the particular term's fee and compensation terms before applying."},
+        {"title":"Which 2027 terms can I ask about?","body":"Spring, Summer and Fall 2027. Start and end dates, deadlines and weekly hours have not been confirmed here."},
+        {"title":"Can my college recognize the experience?","body":"Your institution determines academic credit or other recognition. A college partnership discussion can address objectives, supervision, assessment and evidence; credit is not automatic."},
+        {"title":"What completion evidence might I receive?","body":"Portfolio evidence, completion recognition, certificates or references may be considered based on actual learning and applicable criteria. No accredited professional qualification is implied."},
+        {"title":"Does joining guarantee a paid project or job?","body":"No. Learning participation, completion recognition, separate paid assignments and employment are different matters."},
+        {"title":"How can a college discuss a partnership?","body":"Use the institutional inquiry option to discuss your requirements. No institution-specific pilot length, hours or acceptance policy is presented as a general program rule."}
+      ],
+      "contactEmail": "humanresources@theemersonempire.info",
+      "contactLabel": "Email the Internship Team",
+      "actions": [
+        {"id":"2027-participation","label":"Ask About 2027 Participation","question":"I would like information about Spring, Summer or Fall 2027 participation, current track availability and the applicable term's fee and compensation terms."},
+        {"id":"college-partnership","label":"Discuss a College Partnership","question":"I would like to discuss a college or university partnership, including learning objectives, supervision, assessment and institutional credit requirements."}
+      ]
+    }
+  ]
+}
