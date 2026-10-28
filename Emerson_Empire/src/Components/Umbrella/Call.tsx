@@ -1,5 +1,7 @@
 import { intakeHref } from '../../../../shared/development-preview';
 import { integratedPreview, intakeHoldMessage } from '../../../../shared/development-preview';
+import { publicForms, publicIntakeEnabled } from '../../../../shared/public-intake';
+import { localHref } from '../../../../shared/platform-format';
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone, Users } from "lucide-react";
@@ -128,21 +130,25 @@ const Call: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex sm:flex-row flex-col items-center gap-4"
           >
-            <button
-              onClick={() => setOpenModal("apply")}
+            <a
+              href={publicIntakeEnabled ? publicForms.internship : APPLY_FORM_URL}
+              target={publicIntakeEnabled ? '_blank' : undefined}
+              rel="noopener noreferrer"
+              onClick={event => { if (!publicIntakeEnabled) { event.preventDefault(); setOpenModal("apply"); } }}
               className="group inline-flex items-center gap-3 bg-[#C9A84C] hover:bg-[#b8943d] px-10 py-5 rounded-full font-bold text-[#1C1336] text-base sm:text-lg uppercase tracking-[3px] active:scale-95 transition-all duration-200"
             >
               Apply Now
               <ArrowRight size={20} className="transition-transform group-hover:translate-x-1 duration-200" />
-            </button>
+            </a>
 
-            <button
-              onClick={() => setOpenModal("call")}
+            <a
+              href={publicIntakeEnabled ? localHref('/inquiry') : BOOK_CALL_FORM_URL}
+              onClick={event => { if (!publicIntakeEnabled) { event.preventDefault(); setOpenModal("call"); } }}
               className="group inline-flex items-center gap-3 px-10 py-5 border border-[#F5F0E8]/20 hover:border-[#C9A84C]/60 rounded-full font-bold text-[#F5F0E8]/70 text-base sm:text-lg hover:text-[#C9A84C] uppercase tracking-[3px] active:scale-95 transition-all duration-200"
             >
               <Phone size={18} className="group-hover:scale-110 transition-transform duration-200" />
-              Book a Free Call
-            </button>
+              {publicIntakeEnabled ? 'Contact the team' : 'Book a Free Call'}
+            </a>
           </motion.div>
 
           {/* Trust signal */}
@@ -152,13 +158,13 @@ const Call: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.45 }}
             className="flex flex-col items-center gap-2 mt-10"
           >
-            <div className="flex items-center gap-2 text-[#F5F0E8]/40">
+            <div className="flex items-center gap-2 text-[#F5F0E8]/70">
               <Users size={14} />
               <p className="text-sm uppercase tracking-[2px]">
                 Explore classes and professional development
               </p>
             </div>
-            <p className="text-[#F5F0E8]/25 text-xs uppercase tracking-[2px]">
+            <p className="text-[#F5F0E8]/70 text-xs uppercase tracking-[2px]">
               No commitment required — just a conversation.
             </p>
           </motion.div>
@@ -166,7 +172,7 @@ const Call: React.FC = () => {
       </section>
 
       {/*  Modals  */}
-      {openModal === "call" && (
+      {!publicIntakeEnabled && openModal === "call" && (
         <FormModal
           title="Book a Free Call"
           subtitle="Schedule a free consultation with The Emerson Empire"
@@ -176,7 +182,7 @@ const Call: React.FC = () => {
         />
       )}
 
-      {openModal === "apply" && (
+      {!publicIntakeEnabled && openModal === "apply" && (
         <FormModal
           title="Apply Now"
           subtitle="Submit your application to The Emerson Empire"

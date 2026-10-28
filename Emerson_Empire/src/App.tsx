@@ -1,4 +1,5 @@
 import ServicesPricing from '../../shared/ServicesPricing';
+import PublicWebsiteAccessibility from '../../shared/PublicWebsiteAccessibility';
 import PublicLegalPages from '../../shared/PublicLegalPages';
 import { publicIntakeEnabled } from '../../shared/public-intake';
 import React, { Suspense, useEffect } from 'react';
@@ -44,9 +45,11 @@ function PageLoader() {
 }
 
 function AppShell({ enhanced }: { enhanced: boolean }) {
+  const { pathname } = useLocation();
   return (
     <Suspense fallback={<PageLoader />}>
       <ScrollToTop />
+      <PublicWebsiteAccessibility pathname={pathname} />
       {enhanced && (projectStudioLocal ? <StudioReviewNotice entity="TEE" /> : <PreviewNotice />)}
       <Navbar />
       <Routes>

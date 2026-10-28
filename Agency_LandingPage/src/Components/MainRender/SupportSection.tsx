@@ -26,7 +26,7 @@ export default function SupportSection() {
         <div className="mx-auto max-w-[1320px] px-5 py-20">
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] items-start">
             <div className="flex flex-col">
-              <p className="text-sm uppercase tracking-[0.45em] text-[#b18b4c]">Individuals & Families</p>
+              <p className="text-sm uppercase tracking-[0.45em] text-[#795b22]">Individuals & Families</p>
               <h2
                 className="mt-5 text-[2.25rem]! font-semibold leading-[1.08]! tracking-[-0.01em] text-[#0A1128] sm:text-[2.5rem]! lg:text-[2.75rem]!"
                 style={{ fontFamily: "var(--font-display)" }}

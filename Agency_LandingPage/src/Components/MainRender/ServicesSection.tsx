@@ -78,8 +78,8 @@ export default function ServicesSection() {
       />
 
       <div className="relative mx-auto max-w-[1320px] px-5">
-        <div className="mb-12 max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#b08d4f]">Services</p>
+        <div className="mb-12 max-w-2xl rounded-lg bg-white p-4">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#795b22]">Services</p>
           <h2 className="mt-4 font-serif! text-4xl! font-semibold! leading-[1.1]! text-[#0A1128] sm:text-5xl!">
             Educational and organizational support
           </h2>
@@ -101,7 +101,7 @@ export default function ServicesSection() {
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#e8f1fb] text-[#5b8fd0]">
                     <Icon size={20} strokeWidth={1.8} />
                   </div>
-                  <span className="text-xs font-medium text-slate-400">{service.number}</span>
+                  <span className="text-xs font-medium text-slate-600">{service.number}</span>
                 </div>
                 <h3 className="mt-5 font-serif! text-xl! font-semibold! leading-snug! text-[#0A1128]">
                   {service.title}

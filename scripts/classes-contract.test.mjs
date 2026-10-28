@@ -141,10 +141,17 @@ test("local paid-class UIs retain a fee-waiver path without a document-upload fi
   assert.doesNotMatch(weeklyClasses, /type=["']file["']/i);
 });
 
-test("EPDG landing and classes routes retain their main landmark and skip link", () => {
+test("EPDG landing and classes routes retain their main landmark and skip link", async () => {
   for (const page of [landingPage, classesPage]) {
-    assert.match(page, /href="#main-content"/);
     assert.match(page, /<main id="main-content">/);
   }
+  const [shell, keyboardEntry] = await Promise.all([
+    readFile(new URL('../EPDG-Landing-Page/src/App.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../shared/PublicWebsiteAccessibility.tsx', import.meta.url), 'utf8'),
+  ]);
+  assert.match(shell, /<Accessibility\s*\/>[\s\S]*<Routes>/);
+  assert.match(keyboardEntry, /href="#main-content"/);
+  assert.match(keyboardEntry, /querySelector<HTMLElement>\('main'\)/);
+  assert.match(keyboardEntry, /main\.focus\(/);
   assert.match(weeklyClasses, /<h1[\s\S]*?id="classes-title"/);
 });

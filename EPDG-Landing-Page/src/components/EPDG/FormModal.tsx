@@ -105,7 +105,7 @@ export const FormModalProvider: React.FC<{ children: React.ReactNode }> = ({ chi
                 target="_blank"
                 rel="noreferrer"
                 className="ml-auto inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl border border-[#044E37] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.1em] text-[#044E37] transition hover:bg-[#044E37] hover:text-white"
-                aria-label={publicFormAvailable ? `Open ${title || "EPDG form"} in a new tab` : integratedPreview ? "Check support availability in a new tab" : `Open ${title || "EPDG form"} in a new tab`}
+                aria-label={publicFormAvailable ? `Open Google Form for ${title || "EPDG"} in a new tab` : integratedPreview ? "Contact the team in a new tab" : `Open form in new tab: ${title || "EPDG"}`}
               >
                 {publicFormAvailable ? "Open Google Form" : integratedPreview ? "Contact the team" : "Open form in new tab"}
               </a>
