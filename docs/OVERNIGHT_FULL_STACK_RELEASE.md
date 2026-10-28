@@ -2,6 +2,22 @@
 
 This journal records the non-sensitive evidence for the July 11, 2026 stabilization and release work. It must never contain secret values, private user records, intern records, or production row contents.
 
+## 2026-10-28 — company public-source alignment preparation
+
+The company source review branch preserves public `origin/main` history and keeps
+the earlier private authoring branch recoverable without publishing its private
+inputs or evidence. Approved company runtime content, intern contributions and
+the original exact-version feature validators are retained. The additive frozen
+public boundary binds 23 public payloads and all 217 existing published files;
+only fresh `release-build.json` metadata is exempt from the prior output hashes.
+
+See [Public source boundary](PUBLIC_SOURCE_BOUNDARY.md) for the three exact target
+mappings, content revisions, local verification recipe, exclusions, operating
+holds and fix-forward recovery. Local preparation does not publish, change a
+Netlify setting, modify a database, enable intake, send email or alter the EPDG
+learner portal. Fresh commit-specific checks and independent diff review are
+required before the coordinated remote handoff.
+
 ## 2026-07-11 20:21 EDT — Phase 1: preserve frontend remediation
 
 - Confirmed repository: `webdev692/Empire-emerson_frontend`.

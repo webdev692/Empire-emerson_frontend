@@ -10,7 +10,7 @@ const ScrollManager: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const target = (location.state as { scrollTo?: string } | null)?.scrollTo;
+    const target = (location.state as { scrollTo?: string } | null)?.scrollTo || location.hash.slice(1);
     if (target) {
       // Wait a frame so the destination section is mounted
       requestAnimationFrame(() => {

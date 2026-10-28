@@ -1,3 +1,5 @@
+import { intakeHref } from '../../../../shared/development-preview';
+import { integratedPreview, intakeHoldMessage } from '../../../../shared/development-preview';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -207,7 +209,7 @@ const FAQS = SCHEMA_FAQ.mainEntity.map((q) => ({
 // ── Application form URL ──────────────────────────────────────────────────────
 
 const APPLY_FORM =
-  'https://docs.google.com/forms/d/e/1FAIpQLSct0beq8VHPv9zhRreBFv8fK8HWGIGNp2YmuRGiOiL7RPoGFQ/viewform?embedded=true';
+  intakeHref('https://docs.google.com/forms/d/e/1FAIpQLSct0beq8VHPv9zhRreBFv8fK8HWGIGNp2YmuRGiOiL7RPoGFQ/viewform?embedded=true');
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
@@ -315,13 +317,13 @@ const ApplicationForm: React.FC = () => {
           </Link>
         </div>
       ) : (
-        <iframe
+        integratedPreview ? <p role="status" className="p-6 text-[#1c1336]">{intakeHoldMessage}</p> : (<iframe
           src={APPLY_FORM}
           title="Internship Application Form"
           onLoad={() => setLoadCount((n) => n + 1)}
           className="w-full h-135 border-0"
           allow="camera; microphone"
-        />
+        />)
       )}
     </div>
   );

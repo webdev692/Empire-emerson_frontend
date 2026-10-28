@@ -1,3 +1,5 @@
+import { localHref } from '../../../../shared/platform-format';
+import { integratedPreview, intakeHoldMessage } from '../../../../shared/development-preview';
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FormModalContext } from "./FormModalContext";
 
@@ -96,13 +98,13 @@ export const FormModalProvider: React.FC<{ children: React.ReactNode }> = ({ chi
               </div>
               <a
                 ref={openFormLinkRef}
-                href={formUrl}
+                href={integratedPreview ? localHref("/inquiry") : formUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="ml-auto inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl border border-[#044E37] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.1em] text-[#044E37] transition hover:bg-[#044E37] hover:text-white"
-                aria-label={`Open ${title || "EPDG form"} in a new tab`}
+                aria-label={integratedPreview ? "Check support availability in a new tab" : `Open ${title || "EPDG form"} in a new tab`}
               >
-                Open form in new tab
+                {integratedPreview ? "Check support availability" : "Open form in new tab"}
               </a>
               <button
                 ref={closeButtonRef}
@@ -115,14 +117,14 @@ export const FormModalProvider: React.FC<{ children: React.ReactNode }> = ({ chi
               </button>
             </div>
 
-            <iframe
+            {integratedPreview ? <p role="status" className="p-6 text-[#1c1336]">{intakeHoldMessage}</p> : (<iframe
               src={`${formUrl}?embedded=true`}
               title={title || "EPDG Form"}
               tabIndex={-1}
               aria-hidden="true"
               className="flex-1 w-full border-none"
               allow="camera; microphone"
-            />
+            />)}
             <span
               data-focus-guard
               tabIndex={0}

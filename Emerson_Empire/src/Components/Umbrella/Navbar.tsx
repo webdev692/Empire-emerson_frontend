@@ -1,3 +1,6 @@
+import { projectStudioEnabled } from '../../../../shared/project-studio-mode';
+import { threeProgramsEnabled } from '../../../../shared/three-programs-mode';
+import { integratedPreview } from '../../../../shared/development-preview';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
@@ -9,23 +12,24 @@ const navClass = ({ isActive }: { isActive: boolean }) =>
   }`;
 
 const NAV_LINKS = [
+  ...(projectStudioEnabled ? [{ label: 'Project Studio', href: '/project-studio' }] : []),
   { label: 'HOME', href: '/' },
   {
     label: 'Classes', href: '/classes',
     dropdown: [
-      { label: 'Weekly Classes',  href: '/classes#weekly-classes'  },
-      { label: 'Register Today',  href: '/classes#class-catalog'   },
+      { label: 'Class descriptions',  href: '/classes'  },
+      { label: integratedPreview ? 'Class availability' : 'Register Today',  href: '/classes#class-catalog'   },
       { label: 'Free Workshop',   href: '/classes#class-catalog'   },
     ]
   },
   {
-    label: 'Services and Packages', href: '/services',
+    label: integratedPreview ? 'Services & Pricing' : 'Services and Packages', href: '/services',
     dropdown: [
       { label: 'Professional Development',     href: '/services#epdg'           },
       { label: 'Organize Individual Services', href: '/services#emerson-empire' },
       { label: 'Business Services',            href: '/services#emerson-agency' },
       { label: 'Consultation Pathway',         href: '/services#emerson-empire' },
-      { label: 'Internship Registration',      href: '/services#epdg'           },
+      { label: integratedPreview ? 'Free internship information' : 'Internship Registration', href: '/services#epdg' },
     ]
   },
   {
@@ -38,7 +42,8 @@ const NAV_LINKS = [
     ]
   },
   { label: 'About Us', href: '/about' },
- 
+  ...(integratedPreview ? [{ label: 'Resources', href: '/resources', dropdown: [{ label: 'South Carolina directory', href: '/resources#south-carolina-resources' }, { label: 'Guided learning', href: '/learn' }, { label: 'Founder & leadership', href: '/founder' }] }] : []),
+  ...(threeProgramsEnabled ? [{ label: 'Career Readiness', href: '/career-readiness' }] : []),
 ];
 
 const Navbar: React.FC = () => {
@@ -70,13 +75,15 @@ const Navbar: React.FC = () => {
          
 
         {/* Desktop nav links */}
-        <ul className="hidden md:flex items-center gap-6 lg:gap-8 m-0 p-0 list-none">
+        <ul className="hidden xl:flex items-center gap-5 lg:gap-6 m-0 p-0 list-none">
           {NAV_LINKS.map((link) => (
             <li
               key={link.label}
               className="relative"
               onMouseEnter={() => link.dropdown && setOpenDropdown(link.label)}
               onMouseLeave={() => setOpenDropdown(null)}
+              onFocus={() => link.dropdown && setOpenDropdown(link.label)}
+              onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setOpenDropdown(null); }}
             >
               <NavLink
                 to={link.href}
@@ -116,7 +123,7 @@ const Navbar: React.FC = () => {
         {/* Desktop CTA */}
         <NavLink
           to="/contact"
-          className="hidden md:inline-flex items-center bg-[#C9A84C] hover:bg-[#E8C97A] px-5 py-2 rounded-sm font-bold text-[#12022A] text-xs uppercase tracking-[0.2em] transition-colors duration-200 shrink-0"
+          className="hidden xl:inline-flex items-center bg-[#C9A84C] hover:bg-[#E8C97A] px-5 py-2 rounded-sm font-bold text-[#12022A] text-xs uppercase tracking-[0.2em] transition-colors duration-200 shrink-0"
           style={{ fontFamily: "var(--font-label)" }}
         >
           Contact Us
@@ -124,7 +131,7 @@ const Navbar: React.FC = () => {
 
         {/* Hamburger */}
         <button
-          className="md:hidden flex flex-col justify-center items-center gap-1.25 shadow-md shadow-white rounded-b-3xl focus-visible:outline-none focus-visible:ring-[#C9A84C] focus-visible:ring-2 w-10 h-10 shrink-0"
+          className="xl:hidden flex flex-col justify-center items-center gap-1.25 shadow-md shadow-white rounded-b-3xl focus-visible:outline-none focus-visible:ring-[#C9A84C] focus-visible:ring-2 w-10 h-10 shrink-0"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
@@ -137,7 +144,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden flex flex-col bg-[#12022A] px-4 pb-5 border-[#C9A84C]/15 border-t max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="xl:hidden flex flex-col bg-[#12022A] px-4 pb-5 border-[#C9A84C]/15 border-t max-h-[calc(100vh-4rem)] overflow-y-auto">
           {NAV_LINKS.map((link) => (
             <div key={link.label}>
 
@@ -160,6 +167,8 @@ const Navbar: React.FC = () => {
                 {link.dropdown && (
                   <button
                     type="button"
+                    aria-label={`Toggle ${link.label} links`}
+                    aria-expanded={openDropdown === link.label}
                     onClick={() => setOpenDropdown(openDropdown === link.label ? null : link.label)}
                     className="px-3 py-3 text-[#C9A84C] text-xs"
                   >

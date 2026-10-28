@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "approved_on": "2026-10-16",
+  "timezone": "America/New_York",
+  "reviewed_commit": "29158cb89a332f6e01ee8a5e454fa62eca357d08",
+  "authority": "Direct human instructions in this chat",
+  "publication_instruction": "approved, let everything go live",
+  "permission_confirmation": "Yes — permission and author review are confirmed",
+  "publication_approved": true,
+  "subject_consent_confirmed": true,
+  "exact_version_author_review_confirmed": true,
+  "people": [
+    "lyric",
+    "darin",
+    "kenny",
+    "todor",
+    "shamrit"
+  ],
+  "research": [
+    "RESEARCH-001",
+    "RESEARCH-002",
+    "RESEARCH-003"
+  ],
+  "source_sha256": {
+    "shared/work-resources.local.json": "3402b516e3520ac0bc31da16cb71fb929f262e4f9efbd938bfe0839aa8c37cc9",
+    "shared/c4.local.json": "c90cba20e00eb37898359febad54280510381bfb07d04b64965d03d5c131cb4c",
+    "shared/catalog.drafts.ts": "2047533dfd41a871caa603e74fd72b06b858c169e721619f84a0ad254318d2e7",
+    "shared/first-contribution.txt": "cccf84ac63ad94524a0d86e4e41033fb7f0caab648e818a7c7b1a409dac4a20c",
+    "EPDG-Landing-Page/src/data/institutions.local.json": "09674dcdfde9a4573a1447ced73fc1a67c6d297ce5521dd10789acc32969f221",
+    "EPDG-Landing-Page/src/data/free-learning.local.json": "5b1f122bdf5a671818219ae470c5549c315f2be5881e1c065dfd293afd694276",
+    "Emerson_Empire/src/data/sc-community.local.json": "66b29e08dcd499136e4dbd0115db21c2ed52328d39ca844dc66dc80db240e2b3"
+  },
+  "operating_scope": "Informational publication only; existing unverified service routes, dates, capacity, registration and live intake remain closed. No paid service, role change, sensitive ingestion or remote Git push.",
+  "source_lf_sha256": {
+    "shared/work-resources.local.json": "3402b516e3520ac0bc31da16cb71fb929f262e4f9efbd938bfe0839aa8c37cc9",
+    "shared/c4.local.json": "c90cba20e00eb37898359febad54280510381bfb07d04b64965d03d5c131cb4c",
+    "shared/catalog.drafts.ts": "ec572f842d1c21335a2b3b8f65c906bd78ccaa348d4609ed7d8ed6de8de2e0cc",
+    "shared/first-contribution.txt": "cccf84ac63ad94524a0d86e4e41033fb7f0caab648e818a7c7b1a409dac4a20c",
+    "EPDG-Landing-Page/src/data/institutions.local.json": "09674dcdfde9a4573a1447ced73fc1a67c6d297ce5521dd10789acc32969f221",
+    "EPDG-Landing-Page/src/data/free-learning.local.json": "5b1f122bdf5a671818219ae470c5549c315f2be5881e1c065dfd293afd694276",
+    "Emerson_Empire/src/data/sc-community.local.json": "66b29e08dcd499136e4dbd0115db21c2ed52328d39ca844dc66dc80db240e2b3"
+  }
+}

@@ -1,3 +1,5 @@
+import { integratedPreview } from '../../../../shared/development-preview';
+import { localHref } from '../../../../shared/platform-format';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ResourceImg } from '../../assets';
@@ -47,16 +49,15 @@ const ResourceHub: React.FC = () => (
           The Emerson Empire is building a growing public resource hub to help
           people find educational, professional, financial, and community support
           resources. New resources are added as they are reviewed and organized.
-          If you are looking for guidance, use the forms below to tell us what you
-          need and we will help point you in the right direction.
+          {integratedPreview ? " Search the resource collection and South Carolina directory, then check each provider’s eligibility and review status." : " If you are looking for guidance, use the forms below to tell us what you need and we will help point you in the right direction."}
         </p>
 
         <a
-          href="/contact"
+          href={localHref(integratedPreview ? "/resources" : "/contact")}
           className="inline-flex items-center gap-2 bg-[#1C1336] hover:bg-[#1E0A4A] px-7 py-3.5 rounded-sm font-bold text-white text-sm transition-colors duration-200"
           style={{ fontFamily: "var(--font-label)" }}
         >
-          Request Guidance <span aria-hidden="true">→</span>
+          {integratedPreview ? "Explore resources" : "Request Guidance"} <span aria-hidden="true">→</span>
         </a>
       </motion.div>
     </div>

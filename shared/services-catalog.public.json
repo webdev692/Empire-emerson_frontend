@@ -1,0 +1,1649 @@
+{
+  "schemaVersion": 1,
+  "pricingMeaning": "Planning estimates from customer-facing guides prepared May 2026. Final quotes depend on scope, complexity, document readiness, goals, licensing and capacity.",
+  "currencyNote": "The guides use the $ symbol without an explicit currency code. Amounts are reproduced as supplied.",
+  "guides": [
+    {
+      "entity": "TEE",
+      "filename": "The_Emerson_Empire_Customer_Service_and_Pricing_Guide.pdf",
+      "prepared": "May 2026",
+      "href": "/guides/The_Emerson_Empire_Customer_Service_and_Pricing_Guide.pdf",
+      "sha256": "71313eb2fddab63981d0de850c7e31525776454537dfceb87aedfb60b3bc239c",
+      "bytes": 97212
+    },
+    {
+      "entity": "TEA",
+      "filename": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "prepared": "May 2026",
+      "href": "/guides/The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sha256": "500c266d555ac8d4d5bfe50b9846c2bbce91f944bcd8a348ca5d9fff4bc974df",
+      "bytes": 117289
+    },
+    {
+      "entity": "EPDG",
+      "filename": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "prepared": "May 2026",
+      "href": "/guides/EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sha256": "366b65a9a98af6f2c1888aebd914f6f747b9426439a34f655830d27524b27d11",
+      "bytes": 124013
+    }
+  ],
+  "services": [
+    {
+      "id": "tee-general-consultation-intake",
+      "entity": "TEE",
+      "category": "Consultations",
+      "name": "General Consultation & Intake",
+      "description": "Start with discovery, intake or a planning conversation.",
+      "audience": "Individuals, families, students, founders, agency referrals",
+      "mayInclude": "15-min discovery call; 30-min intake; 60-min planning",
+      "options": [
+        {
+          "label": "15-min discovery call",
+          "price": "Free",
+          "basis": "free",
+          "billingUnit": null
+        },
+        {
+          "label": "30-min intake",
+          "price": "$25",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "60-min planning",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Free for basic direction, students, low-income clients, and agency referrals when capacity allows",
+      "source": "The_Emerson_Empire_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 1,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tee-community-resource-navigation",
+      "entity": "TEE",
+      "category": "Resource navigation",
+      "name": "Community Resource Navigation",
+      "description": "Explore basic guidance, a personalized resource plan or expanded support.",
+      "audience": "Low-income individuals, families, students, unemployed clients, community referrals",
+      "mayInclude": "Basic guidance; personalized plan; expanded support session",
+      "options": [
+        {
+          "label": "Basic guidance",
+          "price": "Free",
+          "basis": "free",
+          "billingUnit": null
+        },
+        {
+          "label": "personalized plan",
+          "price": "$25-$50",
+          "basis": "range",
+          "billingUnit": null
+        },
+        {
+          "label": "expanded support session",
+          "price": "$75",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Free basic guidance; fee waived for hardship/referral cases when possible",
+      "source": "The_Emerson_Empire_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 1,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tee-business-direction-brand-intake",
+      "entity": "TEE",
+      "category": "Business direction",
+      "name": "Business Direction & Brand Intake",
+      "description": "Clarify business direction through a focused consultation or strategy session.",
+      "audience": "Entrepreneurs, small businesses, independent professionals",
+      "mayInclude": "30-min direction call; 60-min consult; 90-min strategy session",
+      "options": [
+        {
+          "label": "30-min direction call",
+          "price": "$35",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "60-min consult",
+          "price": "$75",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "90-min strategy session",
+          "price": "$125",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Sliding scale for student entrepreneurs, first-time founders, and community organizations",
+      "source": "The_Emerson_Empire_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 1,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tee-community-workshops-group-education",
+      "entity": "TEE",
+      "category": "Workshops",
+      "name": "Community Workshops & Group Education",
+      "description": "Explore public, low-cost and private group education formats.",
+      "audience": "Libraries, nonprofits, schools, workforce groups, public audiences",
+      "mayInclude": "Public workshop; low-cost workshop; private workshop",
+      "options": [
+        {
+          "label": "Public workshop",
+          "price": "Free",
+          "basis": "free",
+          "billingUnit": null
+        },
+        {
+          "label": "low-cost workshop",
+          "price": "$10-$25/person",
+          "basis": "range",
+          "billingUnit": "person"
+        },
+        {
+          "label": "private workshop",
+          "price": "$150-$500",
+          "basis": "range",
+          "billingUnit": null
+        }
+      ],
+      "access": "Free/reduced by partner agreement or sponsorship",
+      "source": "The_Emerson_Empire_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 1,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tee-partnership-referral-coordination",
+      "entity": "TEE",
+      "category": "Partnerships",
+      "name": "Partnership & Referral Coordination",
+      "description": "Discuss community partnerships, referrals and workshop collaboration.",
+      "audience": "Schools, libraries, nonprofits, workforce partners, local agencies",
+      "mayInclude": "Initial partner call; workshop/program collaboration",
+      "options": [
+        {
+          "label": "Initial partner call",
+          "price": "Free",
+          "basis": "free",
+          "billingUnit": null
+        },
+        {
+          "label": "workshop/program collaboration",
+          "price": "custom",
+          "basis": "custom",
+          "billingUnit": null
+        }
+      ],
+      "access": "Reduced/waived for mission-aligned community partners",
+      "source": "The_Emerson_Empire_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-insurance-needs-review",
+      "entity": "TEA",
+      "category": "Insurance",
+      "name": "Insurance Needs Review",
+      "description": "Review individual, family or small-business insurance needs.",
+      "audience": "Individuals, families, small business owners",
+      "mayInclude": "Initial conversation; full review; family review; small business review",
+      "options": [
+        {
+          "label": "Initial conversation",
+          "price": "Free",
+          "basis": "free",
+          "billingUnit": null
+        },
+        {
+          "label": "full review",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "family review",
+          "price": "$75",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "small business review",
+          "price": "$100",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Fee may be waived for eligible product placement where legal/ethical; sliding scale for hardship",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 1,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-insurance-education-session",
+      "entity": "TEA",
+      "category": "Insurance",
+      "name": "Insurance Education Session",
+      "description": "Build insurance understanding through an educational session.",
+      "audience": "Clients who want non-sales insurance literacy",
+      "mayInclude": "30-min; 60-min; family session; group workshop",
+      "options": [
+        {
+          "label": "30-min",
+          "price": "$25",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "60-min",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "family session",
+          "price": "$75",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "group workshop",
+          "price": "$150-$300",
+          "basis": "range",
+          "billingUnit": null
+        }
+      ],
+      "access": "Free through libraries, nonprofits, schools, churches, workforce partners, or sponsored programs",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 1,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-policy-review-organization",
+      "entity": "TEA",
+      "category": "Insurance",
+      "name": "Policy Review & Organization",
+      "description": "Organize existing insurance policies and prepare for a review.",
+      "audience": "Clients with existing policies/documents",
+      "mayInclude": "Basic organization; full review; family package; business policy organization",
+      "options": [
+        {
+          "label": "Basic organization",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "full review",
+          "price": "$100",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "family package",
+          "price": "$150",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "business policy organization",
+          "price": "$200+",
+          "basis": "starting-at",
+          "billingUnit": null
+        }
+      ],
+      "access": "Sliding scale for low-income households and referrals",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 1,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-tax-preparation-intake",
+      "entity": "TEA",
+      "category": "Tax readiness & preparation",
+      "name": "Tax Preparation Intake",
+      "description": "Check document readiness before tax preparation.",
+      "audience": "Individuals, households, self-employed clients",
+      "mayInclude": "Initial intake; expanded readiness consult",
+      "options": [
+        {
+          "label": "Initial intake",
+          "price": "Free",
+          "basis": "free",
+          "billingUnit": null
+        },
+        {
+          "label": "expanded readiness consult",
+          "price": "$35",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Always free for basic document readiness screening",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 1,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-individual-tax-preparation",
+      "entity": "TEA",
+      "category": "Tax readiness & preparation",
+      "name": "Individual Tax Preparation",
+      "description": "Discuss individual return preparation based on the tax situation.",
+      "audience": "W-2 clients, dependents, multiple incomes",
+      "mayInclude": "Simple; with dependents; multiple income sources; state add-on",
+      "options": [
+        {
+          "label": "Simple",
+          "price": "$75-$125",
+          "basis": "range",
+          "billingUnit": null
+        },
+        {
+          "label": "with dependents",
+          "price": "$125-$175",
+          "basis": "range",
+          "billingUnit": null
+        },
+        {
+          "label": "multiple income sources",
+          "price": "$175-$250",
+          "basis": "range",
+          "billingUnit": null
+        },
+        {
+          "label": "state add-on",
+          "price": "$25-$50/state",
+          "basis": "add-on",
+          "billingUnit": "state"
+        }
+      ],
+      "access": "Refer to VITA/TCE or IRS Free File when client qualifies and does not need paid support",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-self-employed-small-business-tax-preparation",
+      "entity": "TEA",
+      "category": "Tax readiness & preparation",
+      "name": "Self-Employed / Small Business Tax Preparation",
+      "description": "Discuss contractor or small-business return preparation and cleanup needs.",
+      "audience": "1099 contractors, freelancers, small businesses",
+      "mayInclude": "1099 return; small business; complex; bookkeeping cleanup",
+      "options": [
+        {
+          "label": "1099 return",
+          "price": "$200-$350",
+          "basis": "range",
+          "billingUnit": null
+        },
+        {
+          "label": "small business",
+          "price": "$350-$750",
+          "basis": "range",
+          "billingUnit": null
+        },
+        {
+          "label": "complex",
+          "price": "custom",
+          "basis": "custom",
+          "billingUnit": null
+        },
+        {
+          "label": "bookkeeping cleanup",
+          "price": "$50-$75/hr",
+          "basis": "range",
+          "billingUnit": "hr"
+        }
+      ],
+      "access": "Sliding scale only if capacity allows; refer to public/free resources if paid service is not appropriate",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-tax-document-organization",
+      "entity": "TEA",
+      "category": "Tax readiness & preparation",
+      "name": "Tax Document Organization",
+      "description": "Prepare and organize tax documents before filing.",
+      "audience": "Clients not ready to file",
+      "mayInclude": "30-min; 60-min; small business session; monthly check-in",
+      "options": [
+        {
+          "label": "30-min",
+          "price": "$35",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "60-min",
+          "price": "$65",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "small business session",
+          "price": "$100",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "monthly check-in",
+          "price": "$50/mo",
+          "basis": "fixed",
+          "billingUnit": "mo"
+        }
+      ],
+      "access": "Free downloadable checklist",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-financial-education-consultation",
+      "entity": "TEA",
+      "category": "Financial education & organization",
+      "name": "Financial Education Consultation",
+      "description": "Build financial understanding through a consultation or ongoing support.",
+      "audience": "Individuals and families",
+      "mayInclude": "30-min; 60-min; 90-min; monthly support",
+      "options": [
+        {
+          "label": "30-min",
+          "price": "$25",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "60-min",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "90-min",
+          "price": "$75",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "monthly support",
+          "price": "$100/mo",
+          "basis": "fixed",
+          "billingUnit": "mo"
+        }
+      ],
+      "access": "Free/reduced through hardship, agency referral, or sponsored workshop",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-household-financial-organization",
+      "entity": "TEA",
+      "category": "Financial education & organization",
+      "name": "Household Financial Organization",
+      "description": "Create more structure around household financial organization.",
+      "audience": "Families/individuals needing structure",
+      "mayInclude": "Basic; full household package; two-session package; monthly accountability",
+      "options": [
+        {
+          "label": "Basic",
+          "price": "$75",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "full household package",
+          "price": "$150",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "two-session package",
+          "price": "$225",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "monthly accountability",
+          "price": "$75/mo",
+          "basis": "fixed",
+          "billingUnit": "mo"
+        }
+      ],
+      "access": "Reduced/waived when basic stability support is needed and capacity allows",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-credit-debt-education",
+      "entity": "TEA",
+      "category": "Financial education & organization",
+      "name": "Credit & Debt Education",
+      "description": "Learn about organizing credit and debt information.",
+      "audience": "Clients learning credit/debt organization",
+      "mayInclude": "30-min; 60-min; full education package",
+      "options": [
+        {
+          "label": "30-min",
+          "price": "$25",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "60-min",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "full education package",
+          "price": "$125",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Education only; no credit repair guarantees",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-financial-literacy-workshop",
+      "entity": "TEA",
+      "category": "Financial education & organization",
+      "name": "Financial Literacy Workshop",
+      "description": "Explore financial literacy education for a public or private group.",
+      "audience": "Groups, employers, students, families",
+      "mayInclude": "Public; private; business/organization workshop",
+      "options": [
+        {
+          "label": "Public",
+          "price": "Free-$25/person",
+          "basis": "range",
+          "billingUnit": "person"
+        },
+        {
+          "label": "private",
+          "price": "$150-$500",
+          "basis": "range",
+          "billingUnit": null
+        },
+        {
+          "label": "business/organization workshop",
+          "price": "$300-$1,000",
+          "basis": "range",
+          "billingUnit": null
+        }
+      ],
+      "access": "Free through partners/sponsors",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-small-business-startup-organization",
+      "entity": "TEA",
+      "category": "Small business",
+      "name": "Small Business Startup Organization",
+      "description": "Organize the next steps for a new business or side hustle.",
+      "audience": "New founders and side hustles",
+      "mayInclude": "60-min; 90-min; startup package",
+      "options": [
+        {
+          "label": "60-min",
+          "price": "$75",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "90-min",
+          "price": "$125",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "startup package",
+          "price": "$250",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Sliding scale for low-income or student founders",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-business-operations-support",
+      "entity": "TEA",
+      "category": "Small business",
+      "name": "Business Operations Support",
+      "description": "Discuss practical operating systems and ongoing business support.",
+      "audience": "Small businesses needing systems",
+      "mayInclude": "Hourly; 3-hour package; 5-hour package; monthly support",
+      "options": [
+        {
+          "label": "Hourly",
+          "price": "$75/hr",
+          "basis": "fixed",
+          "billingUnit": "hr"
+        },
+        {
+          "label": "3-hour package",
+          "price": "$200",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "5-hour package",
+          "price": "$325",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "monthly support",
+          "price": "$300-$750/mo",
+          "basis": "range",
+          "billingUnit": "mo"
+        }
+      ],
+      "access": "Reduced scope, not necessarily reduced price, may be offered to fit budget",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "tea-small-business-financial-organization",
+      "entity": "TEA",
+      "category": "Small business",
+      "name": "Small Business Financial Organization",
+      "description": "Organize business financial information for budgeting and tax readiness.",
+      "audience": "Small businesses preparing for taxes/budgeting",
+      "mayInclude": "60-min; package; monthly check-in; cleanup",
+      "options": [
+        {
+          "label": "60-min",
+          "price": "$75",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "package",
+          "price": "$200",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "monthly check-in",
+          "price": "$100/mo",
+          "basis": "fixed",
+          "billingUnit": "mo"
+        },
+        {
+          "label": "cleanup",
+          "price": "$50-$75/hr",
+          "basis": "range",
+          "billingUnit": "hr"
+        }
+      ],
+      "access": "Refer to SBA/SBDC/SCORE or nonprofit help if client needs deeper free support",
+      "source": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-semester-long-internship-program",
+      "entity": "EPDG",
+      "category": "Internships",
+      "name": "Semester-Long Internship Program",
+      "description": "Participate in a semester-long internship with project and portfolio work.",
+      "audience": "Students, emerging professionals, career changers, international learners",
+      "mayInclude": "Structured onboarding, weekly assignments, real projects, portfolio work, completion documentation",
+      "options": [
+        {
+          "label": "Participation",
+          "price": "Free",
+          "basis": "free",
+          "billingUnit": null
+        }
+      ],
+      "access": "Participation, academic-credit support, and certificate of completion remain free whenever possible",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 1,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-internship-leadership-track",
+      "entity": "EPDG",
+      "category": "Internships",
+      "name": "Internship Leadership Track",
+      "description": "Develop leadership through selected intern team responsibilities.",
+      "audience": "High-performing interns",
+      "mayInclude": "Team lead responsibilities, peer support, meeting facilitation, leadership feedback",
+      "options": [
+        {
+          "label": "Participation",
+          "price": "Free for selected interns",
+          "basis": "free",
+          "billingUnit": null
+        }
+      ],
+      "access": "No guarantee of paid employment; strengthens future eligibility",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 1,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-enhanced-portfolio-review",
+      "entity": "EPDG",
+      "category": "Internships",
+      "name": "Enhanced Portfolio Review",
+      "description": "Review a portfolio and how to explain project contributions.",
+      "audience": "Active interns and alumni",
+      "mayInclude": "Portfolio review, project narrative, LinkedIn showcase suggestions",
+      "options": [
+        {
+          "label": "Service",
+          "price": "$25-$50",
+          "basis": "range",
+          "billingUnit": null
+        }
+      ],
+      "access": "May be waived for active interns with strong participation",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 1,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-career-readiness-consultation",
+      "entity": "EPDG",
+      "category": "Career services",
+      "name": "Career Readiness Consultation",
+      "description": "Plan a next step in career readiness.",
+      "audience": "Students, job seekers, career changers",
+      "mayInclude": "15-min discovery; 30-min session; 60-min planning; 90-min strategy",
+      "options": [
+        {
+          "label": "15-min discovery",
+          "price": "Free",
+          "basis": "free",
+          "billingUnit": null
+        },
+        {
+          "label": "30-min session",
+          "price": "$25",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "60-min planning",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "90-min strategy",
+          "price": "$75",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Free/sliding scale for students, unemployed workers, single parents, agency referrals",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 1,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-resume-review",
+      "entity": "EPDG",
+      "category": "Career services",
+      "name": "Resume Review",
+      "description": "Get feedback on an existing resume.",
+      "audience": "Job seekers with an existing resume",
+      "mayInclude": "Basic; detailed with notes; review + 30-min consult",
+      "options": [
+        {
+          "label": "Basic",
+          "price": "$25",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "detailed with notes",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "review + 30-min consult",
+          "price": "$75",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Free basic review for active interns, students, and low-income job seekers when capacity allows",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-resume-writing-redesign",
+      "entity": "EPDG",
+      "category": "Career services",
+      "name": "Resume Writing & Redesign",
+      "description": "Develop or redesign a resume for the relevant career stage.",
+      "audience": "Students, entry-level professionals, career changers, executives",
+      "mayInclude": "Student; entry-level; professional; career change; executive/advanced; rush",
+      "options": [
+        {
+          "label": "Student",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "entry-level",
+          "price": "$75",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "professional",
+          "price": "$125",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "career change",
+          "price": "$150",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "executive/advanced",
+          "price": "$200+",
+          "basis": "starting-at",
+          "billingUnit": null
+        },
+        {
+          "label": "rush",
+          "price": "+$50",
+          "basis": "add-on",
+          "billingUnit": null
+        }
+      ],
+      "access": "Free templates and sliding scale when available",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-linkedin-profile-review",
+      "entity": "EPDG",
+      "category": "Career services",
+      "name": "LinkedIn Profile Review",
+      "description": "Review an existing LinkedIn profile.",
+      "audience": "Students, professionals, entrepreneurs",
+      "mayInclude": "Basic; detailed; review + 30-min session",
+      "options": [
+        {
+          "label": "Basic",
+          "price": "$25",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "detailed",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "review + 30-min session",
+          "price": "$75",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Reduced-cost for active interns and hardship cases",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-linkedin-profile-rewrite",
+      "entity": "EPDG",
+      "category": "Career services",
+      "name": "LinkedIn Profile Rewrite",
+      "description": "Rewrite a profile or discuss a resume and LinkedIn bundle.",
+      "audience": "Students, professionals, entrepreneurs",
+      "mayInclude": "Student; professional; resume + LinkedIn bundle",
+      "options": [
+        {
+          "label": "Student",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "professional",
+          "price": "$100",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "resume + LinkedIn bundle",
+          "price": "$150-$250",
+          "basis": "range",
+          "billingUnit": null
+        }
+      ],
+      "access": "Sliding scale by need and capacity",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-cover-letter-writing",
+      "entity": "EPDG",
+      "category": "Career services",
+      "name": "Cover Letter Writing",
+      "description": "Prepare a cover letter for a particular role or application.",
+      "audience": "Job seekers applying to specific roles",
+      "mayInclude": "Basic; customized; resume + cover letter bundle; 3-letter package",
+      "options": [
+        {
+          "label": "Basic",
+          "price": "$35",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "customized",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "resume + cover letter bundle",
+          "price": "$100-$175",
+          "basis": "range",
+          "billingUnit": null
+        },
+        {
+          "label": "3-letter package",
+          "price": "$125",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Reduced for students/active interns",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-interview-preparation",
+      "entity": "EPDG",
+      "category": "Career services",
+      "name": "Interview Preparation",
+      "description": "Practice for job, internship, scholarship or school interviews.",
+      "audience": "Job, internship, scholarship, or school interviews",
+      "mayInclude": "30-min prep; 60-min mock; 2-session package; full package",
+      "options": [
+        {
+          "label": "30-min prep",
+          "price": "$25",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "60-min mock",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "2-session package",
+          "price": "$90",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "full package",
+          "price": "$150",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Free basic prep for active interns and low-income job seekers when capacity allows",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-education-planning-session",
+      "entity": "EPDG",
+      "category": "Career services",
+      "name": "Education Planning Session",
+      "description": "Explore an education plan and relevant aid referrals.",
+      "audience": "Adult learners, first-gen students, parents returning to school",
+      "mayInclude": "30-min; 60-min; planning package",
+      "options": [
+        {
+          "label": "30-min",
+          "price": "$25",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "60-min",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "planning package",
+          "price": "$125",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Sliding scale; refer to FAFSA/Pell, school aid, scholarship resources",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-professional-development-coaching",
+      "entity": "EPDG",
+      "category": "Career services",
+      "name": "Professional Development Coaching",
+      "description": "Discuss professional growth and confidence through coaching.",
+      "audience": "Professionals seeking growth/confidence",
+      "mayInclude": "Single; 4-session; 8-session; monthly support",
+      "options": [
+        {
+          "label": "Single",
+          "price": "$50",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "4-session",
+          "price": "$180",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "8-session",
+          "price": "$350",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "monthly support",
+          "price": "$150-$300/mo",
+          "basis": "range",
+          "billingUnit": "mo"
+        }
+      ],
+      "access": "Low-cost check-ins when possible",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-job-search-support-package",
+      "entity": "EPDG",
+      "category": "Career services",
+      "name": "Job Search Support Package",
+      "description": "Compare job-search support packages and check-ins.",
+      "audience": "Active job seekers",
+      "mayInclude": "Basic; standard; premium; weekly check-ins",
+      "options": [
+        {
+          "label": "Basic",
+          "price": "$125",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "standard",
+          "price": "$250",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "premium",
+          "price": "$400",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "weekly check-ins",
+          "price": "$50/week",
+          "basis": "fixed",
+          "billingUnit": "week"
+        }
+      ],
+      "access": "Sliding scale/waiver by need and capacity; refer to WIOA/SC Works/SNAP E&T/VR when appropriate",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-career-change-package",
+      "entity": "EPDG",
+      "category": "Career services",
+      "name": "Career Change Package",
+      "description": "Compare support packages for a career transition.",
+      "audience": "Career changers",
+      "mayInclude": "Basic; standard; premium",
+      "options": [
+        {
+          "label": "Basic",
+          "price": "$200",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "standard",
+          "price": "$350",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "premium",
+          "price": "$500",
+          "basis": "fixed",
+          "billingUnit": null
+        }
+      ],
+      "access": "Reduced scope/sliding scale when possible",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-workforce-readiness-workshop",
+      "entity": "EPDG",
+      "category": "Workforce & organizational training",
+      "name": "Workforce Readiness Workshop",
+      "description": "Explore workforce readiness education for groups.",
+      "audience": "Schools, workforce programs, community groups",
+      "mayInclude": "Community; small group; organizational; multi-session",
+      "options": [
+        {
+          "label": "Community",
+          "price": "Free-$25/person",
+          "basis": "range",
+          "billingUnit": "person"
+        },
+        {
+          "label": "small group",
+          "price": "$150-$300",
+          "basis": "range",
+          "billingUnit": null
+        },
+        {
+          "label": "organizational",
+          "price": "$500-$1,500",
+          "basis": "range",
+          "billingUnit": null
+        },
+        {
+          "label": "multi-session",
+          "price": "custom",
+          "basis": "custom",
+          "billingUnit": null
+        }
+      ],
+      "access": "Free/reduced through community partners or sponsors",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-internship-program-design-for-small-businesses",
+      "entity": "EPDG",
+      "category": "Workforce & organizational training",
+      "name": "Internship Program Design for Small Businesses",
+      "description": "Discuss an ethical internship system for a small business.",
+      "audience": "Small businesses wanting ethical internship systems",
+      "mayInclude": "Basic consultation; full setup; ongoing support",
+      "options": [
+        {
+          "label": "Basic consultation",
+          "price": "$150",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "full setup",
+          "price": "$500-$1,500",
+          "basis": "range",
+          "billingUnit": null
+        },
+        {
+          "label": "ongoing support",
+          "price": "$200-$500/mo",
+          "basis": "range",
+          "billingUnit": "mo"
+        }
+      ],
+      "access": "Reduced for community partners/nonprofits",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    },
+    {
+      "id": "epdg-team-training-professional-development",
+      "entity": "EPDG",
+      "category": "Workforce & organizational training",
+      "name": "Team Training & Professional Development",
+      "description": "Explore professional development training for staff, interns or volunteers.",
+      "audience": "Organizations training staff/interns/volunteers",
+      "mayInclude": "60-min; 90-min; half-day; custom series",
+      "options": [
+        {
+          "label": "60-min",
+          "price": "$150",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "90-min",
+          "price": "$250",
+          "basis": "fixed",
+          "billingUnit": null
+        },
+        {
+          "label": "half-day",
+          "price": "$500-$750",
+          "basis": "range",
+          "billingUnit": null
+        },
+        {
+          "label": "custom series",
+          "price": "$1,000+",
+          "basis": "starting-at",
+          "billingUnit": null
+        }
+      ],
+      "access": "Mission-aligned nonprofit/community rate by agreement",
+      "source": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sourcePage": 2,
+      "sourcePrepared": "May 2026"
+    }
+  ],
+  "classes": [
+    {
+      "id": "class-01",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Career readiness",
+      "title": "Career Readiness 101: Building a Professional Foundation",
+      "description": "A free online class that introduces the basic professional habits, communication skills, and career tools needed to build a stronger foundation for work, internships, and future opportunities.",
+      "audience": "Students; Job seekers; Interns; Career changers; Early-career professionals; Community members preparing for new opportunities",
+      "learningOutcomes": "What career readiness means in practical terms; How professional habits build trust; Why communication and follow-through matter; What career tools to begin building; How to complete a basic career readiness self-assessment; How to create a 7-day professional development action plan",
+      "format": "Online via Google Meet",
+      "duration": "2 hours",
+      "ticketType": "Free General Admission",
+      "price": "Free",
+      "disclaimer": "This class is provided for general educational purposes only. It does not guarantee employment, interviews, career placement, income, or professional outcomes. Attendees seeking individualized support may request a separate consultation where appropriate.",
+      "source": "07_Eventbrite_Listing_Copy_Career_Readiness_101.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-02",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Career readiness",
+      "title": "Resume, Cover Letter, and LinkedIn Profile Workshop",
+      "description": "A practical online workshop that helps participants improve their resume, cover letter structure, and LinkedIn profile so they can present themselves more clearly and professionally.",
+      "audience": "Students; Job seekers; Interns; Recent graduates; Career changers; Early-career professionals; Professionals updating their materials",
+      "learningOutcomes": "How to organize a resume clearly; How to write stronger resume bullet points; How to structure a basic cover letter; How to draft a LinkedIn headline and About section; How to identify skills, projects, and experience worth including; How to create a 7-day career materials revision plan",
+      "format": "Online via Google Meet",
+      "duration": "2 hours",
+      "ticketType": "Low-Cost Workshop",
+      "price": null,
+      "disclaimer": "This workshop is provided for general educational purposes only. Participation does not guarantee employment, interviews, job placement, income, professional outcomes, or LinkedIn visibility. Attendees seeking individualized resume or career support may request a separate consultation where appropriate.",
+      "source": "07_Eventbrite_Listing_Copy_Resume_Cover_Letter_LinkedIn.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-03",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Career readiness",
+      "title": "Job Search Strategy Lab: Applications, Interviews, and Follow-Up",
+      "description": "A practical online intensive that helps job seekers organize applications, prepare for interviews, and follow up professionally.",
+      "audience": "Job seekers; Students; Interns; Recent graduates; Career changers; Early-career professionals; People returning to the workforce",
+      "learningOutcomes": "How to organize a job search; How to evaluate job postings before applying; How to use an application tracker; How to prepare for common interview questions; How to use the STAR method; How to write professional follow-up messages; How to create a 7-day job search plan",
+      "format": "Online via Google Meet",
+      "duration": "2 hours",
+      "ticketType": "Low-Cost Intensive",
+      "price": null,
+      "disclaimer": "This class is provided for general educational purposes only. Participation does not guarantee employment, interviews, job placement, income, professional outcomes, or hiring decisions. Attendees seeking individualized career support may request a separate consultation where appropriate.",
+      "source": "07_Eventbrite_Listing_Copy_Job_Search_Strategy_Lab.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-04",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Financial education",
+      "title": "Budgeting Basics: Building a Household Money System",
+      "description": "A free online class that teaches simple budgeting concepts, bill organization, expense tracking, and starter savings goals for individuals and families.",
+      "audience": "Individuals; Families; Students; Parents; Young adults; Workers; Community members seeking financial organization",
+      "learningOutcomes": "What budgeting is and what it is not; How to list income, bills, and expenses; How to understand fixed, variable, and irregular expenses; How to create a simple monthly budget snapshot; How to build a bill calendar; How to choose a starter savings goal; How to create a 7-day household money organization plan",
+      "format": "Online via Google Meet",
+      "duration": "2 hours",
+      "ticketType": "Free General Admission",
+      "price": "Free",
+      "disclaimer": "This class is provided for general educational purposes only. It does not provide individualized financial, investment, legal, tax, credit, debt, or insurance advice. Participation does not guarantee financial outcomes, debt reduction, credit improvement, savings results, or income changes. Attendees seeking individualized support may request a separate consultation where appropriate.",
+      "source": "07_Eventbrite_Listing_Copy_Budgeting_Basics.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-05",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Financial education",
+      "title": "Credit, Debt, and Financial Confidence",
+      "description": "A practical online workshop that explains basic credit and debt concepts, payment habits, debt organization, and financial confidence.",
+      "audience": "Adults; Students; Young professionals; Families; Workers; Entrepreneurs; Community members seeking basic credit and debt education",
+      "learningOutcomes": "What credit is and how it differs from debt; What credit reports and credit scores are; Common types of debt; How to create a debt inventory; Why payment due dates and balances matter; Common credit and debt mistakes to avoid; Questions to ask before working with a credit or debt provider; How to create a 30-day financial confidence plan",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Low-Cost Workshop",
+      "price": null,
+      "disclaimer": "This workshop is provided for general educational purposes only. It does not provide individualized financial, investment, legal, tax, credit repair, debt settlement, debt management, or insurance advice. Participation does not guarantee credit score improvement, debt reduction, loan approval, financial outcomes, or income changes. Attendees seeking individualized support may request a separate consultation where appropriate.",
+      "source": "07_Eventbrite_Listing_Copy_Credit_Debt_Financial_Confidence.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-06",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Financial education",
+      "title": "The 30-Day Financial Reset Workshop",
+      "description": "A practical online intensive that helps participants organize bills, spending, savings goals, account awareness, and financial priorities for the next 30 days.",
+      "audience": "Individuals, families, students, parents, workers, young adults, entrepreneurs, and community members seeking financial organization.",
+      "learningOutcomes": "What a 30-day financial reset is and what it is not; How to review the current financial situation without shame; How to organize bills, due dates, and spending categories; How to identify urgent, important, flexible, and unknown financial responsibilities; How to choose a realistic starter savings goal; How to organize account and debt awareness; How to create a four-week financial reset plan",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Low-Cost Intensive",
+      "price": null,
+      "disclaimer": "This workshop is provided for general educational purposes only. It does not provide individualized financial, investment, legal, tax, credit repair, debt settlement, debt management, or insurance advice. Participation does not guarantee financial outcomes, debt reduction, credit score improvement, savings results, income changes, or account approval. Attendees seeking individualized support may request a separate consultation where appropriate.",
+      "source": "07_Eventbrite_Listing_Copy_30_Day_Financial_Reset.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-07",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Financial education",
+      "title": "Tax Readiness for Individuals and Families",
+      "description": "A free online class that helps individuals and families organize common tax documents, income records, household information, and questions before tax season.",
+      "audience": "Individuals; Families; Parents; Students; Workers; Gig workers; Community members preparing for tax season",
+      "learningOutcomes": "What tax readiness is and what it is not; Common tax documents to gather; How to organize income forms and records; What family and dependent information may need to be prepared privately; How to create a tax folder system; How to track missing documents; What questions to ask a qualified tax professional; How to build year-round tax recordkeeping habits",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Free General Admission",
+      "price": "Free",
+      "disclaimer": "This class is provided for general educational purposes only. It does not provide individualized tax, legal, financial, credit, debt, investment, or insurance advice. Participation does not include tax preparation, refund calculation, filing status determination, dependent eligibility review, credit or deduction eligibility review, IRS representation, or filing services. Attendees seeking individualized tax support should consult a qualified tax professional or appropriate free tax preparation provider where available.",
+      "source": "07_Eventbrite_Listing_Copy_Tax_Readiness.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-08",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Financial education",
+      "title": "Small Business Tax Organization: Receipts, Income, Mileage, and Deductions",
+      "description": "A practical online workshop that helps freelancers, gig workers, and small business owners organize income, receipts, mileage records, expenses, and tax questions.",
+      "audience": "Freelancers; Gig workers; Independent contractors; Side hustlers; Home-based business owners; New entrepreneurs; Small business owners; Service providers",
+      "learningOutcomes": "Why small business recordkeeping matters; How to organize business income records; How to track receipts, paid bills, invoices, and payment confirmations; How to build basic business expense categories; Why business and personal expenses should be separated when possible; What information may belong in a mileage log; What questions to ask a qualified tax professional; How to create a 30-day small business records action plan",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Low-Cost Workshop",
+      "price": null,
+      "disclaimer": "This workshop is provided for general educational purposes only. It does not provide individualized tax, legal, accounting, financial, investment, credit, debt, payroll, sales tax, business formation, or insurance advice. Participation does not include tax preparation, deduction determination, filing services, audit representation, bookkeeping services, or legal review. Attendees seeking individualized support should consult a qualified tax, legal, accounting, or business professional where appropriate.",
+      "source": "07_Eventbrite_Listing_Copy_Small_Business_Tax_Organization.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-09",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Financial education",
+      "title": "Bookkeeping Basics for New Entrepreneurs",
+      "description": "A practical online intensive that introduces new entrepreneurs to basic bookkeeping, income and expense tracking, invoices, cash flow awareness, and monthly review habits.",
+      "audience": "New entrepreneurs; Freelancers; Gig workers; Independent contractors; Side hustlers; Service providers; Home-based business owners; Early-stage small business owners",
+      "learningOutcomes": "What bookkeeping is and why it matters; Basic terms such as income, expenses, profit, cash flow, accounts receivable, and accounts payable; How to track business income and expenses; How to organize invoices and payment records; How to create a monthly bookkeeping review checklist; When professional support may be needed; How to create a 30-day bookkeeping setup plan",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Low-Cost Intensive",
+      "price": null,
+      "disclaimer": "This class is provided for general educational purposes only. It does not provide individualized bookkeeping, accounting, tax, legal, payroll, financial, investment, credit, debt, business formation, sales tax, or insurance advice. Participation does not include bookkeeping services, tax preparation, financial statement preparation, accounting review, legal review, or business compliance services. Attendees seeking individualized support should consult a qualified bookkeeping, accounting, tax, legal, or business professional where appropriate.",
+      "source": "07_Eventbrite_Listing_Copy_Bookkeeping_Basics.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-10",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Business & professional skills",
+      "title": "Starting Small: Turning a Skill, Service, or Idea Into a Real Business",
+      "description": "A free online class that helps aspiring entrepreneurs clarify a business idea, identify an audience, define a simple offer, and choose practical next steps.",
+      "audience": "Aspiring entrepreneurs; Side hustlers; Freelancers; Creatives; Students; Service providers; Community members with business ideas; Early-stage business owners",
+      "learningOutcomes": "What it means to start small; The difference between a skill, service, product, and offer; How to identify a problem or need; How to choose a starting audience; How to draft a simple business concept statement; How to build a first offer; What early business systems may be needed; How to create a 7-day business idea action plan",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Free General Admission",
+      "price": "Free",
+      "disclaimer": "This class is provided for general educational purposes only. It does not provide individualized legal, tax, accounting, financial, investment, credit, insurance, licensing, business formation, or business compliance advice. Participation does not guarantee income, customers, clients, funding, business success, or professional outcomes. Attendees seeking individualized support should consult a qualified professional where appropriate.",
+      "source": "07_Eventbrite_Listing_Copy_Starting_Small.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-11",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Business & professional skills",
+      "title": "Pricing Your Services Without Undervaluing Yourself",
+      "description": "A practical online workshop that helps service providers think through pricing, costs, time, value, packages, boundaries, and professional price communication.",
+      "audience": "Freelancers, service providers, consultants, creatives, coaches, tutors, beauty professionals, administrative support providers, new entrepreneurs, and small business owners.",
+      "learningOutcomes": "Why pricing can feel difficult; How to identify time, labor, costs, and value; The difference between hourly pricing, flat-rate pricing, package pricing, starting prices, and custom quotes; How to build a first service package; How to clarify pricing boundaries; How to communicate price professionally; How to create a 30-day pricing review plan",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Low-Cost Workshop",
+      "price": null,
+      "disclaimer": "This class is provided for general educational purposes only. It does not provide individualized legal, tax, accounting, financial, investment, credit, insurance, business formation, licensing, or business compliance advice. Participation does not guarantee income, customers, clients, profit, sales, business success, or professional outcomes. Attendees seeking individualized support should consult a qualified professional where appropriate.",
+      "source": "07_Eventbrite_Listing_Copy_Pricing_Your_Services.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-12",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Business & professional skills",
+      "title": "Business Launch Lab: Offer, Audience, Platform, and First 30 Days",
+      "description": "A practical online intensive that helps participants create a simple 30-day launch plan for a service, product, class, or small business offer.",
+      "audience": "Aspiring entrepreneurs, side hustlers, freelancers, creatives, consultants, service providers, small business owners, early-stage founders, and community members preparing to launch an offer.",
+      "learningOutcomes": "What a launch is and what it is not; how to clarify one primary offer; how to identify a primary audience; how to choose realistic launch platforms; how to draft a clear launch message; what launch assets may be needed; how to build a 30-day launch calendar; and how to follow up and review launch results.",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Low-Cost Intensive",
+      "price": null,
+      "disclaimer": "This class is provided for general educational purposes only. It does not provide individualized legal, tax, accounting, financial, investment, credit, insurance, licensing, business formation, marketing, advertising, or business compliance advice. Participation does not guarantee income, customers, clients, followers, sales, funding, business success, or professional outcomes. Attendees seeking individualized support should consult a qualified professional where appropriate.",
+      "source": "07_Eventbrite_Listing_Copy_Business_Launch_Lab.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-13",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Business & professional skills",
+      "title": "Sales Without Pressure: Ethical Outreach for Beginners",
+      "description": "A free online class that introduces ethical outreach, trust-based communication, and beginner-friendly sales habits without pressure-based tactics.",
+      "audience": "Beginners; Entrepreneurs; Freelancers; Service providers; Sales interns; Appointment setters; Small business owners; Community organizers; Professionals learning outreach",
+      "learningOutcomes": "What ethical sales is and what it is not; How to clarify an offer, audience, and need; How to write respectful outreach messages; How to ask helpful questions; How to listen for concerns and next steps; How to follow up without pressure; What pressure tactics to avoid; How to create a 7-day ethical outreach plan",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Free General Admission",
+      "price": "Free",
+      "disclaimer": "This class is provided for general educational purposes only. It does not provide individualized legal, financial, tax, accounting, investment, credit, insurance, employment, business formation, marketing, advertising, or business compliance advice. Participation does not guarantee income, customers, clients, commissions, sales, appointments, business success, or professional outcomes.",
+      "source": "07_Eventbrite_Listing_Copy_Sales_Without_Pressure.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-14",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Business & professional skills",
+      "title": "Appointment Setting and Client Follow-Up Workshop",
+      "description": "A practical online workshop that helps attendees learn how to set appointments, confirm interest, send reminders, and follow up with potential clients professionally.",
+      "audience": "Sales interns; Appointment setters; Entrepreneurs; Freelancers; Service providers; Small business owners; Administrative assistants; Client support workers; Beginners learning outreach and follow-up",
+      "learningOutcomes": "What appointment setting is and why it matters; How to identify lead and follow-up status; How to write appointment-setting messages; How to confirm appointments with date, time, time zone, platform, and purpose; How to send reminder messages; How to handle rescheduling and no-shows professionally; How to use a client follow-up tracker; How to create a 7-day appointment-setting plan",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Low-Cost Workshop",
+      "price": null,
+      "disclaimer": "This workshop is provided for general educational purposes only. It does not provide individualized legal, financial, tax, accounting, investment, credit, insurance, employment, business formation, marketing, advertising, or business compliance advice. Participation does not guarantee income, customers, clients, commissions, sales, appointments, business success, or professional outcomes.",
+      "source": "07_Eventbrite_Listing_Copy_Appointment_Setting.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-15",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Business & professional skills",
+      "title": "CRM and Lead Tracking Basics for Small Teams",
+      "description": "A practical online intensive that introduces small teams to basic CRM and lead tracking concepts so they can organize prospects, follow-ups, appointments, and client communication.",
+      "audience": "Small teams; Sales interns; Appointment setters; Entrepreneurs; Freelancers; Service providers; Small business owners; Administrative assistants; Client support workers; Beginners learning sales operations",
+      "learningOutcomes": "What a CRM is and why it matters; How to define lead stages and statuses; How to build a simple lead tracker; How to assign owners and next steps; How to write professional client notes; How to track follow-up dates; How to handle CRM information ethically; How to create a weekly CRM review routine",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Low-Cost Intensive",
+      "price": null,
+      "disclaimer": "This class is provided for general educational purposes only. It does not provide individualized legal, financial, tax, accounting, investment, credit, insurance, employment, business formation, marketing, advertising, cybersecurity, software implementation, or business compliance advice. Participation does not guarantee income, customers, clients, commissions, sales, appointments, business success, or professional outcomes.",
+      "source": "07_Eventbrite_Listing_Copy__copy2.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-16",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Business & professional skills",
+      "title": "Building Your Digital Presence: Website, Social Media, and Trust",
+      "description": "A free online class that teaches the basics of building a trustworthy online presence through websites, social media profiles, clear bios, service descriptions, and calls to action.",
+      "audience": "Students; Job seekers; Entrepreneurs; Freelancers; Service providers; Small business owners; Creators; Community leaders; Professionals building online credibility",
+      "learningOutcomes": "What digital presence means; Why online trust matters; What a basic website or landing page should include; How social media profiles support credibility; How to draft a professional or business bio; How to write a basic service or offer description; What trust signals visitors may look for; How to create a clear call to action; How to complete a digital presence self-audit",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Free General Admission",
+      "price": "Free",
+      "disclaimer": "This class is provided for general educational purposes only. It does not provide individualized legal, financial, tax, accounting, cybersecurity, marketing, advertising, business formation, employment, or professional advice. Participation does not guarantee followers, traffic, sales, clients, income, employment, business success, or professional outcomes.",
+      "source": "08_Eventbrite_Listing_Copy__copy2.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-17",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Business & professional skills",
+      "title": "Content Planning for Small Businesses and Personal Brands",
+      "description": "A practical online workshop that helps attendees plan simple, consistent content for a small business, professional profile, or personal brand.",
+      "audience": "Entrepreneurs; Freelancers; Service providers; Small business owners; Students; Creators; Professionals; Community leaders; Personal brands; Anyone building a consistent online presence",
+      "learningOutcomes": "What content planning is and why it matters; How to identify audience and content goals; How different platforms support different purposes; How to create 3-5 content pillars; How to plan educational, trust-building, promotional, behind-the-scenes, FAQ, and reminder posts; How to write clearer captions; How to use calls to action; How to build a 30-day content calendar; How to create a weekly content planning routine",
+      "format": "Online via Google Meet",
+      "duration": "2 hours",
+      "ticketType": "Low-Cost Workshop",
+      "price": null,
+      "disclaimer": "This workshop is provided for general educational purposes only. It does not provide individualized legal, financial, tax, accounting, marketing, advertising, cybersecurity, employment, business formation, or professional advice. Participation does not guarantee followers, views, engagement, traffic, sales, clients, income, employment, business success, or professional outcomes.",
+      "source": "08_Eventbrite_Listing_Copy__copy3.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-18",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Business & professional skills",
+      "title": "LinkedIn, Facebook, Instagram, and TikTok Strategy for Beginners",
+      "description": "A practical online intensive that explains how different social platforms serve different purposes and how beginners can use them more strategically.",
+      "audience": "Beginners; students; job seekers; entrepreneurs; freelancers; service providers; small business owners; creators; interns; professionals; community leaders.",
+      "learningOutcomes": "Why different platforms need different strategies; how LinkedIn supports professional credibility; how Facebook supports community visibility and events; how Instagram supports visual storytelling and brand consistency; how TikTok supports short-form education and discovery; how to match goals and audiences to platforms; how to adapt one message across multiple platforms; how to choose a primary and support platform; how to build a one-week social media strategy plan.",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Low-Cost Intensive",
+      "price": null,
+      "disclaimer": "This intensive is provided for general educational purposes only. It does not provide individualized legal, financial, tax, accounting, marketing, advertising, cybersecurity, employment, business formation, or professional advice. Participation does not guarantee followers, views, engagement, traffic, sales, clients, income, employment, business success, or professional outcomes.",
+      "source": "08_Eventbrite_Listing_Copy.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    },
+    {
+      "id": "class-19",
+      "entity": "TEE",
+      "series": "The Emerson Empire Weekly Class Series",
+      "topic": "Business & professional skills",
+      "title": "Weekly Life and Career Reset: Goals, Planning, and Accountability",
+      "description": "A free online class that helps attendees organize their goals, priorities, schedule, responsibilities, and next steps for the week ahead.",
+      "audience": "Students; Job seekers; Parents; Professionals; Interns; Entrepreneurs; Freelancers; Workers; Community members balancing work, school, family, business, and personal goals",
+      "learningOutcomes": "What a weekly reset is and what it is not; How to review responsibilities without overwhelm; How to sort urgent, important, flexible, and pending tasks; How to choose 3-5 realistic weekly goals; How to build a weekly calendar; How to break large tasks into smaller steps; How to create an accountability system; How to plan for obstacles and support needs",
+      "format": "Online via Google Meet",
+      "duration": null,
+      "ticketType": "Free General Admission",
+      "price": "Free",
+      "disclaimer": "This class is provided for general educational purposes only. It does not provide individualized legal, financial, tax, accounting, medical, mental health, employment, academic, business, or professional advice. Participation does not guarantee employment, income, productivity, grades, business success, personal outcomes, or professional outcomes.",
+      "source": "07_Eventbrite_Listing_Copy.docx",
+      "sourceDate": null,
+      "availability": "Dates, capacity and registration not confirmed."
+    }
+  ],
+  "retainedTopics": [
+    {
+      "id": "class-20",
+      "title": "Leadership and Communication for Emerging Professionals",
+      "status": "Existing intern curriculum topic; matching public listing details not found in supplied folders."
+    },
+    {
+      "id": "class-21",
+      "title": "Professional Development Portfolio Lab",
+      "status": "Existing intern curriculum topic; matching public listing details not found in supplied folders."
+    }
+  ]
+}

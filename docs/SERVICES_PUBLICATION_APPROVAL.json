@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "approved_on": "2026-10-18",
+  "authority": "Direct user approval to publish the reviewed updates to all three existing live websites, retaining disabled registration/live intake and adding no costs.",
+  "reviewed_commit": "55574030e84a6281b357632cc00017d1cfaa37bc",
+  "catalog_path": "shared/services-catalog.public.json",
+  "catalog_sha256_lf": "5dcc9a9581bf810a6f27f8383c5e716198a0a5042794030ab863deded6b772b4",
+  "customer_guide_sha256": {
+    "TEE": "71313eb2fddab63981d0de850c7e31525776454537dfceb87aedfb60b3bc239c",
+    "TEA": "500c266d555ac8d4d5bfe50b9846c2bbce91f944bcd8a348ca5d9fff4bc974df",
+    "EPDG": "366b65a9a98af6f2c1888aebd914f6f747b9426439a34f655830d27524b27d11"
+  },
+  "destinations": [
+    "https://theemerson.netlify.app",
+    "https://emersonagency.netlify.app",
+    "https://emersonprofessionaldevelopment.netlify.app"
+  ],
+  "scope": "Reviewed public services/pricing catalog, class descriptions, customer guides and email-draft inquiries; existing reviewed site content and intern contributions preserved.",
+  "registration_enabled": false,
+  "live_intake_enabled": false,
+  "new_spending_authorized": false,
+  "permission_changes_authorized": false,
+  "does_not_confirm": [
+    "Missing class prices, duration, dates or capacity",
+    "Registration or application destinations",
+    "Internal proposed packages or private curriculum downloads",
+    "Any guaranteed employment, credit, funding or other service outcome"
+  ]
+}

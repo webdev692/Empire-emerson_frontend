@@ -1,11 +1,12 @@
-﻿import React, { useState, useEffect } from "react";
+import { intakeHref } from '../../../../shared/development-preview';
+import React, { useState, useEffect } from "react";
 import { Zap, Calendar, Clock, X, Check, GraduationCap, ArrowRight } from "lucide-react";
 import type { ClassItem } from "../data/classData";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const STORAGE_KEY     = "emerson_registrations";
-const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfOGM0MZ05Em3O502rC9HxvK5qzW06ATQMcMX2Fgcn9xBpncQ/viewform?embedded=true";
+const GOOGLE_FORM_URL = intakeHref("https://docs.google.com/forms/d/e/1FAIpQLSfOGM0MZ05Em3O502rC9HxvK5qzW06ATQMcMX2Fgcn9xBpncQ/viewform?embedded=true");
 
 // ── Date helpers ──────────────────────────────────────────────────────────────
 

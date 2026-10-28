@@ -1,4 +1,5 @@
-﻿import React, { useState } from "react";
+import { integratedPreview, intakeHoldMessage } from '../../../../shared/development-preview';
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Clock, Send, ExternalLink, Check } from "lucide-react";
 
@@ -46,6 +47,7 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (integratedPreview) { setError(intakeHoldMessage); return; }
     if (!name.trim() || !email.trim() || !message.trim()) {
       setError("Please fill in all required fields.");
       return;

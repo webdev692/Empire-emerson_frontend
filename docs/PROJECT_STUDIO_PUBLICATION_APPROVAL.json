@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "authority": "Direct user request: Please publish these, following review of the TEE and TEA local Studio preview.",
+  "approved_on": "2026-10-18",
+  "reviewed_commit": "060e35ae2e454cf2ef15c6f59619377897faed3d",
+  "reviewed_data_path": "shared/project-studio.preview.json",
+  "public_data_path": "shared/project-studio.public.json",
+  "data_sha256_lf": "9bdc4efb983bc2c213f9165397ba07fc24858e82bfdda6c83f9d54e0fb9d2366",
+  "example_ids": ["BUS-03", "SYS-03"],
+  "entities": ["TEE", "TEA"],
+  "destinations": ["https://theemerson.netlify.app", "https://emersonagency.netlify.app"],
+  "publication_scope": "Reviewed homepage features and Project Studio planning pages, two quote-only scope examples, FAQs and a personal offline brief; no offer acceptance, payments or commercial activation.",
+  "production_adaptations": ["Use verified TEE public links", "Exclude local design-review banner", "Identify planning status and closed intake without internal approval notes"],
+  "registration_enabled": false,
+  "live_intake_enabled": false,
+  "new_spending_authorized": false,
+  "permissions_changed": false,
+  "does_not_approve": ["Other 118 candidate services", "Numeric prices or delivery/capacity promises", "Legal seller/signatory or client/contributor contracts", "Profit percentages, compensation, commissions or public policy wording", "Sensitive uploads, CRM integration, hiring, outreach or EPDG changes"]
+}

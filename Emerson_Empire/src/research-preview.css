@@ -1,0 +1,6 @@
+.tr-research .tr-paper h2 { font-size:clamp(1.4rem,2vw,1.7rem); line-height:1.25; }
+.tr-research .tr-paper { display:flex; flex-direction:column; }
+.tr-research .tr-paper.cp-card .cp-text-link { margin-top:auto; padding-top:18px; }
+.tr-research .tr-author { font-weight:650; }
+.tr-research .tr-note { padding:24px 0; }
+.tr-research .tr-sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }

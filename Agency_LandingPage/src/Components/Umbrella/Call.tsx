@@ -1,9 +1,10 @@
+import { intakeHref } from '../../../../shared/development-preview';
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone, Users } from "lucide-react";
 
-const BOOK_CALL_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform?embedded=true";
-const APPLY_FORM_URL     = "https://docs.google.com/forms/d/e/1FAIpQLSct0beq8VHPv9zhRreBFv8fK8HWGIGNp2YmuRGiOiL7RPoGFQ/viewform?embedded=true";
+const BOOK_CALL_FORM_URL = intakeHref("https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform?embedded=true");
+const APPLY_FORM_URL     = intakeHref("https://docs.google.com/forms/d/e/1FAIpQLSct0beq8VHPv9zhRreBFv8fK8HWGIGNp2YmuRGiOiL7RPoGFQ/viewform?embedded=true");
 
 type ModalType = "call" | "apply" | null;
 

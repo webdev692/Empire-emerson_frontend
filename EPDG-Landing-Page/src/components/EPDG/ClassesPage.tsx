@@ -1,3 +1,5 @@
+import { integratedPreview } from '../../../../shared/development-preview';
+import { PreviewNotice, ExperienceLinks } from '../../../../shared/InternSiteIntegration';
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -14,7 +16,9 @@ const ClassesPage: React.FC = () => {
         Skip to main content
       </a>
       <Navbar />
+      {integratedPreview && <PreviewNotice />}
       <main id="main-content">
+        {integratedPreview && <aside className="bg-[#fcf5e9] p-6 text-[#041913]">Preserved intern class catalog · Historical schedule, prices and capacity are unverified. Registration is held. <Link to="/programs" className="underline">Read current program drafts</Link> or <Link to="/learn" className="underline">start guided practice</Link>.</aside>}
         <div className="bg-white px-4 pt-8">
           <div className="mx-auto max-w-278">
             <Link
@@ -27,6 +31,7 @@ const ClassesPage: React.FC = () => {
         </div>
         <WeeklyClasses />
       </main>
+      {integratedPreview && <ExperienceLinks />}
       <EPDGFooter />
     </>
   );

@@ -3,6 +3,10 @@ node_modules/
 
 # Build output
 dist/
+dist-review/
+dist-studio-local/
+dist-programs-local/
+dist-research-local/
 dist-ssr/
 build/
 
@@ -39,3 +43,13 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify
+
+# Private authoring inputs/evidence are intentionally outside public source.
+private-imports/
+build-evidence/
+shared/c4.local.json
+shared/work-resources.local.json
+shared/catalog.drafts.ts
+shared/catalog.review.json
+shared/first-contribution.txt
+docs/monday-contribution-kit/

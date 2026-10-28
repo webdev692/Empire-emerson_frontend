@@ -2,6 +2,10 @@
 
 This repository contains the public frontend applications for The Emerson Empire ecosystem.
 
+The three company websites use a frozen approved public source boundary. See
+[Public source boundary](docs/PUBLIC_SOURCE_BOUNDARY.md) for reproducible builds,
+private-input exclusions, exact published artifact checks and release holds.
+
 ## Deployment Map
 
 | Organization / Site | Local Folder | Netlify Project | Public URL |

@@ -1,3 +1,4 @@
+import { intakeHref } from '../../../../shared/development-preview';
 import financialImage from '../../assets/Finacial.png'
 import { ArrowRight, BookOpen, DollarSign, Home, Users } from 'lucide-react'
 import { openRequestForm } from '../Umbrella/RequestFormEvents'
@@ -41,7 +42,7 @@ export default function MissionSection() {
 
             <div className="flex flex-col gap-4 sm:flex-row">
               <a
-                href="https://forms.gle/VSCGHQEJSdKhYizKA"
+                href={intakeHref("https://forms.gle/VSCGHQEJSdKhYizKA")}
                 onClick={(e) => { e.preventDefault(); openRequestForm() }}
                 className="group inline-flex items-center justify-center gap-3 rounded-lg bg-[#0b57ff] px-7 py-3.5 text-base font-medium text-white shadow-[0_18px_45px_rgba(11,87,255,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0a4fe0] hover:shadow-[0_22px_55px_rgba(11,87,255,0.45)]"
               >

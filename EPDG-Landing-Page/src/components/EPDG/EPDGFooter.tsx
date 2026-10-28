@@ -1,8 +1,9 @@
+import { localHref } from '../../../../shared/platform-format';
 import React from "react";
 import { logo } from "../../assets";
 
 const navigateLinks = [
-  { label: "Weekly Classes", href: "#classes" },
+  { label: "Weekly Classes", href: "/classes" },
   { label: "Career Services", href: "#services" },
   { label: "Internship Program", href: "#internships" },
   { label: "Workforce Training", href: "#workforce" },
@@ -166,7 +167,7 @@ const EPDGFooter: React.FC = () => {
             <ul className="space-y-3.5 text-white/85 text-[15px]">
               {navigateLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="hover:text-[#C9A84C] transition-colors">{l.label}</a>
+                  <a href={localHref(l.href.startsWith('#') ? '/' + l.href : l.href)} className="hover:text-[#C9A84C] transition-colors">{l.label}</a>
                 </li>
               ))}
             </ul>
@@ -180,7 +181,7 @@ const EPDGFooter: React.FC = () => {
             <ul className="space-y-3.5 text-white/85 text-[15px]">
               {formsLinks.map((l, i) => (
                 <li key={`${l.label}-${i}`}>
-                  <a href={l.href} className="hover:text-[#C9A84C] transition-colors">{l.label}</a>
+                  <a href={localHref(l.href.startsWith('#') ? '/' + l.href : l.href)} className="hover:text-[#C9A84C] transition-colors">{l.label}</a>
                 </li>
               ))}
             </ul>

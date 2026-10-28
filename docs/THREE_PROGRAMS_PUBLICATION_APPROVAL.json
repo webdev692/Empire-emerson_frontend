@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "authority": "Direct user request: Approved, publish these program additions to all three live websites. Preserve the existing Studio, services, pricing and intern work. Keep registration and live intake disabled, and don’t add any costs.",
+  "approved_on": "2026-10-18",
+  "publication_approved": true,
+  "reviewed_commit": "2e05121ea8da7edb37f3ed79011be9469055fcd7",
+  "reviewed_data_path": "shared/three-programs.preview.json",
+  "public_data_path": "shared/three-programs.public.json",
+  "data_sha256_lf": "0a35fcbde35026bde2b3619678eed9dabc5de6111a9313255e58ae6f54b0ddc5",
+  "programs": [
+    {"id":"emerson-pathways","entity":"TEA","route":"/pathways","units":12},
+    {"id":"sc-career-readiness","entity":"TEE","route":"/career-readiness","units":16},
+    {"id":"epdg-global-internship","entity":"EPDG","route":"/global-internship-program","units":7}
+  ],
+  "destinations": ["https://theemerson.netlify.app", "https://emersonagency.netlify.app", "https://emersonprofessionaldevelopment.netlify.app"],
+  "publication_scope": "The three reviewed informational program pages, curricula, FAQs, homepage features, additive navigation/footer links, canonical referrals and seven native email drafts with readable alternatives.",
+  "production_adaptations": ["Use the verified live company destinations", "Omit local-review notices", "Add primary routes to the existing sitemaps"],
+  "registration_enabled": false,
+  "live_intake_enabled": false,
+  "new_spending_authorized": false,
+  "permissions_changed": false,
+  "does_not_approve": ["Confirmed dates, capacity, schools or 2027 openings", "Application or document intake activation", "New program fee, compensation, credit or credential policies", "Changes to Studio, services, pricing, resources or contributor attribution", "New hosting projects, purchases, remote Git pushes or permission changes"]
+}

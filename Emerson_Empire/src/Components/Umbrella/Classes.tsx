@@ -1,3 +1,4 @@
+import { intakeHref } from '../../../../shared/development-preview';
 import React from "react";
 import {
   FaArrowDown,
@@ -11,8 +12,8 @@ import {
 import { classes } from "../data/classData";
 import ClassSearch from "./ClassSearch";
 
-const REGISTRATION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfOGM0MZ05Em3O502rC9HxvK5qzW06ATQMcMX2Fgcn9xBpncQ/viewform";
-const FEE_WAIVER_URL = "https://forms.gle/fWm9gHownQeorkNn7";
+const REGISTRATION_URL = intakeHref("https://docs.google.com/forms/d/e/1FAIpQLSfOGM0MZ05Em3O502rC9HxvK5qzW06ATQMcMX2Fgcn9xBpncQ/viewform");
+const FEE_WAIVER_URL = intakeHref("https://forms.gle/fWm9gHownQeorkNn7");
 
 const CLASS_TIERS = [
   {

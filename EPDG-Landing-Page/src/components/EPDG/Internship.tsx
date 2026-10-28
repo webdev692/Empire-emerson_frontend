@@ -1,8 +1,9 @@
+import { intakeHref } from '../../../../shared/development-preview';
 import React from "react";
 import { useFormModal } from "./FormModalContext";
 import experienceImg from "../../assets/Experience.png";
 
-const FORM_INTERNSHIP = "https://docs.google.com/forms/d/e/1FAIpQLSct0beq8VHPv9zhRreBFv8fK8HWGIGNp2YmuRGiOiL7RPoGFQ/viewform";
+const FORM_INTERNSHIP = intakeHref("https://docs.google.com/forms/d/e/1FAIpQLSct0beq8VHPv9zhRreBFv8fK8HWGIGNp2YmuRGiOiL7RPoGFQ/viewform");
 
 const iconProps = {
   className: "w-5 h-5",

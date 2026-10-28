@@ -1,4 +1,6 @@
-﻿import React, { useState } from 'react';
+import { intakeHref } from '../../../../shared/development-preview';
+import { integratedPreview, intakeHoldMessage } from '../../../../shared/development-preview';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -87,8 +89,8 @@ const SCHEMA_FAQ = {
 
 // â”€â”€ Form URLs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-const FORM_SERVICES = 'https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform?embedded=true';
-const FORM_BUSINESS = 'https://docs.google.com/forms/d/e/1FAIpQLSc3j8G8Ed-9KluUeKwfcNVgoo8QR7CQWdifSwpuBeS1Bm3AMA/viewform?embedded=true';
+const FORM_SERVICES = intakeHref('https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform?embedded=true');
+const FORM_BUSINESS = intakeHref('https://docs.google.com/forms/d/e/1FAIpQLSc3j8G8Ed-9KluUeKwfcNVgoo8QR7CQWdifSwpuBeS1Bm3AMA/viewform?embedded=true');
 
 // â”€â”€ Service categories â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
@@ -242,13 +244,13 @@ const ServiceModal: React.FC<{ modal: NonNullable<ModalState>; onClose: () => vo
                 </button>
               </div>
             ) : (
-              <iframe
+              integratedPreview ? <p role="status" className="p-6 text-[#1c1336]">{intakeHoldMessage}</p> : (<iframe
                 src={modal.formUrl}
                 title="Service Request Form"
                 onLoad={() => setLoadCount((n) => n + 1)}
                 className="border-0 w-full h-135"
                 allow="camera; microphone"
-              />
+              />)
             )}
           </div>
         </motion.div>
