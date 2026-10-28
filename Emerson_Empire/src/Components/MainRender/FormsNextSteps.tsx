@@ -8,7 +8,7 @@ const FORMS = [
     href: '/contact',
   },
   {
-    title: 'Register for Weekly Classes',
+    title: 'Register for Daily Classes',
     description: 'Career readiness, professional development, and workforce training.',
     href: '/classes',
   },
@@ -55,7 +55,7 @@ const FormsNextSteps: React.FC = () => (
         className="mb-12 text-[#1C1336]/60 text-base sm:text-lg"
         style={{ fontFamily: "var(--font-body)" }}
       >
-        Use the form that fits where you are. Each opens in a new tab.
+        Choose a contact, registration or application route. Each opens in a new tab.
       </p>
 
       <motion.div
@@ -90,7 +90,7 @@ const FormsNextSteps: React.FC = () => (
               className="inline-flex items-center gap-1 font-semibold text-[#6B7280] text-sm"
               style={{ fontFamily: "var(--font-label)" }}
             >
-              Open form
+              View next step
               <span aria-hidden="true" className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
             </span>
           </motion.a>

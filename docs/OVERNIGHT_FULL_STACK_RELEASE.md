@@ -531,6 +531,22 @@ worker upgrades. This is a local account-access milestone, not full learning
 portal or production acceptance. Compensation: stop the managed local frontend
 and backend, preserve test data, and keep the normal access hold. Do not publish.
 
+## 2026-10-28 — company public-source alignment preparation
+
+The company source review branch preserves public `origin/main` history and keeps
+the earlier private authoring branch recoverable without publishing its private
+inputs or evidence. Approved company runtime content, intern contributions and
+the original exact-version feature validators are retained. The additive frozen
+public boundary binds 23 public payloads and all 217 existing published files;
+only fresh `release-build.json` metadata is exempt from the prior output hashes.
+
+See [Public source boundary](PUBLIC_SOURCE_BOUNDARY.md) for the three exact target
+mappings, content revisions, local verification recipe, exclusions, operating
+holds and fix-forward recovery. Local preparation does not publish, change a
+Netlify setting, modify a database, enable intake, send email or alter the EPDG
+learner portal. Fresh commit-specific checks and independent diff review are
+required before the coordinated remote handoff.
+
 ## 2026-07-11 20:21 EDT — Phase 1: preserve frontend remediation
 
 - Confirmed repository: `webdev692/Empire-emerson_frontend`.
@@ -724,3 +740,47 @@ Remote commit, exact-head CI, and artifact uploads remain pending this submissio
 The required EPDG application job now cleans a third isolated output directory and runs the existing `npm run build:hosted-practice` with the reviewed build flag. That command builds the pinned synthetic hosted profile and runs its unchanged strict artifact verifier. GitHub's automatic `GITHUB_SHA` records the checked-out revision in `verification.json`, alongside each artifact file's SHA-256. A separate revision-named upload retains this output without combining it with the normal access-hold or disconnected design artifacts. All application/Edge jobs, deterministic installs, lint, tests, normal/design verifiers, smoke checks and aggregate requirements remain present.
 
 Scope is limited to CI wiring and this release entry. No application, design, dependency, lockfile, build policy or artifact-verifier code changed. Local checks passed with Node `22.23.1` and npm `11.17.0`: workflow YAML syntax and preservation of all existing jobs/steps, fresh normal/design builds and strict artifact guards, lint, 88 tests, smoke, and the exact hosted build/verifier command. Exact-head GitHub CI and its artifact uploads remain pending the push and must pass independently. This entry makes no deployment, browser, cookie, backend isolation or production publication claim. Owner/admin controls remain closed. Compensation is a focused revert of these workflow additions while preserving existing required checks and the production access hold.
+
+## 2026-10-28 — Three public website repairs
+
+- Scope: Emerson_Empire, Agency_LandingPage and EPDG-Landing-Page. No portal, CRM, media studio, database, authentication or role changes. The epdg tree and shared/emerson-design-system.css match main.
+- Repairs build on the public-only source boundary in PR #34; private authoring history and inputs remain local. Approved data payloads, original intern contributions, Studio implementation and historical publication receipts are preserved.
+- Add the founder-confirmed existing Google Forms, functional contact mailboxes and daily Eastern schedule: 10 AM/free/60 minutes, 2 PM/$10 USD or fee waiver/90 minutes, 7 PM/$20 USD or fee waiver/two hours. No application or registration test submission was created.
+- Repair legal links, mobile dialog layout, CSP-blocked inline font loading, obsolete automatic GitHub Pages deployment and restore code, loading contrast and offline recovery messaging. Resource directories load only on resource routes.
+- Legal pages are exact-wording review drafts adapted from the company Privacy and Terms drafts. Publication approval is pending. Figma is last at the user's request.
+- Final clean-commit checks, protected preview deployment IDs and public release receipts must be recorded before publication. Earlier working-tree checks do not certify this source revision.
+- Correct defects forward with a reviewed commit and fresh three-website builds. Never restore an older deploy or change the excluded applications' release settings.
+
+The October 28 content follow-up removes unverified achievement counters and student totals from public presentation, normalizes visible response-time wording, labels service prices in USD without changing approved amounts, gives the class menu distinct schedule/free-class anchors and replaces the legacy TEE Agency route with the current approved TEA service catalog. Visitor loading wording is consistent. Public data payloads and protected projects remain unchanged.
+
+The founder approved the exact Privacy Policy, Terms of Use and Disclaimer wording on October 28: SHA-256 (LF) 3b48c6c45da2dba8f5db119716c2575d86eef857d5dfcd79c1dd204bb501f134, reviewed on protected TEE deploy 6ae226d8dac0500318ccc883. This approval applies only to the three public company websites. Unconfirmed legacy request links now lead to the functional contact page; historical protected-review builds retain their hold. Current Netlify credit balance was 2,873.4/3,000 with auto recharge disabled before this release.
+
+
+### Published website release — October 28, 2026
+
+Source eb7b03ebe385710518a3a70c59d8e7a970bab467 was merged by PR #35 (main ef970929ae7af4cd6c2ef33080babee9c762c99b). Both required GitHub workflows pass at the source revision; the public suite has 63 regressions. All three clean source builds, lints, smoke checks and current artifact-integrity scans pass.
+
+Fresh production deploys: TEE 6ae22a3191e71a912b2ab143; TEA 6ae22a3e9c64dda512c59e74; EPDG public 6ae22a4da3b3e859abfefa06. Provider readback marks each current/ready. Anonymous HTTP verification matches all three live release manifests exactly and verifies 8 key file hashes plus 9 routes per site. Browser checks confirm the release ID, published policies without draft banners, functional contact choices and all three daily sessions. EPDG and Agency dialogs fit 375px; Escape restores trigger focus. Offline and reconnection notices work. A controlled 400ms/200,000-byte-per-second local class-page load reached its heading in 5.563 seconds; this is not a like-for-like comparison with the audit's 41-second field result. No form was submitted.
+
+The app-local Netlify build commands now explicitly install the root locked shared dependencies before building. This prevents reliance on an existing cache when TypeScript resolves imports from shared/. This configuration-only follow-up does not change the deployed website implementation; current application artifacts retain source eb7b03e. Provider bases remain Emerson_Empire, Agency_LandingPage and EPDG-Landing-Page on main, with app-local configurations taking precedence. The root configuration and excluded project settings are unchanged.
+
+Figma target selection was pending at website publication; the completed alignment is recorded below. Shared-account credential/MFA work and the excluded Studio backlog are not performed in this website release. Railway and Supabase were not changed: the three public sites use static content, external Google Forms and email drafts rather than those runtimes. The full detailed content/accessibility/cross-browser audit inputs remain needed for broader certification; targeted checks above do not establish full WCAG or device coverage. Correct future defects forward through a reviewed change and fresh bundles; do not restore old deploys or change portal, CRM or media studio state.
+
+
+### Figma reference alignment — October 28, 2026
+
+The founder selected the existing Ecosystem Modernization System file for the release references. Its previously empty Page 1 is now Public websites • 2026-10-28. The editable reference board is [Public websites • Approved release 2026-10-28](https://www.figma.com/design/rZdhlpba7FM2Rw1QwJcf1A/The-Emerson-Empire-%E2%80%94-Ecosystem-Modernization-System?node-id=6-27).
+
+The board records each public site's navigation, footer labels, canonical page registry and deployment/source identity; the shared daily schedule, Google Form destinations and five functional contact channels; all 17 exact approved policy sections; and the released typography, palette, radius and mobile reference values. It contains 211 editable text layers, 127 component instances and four local source-aligned components. All 113 hyperlink destinations pass the approved public/mailbox allowlist, all policy paragraphs match the approved source exactly, and structural checks find no text overflow. The navigation overview, schedule and full policy columns were visually inspected. Full-page artwork remains in the original website source.
+
+Figma source identity is the published website implementation eb7b03e and legal source SHA-256 3b48c6c45da2dba8f5db119716c2575d86eef857d5dfcd79c1dd204bb501f134. File sharing, account seats and permissions were not changed. The board covers only the three public websites; portal, CRM and media studio project designs and runtimes were not edited. Screenshots and validation receipts remain in the local release evidence folder.
+
+## 2026-10-28 — Reconcile portal PR #33 with approved company main
+
+Merged approved frontend main `d7d169fcfa030ce39996472bb73b93c7df1f7074` into the existing portal branch at `f822784dd4d4c75358a83985f60810f7ecd918e0` using an ordinary two-parent merge. Missing shallow ancestry was fetched normally; history was not rewritten. The sole conflict was this journal, resolved by retaining both complete histories. The three public application trees, shared sources, scripts, approved legal/forms/schedule content, root manifests/configuration and company workflows exactly match main. The portal application tree exactly matches its prior reviewed source; no independent design or dependency edit was made.
+
+The combined EPDG workflow retains main's root dependency install for company jobs and every per-app install, while preserving all normal/design/hosted builds, strict unchanged artifact verifiers, separate revision/checksum uploads, four required application jobs, Edge checks and aggregate gate. Both main and portal workflow structures were independently reviewed.
+
+Fresh local combined-source verification passed all five Node `22.23.1`/npm `11.17.0` deterministic installs; 63 public regressions, shared lint, three approved website builds/lints/smokes and artifact-integrity checks; per-app test commands; portal normal/design/hosted builds, strict guards, lint, 88 tests and smoke; 31 Edge/migration regressions, mirrors, Deno `2.8.1` lint and both frozen checks. Main advanced from `2cba7a0` to `d7d169f` during verification with journal-only Figma documentation; exact tree comparison confirms all tested runtime, package and CI files are unchanged at the final merge target. These working-tree results do not assert the future merge SHA's GitHub CI or a hosted deployment. Fresh committed hosted output and exact-head CI are recorded separately after the merge commit.
+
+This reconciliation changes only the PR branch. It does not merge to main, publish a site, change Netlify settings, configure credentials, submit forms or enable owner/admin controls. Any correction must preserve the approved public website trees and use a focused forward change; do not restore older public content or artifacts.

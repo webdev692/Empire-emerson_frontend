@@ -1,4 +1,14 @@
 {
+  "scripts": {
+    "build:programs-local": "node scripts/private-authoring-unavailable.mjs",
+    "preview:programs-local": "node scripts/private-authoring-unavailable.mjs",
+    "build:studio-local": "node scripts/private-authoring-unavailable.mjs",
+    "preview:studio-local": "node scripts/private-authoring-unavailable.mjs",
+    "check:platform": "node scripts/check-public-builds.mjs",
+    "check:review": "node scripts/private-authoring-unavailable.mjs",
+    "check:live": "node scripts/check-public-builds.mjs",
+    "check:public": "node scripts/check-public-builds.mjs"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
     "@vitejs/plugin-react": "^6.0.2",

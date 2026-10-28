@@ -1,19 +1,21 @@
+import { publicForms, publicIntakeEnabled } from '../../../../shared/public-intake';
+import { localHref } from '../../../../shared/platform-format';
 import React from "react";
 import { logo } from "../../assets";
 
 const navigateLinks = [
-  { label: "Weekly Classes", href: "#classes" },
-  { label: "Career Services", href: "#services" },
-  { label: "Internship Program", href: "#internships" },
-  { label: "Workforce Training", href: "#workforce" },
-  { label: "Partnership", href: "#contact" },
+  { label: "Daily Classes", href: "/classes" },
+  { label: "Career Services", href: "/services-pricing" },
+  { label: "Internship Program", href: "/global-internship-program" },
+  { label: "Workforce Training", href: "/#workforce" },
+  { label: "Partnership", href: "/inquiry" },
 ];
 
 const formsLinks = [
-  { label: "Register for Classes", href: "#contact" },
-  { label: "Request Services", href: "#contact" },
-  { label: "Internship Application", href: "#contact" },
-  { label: "Business Consultation", href: "#contact" },
+  { label: "Register for Classes", href: publicIntakeEnabled ? publicForms.classes : "/classes" },
+  { label: "Request Services", href: "/services-pricing" },
+  { label: "Internship Application", href: publicIntakeEnabled ? publicForms.internship : "/global-internship-program" },
+  { label: "Business Consultation", href: "/inquiry" },
 ];
 
 const iconProps = {
@@ -166,7 +168,7 @@ const EPDGFooter: React.FC = () => {
             <ul className="space-y-3.5 text-white/85 text-[15px]">
               {navigateLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="hover:text-[#C9A84C] transition-colors">{l.label}</a>
+                  <a href={l.href.startsWith('https://') ? l.href : localHref(l.href.startsWith('#') ? '/' + l.href : l.href)} className="hover:text-[#C9A84C] transition-colors">{l.label}</a>
                 </li>
               ))}
             </ul>
@@ -180,7 +182,7 @@ const EPDGFooter: React.FC = () => {
             <ul className="space-y-3.5 text-white/85 text-[15px]">
               {formsLinks.map((l, i) => (
                 <li key={`${l.label}-${i}`}>
-                  <a href={l.href} className="hover:text-[#C9A84C] transition-colors">{l.label}</a>
+                  <a href={l.href.startsWith('https://') ? l.href : localHref(l.href.startsWith('#') ? '/' + l.href : l.href)} className="hover:text-[#C9A84C] transition-colors">{l.label}</a>
                 </li>
               ))}
             </ul>
@@ -190,8 +192,8 @@ const EPDGFooter: React.FC = () => {
         <div className="flex sm:flex-row flex-col sm:justify-between sm:items-center gap-4 mt-14 pt-6 border-white/10 border-t text-white/60 text-sm">
           <p>© {new Date().getFullYear()} The Emerson Empire. All rights reserved.</p>
           <div className="flex flex-wrap gap-6 text-white/50">
-            <span>Privacy Policy (publication pending)</span>
-            <span>Terms of Use (publication pending)</span>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Use</a>
           </div>
         </div>
       </div>

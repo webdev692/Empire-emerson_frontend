@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "request": "User-authored attached request: update the three existing company websites from the nominated customer guides and relevant public offering sections.",
+  "scope": "Customer-facing catalog, estimates, conditional access, local customer-guide copies and email-draft inquiries. No new operational readiness, live enrollment or deployment approval asserted.",
+  "customerGuides": [
+    {
+      "entity": "TEE",
+      "filename": "The_Emerson_Empire_Customer_Service_and_Pricing_Guide.pdf",
+      "prepared": "May 2026",
+      "href": "/guides/The_Emerson_Empire_Customer_Service_and_Pricing_Guide.pdf",
+      "sha256": "71313eb2fddab63981d0de850c7e31525776454537dfceb87aedfb60b3bc239c",
+      "bytes": 97212
+    },
+    {
+      "entity": "TEA",
+      "filename": "The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "prepared": "May 2026",
+      "href": "/guides/The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+      "sha256": "500c266d555ac8d4d5bfe50b9846c2bbce91f944bcd8a348ca5d9fff4bc974df",
+      "bytes": 117289
+    },
+    {
+      "entity": "EPDG",
+      "filename": "EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "prepared": "May 2026",
+      "href": "/guides/EPDG_Customer_Service_and_Pricing_Guide.pdf",
+      "sha256": "366b65a9a98af6f2c1888aebd914f6f747b9426439a34f655830d27524b27d11",
+      "bytes": 124013
+    }
+  ],
+  "catalogSha256": "5dcc9a9581bf810a6f27f8383c5e716198a0a5042794030ab863deded6b772b4",
+  "publicServices": 36,
+  "priceOptions": 120,
+  "publicClassDescriptions": 19,
+  "retainedTopicsWithMissingSource": 2,
+  "lowCostClassesWithoutNumericPrice": 12,
+  "excluded": "Raw internal documents, private contacts, compensation, contracts, staffing instructions, answer keys, unapproved package ladders and recommended launch schedules."
+}

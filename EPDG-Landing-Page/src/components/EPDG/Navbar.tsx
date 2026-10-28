@@ -1,3 +1,5 @@
+import { integratedPreview } from '../../../../shared/development-preview';
+import { threeProgramsEnabled } from '../../../../shared/three-programs-mode';
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/EPDG_LOGO.webp";
@@ -11,10 +13,12 @@ type NavLink = { label: string; id: string } & (
 const navLinks: NavLink[] = [
   { label: "Home", id: "home", type: "home" },
   { label: "Classes", id: "classes", type: "route", to: "/classes" },
-  { label: "Services", id: "services", type: "section" },
+  integratedPreview ? { label: "Services & Pricing", id: "services-pricing", type: "route", to: "/services-pricing" } : { label: "Services", id: "services", type: "section" },
   { label: "Internships", id: "internships", type: "section" },
   { label: "Workforce", id: "workforce", type: "section" },
   { label: "Contact", id: "contact", type: "section" },
+  ...(integratedPreview ? [{ label: "Resources", id: "resources", type: "route" as const, to: "/resources" }, { label: "Learn", id: "learn", type: "route" as const, to: "/learn" }] : []),
+  ...(threeProgramsEnabled ? [{ label: "Global Internship", id: "global-internship-program", type: "route" as const, to: "/global-internship-program" }] : []),
 ];
 
 const PLATFORM_URL = "https://epdg.netlify.app/";
@@ -24,11 +28,11 @@ const Navbar: React.FC = () => {
   const [activeId, setActiveId] = useState("home");
   const navigate = useNavigate();
   const location = useLocation();
-  const onClasses = location.pathname === "/classes";
-  const visibleActiveId = onClasses ? "classes" : activeId;
+  const awayFromHome = location.pathname !== "/";
+  const visibleActiveId = awayFromHome ? location.pathname.split("/")[1] : activeId;
 
   useEffect(() => {
-    if (onClasses) return;
+    if (awayFromHome) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -45,17 +49,17 @@ const Navbar: React.FC = () => {
     });
 
     return () => observer.disconnect();
-  }, [onClasses]);
+  }, [awayFromHome]);
 
   const handleNav = (link: NavLink) => {
     setMenuOpen(false);
     if (link.type === "route") {
       navigate(link.to);
     } else if (link.type === "home") {
-      if (onClasses) navigate("/");
+      if (awayFromHome) navigate("/");
       else window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      if (onClasses) {
+      if (awayFromHome) {
         navigate("/", { state: { scrollTo: link.id } });
       } else {
         document.getElementById(link.id)?.scrollIntoView({ behavior: "smooth" });
@@ -77,7 +81,7 @@ const Navbar: React.FC = () => {
           </span>
         </button>
 
-        <ul className="hidden xl:flex items-center gap-8 font-medium text-white/70 text-sm uppercase tracking-[0.18em]">
+        <ul className="hidden xl:flex items-center gap-4 font-medium text-white/70 text-xs uppercase tracking-[0.12em]">
           {navLinks.map((link) => (
             <li key={link.id}>
               <button
@@ -94,7 +98,7 @@ const Navbar: React.FC = () => {
           ))}
         </ul>
 
-        <div className="hidden xl:flex items-center gap-3">
+        {!integratedPreview && <div className="hidden xl:flex items-center gap-3">
           <a
             href={PLATFORM_URL}
             target="_blank"
@@ -111,7 +115,7 @@ const Navbar: React.FC = () => {
           >
             Create Account
           </a>
-        </div>
+        </div>}
 
         <button
           className="xl:hidden flex justify-center items-center bg-[#03140f] border border-white/10 rounded-full w-11 h-11 text-white cursor-pointer"
@@ -129,8 +133,8 @@ const Navbar: React.FC = () => {
       </div>
 
       {menuOpen && (
-        <div className="xl:hidden space-y-4 bg-[#03140f] px-4 pb-6 border-white/10 border-t">
-          <ul className="flex flex-col gap-2 pt-4 text-white/75 text-sm uppercase tracking-[0.18em]">
+        <div className="xl:hidden max-h-[calc(100dvh-81px)] overflow-y-auto space-y-4 bg-[#03140f] px-4 pb-6 border-white/10 border-t">
+          <ul className="flex flex-col gap-2 pt-4 text-white/75 text-xs uppercase tracking-[0.12em]">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <button
@@ -144,7 +148,7 @@ const Navbar: React.FC = () => {
               </li>
             ))}
           </ul>
-          <div className="flex flex-col gap-3">
+          {!integratedPreview && <div className="flex flex-col gap-3">
             <a
               href={PLATFORM_URL}
               target="_blank"
@@ -161,7 +165,7 @@ const Navbar: React.FC = () => {
             >
               Create Account
             </a>
-          </div>
+          </div>}
         </div>
       )}
     </nav>

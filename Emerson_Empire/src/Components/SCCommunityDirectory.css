@@ -1,0 +1,27 @@
+.sc-community { margin-top: 3rem; border-top: 1px solid var(--cp-border, #d9dfe7); padding-top: 2rem; scroll-margin-top: 1rem; }
+.sc-intro { max-width: 76ch; margin-bottom: 1.5rem; }
+.sc-intro h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.sc-community label { display: grid; gap: .4rem; font-weight: 650; }
+.sc-community select, .sc-community input { width: 100%; min-width: 0; padding: .65rem; border: 1px solid #8494a6; border-radius: .4rem; background: white; color: #13273a; font: inherit; }
+.sc-community button { min-height: 44px; }
+.sc-community .sc-filter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.sc-search { grid-column: 1 / -1; }
+.sc-county { margin-bottom: 1.5rem; }
+.sc-county label { max-width: 28rem; }
+.sc-county-result { margin-top: 1rem; }
+.sc-community dl { margin: 1rem 0; }
+.sc-community dl > div { margin-bottom: .7rem; }
+.sc-community dt { font-weight: 700; font-size: .9rem; }
+.sc-community dd { margin: .2rem 0 0; white-space: pre-line; }
+.sc-resource-card { min-width: 0; overflow-wrap: anywhere; }
+.sc-resource-card h3 { font-size: 1.2rem; line-height: 1.4; }
+.sc-resource-area { font-weight: 600; }
+.sc-caution { border-left: 3px solid #a66b15; padding-left: .65rem; background: #fffbef; color: #49360e; }
+.sc-record-details summary { cursor: pointer; font-weight: 650; padding: .65rem 0; min-height: 44px; }
+.sc-record-details[open] { border-top: 1px solid #d9dfe7; }
+.sc-source-links { padding-left: 1.2rem; font-size: .9rem; overflow-wrap: anywhere; }
+.sc-results-heading { scroll-margin-top: 1rem; }
+.sc-pagination { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+.sc-back { margin-top: 2rem; }
+.sc-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 600px) { .sc-community .sc-filter { grid-template-columns: minmax(0, 1fr); } .sc-resource-grid { grid-template-columns: minmax(0, 1fr); } .sc-county { padding: 1rem; } }

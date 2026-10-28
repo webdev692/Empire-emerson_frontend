@@ -1,0 +1,5 @@
+{
+  "TEE": { "app": "Emerson_Empire", "project": "theemerson", "site_id": "32b31e79-2259-4ca8-8f62-7177fa4099cd", "origin": "https://theemerson.netlify.app" },
+  "TEA": { "app": "Agency_LandingPage", "project": "emersonagency", "site_id": "0ddddc2b-73e3-4496-a704-a605b7ea92be", "origin": "https://emersonagency.netlify.app" },
+  "EPDG": { "app": "EPDG-Landing-Page", "project": "emersonprofessionaldevelopment", "site_id": "63f6b0f8-2c0f-4e66-91f4-b4e755a76b3b", "origin": "https://emersonprofessionaldevelopment.netlify.app" }
+}

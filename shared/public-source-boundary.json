@@ -1,0 +1,1189 @@
+{
+  "schema_version": 1,
+  "scope": "Existing approved public content only; not a content-authoring approval.",
+  "private_source_revision": "e2e0e9404561361407eb88b5ba322d275d70a548",
+  "registration_enabled": false,
+  "live_intake_enabled": false,
+  "payloads": {
+    "Agency_LandingPage/public/guides/The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf": {
+      "sha256_lf": "500c266d555ac8d4d5bfe50b9846c2bbce91f944bcd8a348ca5d9fff4bc974df"
+    },
+    "EPDG-Landing-Page/public/guides/EPDG_Customer_Service_and_Pricing_Guide.pdf": {
+      "sha256_lf": "366b65a9a98af6f2c1888aebd914f6f747b9426439a34f655830d27524b27d11"
+    },
+    "EPDG-Landing-Page/src/data/free-learning.local.json": {
+      "sha256_lf": "5b1f122bdf5a671818219ae470c5549c315f2be5881e1c065dfd293afd694276"
+    },
+    "EPDG-Landing-Page/src/data/institutions.local.json": {
+      "sha256_lf": "09674dcdfde9a4573a1447ced73fc1a67c6d297ce5521dd10789acc32969f221"
+    },
+    "Emerson_Empire/public/guides/The_Emerson_Empire_Customer_Service_and_Pricing_Guide.pdf": {
+      "sha256_lf": "71313eb2fddab63981d0de850c7e31525776454537dfceb87aedfb60b3bc239c"
+    },
+    "Emerson_Empire/src/data/sc-community.local.json": {
+      "sha256_lf": "66b29e08dcd499136e4dbd0115db21c2ed52328d39ca844dc66dc80db240e2b3"
+    },
+    "Emerson_Empire/src/research.public.json": {
+      "sha256_lf": "e463d5e8019f730cca4e7415db735f601e5b11a04bcd48a732a172189a2f77be"
+    },
+    "shared/catalog.public.json": {
+      "sha256_lf": "3c8e6755359c5a77e303b9629f345f1bff0258acc786f3b46a27afa39fa6bfac"
+    },
+    "shared/learning.public.json": {
+      "sha256_lf": "dd293606dc1e395a6bdf7e8ff41cce9a0627d77e1d05a933477ae6d59dd1cdc7"
+    },
+    "shared/package.json": {
+      "sha256_lf": "a90fc33418afa2b9cbf4768524b021135b965ecdf993457505bfae3ac44a8428"
+    },
+    "shared/project-studio.preview.json": {
+      "sha256_lf": "9bdc4efb983bc2c213f9165397ba07fc24858e82bfdda6c83f9d54e0fb9d2366"
+    },
+    "shared/project-studio.public.json": {
+      "sha256_lf": "9bdc4efb983bc2c213f9165397ba07fc24858e82bfdda6c83f9d54e0fb9d2366"
+    },
+    "shared/public-sites.json": {
+      "sha256_lf": "6869ac928ce4eb341065a8ba652ee6fa952658ce02392799ad22d99ed225e1e4"
+    },
+    "shared/release-approval.json": {
+      "sha256_lf": "c3c2ca6544afd1cd0b90a0eb86c245d89f3613cc93c2271e14b96285f9edf61d"
+    },
+    "shared/services-catalog.public.json": {
+      "sha256_lf": "5dcc9a9581bf810a6f27f8383c5e716198a0a5042794030ab863deded6b772b4"
+    },
+    "shared/services-sources.json": {
+      "sha256_lf": "eb91273565dad5f9703d0490017a1a8c48c7df06fd33577cdb2e64d1766dcf19"
+    },
+    "shared/three-programs.preview.json": {
+      "sha256_lf": "0a35fcbde35026bde2b3619678eed9dabc5de6111a9313255e58ae6f54b0ddc5"
+    },
+    "shared/three-programs.public.json": {
+      "sha256_lf": "0a35fcbde35026bde2b3619678eed9dabc5de6111a9313255e58ae6f54b0ddc5"
+    },
+    "docs/PROJECT_STUDIO_PUBLICATION_APPROVAL.json": {
+      "sha256_lf": "6feb4b389eac43204fa65b6156960cfa5b157ce46989e54e6dcc303a0bb50017"
+    },
+    "docs/SERVICES_PUBLICATION_APPROVAL.json": {
+      "sha256_lf": "d7a4735588512f1387dca0c20b923918f30b1799c274d17cf102bfc1cc582b29"
+    },
+    "docs/THREE_PROGRAMS_PUBLICATION_APPROVAL.json": {
+      "sha256_lf": "7d6af5ca66eab08668287010335354bfd86e43c7b0cbd619c1260c117d4778e2"
+    },
+    "docs/TEE_RESEARCH_PUBLICATION_APPROVAL.json": {
+      "sha256_lf": "7a5ff9d4f7fc051e35fa94fac69b093547b6f99412c6072fa0d89eafc2e5596d"
+    },
+    "Emerson_Empire/src/research.preview.json": {
+      "sha256_lf": "74c59ec41d23cb5e20f09703db8f98b22f54a7f0210ea11aad80935bf694f986"
+    }
+  },
+  "published": {
+    "TEE": {
+      "app": "Emerson_Empire",
+      "origin": "https://theemerson.netlify.app",
+      "site_id": "32b31e79-2259-4ca8-8f62-7177fa4099cd",
+      "content_revision": "e2e0e9404561361407eb88b5ba322d275d70a548",
+      "files": [
+        {
+          "path": "assets/Adaobi Celestina Oramife -2hE1AVca.png",
+          "bytes": 1502145,
+          "sha256": "f90d4d363f66fef0ffba73a3d070de487f12b01371ae55360c207ebbf0bed681"
+        },
+        {
+          "path": "assets/Agency-15ooB-V3.avif",
+          "bytes": 76931,
+          "sha256": "e609283df3819500aeb04fcbbbe250462416e50ac96ffcfb3e8d297825264b1c"
+        },
+        {
+          "path": "assets/Agency-Bzo2m5Co.webp",
+          "bytes": 249034,
+          "sha256": "dc812a51268842600ecf39524ad4a3b95af6f655e7bccbc3a2aac95044d99e21"
+        },
+        {
+          "path": "assets/Agency-D1RJevse.jpeg",
+          "bytes": 73804,
+          "sha256": "9e32b7d70ef7740d972902b4b3b708ab33277829d29777dcccfd665fc08c0474"
+        },
+        {
+          "path": "assets/App-DbKj2rlg.css",
+          "bytes": 2626,
+          "sha256": "26d10486c54108d8281a0f90476af8168fbd787fc95ab77dc584d86fdd49daf7"
+        },
+        {
+          "path": "assets/App-D__poR8o.js",
+          "bytes": 141607,
+          "sha256": "e77f923c9556d85c7432cfa5fe09855aa07320a7624be750f43f8c509b4586cc"
+        },
+        {
+          "path": "assets/BelowFold-BDOCW-YD.js",
+          "bytes": 242,
+          "sha256": "c3889c2a3cfaead98a99288e793fb93bca35d77eebabda7243b248df31ec31f6"
+        },
+        {
+          "path": "assets/campaign-Bg0Fx4vC.jpeg",
+          "bytes": 253299,
+          "sha256": "92a5df35746955cbdfa3898bd400b1e2f0b25369d92f013dc22da72ba3287150"
+        },
+        {
+          "path": "assets/campaign-CB8wHd3q.avif",
+          "bytes": 40128,
+          "sha256": "74577c0228252fcdc4f2b9d3294defa4d4fea6a6489e6d6e337ecf014510b1a5"
+        },
+        {
+          "path": "assets/campaign-ZCIHkhRq.webp",
+          "bytes": 77098,
+          "sha256": "b97ba86e6a4ee89b1dffa80c5f339b724f107d6f6f9888846a104fc3cf3020b9"
+        },
+        {
+          "path": "assets/consulting-B32dofMC.jpeg",
+          "bytes": 64116,
+          "sha256": "630b7ff71348e1d3d7bdae336cf6ea20a61696da4152195a3ebdb78863b97913"
+        },
+        {
+          "path": "assets/develpment-CapDQADa.png",
+          "bytes": 2206976,
+          "sha256": "293cdd95235c2e71229ca15996fe7a3538f40a2eb52fb0747d78e7e2b296388e"
+        },
+        {
+          "path": "assets/EmersonAgency-6jOltwvG.png",
+          "bytes": 322894,
+          "sha256": "04b253b777d217c8ec858faf47ae1dbf5caec29763eee78e3f95710ead6cdc1a"
+        },
+        {
+          "path": "assets/EmersonEmpire (2)-BmC_K_wB.png",
+          "bytes": 2140552,
+          "sha256": "1f8f74b8cc95b5674c5645535fd4252632c88c640b50e318f913f74db31e9ff4"
+        },
+        {
+          "path": "assets/EmersonEmpire_logo-C0T2W-nx.avif",
+          "bytes": 21902,
+          "sha256": "205caee34a0908c1c3046fb244da273b08e8280dd89e043226d469f375969104"
+        },
+        {
+          "path": "assets/EmersonEmpire_logo-Dk_jzT3U.png",
+          "bytes": 245673,
+          "sha256": "2e8c1896c1205c3aca11444e677b3aa110fe41c12851f217d1cf537e10fd4190"
+        },
+        {
+          "path": "assets/EmersonEmpire_logo-DO7OsOME.webp",
+          "bytes": 37346,
+          "sha256": "9c3e28e39eafa56db616f642f03fa78d706da8ea4733d203f46520d2d3c24012"
+        },
+        {
+          "path": "assets/emerson_ logo-DVurWPr8.png",
+          "bytes": 207527,
+          "sha256": "d14a0a690a519d2d93804704c515b7d1948f1338ac81c3a1f794d43835d3d6c3"
+        },
+        {
+          "path": "assets/empire-BGjQEigg.webp",
+          "bytes": 29348,
+          "sha256": "f94d1dbf90ddc2f7918a8f6a9c9c555232ca40f9015545fbff801b2882782b2e"
+        },
+        {
+          "path": "assets/empire-DrfIPMnH.jpeg",
+          "bytes": 97713,
+          "sha256": "5ea8c7b07cc4774e838c5a7fa029e536312ce9bf6cd5dd63c8d0c2546101f028"
+        },
+        {
+          "path": "assets/empire-mqvGsrk4.avif",
+          "bytes": 16741,
+          "sha256": "34b00fcfe135479d1e2daee09de89a4515b96d1995506ee61809c663d8341a5b"
+        },
+        {
+          "path": "assets/EPDG_LOGO-HVEACoFs.webp",
+          "bytes": 36126,
+          "sha256": "cf1b03827384abead5aeb65447712634fff47b041b674773a5108fd012275c84"
+        },
+        {
+          "path": "assets/foem-F6pnObYH.jpeg",
+          "bytes": 33713,
+          "sha256": "7f802d5b3502cab37ebe81d8f570034e44939226a4cf1215b22b86f1af49177a"
+        },
+        {
+          "path": "assets/framer-BdlrNaR5.js",
+          "bytes": 133571,
+          "sha256": "ccdd2a9c07996a33857b7fb187937e28d22d9e3c339271c17e78be6186188396"
+        },
+        {
+          "path": "assets/GetInTouch-D9XL0TKi.png",
+          "bytes": 438789,
+          "sha256": "283c880d8d5dbd03a3bd79036589bbb8bff44ccbab7041291dbc8ab088929d9f"
+        },
+        {
+          "path": "assets/globe-CLoF-7LQ.webp",
+          "bytes": 274996,
+          "sha256": "9baeed7b5e2930af734251744f13062d453248d54be126c76f277300e0fc4534"
+        },
+        {
+          "path": "assets/Helena-BCFcB1_F.webp",
+          "bytes": 19986,
+          "sha256": "2e9f088e60be386a22bd78d651e47c9cd0a52da629be5c24a6c5856bfca9c4b0"
+        },
+        {
+          "path": "assets/Helena-CAKn7fyn.jpeg",
+          "bytes": 137921,
+          "sha256": "3d3eb86a1387e198fbd90739b9d0384d6ca480801150c66f8046c79812ba4d1b"
+        },
+        {
+          "path": "assets/Helena-CurdYXUR.avif",
+          "bytes": 9046,
+          "sha256": "eeedbf3d0f0ee4aa85bc6a8632de28fe1a25cbfffacf3904a0202439fae9a046"
+        },
+        {
+          "path": "assets/hero-BCOoNIvo.avif",
+          "bytes": 11664,
+          "sha256": "2e8c2352642df74ebca5da90263d5a313db757d973e63b4c1fd0d3db717aed76"
+        },
+        {
+          "path": "assets/hero-DrjP9zxI.png",
+          "bytes": 256743,
+          "sha256": "cea4f9c5318f1164b8ee9abb50c5f13680b6e5da274fe85de3147439cb13e684"
+        },
+        {
+          "path": "assets/Hosea-7TyD8vqk.png",
+          "bytes": 1859682,
+          "sha256": "5a8a4cd3f41c479cf0390f9b976dff5a8038c115c7df7ddd6a861134be82063d"
+        },
+        {
+          "path": "assets/Hoseabg-D_x3W-Bu.png",
+          "bytes": 1070683,
+          "sha256": "1638654432bba6666b5495839f23e1b941e7fef83b97cb879f6aa26ba9c57bf4"
+        },
+        {
+          "path": "assets/icons-BB-eXLvM.js",
+          "bytes": 9515,
+          "sha256": "f0d1480eb91d22187c1119f000b9a5ed07ec074d37b38b5c09b7f51aafa842db"
+        },
+        {
+          "path": "assets/index--TJYuuFV.css",
+          "bytes": 69690,
+          "sha256": "3f218acc70c388ffd01e6c016254f05e2b5cbfce0ab697ea40b78e4bc40ec399"
+        },
+        {
+          "path": "assets/index-C2sBfAwE.js",
+          "bytes": 193249,
+          "sha256": "e580bfd131f96bd7fd09af10cdcaf6ffb1672c5cf94b913285a9902945bf0918"
+        },
+        {
+          "path": "assets/IntegratedFeatures-ABBhSQnE.css",
+          "bytes": 1726,
+          "sha256": "47434f58632d029b4c81f2cdbcbb6b2badc6a2b9ca723d5da67ff6ac356c5313"
+        },
+        {
+          "path": "assets/IntegratedFeatures-DdFKmKr4.js",
+          "bytes": 1794734,
+          "sha256": "a84401464f320583b022c45eb22bcc52fd0afdef699ecc16fee4c56617ea0e1b"
+        },
+        {
+          "path": "assets/jonathan-D1OWci1R.jpeg",
+          "bytes": 2730860,
+          "sha256": "054aa4aa747ddbbc4fa8740fcefb5d524631579a1b12c22cc51167b55304591c"
+        },
+        {
+          "path": "assets/jonathanbg-BFnjW40i.png",
+          "bytes": 2083877,
+          "sha256": "548ebc656b06db9910ef16c140cc0699aaf886b4f7d62a9d12d7c6746a2e6b83"
+        },
+        {
+          "path": "assets/kashawnbg-DCAl3CLw.png",
+          "bytes": 1708255,
+          "sha256": "cb3849893d69f0130396353b1baec93bf6ba15590cae75ff921581022b4572fd"
+        },
+        {
+          "path": "assets/Khaishawn-CPMEvtsC.jpeg",
+          "bytes": 410391,
+          "sha256": "279f0c1670757c8203db15a52c360a3055b75ba660aaadb392d6431fbb3f7c8c"
+        },
+        {
+          "path": "assets/lidi-W4CW7J4P.png",
+          "bytes": 2019869,
+          "sha256": "102ac9eef3f002d39782ac7da551f07f987274360564bbdc9e1fd596e0639559"
+        },
+        {
+          "path": "assets/LOG 1-DRQEJpEg.webp",
+          "bytes": 36010,
+          "sha256": "21b9f4dd5cbea4b48530cf84216b7f2356da82b3909b316e5bbf8fc965cff8cc"
+        },
+        {
+          "path": "assets/LogoAgency-Be70gniG.png",
+          "bytes": 873989,
+          "sha256": "5a6d66aed7e3cd640cdc61c61c13429afb74b1b72f9bae6fc3113cdae4b934e6"
+        },
+        {
+          "path": "assets/lolobg-CQkJOCcf.png",
+          "bytes": 2121602,
+          "sha256": "ce8756e5c857630a509432287cc706f1c6fecc46e70a9be0a644803a80d3338f"
+        },
+        {
+          "path": "assets/majvin-C4EOCdOB.png",
+          "bytes": 780375,
+          "sha256": "a795b1830c8ed7e298c650dbf10a29e923775969ba220b2ffb89b0f1a333de40"
+        },
+        {
+          "path": "assets/malik-B-k_mPQF.jpeg",
+          "bytes": 241751,
+          "sha256": "c2a00a02a4d6d268f9594d539eafcd691ed64fc42f2fd2d159d0e24da507be06"
+        },
+        {
+          "path": "assets/malik-CW7Vsa02.avif",
+          "bytes": 33328,
+          "sha256": "a17a342d3eed14c6a92862d93282594b1216fe123c6d30d42a0236714a700527"
+        },
+        {
+          "path": "assets/malik-D9OTUREu.webp",
+          "bytes": 75174,
+          "sha256": "fba75a0410246e602c772549aa4ccdeacaf8fc34c28c4379413e55cbe74410fa"
+        },
+        {
+          "path": "assets/malikbg-DCYjS3zD.png",
+          "bytes": 1539488,
+          "sha256": "522a6ba3de13c9b8d67a90451b5da777e337b1e3bae739df28421d9abd1ebe0d"
+        },
+        {
+          "path": "assets/Matheus-Br_fKxY_.jpeg",
+          "bytes": 45225,
+          "sha256": "a4040908390edbc203bb81a8e0291e44a12bf4ec95645ef19bc717e199ffb36c"
+        },
+        {
+          "path": "assets/Matheus-CNBBzWVD.webp",
+          "bytes": 28808,
+          "sha256": "18767c57c2002b7fd7d57729d3638d560d4773d8f6eb0dcf45c199837c2c1473"
+        },
+        {
+          "path": "assets/Matheus-Dbu4UxWA.avif",
+          "bytes": 15995,
+          "sha256": "596eb3e8aa6175fc2e618498c701980e3c7b12228374c5aa94637576a29ff007"
+        },
+        {
+          "path": "assets/matheusbg-B8MwExmx.png",
+          "bytes": 1336210,
+          "sha256": "fa8dbc9db2ae78d45463055a22f98897b77622113d40f68b3c13aab04e0b7c76"
+        },
+        {
+          "path": "assets/meetings-sfPEEZ0B.png",
+          "bytes": 1942766,
+          "sha256": "91b3a8d1b28e3c9c1689f8d47528502dc3681b640aa06125d01b7ae807d73874"
+        },
+        {
+          "path": "assets/Mololuwa Oloyede-D7wu5KNR.jpeg",
+          "bytes": 258239,
+          "sha256": "525c1b6f7c53924d0a1c3ea2afd4aa2bc0dcfa109884ffb22f99bf9c510c81e9"
+        },
+        {
+          "path": "assets/Professional-CdrX6jVg.png",
+          "bytes": 847922,
+          "sha256": "0056644bf21f890d18b36b61069996c2b253b542594a66f7bf9e89a1f067da46"
+        },
+        {
+          "path": "assets/Professional-CMZuXPgM.webp",
+          "bytes": 238730,
+          "sha256": "0af09ead6089959461c2dcd5b11688f132005f11f0c23297ceabdbb2d00a46c7"
+        },
+        {
+          "path": "assets/Professional-DUXUcnoD.avif",
+          "bytes": 71567,
+          "sha256": "4d04de0309ac6fade183a78bd6fda3a951e6e4ca2d93d1d97e6c47375a3b0537"
+        },
+        {
+          "path": "assets/ProjectStudio-C6qYFdaY.css",
+          "bytes": 6443,
+          "sha256": "04c14ab9e58e6175bb2b276baa974167f40b926600a207b88f0e1e4d02a38e51"
+        },
+        {
+          "path": "assets/ProjectStudio-DTtKthya.js",
+          "bytes": 14887,
+          "sha256": "5102920236df37e70ee7eb8a585d5bd6880ad9773cb8a46201066ef9753ad4c2"
+        },
+        {
+          "path": "assets/react-vendor-BHg7d8Xk.js",
+          "bytes": 250120,
+          "sha256": "742f1ef99cf9931a0859124c112a7e53ebfbd6a0c6d931619fc11661cea6be7d"
+        },
+        {
+          "path": "assets/ResearchPreview-3OFjk8O6.css",
+          "bytes": 441,
+          "sha256": "828d5a66c509735ca629e40e80989808e8f720e1c0a0239ebc2360d3a5a4f247"
+        },
+        {
+          "path": "assets/ResearchPreview-DUUKpYMr.js",
+          "bytes": 6895,
+          "sha256": "ee14de02bbe787d246829fc4cb1f83770fd786f340f53d0431cbb2de98f24b8e"
+        },
+        {
+          "path": "assets/ResourceImg-BG3M4SQy.png",
+          "bytes": 452305,
+          "sha256": "187bca8812b014797d9b16c3b4d2e0a05f08113569edc681e1c836a60d304780"
+        },
+        {
+          "path": "assets/rolldown-runtime-CNC7AqOf.js",
+          "bytes": 879,
+          "sha256": "d4a36920c7bab6ec97d0bdc5d1233622f28fe010198ca32bcdd80c8cb6b64aae"
+        },
+        {
+          "path": "assets/sales-BnZ-qw9n.png",
+          "bytes": 1808958,
+          "sha256": "dc0484af2ac6742fa75c314e24b8eeb0fc09f5551a03702c02fd653d56869159"
+        },
+        {
+          "path": "assets/step-1-Cj2oeR2c.png",
+          "bytes": 335015,
+          "sha256": "be8ccfa159f9853539060fc1117d87f862fa15c4dc2578b9bdb8bf3cf51a74b8"
+        },
+        {
+          "path": "assets/step-2-Dmh05J_G.webp",
+          "bytes": 19578,
+          "sha256": "80f9766f99f5f986f52f76bad26b436910248af98a983c710eb1c6ce452440b4"
+        },
+        {
+          "path": "assets/step-3-CuJ5Srz_.webp",
+          "bytes": 45906,
+          "sha256": "1e5035c4f65afda43178f83debd34972b832aa41aa7a4c53e0b04d4dd3eadc7e"
+        },
+        {
+          "path": "assets/study-7uFeCf8f.jpeg",
+          "bytes": 104625,
+          "sha256": "95ba5f759462d7c3fa7f4792a285f0482c9e7a1dea1945f60b3b8383675e5706"
+        },
+        {
+          "path": "assets/tax-BqiIednO.jpeg",
+          "bytes": 87427,
+          "sha256": "ca2d7bd29a55ab86d23358365d8e9f8700602078ee74cc3609028cfb84abd47f"
+        },
+        {
+          "path": "assets/Taxing-Bv96Eiih.jpeg",
+          "bytes": 101615,
+          "sha256": "97f39c3194dbec78600aefb1aa894073a34c1723cd9a1bcb036962e846594937"
+        },
+        {
+          "path": "assets/three-programs-DzlExD3d.js",
+          "bytes": 23917,
+          "sha256": "d1394e028d09b298bd777c82fa033e05b23392497a93f07fc08e3b5edc74681b"
+        },
+        {
+          "path": "assets/ThreePrograms-Can6mWf6.js",
+          "bytes": 11870,
+          "sha256": "d0b17cbd8437cbf228019d5dda34314cbfb1c7ce09dc5cbfa927e4ee2bd4f084"
+        },
+        {
+          "path": "assets/ThreePrograms-q-USMO7a.css",
+          "bytes": 4852,
+          "sha256": "52d75d5a7084713e73bd335d3705790b014a81e395ea24daf828430ddc9c2811"
+        },
+        {
+          "path": "assets/Umbrella-CBAZrxnF.js",
+          "bytes": 58452,
+          "sha256": "ba1390b3195aa82573935ee36c4f68974d0c6612676f7e26f347cc239a07016f"
+        },
+        {
+          "path": "assets/vinbg-CzI3fI6Y.png",
+          "bytes": 1139636,
+          "sha256": "1b9d3ee3dc61088ca7fbc964fd6c1b554ce927218619ac958f7a22a1ca7b3701"
+        },
+        {
+          "path": "assets/vincent (2)-DfaRULOl.jpeg",
+          "bytes": 82323,
+          "sha256": "9d561fc7a14ea9705a7ee04496ea7b6a83b3eb2b751d493fd83c9f8af7aac70a"
+        },
+        {
+          "path": "assets/vincent-CDZrqncZ.jpeg",
+          "bytes": 257100,
+          "sha256": "4e4e2e91f339f6e5bee1dfda1c04a3aeb684a595893b156d69b88123907641fd"
+        },
+        {
+          "path": "assets/vincent-H5x7QeJJ.webp",
+          "bytes": 18700,
+          "sha256": "97da24a1d5095118ef193c7dea9400ccda6614c6d63683ea33eb1ef7aac12da4"
+        },
+        {
+          "path": "assets/vincent-LLLHODW3.avif",
+          "bytes": 9695,
+          "sha256": "cec65e6008dbc7ab2cb6e1b0581c5cb3441c5b3dc3f65d13e3841daa8a330390"
+        },
+        {
+          "path": "assets/wide-CpiRH21E.png",
+          "bytes": 1287268,
+          "sha256": "840d1ac32eb70a7ca355ada181ec3a423ddbcd91c47675b5690d431916159814"
+        },
+        {
+          "path": "assets/Wiltord-Dq2HBEoE.jpeg",
+          "bytes": 88943,
+          "sha256": "79516df33833dc85ae859d4e769587d35c1787d56c2a12b51b604771a139a962"
+        },
+        {
+          "path": "assets/wiltordbg-7gaDJXX1.png",
+          "bytes": 822783,
+          "sha256": "2a057b562a3d1d70c1316246c69b081bd6ffb84b088444d96235aac3cf0cb164"
+        },
+        {
+          "path": "assets/workshop-CPk0t_sm.jpeg",
+          "bytes": 104790,
+          "sha256": "f41f9688905619086d955918aec69b289b429dceb5bf0cafb2ae408d3d5bdbbb"
+        },
+        {
+          "path": "favicon.svg",
+          "bytes": 9522,
+          "sha256": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66"
+        },
+        {
+          "path": "guides/The_Emerson_Empire_Customer_Service_and_Pricing_Guide.pdf",
+          "bytes": 97212,
+          "sha256": "71313eb2fddab63981d0de850c7e31525776454537dfceb87aedfb60b3bc239c"
+        },
+        {
+          "path": "icons.svg",
+          "bytes": 5055,
+          "sha256": "7ca2d67c9c3aebf50cdc8709ee8aacf8cdb8cc7ea6325ea94939caef5da1c53d"
+        },
+        {
+          "path": "index.html",
+          "bytes": 3217,
+          "sha256": "90c9f1d0f1e2d9dcf28d3a92a7fbfbf68b8ff0285dac45526ffb1c45bf4da9d4"
+        },
+        {
+          "path": "robots.txt",
+          "bytes": 75,
+          "sha256": "25c2d585061c17240af97d965e1441328f18113dd722c535f383fb400d3a0edd"
+        },
+        {
+          "path": "sitemap.xml",
+          "bytes": 4000,
+          "sha256": "61f88092af6318391c130c08af3af66a8fd752d5466a0d9ec6f4fbf5be7b335b"
+        },
+        {
+          "path": "videos/hero-epdg.mp4",
+          "bytes": 22784485,
+          "sha256": "6497ed0d8105966ca0a3173483d1d5c7fa44e07f5cb5321ec008c825002a5bde"
+        },
+        {
+          "path": "_headers",
+          "bytes": 416,
+          "sha256": "d8e86197b8a30ecc59a5defe0450f310a41a9321c350bdfd5c6da5a3162d7340"
+        },
+        {
+          "path": "_redirects",
+          "bytes": 19,
+          "sha256": "6036983e5fc00f0169c9e939b1816ed771eee00e27f2fcc517b819041460b9ef"
+        }
+      ]
+    },
+    "TEA": {
+      "app": "Agency_LandingPage",
+      "origin": "https://emersonagency.netlify.app",
+      "site_id": "0ddddc2b-73e3-4496-a704-a605b7ea92be",
+      "content_revision": "5bd718bbce430df59125e8ac09745c81d68c76da",
+      "files": [
+        {
+          "path": "assets/Adaobi Celestina Oramife -2hE1AVca.png",
+          "bytes": 1502145,
+          "sha256": "f90d4d363f66fef0ffba73a3d070de487f12b01371ae55360c207ebbf0bed681"
+        },
+        {
+          "path": "assets/Agency-15ooB-V3.avif",
+          "bytes": 76931,
+          "sha256": "e609283df3819500aeb04fcbbbe250462416e50ac96ffcfb3e8d297825264b1c"
+        },
+        {
+          "path": "assets/Agency-Bzo2m5Co.webp",
+          "bytes": 249034,
+          "sha256": "dc812a51268842600ecf39524ad4a3b95af6f655e7bccbc3a2aac95044d99e21"
+        },
+        {
+          "path": "assets/Agency-D1RJevse.jpeg",
+          "bytes": 73804,
+          "sha256": "9e32b7d70ef7740d972902b4b3b708ab33277829d29777dcccfd665fc08c0474"
+        },
+        {
+          "path": "assets/Agency_Hero-DGd0fvY0.png",
+          "bytes": 1036498,
+          "sha256": "b9015808027f73194eabf7ef6a9cb9463dea22392be36f77e00c683877944c48"
+        },
+        {
+          "path": "assets/Agency_Values-YQhb9umD.png",
+          "bytes": 882204,
+          "sha256": "4fe04092f783b781cbf7f32db6cf40c1267aab5e2945d4bfe93ff8a7959b407c"
+        },
+        {
+          "path": "assets/App-BxZbhR1f.js",
+          "bytes": 48516,
+          "sha256": "098303a5df2a4e096d8bd3b3deec1d45b4183ea4404ce5e17c733bd6fe795a60"
+        },
+        {
+          "path": "assets/App-DbKj2rlg.css",
+          "bytes": 2626,
+          "sha256": "26d10486c54108d8281a0f90476af8168fbd787fc95ab77dc584d86fdd49daf7"
+        },
+        {
+          "path": "assets/campaign-Bg0Fx4vC.jpeg",
+          "bytes": 253299,
+          "sha256": "92a5df35746955cbdfa3898bd400b1e2f0b25369d92f013dc22da72ba3287150"
+        },
+        {
+          "path": "assets/campaign-CB8wHd3q.avif",
+          "bytes": 40128,
+          "sha256": "74577c0228252fcdc4f2b9d3294defa4d4fea6a6489e6d6e337ecf014510b1a5"
+        },
+        {
+          "path": "assets/campaign-ZCIHkhRq.webp",
+          "bytes": 77098,
+          "sha256": "b97ba86e6a4ee89b1dffa80c5f339b724f107d6f6f9888846a104fc3cf3020b9"
+        },
+        {
+          "path": "assets/consulting-B32dofMC.jpeg",
+          "bytes": 64116,
+          "sha256": "630b7ff71348e1d3d7bdae336cf6ea20a61696da4152195a3ebdb78863b97913"
+        },
+        {
+          "path": "assets/develpment-CapDQADa.png",
+          "bytes": 2206976,
+          "sha256": "293cdd95235c2e71229ca15996fe7a3538f40a2eb52fb0747d78e7e2b296388e"
+        },
+        {
+          "path": "assets/EmersonAgency-6jOltwvG.png",
+          "bytes": 322894,
+          "sha256": "04b253b777d217c8ec858faf47ae1dbf5caec29763eee78e3f95710ead6cdc1a"
+        },
+        {
+          "path": "assets/EmersonAgency-DTxrz0zB.webp",
+          "bytes": 102144,
+          "sha256": "eed835b18c906fed959d727f26d0458e4bdc4883820a3ecdba1ad4c7b5020f28"
+        },
+        {
+          "path": "assets/EmersonEmpire (2)-BmC_K_wB.png",
+          "bytes": 2140552,
+          "sha256": "1f8f74b8cc95b5674c5645535fd4252632c88c640b50e318f913f74db31e9ff4"
+        },
+        {
+          "path": "assets/EmersonEmpire_logo-C0T2W-nx.avif",
+          "bytes": 21902,
+          "sha256": "205caee34a0908c1c3046fb244da273b08e8280dd89e043226d469f375969104"
+        },
+        {
+          "path": "assets/EmersonEmpire_logo-Dk_jzT3U.png",
+          "bytes": 245673,
+          "sha256": "2e8c1896c1205c3aca11444e677b3aa110fe41c12851f217d1cf537e10fd4190"
+        },
+        {
+          "path": "assets/EmersonEmpire_logo-DO7OsOME.webp",
+          "bytes": 37346,
+          "sha256": "9c3e28e39eafa56db616f642f03fa78d706da8ea4733d203f46520d2d3c24012"
+        },
+        {
+          "path": "assets/emerson_ logo-DVurWPr8.png",
+          "bytes": 207527,
+          "sha256": "d14a0a690a519d2d93804704c515b7d1948f1338ac81c3a1f794d43835d3d6c3"
+        },
+        {
+          "path": "assets/empire-BGjQEigg.webp",
+          "bytes": 29348,
+          "sha256": "f94d1dbf90ddc2f7918a8f6a9c9c555232ca40f9015545fbff801b2882782b2e"
+        },
+        {
+          "path": "assets/empire-DrfIPMnH.jpeg",
+          "bytes": 97713,
+          "sha256": "5ea8c7b07cc4774e838c5a7fa029e536312ce9bf6cd5dd63c8d0c2546101f028"
+        },
+        {
+          "path": "assets/empire-mqvGsrk4.avif",
+          "bytes": 16741,
+          "sha256": "34b00fcfe135479d1e2daee09de89a4515b96d1995506ee61809c663d8341a5b"
+        },
+        {
+          "path": "assets/EPDG_LOGO-HVEACoFs.webp",
+          "bytes": 36126,
+          "sha256": "cf1b03827384abead5aeb65447712634fff47b041b674773a5108fd012275c84"
+        },
+        {
+          "path": "assets/Finacial-B1mdg4Nf.png",
+          "bytes": 471556,
+          "sha256": "307632b9d7fe9433e454bfbc91dfebb523024e90b5d2fe7ddbc5d0af7863bcd6"
+        },
+        {
+          "path": "assets/foem-F6pnObYH.jpeg",
+          "bytes": 33713,
+          "sha256": "7f802d5b3502cab37ebe81d8f570034e44939226a4cf1215b22b86f1af49177a"
+        },
+        {
+          "path": "assets/GetInTouch-D9XL0TKi.png",
+          "bytes": 438789,
+          "sha256": "283c880d8d5dbd03a3bd79036589bbb8bff44ccbab7041291dbc8ab088929d9f"
+        },
+        {
+          "path": "assets/globe-CLoF-7LQ.webp",
+          "bytes": 274996,
+          "sha256": "9baeed7b5e2930af734251744f13062d453248d54be126c76f277300e0fc4534"
+        },
+        {
+          "path": "assets/Helena-BCFcB1_F.webp",
+          "bytes": 19986,
+          "sha256": "2e9f088e60be386a22bd78d651e47c9cd0a52da629be5c24a6c5856bfca9c4b0"
+        },
+        {
+          "path": "assets/Helena-CAKn7fyn.jpeg",
+          "bytes": 137921,
+          "sha256": "3d3eb86a1387e198fbd90739b9d0384d6ca480801150c66f8046c79812ba4d1b"
+        },
+        {
+          "path": "assets/Helena-CurdYXUR.avif",
+          "bytes": 9046,
+          "sha256": "eeedbf3d0f0ee4aa85bc6a8632de28fe1a25cbfffacf3904a0202439fae9a046"
+        },
+        {
+          "path": "assets/hero-BCOoNIvo.avif",
+          "bytes": 11664,
+          "sha256": "2e8c2352642df74ebca5da90263d5a313db757d973e63b4c1fd0d3db717aed76"
+        },
+        {
+          "path": "assets/hero-DrjP9zxI.png",
+          "bytes": 256743,
+          "sha256": "cea4f9c5318f1164b8ee9abb50c5f13680b6e5da274fe85de3147439cb13e684"
+        },
+        {
+          "path": "assets/Hosea-7TyD8vqk.png",
+          "bytes": 1859682,
+          "sha256": "5a8a4cd3f41c479cf0390f9b976dff5a8038c115c7df7ddd6a861134be82063d"
+        },
+        {
+          "path": "assets/Hoseabg-D_x3W-Bu.png",
+          "bytes": 1070683,
+          "sha256": "1638654432bba6666b5495839f23e1b941e7fef83b97cb879f6aa26ba9c57bf4"
+        },
+        {
+          "path": "assets/icons-DUK4ksXY.js",
+          "bytes": 14393,
+          "sha256": "868e6755184a3c8de4e93bfb6b662c21ae2d32f574c010557ee576f497f4363e"
+        },
+        {
+          "path": "assets/index-CoyMWGPm.css",
+          "bytes": 79250,
+          "sha256": "47aac8847c95075c82187cb3aa6669a6a306cd80518a45916d8dd54e186802fb"
+        },
+        {
+          "path": "assets/index-DETw9X37.js",
+          "bytes": 193150,
+          "sha256": "34b27ef7dbcd30c6d5e586cf5296f6353460028a2fa9fb573c83fd1ac7edceec"
+        },
+        {
+          "path": "assets/IntegratedFeatures-DFGOHZ1t.js",
+          "bytes": 216,
+          "sha256": "e8cd255c99d71ec9ebd5a43f1e6735f8909074990b34097302a12078b81d762e"
+        },
+        {
+          "path": "assets/jonathan-D1OWci1R.jpeg",
+          "bytes": 2730860,
+          "sha256": "054aa4aa747ddbbc4fa8740fcefb5d524631579a1b12c22cc51167b55304591c"
+        },
+        {
+          "path": "assets/jonathanbg-BFnjW40i.png",
+          "bytes": 2083877,
+          "sha256": "548ebc656b06db9910ef16c140cc0699aaf886b4f7d62a9d12d7c6746a2e6b83"
+        },
+        {
+          "path": "assets/kashawnbg-DCAl3CLw.png",
+          "bytes": 1708255,
+          "sha256": "cb3849893d69f0130396353b1baec93bf6ba15590cae75ff921581022b4572fd"
+        },
+        {
+          "path": "assets/Khaishawn-CPMEvtsC.jpeg",
+          "bytes": 410391,
+          "sha256": "279f0c1670757c8203db15a52c360a3055b75ba660aaadb392d6431fbb3f7c8c"
+        },
+        {
+          "path": "assets/lidi-W4CW7J4P.png",
+          "bytes": 2019869,
+          "sha256": "102ac9eef3f002d39782ac7da551f07f987274360564bbdc9e1fd596e0639559"
+        },
+        {
+          "path": "assets/LOG 1-DRQEJpEg.webp",
+          "bytes": 36010,
+          "sha256": "21b9f4dd5cbea4b48530cf84216b7f2356da82b3909b316e5bbf8fc965cff8cc"
+        },
+        {
+          "path": "assets/LogoAgency-Be70gniG.png",
+          "bytes": 873989,
+          "sha256": "5a6d66aed7e3cd640cdc61c61c13429afb74b1b72f9bae6fc3113cdae4b934e6"
+        },
+        {
+          "path": "assets/lolobg-CQkJOCcf.png",
+          "bytes": 2121602,
+          "sha256": "ce8756e5c857630a509432287cc706f1c6fecc46e70a9be0a644803a80d3338f"
+        },
+        {
+          "path": "assets/majvin-C4EOCdOB.png",
+          "bytes": 780375,
+          "sha256": "a795b1830c8ed7e298c650dbf10a29e923775969ba220b2ffb89b0f1a333de40"
+        },
+        {
+          "path": "assets/malik-B-k_mPQF.jpeg",
+          "bytes": 241751,
+          "sha256": "c2a00a02a4d6d268f9594d539eafcd691ed64fc42f2fd2d159d0e24da507be06"
+        },
+        {
+          "path": "assets/malik-CW7Vsa02.avif",
+          "bytes": 33328,
+          "sha256": "a17a342d3eed14c6a92862d93282594b1216fe123c6d30d42a0236714a700527"
+        },
+        {
+          "path": "assets/malik-D9OTUREu.webp",
+          "bytes": 75174,
+          "sha256": "fba75a0410246e602c772549aa4ccdeacaf8fc34c28c4379413e55cbe74410fa"
+        },
+        {
+          "path": "assets/malikbg-DCYjS3zD.png",
+          "bytes": 1539488,
+          "sha256": "522a6ba3de13c9b8d67a90451b5da777e337b1e3bae739df28421d9abd1ebe0d"
+        },
+        {
+          "path": "assets/Matheus-Br_fKxY_.jpeg",
+          "bytes": 45225,
+          "sha256": "a4040908390edbc203bb81a8e0291e44a12bf4ec95645ef19bc717e199ffb36c"
+        },
+        {
+          "path": "assets/Matheus-CNBBzWVD.webp",
+          "bytes": 28808,
+          "sha256": "18767c57c2002b7fd7d57729d3638d560d4773d8f6eb0dcf45c199837c2c1473"
+        },
+        {
+          "path": "assets/Matheus-Dbu4UxWA.avif",
+          "bytes": 15995,
+          "sha256": "596eb3e8aa6175fc2e618498c701980e3c7b12228374c5aa94637576a29ff007"
+        },
+        {
+          "path": "assets/matheusbg-B8MwExmx.png",
+          "bytes": 1336210,
+          "sha256": "fa8dbc9db2ae78d45463055a22f98897b77622113d40f68b3c13aab04e0b7c76"
+        },
+        {
+          "path": "assets/meetings-sfPEEZ0B.png",
+          "bytes": 1942766,
+          "sha256": "91b3a8d1b28e3c9c1689f8d47528502dc3681b640aa06125d01b7ae807d73874"
+        },
+        {
+          "path": "assets/Mololuwa Oloyede-D7wu5KNR.jpeg",
+          "bytes": 258239,
+          "sha256": "525c1b6f7c53924d0a1c3ea2afd4aa2bc0dcfa109884ffb22f99bf9c510c81e9"
+        },
+        {
+          "path": "assets/Professional-CdrX6jVg.png",
+          "bytes": 847922,
+          "sha256": "0056644bf21f890d18b36b61069996c2b253b542594a66f7bf9e89a1f067da46"
+        },
+        {
+          "path": "assets/Professional-CMZuXPgM.webp",
+          "bytes": 238730,
+          "sha256": "0af09ead6089959461c2dcd5b11688f132005f11f0c23297ceabdbb2d00a46c7"
+        },
+        {
+          "path": "assets/Professional-DUXUcnoD.avif",
+          "bytes": 71567,
+          "sha256": "4d04de0309ac6fade183a78bd6fda3a951e6e4ca2d93d1d97e6c47375a3b0537"
+        },
+        {
+          "path": "assets/ProjectStudio-BqfhudJB.js",
+          "bytes": 14926,
+          "sha256": "86a6971c967d3e67b4a684c60d39b5dc4d06a84bd31ac02dad65c95299494114"
+        },
+        {
+          "path": "assets/ProjectStudio-C6qYFdaY.css",
+          "bytes": 6443,
+          "sha256": "04c14ab9e58e6175bb2b276baa974167f40b926600a207b88f0e1e4d02a38e51"
+        },
+        {
+          "path": "assets/react-vendor-CT0ecGY5.js",
+          "bytes": 230468,
+          "sha256": "e744d40d2303d9b41a04524263adc1cd9e64d646cb494d2a8c4ecd70c6c0b573"
+        },
+        {
+          "path": "assets/ResourceImg-BG3M4SQy.png",
+          "bytes": 452305,
+          "sha256": "187bca8812b014797d9b16c3b4d2e0a05f08113569edc681e1c836a60d304780"
+        },
+        {
+          "path": "assets/rolldown-runtime-Bh1tDfsg.js",
+          "bytes": 567,
+          "sha256": "1b13387cb23dc39bf70e31677c21f6db5cad3377b96f286b6ee444496e5bfea7"
+        },
+        {
+          "path": "assets/sales-BnZ-qw9n.png",
+          "bytes": 1808958,
+          "sha256": "dc0484af2ac6742fa75c314e24b8eeb0fc09f5551a03702c02fd653d56869159"
+        },
+        {
+          "path": "assets/ServicesBackground-CM2vYNSg.png",
+          "bytes": 1605276,
+          "sha256": "5beda181d12364b460e143d76497b284c8868538b5705edf806365e03f7b071b"
+        },
+        {
+          "path": "assets/step-1-Cj2oeR2c.png",
+          "bytes": 335015,
+          "sha256": "be8ccfa159f9853539060fc1117d87f862fa15c4dc2578b9bdb8bf3cf51a74b8"
+        },
+        {
+          "path": "assets/step-2-Dmh05J_G.webp",
+          "bytes": 19578,
+          "sha256": "80f9766f99f5f986f52f76bad26b436910248af98a983c710eb1c6ce452440b4"
+        },
+        {
+          "path": "assets/step-3-CuJ5Srz_.webp",
+          "bytes": 45906,
+          "sha256": "1e5035c4f65afda43178f83debd34972b832aa41aa7a4c53e0b04d4dd3eadc7e"
+        },
+        {
+          "path": "assets/study-7uFeCf8f.jpeg",
+          "bytes": 104625,
+          "sha256": "95ba5f759462d7c3fa7f4792a285f0482c9e7a1dea1945f60b3b8383675e5706"
+        },
+        {
+          "path": "assets/tax-BqiIednO.jpeg",
+          "bytes": 87427,
+          "sha256": "ca2d7bd29a55ab86d23358365d8e9f8700602078ee74cc3609028cfb84abd47f"
+        },
+        {
+          "path": "assets/Taxing-Bv96Eiih.jpeg",
+          "bytes": 101615,
+          "sha256": "97f39c3194dbec78600aefb1aa894073a34c1723cd9a1bcb036962e846594937"
+        },
+        {
+          "path": "assets/three-programs-BmnjGJWI.js",
+          "bytes": 23917,
+          "sha256": "11449be7e3257ca6207232b530cf842d834e4f99aadcf58d9a77a28102768cf8"
+        },
+        {
+          "path": "assets/ThreePrograms-BEZTj-Ql.js",
+          "bytes": 11909,
+          "sha256": "398099183703b0cc8c6a25b7077384ef4157746eed511f9bc047ccdf5f66add7"
+        },
+        {
+          "path": "assets/ThreePrograms-q-USMO7a.css",
+          "bytes": 4852,
+          "sha256": "52d75d5a7084713e73bd335d3705790b014a81e395ea24daf828430ddc9c2811"
+        },
+        {
+          "path": "assets/vinbg-CzI3fI6Y.png",
+          "bytes": 1139636,
+          "sha256": "1b9d3ee3dc61088ca7fbc964fd6c1b554ce927218619ac958f7a22a1ca7b3701"
+        },
+        {
+          "path": "assets/vincent (2)-DfaRULOl.jpeg",
+          "bytes": 82323,
+          "sha256": "9d561fc7a14ea9705a7ee04496ea7b6a83b3eb2b751d493fd83c9f8af7aac70a"
+        },
+        {
+          "path": "assets/vincent-CDZrqncZ.jpeg",
+          "bytes": 257100,
+          "sha256": "4e4e2e91f339f6e5bee1dfda1c04a3aeb684a595893b156d69b88123907641fd"
+        },
+        {
+          "path": "assets/vincent-H5x7QeJJ.webp",
+          "bytes": 18700,
+          "sha256": "97da24a1d5095118ef193c7dea9400ccda6614c6d63683ea33eb1ef7aac12da4"
+        },
+        {
+          "path": "assets/vincent-LLLHODW3.avif",
+          "bytes": 9695,
+          "sha256": "cec65e6008dbc7ab2cb6e1b0581c5cb3441c5b3dc3f65d13e3841daa8a330390"
+        },
+        {
+          "path": "assets/wide-CpiRH21E.png",
+          "bytes": 1287268,
+          "sha256": "840d1ac32eb70a7ca355ada181ec3a423ddbcd91c47675b5690d431916159814"
+        },
+        {
+          "path": "assets/Wiltord-Dq2HBEoE.jpeg",
+          "bytes": 88943,
+          "sha256": "79516df33833dc85ae859d4e769587d35c1787d56c2a12b51b604771a139a962"
+        },
+        {
+          "path": "assets/wiltordbg-7gaDJXX1.png",
+          "bytes": 822783,
+          "sha256": "2a057b562a3d1d70c1316246c69b081bd6ffb84b088444d96235aac3cf0cb164"
+        },
+        {
+          "path": "assets/workshop-CPk0t_sm.jpeg",
+          "bytes": 104790,
+          "sha256": "f41f9688905619086d955918aec69b289b429dceb5bf0cafb2ae408d3d5bdbbb"
+        },
+        {
+          "path": "favicon.svg",
+          "bytes": 9522,
+          "sha256": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66"
+        },
+        {
+          "path": "guides/The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf",
+          "bytes": 117289,
+          "sha256": "500c266d555ac8d4d5bfe50b9846c2bbce91f944bcd8a348ca5d9fff4bc974df"
+        },
+        {
+          "path": "icons.svg",
+          "bytes": 5055,
+          "sha256": "7ca2d67c9c3aebf50cdc8709ee8aacf8cdb8cc7ea6325ea94939caef5da1c53d"
+        },
+        {
+          "path": "index.html",
+          "bytes": 3080,
+          "sha256": "fa4ee768a60528d80e2b8b129b4406bcac831ee40a6364924f6f3015ec36e227"
+        },
+        {
+          "path": "robots.txt",
+          "bytes": 78,
+          "sha256": "32a4fe57631f5ae14e8360351dd0f112dee05dba8cff2788d6030884e6ebfc53"
+        },
+        {
+          "path": "sitemap.xml",
+          "bytes": 1779,
+          "sha256": "3d54c291de8118422c4d18ee3a3d23d1539598c4fe6c9eb520f33ed59299ceb9"
+        },
+        {
+          "path": "videos/hero-epdg.mp4",
+          "bytes": 22784485,
+          "sha256": "6497ed0d8105966ca0a3173483d1d5c7fa44e07f5cb5321ec008c825002a5bde"
+        },
+        {
+          "path": "_headers",
+          "bytes": 416,
+          "sha256": "d8e86197b8a30ecc59a5defe0450f310a41a9321c350bdfd5c6da5a3162d7340"
+        },
+        {
+          "path": "_redirects",
+          "bytes": 19,
+          "sha256": "6036983e5fc00f0169c9e939b1816ed771eee00e27f2fcc517b819041460b9ef"
+        }
+      ]
+    },
+    "EPDG": {
+      "app": "EPDG-Landing-Page",
+      "origin": "https://emersonprofessionaldevelopment.netlify.app",
+      "site_id": "63f6b0f8-2c0f-4e66-91f4-b4e755a76b3b",
+      "content_revision": "5bd718bbce430df59125e8ac09745c81d68c76da",
+      "files": [
+        {
+          "path": "404.html",
+          "bytes": 422,
+          "sha256": "dce28808624f2362f6e5088076bfa2ca3fb16a53acc89953036022e795489a00"
+        },
+        {
+          "path": "assets/App-DbKj2rlg.css",
+          "bytes": 2626,
+          "sha256": "26d10486c54108d8281a0f90476af8168fbd787fc95ab77dc584d86fdd49daf7"
+        },
+        {
+          "path": "assets/App-s7G9y_MF.js",
+          "bytes": 57142,
+          "sha256": "a39f79bc95bcfc7697dafb46811e16846cdcc30dc300fb5a36c3e65c245469ed"
+        },
+        {
+          "path": "assets/bussines-DmawS0YG.png",
+          "bytes": 2110311,
+          "sha256": "c70332e1302f9774930b53d1e6ff560fea43f539e57935afa13b83d783edfc80"
+        },
+        {
+          "path": "assets/CareerSupportBackground-CWMalJGm.png",
+          "bytes": 1226588,
+          "sha256": "6487c680f4bc30d60fb73c56c93617aad00b041a3069ffe0364bf49762bd826c"
+        },
+        {
+          "path": "assets/chunk-4ZMWKKQ3-BZ8fY_D4.js",
+          "bytes": 39849,
+          "sha256": "c21d404339a13972eb0136ffab7d4b87b734898199064cfd3803c32423c4e5cf"
+        },
+        {
+          "path": "assets/EmersonEmpire_logo-DO7OsOME.webp",
+          "bytes": 37346,
+          "sha256": "9c3e28e39eafa56db616f642f03fa78d706da8ea4733d203f46520d2d3c24012"
+        },
+        {
+          "path": "assets/EPDG_LOGO-HVEACoFs.webp",
+          "bytes": 36126,
+          "sha256": "cf1b03827384abead5aeb65447712634fff47b041b674773a5108fd012275c84"
+        },
+        {
+          "path": "assets/Experience-DTJO2_FG.png",
+          "bytes": 603921,
+          "sha256": "70b23df2d9d92a84c99e78e3ca39fdef20dfd730c1ec93186772fb1625e847de"
+        },
+        {
+          "path": "assets/HeroEPDG-B17DsopG.webp",
+          "bytes": 364304,
+          "sha256": "6dcb72098ceaf8767ed6b00a91086f5bc006aeec5a80272b378ad93b55cc0fdf"
+        },
+        {
+          "path": "assets/index-Blkf-QeU.css",
+          "bytes": 49594,
+          "sha256": "021e71bdb1a07dbe36ce98c9c436ff62b5dc2f5cc3ac06150d843c6a86a1e4ed"
+        },
+        {
+          "path": "assets/index-DDfa_9f_.js",
+          "bytes": 384474,
+          "sha256": "2897f5c77ecbe4a47d7904120352e71bf43a8069c1a256c1e8e7136abd0dbbfd"
+        },
+        {
+          "path": "assets/IntegratedFeatures-BCzqy1Pt.css",
+          "bytes": 4961,
+          "sha256": "df22c5420094ff6537db0a710ccc9a35211bf2666c4a9c06a7343b2a9c6d7e3d"
+        },
+        {
+          "path": "assets/IntegratedFeatures-BEEJhQ4g.js",
+          "bytes": 11237688,
+          "sha256": "90ac11ed9b245d630b490dfe8084b4f4444ea070ec1864f78aa4638140383707"
+        },
+        {
+          "path": "assets/LogoAgency-Be70gniG.png",
+          "bytes": 873989,
+          "sha256": "5a6d66aed7e3cd640cdc61c61c13429afb74b1b72f9bae6fc3113cdae4b934e6"
+        },
+        {
+          "path": "assets/OurValues-ByVqYGJr.png",
+          "bytes": 1065440,
+          "sha256": "d657eb8be73030de75e21b9613b10fa635ceea890a62a92bf90f6800e6173a9b"
+        },
+        {
+          "path": "assets/three-programs-CbLzxpjp.js",
+          "bytes": 23917,
+          "sha256": "cb9ecbb4f9fb382e73592069a68e04e9d0ef9b0cb1a0932f5fe0bcc22753aef4"
+        },
+        {
+          "path": "assets/ThreePrograms-CWlBXNCU.js",
+          "bytes": 11792,
+          "sha256": "0a54d5facad0b9263502b974fb1a6aa33fdb8c58a28ce08a4a827159c4a8fbb8"
+        },
+        {
+          "path": "assets/ThreePrograms-q-USMO7a.css",
+          "bytes": 4852,
+          "sha256": "52d75d5a7084713e73bd335d3705790b014a81e395ea24daf828430ddc9c2811"
+        },
+        {
+          "path": "guides/EPDG_Customer_Service_and_Pricing_Guide.pdf",
+          "bytes": 124013,
+          "sha256": "366b65a9a98af6f2c1888aebd914f6f747b9426439a34f655830d27524b27d11"
+        },
+        {
+          "path": "hero-bg.jpg",
+          "bytes": 297030,
+          "sha256": "dd094cdacb79002e8a463e9713a92a325dcbb8ad88b9c4883737970d7a2e65df"
+        },
+        {
+          "path": "index.html",
+          "bytes": 2865,
+          "sha256": "d0d8a696660226880047bcc9135127a4b849813705181537526614e90a5eb356"
+        },
+        {
+          "path": "robots.txt",
+          "bytes": 95,
+          "sha256": "d78f449dd4fa6005f6c6e4d34b22934e6ee16d2737d0fe0d5d986570a4fb1a79"
+        },
+        {
+          "path": "sitemap.xml",
+          "bytes": 3056,
+          "sha256": "3cfeac1e41475d9a8e166927c1869081296c318737d3f8833143baae325e675d"
+        },
+        {
+          "path": "_headers",
+          "bytes": 416,
+          "sha256": "d8e86197b8a30ecc59a5defe0450f310a41a9321c350bdfd5c6da5a3162d7340"
+        },
+        {
+          "path": "_redirects",
+          "bytes": 19,
+          "sha256": "6036983e5fc00f0169c9e939b1816ed771eee00e27f2fcc517b819041460b9ef"
+        }
+      ]
+    }
+  }
+}

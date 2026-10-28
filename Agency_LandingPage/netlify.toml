@@ -1,3 +1,7 @@
+[build]
+  command = "npm --prefix .. ci --no-audit --no-fund && npm run build:website"
+  publish = "dist"
+
 # App-local Netlify configuration; deploy-preview evidence must match the PR head.
 [build.environment]
   NODE_VERSION = "22.23.1"

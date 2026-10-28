@@ -1,8 +1,9 @@
+import { intakeHref } from '../../../../shared/development-preview';
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 // Replace this with your actual Google Form share URL when ready.
-const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?usp=sharing';
+const GOOGLE_FORM_URL = intakeHref('https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?usp=sharing');
 
 const Register: React.FC = () => {
   const [searchParams] = useSearchParams();

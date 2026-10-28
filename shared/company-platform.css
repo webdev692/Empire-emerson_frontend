@@ -1,0 +1,64 @@
+/* Extends the authentic logo assets and existing emerson-design-system.css. */
+.company-platform { --cp-ink:#1c1336; --cp-paper:#f8f5ee; --cp-gold:#8a6d20; color:var(--cp-ink); background:var(--cp-paper); font-family:var(--font-body,Inter,system-ui,sans-serif); font-size:16px; line-height:1.7; min-height:100vh; }
+.cp-tea { --cp-ink:#0f2242; --cp-paper:#f9f5ed; }
+.cp-epdg { --cp-ink:#013f0b; --cp-paper:#fcfcf8; }
+.company-platform * { box-sizing:border-box; }
+.company-platform h1,.company-platform h2,.company-platform h3 { font-family:var(--font-display,Georgia,serif); font-weight:400; color:var(--cp-ink); text-wrap:balance; }
+.company-platform h1 { font-size:clamp(2.4rem,5.6vw,4.8rem); line-height:1.08; margin:18px 0 28px; max-width:970px; }
+.company-platform h2 { font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.2; margin:14px 0; }
+.company-platform h3 { font-size:1.65rem; line-height:1.25; }
+.company-platform p { margin:12px 0; }
+.company-platform a { color:inherit; text-decoration:underline; text-underline-offset:4px; }
+.company-platform a:hover { text-decoration-thickness:2px; }
+.company-platform :focus-visible { outline:3px solid var(--cp-ink); outline-offset:5px; }
+.cp-environment { padding:9px 20px; text-align:center; background:var(--cp-ink); color:white; font-size:12px; letter-spacing:.06em; }
+.cp-header { max-width:1320px; margin:auto; padding:24px 40px; display:flex; justify-content:space-between; align-items:center; gap:24px; border-bottom:1px solid #d8d2c5; }
+.cp-brand { display:flex; align-items:center; gap:14px; text-decoration:none!important; font-family:var(--font-display,Georgia,serif); font-size:20px; line-height:1.25; max-width:370px; }
+.cp-brand img { width:62px; height:62px; object-fit:contain; }
+.cp-header nav,.cp-footer nav { display:flex; flex-wrap:wrap; gap:18px; font-size:14px; }
+.company-platform main { max-width:1240px; margin:auto; padding:0 40px 80px; min-height:55vh; }
+.cp-hero { padding:80px 0 62px; border-bottom:1px solid #d8d2c5; }
+.cp-eyebrow { text-transform:uppercase; letter-spacing:.18em; color:var(--cp-gold); font-weight:700; font-size:12px; }
+.cp-lead,.cp-page-title>p:last-child { font-size:19px; line-height:1.8; max-width:770px; }
+.cp-actions { display:flex; gap:26px; align-items:center; flex-wrap:wrap; margin:32px 0; }
+.company-platform .cp-button,.company-platform button { background:var(--cp-ink); color:white; border:1px solid var(--cp-ink); border-radius:var(--radius-control,12px); padding:13px 22px; font:600 14px var(--font-label,system-ui,sans-serif); cursor:pointer; text-decoration:none; min-height:46px; }
+.company-platform button:disabled { opacity:.55; cursor:wait; }
+.cp-intro { padding-top:48px; }
+.cp-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:22px; }
+.cp-card { background:#fff; border:1px solid #d8d2c5; padding:28px; border-radius:var(--radius-surface,16px); min-width:0; }
+.cp-card h2 { font-size:1.85rem; }
+.cp-card h2 a { text-decoration:none; }
+.cp-card p { font-size:15px; }
+.cp-meta { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0; }
+.cp-badge { font-size:11px; border:1px solid #d8d2c5; padding:4px 8px; border-radius:var(--radius-control,12px); line-height:1.5; background:var(--cp-paper); color:var(--cp-ink); }
+.cp-small { font-size:13px!important; line-height:1.7; }
+.cp-text-link { display:inline-block; margin-top:18px; font-size:14px; font-weight:650; }
+.cp-lesson { max-width:850px; }.cp-lesson section { margin:40px 0; }.cp-lesson p { white-space:pre-line; }
+.company-platform form { display:grid; gap:18px; max-width:600px; }.company-platform summary { cursor:pointer; padding:12px; border:1px solid #d8d2c5; }.company-platform ol { padding-left:30px; }.company-platform li { margin:10px 0; }
+.cp-company-logo { width:85px; height:85px; object-fit:contain; margin-bottom:14px; }
+.cp-page-title { padding:54px 0 28px; }
+.cp-filter { background:#fff; border:1px solid #d8d2c5; padding:22px; display:grid; grid-template-columns:2fr 1fr 1fr; gap:18px; align-items:end; }
+.company-platform label { display:flex; flex-direction:column; font-size:13px; font-weight:600; gap:6px; }
+.company-platform input,.company-platform select,.company-platform textarea { color:var(--cp-ink); background:white; border:1px solid #817c8a; border-radius:var(--radius-control,12px); padding:11px; font:400 15px system-ui,sans-serif; width:100%; min-height:46px; }
+.cp-result-count { padding:16px 0; }
+.cp-empty { border:1px dashed #a49b8a; background:#fff; padding:35px; margin:36px 0; }
+.cp-empty h1 { font-size:2.5rem; }
+.cp-detail { padding-top:40px; }
+.company-platform dl { border-top:1px solid #d8d2c5; margin:30px 0; }
+.company-platform dl>div { display:grid; grid-template-columns:210px 1fr; gap:20px; border-bottom:1px solid #d8d2c5; padding:14px 0; }
+.company-platform dt { font-weight:650; font-size:14px; }
+.company-platform dd { margin:0; overflow-wrap:anywhere; }
+.cp-callout { border-left:3px solid var(--cp-gold); background:white; padding:24px; margin:30px 0; }
+.cp-footer { background:var(--cp-ink); color:white; padding:40px max(24px,calc((100vw - 1160px)/2)); font-size:14px; }
+.cp-skip { position:fixed; top:-100px; left:16px; background:white; padding:12px; z-index:1000; }
+.cp-skip:focus { top:16px; }
+.cp-footer :focus-visible,.cp-environment :focus-visible { outline-color:white; }
+@media(max-width:850px) { .cp-header { flex-direction:column; align-items:flex-start; padding:22px 24px; }.company-platform main{padding:0 24px 50px}.cp-hero{padding:48px 0}.cp-filter{grid-template-columns:1fr 1fr}.cp-brand{font-size:18px} }
+@media(max-width:500px) { .cp-filter{grid-template-columns:1fr}.cp-header nav{gap:12px}.company-platform dl>div{grid-template-columns:1fr;gap:4px}.cp-card{padding:22px}.cp-environment{font-size:10px}.cp-actions{gap:18px} }
+@media(prefers-reduced-motion:reduce) { .company-platform * { scroll-behavior:auto!important; animation:none!important; transition:none!important; } }
+.cp-worksheet { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; line-height: 1.6; }
+.cp-table-wrap { max-width: 100%; overflow-x: auto; margin: 24px 0; }
+.cp-table-wrap table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+.cp-table-wrap caption { text-align: left; font-weight: 700; margin-bottom: 12px; }
+.cp-table-wrap th,.cp-table-wrap td { text-align: left; vertical-align: top; border: 1px solid #d8d5cd; padding: 12px; min-width: 150px; }
+.cp-table-wrap th { background: var(--cp-paper); }

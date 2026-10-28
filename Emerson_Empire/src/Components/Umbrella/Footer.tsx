@@ -131,10 +131,10 @@ const Footer: React.FC = () => {
             © {year} The Emerson Empire. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link to="/disclaimer" className="text-sm text-white/90 hover:text-[#C9A84C] tracking-wide transition-colors duration-200">
+            <Link to="/privacy" className="text-sm text-white/90 hover:text-[#C9A84C] tracking-wide transition-colors duration-200">
               Privacy Policy
             </Link>
-            <Link to="/disclaimer" className="text-sm text-white/90 hover:text-[#C9A84C] tracking-wide transition-colors duration-200">
+            <Link to="/terms" className="text-sm text-white/90 hover:text-[#C9A84C] tracking-wide transition-colors duration-200">
               Terms of Use
             </Link>
           </div>

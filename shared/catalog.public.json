@@ -1,0 +1,1440 @@
+{
+  "resources": [
+    {
+      "id": "SC-001",
+      "entity": "TEE",
+      "title": "South Carolina 211",
+      "provider": "United Way Association of South Carolina",
+      "topic": "Community resource navigation",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "South Carolinians may seek information; each referred program sets its own rules.",
+      "access_url": "https://www.uwasc.org/sc211",
+      "cost_basis": "Information/referral calls and texts are described as free; referred services may charge.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.uwasc.org/sc211",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Find local food, housing, utility and other community-service information through a statewide referral network.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-002",
+      "entity": "TEE",
+      "title": "SC Works jobseeker services",
+      "provider": "South Carolina Department of Employment and Workforce / SC Works",
+      "topic": "Employment and career preparation",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Page describes services for all jobseekers; specific funded training can have additional eligibility rules.",
+      "access_url": "https://dew.sc.gov/individuals/find-job",
+      "cost_basis": "Listed SC Works career services are described as free; confirm costs and eligibility for any particular training or credential.",
+      "credential_cost_basis": "Training and exam costs depend on the selected opportunity; no universal free credential claim.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://dew.sc.gov/individuals/find-job",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Explore career counseling, job referrals, resume assistance and training information.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "FIN-001",
+      "entity": "TEA",
+      "title": "Consumer resources",
+      "provider": "Consumer Financial Protection Bureau",
+      "topic": "General financial education",
+      "country": "United States",
+      "subregion": "United States; educational content may be readable elsewhere",
+      "languages": [
+        "English"
+      ],
+      "audience": "Learners and educators seeking general financial education",
+      "eligibility": "Public educational content; U.S. products, terminology and jurisdiction apply.",
+      "access_url": "https://www.consumerfinance.gov/consumer-tools/",
+      "cost_basis": "Public website reading access; third-party services and products have separate costs.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.consumerfinance.gov/consumer-tools/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Browse guides and explanations for everyday financial decisions.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-003",
+      "entity": "TEE",
+      "title": "Supplemental Nutrition Assistance Program (SNAP)",
+      "provider": "South Carolina Department of Social Services",
+      "topic": "Food assistance",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "DSS determines household eligibility through application and review. Rules and exemptions require current provider review.",
+      "access_url": "https://dss.sc.gov/assistance-programs/snap/",
+      "cost_basis": "Benefit/application information is publicly accessible; no service fee established from this page.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://dss.sc.gov/assistance-programs/snap/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-10-22",
+      "description": "Read South Carolina food-benefit information and use the provider's application route.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-004",
+      "entity": "TEE",
+      "title": "Temporary Assistance for Needy Families (TANF)",
+      "provider": "South Carolina Department of Social Services",
+      "topic": "Family financial assistance",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Low-income families may qualify; caretaker-relative cases, participation rules, time limits and exclusions require DSS review.",
+      "access_url": "https://dss.sc.gov/assistance-programs/tanf/",
+      "cost_basis": "Public program information is accessible without payment; provider determines any benefit award.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://dss.sc.gov/assistance-programs/tanf/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-10-22",
+      "description": "Find information about temporary family assistance, child-only grants and the provider's application process.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-006",
+      "entity": "TEE",
+      "title": "Healthy Connections Medicaid — Getting Started",
+      "provider": "South Carolina Department of Health and Human Services",
+      "topic": "Health coverage information",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Income/assets and applicant category affect eligibility; SCDHHS makes decisions.",
+      "access_url": "https://www.scdhhs.gov/members/getting-started",
+      "cost_basis": "Public information is accessible without payment; coverage and any medical cost-sharing depend on program rules.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.scdhhs.gov/members/getting-started",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Read the state Medicaid overview, application route and eligibility categories.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-007",
+      "entity": "TEE",
+      "title": "Women, Infants and Children (WIC) Nutrition Program",
+      "provider": "South Carolina Department of Public Health",
+      "topic": "Nutrition and family support",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English",
+        "Spanish",
+        "Chinese",
+        "Korean"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "South Carolina residency, income and nutrition criteria apply for eligible pregnant/new/breastfeeding mothers and children under five; provider assesses eligibility.",
+      "access_url": "https://dph.sc.gov/health-wellness/family-planning/women-infants-and-children-wic-nutrition-program/about-wic",
+      "cost_basis": "Provider describes WIC services as free for qualifying families.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://dph.sc.gov/health-wellness/family-planning/women-infants-and-children-wic-nutrition-program/about-wic",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Find nutrition, food-benefit, breastfeeding-support and application information.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-008",
+      "entity": "TEE",
+      "title": "Find Help — Community Action Agencies",
+      "provider": "South Carolina Office of Economic Opportunity",
+      "topic": "Energy assistance and community support",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Select county of residence; the local agency confirms eligibility, documents, funding and how to apply.",
+      "access_url": "https://oeo.sc.gov/managedsites/prd/oeo/help.html",
+      "cost_basis": "Directory access is public. Assistance is eligibility/funding dependent; no universal cost or award promise.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://oeo.sc.gov/managedsites/prd/oeo/help.html",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-10-22",
+      "description": "Locate the county agency for LIHEAP and other community assistance.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-009",
+      "entity": "TEE",
+      "title": "GetCareSC",
+      "provider": "South Carolina Department on Aging",
+      "topic": "Older adult, disability and caregiver navigation",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Designed for seniors, caregivers and adults with disabilities; provider county coverage varies.",
+      "access_url": "https://www.getcaresc.com/",
+      "cost_basis": "Public directory is readable without payment; listed public and private services have separate costs.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.getcaresc.com/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Search local aging, disability and caregiver service providers by need and ZIP code.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-010",
+      "entity": "TEE",
+      "title": "State Health Insurance Assistance Program (SHIP)",
+      "provider": "South Carolina Department on Aging",
+      "topic": "Medicare counseling",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Medicare beneficiaries, families and caregivers; local Area Agency on Aging routes are listed.",
+      "access_url": "https://aging.sc.gov/programs-initiatives/medicare-and-medicare-fraud",
+      "cost_basis": "Provider describes counseling as free; Medicare premiums and healthcare costs are separate.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://aging.sc.gov/programs-initiatives/medicare-and-medicare-fraud",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-10-22",
+      "description": "Find provider information about individual Medicare insurance counseling.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-011",
+      "entity": "TEE",
+      "title": "South Carolina Legal Services — Services",
+      "provider": "South Carolina Legal Services",
+      "topic": "Civil legal assistance",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Income, assets, case type and available capacity apply; criminal cases excluded; acceptance is not guaranteed.",
+      "access_url": "https://sclegal.org/services/",
+      "cost_basis": "Accepted eligible clients are not charged attorney fees; filing, service, guardian and records expenses may remain.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://sclegal.org/services/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Review civil-law service scope, eligibility screening and application routes.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-012",
+      "entity": "TEE",
+      "title": "Disability Rights South Carolina — What We Do",
+      "provider": "Disability Rights South Carolina",
+      "topic": "Disability rights and advocacy",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "People with disabilities in South Carolina; grant scope and priorities restrict assistance and individual case selection.",
+      "access_url": "https://www.disabilityrightssc.org/what-we-do/",
+      "cost_basis": "Provider describes services as free and confidential.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.disabilityrightssc.org/what-we-do/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Explore disability-rights information, referrals, advocacy and training.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-013",
+      "entity": "TEE",
+      "title": "Getting Started with Vocational Rehabilitation",
+      "provider": "South Carolina Vocational Rehabilitation Department",
+      "topic": "Employment and disability support",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Counselor reviews information from care providers to decide eligibility; individualized planning follows.",
+      "access_url": "https://www.scvrd.net/160/For-Individuals-Getting-Started-with-VR",
+      "cost_basis": "Public information is accessible; service financial-need rules were not verified. Confirm any participant costs directly.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.scvrd.net/160/For-Individuals-Getting-Started-with-VR",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Learn how a local counselor reviews an application and develops employment-related next steps.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-014",
+      "entity": "TEE",
+      "title": "Vocational Rehabilitation",
+      "provider": "South Carolina Commission for the Blind",
+      "topic": "Employment support for blindness and low vision",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Provider states eligible South Carolina residents who are blind or low vision; counselor confirms specific criteria.",
+      "access_url": "https://www.sccb.sc.gov/services/vocational-rehabilitation/",
+      "cost_basis": "Public service overview accessible; service-specific financial participation was not established.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.sccb.sc.gov/services/vocational-rehabilitation/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Explore employment services for eligible blind or low-vision South Carolina residents.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-015",
+      "entity": "EPDG",
+      "title": "Discus — South Carolina's Virtual Library",
+      "provider": "South Carolina State Library",
+      "topic": "Research and educational resources",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "SC residents; FAQ also allows active SC library cardholders and out-of-state students at SC colleges through listed assistance routes.",
+      "access_url": "https://scdiscus.org/faq",
+      "cost_basis": "Provider says no-cost access for eligible users; login assistance may be needed.",
+      "credential_cost_basis": "Library/database access does not itself confer a credential.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://scdiscus.org/faq",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Access an electronic resource collection through eligible South Carolina library or school routes.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-017",
+      "entity": "EPDG",
+      "title": "South Carolina Talking Book Services — Apply for Services",
+      "provider": "South Carolina State Library, Talking Book Services",
+      "topic": "Accessible reading",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "People with qualifying temporary or permanent vision, physical or reading disabilities; application/certification requirements apply.",
+      "access_url": "https://sctalkingbook.org/apply-for-services",
+      "cost_basis": "Provider describes the library service as free.",
+      "credential_cost_basis": "Library service; no credential.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://sctalkingbook.org/apply-for-services",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Find braille and talking-book service application information.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-018",
+      "entity": "EPDG",
+      "title": "Apprenticeship Carolina — Apprentices",
+      "provider": "Apprenticeship Carolina, SC Technical College System",
+      "topic": "Paid apprenticeship pathways",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "A participating employer must hire the apprentice; each opportunity sets application and entry requirements.",
+      "access_url": "https://apprenticeshipcarolina.com/apprentices/",
+      "cost_basis": "Provider describes paid on-the-job learning. Educational expenses vary; this is not a promise of free tuition or a placement.",
+      "credential_cost_basis": "Education, exam and credential costs depend on the employer/program.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://apprenticeshipcarolina.com/apprentices/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Learn about registered apprenticeships and find employer or sponsor opportunities.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-019",
+      "entity": "TEE",
+      "title": "Search for Rentals",
+      "provider": "South Carolina Housing",
+      "topic": "Housing navigation",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Rental availability, income restrictions, applications and property rules vary.",
+      "access_url": "https://schousing.sc.gov/renters/search-rentals",
+      "cost_basis": "Search information accessible without payment; rent, deposits and application charges can apply.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://schousing.sc.gov/renters/search-rentals",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Find official links to statewide rental-search information.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-020",
+      "entity": "TEE",
+      "title": "Consumer Complaints",
+      "provider": "South Carolina Department of Consumer Affairs",
+      "topic": "Consumer complaint information",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Consumers with business complaints; agency scope and referral rules apply. Resolution is not guaranteed.",
+      "access_url": "https://www.consumer.sc.gov/consumer-resources/consumer-complaints",
+      "cost_basis": "Public guidance is accessible without payment; no filing-fee statement established from this page.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.consumer.sc.gov/consumer-resources/consumer-complaints",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Read the state complaint process and jurisdiction/referral guidance.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-021",
+      "entity": "EPDG",
+      "title": "Palmetto Pre-K",
+      "provider": "First Five SC / South Carolina early childhood public-service collaboration",
+      "topic": "Early childhood education navigation",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Programs set age, income, location and other eligibility requirements; places and transport vary.",
+      "access_url": "https://www.first5sc.org/palmetto-pre-k/",
+      "cost_basis": "Page identifies free preschool pathways; childcare scholarships and extended care can have separate charges.",
+      "credential_cost_basis": "Preschool navigation; no professional credential.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.first5sc.org/palmetto-pre-k/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-10-22",
+      "description": "Compare state preschool pathways and find eligibility and location tools.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "SC-022",
+      "entity": "EPDG",
+      "title": "VirtualSC",
+      "provider": "South Carolina Department of Education / VirtualSC",
+      "topic": "School and adult-education online courses",
+      "country": "United States",
+      "subregion": "South Carolina; county/service-area rules apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "South Carolina residents seeking the listed service",
+      "eligibility": "Provider describes students in grades 6–12 attending public, private or home schools and adult-education programs; school/sponsor rules and registration windows apply.",
+      "access_url": "https://virtualsc.org/",
+      "cost_basis": "Provider describes the state-sponsored program as free; verify exam/material costs for an individual course.",
+      "credential_cost_basis": "Course recognition and academic credit require school/sponsor confirmation.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://virtualsc.org/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-10-22",
+      "description": "Explore the state online learning program and its current registration information.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "FIN-002",
+      "entity": "TEA",
+      "title": "MyMoney.gov",
+      "provider": "U.S. Financial Literacy and Education Commission",
+      "topic": "Financial literacy",
+      "country": "United States",
+      "subregion": "United States; educational content may be readable elsewhere",
+      "languages": [
+        "English"
+      ],
+      "audience": "Learners and educators seeking general financial education",
+      "eligibility": "Public educational material focused on the United States.",
+      "access_url": "https://www.mymoney.gov/",
+      "cost_basis": "Public resource portal; linked activities/products can have separate terms.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.mymoney.gov/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Find federal financial education resources for different audiences.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "FIN-003",
+      "entity": "TEA",
+      "title": "Introduction to Investing",
+      "provider": "U.S. Securities and Exchange Commission, Investor.gov",
+      "topic": "Investing fundamentals",
+      "country": "United States",
+      "subregion": "United States; educational content may be readable elsewhere",
+      "languages": [
+        "English"
+      ],
+      "audience": "Learners and educators seeking general financial education",
+      "eligibility": "Public education in a U.S. investing context; no individual investment recommendation supplied.",
+      "access_url": "https://www.investor.gov/introduction-investing",
+      "cost_basis": "Public reading access; actual financial products, advice and transactions have separate costs.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.investor.gov/introduction-investing",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Read introductory explanations of investing, risk, diversification and goals.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "FIN-004",
+      "entity": "TEA",
+      "title": "Identity Theft and Online Security",
+      "provider": "Federal Trade Commission",
+      "topic": "Fraud prevention and digital financial safety",
+      "country": "United States",
+      "subregion": "United States; educational content may be readable elsewhere",
+      "languages": [
+        "English"
+      ],
+      "audience": "Learners and educators seeking general financial education",
+      "eligibility": "Public information in a U.S. consumer-protection context.",
+      "access_url": "https://consumer.ftc.gov/identity-theft-online-security",
+      "cost_basis": "Public reading access; external recovery services may charge and are not endorsed.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://consumer.ftc.gov/identity-theft-online-security",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Find consumer education on identity protection and online safety.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "FIN-005",
+      "entity": "TEA",
+      "title": "Making a Budget",
+      "provider": "Federal Trade Commission, consumer.gov",
+      "topic": "Budgeting",
+      "country": "United States",
+      "subregion": "United States; educational content may be readable elsewhere",
+      "languages": [
+        "English"
+      ],
+      "audience": "Learners and educators seeking general financial education",
+      "eligibility": "Public introductory educational material.",
+      "access_url": "https://consumer.gov/your-money/making-budget",
+      "cost_basis": "Public article and linked worksheet access; internet/printing costs are separate.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://consumer.gov/your-money/making-budget",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Use a plain-language introduction to planning income and expenses.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "FIN-006",
+      "entity": "TEA",
+      "title": "MyCreditUnion.gov",
+      "provider": "National Credit Union Administration",
+      "topic": "Money management and credit unions",
+      "country": "United States",
+      "subregion": "United States; educational content may be readable elsewhere",
+      "languages": [
+        "English"
+      ],
+      "audience": "Learners and educators seeking general financial education",
+      "eligibility": "Public education for consumers and credit-union members; U.S. rules apply.",
+      "access_url": "https://mycreditunion.gov/",
+      "cost_basis": "Public reading access; financial accounts and products have separate fees.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://mycreditunion.gov/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Explore accounts, credit, debt, fraud and share-insurance learning resources.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "FIN-007",
+      "entity": "TEA",
+      "title": "Federal Reserve Education",
+      "provider": "Federal Reserve Education",
+      "topic": "Economics and personal finance teaching",
+      "country": "United States",
+      "subregion": "United States; educational content may be readable elsewhere",
+      "languages": [
+        "English"
+      ],
+      "audience": "Learners and educators seeking general financial education",
+      "eligibility": "K–12, college and community educators; some account features require registration.",
+      "access_url": "https://www.federalreserveeducation.org/",
+      "cost_basis": "Provider describes the platform and teacher account as free.",
+      "credential_cost_basis": "Specific educator courses/badges may be free; confirm individual requirements and institutional recognition.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.federalreserveeducation.org/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Browse classroom and community lessons plus educator development.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "FIN-008",
+      "entity": "TEA",
+      "title": "Your Money, Your Goals",
+      "provider": "Consumer Financial Protection Bureau",
+      "topic": "Financial empowerment tools",
+      "country": "United States",
+      "subregion": "United States; educational content may be readable elsewhere",
+      "languages": [
+        "English"
+      ],
+      "audience": "Learners and educators seeking general financial education",
+      "eligibility": "Designed for organizations/practitioners supporting people; use within education and referral scope.",
+      "access_url": "https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/",
+      "cost_basis": "Downloadable materials available; provider says printed publications are no longer supplied. Local printing costs remain.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Find tools for facilitated conversations about goals and financial challenges.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "FIN-009",
+      "entity": "TEA",
+      "title": "Money as You Grow",
+      "provider": "Consumer Financial Protection Bureau",
+      "topic": "Family financial learning",
+      "country": "United States",
+      "subregion": "United States; educational content may be readable elsewhere",
+      "languages": [
+        "English"
+      ],
+      "audience": "Learners and educators seeking general financial education",
+      "eligibility": "Parents and caregivers of children from early years to young adulthood.",
+      "access_url": "https://www.consumerfinance.gov/consumer-tools/money-as-you-grow/",
+      "cost_basis": "Public page and activity access; optional books or external services can have separate costs.",
+      "credential_cost_basis": "Not a credential-bearing offering in the checked scope.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.consumerfinance.gov/consumer-tools/money-as-you-grow/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Find age-related activities and conversation starters about money.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "LRN-001",
+      "entity": "EPDG",
+      "title": "OpenLearn free courses",
+      "provider": "The Open University",
+      "topic": "Broad subject learning",
+      "country": "Global online (country access restrictions not verified)",
+      "subregion": "Online; provider terms, device and connection requirements apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "Independent learners and educators",
+      "eligibility": "Public reading; an account/enrollment is needed for progress and participation recognition. Check age/territory terms before registration.",
+      "access_url": "https://www.open.edu/openlearn/free-courses",
+      "cost_basis": "Provider states OpenLearn courses are free to study.",
+      "credential_cost_basis": "Free statements of participation and some digital badges after meeting requirements; they do not carry formal qualification credit.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.open.edu/openlearn/free-courses",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Browse free self-paced courses across academic, work and study subjects.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "LRN-002",
+      "entity": "EPDG",
+      "title": "MIT OpenCourseWare",
+      "provider": "Massachusetts Institute of Technology",
+      "topic": "University course materials",
+      "country": "Global online (country access restrictions not verified)",
+      "subregion": "Online; provider terms, device and connection requirements apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "Independent learners and educators",
+      "eligibility": "Public self-study materials; subject prerequisites vary. This listing is not enrollment in MIT.",
+      "access_url": "https://ocw.mit.edu/",
+      "cost_basis": "Free course-material access; textbooks, equipment or external services can cost extra.",
+      "credential_cost_basis": "No credit/certificate promise from this listing; verify any separate MIT learning offer independently.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://ocw.mit.edu/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Browse openly available university-level course materials for independent study.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "LRN-003",
+      "entity": "EPDG",
+      "title": "Khan Academy",
+      "provider": "Khan Academy",
+      "topic": "School and foundational academic learning",
+      "country": "Global online (country access restrictions not verified)",
+      "subregion": "Online; provider terms, device and connection requirements apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "Independent learners and educators",
+      "eligibility": "Students, families, teachers and independent learners; age/account rules require review before registration.",
+      "access_url": "https://www.khanacademy.org/",
+      "cost_basis": "Official provider article describes core courses and learning resources as free. Optional AI/subscription services are outside this claim.",
+      "credential_cost_basis": "No accredited course-completion credential established.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://blog.khanacademy.org/free-back-to-school-resources-for-families-and-homeschoolers/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Find lessons, practice, videos and articles for academic subjects.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "LRN-004",
+      "entity": "EPDG",
+      "title": "LearnFree",
+      "provider": "LearnFree, Inc.",
+      "topic": "Digital, workplace and core skills",
+      "country": "Global online (country access restrictions not verified)",
+      "subregion": "Online; provider terms, device and connection requirements apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "Independent learners and educators",
+      "eligibility": "Self-paced public resources; account requirements for particular features not tested.",
+      "access_url": "https://www.learnfree.org/",
+      "cost_basis": "Provider describes lessons as free.",
+      "credential_cost_basis": "Certificate availability/cost not established from the checked page.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.learnfree.org/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Explore practical tutorials in computers, office tools, job search and communication.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "LRN-005",
+      "entity": "EPDG",
+      "title": "Microsoft Learn training",
+      "provider": "Microsoft",
+      "topic": "Technical and product skills",
+      "country": "Global online (country access restrictions not verified)",
+      "subregion": "Online; provider terms, device and connection requirements apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "Independent learners and educators",
+      "eligibility": "Provider FAQ says training is available to anyone interested and content can be consumed without a profile; labs/features can require sign-in.",
+      "access_url": "https://learn.microsoft.com/en-us/training/",
+      "cost_basis": "Training content is free; paid cloud resources, instructor-led offers or products are separate.",
+      "credential_cost_basis": "Certification exams are a separate route; current exam fees were not verified. Do not label certifications free.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://learn.microsoft.com/en-us/training/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Browse role-focused training modules and learning paths.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "LRN-006",
+      "entity": "EPDG",
+      "title": "IBM SkillsBuild",
+      "provider": "IBM",
+      "topic": "Technology and workplace skills",
+      "country": "Global online (country access restrictions not verified)",
+      "subregion": "Online; provider terms, device and connection requirements apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "Independent learners and educators",
+      "eligibility": "Provider has adult, high-school and university routes. Route-specific age, account and region conditions need review.",
+      "access_url": "https://skillsbuild.org/",
+      "cost_basis": "Provider describes online learning as 100% free.",
+      "credential_cost_basis": "Digital credentials are advertised; individual credential eligibility and any external exam costs were not verified.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://skillsbuild.org/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Explore AI, cybersecurity, data and related learning pathways.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "LRN-007",
+      "entity": "EPDG",
+      "title": "HP LIFE",
+      "provider": "HP Foundation",
+      "topic": "Business and digital skills",
+      "country": "Global online (country access restrictions not verified)",
+      "subregion": "Online; provider terms, device and connection requirements apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "Independent learners and educators",
+      "eligibility": "Provider addresses students, educators and lifelong learners worldwide; account/age terms need review before enrollment.",
+      "access_url": "https://www.life-global.org/",
+      "cost_basis": "Provider describes courses as free.",
+      "credential_cost_basis": "Provider states free certificates of completion after finishing courses; no academic-credit or professional-license promise.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.life-global.org/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Explore short courses in business, communication and digital skills.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "LRN-008",
+      "entity": "EPDG",
+      "title": "Cisco Networking Academy",
+      "provider": "Cisco",
+      "topic": "Networking, cybersecurity and technology",
+      "country": "Global online (country access restrictions not verified)",
+      "subregion": "Online; provider terms, device and connection requirements apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "Independent learners and educators",
+      "eligibility": "Independent online learners; each course has prerequisites, age/account or language terms to confirm.",
+      "access_url": "https://www.netacad.com/",
+      "cost_basis": "Official Cisco page describes free self-paced courses; other academy/instructor offerings can have separate terms.",
+      "credential_cost_basis": "Course recognition and industry certification exams are separate; exam/certificate costs not verified.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.cisco.com/site/us/en/learn/training-certifications/training/netacad/index.html",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Explore self-paced networking and cybersecurity learning.",
+      "deadline_at": null,
+      "deadline_type": null
+    },
+    {
+      "id": "LRN-009",
+      "entity": "EPDG",
+      "title": "Learning to Learn Online — Open & Free",
+      "provider": "Carnegie Mellon University, Open Learning Initiative",
+      "topic": "Self-directed online learning",
+      "country": "Global online (country access restrictions not verified)",
+      "subregion": "Online; provider terms, device and connection requirements apply",
+      "languages": [
+        "English"
+      ],
+      "audience": "Independent learners and educators",
+      "eligibility": "Independent learners seeking self-paced, self-supported study.",
+      "access_url": "https://www.oli.cmu.edu/courses/learning-to-learn-online-o-f/",
+      "cost_basis": "Provider describes the Open & Free version as free.",
+      "credential_cost_basis": "Open & Free version explicitly has no instructor, tests, college credit or certificate of completion.",
+      "last_checked_at": "2026-10-15",
+      "source_url": "https://www.oli.cmu.edu/courses/learning-to-learn-online-o-f/",
+      "verification_status": "SOURCE_CHECKED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "recheck_due_at": "2026-11-14",
+      "description": "Use an eight-module companion to practice planning, monitoring, communication and online learning habits.",
+      "deadline_at": null,
+      "deadline_type": null
+    }
+  ],
+  "programs": [
+    {
+      "id": "EPDG-SC-CAREER",
+      "operator": "EPDG",
+      "title": "South Carolina Career Exploration & Remote Readiness Program",
+      "geography": "South Carolina; participating institutions subject to approval",
+      "audience": "Students through a reviewed institutional arrangement",
+      "delivery_format": "To be agreed with the institution",
+      "free_to_participant": true,
+      "operating_status": "SEEKING_INSTITUTIONAL_REVIEW",
+      "cta_type": "PARTNER_INQUIRY",
+      "cta_url": null,
+      "support_route": null,
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "approved_capacity": null,
+      "confirmed_dates": null,
+      "description": "A proposed small learning pilot in which students explore interests through guided projects, professional skills, feedback, and reflection. Institutional and youth requirements must be resolved before participation."
+    },
+    {
+      "id": "EPDG-PATHWAYS",
+      "operator": "EPDG",
+      "title": "Emerson Pathways",
+      "geography": "Initial South Carolina service area to be confirmed with an anchor partner",
+      "audience": "Adults for the initial proposed pilot; youth requires separate approval",
+      "delivery_format": "Navigation and modular learning, subject to the agreed pilot",
+      "free_to_participant": true,
+      "operating_status": "PARTNER_PLANNING",
+      "cta_type": "PARTNER_INQUIRY",
+      "cta_url": null,
+      "support_route": null,
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "approved_capacity": null,
+      "confirmed_dates": null,
+      "description": "A proposed free resource-navigation and learning initiative connecting education planning, financial understanding, career readiness, and participant-chosen next steps. It does not replace qualified clinical, legal, crisis, or statutory services."
+    },
+    {
+      "id": "EPDG-GLOBAL-INTERNSHIP",
+      "operator": "EPDG",
+      "title": "Global Internship Program",
+      "geography": "Remote; eligibility and available pathways require current review",
+      "audience": "Prospective participants and institutional partners",
+      "delivery_format": "Structured remote learning and supervised projects",
+      "free_to_participant": true,
+      "operating_status": "VERIFY_CURRENT_TERM_AND_APPLICATION_ROUTE",
+      "cta_type": "VERIFIED_PROGRAM_INFORMATION",
+      "cta_url": null,
+      "support_route": null,
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "approved_capacity": null,
+      "confirmed_dates": null,
+      "description": "A founder-led program built through intern contributions, learning goals, feedback, revision, and portfolio evidence. Participation is free; placements are unpaid. Academic credit and eligible service-hour recognition depend on institutional approval. Employment is not guaranteed."
+    },
+    {
+      "id": "EPDG-WORKSHOP-PILOT",
+      "operator": "EPDG",
+      "title": "Free Community Learning Workshops",
+      "geography": "Initial South Carolina partner-hosted pilot",
+      "audience": "To be defined with an approved host",
+      "delivery_format": "One supported workshop before broader delivery",
+      "free_to_participant": true,
+      "operating_status": "IN_DEVELOPMENT",
+      "cta_type": "HOST_DISCUSSION",
+      "cta_url": null,
+      "support_route": null,
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "approved_capacity": null,
+      "confirmed_dates": null,
+      "description": "Developing practical workshops in career readiness, resource navigation, and related educational topics. Topics, host, facilitator, accessibility, and timing will be confirmed before registration opens."
+    }
+  ],
+  "people": [
+    {
+      "id": "lyric",
+      "name": "Lyric Helena Emerson",
+      "title": "Founder and CEO",
+      "bio": "Lyric Helena Emerson is Founder and CEO of The Emerson Empire, an educator, independent scholar and political science undergraduate at Southern New Hampshire University. Her work brings together education, ongoing study and community service with a practical question: how can research become information people can understand and use?\n\nHer founder-led direction connects three distinct entities: The Emerson Empire, an umbrella company and global resource hub; The Emerson Agency LLC, a global financial education and resource hub; and Emerson Professional Development Group, a global learning institution and educational resource hub. Emerson programs and classes are free to participants, schools and communities, with third-party costs identified separately.\n\nLyric's current program direction emphasizes useful work, source checks, feedback, revision and accurate credit. Interns, college teams and collaborators contribute research, writing, design and technical work; their contributions remain visible alongside founder and AI-assisted additions. Her independent scholarly interests include political ethics and social and political philosophy. The shared aim is to make information clearer and learning more practical while respecting each provider's scope and each contributor's work.",
+      "consent_status": "GRANTED",
+      "image_rights_status": "NO_IMAGE_SUPPLIED",
+      "public_links": [
+        "https://philpeople.org/profiles/lyric-helena-emerson"
+      ],
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "source_checked_at": "2026-10-15"
+    },
+    {
+      "id": "darin",
+      "name": "Darin Latrelle James",
+      "title": "Managing Partner",
+      "bio": "Darin Latrelle James is Managing Partner. The founder's published account of the 2026 internship program identifies Darin's leadership role within Team Phoenix. For the current Emerson learning and operations work, Darin's proposed focus is coordination across workstreams, clear responsibilities and usable handoffs. This proposed remit would help teams prepare concise questions for founder decisions and keep outstanding inputs visible. It also emphasizes preserving each contributor's work as projects move between research, learning, communications and technical review.",
+      "consent_status": "GRANTED",
+      "image_rights_status": "NO_IMAGE_SUPPLIED",
+      "public_links": [],
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "source_checked_at": "2026-10-15"
+    },
+    {
+      "id": "kenny",
+      "name": "Godwin-Iwatan Kehinde",
+      "title": "Executive Assistant to the CEO",
+      "bio": "Godwin-Iwatan Kehinde is Executive Assistant to the CEO. Known as Kenny, she has prepared an operating picture that brings progress, research checks and unresolved decisions into a structured review queue. Her documented leadership work also separates preparation from decisions still awaiting approval. For the current phase, her proposed focus is organizing founder preparation, review queues and operational follow-through within her authorized scope. Her contribution is the coordination and documentation she prepared, with the underlying work credited to its individual contributors and teams.",
+      "consent_status": "GRANTED",
+      "image_rights_status": "NO_IMAGE_SUPPLIED",
+      "public_links": [],
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "pronouns": "she/her",
+      "source_checked_at": "2026-10-15"
+    },
+    {
+      "id": "todor",
+      "name": "Todor Tomic",
+      "title": "Sales & Business Development Manager",
+      "bio": "Todor Tomic is Sales & Business Development Manager. Todor's documented learning work includes a question-led discovery script and intake and routing workflows developed with synthetic cases. These materials make audience needs, ownership and review decisions explicit without relying on real client information or live outreach. For the current free-learning and resource work, Todor's proposed focus is public-source opportunity research, clear audience needs and accurate materials for review. A prospect remains a potential relationship until the appropriate review and agreement are complete.",
+      "consent_status": "GRANTED",
+      "image_rights_status": "NO_IMAGE_SUPPLIED",
+      "public_links": [],
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "source_checked_at": "2026-10-15"
+    },
+    {
+      "id": "shamrit",
+      "name": "Shamrit Phagura",
+      "title": "WebDev and Technical Implementation Lead",
+      "bio": "Shamrit Phagura is WebDev and Technical Implementation Lead. Documented work includes a cross-site interface quality-review log and reviews of two interface-evidence submissions for Team Eclipse, with unresolved work kept visible. This contribution concerns evidence review and leadership documentation, with the team's implementation retaining its own contributor credit. For the current phase, Shamrit's proposed focus is translating reviewed requirements into clear technical work, recording what has actually been checked and preparing useful handoffs between contributors and reviewers.",
+      "consent_status": "GRANTED",
+      "image_rights_status": "NO_IMAGE_SUPPLIED",
+      "public_links": [],
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "source_checked_at": "2026-10-15"
+    }
+  ],
+  "research": [
+    {
+      "id": "RESEARCH-001",
+      "title": "Political Systems of Thought in 2025: Power, Security, and Moral Drift",
+      "authors": [
+        "Lyric Helena Emerson"
+      ],
+      "scholarly_status": "MANUSCRIPT_PREPRINT; peer review and journal publication not verified",
+      "version": "PhilArchive Version 1, uploaded 2026-01-22 18:12:07 GMT",
+      "canonical_url": "https://philarchive.org/versions/EMEPSO",
+      "doi": null,
+      "permitted_pdf_url": null,
+      "author_review_status": "APPROVED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "source_checked_at": "2026-10-15"
+    },
+    {
+      "id": "RESEARCH-002",
+      "title": "Abuse Abroad: Torture, Detention, Occupation, and the Moral Collapse of U.S. Power",
+      "authors": [
+        "Lyric Helena Emerson"
+      ],
+      "scholarly_status": "MANUSCRIPT_PREPRINT; peer review and journal publication not verified",
+      "version": "PhilArchive Version 1, uploaded 2026-01-22 21:11:32 GMT",
+      "canonical_url": "https://philarchive.org/versions/EMEAAT-2",
+      "doi": null,
+      "permitted_pdf_url": null,
+      "author_review_status": "APPROVED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "source_checked_at": "2026-10-15"
+    },
+    {
+      "id": "RESEARCH-003",
+      "title": "Aging, Abandonment, and the Political Economy of Neglect: Social Security and the Ethics of Disposability",
+      "authors": [
+        "Lyric Helena Emerson"
+      ],
+      "scholarly_status": "MANUSCRIPT_PREPRINT; peer review and journal publication not verified",
+      "version": "PhilArchive Version 1, uploaded 2026-01-28 16:03:27 GMT",
+      "canonical_url": "https://philarchive.org/versions/EMEAAA",
+      "doi": null,
+      "permitted_pdf_url": null,
+      "author_review_status": "APPROVED",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "source_checked_at": "2026-10-15"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "financial-source-literacy",
+      "entity": "TEA",
+      "title": "Compare financial information before choosing a next step",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "jurisdiction": "General source-literacy method; local financial facts require jurisdiction-specific review.",
+      "sections": [
+        {
+          "heading": "Draft learning objective",
+          "body": "Practice distinguishing a financial claim, its supporting source, and an unanswered question. This author-created development lesson is general education and has not received publication approval. Do not supply account numbers, identity documents, tax returns, bank statements, or personal financial circumstances."
+        },
+        {
+          "heading": "Start with the question and location",
+          "body": "Write the question you want to understand and the country or jurisdiction where the information applies. A useful source in one country may describe institutions, fees, protections, or procedures that do not apply elsewhere. Keep those local details separate from the general skill of checking evidence."
+        },
+        {
+          "heading": "Read the original source",
+          "body": "Identify who published a claim, the date or version, the intended audience, and the page that supports the claim. Record the exact question the source answers. If an important term or eligibility rule is missing, label it unknown instead of filling it from a search snippet or assumption."
+        },
+        {
+          "heading": "Separate access cost from credential cost",
+          "body": "Use this fictional comparison: Source A says that its learning pages are free to read but does not state whether a certificate exists. Source B states that study access is free and that an optional certificate costs 20 fictional units. Record these as different facts. Neither example supports the claim that a free certificate is available."
+        },
+        {
+          "heading": "Practice with a fictional record",
+          "body": "For one fictional resource, write six short entries: publisher; country or jurisdiction; intended audience; participation cost; credential cost; unresolved question. Add a source location and check date if supplied. Use 'not stated' when evidence is absent. Do not infer worldwide eligibility from an online access link."
+        },
+        {
+          "heading": "Check and hand off",
+          "body": "Can another person find the source and distinguish facts from uncertainty? Does the record separate educational information from individual financial, tax, insurance, investment, or legal advice? Submit the learning artifact for review using the current approved route. Learning completion does not approve a resource for publication or activate a service."
+        },
+        {
+          "heading": "Credit and review",
+          "body": "New local draft lesson prepared with AI assistance for the October 2026 development sprint. It uses fictional examples and the founder-provided build contract. No individualized advice, provider endorsement, or external-source verification is claimed."
+        }
+      ]
+    },
+    {
+      "id": "route-the-need",
+      "entity": "EPDG",
+      "title": "Route the need, not just the topic",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "jurisdiction": "General learning method; country-specific examples and facts require local review.",
+      "sections": [
+        {
+          "heading": "Source and draft status",
+          "body": "Draft working lesson from the founder-provided Work Monday Readiness Package, SHARED_LEARNING_FOUNDATION.md, prepared October 15, 2026. Review before distribution. Original educational content and credit are preserved; inclusion in a local build is not publication approval."
+        },
+        {
+          "heading": "Objective",
+          "body": "Objective: explain which company should own a request and identify what other teams contribute. Suggested time: 15 minutes."
+        },
+        {
+          "heading": "The principle",
+          "body": "A person’s situation may cross several topics. Ownership should follow the service being requested, not the number of related words. “Education” may appear in a financial resource, while “work” may appear in a learning program. Choose one accountable owner and identify supporting handoffs.\n| Need | Primary route | Supporting contribution |\n| --- | --- | --- |\n| Find a local food or utility-support resource | TEE | Source verification, eligibility, access route, and maintenance. |\n| Understand how to compare financial information | TEA | A clear educational explanation and country-specific official sources. |\n| Practice professional communication through a guided project | EPDG | Instruction, feedback, revision, and portfolio evidence. |\n| Explore a school pilot | EPDG | Institution review; TEE resources and TEA learning can support the design. |"
+        },
+        {
+          "heading": "Worked example",
+          "body": "A school wants students to learn how to research careers and avoid misleading online opportunities. EPDG owns the proposed learning experience. TEE supplies a reviewed opportunity/resource collection. TEA can contribute a financial-source-literacy activity. No company should claim that the school has approved the pilot until the review is actually complete."
+        },
+        {
+          "heading": "Practice",
+          "body": "Write a four-sentence routing note for this fictional request: “Our community group wants a free session on finding credible training, understanding certificate costs, and planning a next step.” Name the primary owner, two supporting tasks, the evidence needed before promoting a session, and one promise you must not make."
+        },
+        {
+          "heading": "Check your reasoning",
+          "body": "Would a resource link alone meet the request? Who is responsible for teaching and support? Has the host, facilitator, date, and participation route been confirmed? Which details can be researched without asking for participant records?"
+        },
+        {
+          "heading": "Evidence to retain",
+          "body": "A short needs statement; primary owner; supporting contributor; proposed deliverable; missing decision; and next reviewer. Do not create duplicate program records merely because more than one company helps.\n\nThis routing model reflects the founder’s stated October 2026 company direction. It is an instructional example, not an executed service agreement."
+        }
+      ]
+    },
+    {
+      "id": "verify-a-resource",
+      "entity": "EPDG",
+      "title": "Verify before you describe",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "jurisdiction": "General learning method; country-specific examples and facts require local review.",
+      "sections": [
+        {
+          "heading": "Source and draft status",
+          "body": "Draft working lesson from the founder-provided Work Monday Readiness Package, SHARED_LEARNING_FOUNDATION.md, prepared October 15, 2026. Review before distribution. Original educational content and credit are preserved; inclusion in a local build is not publication approval."
+        },
+        {
+          "heading": "Objective",
+          "body": "Objective: create a resource record that distinguishes verified facts from uncertainty. Suggested time: 20 minutes."
+        },
+        {
+          "heading": "The principle",
+          "body": "A search result is a lead. A provider page is evidence for the statements it actually makes. Neither automatically proves that a service has current capacity or that a particular person qualifies. Record the exact fact, source, date checked, and remaining question."
+        },
+        {
+          "heading": "Worked example — fictional library program",
+          "body": "A fictional library’s current page lists a free résumé workshop for adults in one county. Registration is required; a seat count is not published. A separate social post says “walk-ins welcome,” but it is from last year. The defensible record uses the current page, states the county and registration requirement, and leaves current capacity unconfirmed. Do not import the old walk-in rule.\n| Field | Good record |\n| --- | --- |\n| What is offered? | A résumé workshop; not job placement. |\n| Where and for whom? | The specified county and published audience; no inferred worldwide eligibility. |\n| Cost and credential? | Workshop fee is stated as free. Certificate availability is not stated. |\n| Access and dates? | Official registration route; dates exactly as published; timezone unknown if not stated. |\n| Evidence and uncertainty? | Current source URL and check date; seat availability requires confirmation. |"
+        },
+        {
+          "heading": "Practice",
+          "body": "Select one public resource appropriate to your guide. Read the official page. Produce a record with title, provider, country/subregion, audience, eligibility, cost, credential cost if relevant, access route, deadline, source URL, date checked, and one unresolved question. An unavailable field must say “not stated” or “requires confirmation,” not be filled from assumption."
+        },
+        {
+          "heading": "Check your reasoning",
+          "body": "A course is free to study, but its certificate has a fee. Can it be listed as a free certificate? An application date appears only on an old flyer. Can it be reused for this year? A link times out. Does that prove the program closed?"
+        },
+        {
+          "heading": "Evidence to retain",
+          "body": "Your record, the specific source passage supporting each important claim, conflicting evidence, and a recommendation: ready for review, needs clarification, or not suitable. Do not contact providers unless your individual task includes that authority.\n\nOptional example source for financial-education review: FDIC Money Smart for Adults (U.S. context), https://www.fdic.gov/consumer-resource-center/money-smart-adults. Listing a source is not a partnership or approval."
+        }
+      ]
+    },
+    {
+      "id": "make-the-method-global",
+      "entity": "EPDG",
+      "title": "Make the method global",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "jurisdiction": "General learning method; country-specific examples and facts require local review.",
+      "sections": [
+        {
+          "heading": "Source and draft status",
+          "body": "Draft working lesson from the founder-provided Work Monday Readiness Package, SHARED_LEARNING_FOUNDATION.md, prepared October 15, 2026. Review before distribution. Original educational content and credit are preserved; inclusion in a local build is not publication approval."
+        },
+        {
+          "heading": "Objective",
+          "body": "Objective: explain the changes required to adapt one resource or lesson to another jurisdiction. Suggested time: 20 minutes."
+        },
+        {
+          "heading": "The principle",
+          "body": "Global design preserves a repeatable method while allowing local facts to differ. Translate words only after checking service area, language, institutions, costs, credentials, access, timezones, and relevant local rules. Do not assume an intern’s nationality, citizenship, or legal expertise from where they live."
+        },
+        {
+          "heading": "Worked example — a learning comparison",
+          "body": "A U.S.-focused lesson teaches learners to compare banking information using official sources. The transferable skill is evaluating a provider, cost explanation, and complaint route. The name of the regulator, account protections, tax language, currency, eligibility, and complaint procedure may not transfer. A country adaptation should replace or qualify those details using relevant local sources.\n| Can often remain | Needs local review |\n| --- | --- |\n| Ask who published a claim and why. | Which institution is authoritative for this jurisdiction? |\n| Compare the full cost and restrictions. | Currency, fees, eligibility, access and credential recognition. |\n| Document evidence and uncertainty. | Local language, source availability, digital access and support routes. |\n| Give learners an informed next step. | Permitted referral, safeguarding, and service boundaries. |"
+        },
+        {
+          "heading": "Practice",
+          "body": "Choose a second country or jurisdiction within the assignment scope. Write a one-page adaptation brief: intended audience; what can be reused; what must change; three official local sources; language/access issues; unresolved review; and the correct public status. A researched country pack is not a launched service."
+        },
+        {
+          "heading": "Free access is not permission to republish",
+          "body": "Check the license before translating, adapting, or redistributing another provider’s material. UNESCO describes open educational resources as public-domain or openly licensed learning materials that permit forms of reuse and adaptation. When permission is unclear, link to the source rather than copying it. [R1]"
+        },
+        {
+          "heading": "Check your reasoning",
+          "body": "Does translation change eligibility? Does a global provider guarantee a course is available in every country? What source would you need before saying a credential is recognized locally?\n\n[R1] UNESCO, OER mandate: https://www.unesco.org/en/open-educational-resources/mandate. Use a qualified local reviewer where the adaptation depends on professional or jurisdiction-specific judgment."
+        }
+      ]
+    },
+    {
+      "id": "make-the-next-step-usable",
+      "entity": "EPDG",
+      "title": "Make the next step usable",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "jurisdiction": "General learning method; country-specific examples and facts require local review.",
+      "sections": [
+        {
+          "heading": "Source and draft status",
+          "body": "Draft working lesson from the founder-provided Work Monday Readiness Package, SHARED_LEARNING_FOUNDATION.md, prepared October 15, 2026. Review before distribution. Original educational content and credit are preserved; inclusion in a local build is not publication approval."
+        },
+        {
+          "heading": "Objective",
+          "body": "Objective: identify a usability or accessibility problem and record a reproducible improvement. Suggested time: 20 minutes."
+        },
+        {
+          "heading": "The principle",
+          "body": "Information is useful only when a person can understand and act on it. A page needs a clear purpose, readable structure, understandable links, and honest states. Test what happens when information is missing or an action fails—not only the ideal path."
+        },
+        {
+          "heading": "Worked example — the misleading confirmation",
+          "body": "A fictional prototype displays “You are enrolled!” after someone clicks a button, although no registration was sent anywhere. The correct improvement is not better styling. The flow must distinguish a local demonstration, an expression of interest, a pending submission, a failed delivery, and actual enrollment. A preview may demonstrate these states with synthetic data; it must not pass them off as real operations."
+        },
+        {
+          "heading": "A small accessibility review",
+          "body": "W3C’s form guidance explains that controls need meaningful associated labels and that instructions must remain accessible to assistive technology. Placeholder text alone is not the same as a persistent label. Use clear required/optional information and helpful feedback. [R2–R3]\n| Check | Record |\n| --- | --- |\n| Keyboard | Can you reach and operate the selected controls without a mouse? Is focus visible? |\n| Meaning | Do headings, labels, and link text explain purpose and the next step? |\n| Small screen | At a selected narrow viewport, does content remain readable without clipped controls? |\n| Error and recovery | Can a person tell what failed and what to do next? |\n| Truthfulness | Does the status match what the system actually did? |"
+        },
+        {
+          "heading": "Practice",
+          "body": "Review one actual authorized preview route or the provided mockup. Describe one issue with: exact route/build, steps to reproduce, expected result, observed result, screenshot if appropriate, suggested correction, and retest result. Mark unexecuted checks NOT RUN."
+        },
+        {
+          "heading": "Check your reasoning",
+          "body": "Does an automated scan prove a page is fully accessible? Does a green build prove that a real email arrived? Is a hidden private field safe when it remains in the browser’s downloaded data? Explain why each requires a different check.\n\n[R2] https://www.w3.org/WAI/tutorials/forms/labels/  [R3] https://www.w3.org/WAI/tutorials/forms/instructions/  This small review is not a full accessibility certification."
+        }
+      ]
+    },
+    {
+      "id": "communicate-responsibly",
+      "entity": "EPDG",
+      "title": "Communicate without overpromising",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "jurisdiction": "General learning method; country-specific examples and facts require local review.",
+      "sections": [
+        {
+          "heading": "Source and draft status",
+          "body": "Draft working lesson from the founder-provided Work Monday Readiness Package, SHARED_LEARNING_FOUNDATION.md, prepared October 15, 2026. Review before distribution. Original educational content and credit are preserved; inclusion in a local build is not publication approval."
+        },
+        {
+          "heading": "Objective",
+          "body": "Objective: write a useful public or partner-facing message grounded in evidence and the correct authority. Suggested time: 15–20 minutes."
+        },
+        {
+          "heading": "The principle",
+          "body": "Good communication helps the reader decide whether the information is relevant. Name the actual work, its current status, and a reasonable next step. Respect what the recipient already does. Do not turn an expression of interest into a partnership or a drafted curriculum into an operating service.\n| Avoid | Use instead |\n| --- | --- |\n| “Our global program guarantees opportunities.” | “We are developing a guided learning pathway; availability and participation depend on the stated program conditions.” |\n| “This school is our partner.” | “We have invited the school to discuss a possible pilot,” when the invitation is evidenced and disclosure is permitted. |\n| “The founder and team transformed lives.” | Describe the specific activity and observed result; do not claim impact without evidence. |\n| “The entire site was built by one person.” | Identify the actual design, implementation, research, review, and AI-assisted contributions. |"
+        },
+        {
+          "heading": "Worked example — a founder-led progress note",
+          "body": "“This week we are preparing the first source-reviewed resource collection for our South Carolina pilot. Research, design, and technical contributors are checking whether each listing explains eligibility and the next step clearly. The collection is still under review; we will share the verified release when it is ready.” This reports a process without inventing outcomes, participants, or an opening date."
+        },
+        {
+          "heading": "Practice",
+          "body": "Draft a 100-word progress update about one artifact in your assignment. Include its stage, the reader’s benefit, accurate contributor credit, one limitation, and a permitted next step. Add an internal claim check identifying the source for every material claim. Do not publish it yourself unless separately authorized."
+        },
+        {
+          "heading": "Respect the boundary",
+          "body": "The existing SC school and college outreach operations are founder-managed campaigns. This lesson authorizes practice using fictional or public-source examples—not access to their live correspondence or a new send. Do not request sensitive participant stories or treat publicity as a condition of receiving a free service."
+        },
+        {
+          "heading": "Check your reasoning",
+          "body": "What is the difference between prepared, reviewed, published, and delivered? When does a person’s recognition require consent? Which details in an internal progress note should be removed before public use?"
+        }
+      ]
+    },
+    {
+      "id": "show-the-work",
+      "entity": "EPDG",
+      "title": "Show the work and preserve the credit",
+      "content_status": "PUBLIC_RELEASE_APPROVED",
+      "synthetic": false,
+      "jurisdiction": "General learning method; country-specific examples and facts require local review.",
+      "sections": [
+        {
+          "heading": "Source and draft status",
+          "body": "Draft working lesson from the founder-provided Work Monday Readiness Package, SHARED_LEARNING_FOUNDATION.md, prepared October 15, 2026. Review before distribution. Original educational content and credit are preserved; inclusion in a local build is not publication approval."
+        },
+        {
+          "heading": "Objective",
+          "body": "Objective: hand off a contribution so another person can evaluate, reproduce, and improve it. Suggested time: 20 minutes."
+        },
+        {
+          "heading": "The principle",
+          "body": "A file’s title does not prove completion. Use the exact version, a defined acceptance criterion, observed evidence, reviewer decision, and next receiver. Preserve your original and revised work. An approved learning artifact is not automatically authorization to merge, publish, enroll, or operate a service."
+        },
+        {
+          "heading": "Worked example — a resource filter",
+          "body": "You improve a country filter. Your evidence names the branch and commit, records a fictional query, lists expected results, shows the observed results, and identifies the reviewer. You also state that the original card component was built by another contributor and that AI helped draft a test. The record credits your actual improvement without claiming ownership of the whole platform.\n| Evidence item | Example form |\n| --- | --- |\n| Artifact | File, branch/commit or document version, and current location. |\n| Test | Synthetic input, expected result, observed result, date, environment, and status. |\n| Review | Named reviewer, exact version, date, accepted/revise/blocked decision. |\n| Revision | What changed after feedback; original preserved; new link/version. |\n| Credit | Original contributor, your change, collaborators, AI assistance, and review. |\n| Handoff | What the receiver can do next and what remains unresolved. |"
+        },
+        {
+          "heading": "Practice",
+          "body": "Use your current artifact or a fictional exercise. Write a six-field handoff record. Include one test you ran and one check still pending. Ask a peer or authorized reviewer whether they can find the artifact and understand the next action without your private chat history."
+        },
+        {
+          "heading": "Check your reasoning",
+          "body": "A document is titled “FINAL,” but review is blank. What is its state? Two contributors shared an account: can you infer who wrote every commit? A test was designed but not run: which result is honest?"
+        },
+        {
+          "heading": "Reflection",
+          "body": "What did feedback change? Which assumption did you stop treating as fact? What will the next contributor need? What learning evidence can you share publicly, and what must remain private?\n\nThis is a formative learning exercise. It does not issue points, change an official rubric, resolve an identity dispute, or authorize publication."
+        }
+      ]
+    }
+  ]
+}

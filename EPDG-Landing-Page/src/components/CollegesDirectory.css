@@ -1,0 +1,32 @@
+/* EPDG's directory extends the shared platform's existing cards, controls and tokens. */
+.cp-epdg .epdg-colleges { margin-top:64px; padding-top:40px; border-top:1px solid #d8d2c5; scroll-margin-top:24px; }
+.cp-epdg .epdg-colleges-intro { max-width:850px; }
+.cp-epdg .epdg-colleges-intro>h2 { font-size:clamp(2rem,4vw,3.2rem); }
+.cp-epdg .epdg-colleges-provenance { max-width:900px; margin:24px 0; }
+.cp-epdg .epdg-college-filter { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.cp-epdg .epdg-college-search { grid-column:span 2; }
+.cp-epdg .epdg-college-results { font:600 15px var(--font-label,system-ui,sans-serif); margin:26px 0 0; }
+.cp-epdg .epdg-college-card { display:flex; flex-direction:column; overflow-wrap:anywhere; }
+.cp-epdg .epdg-college-card h3 { margin:10px 0; }
+.cp-epdg .epdg-college-card .cp-meta { margin-top:0; }
+.cp-epdg .epdg-college-location { margin-top:0; }
+.cp-epdg .epdg-college-card dl { margin:10px 0; }
+.cp-epdg .epdg-college-card dl>div { grid-template-columns:1fr; gap:2px; padding:9px 0; }
+.cp-epdg .epdg-college-card dd { font-size:14px; }
+.cp-epdg .epdg-college-missing { margin:12px 0; }
+.cp-epdg .epdg-college-review { font-size:13px; margin:8px 0; }
+.cp-epdg .epdg-college-review summary { border-radius:var(--radius-control,12px); }
+.cp-epdg .epdg-college-review ul { padding-left:20px; }
+.cp-epdg .epdg-college-review li { margin:6px 0; }
+.cp-epdg .epdg-college-source { padding-top:12px; }
+.cp-epdg .epdg-college-contacts ul { padding-left:20px; font-size:14px; }
+.cp-epdg .epdg-college-contacts li { margin:6px 0; }
+.cp-epdg .epdg-college-links { display:flex; flex-wrap:wrap; align-items:center; gap:12px 18px; margin-top:auto; padding-top:12px; font-size:14px; font-weight:600; }
+.cp-epdg .epdg-college-links .cp-small { font-weight:400; }
+.cp-epdg .epdg-college-pagination { display:flex; flex-wrap:wrap; gap:16px; justify-content:center; align-items:center; margin:32px 0; }
+.cp-epdg .epdg-college-pagination span { font-size:14px; }
+.cp-epdg .epdg-college-pagination button:disabled { cursor:default; }
+.cp-epdg .epdg-college-back { margin-top:32px; font-size:14px; }
+.cp-epdg #epdg-resource-collection { scroll-margin-top:24px; }
+@media(max-width:850px) { .cp-epdg .epdg-college-filter { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:500px) { .cp-epdg .epdg-college-filter { grid-template-columns:minmax(0,1fr); }.cp-epdg .epdg-college-search { grid-column:auto; }.cp-epdg .epdg-colleges { margin-top:40px; padding-top:28px; }.cp-epdg .epdg-college-pagination { gap:12px; }.cp-epdg .epdg-college-pagination span { width:100%; text-align:center; order:-1; } }

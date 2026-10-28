@@ -1,9 +1,12 @@
+import { publicIntakeEnabled } from '../../../../shared/public-intake';
+import { intakeHref } from '../../../../shared/development-preview';
+import { integratedPreview } from '../../../../shared/development-preview';
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormModal } from "./FormModalContext";
 import missionBanner from "../../assets/HeroEPDG.webp";
 
-const FORM_SERVICES = "https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform";
+const FORM_SERVICES = intakeHref("https://docs.google.com/forms/d/e/1FAIpQLSeOuU4WXCF8Vy9XrQYRmh9CfH-xnmRToV2qxOfaRMBfFFhfsg/viewform");
 
 const Hero: React.FC = () => {
   const { openForm } = useFormModal();
@@ -39,7 +42,7 @@ const Hero: React.FC = () => {
               <path d="M4 17v2" />
               <path d="M5 18H3" />
             </svg>
-            <span>Now enrolling for weekly classes</span>
+            <span>{publicIntakeEnabled ? "Daily classes · Registration open" : integratedPreview ? "Explore learning · Program schedules under review" : "Now enrolling for weekly classes"}</span>
           </span>
 
           <h1 className="mt-8 font-black text-white text-5xl sm:text-6xl lg:text-7xl leading-tight tracking-tighter heading">
@@ -56,7 +59,7 @@ const Hero: React.FC = () => {
               onClick={() => navigate("/classes")}
               className="inline-flex justify-center items-center gap-2 bg-[#C9A84C] hover:bg-[#bba963] px-6 py-3.5 rounded-full font-semibold text-[#07120f] text-sm uppercase tracking-[0.16em] transition duration-200 cursor-pointer"
             >
-              Register for a class
+              {publicIntakeEnabled ? "View schedule & register" : integratedPreview ? "Explore class topics" : "Register for a class"}
               <span aria-hidden="true">&rarr;</span>
             </button>
             <button
@@ -69,8 +72,8 @@ const Hero: React.FC = () => {
 
           <div className="gap-4 grid sm:grid-cols-3 mt-12">
             <div className="bg-white/5 p-5 border border-[#C9A84C] rounded-3xl text-white/85 text-sm">
-              <p className="font-semibold">21 Weekly Classes</p>
-              <p className="mt-2 text-white/65">Hands-on learning, welcoming online and in-person cohorts.</p>
+              <p className="font-semibold">{publicIntakeEnabled ? "Daily class schedule" : integratedPreview ? "Class curriculum" : "21 Weekly Classes"}</p>
+              <p className="mt-2 text-white/65">{publicIntakeEnabled ? "10 AM free · 2 PM $10 USD or fee waiver · 7 PM $20 USD or fee waiver. All times Eastern." : integratedPreview ? "Explore existing topics; dates and enrollment are not confirmed." : "Hands-on learning, welcoming online and in-person cohorts."}</p>
             </div>
             <div className="bg-white/5 p-5 border border-[#C9A84C] rounded-3xl text-white/85 text-sm">
               <p className="font-semibold">Career Services</p>

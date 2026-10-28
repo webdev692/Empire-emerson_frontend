@@ -1,0 +1,30 @@
+{
+  "examples": [
+    {
+      "id": "BUS-03",
+      "name": "Business Starter Kit",
+      "audience": "New founders and small early-stage businesses with their business facts and positioning ready.",
+      "family": "Business foundations",
+      "summary": "Bring your service descriptions, first inquiry steps and business direction into one practical starter kit.",
+      "delivery": "Joint delivery, with a defined lead and reviewer in the project scope.",
+      "deliverables": ["Up to five service descriptions", "One inquiry form of up to ten questions and one reply template", "One page of audience, positioning and tone direction", "A startup checklist", "One consolidated revision and a 30-minute handoff"],
+      "limits": ["Website builds, logos and visual identity are separate", "No ongoing social management, business filings, accounting, insurance or funding applications", "No guaranteed revenue, employment, funding, rankings or regulatory compliance"],
+      "inputs": ["Your existing business facts and positioning", "Your own service-pricing decisions", "Client-owned or licensed materials and one decision maker"],
+      "handoff": "Review each agreed item, record written sign-off and receive the files in the agreed client-owned folder.",
+      "priceDisplay": "Request a project quote"
+    },
+    {
+      "id": "SYS-03",
+      "name": "Operations Setup",
+      "audience": "Small service businesses organizing one manual inquiry, booking and follow-up workflow.",
+      "family": "Business operations",
+      "summary": "Map a customer workflow and organize the templates and tracking steps that support it.",
+      "delivery": "Joint delivery, with a defined lead and reviewer in the project scope.",
+      "deliverables": ["One-page client workflow map", "Scheduling guidance in your existing tool", "Up to six response templates", "CRM stage and field guidance or a simple tracker", "One consolidated revision and a 45-minute handoff"],
+      "limits": ["No software purchases, custom development or bulk migration", "Ongoing inbox management and regulated advice are outside this scope", "No guaranteed revenue, employment, funding, rankings or regulatory compliance"],
+      "inputs": ["Your current workflow and an existing approved tool", "Client-owned or licensed materials and permission for agreed system access", "One client decision maker to review the workflow"],
+      "handoff": "Review the agreed files, test one inquiry through the scoped workflow and record written sign-off before handoff.",
+      "priceDisplay": "Request a project quote"
+    }
+  ]
+}

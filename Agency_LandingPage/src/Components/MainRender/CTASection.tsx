@@ -1,3 +1,4 @@
+import { intakeHref } from '../../../../shared/development-preview';
 import { ArrowRight } from 'lucide-react'
 import { openRequestForm } from '../Umbrella/RequestFormEvents'
 
@@ -39,7 +40,7 @@ export default function CTASection() {
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
-                href="https://forms.gle/VSCGHQEJSdKhYizKA"
+                href={intakeHref("https://forms.gle/VSCGHQEJSdKhYizKA")}
                 onClick={(e) => { e.preventDefault(); openRequestForm() }}
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#0b57ff] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_15px_30px_rgba(11,87,255,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0a4fe0] hover:shadow-[0_22px_55px_rgba(11,87,255,0.45)]"
               >
@@ -47,7 +48,7 @@ export default function CTASection() {
                 <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
-                href="https://forms.gle/VSCGHQEJSdKhYizKA"
+                href={intakeHref("https://forms.gle/VSCGHQEJSdKhYizKA")}
                 onClick={(e) => { e.preventDefault(); openRequestForm() }}
                 className="inline-flex items-center justify-center rounded-full border border-[#d5d6e0] bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#0A1128] transition hover:border-[#d4af37]"
               >

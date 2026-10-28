@@ -1,0 +1,25 @@
+{
+  "publication_approved": true,
+  "approved_on": "2026-10-19",
+  "reviewed_commit": "734251fae289d2b6580c8c5fbcba5ba4a2e6cc75",
+  "reviewed_data_path": "Emerson_Empire/src/research.preview.json",
+  "reviewed_data_sha256_lf": "74c59ec41d23cb5e20f09703db8f98b22f54a7f0210ea11aad80935bf694f986",
+  "public_data_path": "Emerson_Empire/src/research.public.json",
+  "public_data_sha256_lf": "e463d5e8019f730cca4e7415db735f601e5b11a04bcd48a732a172189a2f77be",
+  "entity": "TEE",
+  "site_id": "32b31e79-2259-4ca8-8f62-7177fa4099cd",
+  "destination": "https://theemerson.netlify.app",
+  "selection": "replace-current-three",
+  "work_ids": [
+    "administrative-records",
+    "ordered-liberty-datafication",
+    "reciprocity-without-justice"
+  ],
+  "conference_content": "summaries_and_presentation_details_only",
+  "full_conference_manuscripts_published": false,
+  "registration_enabled": false,
+  "live_intake_enabled": false,
+  "new_spending_authorized": false,
+  "permissions_changed": false,
+  "tea_epdg_changes_authorized": false
+}

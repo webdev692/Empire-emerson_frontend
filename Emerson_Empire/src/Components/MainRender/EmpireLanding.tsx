@@ -1,4 +1,8 @@
 import React from "react";
+import ProgramExperience from '../../../../shared/ThreeProgramsEntry';
+import { StudioGateway } from "../../../../shared/ProjectStudioEntry";
+import { ServicesGateway } from "../../../../shared/ServicesPricing";
+import { integratedPreview } from "../../../../shared/development-preview";
 import Hero from "../Umbrella/Hero";
 import ThreeCompaniesSection from "./ThreeCompaniesSection";
 import ResourceHub from "./ResourceHub";
@@ -18,6 +22,9 @@ const HomePage: React.FC = () => {
       </a>
       <main id="main-content">
         <Hero />
+        {integratedPreview && <StudioGateway entity="TEE" />}
+        {integratedPreview && <ServicesGateway entity="TEE" />}
+        {integratedPreview && <ProgramExperience entity="TEE" view="gateway" />}
         <ThreeCompaniesSection />
         <ResourceHub />
         <FeeWaiverSection />
