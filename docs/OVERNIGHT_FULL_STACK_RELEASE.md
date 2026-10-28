@@ -2,6 +2,27 @@
 
 This journal records the non-sensitive evidence for the July 11, 2026 stabilization and release work. It must never contain secret values, private user records, intern records, or production row contents.
 
+## 2026-10-28 — exact company CI fingerprints by compiler platform
+
+PR #34 exposed a missing root dependency install in the three older company CI
+jobs. A company-only root `npm ci` fixed those jobs while preserving portal and
+Edge behavior; run `40726367353` passed. The frozen Linux job's 59 tests and all
+three builds/lint/smoke checks passed, but its published-artifact comparison failed.
+
+Verified artifact `12833016582` from run `40726367526` established only 17/21/1
+OKLab color-channel rounding differences in the three index stylesheets, with
+JavaScript changes confined to content-hash filename references. Root/app package
+versions, source candidates and Windows `CI=true` output were checked. The
+Linux compilation manifest records its exact merge/head/run/toolchain provenance;
+it grants no new content or publication authority.
+
+Both explicit CI matrix jobs must pass: Windows checks the unchanged original
+217 publication fingerprints, and Linux checks its separately pinned 217 compiler
+fingerprints plus all original payload/privacy/hold/approval checks. The default
+public command and manual publication remain tied to the original Windows
+artifact. No original pins or feature validators were relaxed, and no Netlify
+setting, production publication, real-data import, account or permission changed.
+
 ## 2026-10-28 — company public-source alignment preparation
 
 The company source review branch preserves public `origin/main` history and keeps

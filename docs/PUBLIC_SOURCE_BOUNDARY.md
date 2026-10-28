@@ -48,9 +48,11 @@ relaxed or replaced.
 ## Reproduce and verify
 
 Use Node.js `22.23.1` and npm `11.17.0`. Run `npm ci` at the repository root and
-inside each of the three company application folders, then `npm run check:public`
-at the repository root. This runs the public regression suite, shared lint, each
-company's build/lint/smoke checks, and the complete published-artifact comparison.
+inside each of the three company application folders. Windows x64 uses
+`npm run check:public` at the repository root to reproduce the original published
+artifacts. Linux x64 uses `npm run check:public:linux` to reproduce the separately
+verified Linux compiler output. Both run the public regression suite, shared lint,
+each company's build/lint/smoke checks, and the selected exact artifact comparison.
 `EMERSON_EVIDENCE_DIR` can select an evidence folder outside the repository.
 Both `build` and the retained `build:platform` alias use this same frozen public
 release gate; the alias cannot bypass approval or emit a separate platform build.
@@ -60,9 +62,28 @@ existing published company SVG assets on both Windows and Linux checkouts.
 The public build checks the pinned `shared/public-source-boundary.json`, all 23
 approved payload hashes, schemas, source URL rules, public privacy fields,
 biography consent, author review and the original feature approval validators.
-The final check requires exactly the same 217 published files and SHA-256 values:
+The default Windows check requires exactly the same 217 published files and SHA-256 values:
 TEE 96, TEA 95, and EPDG marketing 26. No missing private input is treated as new
 approval. There is no public export-generation command.
+
+The required CI matrix has two exact gates: `windows-2025` reproduces the original
+217 publication fingerprints, and `ubuntu-24.04` reproduces 217 immutable Linux
+compilation fingerprints. Both use the pinned Node/npm versions and lockfiles;
+neither gate is optional. The original Windows boundary and its SHA-256 remain
+unchanged. Linux's `shared/linux-compilation-boundary.json` is pinned by a separate
+SHA-256 and records source head, checked-out merge revision, run/job/artifact IDs,
+archive digest, observed runner image, toolchain and lockfile hashes. It is
+compiler-platform evidence, not a new content, consent, author or publication
+approval. All original payload, privacy, source URL, operating-hold and exact
+feature-approval checks apply in both modes.
+
+Verified Linux run `40726367526` produced only tiny OKLab color-channel rounding
+differences in the three index stylesheets (at most `1e-7`); all other CSS bytes
+and non-code assets matched. JavaScript differed only through references to the
+resulting content-hash asset filenames. Package versions and measured source
+candidates matched. Linux output is therefore not claimed to be byte-identical
+to the Windows publication. Manual company publication continues to use the
+Windows artifact that passes the original 217 fingerprints.
 
 Only `release-build.json` is exempt from the old output hashes. It records the
 actual checkout revision, dirty state, build time and pinned boundary hash. Its

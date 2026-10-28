@@ -9,6 +9,7 @@ import { validateFrozenPublicContent } from './validate-frozen-public-content.mj
 import { validatePublicContent } from './validate-public-content.mjs';
 import { approvedProgramData } from './three-programs-release.mjs';
 import { approvedResearchData } from './tee-research-release.mjs';
+import { readLinuxCompilationBoundary } from './linux-compilation-boundary.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const read = path => readFileSync(resolve(root, path));
@@ -55,4 +56,15 @@ test('private authoring fails explicitly without creating exports or approvals',
   const result = spawnSync(process.execPath, [resolve(root, 'scripts/private-authoring-unavailable.mjs')], { encoding: 'utf8' });
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Private content authoring\/review is unavailable/);
+});
+
+test('Linux compiler evidence retains the public approval boundary and rejects fingerprint drift', () => {
+  const boundary = readLinuxCompilationBoundary(root);
+  assert.equal(boundary.kind, 'linux-compilation-evidence');
+  assert.equal(boundary.publication_approved, undefined);
+  assert.equal(Object.values(boundary.compiled).reduce((n, site) => n + site.files.length, 0), 217);
+  const path = resolve(root, 'shared/linux-compilation-boundary.json');
+  const altered = structuredClone(boundary);
+  altered.compiled.TEE.files[0].sha256 = '0'.repeat(64);
+  assert.throws(() => readLinuxCompilationBoundary(root, file => file === path ? Buffer.from(JSON.stringify(altered)) : readFileSync(file)), /Frozen Linux compiler evidence changed/);
 });

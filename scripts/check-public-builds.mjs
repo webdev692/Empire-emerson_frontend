@@ -6,6 +6,8 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('..', import.meta.url));
 const npm = process.env.npm_execpath;
+const linux = process.argv.includes('--platform=linux');
+assert.ok(process.argv.slice(2).every(arg => arg === '--platform=linux'), 'Use the default published-artifact check or explicit --platform=linux');
 assert.equal(process.version, 'v22.23.1', 'Use the pinned Node.js version');
 assert.ok(npm, 'Run npm run check:public with npm 11.17.0');
 assert.equal(spawnSync(process.execPath, [npm, '--version'], { encoding: 'utf8' }).stdout.trim(), '11.17.0');
@@ -24,7 +26,7 @@ run('public-shared-lint', ['Emerson_Empire/node_modules/eslint/bin/eslint.js', '
 for (const app of ['Emerson_Empire', 'Agency_LandingPage', 'EPDG-Landing-Page']) {
   for (const action of ['build', 'lint', 'smoke']) run(app + '-' + action, [npm, 'run', action], resolve(root, app));
 }
-run('published-artifact-equality', ['--experimental-strip-types', 'scripts/scan-frozen-public-artifacts.mjs']);
+run(linux ? 'linux-compilation-equality' : 'published-artifact-equality', ['--experimental-strip-types', 'scripts/scan-frozen-public-artifacts.mjs', ...(linux ? ['--platform=linux'] : [])]);
 const git = args => spawnSync('git', ['-c', `safe.directory=${root.replaceAll('\\', '/').replace(/\/$/, '')}`, '-C', root, ...args], { encoding: 'utf8' });
-writeFileSync(resolve(evidence, 'public-verification.json'), JSON.stringify({ scope: 'Existing approved public company content only; private authoring unavailable', checked_out_revision: git(['rev-parse', 'HEAD']).stdout.trim(), working_tree_dirty: !!git(['status', '--porcelain']).stdout.trim(), observed_at: new Date().toISOString(), node: process.version, result: checks.every(check => check.exit_code === 0) ? 'PASS' : 'FAIL', checks }, null, 2) + '\n');
+writeFileSync(resolve(evidence, 'public-verification.json'), JSON.stringify({ scope: linux ? 'Exact verified Linux compiler fingerprints plus unchanged public content approvals; not publication artifact approval' : 'Exact original Windows publication fingerprints; existing approved public content only', fingerprint_platform: linux ? 'linux' : 'windows', actual_platform: process.platform, checked_out_revision: git(['rev-parse', 'HEAD']).stdout.trim(), working_tree_dirty: !!git(['status', '--porcelain']).stdout.trim(), observed_at: new Date().toISOString(), node: process.version, result: checks.every(check => check.exit_code === 0) ? 'PASS' : 'FAIL', checks }, null, 2) + '\n');
 process.exitCode = checks.every(check => check.exit_code === 0) ? 0 : 1;

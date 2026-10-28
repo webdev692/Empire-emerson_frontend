@@ -5,23 +5,26 @@ import { fileURLToPath } from 'node:url';
 import { sha256, assertPublicPrivacy, publicBoundarySha256 } from './public-source-boundary.mjs';
 import { validateFrozenPublicContent } from './validate-frozen-public-content.mjs';
 import { liveHeaders } from './live-policy.mjs';
+import { readLinuxCompilationBoundary } from './linux-compilation-boundary.mjs';
 
-export function comparePublishedArtifacts(root, selectedEntities) {
+function compareArtifacts(root, selectedEntities, platform) {
   const { boundary } = validateFrozenPublicContent(root);
+  const fingerprints = platform === 'linux' ? readLinuxCompilationBoundary(root).compiled : boundary.published;
+  const identity = platform === 'linux' ? 'verified Linux compilation' : 'published';
   const files = dir => readdirSync(dir).flatMap(name => {
     const path = resolve(dir, name);
     return statSync(path).isDirectory() ? files(path) : [path];
   });
   const results = [];
-  for (const [entity, site] of Object.entries(boundary.published)) {
+  for (const [entity, site] of Object.entries(fingerprints)) {
     if (selectedEntities?.length && !selectedEntities.includes(entity)) continue;
     const dist = resolve(root, site.app, 'dist');
     const actual = files(dist).map(path => relative(dist, path).replaceAll('\\', '/')).filter(path => path !== 'release-build.json').sort();
-    assert.deepEqual(actual, site.files.map(row => row.path).sort(), `${entity}: published artifact set changed`);
+    assert.deepEqual(actual, site.files.map(row => row.path).sort(), `${entity}: ${identity} artifact set changed`);
     for (const row of site.files) {
       const bytes = readFileSync(resolve(dist, row.path));
-      assert.equal(bytes.length, row.bytes, `${entity}: published artifact size changed: ${row.path}`);
-      assert.equal(sha256(bytes), row.sha256, `${entity}: published artifact hash changed: ${row.path}`);
+      assert.equal(bytes.length, row.bytes, `${entity}: ${identity} artifact size changed: ${row.path}`);
+      assert.equal(sha256(bytes), row.sha256, `${entity}: ${identity} artifact hash changed: ${row.path}`);
       assert.ok(!/catalog\.(?:local|review|drafts)|c4\.local|work-resources\.local|\.map$|\.env$|\.zip$|\.docx$|\.xlsx$/i.test(row.path), 'Private source artifact emitted');
       if (/\.(?:js|html|json|txt)$/.test(row.path)) {
         const text = bytes.toString('utf8');
@@ -50,10 +53,19 @@ export function comparePublishedArtifacts(root, selectedEntities) {
     const headers = readFileSync(resolve(dist, '_headers'), 'utf8');
     for (const [key, value] of Object.entries(liveHeaders)) assert.ok(headers.includes(`${key}: ${value}`));
     assert.ok(headers.includes("form-action 'none'"));
-    results.push({ entity, app: site.app, content_revision: site.content_revision, files: site.files.length, unchanged_published_hashes: true, excluded_metadata: ['release-build.json'] });
-    console.log(`${entity}: all ${site.files.length} published asset/content hashes unchanged; fresh metadata, privacy and submission holds PASS.`);
+    results.push({ entity, app: site.app, content_revision: site.content_revision, files: site.files.length, ...(platform === 'linux' ? { unchanged_linux_compilation_hashes: true } : { unchanged_published_hashes: true }), excluded_metadata: ['release-build.json'] });
+    console.log(`${entity}: all ${site.files.length} ${identity} asset/content hashes unchanged; fresh metadata, privacy and submission holds PASS.`);
   }
   return results;
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) comparePublishedArtifacts(fileURLToPath(new URL('..', import.meta.url)), process.argv.slice(2));
+export const comparePublishedArtifacts = (root, selectedEntities) => compareArtifacts(root, selectedEntities, 'windows');
+export const compareLinuxCompiledArtifacts = (root, selectedEntities) => compareArtifacts(root, selectedEntities, 'linux');
+
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const args = process.argv.slice(2);
+  const linux = args.includes('--platform=linux');
+  const entities = args.filter(arg => arg !== '--platform=linux');
+  assert.ok(entities.every(entity => ['TEE', 'TEA', 'EPDG'].includes(entity)), 'Unknown artifact platform/entity argument');
+  (linux ? compareLinuxCompiledArtifacts : comparePublishedArtifacts)(fileURLToPath(new URL('..', import.meta.url)), entities);
+}

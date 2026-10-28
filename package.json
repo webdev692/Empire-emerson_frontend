@@ -7,7 +7,8 @@
     "check:platform": "node scripts/check-public-builds.mjs",
     "check:review": "node scripts/private-authoring-unavailable.mjs",
     "check:live": "node scripts/check-public-builds.mjs",
-    "check:public": "node scripts/check-public-builds.mjs"
+    "check:public": "node scripts/check-public-builds.mjs",
+    "check:public:linux": "node scripts/check-public-builds.mjs --platform=linux"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",

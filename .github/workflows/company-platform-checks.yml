@@ -6,8 +6,21 @@ permissions:
   contents: read
 jobs:
   company:
-    runs-on: ubuntu-latest
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Original published artifacts (Windows)
+            runner: windows-2025
+            platform: windows
+            check: check:public
+          - name: Verified compiler fingerprints (Linux)
+            runner: ubuntu-24.04
+            platform: linux
+            check: check:public:linux
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,12 +34,12 @@ jobs:
         working-directory: Agency_LandingPage
       - run: npm ci
         working-directory: EPDG-Landing-Page
-      - run: npm run check:public
+      - run: npm run ${{ matrix.check }}
       - name: Retain public output for failed artifact comparison
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: company-public-output-${{ github.sha }}
+          name: company-public-output-${{ matrix.platform }}-${{ github.sha }}
           retention-days: 3
           path: |
             Emerson_Empire/dist/
