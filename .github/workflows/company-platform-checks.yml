@@ -22,3 +22,15 @@ jobs:
       - run: npm ci
         working-directory: EPDG-Landing-Page
       - run: npm run check:public
+      - name: Retain public output for failed artifact comparison
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: company-public-output-${{ github.sha }}
+          retention-days: 3
+          path: |
+            Emerson_Empire/dist/
+            Agency_LandingPage/dist/
+            EPDG-Landing-Page/dist/
+            !**/*.map
+            !**/.env*
