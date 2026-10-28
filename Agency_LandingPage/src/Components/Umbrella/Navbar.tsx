@@ -4,7 +4,7 @@ import { intakeHref } from '../../../../shared/development-preview';
 import { useLocation } from 'react-router-dom'
 import { integratedPreview } from '../../../../shared/development-preview'
 import { localHref } from '../../../../shared/platform-format'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import logo from '../../assets/LogoAgency.png'
 import { openRequestForm } from './RequestFormEvents'
@@ -22,11 +22,12 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuButton = useRef<HTMLButtonElement>(null)
   const { pathname } = useLocation()
   const destination = (url: string) => url.startsWith('#') ? (pathname === '/' ? url : localHref('/' + url)) : localHref(url)
 
   return (
-    <header className="sticky top-0 z-50 bg-[#0A1128] shadow-lg">
+    <header onKeyDown={event => { if (event.key === 'Escape' && menuOpen) { setMenuOpen(false); menuButton.current?.focus(); } }} className="sticky top-0 z-50 bg-[#0A1128] shadow-lg">
       <div className="mx-auto flex max-w-[1320px] items-center justify-between gap-6 px-5 py-2.5 lg:px-8">
         {/* Logo */}
         <a href={destination("#main-content")} className="flex items-center" aria-label="The Emerson Agency home">
@@ -34,7 +35,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-5 text-[11px] font-medium uppercase tracking-[0.2em] text-white/80 lg:flex">
+        <nav aria-label="Main navigation" className="hidden items-center gap-5 text-[11px] font-medium uppercase tracking-[0.2em] text-white/80 lg:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
@@ -56,10 +57,12 @@ export default function Navbar() {
             Contact Us
           </a>
           <button
+            ref={menuButton}
             className="p-2 text-[#c9a24c] lg:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
+            aria-controls="public-mobile-navigation"
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -68,7 +71,7 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       {menuOpen && (
-        <nav className="max-h-[calc(100dvh-76px)] overflow-y-auto border-t border-white/10 bg-[#0A1128] px-5 py-4 text-xs uppercase tracking-[0.2em] text-white/80 lg:hidden">
+        <nav id="public-mobile-navigation" aria-label="Main navigation" className="max-h-[calc(100dvh-76px)] overflow-y-auto border-t border-white/10 bg-[#0A1128] px-5 py-4 text-xs uppercase tracking-[0.2em] text-white/80 lg:hidden">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}

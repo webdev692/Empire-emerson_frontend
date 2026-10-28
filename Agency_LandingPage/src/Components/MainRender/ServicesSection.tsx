@@ -101,7 +101,7 @@ export default function ServicesSection() {
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#e8f1fb] text-[#5b8fd0]">
                     <Icon size={20} strokeWidth={1.8} />
                   </div>
-                  <span className="text-xs font-medium text-slate-400">{service.number}</span>
+                  <span className="text-xs font-medium text-slate-600">{service.number}</span>
                 </div>
                 <h3 className="mt-5 font-serif! text-xl! font-semibold! leading-snug! text-[#0A1128]">
                   {service.title}

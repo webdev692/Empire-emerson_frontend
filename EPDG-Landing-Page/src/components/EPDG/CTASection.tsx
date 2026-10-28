@@ -73,7 +73,7 @@ const CTASection: React.FC = () => {
   return (
     <section id="contact" className="bg-[#F1F0EB] px-4 py-20 sm:py-24">
       <div className="mx-auto max-w-278.5">
-        <p className="mb-4 font-bold text-[#B0893C] text-[13px] uppercase tracking-[0.25em]">
+        <p className="mb-4 font-bold text-[#70551d] text-[13px] uppercase tracking-[0.25em]">
           Get in touch
         </p>
         <h2 className="mb-6 max-w-3xl text-[#1A1A1A] text-5xl sm:text-6xl leading-[1.05] heading">

@@ -1,11 +1,12 @@
 import PublicLegalPages from '../../shared/PublicLegalPages';
+import PublicWebsiteAccessibility from '../../shared/PublicWebsiteAccessibility';
 import { lazy, Suspense } from 'react';
 import ProgramExperience from '../../shared/ThreeProgramsEntry';
 import { threeProgramsEnabled } from '../../shared/three-programs-mode';
 import { PreviewBoundary, PreviewNotice, ExperienceLinks } from '../../shared/InternSiteIntegration';
 import Navbar from './components/EPDG/Navbar';
 import EPDGFooter from './components/EPDG/EPDGFooter';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { FormModalProvider } from "./components/EPDG/FormModal";
 import ScrollManager from "./components/EPDG/ScrollManager";
 import LandingPage from "./components/EPDG/LandingPage";
@@ -20,6 +21,7 @@ function ProgramPage() {
   return <><Navbar /><PreviewNotice /><ProgramExperience entity="EPDG" /><ProgramExperience entity="EPDG" view="footer" /><ExperienceLinks /><EPDGFooter /></>;
 }
 function Boundary({ enhanced, children }: { enhanced: boolean; children: React.ReactNode }) { return enhanced ? <PreviewBoundary entity="EPDG">{children}</PreviewBoundary> : children; }
+function Accessibility() { const { pathname } = useLocation(); return <PublicWebsiteAccessibility pathname={pathname} />; }
 function App({ enhanced = false }: { enhanced?: boolean }) {
   const base = import.meta.env.BASE_URL
 
@@ -28,6 +30,7 @@ function App({ enhanced = false }: { enhanced?: boolean }) {
       <Boundary enhanced={enhanced}><FormModalProvider>
         <ScrollManager />
         <div className="font-sans">
+          <Accessibility />
           <Routes>
         <Route path="/disclaimer" element={<PublicLegalPages kind="disclaimer" />} />
         <Route path="/privacy" element={<PublicLegalPages kind="privacy" />} />

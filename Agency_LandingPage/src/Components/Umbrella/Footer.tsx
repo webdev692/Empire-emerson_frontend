@@ -27,7 +27,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.7fr_1fr_1.3fr]">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               <img src={logo} alt="The Emerson Agency" className="h-24 w-24 shrink-0 object-contain" />
               <div>
                 <p className="font-serif text-2xl font-bold uppercase tracking-wide text-white">
@@ -64,7 +64,7 @@ export default function Footer() {
 
           {/* Navigate */}
           <div>
-            <h5 className="text-sm font-bold uppercase tracking-[0.2em] text-[#d4af37]">Navigate</h5>
+            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-[#d4af37]">Navigate</h2>
             <ul className="mt-6 space-y-4 text-lg text-white/90">
               {navLinks.map((link) => (
                 <li key={link.label}>
@@ -76,7 +76,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h5 className="text-sm font-bold uppercase tracking-[0.2em] text-[#d4af37]">Contact</h5>
+            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-[#d4af37]">Contact</h2>
             <div className="mt-6 space-y-4 text-base text-white/90">
               <p className="flex items-center gap-3"><Mail size={18} className="shrink-0 text-[#d4af37]" /> admin@theemersonempire.info</p>
               <p className="flex items-center gap-3"><Phone size={18} className="shrink-0 text-[#d4af37]" /> +1 (803) 479-4492</p>
@@ -86,7 +86,7 @@ export default function Footer() {
         </div>
 
         {/* Disclaimer */}
-        <p className="mt-12 text-xs leading-6 text-slate-500">
+        <p className="mt-12 text-xs leading-6 text-slate-400">
           Disclaimer: Pricing is provided for planning purposes and may vary based on service needs, complexity,
           eligibility, capacity, licensing, and compliance requirements. Free or reduced-cost services may be
           available for qualifying individuals. Insurance, tax, financial, business, educational, and workforce

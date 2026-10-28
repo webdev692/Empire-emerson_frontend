@@ -9,7 +9,7 @@ export default function CTASection() {
       <div className="w-full bg-white">
         <div className="mx-auto max-w-[1320px] px-5 py-20">
           <div className="mx-auto max-w-4xl">
-            <p className="text-sm uppercase tracking-[0.35em] text-[#b18b4c]">Free and reduced-cost options</p>
+            <p className="text-sm uppercase tracking-[0.35em] text-[#795b22]">Free and reduced-cost options</p>
             <h2 className="mt-3 font-serif! text-[2rem]! font-normal leading-tight! text-[#0A1128] sm:text-[2.5rem]!">
               Accessible support, where possible
             </h2>
@@ -30,7 +30,7 @@ export default function CTASection() {
       <div className="w-full bg-[#f7f9ff]">
         <div className="mx-auto max-w-[1320px] px-5 py-20">
           <div className="mx-auto max-w-5xl text-center">
-            <p className="text-sm uppercase tracking-[0.35em] text-[#b18b4c]">Get in touch</p>
+            <p className="text-sm uppercase tracking-[0.35em] text-[#795b22]">Get in touch</p>
             <h3 className="mt-3 font-serif! text-[2rem]! font-normal leading-tight! text-[#0A1128] sm:text-[2.5rem]!">
               Take the next step
             </h3>

@@ -31,7 +31,7 @@ const ClassHighlight: React.FC = () => {
   return (
     <section className="bg-[#FCF5E9] px-4 pt-10 pb-20 sm:pt-12 sm:pb-24">
       <div className="mx-auto max-w-278.5">
-        <p className="mb-3 text-[#8c7434] text-lg uppercase tracking-[0.28em] font-bold">
+        <p className="mb-3 text-[#70551d] text-lg uppercase tracking-[0.28em] font-bold">
           Daily Classes
         </p>
         <h2 className="mb-6 max-w-3xl font-bold text-[#0B2018] text-4xl sm:text-5xl tracking-tight heading">

@@ -85,9 +85,9 @@ const About: React.FC = () => (
         <p className="mb-6 font-semibold text-[#C9A84C] text-2xl uppercase tracking-[4px]">
           About The Emerson Empire
         </p>
-        <h2 className="mx-auto max-w-3xl font-bold text-[44px] text-white sm:text-[64px] lg:text-[72px] uppercase leading-none tracking-tight heading">
+        <h1 className="mx-auto max-w-3xl font-bold text-[44px] text-white sm:text-[64px] lg:text-[72px] uppercase leading-none tracking-tight heading">
           Built to Bridge Your Professional Gap.
-        </h2>
+        </h1>
       </div>
     </div>
 

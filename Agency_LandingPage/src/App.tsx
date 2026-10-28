@@ -1,4 +1,5 @@
 import PublicLegalPages from '../../shared/PublicLegalPages';
+import PublicWebsiteAccessibility from '../../shared/PublicWebsiteAccessibility';
 import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { PreviewBoundary, PreviewNotice, ExperienceLinks } from '../../shared/InternSiteIntegration'
@@ -27,6 +28,7 @@ function Site({ enhanced }: { enhanced: boolean }) {
   if (!enhanced && pathname === "/educationPage") return <EducationPage />
   return (
     <div className="min-h-screen bg-[#0A1128] text-white">
+      <PublicWebsiteAccessibility pathname={pathname} />
       <Navbar />
       {enhanced && (projectStudioLocal ? <StudioReviewNotice entity="TEA" /> : <PreviewNotice />)}
       <Suspense fallback={<p role="status">Loading education…</p>}>

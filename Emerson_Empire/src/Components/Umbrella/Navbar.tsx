@@ -1,7 +1,7 @@
 import { projectStudioEnabled } from '../../../../shared/project-studio-mode';
 import { threeProgramsEnabled } from '../../../../shared/three-programs-mode';
 import { integratedPreview } from '../../../../shared/development-preview';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { EmpersonLogo } from '../../assets';
@@ -49,9 +49,11 @@ const NAV_LINKS = [
 const Navbar: React.FC = () => {
   const [menuOpen,     setMenuOpen]     = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const menuButton = useRef<HTMLButtonElement>(null);
 
   return (
     <nav
+      onKeyDown={event => { if (event.key !== 'Escape') return; if (menuOpen) menuButton.current?.focus(); else (event.target as HTMLElement).closest('li')?.querySelector('a')?.focus(); setMenuOpen(false); setOpenDropdown(null); }}
       aria-label="Main navigation"
       className="top-0 z-50 fixed bg-[#12022A] border-[#C9A84C]/20 border-b w-full"
     >
@@ -131,10 +133,12 @@ const Navbar: React.FC = () => {
 
         {/* Hamburger */}
         <button
+          ref={menuButton}
           className="xl:hidden flex flex-col justify-center items-center gap-1.25 shadow-md shadow-white rounded-b-3xl focus-visible:outline-none focus-visible:ring-[#C9A84C] focus-visible:ring-2 w-10 h-10 shrink-0"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
+          aria-controls="public-mobile-navigation"
         >
           <span className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-300 origin-center ${menuOpen ? 'rotate-45 translate-y-1.75' : ''}`} />
           <span className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
@@ -144,7 +148,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="xl:hidden flex flex-col bg-[#12022A] px-4 pb-5 border-[#C9A84C]/15 border-t max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div id="public-mobile-navigation" className="xl:hidden flex flex-col bg-[#12022A] px-4 pb-5 border-[#C9A84C]/15 border-t max-h-[calc(100vh-4rem)] overflow-y-auto">
           {NAV_LINKS.map((link) => (
             <div key={link.label}>
 

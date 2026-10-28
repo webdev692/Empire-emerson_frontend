@@ -44,7 +44,7 @@ const GetInTouch: React.FC = () => {
                 <div className="flex-shrink-0 mt-1">
                   <Mail className="text-gold-on-light" size={24} />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="font-bold text-[#0A1128]">Email</p>
                   <a className="text-[#0A1128]/70 hover:underline" href="mailto:sales@theemersonempire.info">
                     sales@theemersonempire.info

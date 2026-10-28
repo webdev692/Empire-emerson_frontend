@@ -63,7 +63,7 @@ const WorkforceTraining: React.FC = () => {
     <>
       <section id="workforce" className="bg-[#E8E5DE] px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-278.5">
-          <p className="mb-4 font-bold text-[#B0893C] text-lg uppercase tracking-[0.22em]">
+          <p className="mb-4 font-bold text-[#70551d] text-lg uppercase tracking-[0.22em]">
             Workforce &amp; Organizational Training
           </p>
           <h2 className="mb-6 max-w-3xl text-[#1A1A1A] text-5xl sm:text-6xl leading-[1.05] heading">

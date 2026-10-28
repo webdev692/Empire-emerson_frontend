@@ -1,6 +1,6 @@
 import { integratedPreview } from '../../../../shared/development-preview';
 import { threeProgramsEnabled } from '../../../../shared/three-programs-mode';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/EPDG_LOGO.webp";
 
@@ -25,6 +25,7 @@ const PLATFORM_URL = "https://epdg.netlify.app/";
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
   const [activeId, setActiveId] = useState("home");
   const navigate = useNavigate();
   const location = useLocation();
@@ -68,12 +69,12 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="top-0 z-50 sticky bg-[#03140f]/95 backdrop-blur-sm border-white/10 border-b">
+    <nav onKeyDown={event => { if (event.key === 'Escape' && menuOpen) { setMenuOpen(false); menuButton.current?.focus(); } }} aria-label="Main navigation" className="top-0 z-50 sticky bg-[#03140f]/95 backdrop-blur-sm border-white/10 border-b">
       <div className="flex justify-between items-center mx-auto px-4 py-4 max-w-278.5">
         <button
           onClick={() => handleNav(navLinks[0])}
           className="flex items-center gap-3 shrink-0 cursor-pointer"
-          aria-label="Home"
+          aria-label="EPDG home"
         >
           <img src={logo} alt="EPDG logo" className="border border-white/10 rounded-full w-12 h-12" />
           <span className="hidden xl:inline-block font-semibold text-white text-xs uppercase tracking-[0.16em]">
@@ -119,9 +120,11 @@ const Navbar: React.FC = () => {
 
         <button
           className="xl:hidden flex justify-center items-center bg-[#03140f] border border-white/10 rounded-full w-11 h-11 text-white cursor-pointer"
+          ref={menuButton}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
+          aria-controls="public-mobile-navigation"
         >
           <span className="sr-only">Toggle menu</span>
           <div className="relative w-5 h-5">
@@ -133,7 +136,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {menuOpen && (
-        <div className="xl:hidden max-h-[calc(100dvh-81px)] overflow-y-auto space-y-4 bg-[#03140f] px-4 pb-6 border-white/10 border-t">
+        <div id="public-mobile-navigation" className="xl:hidden max-h-[calc(100dvh-81px)] overflow-y-auto space-y-4 bg-[#03140f] px-4 pb-6 border-white/10 border-t">
           <ul className="flex flex-col gap-2 pt-4 text-white/75 text-xs uppercase tracking-[0.12em]">
             {navLinks.map((link) => (
               <li key={link.id}>
