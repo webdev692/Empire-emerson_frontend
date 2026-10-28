@@ -62,6 +62,11 @@ jobs:
           test "$(node --version)" = "v22.23.1"
           test "$(npm --version)" = "11.17.0"
 
+      - name: Install shared company dependencies
+        if: ${{ matrix.directory != 'epdg' }}
+        working-directory: .
+        run: npm ci --no-audit --no-fund
+
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
 
