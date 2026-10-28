@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build:website"
+  command = "npm --prefix .. ci --no-audit --no-fund && npm run build:website"
   publish = "dist"
 
 # App-local Netlify configuration; deploy-preview evidence must match the PR head.
