@@ -1,0 +1,136 @@
+{
+  "generatedAt": "2026-10-24T15:19:53.554Z",
+  "scope": "Local synthetic uncommitted working trees; no remote CI or hosted acceptance claim",
+  "frontend": {
+    "baseCommit": "2397c6e276e8ce111b70148333cec2682a4d4166",
+    "sourceFingerprintSha256": "97fa069452c16f4d1861ee6e62dd11a8e66c715099537a14c0eb355f61b50f9a",
+    "sourceFiles": 20,
+    "freshTestsPassed": 47,
+    "fullBuildVerifiedAt": "2026-10-24T15:04:18.121Z",
+    "testOnlyRefreshVerifiedAt": "2026-10-24T15:09:29.986Z",
+    "applicationSourceUnchangedDuringTestOnlyRefresh": true,
+    "compiledPayloadHashesRechecked": 18,
+    "lintErrors": 0,
+    "lintWarnings": 0,
+    "normalAndDesignBuilds": true,
+    "bothArtifactVerifiers": true,
+    "smoke": true,
+    "compiledUploadAliasAndSevenSecretScans": true
+  },
+  "backend": {
+    "baseCommit": "7bfdb114363147ec2998d151dff22a786b2122ba",
+    "sourceFingerprintSha256": "5d0fcf5f5201634a7ca98faee540dde602b62615099465619b24f21f96cc5194",
+    "sourceFiles": 175,
+    "testedAppSourceFingerprintSha256": "8e380f1b55aa4cad0eab982fa77c5d512332e186529c50392b5ebe5b0ba2722f",
+    "testedAppSourceFiles": 118,
+    "coreTestsPassed": 91,
+    "rootTestsPassed": 9,
+    "build": true,
+    "lintErrors": 0,
+    "existingLintWarnings": 161,
+    "deterministicInstall": true,
+    "multerVersion": "2.5.0",
+    "otherPackageVersionsChanged": false,
+    "unusedPackageRecordsRemoved": 6,
+    "remainingReportedAuditFindings": 19,
+    "learningRlsTables": 10,
+    "browserPolicies": 0,
+    "original50TableMetadataDifferences": 0,
+    "migration004Sha256": "1a0623618a408181e32e2ffb9c9784ddbd3b0ef7e81bbec32bf92f12eb2f7bdc",
+    "priorAppliedMigrationHashesUnchanged": true
+  },
+  "automatedTests": {
+    "totalPassed": 147,
+    "failed": 0,
+    "skipped": 0
+  },
+  "liveScenarioGroups": {
+    "uploads": 18,
+    "textSubmissions": 15,
+    "learners": 10,
+    "totalPassed": 43,
+    "fullDatabaseBackendRestartTested": true
+  },
+  "browser": {
+    "recordedAt": "2026-10-24T15:19:53.554Z",
+    "localOrigin": "http://127.0.0.1:58080",
+    "existingHumanSessionUsedNormally": true,
+    "activeCookieExported": false,
+    "humanPasswordReadOrChanged": false,
+    "checksPassed": [
+      "saved text required before file selection",
+      "explicit selection does not upload",
+      "invalid-signature PDF rejected without attachment",
+      "pending file selection kept hidden through offline and explicit account recheck",
+      "TXT and PDF uploaded explicitly",
+      "file removed and restored reversibly with keyboard",
+      "TXT download actual bytes match original synthetic fixture",
+      "both saved files survive full page reload",
+      "keyboard review lists exactly two saved files",
+      "mobile review and receipt have no horizontal overflow at 375px content viewport",
+      "final submission freezes two files at revision five",
+      "same final receipt persists after reload with no upload or removal controls",
+      "PDF download verified after final receipt reload",
+      "older text-only receipt unchanged and contains no files",
+      "submitted assignment removed from upcoming work",
+      "overall lesson progress remains 3/5 and 60%"
+    ],
+    "receiptReference": "6c780a0d-5c64-42e7-ab3b-69d2a088c188",
+    "submittedRevision": 5,
+    "attachments": [
+      {
+        "filename": "synthetic-career-plan.txt",
+        "sizeBytes": 246
+      },
+      {
+        "filename": "synthetic-practice-plan.pdf",
+        "sizeBytes": 1762
+      }
+    ],
+    "priorTextOnlyReceiptPreserved": true,
+    "temporaryNetworkAndViewportOverridesReset": true,
+    "screenshots": {
+      "receipt-desktop.png": "f51704f9dab23a94f32c51c1ec1ff9d45945a70f3b9b49ae1e57a46141c38239",
+      "receipt-mobile.png": "3cf917f4adc1d29f6f0544659e1049c615a75fecb12e6e9c04d7195d5143a58f",
+      "review-mobile.png": "a95bf9f40a9dfbbc0ad99a11273a59432c36a012cbdc3c0e304d807725265773"
+    }
+  },
+  "production": {
+    "observedAt": "2026-10-24T15:17:05.352Z",
+    "siteCurrentDeploy": [
+      "6a385b7fac8ea70008ef72d6"
+    ],
+    "deploys": [
+      {
+        "id": "6a385b7fac8ea70008ef72d6",
+        "locked": true,
+        "state": "ready",
+        "commit_ref": "9e2bbb0cbae7de3eabc27da0bcea37bebed449a2"
+      }
+    ]
+  },
+  "privilegedControlsEnabled": false,
+  "committedPushedOrDeployed": false,
+  "readyToTry": {"id":"30000000-0000-4000-8000-000000000011","title":"SYNTHETIC Upload Practice","program_id":"10000000-0000-4000-8000-000000000002","empty":true,"seedIdempotent":true,"lessonCountUnchanged":true,"accountsEnrollmentsAndPermissionsChanged":false,"browserOpenedAndVerified":true},
+  "evidenceDirectory": "build-evidence/epdg-synthetic-2026-10-24/assignment-uploads",
+  "limits": {
+    "fileBytes": 1048576,
+    "activeFiles": 3,
+    "lifetimeFiles": 6,
+    "formats": [
+      "TXT",
+      "PDF",
+      "PNG",
+      "JPG",
+      "JPEG"
+    ],
+    "savedNonblankTextRequiredForFinalSubmission": true
+  },
+  "limitations": [
+    "Local synthetic files only; no real personal information",
+    "Signature/text checks are not malware scanning",
+    "No public links, cloud storage or inline previews",
+    "Existing dependency audit findings and backend lint warnings remain",
+    "Hosted production storage/security/retention acceptance remains pending"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-24T13:42:25.142Z",
+  "status": "PRIVATE_LOCAL_LOGIN_ALIAS_CONFIGURED",
+  "frontendBase": "2397c6e276e8ce111b70148333cec2682a4d4166",
+  "frontendWorkingSourceSha256": "a2a3d449044f4781025006831f129e17b95c6c5977624bbb471432d6ef290e6c",
+  "uncommittedLocalWork": true,
+  "preferredEmailValueOmitted": true,
+  "preferenceLocation": "Workspace AGENTS.md and Git-ignored private runtime alias file",
+  "aliasScope": "Exact local alias to existing learner A synthetic identity; same password, memberships and empty permissions",
+  "isolation": {
+    "backendDatabaseIdentity": "unchanged .invalid account",
+    "recoveryRecipient": "unchanged .invalid local Mailpit recipient",
+    "productionConfiguration": "unchanged",
+    "ownerAdminControls": "closed",
+    "aliasInNormalArtifact": false,
+    "aliasInDesignArtifact": false,
+    "aliasDefinedInPublishableModes": false,
+    "liveLocalViteDefinitions": "exact private alias and pinned fixture target confirmed with boolean checks"
+  },
+  "checks": {
+    "frontendTests": 28,
+    "failed": 0,
+    "skipped": 0,
+    "lintErrors": 0,
+    "lintWarnings": 0,
+    "normalDesignBuilds": "passed",
+    "artifactVerifiers": "passed",
+    "smoke": "passed",
+    "aliasMappingUnitTests": "login/recovery send only existing .invalid identity; unmatched real addresses rejected",
+    "browser": "configured alias explanation and populated email field observed; exact email display redacted by adapter",
+    "recoveredAccountSignIn": "verified authenticated learner A account page after human reset and private sign-in",
+    "sameExistingMembershipScope": "verified",
+    "noNewMailSentForAliasCheck": true
+  },
+  "limitations": [
+    "Alias is a local test convenience; it does not create/rename/verify any production or third-party account.",
+    "Browser field-value redaction and screenshot capture prevented an exact-value UI screenshot; private configuration/live dev definitions were independently checked without printing the value.",
+    "Earlier browser-flow evidence remains historical at its recorded source fingerprint; this receipt covers the alias change and recovered sign-in follow-up."
+  ],
+  "evidenceDirectory": "workspace build-evidence/epdg-synthetic-2026-10-24/login-alias"
+}

@@ -1,0 +1,42 @@
+# EPDG portal presentation review
+
+This package is for interface review only. Phase 1 remains incomplete. It does not authenticate an account, assign roles, load participant records, or implement programs.
+
+## Separate build entry
+
+The normal platform build command remains `npm run build`. `index.html` and `src/main.tsx` retain the access-hold entry, including the existing URL-specific hold states. No route, query parameter, browser storage edit, or role choice activates the design interface in that entry.
+
+The app-local Netlify `deploy-preview` context uses `npm run build -- --mode design-preview`. The normal production build command remains unchanged. Do not publish the preview artifact to production. The Vite HTML pre-transform selects `src/design-preview/main.tsx` only when the mode equals `design-preview`; the normal entry has no import of the preview module tree. PWA generation is disabled in design-preview mode to avoid installing a preview worker. Use a fresh review origin/browser profile, preferably the new deployment's immutable URL; an old access-hold worker may still control a previously used preview origin. This change does not clear or revoke tokens or caches from earlier deployments.
+
+Terminal builds remain prohibited in the agent run. GitHub Actions now cleans and builds normal output in `dist` and design output in `dist-design-preview`, checks both compiled artifacts with `scripts/verify-portal-build.mjs`, and uploads both with checksums and checkout/PR revision metadata. The normal artifact must contain the URL hold states and exclude design layout markers. The design artifact must contain all four layout titles and the preview notice and exclude PWA files/registration, sampled legacy fixtures, credential-shaped markers, and legacy API/authentication connection markers. These checks supplement source tests; they are not browser or backend verification. Platform build results must be attached to their actual revision before treating them as passing evidence. See `PR_33_RELEASE_EVIDENCE.md` for the observed baseline and pending verification.
+
+## Interface package
+
+- `PortalShell.tsx`: shared EPDG logo/sidebar, responsive mobile menu, named navigation, page title, breadcrumbs, presentation selector, persistent preview notice, and footer.
+- `Presentation.tsx`: shared cards, table structure, status panels, role dashboard composition, own-profile layout, and help/support layout.
+- `layouts.ts`: Learner, Instructor/Mentor, Operations, and School Partner presentation configuration. It contains no identities, permissions, participant fixtures, or metrics.
+- `preview.css`: scoped purple/gold/cream presentation styles, focus states, small-screen layout, table overflow handling, and static loading placeholders.
+
+The exact notice is: “Design preview — authentication and participant data are not connected.” The presentation selector changes layout only. Local React state is discarded on reload and does not establish authority. Empty layouts say that information is not connected, rather than claiming that a signed-in user has no enrollments or assignments.
+
+Learner areas cover active programs, upcoming work, feedback, progress, and resources. Instructor/Mentor covers assigned cohorts, review queue, and deadlines. Operations covers delivery and pending work. School Partner covers institution overview and an explicitly unavailable authorized-student reporting area. No reporting or educational-record APIs are provided.
+
+The disabled profile fieldset demonstrates labels and form spacing; it accepts no edits and has no submit handler. Account/session/membership/access descriptions remain unavailable. Support uses only the address already present in the portal's `PendingApproval.tsx` and `Login.tsx`, shown as text with delivery explicitly unverified. There is no mail action or support submission.
+
+## Review walkthrough
+
+1. On the isolated design-preview artifact, confirm the notice is visible at desktop and narrow mobile sizes. Ensure no credentials or participant information are entered.
+2. Use Presentation view to inspect all four dashboard arrangements. Check the table on a narrow screen and verify that no records, counts, grades, or certificates appear.
+3. Switch the display-state selector through Empty, Loading example, Unavailable, and Error example. Confirm the loading message says no request is in progress. The error button returns only to the empty layout.
+4. Open My profile and Help & support from desktop navigation and the mobile menu. Confirm the disabled profile fields and save control, readable contact text, and expandable support guidance.
+5. Traverse the skip link, mobile menu, navigation, role/state selectors, error reset, and disclosure summaries by keyboard. Check focus visibility and that the mobile menu reports expanded/collapsed state. Main content receives focus after page selection.
+6. Inspect network/storage activity for absence of API, authentication, database, storage, and mail operations. Existing external font requests are presentation assets, not participant data requests. Confirm no preview service worker is generated/registered.
+7. Build the normal mode through the platform workflow and verify it still shows the hold at `/`, `/login`, registration/recovery/verification URLs, `/dashboard`, `/admin`, and `/school`. Inspect its JavaScript/module graph for absence of the design entry, role layouts, and preview notice. Run in a clean browser profile as well as an upgraded one; do not infer upgraded cache behavior from source configuration.
+
+These browser/build steps remain unexecuted in this environment. Source tests, lint, and no-emit type checks are separate evidence and do not prove browser behavior or backend authorization.
+
+## Integration boundary
+
+Backend checkout, an authorized synthetic-only database/backend environment, and a mail sink remain unavailable. The existing isolated-test setup proposal is unchanged. Before replacing the hold with live views, require the backend's revocable session lifecycle, invitation/recovery controls, explicit owner configuration, safe profile allowlist, and membership/scope authorization to pass isolated acceptance. Do not reconnect the legacy authenticated router. Role views must eventually be derived from server-approved effective access, never from this selector. Program/LMS features remain closed.
+
+The platform handles review branches/commits. If it does not create a pull request automatically, a human must click **Create pull request** and keep it in draft. No production publication, unlock, infrastructure provisioning, or email delivery is part of this review.

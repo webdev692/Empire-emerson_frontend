@@ -10,10 +10,15 @@
   },
   "scripts": {
     "dev": "vite",
+    "dev:synthetic": "vite --mode synthetic-local",
+    "synthetic:start": "node scripts/local-synthetic.mjs start",
+    "synthetic:status": "node scripts/local-synthetic.mjs status",
+    "synthetic:stop": "node scripts/local-synthetic.mjs stop",
     "build": "tsc -b && vite build",
+    "build:hosted-practice": "tsc -b && vite build --mode hosted-practice && node scripts/verify-hosted-practice-build.mjs dist-hosted-practice",
     "optimize-images": "node scripts/optimize-images.mjs",
     "lint": "eslint .",
-    "test": "node --experimental-strip-types --test src/lib/apiConfig.test.mjs src/lib/productionSafety.test.mjs",
+    "test": "node --experimental-strip-types --test src/lib/apiConfig.test.mjs src/lib/productionSafety.test.mjs src/synthetic/client.test.mjs src/synthetic/learningClient.test.mjs src/synthetic/assignmentClient.test.mjs src/synthetic/reviewClient.test.mjs src/synthetic/revisionClient.test.mjs src/synthetic/onboardingClient.test.mjs src/synthetic/hosted-client.test.mjs scripts/synthetic-mode.test.mjs scripts/hosted-practice-profile.test.mjs scripts/hosted-practice-retirement-worker.test.mjs",
     "smoke": "node ../scripts/smoke-check.mjs epdg",
     "preview": "vite preview"
   },
