@@ -67,7 +67,7 @@ jobs:
 
       - name: Clean isolated EPDG artifact directories
         if: matrix.directory == 'epdg'
-        run: node -e "const fs = require('node:fs'); for (const dir of ['dist', 'dist-design-preview']) fs.rmSync(dir, {recursive:true, force:true})"
+        run: node -e "const fs = require('node:fs'); for (const dir of ['dist', 'dist-design-preview', 'dist-hosted-practice']) fs.rmSync(dir, {recursive:true, force:true})"
 
       - name: Build
         run: npm run build
@@ -88,6 +88,12 @@ jobs:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: node scripts/verify-portal-build.mjs design-preview dist-design-preview
 
+      - name: Build and verify isolated EPDG hosted practice
+        if: matrix.directory == 'epdg'
+        env:
+          EPDG_HOSTED_PRACTICE_ENABLED: "1"
+        run: npm run build:hosted-practice
+
       - name: Lint
         run: npm run lint
 
@@ -105,6 +111,14 @@ jobs:
           path: |
             epdg/dist/
             epdg/dist-design-preview/
+          if-no-files-found: error
+
+      - name: Upload verified EPDG hosted practice
+        if: matrix.directory == 'epdg'
+        uses: actions/upload-artifact@v4
+        with:
+          name: epdg-hosted-practice-${{ github.sha }}
+          path: epdg/dist-hosted-practice/
           if-no-files-found: error
 
   edge-functions:
