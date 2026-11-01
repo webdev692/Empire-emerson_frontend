@@ -48,15 +48,34 @@ test('hosted entry and profile have no private alias, runtime config or automati
   assert.deepEqual(Object.keys(profile).sort(), ['backendOrigin', 'environment', 'portalOrigins', 'version']);
 });
 
-test('reviewed hosted build emits a literal isolation flag without a local alias definition', async () => {
+test('reviewed hosted build emits a literal isolation flag and null local alias', async () => {
   const root = fileURLToPath(new URL('../', import.meta.url));
   const previous = process.env.EPDG_HOSTED_PRACTICE_ENABLED;
   process.env.EPDG_HOSTED_PRACTICE_ENABLED = '1';
   try {
     const config = await resolveConfig({ root, mode: 'hosted-practice', logLevel: 'silent' }, 'build');
-    assert.equal(config.define.__EPDG_HOSTED_PRACTICE_ENABLED__, true);
-    assert.equal(Object.hasOwn(config.define, '__EPDG_SYNTHETIC_LOGIN_ALIAS__'), false);
+    assert.equal(config.define.__EPDG_HOSTED_PRACTICE_MODE__, 'true');
+    assert.equal(config.define.__EPDG_SYNTHETIC_LOGIN_ALIAS__, 'null');
     assert.deepEqual(config.envPrefix, []);
+  } finally {
+    if (previous === undefined) delete process.env.EPDG_HOSTED_PRACTICE_ENABLED;
+    else process.env.EPDG_HOSTED_PRACTICE_ENABLED = previous;
+  }
+});
+
+test('hosted builds compile local-only runtime literals out of the browser profile', async () => {
+  const root = fileURLToPath(new URL('../', import.meta.url));
+  const previous = process.env.EPDG_HOSTED_PRACTICE_ENABLED;
+  process.env.EPDG_HOSTED_PRACTICE_ENABLED = '1';
+  try {
+    const config = await resolveConfig({ root, mode: 'hosted-practice', logLevel: 'silent' }, 'build');
+    assert.equal(config.define.__EPDG_HOSTED_PRACTICE_MODE__, 'true');
+    assert.equal(config.define.__EPDG_SYNTHETIC_LOGIN_ALIAS__, 'null');
+    assert.deepEqual(config.envPrefix, []);
+    const localIsolationAliases = config.resolve.alias.filter(({ find }) =>
+      /localPracticeRuntime|localLoginAlias/.test(String(find)));
+    assert.equal(localIsolationAliases.length, 2);
+    assert.ok(localIsolationAliases.every(({ replacement }) => replacement.includes('hosted')));
   } finally {
     if (previous === undefined) delete process.env.EPDG_HOSTED_PRACTICE_ENABLED;
     else process.env.EPDG_HOSTED_PRACTICE_ENABLED = previous;

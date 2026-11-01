@@ -1,6 +1,8 @@
 import { HOSTED_PRACTICE, PRACTICE_API_ORIGIN, PRACTICE_ENVIRONMENT } from './runtimeProfile.ts';
+import { LOCAL_PRACTICE_PORTAL_ORIGIN } from './localPracticeRuntime.ts';
+import { resolveLocalLoginEmail } from './localLoginAlias.ts';
 export const API_ORIGIN = PRACTICE_API_ORIGIN;
-export const PORTAL_ORIGIN = 'http://127.0.0.1:58080';
+export const PORTAL_ORIGIN = LOCAL_PRACTICE_PORTAL_ORIGIN;
 
 export interface LoginAlias { loginEmail: string; fixtureEmail: string }
 declare const __EPDG_SYNTHETIC_LOGIN_ALIAS__: LoginAlias | null;
@@ -9,10 +11,7 @@ export function resolveLoginEmail(email: string, alias: LoginAlias | null = logi
   const normalized = email.trim().toLowerCase();
   // The hosted server resolves its approved login alias; the browser never learns a fixture mapping.
   if (HOSTED_PRACTICE) return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized) && normalized.length <= 150 ? normalized : null;
-  if (/^[^\s@]+@[^\s@]+\.invalid$/.test(normalized)) return normalized;
-  // Exact local alias only; it cannot select a role, new identity or different institution.
-  if (alias?.fixtureEmail === 'learner-a@epdg.invalid' && normalized === alias.loginEmail) return alias.fixtureEmail;
-  return null;
+  return resolveLocalLoginEmail(normalized, alias);
 }
 
 export interface Membership { id: string; school_id: number | null; company_id: number | null }

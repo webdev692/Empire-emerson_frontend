@@ -1,0 +1,2 @@
+export const LOCAL_PRACTICE_API_ORIGIN = 'http://127.0.0.1:58000';
+export const LOCAL_PRACTICE_PORTAL_ORIGIN = 'http://127.0.0.1:58080';
