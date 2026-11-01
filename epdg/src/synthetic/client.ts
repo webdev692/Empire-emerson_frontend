@@ -10,7 +10,7 @@ export const loginAlias: LoginAlias | null = HOSTED_PRACTICE ? null : typeof __E
 export function resolveLoginEmail(email: string, alias: LoginAlias | null = loginAlias): string | null {
   const normalized = email.trim().toLowerCase();
   // The hosted server resolves its approved login alias; the browser never learns a fixture mapping.
-  if (HOSTED_PRACTICE) return /^[^\s@]+@[^s@]+\.[^s@]+$/.test(normalized) && normalized.length <= 150 ? normalized : null;
+  if (HOSTED_PRACTICE) return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized) && normalized.length <= 150 ? normalized : null;
   return resolveLocalLoginEmail(normalized, alias);
 }
 
