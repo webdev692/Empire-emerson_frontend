@@ -80,9 +80,23 @@ export default defineConfig(({ mode, command, isPreview }) => {
   return {
   ...(hostedProfile ? {
     envPrefix: [],
+    resolve: {
+      alias: [
+        {
+          find: /^\.\/localPracticeRuntime(?:\.ts)?$/,
+          replacement: fileURLToPath(new URL('./src/synthetic/hostedPracticeRuntime.ts', import.meta.url)),
+        },
+        {
+          find: /^\.\/localLoginAlias(?:\.ts)?$/,
+          replacement: fileURLToPath(new URL('./src/synthetic/hostedLoginAlias.ts', import.meta.url)),
+        },
+      ],
+    },
     define: {
-      __EPDG_HOSTED_PRACTICE_ENABLED__: true,
+      __EPDG_HOSTED_PRACTICE_MODE__: 'true',
       __EPDG_HOSTED_PRACTICE_PROFILE__: JSON.stringify({ environment: hostedProfile.environment, portalOrigins: hostedProfile.portalOrigins }),
+      // Hosted builds must compile the local-only alias path completely away.
+      __EPDG_SYNTHETIC_LOGIN_ALIAS__: 'null',
     },
     build: { outDir: HOSTED_PRACTICE_OUTPUT, sourcemap: false, emptyOutDir: true },
   } : {}),
