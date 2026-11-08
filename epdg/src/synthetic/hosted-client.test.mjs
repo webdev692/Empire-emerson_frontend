@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { readFileSync } from 'node:fs';
 
 // Node's module boundary stands in for the Vite compile-time profile. No network,
 // runtime secrets or local login alias are read by this suite.
@@ -32,6 +33,17 @@ test('hosted bootstrap requires exact HTTPS origin and compiled production mode'
   for (const delta of [{ mode: 'production' }, { mode: 'synthetic-local' }, { production: false }, { development: true },
     { origin: 'http://portal.example.com' }, { origin: 'https://other.example.com' }, { origin: 'https://portal.example.com/' },
     { origin: 'http://127.0.0.1:58080' }]) assert.equal(hostedContextAllowed({ ...context, ...delta }), false);
+});
+
+test('released hosted profile admits the published portal and rejects lookalike origins', () => {
+  const profile = JSON.parse(readFileSync(new URL('../../hosted-practice.config.json', import.meta.url), 'utf8'));
+  const context = { mode: 'hosted-practice', production: true, development: false };
+  for (const origin of ['https://epdg.netlify.app', 'https://hosted-practice--epdg.netlify.app']) {
+    assert.equal(hostedContextAllowed({ ...context, origin }, profile.portalOrigins), true);
+  }
+  for (const origin of ['http://epdg.netlify.app', 'https://epdg.netlify.app.evil.example', 'https://unreviewed--epdg.netlify.app']) {
+    assert.equal(hostedContextAllowed({ ...context, origin }, profile.portalOrigins), false);
+  }
 });
 test('hosted bootstrap retires only the exact portal worker and its scoped precache before sign-in', async () => {
   const events = []; let registered = true;
