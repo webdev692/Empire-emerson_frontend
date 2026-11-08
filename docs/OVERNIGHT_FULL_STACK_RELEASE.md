@@ -1,5 +1,13 @@
 # Overnight full-stack release journal
 
+## 2026-11-08 — Restore the published synthetic portal origin
+
+The production-context hosted build omitted `https://epdg.netlify.app` from its exact browser origin allowlist. Its runtime would therefore refuse to start after promotion at the site's published domain. The reviewed profile now admits that origin alongside the existing hosted-practice branch origin, matching the canonical backend's already-reviewed allowlist. The synthetic labels, same-origin API proxy, strict HTTPS checks, private session boundaries and closed owner/admin controls are retained. A regression exercises the actual release profile and rejects HTTP, lookalike and unreviewed branch origins.
+
+Validation: Node 22.23.1 and npm 11.17.0 deterministic install; 90 portal tests passed with none skipped; lint, TypeScript build and strict hosted-artifact verification passed. Independent source review found no correctness or security issue. Live API acceptance at backend commit `62f0b09dbf74f0650005ee61de88e7d6cf7b5db2` passed 15 checks, including strict-TLS synthetic database/session binding, learner evidence, reviewer feedback, revision, attachment hash/size and cross-account denials. This API result does not claim a browser or Netlify proxy check.
+
+Release chain: review branch -> all required GitHub checks -> reviewed merge -> Netlify Git build -> authenticated candidate/browser acceptance -> explicit forward promotion -> deployed-SHA and health receipt. Keep the currently published deploy locked until the candidate passes the authenticated acceptance gate. The current Windows browser safety stop prevents that gate in this turn; source and candidate build completion must not be reported as production publication. Preserve existing deploys and revert this focused source change through a new reviewed commit if needed.
+
 This journal records the non-sensitive evidence for the July 11, 2026 stabilization and release work. It must never contain secret values, private user records, intern records, or production row contents.
 
 ## 2026-10-27 — Verified isolated backend origin pinned for hosted build
