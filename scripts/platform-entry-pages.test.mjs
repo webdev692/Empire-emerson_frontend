@@ -56,12 +56,13 @@ test('rendered portal pages state their verified access boundaries and link to t
     appType: 'custom',
   });
   try {
-    const { PlatformInformationPage } = await server.ssrLoadModule('/shared/PlatformEntryPages.tsx');
-    const render = (entity, page) => renderToStaticMarkup(createElement(MemoryRouter, { initialEntries: [`/${page}`] }, createElement(PlatformInformationPage, { entity, page })));
+    const { PlatformInformationPage, PlatformHomeGateway } = await server.ssrLoadModule('/shared/PlatformEntryPages.tsx');
+    const render = (entity, page) => renderToStaticMarkup(createElement(PlatformInformationPage, { entity, page }));
     const creative = render('TEE', 'creative-studio');
     const crm = render('TEA', 'staff-crm');
     const portal = render('EPDG', 'intern-portal');
     const directory = render('TEE', 'platforms');
+    const gateway = renderToStaticMarkup(createElement(PlatformHomeGateway, { entity: 'TEE' }));
     assert.ok(creative.includes('href="https://start-project-9563ae.netlify.app/"'));
     assert.match(creative, /Personal accounts available · company workspace controlled/);
     assert.match(creative, /private save and reopen flows for supported Image, Video, Audio, and Social projects/);
@@ -77,6 +78,8 @@ test('rendered portal pages state their verified access boundaries and link to t
     assert.match(directory, /Emerson Professional Development Group information/);
     assert.match(directory, /TEE Project Studio/);
     assert.match(directory, /TEA Project Studio/);
+    assert.match(gateway, /href="\/creative-studio"/);
+    assert.match(gateway, /href="\/platforms"/);
     for (const html of [creative, crm, portal, directory]) {
       assert.match(html, /aria-label="Breadcrumb"/);
       assert.match(html, /aria-label="Frequently asked questions"|<section[^>]*aria-labelledby="pe-faq-heading"/);
