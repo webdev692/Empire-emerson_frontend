@@ -19,7 +19,7 @@ function run(name, args, cwd = root) {
   console.log(`${name}: ${result.status === 0 ? 'PASS' : 'FAIL'}`);
   if (result.status !== 0) console.error((result.stdout || '') + (result.stderr || ''));
 }
-run('public-regression', ['--experimental-strip-types', '--test', '--test-concurrency=1', 'shared/content.test.mjs', 'shared/inquiry.test.mjs', 'shared/lesson-blocks.test.mjs', 'scripts/route-links.test.mjs', 'scripts/public-website-intake.test.mjs', 'scripts/public-source-boundary.test.mjs', 'scripts/services-catalog.test.mjs', 'scripts/project-studio.test.mjs', 'Emerson_Empire/scCommunityDirectory.test.mjs', 'EPDG-Landing-Page/collegesDirectory.test.mjs', 'EPDG-Landing-Page/freeLearningLibrary.test.mjs']);
+run('public-regression', ['--experimental-strip-types', '--test', '--test-concurrency=1', 'shared/content.test.mjs', 'shared/inquiry.test.mjs', 'shared/lesson-blocks.test.mjs', 'scripts/route-links.test.mjs', 'scripts/public-website-intake.test.mjs', 'scripts/public-source-boundary.test.mjs', 'scripts/services-catalog.test.mjs', 'scripts/project-studio.test.mjs', 'scripts/platform-entry-pages.test.mjs', 'Emerson_Empire/scCommunityDirectory.test.mjs', 'EPDG-Landing-Page/collegesDirectory.test.mjs', 'EPDG-Landing-Page/freeLearningLibrary.test.mjs']);
 run('public-shared-lint', ['Emerson_Empire/node_modules/eslint/bin/eslint.js', '--config', 'Emerson_Empire/eslint.config.js', 'shared/**/*.ts', 'shared/**/*.tsx', '--max-warnings', '0']);
 for (const app of ['Emerson_Empire', 'Agency_LandingPage', 'EPDG-Landing-Page']) {
   for (const action of ['build:website', 'lint', 'smoke']) run(app + '-' + action, [npm, 'run', action], resolve(root, app));

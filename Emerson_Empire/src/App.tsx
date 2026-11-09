@@ -1,6 +1,9 @@
 import ServicesPricing from '../../shared/ServicesPricing';
 import PublicWebsiteAccessibility from '../../shared/PublicWebsiteAccessibility';
 import PublicLegalPages from '../../shared/PublicLegalPages';
+// Shared platform pages use native anchors so they stay independent of this app's router package instance.
+import { PlatformInformationPage } from '../../shared/PlatformEntryPages';
+import { platformEntryPagesEnabled } from '../../shared/platform-entry-mode';
 import { publicIntakeEnabled } from '../../shared/public-intake';
 import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter, Navigate, Routes, Route, useLocation } from 'react-router-dom';
@@ -60,6 +63,8 @@ function AppShell({ enhanced }: { enhanced: boolean }) {
 
         {enhanced && threeProgramsEnabled && <Route path="/career-readiness" element={<ProgramExperience entity="TEE" />} />}
         {enhanced && projectStudioEnabled && <Route path="/project-studio" element={<ProjectStudioPage entity="TEE" />} />}
+        {platformEntryPagesEnabled && <Route path="/creative-studio" element={<PlatformInformationPage entity="TEE" page="creative-studio" />} />}
+        {platformEntryPagesEnabled && <Route path="/platforms" element={<PlatformInformationPage entity="TEE" page="platforms" />} />}
         <Route path="/" element={<HomePage />} />
         <Route path="/services" element={enhanced && IntegratedFeatures ? <IntegratedFeatures /> : <Services />} />
         <Route path="/register" element={<Navigate to="/" replace />} />

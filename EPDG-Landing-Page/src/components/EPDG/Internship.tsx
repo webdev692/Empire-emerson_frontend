@@ -1,4 +1,6 @@
 import { intakeHref } from '../../../../shared/development-preview';
+import { Link } from 'react-router-dom';
+import { platformEntryPagesEnabled } from '../../../../shared/platform-entry-mode';
 import React from "react";
 import { useFormModal } from "./FormModalContext";
 import experienceImg from "../../assets/Experience.png";
@@ -99,6 +101,9 @@ const Internship: React.FC = () => {
           >
             Apply for the Internship Program
           </button>
+          {platformEntryPagesEnabled && <Link to="/intern-portal" className="inline-flex items-center mt-4 w-fit font-semibold text-[#1C4A2B] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1C4A2B]">
+            Intern Portal information <span aria-hidden="true" className="ml-2">→</span>
+          </Link>}
         </div>
 
         <div className="rounded-3xl overflow-hidden">

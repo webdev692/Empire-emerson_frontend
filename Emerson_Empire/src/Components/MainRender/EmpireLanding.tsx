@@ -1,6 +1,8 @@
 import React from "react";
 import ProgramExperience from '../../../../shared/ThreeProgramsEntry';
 import { StudioGateway } from "../../../../shared/ProjectStudioEntry";
+import { PlatformHomeGateway } from "../../../../shared/PlatformEntryPages";
+import { platformEntryPagesEnabled } from "../../../../shared/platform-entry-mode";
 import { ServicesGateway } from "../../../../shared/ServicesPricing";
 import { integratedPreview } from "../../../../shared/development-preview";
 import Hero from "../Umbrella/Hero";
@@ -16,6 +18,7 @@ const HomePage: React.FC = () => {
     <div>
       <main id="main-content">
         <Hero />
+        {platformEntryPagesEnabled && <PlatformHomeGateway entity="TEE" />}
         {integratedPreview && <StudioGateway entity="TEE" />}
         {integratedPreview && <ServicesGateway entity="TEE" />}
         {integratedPreview && <ProgramExperience entity="TEE" view="gateway" />}

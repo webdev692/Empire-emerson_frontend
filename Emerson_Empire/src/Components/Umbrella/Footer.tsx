@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { EmpersonLogo } from '../../assets';
+import { platformEntryPagesEnabled } from '../../../../shared/platform-entry-mode';
 
 const NAVIGATE = [
+  ...(platformEntryPagesEnabled ? [{ label: 'Creative Studio', href: '/creative-studio' }, { label: 'Platforms & Workspaces', href: '/platforms' }] : []),
   { label: 'Home',        href: '/' },
   { label: 'Classes',     href: '/classes' },
   { label: 'Services',    href: '/services' },

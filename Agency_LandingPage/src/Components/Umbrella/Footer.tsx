@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom'
 import { localHref } from '../../../../shared/platform-format'
 import { Mail, Phone, MapPin, Camera, BriefcaseBusiness, Users, Music2 } from 'lucide-react'
 import logo from '../../assets/LogoAgency.png'
+import { platformEntryPagesEnabled } from '../../../../shared/platform-entry-mode'
 
 const socials = [
   { Icon: Camera, label: 'Instagram', href: 'https://www.instagram.com/theemersonagency' },
@@ -12,6 +13,7 @@ const socials = [
 ]
 
 const navLinks = [
+  ...(platformEntryPagesEnabled ? [{ label: 'Staff CRM Login', href: '/staff-crm' }] : []),
   { label: 'Home', href: '#main-content' },
   { label: 'Our Values', href: '#our-values' },
   { label: 'Services', href: '#services' },

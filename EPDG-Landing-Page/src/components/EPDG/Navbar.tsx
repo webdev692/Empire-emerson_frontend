@@ -1,4 +1,5 @@
 import { integratedPreview } from '../../../../shared/development-preview';
+import { platformEntryPagesEnabled } from '../../../../shared/platform-entry-mode';
 import { threeProgramsEnabled } from '../../../../shared/three-programs-mode';
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -15,13 +16,12 @@ const navLinks: NavLink[] = [
   { label: "Classes", id: "classes", type: "route", to: "/classes" },
   integratedPreview ? { label: "Services & Pricing", id: "services-pricing", type: "route", to: "/services-pricing" } : { label: "Services", id: "services", type: "section" },
   { label: "Internships", id: "internships", type: "section" },
+  ...(platformEntryPagesEnabled ? [{ label: "Intern Portal", id: "intern-portal", type: "route" as const, to: "/intern-portal" }] : []),
   { label: "Workforce", id: "workforce", type: "section" },
   { label: "Contact", id: "contact", type: "section" },
   ...(integratedPreview ? [{ label: "Resources", id: "resources", type: "route" as const, to: "/resources" }, { label: "Learn", id: "learn", type: "route" as const, to: "/learn" }] : []),
   ...(threeProgramsEnabled ? [{ label: "Global Internship", id: "global-internship-program", type: "route" as const, to: "/global-internship-program" }] : []),
 ];
-
-const PLATFORM_URL = "https://epdg.netlify.app/";
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -99,24 +99,6 @@ const Navbar: React.FC = () => {
           ))}
         </ul>
 
-        {!integratedPreview && <div className="hidden xl:flex items-center gap-3">
-          <a
-            href={PLATFORM_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="px-4 py-2 border border-white/10 hover:border-[#C9A84C] rounded-full font-semibold text-white/70 hover:text-white text-xs uppercase tracking-[0.18em] transition-all duration-200"
-          >
-            Log In
-          </a>
-          <a
-            href={PLATFORM_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="bg-[#C9A84C] hover:bg-[#BDA55F] px-4 py-2 rounded-full font-semibold text-[#07120f] text-xs uppercase tracking-[0.18em] transition-all duration-200"
-          >
-            Create Account
-          </a>
-        </div>}
 
         <button
           className="xl:hidden flex justify-center items-center bg-[#03140f] border border-white/10 rounded-full w-11 h-11 text-white cursor-pointer"
@@ -151,24 +133,6 @@ const Navbar: React.FC = () => {
               </li>
             ))}
           </ul>
-          {!integratedPreview && <div className="flex flex-col gap-3">
-            <a
-              href={PLATFORM_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="px-4 py-3 border border-white/10 rounded-full font-semibold text-white/80 hover:text-white text-sm text-center uppercase tracking-[0.18em]"
-            >
-              Log In
-            </a>
-            <a
-              href={PLATFORM_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="bg-[#C9A84C] hover:bg-[#BDA55F] px-4 py-3 rounded-full font-semibold text-[#07120f] text-sm text-center uppercase tracking-[0.18em]"
-            >
-              Create Account
-            </a>
-          </div>}
         </div>
       )}
     </nav>

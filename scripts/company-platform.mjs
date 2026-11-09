@@ -7,6 +7,7 @@ import { validateStudioPublication } from './project-studio-release.mjs';
 import { validateThreeProgramsPublication } from './three-programs-release.mjs';
 import { validateResearchPublication } from './tee-research-release.mjs';
 import { validateFrozenExports } from './public-source-boundary.mjs';
+import { validatePlatformEntryPagesRelease } from './platform-entry-pages-release.mjs';
 // Both advertised production build commands must use the same frozen gate.
 const action = ['build', 'build-live'].includes(process.argv[2]) ? 'build-website' : process.argv[2];
 const liveBuild = action === 'build-website';
@@ -21,17 +22,21 @@ const git = args => spawnSync('git', ['-c',`safe.directory=${repository}`,'-C',r
 const head = git(['rev-parse','--short=12','HEAD']);
 const sourceStatus = git(['status','--porcelain']);
 const buildId = head.status === 0 ? `${head.stdout.trim()}${sourceStatus.stdout.trim() ? ' + working tree' : ''}` : 'unrecorded working tree';
-const env = { ...process.env, VITE_COMPANY_PLATFORM: 'true', VITE_PUBLIC_INTAKE_RELEASE: liveBuild ? 'true' : 'false', VITE_PUBLIC_LEGAL_APPROVED: websiteApproval.legal_publication_approved === true ? 'true' : 'false', VITE_BUILD_ID: buildId, VITE_PROJECT_STUDIO_RELEASE: 'false', VITE_THREE_PROGRAMS_PREVIEW: 'false', VITE_THREE_PROGRAMS_RELEASE: 'false', VITE_TEE_RESEARCH_PREVIEW: 'false', VITE_TEE_RESEARCH_RELEASE: 'false' };
+const env = { ...process.env, VITE_COMPANY_PLATFORM: 'true', VITE_PUBLIC_INTAKE_RELEASE: liveBuild ? 'true' : 'false', VITE_PUBLIC_LEGAL_APPROVED: websiteApproval.legal_publication_approved === true ? 'true' : 'false', VITE_BUILD_ID: buildId, VITE_PROJECT_STUDIO_RELEASE: 'false', VITE_PLATFORM_ENTRY_PAGES_RELEASE: 'false', VITE_THREE_PROGRAMS_PREVIEW: 'false', VITE_THREE_PROGRAMS_RELEASE: 'false', VITE_TEE_RESEARCH_PREVIEW: 'false', VITE_TEE_RESEARCH_RELEASE: 'false' };
 if (action === 'build-review') {
   const sites = JSON.parse(readFileSync(new URL('../shared/review-sites.json',import.meta.url),'utf8'));
   for (const [entity,site] of Object.entries(sites)) env[`VITE_${entity}_PREVIEW_ORIGIN`] = site.origin;
 }
 if (liveBuild) {
   const boundary = validateFrozenExports(repository);
+  const entryPages = validatePlatformEntryPagesRelease(repository);
   const release = Object.values(boundary.published).find(site => site.app === basename(process.cwd()));
   if (!release) throw new Error('Unknown public content release');
   // Current source revision is visible; historical content receipts remain in the manifest.
   const sites = JSON.parse(readFileSync(new URL('../shared/public-sites.json',import.meta.url),'utf8'));
+  const entity = Object.keys(sites).find(key => sites[key].app === basename(process.cwd()));
+  if (!entity) throw new Error('Unknown public site for platform entry page release');
+  env.VITE_PLATFORM_ENTRY_PAGES_RELEASE = entryPages.links.page_paths[entity].length ? 'true' : 'false';
   for (const [entity,site] of Object.entries(sites)) env[`VITE_${entity}_PUBLIC_ORIGIN`] = site.origin;
   env.VITE_PUBLIC_SITE_ORIGIN = Object.values(sites).find(site=>site.app===basename(process.cwd())).origin;
   const studio = validateStudioPublication(repository);

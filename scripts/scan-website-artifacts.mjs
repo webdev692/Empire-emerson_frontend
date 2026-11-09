@@ -6,9 +6,11 @@ import { fileURLToPath } from 'node:url';
 import { sha256, lfSha256, assertPublicPrivacy, publicBoundarySha256 } from './public-source-boundary.mjs';
 import { validateFrozenPublicContent } from './validate-frozen-public-content.mjs';
 import { liveHeaders } from './live-policy.mjs';
+import { validatePlatformEntryPagesRelease } from './platform-entry-pages-release.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const { boundary } = validateFrozenPublicContent(root);
+const entryPages = validatePlatformEntryPagesRelease(root);
 const approval = JSON.parse(readFileSync(resolve(root, 'docs/PUBLIC_WEBSITE_REPAIR_2026-10-28.json'), 'utf8'));
 assert.equal(lfSha256(readFileSync(resolve(root, approval.legal_source_path))), approval.legal_source_sha256_lf);
 assert.deepEqual(approval.scope, ['Emerson_Empire', 'Agency_LandingPage', 'EPDG-Landing-Page']);
@@ -34,6 +36,11 @@ for (const [entity, site] of Object.entries(boundary.published)) {
   for (const key of ['portal_changed', 'crm_changed', 'media_studio_changed']) assert.equal(manifest.website_repair[key], false);
   assert.equal(!!manifest.research, entity === 'TEE');
   assert.equal(!!manifest.project_studio, entity !== 'EPDG');
+  assert.deepEqual(manifest.platform_entry_pages, {
+    public_configuration: 'shared/platform-entry-links.json',
+    paths: entryPages.links.page_paths[entity],
+    login_destinations: entryPages.links.login_destinations,
+  });
   const emitted = files(dist).map(path => relative(dist, path).replaceAll('\\', '/')).filter(path => path !== 'release-build.json').sort();
   assert.deepEqual(emitted, manifest.files.filter(row => row.path !== 'release-build.json').map(row => row.path).sort());
   for (const row of manifest.files.filter(row => row.path !== 'release-build.json')) {
@@ -55,5 +62,7 @@ for (const [entity, site] of Object.entries(boundary.published)) {
   assert.doesNotMatch(html, /onload=|data-netlify|noindex/i);
   const sitemap = readFileSync(resolve(dist, 'sitemap.xml'), 'utf8');
   for (const path of ['/classes', '/privacy', '/terms', '/disclaimer', '/inquiry']) assert.ok(sitemap.includes(site.origin + path));
+  for (const path of entryPages.links.page_paths[entity]) assert.ok(sitemap.includes(site.origin + path));
+  assert.ok(readFileSync(resolve(dist, '_redirects'), 'utf8').includes('/* /index.html 200'), 'SPA direct-route reload fallback is missing');
   console.log(`${entity}: current manifest hashes, approved payloads, privacy, canonical routes and external-only intake PASS (${emitted.length} files).`);
 }

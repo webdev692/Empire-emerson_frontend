@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "page_paths": {
+    "TEE": ["/creative-studio", "/platforms"],
+    "TEA": ["/staff-crm"],
+    "EPDG": ["/intern-portal"]
+  },
+  "login_destinations": {
+    "creative_studio": "https://start-project-9563ae.netlify.app/",
+    "crm": "https://emerson-crm.netlify.app/",
+    "epdg_portal": "https://epdg.netlify.app/login"
+  },
+  "support_mailboxes": {
+    "technical": "webdev@theemersonempire.info",
+    "hr": "humanresources@theemersonempire.info"
+  }
+}

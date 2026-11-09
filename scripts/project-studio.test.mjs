@@ -56,7 +56,7 @@ test('TEE has scoped deliverables, accessible FAQs and a local planning aid; TEA
     const tee = renderToStaticMarkup(createElement(Studio, { entity: 'TEE', view: 'page' }));
     const tea = renderToStaticMarkup(createElement(Studio, { entity: 'TEA', view: 'page' }));
     for (const item of catalog.examples) { assert.match(tee, new RegExp(`id="${item.id.toLowerCase()}"`)); assert.ok(tea.includes(`http://127.0.0.1:5183/project-studio#${item.id.toLowerCase()}`)); }
-    assert.equal((tee.match(/<details>/g) || []).length, 9);
+    assert.equal((tee.match(/<details>/g) || []).length, 13);
     assert.equal((tee.match(/<textarea/g) || []).length, 3);
     for (const html of [tee, tea]) {
       assert.doesNotMatch(html, /<form|<iframe|type="submit"|mailto:|forms\.gle|drive\.google|\$\d|80%|20%|guaranteed earnings/);

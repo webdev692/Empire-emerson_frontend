@@ -1,5 +1,11 @@
 # Overnight full-stack release journal
 
+## 2026-11-09 — Public platform entry and Project Studio candidate
+
+Added company-branded information and navigation for Creative Studio, staff CRM, the protected EPDG Intern Portal, and the TEE platform directory. Expanded the existing TEE Project Studio page while preserving only the approved BUS-03 and SYS-03 quote-only examples and its offline brief. The public build gate validates the four routes, three HTTPS application destinations, and unchanged portal, CRM, and media-studio access boundaries.
+
+Verification in this Windows session: 67 public regression tests passed; shared and all three application lint runs passed; all three public-release website builds and smoke checks passed; the artifact scanner confirmed current manifest hashes and privacy boundaries (TEE 97 files, TEA 95, EPDG 30). Node 22.23.1/npm 11.17.0 were not available in this shell, so the repository's pinned `npm run check:public` wrapper was not runnable; equivalent installed checks were executed directly with Node 24.22.1. The browser sandbox could not connect to local preview servers, so viewport screenshots, live direct-route/browser checks, authorized sign-in, and denied-access acceptance remain incomplete. Keep these gaps explicit in any release decision.
+
 ## 2026-11-08 — Restore the published synthetic portal origin
 
 The production-context hosted build omitted `https://epdg.netlify.app` from its exact browser origin allowlist. Its runtime would therefore refuse to start after promotion at the site's published domain. The reviewed profile now admits that origin alongside the existing hosted-practice branch origin, matching the canonical backend's already-reviewed allowlist. The synthetic labels, same-origin API proxy, strict HTTPS checks, private session boundaries and closed owner/admin controls are retained. A regression exercises the actual release profile and rejects HTTP, lookalike and unreviewed branch origins.

@@ -1,5 +1,8 @@
 import PublicLegalPages from '../../shared/PublicLegalPages';
 import PublicWebsiteAccessibility from '../../shared/PublicWebsiteAccessibility';
+// Shared platform pages use native anchors so they stay independent of this app's router package instance.
+import { PlatformInformationPage } from '../../shared/PlatformEntryPages';
+import { platformEntryPagesEnabled } from '../../shared/platform-entry-mode';
 import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { PreviewBoundary, PreviewNotice, ExperienceLinks } from '../../shared/InternSiteIntegration'
@@ -41,6 +44,7 @@ function Site({ enhanced }: { enhanced: boolean }) {
 
           {enhanced && threeProgramsEnabled && <Route path="/pathways" element={<ProgramExperience entity="TEA" />} />}
         {enhanced && projectStudioEnabled && <Route path="/project-studio" element={<ProjectStudioPage entity="TEA" />} />}
+        {platformEntryPagesEnabled && <Route path="/staff-crm" element={<PlatformInformationPage entity="TEA" page="staff-crm" />} />}
           <Route path="/" element={<HomePage enhanced={enhanced} />} />
           <Route path="/educationPage" element={<EducationPage embedded />} />
           {enhanced && Features && <Route path="*" element={<Features />} />}

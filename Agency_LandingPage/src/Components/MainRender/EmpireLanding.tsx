@@ -2,6 +2,8 @@ import { LearningGateway } from '../../../../shared/InternSiteIntegration';
 import React from "react";
 import ProgramExperience from '../../../../shared/ThreeProgramsEntry';
 import { StudioGateway } from "../../../../shared/ProjectStudioEntry";
+import { PlatformHomeGateway } from "../../../../shared/PlatformEntryPages";
+import { platformEntryPagesEnabled } from "../../../../shared/platform-entry-mode";
 import { ServicesGateway } from "../../../../shared/ServicesPricing";
 import Hero from "../Umbrella/Hero";
 import MissionSection from "./MissionSection";
@@ -16,6 +18,7 @@ const HomePage: React.FC<{ enhanced?: boolean }> = ({ enhanced }) => {
     <div>
       <main id="main-content">
         <Hero />
+        {platformEntryPagesEnabled && <PlatformHomeGateway entity="TEA" />}
         {enhanced && <StudioGateway entity="TEA" />}
         {enhanced && <ServicesGateway entity="TEA" />}
         {enhanced && <ProgramExperience entity="TEA" view="gateway" />}
