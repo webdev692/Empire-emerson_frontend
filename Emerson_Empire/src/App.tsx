@@ -1,6 +1,7 @@
 import ServicesPricing from '../../shared/ServicesPricing';
 import PublicWebsiteAccessibility from '../../shared/PublicWebsiteAccessibility';
 import PublicLegalPages from '../../shared/PublicLegalPages';
+// Shared platform pages use native anchors so they stay independent of this app's router package instance.
 import { PlatformInformationPage } from '../../shared/PlatformEntryPages';
 import { platformEntryPagesEnabled } from '../../shared/platform-entry-mode';
 import { publicIntakeEnabled } from '../../shared/public-intake';

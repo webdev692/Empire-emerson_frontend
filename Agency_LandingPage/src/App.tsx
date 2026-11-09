@@ -1,5 +1,6 @@
 import PublicLegalPages from '../../shared/PublicLegalPages';
 import PublicWebsiteAccessibility from '../../shared/PublicWebsiteAccessibility';
+// Shared platform pages use native anchors so they stay independent of this app's router package instance.
 import { PlatformInformationPage } from '../../shared/PlatformEntryPages';
 import { platformEntryPagesEnabled } from '../../shared/platform-entry-mode';
 import { lazy, Suspense, useEffect } from 'react'
