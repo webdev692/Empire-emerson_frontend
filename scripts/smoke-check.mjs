@@ -40,6 +40,8 @@ assert.match(
 switch (app) {
   case "Emerson_Empire": {
     const appSource = read("src/App.tsx");
+    const sitemap = read("dist/sitemap.xml");
+    for (const path of ["/creative-studio", "/platforms"]) assert.ok(sitemap.includes(`https://theemerson.netlify.app${path}`), `Missing direct public route ${path}`);
     assert.doesNotMatch(
       read("src/Components/MainRender/EmpireLanding.tsx"),
       /<(?:Helmet|meta|title|link)\b/,
@@ -56,6 +58,8 @@ switch (app) {
     break;
   }
   case "Agency_LandingPage": {
+    const sitemap = read("dist/sitemap.xml");
+    assert.ok(sitemap.includes("https://emersonagency.netlify.app/staff-crm"), "The Staff CRM information route is absent from the sitemap");
     assert.doesNotMatch(
       read("src/Components/MainRender/EmpireLanding.tsx"),
       /<(?:Helmet|meta|title|link)\b/,
@@ -80,6 +84,8 @@ switch (app) {
   }
   case "EPDG-Landing-Page": {
     assert.match(read("src/App.tsx"), /<Route\s+path=["']\/classes["']/, "The classes route is missing");
+    assert.ok(read("dist/sitemap.xml").includes("https://emersonprofessionaldevelopment.netlify.app/intern-portal"), "The Intern Portal information route is absent from the sitemap");
+    assert.doesNotMatch(read("src/components/EPDG/Navbar.tsx"), /Create Account|PLATFORM_URL/, "The public EPDG navigation still implies open portal registration");
     const builtIndex = read("dist/index.html");
     assert.match(builtIndex, /(?:src|href)="\/assets\//, "The default landing build does not target the site root");
     assert.doesNotMatch(builtIndex, /\/Empire-emerson_frontend\//, "The Netlify/default build still uses the GitHub Pages base path");

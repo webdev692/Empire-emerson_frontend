@@ -1,5 +1,7 @@
 import PublicLegalPages from '../../shared/PublicLegalPages';
 import PublicWebsiteAccessibility from '../../shared/PublicWebsiteAccessibility';
+import { PlatformInformationPage } from '../../shared/PlatformEntryPages';
+import { platformEntryPagesEnabled } from '../../shared/platform-entry-mode';
 import { lazy, Suspense } from 'react';
 import ProgramExperience from '../../shared/ThreeProgramsEntry';
 import { threeProgramsEnabled } from '../../shared/three-programs-mode';
@@ -39,6 +41,7 @@ function App({ enhanced = false }: { enhanced?: boolean }) {
         <Route path="/terms-of-use" element={<PublicLegalPages kind="terms" />} />
 
             {enhanced && threeProgramsEnabled && <Route path="/global-internship-program" element={<ProgramPage />} />}
+            {platformEntryPagesEnabled && <Route path="/intern-portal" element={<><Navbar /><PlatformInformationPage entity="EPDG" page="intern-portal" /><EPDGFooter /></>} />}
             <Route path="/" element={<LandingPage enhanced={enhanced} />} />
             <Route path="/classes" element={enhanced ? <FeaturePage /> : <ClassesPage />} />
             <Route path="/assignments/:assignmentId/feedback" element={FeedbackView ? <Suspense fallback={<p>Loading feedback…</p>}><FeedbackView /></Suspense> : <p role="status">Account feedback is unavailable in this review preview. No account data is connected.</p>} />

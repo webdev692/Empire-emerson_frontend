@@ -1,4 +1,5 @@
 import { projectStudioEnabled } from '../../../../shared/project-studio-mode';
+import { platformEntryPagesEnabled } from '../../../../shared/platform-entry-mode';
 import { threeProgramsEnabled } from '../../../../shared/three-programs-mode';
 import { integratedPreview } from '../../../../shared/development-preview';
 import React, { useRef, useState } from 'react';
@@ -13,6 +14,7 @@ const navClass = ({ isActive }: { isActive: boolean }) =>
 
 const NAV_LINKS = [
   ...(projectStudioEnabled ? [{ label: 'Project Studio', href: '/project-studio' }] : []),
+  ...(platformEntryPagesEnabled ? [{ label: 'Creative Studio', href: '/creative-studio' }, { label: 'Platforms', href: '/platforms' }] : []),
   { label: 'HOME', href: '/' },
   {
     label: 'Classes', href: '/classes',

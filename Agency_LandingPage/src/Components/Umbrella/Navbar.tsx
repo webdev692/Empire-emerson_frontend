@@ -1,4 +1,5 @@
 import { projectStudioEnabled } from '../../../../shared/project-studio-mode';
+import { platformEntryPagesEnabled } from '../../../../shared/platform-entry-mode';
 import { threeProgramsEnabled } from '../../../../shared/three-programs-mode';
 import { intakeHref } from '../../../../shared/development-preview';
 import { useLocation } from 'react-router-dom'
@@ -11,6 +12,7 @@ import { openRequestForm } from './RequestFormEvents'
 
 const NAV_LINKS = [
   ...(projectStudioEnabled ? [{ label: 'Project Studio', href: '/project-studio' }] : []),
+  ...(platformEntryPagesEnabled ? [{ label: 'Staff CRM Login', href: '/staff-crm' }] : []),
   { label: 'Home', href: '#main-content' },
   { label: 'Our Values', href: '#our-values' },
   { label: integratedPreview ? 'Services & Pricing' : 'Services', href: integratedPreview ? '/services-pricing' : '#services' },

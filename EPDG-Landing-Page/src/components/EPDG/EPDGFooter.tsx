@@ -1,9 +1,11 @@
 import { publicForms, publicIntakeEnabled } from '../../../../shared/public-intake';
 import { localHref } from '../../../../shared/platform-format';
+import { platformEntryPagesEnabled } from '../../../../shared/platform-entry-mode';
 import React from "react";
 import { logo } from "../../assets";
 
 const navigateLinks = [
+  ...(platformEntryPagesEnabled ? [{ label: "Intern Portal", href: "/intern-portal" }] : []),
   { label: "Daily Classes", href: "/classes" },
   { label: "Career Services", href: "/services-pricing" },
   { label: "Internship Program", href: "/global-internship-program" },
