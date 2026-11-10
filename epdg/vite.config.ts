@@ -11,6 +11,9 @@ import { staticPortalRedirects, staticPortalHeaders } from './scripts/netlify-st
 const syntheticOrigin = 'http://127.0.0.1:58080';
 const syntheticRoot = fileURLToPath(new URL('.', import.meta.url));
 const syntheticPolicy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' http://127.0.0.1:58000 ws://127.0.0.1:58080; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'";
+const adminStagingOrigin = 'http://127.0.0.1:58080';
+const adminStagingApi = 'http://127.0.0.1:58000';
+const adminStagingPolicy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' http://127.0.0.1:58000; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'";
 
 function syntheticLoginAlias() {
   const file = fileURLToPath(new URL('../../THE-EMERSON-EMPIRE_Backend/.local-synthetic/frontend-login-alias.json', import.meta.url));
@@ -24,6 +27,39 @@ function syntheticLoginAlias() {
     || value.loginEmail !== value.loginEmail.trim().toLowerCase()
     || value.fixtureEmail !== 'learner-a@epdg.invalid') throw new Error('Invalid private synthetic login alias');
   return { loginEmail: value.loginEmail, fixtureEmail: value.fixtureEmail };
+}
+
+function adminStagingIsolation(preview: boolean | undefined): Plugin {
+  return {
+    name: 'local-admin-staging-isolation',
+    configResolved(config) {
+      const server = config.server;
+      if ((config.command !== 'serve' && config.command !== 'build') || preview
+        || config.base !== '/' || !Array.isArray(config.envPrefix) || config.envPrefix.length !== 0
+        || (config.command === 'serve' && (server.host !== '127.0.0.1' || server.port !== 58080 || !server.strictPort
+          || server.origin !== adminStagingOrigin || server.https || server.proxy || server.middlewareMode
+          || !server.fs.strict || server.fs.allow.length !== 1
+          || server.fs.allow[0].replaceAll('\\', '/').replace(/\/$/, '').toLowerCase() !== syntheticRoot.replaceAll('\\', '/').replace(/\/$/, '').toLowerCase()
+          || server.headers?.['Content-Security-Policy'] !== adminStagingPolicy))
+        || (config.command === 'build' && (config.build.outDir !== 'dist-admin-staging' || config.build.sourcemap))) {
+        throw new Error('Administrator staging is restricted to its loopback development server and isolated build.');
+      }
+    },
+    configureServer(server) {
+      server.middlewares.use((request, response, next) => {
+        if (request.headers.host !== '127.0.0.1:58080'
+          || (request.headers.origin && request.headers.origin !== adminStagingOrigin)) {
+          response.statusCode = 403;
+          response.end('Administrator staging is available only on its authorized loopback origin.');
+          return;
+        }
+        next();
+      });
+    },
+    generateBundle() {
+      this.emitFile({ type: 'asset', fileName: '_headers', source: `/*\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: DENY\n  Referrer-Policy: no-referrer\n  Cache-Control: no-store\n  X-Robots-Tag: noindex, nofollow\n  X-EPDG-Environment: admin-staging-local\n  Content-Security-Policy: ${adminStagingPolicy}\n` });
+    },
+  };
 }
 
 function syntheticIsolation(): Plugin {
@@ -72,12 +108,33 @@ function syntheticIsolation(): Plugin {
 export default defineConfig(({ mode, command, isPreview }) => {
   const synthetic = mode === 'synthetic-local';
   const hosted = mode === 'hosted-practice';
+  const adminStaging = mode === 'admin-staging';
   if (synthetic && (command !== 'serve' || isPreview)) {
     throw new Error('Synthetic portal is development-only; build and preview are prohibited.');
   }
+  if (adminStaging && isPreview) throw new Error('Administrator staging preview hosting is prohibited.');
   if (hosted && (command !== 'build' || isPreview)) throw new Error('Hosted practice requires an explicit reviewed build.');
   const hostedProfile = hosted ? validateHostedPracticeProfile(JSON.parse(readFileSync(new URL('./hosted-practice.config.json', import.meta.url), 'utf8'))) : null;
   return {
+  ...(adminStaging ? {
+    envPrefix: [],
+    define: { __EPDG_ADMIN_STAGING_API_ORIGIN__: JSON.stringify(adminStagingApi) },
+    server: {
+      host: '127.0.0.1', port: 58080, strictPort: true, origin: adminStagingOrigin,
+      allowedHosts: ['127.0.0.1'], cors: { origin: adminStagingOrigin },
+      fs: { strict: true, allow: [syntheticRoot] },
+      headers: {
+        'X-EPDG-Environment': 'admin-staging-local', 'Cache-Control': 'no-store',
+        'Referrer-Policy': 'no-referrer', 'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'DENY', 'X-Robots-Tag': 'noindex, nofollow',
+        'Content-Security-Policy': adminStagingPolicy,
+      },
+    },
+    build: {
+      outDir: 'dist-admin-staging', sourcemap: false, emptyOutDir: true,
+      rollupOptions: { input: fileURLToPath(new URL('./admin-staging.html', import.meta.url)) },
+    },
+  } : {}),
   ...(hostedProfile ? {
     envPrefix: [],
     resolve: {
@@ -125,6 +182,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
   } : {}),
   plugins: [
     ...(synthetic ? [syntheticIsolation()] : []),
+    ...(adminStaging ? [adminStagingIsolation(isPreview)] : []),
     ...(hostedProfile ? [{
       name: 'hosted-practice-isolation',
       configResolved(config) {
@@ -148,7 +206,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
     {
       name: 'isolated-portal-design-preview',
       generateBundle() {
-        if (!hosted && !synthetic) {
+        if (!hosted && !synthetic && !adminStaging) {
           this.emitFile({ type: 'asset', fileName: '_redirects', source: staticPortalRedirects });
           this.emitFile({ type: 'asset', fileName: '_headers', source: staticPortalHeaders });
         }
@@ -165,7 +223,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
     tailwindcss(),
     react(),
     VitePWA({
-      disable: mode === 'design-preview' || mode === 'synthetic-local' || hosted,
+      disable: mode === 'design-preview' || mode === 'synthetic-local' || hosted || adminStaging,
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {
