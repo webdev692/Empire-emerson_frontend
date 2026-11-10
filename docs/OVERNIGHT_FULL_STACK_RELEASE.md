@@ -840,3 +840,11 @@ Coverage limits remain explicit: final native Chrome/Edge automation stopped bec
 Only the three public site IDs in `shared/public-sites.json` received uploads. EPDG portal production remains ready and locked on `6a385b7fac8ea70008ef72d6`, published June 21, 2026, source `9e2bbb0cbae7de3eabc27da0bcea37bebed449a2`. CRM and media studio were not deployed or reconfigured. An early automatic portal PR preview (`6ae24256d69142c382f91cbe`) occurred before the PR title gained `[skip netlify]`; it did not change portal production. Subsequent PR titles, source commits, merge and this documentation update retain `[skip netlify]` to prevent repository-wide Netlify deployments. No access, authentication, database, Railway or Supabase configuration changed.
 
 Future unmarked pushes to main can replace manual public releases; the owner was warned before publication. Correct defects forward through reviewed source and freshly checked public artifacts. Never restore an older deploy, unlock portal production, or change excluded project release settings as part of this website work.
+
+## 2026-11-09 — Isolated EPDG administrator interface candidate
+
+A separate, loopback-only administrator entry page was implemented under the EPDG frontend. It uses the server-verified session, HttpOnly cookie and CSRF contract; it has no role selector or browser token storage. Users, roles, and education readiness screens were exercised against the isolated local API with fictional .invalid identities. The UI recorded a pending WebDev review request; it did not grant permissions.
+
+Frontend verification on the candidate: 93/93 tests passed, lint exited 0, and the isolated admin build passed its output-boundary check. The page remains separate from the hosted practice PWA, which was not changed or deployed. Applicants, resumes, and onboarding remain in the Emerson CRM; education management controls remain read-only.
+
+Production identity verification and any production release remain open. No production URL was invented, no real account permission changed, no learner was activated, and no Netlify setting or deployment was changed.
