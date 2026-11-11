@@ -249,7 +249,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
     tailwindcss(),
     react(),
     VitePWA({
-      disable: mode === 'design-preview' || mode === 'synthetic-local' || hosted || adminStaging,
+      disable: mode === 'design-preview' || mode === 'synthetic-local' || hosted || adminStaging || adminStagingHosted,
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {

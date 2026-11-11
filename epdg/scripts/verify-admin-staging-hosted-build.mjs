@@ -20,6 +20,7 @@ const names = files.map(path => relative(root, path).replaceAll('\\', '/')).sort
 assert.deepEqual(names.filter(name => name.endsWith('.html')), ['index.html']);
 assert.ok(names.includes('_headers') && names.includes('_redirects'));
 assert.ok(!names.some(name => name.endsWith('.map')), 'source maps are excluded');
+assert.ok(!names.some(name => /^(?:sw\.js|manifest\.webmanifest)$/i.test(name)), 'hosted admin output does not contain a service worker or install manifest');
 const redirects = await readFile(join(root, '_redirects'), 'utf8');
 assert.equal(redirects, adminStagingHostedRedirects(apiOrigin), 'only the API path is proxied to the verified Railway origin');
 const headers = await readFile(join(root, '_headers'), 'utf8');

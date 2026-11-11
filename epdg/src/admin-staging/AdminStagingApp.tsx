@@ -215,7 +215,7 @@ export function AdminStagingApp() {
           {notice && <p className="success-message" role="status">{notice}</p>}
           {error && <p className="error-message" role="alert">{error}</p>}
           {logoutUnconfirmed && <button className="quiet-button full-width" type="button" onClick={() => void retryServerLogout()} disabled={pending}>{pending ? 'Retrying sign out…' : 'Retry server sign out'}</button>}
-          <button className="primary-button full-width" type="submit" disabled={pending}>
+          <button className="primary-button full-width" type="submit" disabled={pending || logoutUnconfirmed}>
             {pending ? 'Signing in…' : 'Sign in'} <span aria-hidden="true">→</span>
           </button>
         </form>
