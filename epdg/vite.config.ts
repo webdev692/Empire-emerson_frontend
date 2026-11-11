@@ -144,7 +144,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
     define: { __EPDG_ADMIN_STAGING_API_ORIGIN__: JSON.stringify(''), __EPDG_ADMIN_STAGING_HOSTED__: 'true' },
     build: {
       outDir: ADMIN_STAGING_HOSTED_OUTPUT, sourcemap: false, emptyOutDir: true,
-      rollupOptions: { input: { index: fileURLToPath(new URL('./admin-staging.html', import.meta.url)) } },
+      rollupOptions: { input: fileURLToPath(new URL('./index.html', import.meta.url)) },
     },
   } : {}),
   ...(hostedProfile ? {
@@ -197,7 +197,6 @@ export default defineConfig(({ mode, command, isPreview }) => {
     ...(adminStaging ? [adminStagingIsolation(isPreview)] : []),
     ...(adminStagingHosted ? [{
       name: 'hosted-admin-staging-isolation',
-      enforce: 'post',
       configResolved(config) {
         if (config.command !== 'build' || config.base !== '/' || !Array.isArray(config.envPrefix)
           || config.envPrefix.length !== 0 || config.build.outDir !== ADMIN_STAGING_HOSTED_OUTPUT
@@ -205,17 +204,24 @@ export default defineConfig(({ mode, command, isPreview }) => {
           throw new Error('Hosted administrator staging is restricted to its isolated protected build.');
         }
       },
-      generateBundle(_options, bundle) {
-        const page = bundle['admin-staging.html'];
-        if (!page || page.type !== 'asset') throw new Error('Hosted administrator staging entry page is missing.');
-        delete bundle['admin-staging.html'];
-        page.fileName = 'index.html';
-        bundle['index.html'] = page;
+      transformIndexHtml: {
+        order: 'pre',
+        handler() {
+          return `<!doctype html>
+<html lang="en"><head><meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="referrer" content="no-referrer" />
+<title>EPDG Administrator — Hosted staging</title></head>
+<body><div id="root"></div><script type="module" src="/src/admin-staging/main.tsx"></script></body></html>`;
+        },
+      },
+      generateBundle() {
         this.emitFile({ type: 'asset', fileName: '_redirects', source: adminStagingHostedRedirects(adminStagingHostedApiOrigin) });
         this.emitFile({ type: 'asset', fileName: '_headers', source: adminStagingHostedHeaders });
       },
     } satisfies Plugin] : []),
-    ...(hostedProfile ? [{
+        ...(hostedProfile ? [{
       name: 'hosted-practice-isolation',
       configResolved(config) {
         if (config.base !== '/' || config.command !== 'build' || !Array.isArray(config.envPrefix) || config.envPrefix.length !== 0
