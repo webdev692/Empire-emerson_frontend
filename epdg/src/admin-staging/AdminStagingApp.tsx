@@ -63,6 +63,7 @@ function LoadingPanel({ label }: { label: string }) {
 }
 
 export function AdminStagingApp() {
+  const hostedBuild = __EPDG_ADMIN_STAGING_HOSTED__;
   const [session, setSession] = useState<PortalSession | null>(null);
   const [booting, setBooting] = useState(true);
   const [page, setPage] = useState<Page>('overview');
@@ -72,6 +73,7 @@ export function AdminStagingApp() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
+  const [logoutUnconfirmed, setLogoutUnconfirmed] = useState(false);
   const [overview, setOverview] = useState<Overview | null>(null);
   const [users, setUsers] = useState<PortalUser[]>([]);
   const [roles, setRoles] = useState<RolesPayload | null>(null);
@@ -130,6 +132,7 @@ export function AdminStagingApp() {
       const next = await signIn(email.trim(), password);
       setSession(next);
       setPassword('');
+      setLogoutUnconfirmed(false);
       setPage('overview');
     } catch (reason) {
       setError(messageFor(reason));
@@ -140,15 +143,39 @@ export function AdminStagingApp() {
 
   async function handleSignOut() {
     setPending(true);
-    try { await signOut(); } catch { /* The browser session is cleared locally either way. */ }
+    setError('');
+    setNotice('');
+    let confirmed = false;
+    try {
+      await signOut();
+      confirmed = true;
+    } catch {
+      // Keep the login page locked while retaining the in-memory CSRF token for a retry.
+    }
     setSession(null);
     setOverview(null);
     setUsers([]);
     setRoles(null);
     setPassword('');
     setPage('overview');
-    setNotice('Signed out.');
+    setLogoutUnconfirmed(!confirmed);
+    setNotice(confirmed ? 'Signed out.' : '');
+    setError(confirmed ? '' : 'The server could not confirm logout. This device may still have an active session; reconnect and retry server sign out.');
     setPending(false);
+  }
+
+  async function retryServerLogout() {
+    setPending(true);
+    setError('');
+    try {
+      await signOut();
+      setLogoutUnconfirmed(false);
+      setNotice('Signed out.');
+    } catch {
+      setError('The server could not confirm logout. This device may still have an active session; reconnect and retry server sign out.');
+    } finally {
+      setPending(false);
+    }
   }
 
   async function submitRoleRequest() {
@@ -175,7 +202,7 @@ export function AdminStagingApp() {
   if (!session) return <main className="login-screen">
     <div className="login-wrap">
       <div className="brand-lockup"><div className="brand-mark">E</div><div><span className="eyebrow">The Emerson Empire</span><strong>EPDG administrator</strong></div></div>
-      <div className="staging-banner"><span className="status-dot" /> Isolated local staging · synthetic <code>.invalid</code> accounts only</div>
+      <div className="staging-banner"><span className="status-dot" /> {hostedBuild ? 'Protected hosted staging' : 'Isolated local staging'} · synthetic <code>.invalid</code> accounts only</div>
       <section className="login-card">
         <span className="eyebrow">Secure sign in</span>
         <h1>Welcome back</h1>
@@ -185,21 +212,23 @@ export function AdminStagingApp() {
           <input id="admin-email" type="email" autoComplete="username" value={email} onChange={event => setEmail(event.target.value)} required maxLength={150} />
           <label htmlFor="admin-password">Password</label>
           <input id="admin-password" type="password" autoComplete="current-password" value={password} onChange={event => setPassword(event.target.value)} required maxLength={72} />
+          {notice && <p className="success-message" role="status">{notice}</p>}
           {error && <p className="error-message" role="alert">{error}</p>}
+          {logoutUnconfirmed && <button className="quiet-button full-width" type="button" onClick={() => void retryServerLogout()} disabled={pending}>{pending ? 'Retrying sign out…' : 'Retry server sign out'}</button>}
           <button className="primary-button full-width" type="submit" disabled={pending}>
             {pending ? 'Signing in…' : 'Sign in'} <span aria-hidden="true">→</span>
           </button>
         </form>
         <p className="login-footnote">No role selector. No browser-stored bearer token. Sessions use an HttpOnly cookie.</p>
       </section>
-      <p className="local-only">This build is restricted to loopback. It does not connect to production EPDG or CRM data.</p>
+      {!hostedBuild && <p className="local-only">This build is restricted to loopback. It does not connect to production EPDG or CRM data.</p>}
     </div>
   </main>;
 
   return <main className="app-shell">
     <header className="topbar">
       <div className="brand-lockup"><div className="brand-mark">E</div><div><span className="eyebrow">The Emerson Empire</span><strong>EPDG administrator</strong></div></div>
-      <div className="topbar-right"><span className="environment-pill"><span className="status-dot" /> Local staging</span>
+      <div className="topbar-right"><span className="environment-pill"><span className="status-dot" /> {hostedBuild ? 'Hosted staging' : 'Local staging'}</span>
         <div className="user-menu"><div className="avatar">{session.user.name.slice(0, 1).toUpperCase()}</div><div className="user-identity"><strong>{session.user.name}</strong><span>{session.user.portal_roles?.join(', ') || 'No portal role'}</span></div></div>
         <button className="quiet-button signout-button" onClick={() => void handleSignOut()} disabled={pending}>Sign out</button>
       </div>
@@ -225,7 +254,7 @@ export function AdminStagingApp() {
         </>}
       </section>
     </div>
-    <footer className="footer"><span>EPDG admin staging</span><span>Local only · no real learner records · no production permissions</span></footer>
+    <footer className="footer"><span>EPDG admin staging</span><span>{hostedBuild ? 'Hosted synthetic review · no real learner records · no production permissions' : 'Local only · no real learner records · no production permissions'}</span></footer>
     {confirmTarget && <div className="modal-backdrop" role="presentation"><section className="confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="role-request-title">
       <span className="eyebrow">Role review request</span><h2 id="role-request-title">Request WebDev policy review?</h2>
       <p>This records a pending request for <strong>{confirmTarget.name}</strong>. It does not assign a role or grant permissions.</p>

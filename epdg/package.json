@@ -20,9 +20,10 @@
     "build:hosted-practice": "tsc -b && vite build --mode hosted-practice && node scripts/verify-hosted-practice-build.mjs dist-hosted-practice",
     "optimize-images": "node scripts/optimize-images.mjs",
     "lint": "eslint .",
-    "test": "node --experimental-strip-types --test src/lib/apiConfig.test.mjs src/lib/productionSafety.test.mjs src/admin-staging/client.test.mjs src/synthetic/client.test.mjs src/synthetic/learningClient.test.mjs src/synthetic/assignmentClient.test.mjs src/synthetic/reviewClient.test.mjs src/synthetic/revisionClient.test.mjs src/synthetic/onboardingClient.test.mjs src/synthetic/hosted-client.test.mjs scripts/synthetic-mode.test.mjs scripts/hosted-practice-profile.test.mjs scripts/hosted-practice-retirement-worker.test.mjs",
+    "test": "node --experimental-strip-types --test src/lib/apiConfig.test.mjs src/lib/productionSafety.test.mjs src/admin-staging/client.test.mjs scripts/admin-staging-hosted-profile.test.mjs src/synthetic/client.test.mjs src/synthetic/learningClient.test.mjs src/synthetic/assignmentClient.test.mjs src/synthetic/reviewClient.test.mjs src/synthetic/revisionClient.test.mjs src/synthetic/onboardingClient.test.mjs src/synthetic/hosted-client.test.mjs scripts/synthetic-mode.test.mjs scripts/hosted-practice-profile.test.mjs scripts/hosted-practice-retirement-worker.test.mjs",
     "smoke": "node ../scripts/smoke-check.mjs epdg",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:admin-staging-hosted": "tsc -b && vite build --mode admin-staging-hosted && node scripts/verify-admin-staging-hosted-build.mjs dist-admin-staging-hosted"
   },
   "dependencies": {
     "@tailwindcss/vite": "4.3.0",

@@ -59,10 +59,24 @@ test('read APIs use cookie credentials and mutations send the in-memory CSRF tok
 test('the client has no browser token storage and does not render arbitrary API error text', async () => {
   const source = await readFile(new URL('./client.ts', import.meta.url), 'utf8');
   assert.doesNotMatch(source, /localStorage|sessionStorage|Authorization/i);
+  const workingFetch = globalThis.fetch;
   globalThis.fetch = async () => new Response(JSON.stringify({ success: false, message: 'password=private-fixture' }), { status: 400 });
   await assert.rejects(() => client.signIn('founder-admin@epdg.invalid', 'private-fixture'), error => {
     assert.equal(error.message, 'The request could not be completed.');
     assert.equal(error.message.includes('private-fixture'), false);
     return true;
   });
+  globalThis.fetch = workingFetch;
+});
+
+test('a failed logout keeps its CSRF token for an explicit retry', async () => {
+  await client.signIn('founder-admin@epdg.invalid', 'synthetic-only-password');
+  const workingFetch = globalThis.fetch;
+  globalThis.fetch = async () => { throw new Error('offline'); };
+  await assert.rejects(() => client.signOut(), error => error.status === 0);
+  globalThis.fetch = workingFetch;
+  await client.signOut();
+  const logout = calls.at(-1);
+  assert.equal(logout.url, 'http://127.0.0.1:58000/api/auth/logout');
+  assert.equal(logout.init.headers.get('X-CSRF-Token'), 'csrf-fixture');
 });
