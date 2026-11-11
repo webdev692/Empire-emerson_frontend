@@ -204,7 +204,12 @@ export default defineConfig(({ mode, command, isPreview }) => {
           throw new Error('Hosted administrator staging is restricted to its isolated protected build.');
         }
       },
-      generateBundle() {
+      generateBundle(_options, bundle) {
+        const page = bundle['admin-staging.html'];
+        if (!page || page.type !== 'asset') throw new Error('Hosted administrator staging entry page is missing.');
+        delete bundle['admin-staging.html'];
+        page.fileName = 'index.html';
+        bundle['index.html'] = page;
         this.emitFile({ type: 'asset', fileName: '_redirects', source: adminStagingHostedRedirects(adminStagingHostedApiOrigin) });
         this.emitFile({ type: 'asset', fileName: '_headers', source: adminStagingHostedHeaders });
       },
