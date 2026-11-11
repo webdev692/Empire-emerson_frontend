@@ -7,6 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from 'vite-plugin-pwa';
 import { validateHostedPracticeProfile, hostedPracticeRedirects, hostedPracticeHeaders, HOSTED_PRACTICE_OUTPUT } from './scripts/hosted-practice-profile.mjs';
 import { staticPortalRedirects, staticPortalHeaders } from './scripts/netlify-static-rules.mjs';
+import { ADMIN_STAGING_HOSTED_OUTPUT, adminStagingHostedHeaders, adminStagingHostedRedirects, validateAdminStagingApiOrigin } from './scripts/admin-staging-hosted-profile.mjs';
 
 const syntheticOrigin = 'http://127.0.0.1:58080';
 const syntheticRoot = fileURLToPath(new URL('.', import.meta.url));
@@ -109,6 +110,9 @@ export default defineConfig(({ mode, command, isPreview }) => {
   const synthetic = mode === 'synthetic-local';
   const hosted = mode === 'hosted-practice';
   const adminStaging = mode === 'admin-staging';
+  const adminStagingHosted = mode === 'admin-staging-hosted';
+  if (adminStagingHosted && (command !== 'build' || isPreview)) throw new Error('Hosted administrator staging requires an explicit protected build.');
+  const adminStagingHostedApiOrigin = adminStagingHosted ? validateAdminStagingApiOrigin(process.env.EPDG_ADMIN_STAGING_API_ORIGIN) : '';
   if (synthetic && (command !== 'serve' || isPreview)) {
     throw new Error('Synthetic portal is development-only; build and preview are prohibited.');
   }
@@ -118,7 +122,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
   return {
   ...(adminStaging ? {
     envPrefix: [],
-    define: { __EPDG_ADMIN_STAGING_API_ORIGIN__: JSON.stringify(adminStagingApi) },
+    define: { __EPDG_ADMIN_STAGING_API_ORIGIN__: JSON.stringify(adminStagingApi), __EPDG_ADMIN_STAGING_HOSTED__: 'false' },
     server: {
       host: '127.0.0.1', port: 58080, strictPort: true, origin: adminStagingOrigin,
       allowedHosts: ['127.0.0.1'], cors: { origin: adminStagingOrigin },
@@ -133,6 +137,14 @@ export default defineConfig(({ mode, command, isPreview }) => {
     build: {
       outDir: 'dist-admin-staging', sourcemap: false, emptyOutDir: true,
       rollupOptions: { input: fileURLToPath(new URL('./admin-staging.html', import.meta.url)) },
+    },
+  } : {}),
+  ...(adminStagingHosted ? {
+    envPrefix: [],
+    define: { __EPDG_ADMIN_STAGING_API_ORIGIN__: JSON.stringify(''), __EPDG_ADMIN_STAGING_HOSTED__: 'true' },
+    build: {
+      outDir: ADMIN_STAGING_HOSTED_OUTPUT, sourcemap: false, emptyOutDir: true,
+      rollupOptions: { input: fileURLToPath(new URL('./index.html', import.meta.url)) },
     },
   } : {}),
   ...(hostedProfile ? {
@@ -183,7 +195,33 @@ export default defineConfig(({ mode, command, isPreview }) => {
   plugins: [
     ...(synthetic ? [syntheticIsolation()] : []),
     ...(adminStaging ? [adminStagingIsolation(isPreview)] : []),
-    ...(hostedProfile ? [{
+    ...(adminStagingHosted ? [{
+      name: 'hosted-admin-staging-isolation',
+      configResolved(config) {
+        if (config.command !== 'build' || config.base !== '/' || !Array.isArray(config.envPrefix)
+          || config.envPrefix.length !== 0 || config.build.outDir !== ADMIN_STAGING_HOSTED_OUTPUT
+          || config.build.sourcemap) {
+          throw new Error('Hosted administrator staging is restricted to its isolated protected build.');
+        }
+      },
+      transformIndexHtml: {
+        order: 'pre',
+        handler() {
+          return `<!doctype html>
+<html lang="en"><head><meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="referrer" content="no-referrer" />
+<title>EPDG Administrator — Hosted staging</title></head>
+<body><div id="root"></div><script type="module" src="/src/admin-staging/main.tsx"></script></body></html>`;
+        },
+      },
+      generateBundle() {
+        this.emitFile({ type: 'asset', fileName: '_redirects', source: adminStagingHostedRedirects(adminStagingHostedApiOrigin) });
+        this.emitFile({ type: 'asset', fileName: '_headers', source: adminStagingHostedHeaders });
+      },
+    } satisfies Plugin] : []),
+        ...(hostedProfile ? [{
       name: 'hosted-practice-isolation',
       configResolved(config) {
         if (config.base !== '/' || config.command !== 'build' || !Array.isArray(config.envPrefix) || config.envPrefix.length !== 0
@@ -206,7 +244,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
     {
       name: 'isolated-portal-design-preview',
       generateBundle() {
-        if (!hosted && !synthetic && !adminStaging) {
+        if (!hosted && !synthetic && !adminStaging && !adminStagingHosted) {
           this.emitFile({ type: 'asset', fileName: '_redirects', source: staticPortalRedirects });
           this.emitFile({ type: 'asset', fileName: '_headers', source: staticPortalHeaders });
         }
@@ -223,7 +261,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
     tailwindcss(),
     react(),
     VitePWA({
-      disable: mode === 'design-preview' || mode === 'synthetic-local' || hosted || adminStaging,
+      disable: mode === 'design-preview' || mode === 'synthetic-local' || hosted || adminStaging || adminStagingHosted,
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {

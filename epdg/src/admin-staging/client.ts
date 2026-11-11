@@ -108,9 +108,14 @@ export async function signIn(email: string, password: string): Promise<PortalSes
 export async function signOut(): Promise<void> {
   try {
     await request('/auth/logout', { method: 'POST', body: '{}' });
-  } finally {
-    csrfToken = null;
+  } catch (error) {
+    if (error instanceof PortalApiError && error.status === 401) {
+      csrfToken = null;
+      return;
+    }
+    throw error;
   }
+  csrfToken = null;
 }
 
 export function get<T>(path: string): Promise<Envelope<T>> {

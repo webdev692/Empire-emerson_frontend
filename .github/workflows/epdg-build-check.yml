@@ -72,7 +72,7 @@ jobs:
 
       - name: Clean isolated EPDG artifact directories
         if: matrix.directory == 'epdg'
-        run: node -e "const fs = require('node:fs'); for (const dir of ['dist', 'dist-design-preview', 'dist-hosted-practice']) fs.rmSync(dir, {recursive:true, force:true})"
+        run: node -e "const fs = require('node:fs'); for (const dir of ['dist', 'dist-design-preview', 'dist-hosted-practice', 'dist-admin-staging-hosted']) fs.rmSync(dir, {recursive:true, force:true})"
 
       - name: Build
         run: npm run build
@@ -98,6 +98,12 @@ jobs:
         env:
           EPDG_HOSTED_PRACTICE_ENABLED: "1"
         run: npm run build:hosted-practice
+
+      - name: Build and verify isolated EPDG hosted admin with test-only upstream
+        if: matrix.directory == 'epdg'
+        env:
+          EPDG_ADMIN_STAGING_API_ORIGIN: https://fixture.up.railway.app
+        run: npm run build:admin-staging-hosted
 
       - name: Lint
         run: npm run lint
