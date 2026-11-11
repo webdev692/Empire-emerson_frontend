@@ -22,3 +22,11 @@
 
 # Headers/redirects are global in TOML, so each Vite build emits its own
 # reviewed _headers/_redirects. Hosted output must not inherit legacy caching.
+
+# The dedicated administrator staging site has its own isolated build profile.
+[context."codex/epdg-hosted-admin-staging-20261111"]
+  command = "npm run build:admin-staging-hosted"
+  publish = "dist-admin-staging-hosted"
+
+[context."codex/epdg-hosted-admin-staging-20261111".environment]
+  EPDG_HOSTED_PRACTICE_ENABLED = "0"
