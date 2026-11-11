@@ -1,9 +1,15 @@
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  resolve: { dedupe: ['react', 'react-dom'] },
+  resolve: {
+    dedupe: ['react', 'react-dom'],
+    alias: {
+      '@shared': fileURLToPath(new URL('../shared', import.meta.url)),
+    },
+  },
   plugins: [
     tailwindcss(),
     react(),
