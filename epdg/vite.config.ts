@@ -197,6 +197,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
     ...(adminStaging ? [adminStagingIsolation(isPreview)] : []),
     ...(adminStagingHosted ? [{
       name: 'hosted-admin-staging-isolation',
+      enforce: 'post',
       configResolved(config) {
         if (config.command !== 'build' || config.base !== '/' || !Array.isArray(config.envPrefix)
           || config.envPrefix.length !== 0 || config.build.outDir !== ADMIN_STAGING_HOSTED_OUTPUT
