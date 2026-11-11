@@ -208,7 +208,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
         this.emitFile({ type: 'asset', fileName: '_redirects', source: adminStagingHostedRedirects(adminStagingHostedApiOrigin) });
         this.emitFile({ type: 'asset', fileName: '_headers', source: adminStagingHostedHeaders });
       },
-    }] : []),
+    } satisfies Plugin] : []),
     ...(hostedProfile ? [{
       name: 'hosted-practice-isolation',
       configResolved(config) {
