@@ -52,6 +52,10 @@ export function captureRecovery(location: Pick<Location, 'pathname' | 'hash'>): 
   const match = /^#token=([A-Za-z0-9_-]{43})$/.exec(location.hash);
   return match?.[1] ?? null;
 }
+export function captureInvitation(location: Pick<Location, 'pathname' | 'hash'>): string | null {
+  if (HOSTED_PRACTICE || location.pathname !== '/accept-invitation') return null;
+  return /^#token=([A-Za-z0-9_-]{43})$/.exec(location.hash)?.[1] ?? null;
+}
 export function passwordProblem(password: string): string | null {
   if (password.length < 12) return 'Use at least 12 characters.';
   if (new TextEncoder().encode(password).length > 72) return 'Use a password of at most 72 UTF-8 bytes.';
@@ -74,6 +78,8 @@ export function createPortalClient(fetcher: typeof fetch = fetch, alias: LoginAl
       const message = response.status === 429 ? 'Too many attempts. Please wait before trying again.' :
         response.status === 401 ? 'Sign-in details are incorrect or your account access is unavailable.' :
         path === '/auth/reset-password' && response.status === 400 ? 'This recovery link is invalid or expired. Request a new link.' :
+        path === '/auth/accept-invitation' && [400, 409, 410].includes(response.status) ? 'This invitation is invalid, expired, or already used. Request a new invitation from your coordinator.' :
+        response.status === 503 ? 'This account workflow is unavailable pending release review.' :
         response.status === 403 ? 'Request verification failed. Reload and try again.' : 'The request could not be completed. Please try again.';
       throw new PortalRequestError(response.status, message);
     }
@@ -96,6 +102,13 @@ export function createPortalClient(fetcher: typeof fetch = fetch, alias: LoginAl
       return request('/auth/forgot-password', { email: resolved });
     },
     reset: (token: string, password: string) => request('/auth/reset-password', { token, password }),
+    acceptInvitation: (token: string, password: string) => {
+      if (HOSTED_PRACTICE) return Promise.reject(new PortalRequestError(503, 'Invitation review is unavailable in hosted practice.'));
+      if (!/^[A-Za-z0-9_-]{43}$/.test(token) || passwordProblem(password)) {
+        return Promise.reject(new PortalRequestError(400, 'Use a fresh invitation and a valid password.'));
+      }
+      return request('/auth/accept-invitation', { token, password });
+    },
     change: (current: string, password: string, csrf: string) => request('/auth/change-password', { current_password: current, new_password: password }, csrf),
   };
 }

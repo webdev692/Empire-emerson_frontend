@@ -49,6 +49,8 @@ test('CLI and inline options cannot broaden the synthetic listener or inject a p
     { origin: 'https://review.invalid' }, { https: {} },
     { proxy: { '/api': 'https://production-endpoint.invalid' } },
     { middlewareMode: true }, { hmr: false }, { hmr: { host: 'review.invalid' } },
+    { ws: false }, { ws: { host: 'review.invalid' } }, { ws: { port: 58081 } },
+    { ws: { protocol: 'wss' } }, { ws: { path: '/unapproved' } },
     { fs: { strict: false } }, { fs: { allow: ['C:/'] } },
     { headers: { 'Content-Security-Policy': "default-src *" } },
   ]) {

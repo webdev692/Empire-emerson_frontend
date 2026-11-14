@@ -72,7 +72,10 @@ function syntheticIsolation(): Plugin {
         || server.host !== '127.0.0.1' || server.port !== 58080 || !server.strictPort
         || server.origin !== syntheticOrigin || server.https || server.proxy
         || server.middlewareMode || server.hmr === false
-        || (typeof server.hmr === 'object' && Object.keys(server.hmr).length > 0)
+        // Vite exposes undefined compatibility getters on hmr; reject configured
+        // values and the corresponding ws options, not the getters themselves.
+        || (typeof server.hmr === 'object' && Object.values(server.hmr).some(value => value !== undefined))
+        || server.ws === false || (typeof server.ws === 'object' && Object.values(server.ws).some(value => value !== undefined))
         || config.base !== '/' || !Array.isArray(config.envPrefix) || config.envPrefix.length !== 0
         || !server.fs.strict || server.fs.allow.length !== 1 || server.fs.allow[0].replaceAll('\\', '/').replace(/\/$/, '').toLowerCase() !== syntheticRoot.replaceAll('\\', '/').replace(/\/$/, '').toLowerCase()
         || server.headers?.['Content-Security-Policy'] !== syntheticPolicy) {

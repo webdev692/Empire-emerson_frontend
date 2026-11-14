@@ -1,7 +1,8 @@
-import { useEffect, useState, type FormEvent } from 'react';
-import { get, post, PortalApiError, restoreSession, signIn, signOut, type PortalSession } from './client';
+import { lazy, Suspense, useCallback, useEffect, useState, type FormEvent } from 'react';
+import { forgetSession, get, post, PortalApiError, restoreSession, signIn, signOut, type PortalSession } from './client';
 
-type Page = 'overview' | 'users' | 'roles' | 'education';
+const InvitationReview = __EPDG_ADMIN_STAGING_HOSTED__ ? () => null : lazy(() => import('./InvitationReview'));
+type Page = 'overview' | 'users' | 'roles' | 'education' | 'invitations';
 type Overview = {
   environment: string;
   accounts: { total: number; active: number; inactive: number };
@@ -43,6 +44,7 @@ const pages: { id: Page; title: string; short: string }[] = [
   { id: 'users', title: 'Users', short: 'Users' },
   { id: 'roles', title: 'Roles', short: 'Roles' },
   { id: 'education', title: 'Education setup', short: 'Programs' },
+  ...(__EPDG_ADMIN_STAGING_HOSTED__ ? [] : [{ id: 'invitations' as const, title: 'Invitation review', short: 'Invitations' }]),
 ];
 
 function messageFor(error: unknown): string {
@@ -79,6 +81,10 @@ export function AdminStagingApp() {
   const [roles, setRoles] = useState<RolesPayload | null>(null);
   const [readiness, setReadiness] = useState<Readiness | null>(null);
   const [confirmTarget, setConfirmTarget] = useState<PortalUser | null>(null);
+  const authenticationRequired = useCallback(() => {
+    forgetSession(); setSession(null); setOverview(null); setUsers([]); setRoles(null); setReadiness(null); setConfirmTarget(null);
+    setNotice('Your session has ended. Sign in again.');
+  }, []);
 
   useEffect(() => {
     let mounted = true;
@@ -93,10 +99,21 @@ export function AdminStagingApp() {
 
   useEffect(() => {
     if (!session) return;
+    const expires = window.setTimeout(() => {
+      forgetSession(); setSession(null); setOverview(null); setUsers([]); setRoles(null); setReadiness(null); setConfirmTarget(null);
+      setNotice('Your session has ended. Sign in again.');
+    }, Math.min(2147483647, Math.max(0, Date.parse(session.expires_at) - Date.now())));
+    return () => window.clearTimeout(expires);
+  }, [session]);
+
+  useEffect(() => {
+    if (!session) return;
     let mounted = true;
     const load = async () => {
       try {
-        if (page === 'overview') {
+        if (page === 'invitations') {
+          await Promise.resolve(); // This page owns its separately gated API request.
+        } else if (page === 'overview') {
           const result = await get<Overview>('/admin/overview');
           if (mounted) setOverview(result.data ?? null);
         } else if (page === 'users') {
@@ -111,6 +128,7 @@ export function AdminStagingApp() {
         }
       } catch (reason) {
         if (mounted) {
+          setOverview(null); setUsers([]); setRoles(null); setReadiness(null); setConfirmTarget(null);
           setError(messageFor(reason));
           if (reason instanceof PortalApiError && reason.status === 401) setSession(null);
         }
@@ -128,8 +146,10 @@ export function AdminStagingApp() {
     setLoading(true);
     setError('');
     setNotice('');
+    const submittedPassword = password;
+    setPassword('');
     try {
-      const next = await signIn(email.trim(), password);
+      const next = await signIn(email.trim(), submittedPassword);
       setSession(next);
       setPassword('');
       setLogoutUnconfirmed(false);
@@ -145,6 +165,7 @@ export function AdminStagingApp() {
     setPending(true);
     setError('');
     setNotice('');
+    setSession(null); setOverview(null); setUsers([]); setRoles(null); setReadiness(null); setConfirmTarget(null);
     let confirmed = false;
     try {
       await signOut();
@@ -237,7 +258,7 @@ export function AdminStagingApp() {
     <div className="layout">
       <aside className="sidebar" aria-label="Administrator navigation">
         <span className="sidebar-label">Workspace</span>
-        <nav>{pages.map(item => <button key={item.id} className={`nav-item ${page === item.id ? 'selected' : ''}`} onClick={() => { setLoading(true); setPage(item.id); setError(''); setNotice(''); }} aria-current={page === item.id ? 'page' : undefined}>
+        <nav>{pages.map(item => <button key={item.id} className={`nav-item ${page === item.id ? 'selected' : ''}`} onClick={() => { if (page === item.id) return; setLoading(true); setPage(item.id); setError(''); setNotice(''); }} aria-current={page === item.id ? 'page' : undefined}>
           <span className="nav-icon" aria-hidden="true">{item.id === 'overview' ? '◫' : item.id === 'users' ? '◎' : item.id === 'roles' ? '◇' : '▤'}</span>{item.short}<span className="nav-arrow" aria-hidden="true">›</span>
         </button>)}</nav>
         <div className="sidebar-note"><span className="sidebar-label">Data boundary</span><p>Applicants, resumes and onboarding remain in the Emerson CRM.</p><p>EPDG starts after verified onboarding.</p></div>
@@ -251,6 +272,7 @@ export function AdminStagingApp() {
           {page === 'users' && <UsersPage users={users} currentUserId={session.user.id} onRequest={setConfirmTarget} />}
           {page === 'roles' && <RolesPage data={roles} />}
           {page === 'education' && <EducationPage data={readiness} />}
+          {page === 'invitations' && <Suspense fallback={<LoadingPanel label="invitations" />}><InvitationReview onAuthenticationRequired={authenticationRequired} /></Suspense>}
         </>}
       </section>
     </div>
