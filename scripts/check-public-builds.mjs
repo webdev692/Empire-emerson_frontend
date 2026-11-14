@@ -19,11 +19,12 @@ function run(name, args, cwd = root) {
   console.log(`${name}: ${result.status === 0 ? 'PASS' : 'FAIL'}`);
   if (result.status !== 0) console.error((result.stdout || '') + (result.stderr || ''));
 }
-run('public-regression', ['--experimental-strip-types', '--test', '--test-concurrency=1', 'shared/content.test.mjs', 'shared/inquiry.test.mjs', 'shared/lesson-blocks.test.mjs', 'scripts/route-links.test.mjs', 'scripts/public-website-intake.test.mjs', 'scripts/public-source-boundary.test.mjs', 'scripts/services-catalog.test.mjs', 'scripts/project-studio.test.mjs', 'scripts/platform-entry-pages.test.mjs', 'Emerson_Empire/scCommunityDirectory.test.mjs', 'EPDG-Landing-Page/collegesDirectory.test.mjs', 'EPDG-Landing-Page/freeLearningLibrary.test.mjs']);
+run('public-regression', ['--experimental-strip-types', '--test', '--test-concurrency=1', 'scripts/public-modernization.test.mjs', 'shared/content.test.mjs', 'shared/inquiry.test.mjs', 'shared/lesson-blocks.test.mjs', 'scripts/route-links.test.mjs', 'scripts/public-website-intake.test.mjs', 'scripts/public-source-boundary.test.mjs', 'scripts/services-catalog.test.mjs', 'scripts/project-studio.test.mjs', 'scripts/platform-entry-pages.test.mjs', 'Emerson_Empire/scCommunityDirectory.test.mjs', 'EPDG-Landing-Page/collegesDirectory.test.mjs', 'EPDG-Landing-Page/freeLearningLibrary.test.mjs']);
 run('public-shared-lint', ['Emerson_Empire/node_modules/eslint/bin/eslint.js', '--config', 'Emerson_Empire/eslint.config.js', 'shared/**/*.ts', 'shared/**/*.tsx', '--max-warnings', '0']);
 for (const app of ['Emerson_Empire', 'Agency_LandingPage', 'EPDG-Landing-Page']) {
   for (const action of ['build:website', 'lint', 'smoke']) run(app + '-' + action, [npm, 'run', action], resolve(root, app));
 }
+run('modern-public-html', ['scripts/verify-modern-public.mjs']);
 run('website-artifact-integrity', ['--experimental-strip-types', 'scripts/scan-website-artifacts.mjs']);
 const git = args => spawnSync('git', ['-c', `safe.directory=${root.replaceAll('\\', '/').replace(/\/$/, '')}`, '-C', root, ...args], { encoding: 'utf8' });
 writeFileSync(resolve(evidence, 'public-verification.json'), JSON.stringify({ scope: 'Three public websites with founder-confirmed intake and schedule; private authoring unavailable', checked_out_revision: git(['rev-parse', 'HEAD']).stdout.trim(), working_tree_dirty: !!git(['status', '--porcelain']).stdout.trim(), observed_at: new Date().toISOString(), node: process.version, result: checks.every(check => check.exit_code === 0) ? 'PASS' : 'FAIL', checks }, null, 2) + '\n');

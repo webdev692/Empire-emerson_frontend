@@ -1,5 +1,9 @@
 # Public company source boundary
 
+## November 14, 2026 modernization amendment
+
+The founder explicitly authorized a new three-site public interface and public scholarship revision. See `docs/PUBLIC_WEBSITE_MODERNIZATION_2026-11-14.json` and its companion report. Existing frozen catalog and legal approvals remain mandatory and unchanged. New public pages are pre-rendered, unknown routes return HTTP 404, and the current release manifest includes a separate website-modernization revision. Historical content receipts continue to identify the preserved catalog version; they are not reused as approval for the new writing. Portal, CRM and Creative Studio application controls remain excluded.
+
 This checkout reproduces the existing approved company websites without private
 authoring inputs. It does not approve new content, activate forms, create CRM or
 education accounts, or change production settings. The full private authoring and

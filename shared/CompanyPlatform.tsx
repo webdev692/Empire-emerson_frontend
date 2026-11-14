@@ -33,19 +33,28 @@ function ResourceCard({ resource }: { resource: Resource }) {
   </article>;
 }
 function ResourceList({ catalog, entity, hasSupplement = false }: { catalog: Catalog; entity: Entity; hasSupplement?: boolean }) {
-  const initial = Object.fromEntries(new URLSearchParams(window.location.search));
-  const [filters, setFilters] = useState({ query: initial.q || '', topic: initial.topic || '', country: initial.country || '', subregion: initial.subregion || '', language: initial.language || '' });
+  const [filters, setFilters] = useState({ query: '', topic: '', country: '', subregion: '', language: '' });
+  const [queryRestored, setQueryRestored] = useState(false);
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const initial = Object.fromEntries(new URLSearchParams(window.location.search));
+      setFilters({ query: initial.q || '', topic: initial.topic || '', country: initial.country || '', subregion: initial.subregion || '', language: initial.language || '' });
+      setQueryRestored(true);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
   const resources = catalog.resources.filter(r => entity === 'TEE' || r.entity === entity);
   const results = filterResources(resources, filters);
   const fields = ['topic', 'country', 'subregion', 'language'] as const;
   useEffect(() => {
+    if (!queryRestored) return;
     const query = new URLSearchParams();
     if (import.meta.env.DEV && new URLSearchParams(window.location.search).has('__fixtures')) query.set('__fixtures','1');
     Object.entries(filters).forEach(([key, value]) => { if (value) query.set(key === 'query' ? 'q' : key, value); });
     window.history.replaceState(null, '', `${window.location.pathname}${query.size ? `?${query}` : ''}${window.location.hash}`);
-  }, [filters]);
+  }, [filters, queryRestored]);
   return <><div className="cp-page-title"><p className="cp-eyebrow">Find a useful next step</p><h1>Explore resources</h1><p>Start with a topic. Check the service area, language, eligibility and source for every listing.</p></div>
-    {hasSupplement && (entity === 'TEE' ? <nav className="cp-actions" aria-label="Resource collections"><a className="cp-button" href="#tee-resource-collection">Existing resource collection ({resources.length})</a><a href="#south-carolina-resources">South Carolina community resources <span aria-hidden="true">↓</span></a></nav> : <nav className="cp-actions" aria-label="Resource collections"><a className="cp-button" href="#epdg-resource-collection">Learning & support resources ({resources.length})</a><a href="#free-learning">Free Learning & Credentials <span aria-hidden="true">↓</span></a><a href="#colleges-universities">Colleges & Universities <span aria-hidden="true">↓</span></a></nav>)}
+    {hasSupplement && (entity === 'TEE' ? <nav className="cp-actions" aria-label="Resource collections"><a className="cp-button" href="#tee-resource-collection">Resource collection ({resources.length})</a><a href="#south-carolina-resources">South Carolina community resources <span aria-hidden="true">↓</span></a></nav> : <nav className="cp-actions" aria-label="Resource collections"><a className="cp-button" href="#epdg-resource-collection">Learning & support resources ({resources.length})</a><a href="#free-learning">Free Learning & Credentials <span aria-hidden="true">↓</span></a><a href="#colleges-universities">Colleges & Universities <span aria-hidden="true">↓</span></a></nav>)}
     <section id={hasSupplement ? entity === 'TEE' ? 'tee-resource-collection' : 'epdg-resource-collection' : undefined} aria-label="Filter resources" className="cp-filter">
       <label>Search resources<input type="search" value={filters.query} onChange={e => setFilters({ ...filters, query: e.target.value })} placeholder="Topic, provider or need" /></label>
       {fields.map(field => {
@@ -55,11 +64,11 @@ function ResourceList({ catalog, entity, hasSupplement = false }: { catalog: Cat
       <button onClick={() => setFilters({ query: '', topic: '', country: '', subregion: '', language: '' })}>Reset filters</button>
     </section>
     <p role="status" aria-live="polite" className="cp-result-count">{results.length} {results.length === 1 ? 'resource' : 'resources'} found</p>
-    {results.length ? <div className="cp-grid">{results.map(r => <ResourceCard key={r.id} resource={r} />)}</div> : resources.length ? <Empty title="No resources match these filters.">Try fewer filters or use Reset filters to see the full collection.</Empty> : <Empty title="No reviewed resources are available yet.">This collection is waiting for reviewed content. No approved provider listing is currently available here.</Empty>}
+    {results.length ? <div className="cp-grid">{results.map(r => <ResourceCard key={r.id} resource={r} />)}</div> : resources.length ? <Empty title="No resources match these filters.">Try fewer filters or use Reset filters to see the full collection.</Empty> : <Empty title="No resources are available in this collection yet.">Try another collection or contact us for help finding a useful source.</Empty>}
   </>;
 }
 function ResourceDetail({ resource }: { resource?: Resource }) {
-  if (!resource) return <Empty title="Resource unavailable.">This record may be withdrawn or awaiting publication approval. <a href={href('/resources')}>Return to resources</a>.</Empty>;
+  if (!resource) return <Empty title="Resource unavailable.">This listing is currently unavailable. <a href={href('/resources')}>Return to resources</a>.</Empty>;
   const fields = { Provider: resource.provider, Topic: resource.topic, Country: resource.country, 'State / region': resource.subregion || 'Not specified', Languages: resource.languages.join(', '), Audience: resource.audience, Eligibility: resource.eligibility || 'Unknown — verify before acting', 'Resource cost': resource.cost_basis || 'Unknown — verify with the provider', 'Credential cost': resource.credential_cost_basis || 'Unknown — verify separately', 'Last checked': date(resource.last_checked_at), 'Recheck due': date(resource.recheck_due_at), 'Verification status': readable(resource.verification_status), Availability: readable(resourceAvailability(resource)), 'Applicable deadline': resource.deadline_at ? `${date(resource.deadline_at)} (${readable(resource.deadline_type || 'UNSPECIFIED')})` : 'No verified deadline' };
   return <article className="cp-detail"><a href={href('/resources')}>← All resources</a><div className="cp-meta"><Badge>{readable(resource.content_status)}</Badge>{resource.synthetic && <Badge>LOCAL-ONLY fictional example</Badge>}</div><h1>{resource.title}</h1><p className="cp-lead">{resource.description}</p>
     <dl>{Object.entries(fields).map(([key, value]) => <div key={key}><dt>{key}</dt><dd>{value}</dd></div>)}</dl>
@@ -70,20 +79,20 @@ function ResourceDetail({ resource }: { resource?: Resource }) {
 }
 function Coverage({ catalog }: { catalog: Catalog }) {
   const reviewedPlaces = [...new Set(catalog.resources.filter(resource => !resource.synthetic && resource.verification_status === 'SOURCE_CHECKED' && resource.last_checked_at).map(resource => `${resource.country}${resource.subregion ? ` · ${resource.subregion}` : ''} (${resource.languages.join(', ')})`))];
-  return <><div className="cp-page-title"><p className="cp-eyebrow">Global mission · local verification</p><h1>Understand our coverage</h1><p>South Carolina is the initial service-pilot focus. Coverage describes what has been checked, rather than a promise of availability worldwide.</p></div><div className="cp-grid">
-    <article className="cp-card"><Badge>Verified</Badge><h2>Record by record</h2>{reviewedPlaces.length ? <><p>Source-reviewed records are present for these places. This establishes a checked listing, not universal eligibility or current service availability.</p><ul>{reviewedPlaces.map(place => <li key={place}>{place}</li>)}</ul></> : <p>No current source-reviewed provider records are connected to this candidate. No geographic service coverage is verified here.</p>}</article>
-    <article className="cp-card"><Badge>Being researched</Badge><h2>South Carolina, United States</h2><p>Resource collections and institutional pilot arrangements require current source and partner review.</p></article>
-    <article className="cp-card"><Badge>Not yet covered</Badge><h2>Additional countries & languages</h2><p>The data contract supports country, subregion and language. A new country pack needs local source review. Missing translations stay visibly unavailable.</p></article>
+  return <><div className="cp-page-title"><p className="cp-eyebrow">Global mission · local verification</p><h1>Understand our coverage</h1><p>South Carolina is the initial focus. Each listing identifies the locations and eligibility information supported by its source.</p></div><div className="cp-grid">
+    <article className="cp-card"><Badge>Verified</Badge><h2>Record by record</h2>{reviewedPlaces.length ? <><p>Sources have been checked for listings in these places. Confirm current eligibility and service availability with the provider.</p><ul>{reviewedPlaces.map(place => <li key={place}>{place}</li>)}</ul></> : <p>No current provider listings are available in this directory. Service coverage has not been verified.</p>}</article>
+    <article className="cp-card"><Badge>Being researched</Badge><h2>South Carolina, United States</h2><p>Resource listings require current source checks. Any proposed institutional arrangement needs separate agreement.</p></article>
+    <article className="cp-card"><Badge>Not yet covered</Badge><h2>Additional countries & languages</h2><p>Each listing identifies its country, region and language. We add locations after checking local sources, and show translations when available.</p></article>
     </div><p className="cp-callout">Free internships and independent learning resources are available alongside optional paid services and low-cost class formats. <a href={href('/services-pricing')}>Review service-specific prices and access conditions</a>. Third-party fees and credential costs are separate.</p></>;
 }
 function Home({ entity, copy }: { entity: Entity; copy?: PageCopy }) {
-  return <><section className="cp-hero"><p className="cp-eyebrow">{companies[entity].label}</p><h1>{copy?.headline || companies[entity].name}</h1><p className="cp-lead">{copy?.intro || 'Reviewed information will appear here after content approval.'}</p><div className="cp-actions"><a className="cp-button" href={href(entity === 'TEA' ? '/learn' : entity === 'EPDG' ? '/programs' : '/resources')}>{entity === 'TEA' ? 'Explore financial education' : entity === 'EPDG' ? 'Explore learning programs' : 'Explore resources'} <span aria-hidden="true">→</span></a><a href={href('/coverage')}>Check geographic coverage</a></div><p className="cp-small">Free Emerson learning programs. Clear sources. Country-aware information.</p></section>
-    <section className="cp-intro"><p className="cp-eyebrow">A connected Emerson community</p><h2>Find information you can understand and check.</h2><div className="cp-grid">{Object.entries(companies).map(([key, company]) => <article className="cp-card" key={key}><img className="cp-company-logo" src={company.logo} alt="" /><h3>{company.name}</h3><p>{company.label}</p>{import.meta.env.DEV ? <a href={`http://127.0.0.1:${company.port}/`}>Explore {key} <span aria-hidden="true">→</span></a> : <p>Company routing requires release configuration.</p>}</article>)}</div></section></>;
+  return <><section className="cp-hero"><p className="cp-eyebrow">{companies[entity].label}</p><h1>{copy?.headline || companies[entity].name}</h1><p className="cp-lead">{copy?.intro || 'Explore the available resources and learning information below.'}</p><div className="cp-actions"><a className="cp-button" href={href(entity === 'TEA' ? '/learn' : entity === 'EPDG' ? '/programs' : '/resources')}>{entity === 'TEA' ? 'Explore financial education' : entity === 'EPDG' ? 'Explore learning programs' : 'Explore resources'} <span aria-hidden="true">→</span></a><a href={href('/coverage')}>Check geographic coverage</a></div><p className="cp-small">Free Emerson learning programs. Clear sources. Country-aware information.</p></section>
+    <section className="cp-intro"><p className="cp-eyebrow">A connected Emerson community</p><h2>Find information you can understand and check.</h2><div className="cp-grid">{Object.entries(companies).map(([key, company]) => <article className="cp-card" key={key}><img className="cp-company-logo" src={company.logo} alt="" /><h3>{company.name}</h3><p>{company.label}</p>{import.meta.env.DEV ? <a href={`http://127.0.0.1:${company.port}/`}>Explore {key} <span aria-hidden="true">→</span></a> : <p>Find each organization through the company navigation.</p>}</article>)}</div></section></>;
 }
 
 export default function CompanyPlatform({ entity, resourcesSupplement, routePath, embedded = false }: { entity: Entity; resourcesSupplement?: ReactNode; routePath?: string; embedded?: boolean }) {
   const path = routePath || window.location.pathname.slice(import.meta.env.BASE_URL.length - 1) || '/';
-  const [state, setState] = useState<{ catalog?: Catalog; pages?: PageCopy[]; classTopics?: string[]; worksheet?: string; error?: boolean }>({});
+  const [state, setState] = useState<{ catalog?: Catalog; pages?: PageCopy[]; classTopics?: string[]; worksheet?: string; error?: boolean }>(() => import.meta.env.MODE === 'public-release' ? { catalog: selectCatalog(validateCatalog(publicCatalog), 'production'), classTopics: publicLearning.classTopics, worksheet: publicLearning.worksheetText } : {});
   const [attempt, setAttempt] = useState(0);
   useEffect(() => {
     let active = true;
@@ -104,6 +113,7 @@ export default function CompanyPlatform({ entity, resourcesSupplement, routePath
     return () => { active = false; };
   }, [attempt]);
   useEffect(() => {
+    if (embedded) return; // The public page shell owns unique metadata on embedded routes.
     document.title = `${path === '/' ? companies[entity].label : path.split('/')[1]} | ${companies[entity].name}`;
     const description = document.querySelector('meta[name="description"]');
     description?.setAttribute('content', `${companies[entity].label}. Check publication, jurisdiction, source and operating status before taking a next step.`);
@@ -116,7 +126,7 @@ export default function CompanyPlatform({ entity, resourcesSupplement, routePath
     }
     if (verifiedCanonical) { const link = canonical || document.createElement('link'); link.setAttribute('rel','canonical'); link.setAttribute('href',verifiedCanonical); if (!canonical) document.head.append(link); } else canonical?.remove();
     document.querySelector('meta[property="og:url"]')?.remove();
-  }, [entity, path, state.catalog]);
+  }, [entity, path, state.catalog, embedded]);
   useEffect(() => {
     if (!state.catalog || !window.location.hash) return;
     // A home-page collection link can arrive before the private catalog mounts.
@@ -124,7 +134,7 @@ export default function CompanyPlatform({ entity, resourcesSupplement, routePath
     return () => cancelAnimationFrame(frame);
   }, [path, state.catalog]);
   const company = companies[entity];
-  let page: React.ReactNode = <p role="status">Loading reviewed content…</p>;
+  let page: React.ReactNode = <p role="status">Loading resources…</p>;
   if (state.error) page = <div className="cp-empty" role="alert"><h1>Resources could not be loaded.</h1><p>This is a loading error. The resource count is unavailable.</p><button onClick={() => { setState({}); setAttempt(attempt + 1); }}>Try again</button></div>;
   else if (state.catalog) {
     const catalog = state.catalog;
@@ -141,7 +151,7 @@ export default function CompanyPlatform({ entity, resourcesSupplement, routePath
     else if (path === '/corrections' || path === '/inquiry' || path === '/contact') page = <InquiryPage />;
     else page = <Empty title="This page is not available."><a href={href('/')}>Return to the company home</a>.</Empty>;
   }
-  if (embedded) return <div className={`company-platform cp-${entity.toLowerCase()} cp-embedded`}><main id="cp-main" tabIndex={-1}>{page}</main></div>;
+  if (embedded) return <div className={`company-platform cp-${entity.toLowerCase()} cp-embedded`}><div id="cp-main" tabIndex={-1}>{page}</div></div>;
   return <div className={`company-platform cp-${entity.toLowerCase()}`}><a className="cp-skip" href="#cp-main">Skip to main content</a>
     <div className="cp-environment">{import.meta.env.DEV ? 'PRIVATE LOCAL DEVELOPMENT · Draft content & fictional examples · No live submissions' : 'RELEASE CANDIDATE · Reviewed content only · Not a deployment receipt'}</div>
     <header className="cp-header"><a className="cp-brand" href={href('/')}><img src={company.logo} alt="" /><span>{company.name}</span></a><nav aria-label="Main navigation"><a href={href('/resources')} aria-current={path.startsWith('/resources') ? 'page' : undefined}>Resources</a><a href={href('/coverage')}>Coverage</a><a href={href('/programs')}>Programs</a><a href={href('/learn')}>Learn</a><a href={href('/founder')}>Founder</a></nav></header>
