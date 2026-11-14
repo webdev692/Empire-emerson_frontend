@@ -1,4 +1,4 @@
-import { HOSTED_PRACTICE, PRACTICE_ENVIRONMENT, type PracticeEnvironment } from './runtimeProfile.ts';
+import { HOSTED_PRACTICE, LEARNING_ENVIRONMENT, type PracticeEnvironment } from './runtimeProfile.ts';
 import { API_ORIGIN, PortalRequestError } from './client.ts';
 
 export interface Program {
@@ -40,7 +40,7 @@ function program(value: unknown): value is Program {
     Date.parse(value.ends_at) >= Date.parse(value.starts_at) && counts(value) && (value.next_item_id === null || uuid(value.next_item_id));
 }
 function envelope(value: unknown, ownerId: number): value is Record<string, unknown> {
-  return record(value) && value.success === true && value.environment === PRACTICE_ENVIRONMENT &&
+  return record(value) && value.success === true && value.environment === LEARNING_ENVIRONMENT &&
     Number.isSafeInteger(ownerId) && ownerId > 0 && value.learner_id === ownerId;
 }
 function selectProgram(p: Program): Program {
@@ -65,7 +65,7 @@ export function parseDashboard(value: unknown, ownerId: number): LearningDashboa
     !Array.isArray(value.resources) || value.resources.length > 100 || !value.resources.every(row => record(row) && uuid(row.id) && belongs(row) &&
       text(row.title) && text(row.description, 2000) && text(row.body, 6000))) throw invalid();
   const data = value as unknown as LearningDashboard;
-  return { success: true, environment: PRACTICE_ENVIRONMENT, learner_id: data.learner_id, generated_at: data.generated_at,
+  return { success: true, environment: LEARNING_ENVIRONMENT, learner_id: data.learner_id, generated_at: data.generated_at,
     summary: { active_programs: data.summary.active_programs, completed_items: data.summary.completed_items,
       total_items: data.summary.total_items, progress_percent: data.summary.progress_percent },
     programs: data.programs.map(selectProgram),
@@ -89,7 +89,7 @@ export function parseProgram(value: unknown, ownerId: number, requestedId: strin
   if (new Set(items.map(i => i.id)).size !== items.length || p.total_items !== lessonIds.size ||
     p.completed_items !== items.filter(i => i.kind === 'lesson' && i.status === 'completed').length ||
     (p.next_item_id !== null && !items.some(i => i.id === p.next_item_id && i.kind === 'lesson' && i.status === 'not_started'))) throw invalid();
-  return { success: true, environment: PRACTICE_ENVIRONMENT, learner_id: ownerId,
+  return { success: true, environment: LEARNING_ENVIRONMENT, learner_id: ownerId,
     program: { ...selectProgram(p), items: items.map(item => ({ id: item.id, title: item.title, kind: item.kind,
       description: item.description, content: item.content, due_at: item.due_at, status: item.status, completed_at: item.completed_at })) } };
 }
@@ -103,7 +103,7 @@ export function createLearningClient(fetcher: typeof fetch = fetch) {
         ...(csrf ? { body: '{}' } : {}) });
     } catch {
       if (signal?.aborted) throw new DOMException('Canceled', 'AbortError');
-      throw new PortalRequestError(0, 'Program information is unavailable while the synthetic practice backend cannot be reached.');
+      throw new PortalRequestError(0, 'Program information is unavailable while the portal backend cannot be reached.');
     }
     if (!response.ok) throw new PortalRequestError(response.status, response.status === 401 ? 'Your session has ended. Sign in to continue.' :
       response.status === 403 ? 'Learner programs are unavailable for this account.' : response.status === 404 ? 'This program or activity is unavailable for your account.' :
@@ -119,7 +119,7 @@ export function createLearningClient(fetcher: typeof fetch = fetch) {
     completeItem: async (id: string, csrf: string): Promise<CompletionResult> => {
       if (!uuid(id) || !/^[A-Za-z0-9_-]{43}$/.test(csrf)) throw new PortalRequestError(403, 'Request verification failed. Refresh account access and try again.');
       const value = await request(`/items/${id}/complete`, undefined, csrf);
-      if (!record(value) || value.success !== true || (HOSTED_PRACTICE ? value.environment !== PRACTICE_ENVIRONMENT : value.environment !== undefined && value.environment !== PRACTICE_ENVIRONMENT)
+      if (!record(value) || value.success !== true || (HOSTED_PRACTICE ? value.environment !== LEARNING_ENVIRONMENT : value.environment !== undefined && value.environment !== LEARNING_ENVIRONMENT)
         || value.item_id !== id || !date(value.completed_at) || typeof value.already_completed !== 'boolean') throw invalid();
       return { success: true, item_id: id, completed_at: value.completed_at, already_completed: value.already_completed };
     },

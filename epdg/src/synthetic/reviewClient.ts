@@ -1,4 +1,4 @@
-import { PRACTICE_ENVIRONMENT, type PracticeEnvironment } from './runtimeProfile.ts';
+import { RELEASE_PORTAL, LEARNING_ENVIRONMENT, type PracticeEnvironment } from './runtimeProfile.ts';
 import { API_ORIGIN, PortalRequestError } from './client.ts';
 import { answerProblem, downloadVerifiedAttachment, parseAttachment, type AttachmentMetadata } from './assignmentClient.ts';
 
@@ -26,7 +26,7 @@ const id = (value: unknown): value is number => Number.isSafeInteger(value) && N
 const revision = (value: unknown): value is number => Number.isSafeInteger(value) && Number(value) >= 0 && Number(value) <= 2147483647;
 const date = (value: unknown): value is string => typeof value === 'string' && value.length <= 40 && /^\d{4}-\d{2}-\d{2}T/.test(value) && Number.isFinite(Date.parse(value));
 const text = (value: unknown): value is string => typeof value === 'string' && value.length > 0 && value.length <= 200;
-const syntheticLabel = (value: unknown): value is string => text(value) && value.startsWith('SYNTHETIC ');
+const syntheticLabel = (value: unknown): value is string => text(value) && (RELEASE_PORTAL || value.startsWith('SYNTHETIC '));
 const invalid = () => new PortalRequestError(502, 'The review information could not be verified. Reload saved status before continuing.');
 export function feedbackProblem(comment: string): string | null { return answerProblem(comment); }
 function reviewIdentity(value: Record<string, unknown>): Omit<MentorReviewRow, 'review_state' | 'review_revision'> {
@@ -45,7 +45,7 @@ function published(value: unknown): PublishedFeedback {
   return { id: value.id, comment: value.comment, revision: value.revision, published_at: value.published_at, mentor_label: value.mentor_label };
 }
 function envelope(value: unknown, mentorId: number): value is Record<string, unknown> {
-  return id(mentorId) && record(value) && value.success === true && value.environment === PRACTICE_ENVIRONMENT && value.mentor_id === mentorId;
+  return id(mentorId) && record(value) && value.success === true && value.environment === LEARNING_ENVIRONMENT && value.mentor_id === mentorId;
 }
 export function parseReviewQueue(value: unknown, mentorId: number): ReviewQueue {
   if (!envelope(value, mentorId) || !Array.isArray(value.reviews) || value.reviews.length > 100) throw invalid();
@@ -55,7 +55,7 @@ export function parseReviewQueue(value: unknown, mentorId: number): ReviewQueue 
     return { ...reviewIdentity(row), review_state: row.review_state as MentorReviewRow['review_state'], review_revision: row.review_revision };
   });
   if (new Set(reviews.map(row => row.receipt_id)).size !== reviews.length) throw invalid();
-  return { success: true, environment: PRACTICE_ENVIRONMENT, mentor_id: mentorId, reviews };
+  return { success: true, environment: LEARNING_ENVIRONMENT, mentor_id: mentorId, reviews };
 }
 export function parseReview(value: unknown, mentorId: number, receiptId: string): ReviewDetail {
   if (!uuid(receiptId) || !envelope(value, mentorId) || !record(value.review) || value.review.receipt_id !== receiptId) throw invalid();
@@ -71,16 +71,16 @@ export function parseReview(value: unknown, mentorId: number, receiptId: string)
   }
   const feedback = review.published === null ? null : published(review.published);
   if (feedback && (!draft || feedback.revision !== draft.revision || feedback.comment !== draft.comment)) throw invalid();
-  return { success: true, environment: PRACTICE_ENVIRONMENT, mentor_id: mentorId,
+  return { success: true, environment: LEARNING_ENVIRONMENT, mentor_id: mentorId,
     review: { ...identity, answer: review.answer, attachments, draft, published: feedback } };
 }
 export function parseLearnerFeedback(value: unknown, learnerId: number, programId: string, itemId: string, receiptId: string | null): LearnerFeedback {
   if (!id(learnerId) || !uuid(programId) || !uuid(itemId) || (receiptId !== null && !uuid(receiptId)) || !record(value) ||
-    value.success !== true || value.environment !== PRACTICE_ENVIRONMENT || value.learner_id !== learnerId || value.item_id !== itemId || value.program_id !== programId ||
+    value.success !== true || value.environment !== LEARNING_ENVIRONMENT || value.learner_id !== learnerId || value.item_id !== itemId || value.program_id !== programId ||
     value.receipt_id !== receiptId || !Array.isArray(value.feedback) || value.feedback.length > 100 || (receiptId === null && value.feedback.length)) throw invalid();
   const feedback = value.feedback.map(published);
   if (new Set(feedback.map(row => row.id)).size !== feedback.length) throw invalid();
-  return { success: true, environment: PRACTICE_ENVIRONMENT, learner_id: learnerId, item_id: itemId, program_id: programId, receipt_id: receiptId, feedback };
+  return { success: true, environment: LEARNING_ENVIRONMENT, learner_id: learnerId, item_id: itemId, program_id: programId, receipt_id: receiptId, feedback };
 }
 export function createReviewClient(fetcher: typeof fetch = fetch) {
   async function request(path: string, body?: object, csrf?: string, signal?: AbortSignal): Promise<unknown> {

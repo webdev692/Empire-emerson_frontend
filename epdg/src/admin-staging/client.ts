@@ -69,7 +69,7 @@ async function request<T>(path: string, init: RequestInit = {}, includeCsrf = tr
       signal: AbortSignal.timeout(15000),
     });
   } catch {
-    throw new PortalApiError(0, 'The isolated staging API is unavailable.');
+    throw new PortalApiError(0, 'The portal API is unavailable. Refresh status before retrying an account action.');
   }
 
   let body: Record<string, unknown> = {};
@@ -150,4 +150,10 @@ export function get<T>(path: string): Promise<Envelope<T>> {
 
 export function post<T>(path: string, value: unknown): Promise<Envelope<T>> {
   return request<Envelope<T>>(path, { method: 'POST', body: JSON.stringify(value) });
+}
+
+// Only a session already parsed by the portal's exact environment boundary is adopted.
+export function adoptVerifiedSession(session: PortalSession): void {
+  if (!/^[A-Za-z0-9_-]{43}$/.test(session.csrf_token) || Date.parse(session.expires_at) <= Date.now()) throw new PortalApiError(401, 'Authentication required');
+  ++sessionRevision; csrfToken = session.csrf_token;
 }

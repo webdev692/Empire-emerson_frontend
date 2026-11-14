@@ -211,3 +211,26 @@ td strong { color: #25332a; font-size: 11px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
+
+.am-filters, .am-form fieldset { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem; margin: 1.2rem 0; }
+.am-filters label, .am-form label { display: grid; gap: .45rem; flex: 1 1 180px; }
+.am-form fieldset { border: 0; padding: 0; }
+.am-filters input, .am-filters select, .am-form input, .am-form select, .confirm-dialog input { width: 100%; padding: .7rem; color: #201532; background: white; border: 1px solid #c9bed8; border-radius: 8px; }
+.table-panel caption { text-align: left; padding: 1rem; font-weight: 700; }
+
+.am-dialog { border: 0; max-width: min(560px, calc(100vw - 2rem)); color: #21152f; }
+.am-dialog::backdrop { background: rgb(20 10 35 / 65%); }
+
+/* The existing light administrator workspace is embedded in the dark portal.
+   Establish its own surface and text colors instead of inheriting portal globals. */
+.sp-root main.app-shell { width: 100%; max-width: none; margin: 0; padding: 0; background: #f5f7f4; color: #17201c; --muted: #526257; }
+.sp-root .app-shell :is(h1, h2, h3, caption, label, legend) { color: #17201c; }
+.sp-root .app-shell .main-content p:not(.error-message):not(.success-message):not(.inline-note),
+.sp-root .app-shell .sidebar-note p { color: #47594d; }
+.sp-root .app-shell :is(th, .sidebar-label, .eyebrow) { color: #44554a; }
+.sp-root .app-shell .topbar .eyebrow { color: #b9cbbf; }
+.sp-root .app-shell .sp-tabs button { color: #164f3d; background: #fff; border-color: #647b6d; }
+.sp-root .app-shell .sp-tabs button:hover { background: #e8f1ec; }
+.sp-root .app-shell .sp-tabs button[aria-current=page] { background: #164f3d; color: #fff; }
+.sp-root .app-shell :is(a, button, input, select, textarea):focus-visible { outline: 3px solid #164f3d; outline-offset: 3px; }
+.sp-root .app-shell .topbar :focus-visible { outline-color: #d7e7a2; }

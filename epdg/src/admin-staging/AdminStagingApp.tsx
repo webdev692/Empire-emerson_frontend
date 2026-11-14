@@ -1,7 +1,9 @@
 import { lazy, Suspense, useCallback, useEffect, useState, type FormEvent } from 'react';
-import { forgetSession, get, post, PortalApiError, restoreSession, signIn, signOut, type PortalSession } from './client';
+import type { Session } from '../synthetic/client';
+import { adoptVerifiedSession, forgetSession, get, post, PortalApiError, restoreSession, signIn, signOut, type PortalSession } from './client';
 
 const InvitationReview = __EPDG_ADMIN_STAGING_HOSTED__ ? () => null : lazy(() => import('./InvitationReview'));
+const AccountManagement = __EPDG_RELEASE_PORTAL_MODE__ ? lazy(() => import('./AccountManagement')) : () => null;
 type Page = 'overview' | 'users' | 'roles' | 'education' | 'invitations';
 type Overview = {
   environment: string;
@@ -64,10 +66,10 @@ function LoadingPanel({ label }: { label: string }) {
   return <div className="panel loading-panel" role="status" aria-live="polite"><span className="spinner" /> Loading {label}…</div>;
 }
 
-export function AdminStagingApp() {
+export function AdminStagingApp({ portalSession, onAuthenticationRequired, onLogout }: { portalSession?: Session; onAuthenticationRequired?: () => void; onLogout?: () => void } = {}) {
   const hostedBuild = __EPDG_ADMIN_STAGING_HOSTED__;
-  const [session, setSession] = useState<PortalSession | null>(null);
-  const [booting, setBooting] = useState(true);
+  const [session, setSession] = useState<PortalSession | null>(portalSession ?? null);
+  const [booting, setBooting] = useState(!portalSession);
   const [page, setPage] = useState<Page>('overview');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -83,10 +85,11 @@ export function AdminStagingApp() {
   const [confirmTarget, setConfirmTarget] = useState<PortalUser | null>(null);
   const authenticationRequired = useCallback(() => {
     forgetSession(); setSession(null); setOverview(null); setUsers([]); setRoles(null); setReadiness(null); setConfirmTarget(null);
-    setNotice('Your session has ended. Sign in again.');
-  }, []);
+    setNotice('Your session has ended. Sign in again.'); onAuthenticationRequired?.();
+  }, [onAuthenticationRequired]);
 
   useEffect(() => {
+    if (portalSession) { adoptVerifiedSession(portalSession); return () => forgetSession(); }
     let mounted = true;
     restoreSession()
       .then(value => { if (mounted) setSession(value); })
@@ -95,19 +98,19 @@ export function AdminStagingApp() {
       })
       .finally(() => { if (mounted) setBooting(false); });
     return () => { mounted = false; };
-  }, []);
+  }, [portalSession]);
 
   useEffect(() => {
     if (!session) return;
     const expires = window.setTimeout(() => {
       forgetSession(); setSession(null); setOverview(null); setUsers([]); setRoles(null); setReadiness(null); setConfirmTarget(null);
-      setNotice('Your session has ended. Sign in again.');
+      setNotice('Your session has ended. Sign in again.'); onAuthenticationRequired?.();
     }, Math.min(2147483647, Math.max(0, Date.parse(session.expires_at) - Date.now())));
     return () => window.clearTimeout(expires);
-  }, [session]);
+  }, [session, onAuthenticationRequired]);
 
   useEffect(() => {
-    if (!session) return;
+    if (!session || portalSession) return;
     let mounted = true;
     const load = async () => {
       try {
@@ -138,7 +141,7 @@ export function AdminStagingApp() {
     };
     void load();
     return () => { mounted = false; };
-  }, [page, session]);
+  }, [page, session, portalSession]);
 
   async function handleSignIn(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -217,7 +220,8 @@ export function AdminStagingApp() {
     }
   }
 
-  const hasAdminAccess = Boolean(session?.user.permissions.includes('admin.overview.read'));
+  const hasAdminAccess = Boolean(session?.user.permissions.includes(portalSession ? 'admin.accounts.read' : 'admin.overview.read'));
+  if (portalSession && !session) return <AccessDenied />;
 
   if (booting) return <main className="boot-screen"><div className="loading-card"><span className="spinner" /> Restoring secure session…</div></main>;
   if (!session) return <main className="login-screen">
@@ -249,25 +253,25 @@ export function AdminStagingApp() {
   return <main className="app-shell">
     <header className="topbar">
       <div className="brand-lockup"><div className="brand-mark">E</div><div><span className="eyebrow">The Emerson Empire</span><strong>EPDG administrator</strong></div></div>
-      <div className="topbar-right"><span className="environment-pill"><span className="status-dot" /> {hostedBuild ? 'Hosted staging' : 'Local staging'}</span>
-        <div className="user-menu"><div className="avatar">{session.user.name.slice(0, 1).toUpperCase()}</div><div className="user-identity"><strong>{session.user.name}</strong><span>{session.user.portal_roles?.join(', ') || 'No portal role'}</span></div></div>
-        <button className="quiet-button signout-button" onClick={() => void handleSignOut()} disabled={pending}>Sign out</button>
+      <div className="topbar-right"><span className="environment-pill"><span className="status-dot" /> {portalSession ? 'Account management' : hostedBuild ? 'Hosted staging' : 'Local staging'}</span>
+        <div className="user-menu"><div className="avatar">{session.user.name.slice(0, 1).toUpperCase()}</div><div className="user-identity"><strong>{session.user.name}</strong><span>{(portalSession?.user.assignments?.map(a => a.role_code).join(', ') ?? session.user.portal_roles?.join(', ')) || 'No portal role'}</span></div></div>
+        <button className="quiet-button signout-button" onClick={() => portalSession ? onLogout?.() : void handleSignOut()} disabled={pending}>Sign out</button>
       </div>
     </header>
-    <div className="staging-strip"><span className="status-dot" /> Staging data is isolated and uses synthetic <code>.invalid</code> identities. Production access remains locked.</div>
+    <div className="staging-strip"><span className="status-dot" /> {portalSession ? 'Account actions require server permission, verified onboarding and a reviewed release target.' : <>Staging data is isolated and uses synthetic <code>.invalid</code> identities. Production access remains locked.</>}</div>
     <div className="layout">
       <aside className="sidebar" aria-label="Administrator navigation">
         <span className="sidebar-label">Workspace</span>
-        <nav>{pages.map(item => <button key={item.id} className={`nav-item ${page === item.id ? 'selected' : ''}`} onClick={() => { if (page === item.id) return; setLoading(true); setPage(item.id); setError(''); setNotice(''); }} aria-current={page === item.id ? 'page' : undefined}>
+        <nav>{portalSession ? <><a className="nav-item" href="/dashboard">My workspace</a><a className="nav-item selected" href="/admin/accounts" aria-current="page">Users and invitations</a><a className="nav-item" href="/account">My account</a></> : pages.map(item => <button key={item.id} className={`nav-item ${page === item.id ? 'selected' : ''}`} onClick={() => { if (page === item.id) return; setLoading(true); setPage(item.id); setError(''); setNotice(''); }} aria-current={page === item.id ? 'page' : undefined}>
           <span className="nav-icon" aria-hidden="true">{item.id === 'overview' ? '◫' : item.id === 'users' ? '◎' : item.id === 'roles' ? '◇' : '▤'}</span>{item.short}<span className="nav-arrow" aria-hidden="true">›</span>
         </button>)}</nav>
         <div className="sidebar-note"><span className="sidebar-label">Data boundary</span><p>Applicants, resumes and onboarding remain in the Emerson CRM.</p><p>EPDG starts after verified onboarding.</p></div>
       </aside>
       <section className="main-content">
-        <div className="page-heading"><div><span className="eyebrow">Administrator workspace</span><h1>{pages.find(item => item.id === page)?.title}</h1></div><span className="read-only-pill">Server session verified</span></div>
+        <div className="page-heading"><div><span className="eyebrow">Administrator workspace</span><h1>{portalSession ? 'Users and invitations' : pages.find(item => item.id === page)?.title}</h1></div><span className="read-only-pill">Server session verified</span></div>
         {notice && <p className="success-message" role="status">{notice}</p>}
         {error && <p className="error-message page-error" role="alert">{error}</p>}
-        {!hasAdminAccess ? <AccessDenied /> : loading ? <LoadingPanel label={page === 'overview' ? 'overview' : page} /> : <>
+        {!hasAdminAccess ? <AccessDenied /> : portalSession ? <Suspense fallback={<LoadingPanel label="accounts" />}><AccountManagement onAuthenticationRequired={authenticationRequired} /></Suspense> : loading ? <LoadingPanel label={page === 'overview' ? 'overview' : page} /> : <>
           {page === 'overview' && <OverviewPage data={overview} />}
           {page === 'users' && <UsersPage users={users} currentUserId={session.user.id} onRequest={setConfirmTarget} />}
           {page === 'roles' && <RolesPage data={roles} />}
@@ -276,7 +280,7 @@ export function AdminStagingApp() {
         </>}
       </section>
     </div>
-    <footer className="footer"><span>EPDG admin staging</span><span>{hostedBuild ? 'Hosted synthetic review · no real learner records · no production permissions' : 'Local only · no real learner records · no production permissions'}</span></footer>
+    <footer className="footer"><span>{portalSession ? 'EPDG account management' : 'EPDG admin staging'}</span><span>{portalSession ? 'CRM owns onboarding · EPDG owns education access' : hostedBuild ? 'Hosted synthetic review · no real learner records · no production permissions' : 'Local only · no real learner records · no production permissions'}</span></footer>
     {confirmTarget && <div className="modal-backdrop" role="presentation"><section className="confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="role-request-title">
       <span className="eyebrow">Role review request</span><h2 id="role-request-title">Request WebDev policy review?</h2>
       <p>This records a pending request for <strong>{confirmTarget.name}</strong>. It does not assign a role or grant permissions.</p>

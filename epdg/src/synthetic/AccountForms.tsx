@@ -1,4 +1,4 @@
-import { HOSTED_PRACTICE, recoveryMailbox } from './runtimeProfile';
+import { HOSTED_PRACTICE, RELEASE_PORTAL, RELEASE_REVIEW, recoveryMailbox, recoveryNotice } from './runtimeProfile';
 import { useRef, useState, type FormEvent } from 'react';
 import { loginAlias, passwordProblem, resolveLoginEmail } from './client';
 
@@ -19,7 +19,7 @@ export default function AccountForms({ action, onSubmit, notice, busy }: {
     const password = String(fields.get('password') ?? '');
     const current = String(fields.get('current') ?? '');
     if ((action === 'login' || action === 'forgot') && !resolveLoginEmail(email)) {
-      setError(HOSTED_PRACTICE ? 'Use your authorized practice account email.' : 'Use the configured local alias or an authorized synthetic account ending in .invalid.'); return;
+      setError(RELEASE_PORTAL ? RELEASE_REVIEW ? 'Use an authorized synthetic account ending in .invalid.' : 'Enter your account email address.' : HOSTED_PRACTICE ? 'Use your authorized practice account email.' : 'Use the configured local alias or an authorized synthetic account ending in .invalid.'); return;
     }
     if (action === 'reset' || action === 'change' || action === 'accept') {
       const problem = passwordProblem(password);
@@ -34,8 +34,8 @@ export default function AccountForms({ action, onSubmit, notice, busy }: {
   return <section className="sp-form-card" aria-labelledby="form-title">
     <p className="sp-eyebrow">Individual account access</p>
     <h1 id="form-title" tabIndex={-1}>{titles[action]}</h1>
-    <p>{action === 'forgot' ? `Recovery instructions are captured in ${recoveryMailbox} for eligible synthetic accounts. No real email is sent.` :
-      action === 'login' ? 'Use an existing synthetic account to explore the connected portal.' : action === 'accept' ? 'This single-use invitation confirms the synthetic account email and sets its password. Sign in afterward; program access still requires verified onboarding.' : 'After changing your password, sign in again. Existing sessions will end.'}</p>
+    <p>{action === 'forgot' ? recoveryNotice :
+      action === 'login' ? RELEASE_PORTAL ? 'Sign in with your individual account. Access is checked by the server.' : 'Use an existing synthetic account to explore the connected portal.' : action === 'accept' ? `This single-use invitation confirms your account email and sets its password. Sign in afterward; program access still requires verified onboarding. Open invitations from ${recoveryMailbox}.` : 'After changing your password, sign in again. Existing sessions will end.'}</p>
     {notice ? <p className="sp-message" role="status">{notice}</p> : null}
     {error ? <p className="sp-error" role="alert">{error}</p> : null}
     <form ref={formRef} onSubmit={submit} aria-busy={busy}>
@@ -51,6 +51,6 @@ export default function AccountForms({ action, onSubmit, notice, busy }: {
       {action === 'login' ? <a href="/forgot-password">Forgot your password?</a> : <a href="/login">Back to sign in</a>}
       {action === 'change' ? <a href="/dashboard">Back to dashboard</a> : null}
     </nav>
-    <p className="sp-note">{action === 'accept' ? 'Local synthetic invitation review only. No real account is activated.' : 'Public registration and privileged account controls are closed.'}</p>
+    <p className="sp-note">{RELEASE_PORTAL ? 'Access is invitation-only. Account roles and onboarding eligibility are reviewed separately.' : action === 'accept' ? 'Local synthetic invitation review only. No real account is activated.' : 'Public registration and privileged account controls are closed.'}</p>
   </section>;
 }

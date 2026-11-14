@@ -183,7 +183,7 @@ export default function AssignmentSubmission({ session, itemId, programId, onAut
         onSubmitted?.();
       } else {
         if (action === 'starting_revision' || action === 'reloading') focusTarget.current = 'answer';
-        setNotice(action === 'starting_revision' ? 'Revision started. Your earlier answer is copied into this saved draft. Choose any practice files again; earlier submitted files were not copied.' :
+        setNotice(action === 'starting_revision' ? 'Revision started. Your earlier answer is copied into this saved draft. Choose any files again; earlier submitted files were not copied.' :
           action === 'saving' ? 'Draft saved. You can return to this saved answer after a reload.' : action === 'uploading' ? 'File uploaded to this saved draft.' :
           action === 'removing' ? 'File removed from this draft. You can restore it before submission.' : action === 'restoring' ? 'File restored to this draft.' : 'Saved draft loaded.');
         if (action !== 'reloading') onSaved?.();
@@ -231,12 +231,12 @@ export default function AssignmentSubmission({ session, itemId, programId, onAut
   if (!current) return null;
 
   return <section className="sp-assignment" aria-label="Your assignment answer" aria-busy={busy !== null}>
-    <p className="sp-assignment-scope">Synthetic assignment submission · Practice files stay in this synthetic practice environment. Grading and certificates remain unavailable.</p>
+    <p className="sp-assignment-scope">Assignment submission · Saved drafts, submitted files and receipts are tied to your account. Grading and certificates remain unavailable.</p>
     <p className="sp-assignment-state">Practice attempt {current.attempt_number} of 5{current.state === 'draft' ? ' · Draft' : current.state === 'submitted' ? ' · Submitted' : ' · Not started'}</p>
-    <p className="sp-note">The five-attempt practice cap applies only to this synthetic practice environment.</p>
+    <p className="sp-note">The current submission policy allows up to five attempts.</p>
     {notice ? <p className="sp-message" role="status">{notice}</p> : null}
     {failure ? <p className="sp-assignment-error" role="alert">{failure}</p> : null}
-    {['uploading', 'removing', 'restoring', 'downloading'].includes(busy ?? '') ? <p className="sp-assignment-state" role="status">{busy === 'uploading' ? 'Uploading practice file…' : busy === 'removing' ? 'Removing file from the draft…' : busy === 'restoring' ? 'Restoring file to the draft…' : 'Checking and preparing the file download…'}</p> : null}
+    {['uploading', 'removing', 'restoring', 'downloading'].includes(busy ?? '') ? <p className="sp-assignment-state" role="status">{busy === 'uploading' ? 'Uploading file…' : busy === 'removing' ? 'Removing file from the draft…' : busy === 'restoring' ? 'Restoring file to the draft…' : 'Checking and preparing the file download…'}</p> : null}
     {current.state === 'submitted' && current.receipt ? <div className="sp-assignment-receipt">
       <h4 ref={receiptHeading} tabIndex={-1}>Assignment submitted</h4>
       <p>This submitted answer is read-only. It has not been graded.</p>
@@ -247,15 +247,15 @@ export default function AssignmentSubmission({ session, itemId, programId, onAut
       <h5>Files included with this submission</h5><FileList files={activeFiles} blocked={busy !== null || needsReload} onDownload={file => void download(file)} />
       <AssignmentFeedback session={session} itemId={itemId} programId={programId} receiptId={current.receipt.id} onAuthenticationRequired={onAuthenticationRequired} onUnavailable={feedbackUnavailable} />
       <form data-assignment-editor className="sp-start-revision" onSubmit={event => { event.preventDefault(); void run('starting_revision'); }}>
-        <h5>Revise after feedback</h5><p className="sp-note">A new attempt copies this submitted answer into a saved draft. Earlier receipts, files and published feedback stay read-only. Files are not copied: upload the practice files you want in the new attempt.</p>
+        <h5>Revise after feedback</h5><p className="sp-note">A new attempt copies this submitted answer into a saved draft. Earlier receipts, files and published feedback stay read-only. Files are not copied: upload the files you want in the new attempt.</p>
         {current.can_start_revision ? <button type="submit" className="sp-learning-primary" disabled={busy !== null || needsReload}>{busy === 'starting_revision' ? 'Starting revision…' : 'Start a revision'}</button> :
-          <p className="sp-note">{current.attempt_number >= 5 ? 'The five-attempt synthetic practice limit has been reached.' : 'A revision becomes available after published mentor feedback on your latest submitted attempt. Check availability after refreshing feedback.'}</p>}
+          <p className="sp-note">{current.attempt_number >= 5 ? 'The five-attempt limit has been reached.' : 'A revision becomes available after published mentor feedback on your latest submitted attempt. Check availability after refreshing feedback.'}</p>}
         <button type="button" onClick={() => void run('reloading')} disabled={busy !== null}>{busy === 'reloading' ? 'Checking saved status…' : needsReload ? 'Reload saved status before trying again' : 'Check revision availability'}</button>
       </form>
     </div> : <form data-assignment-editor onSubmit={save}>
       {phase === 'review' ? <div className="sp-assignment-review">
         <h4 ref={reviewHeading} tabIndex={-1}>Review your saved answer</h4>
-        <p>After submission this answer and its attached files are read-only. Review the saved answer and files before submitting this synthetic assignment.</p>
+        <p>After submission this answer and its attached files are read-only. Review the saved answer and files before submitting this assignment.</p>
         <p className="sp-assignment-answer">{answer}</p>
         <h5>Saved files to include ({activeFiles.length} / 3)</h5><FileList files={activeFiles} blocked={busy !== null || needsReload} onDownload={file => void download(file)} />
         <div className="sp-assignment-actions"><button type="button" onClick={() => { focusTarget.current = 'answer'; setPhase('editing'); }} disabled={busy !== null}>Edit answer</button>
@@ -263,7 +263,7 @@ export default function AssignmentSubmission({ session, itemId, programId, onAut
       </div> : <>
         <label htmlFor={fieldId}>Your assignment answer</label>
         {current.previous_receipt_id ? <p className="sp-note">This is revision attempt {current.attempt_number}. Its starting text came from your previous submission. Earlier submitted files remain with their original receipt; upload any files you want in this attempt.</p> : null}
-        <p id={`${fieldId}-help`} className="sp-note">Use practice information only. Save a draft before reviewing and submitting. Only saved answers survive a page reload; leaving this program discards unsaved changes.</p>
+        <p id={`${fieldId}-help`} className="sp-note">Save a draft before reviewing and submitting. Only saved answers survive a page reload; leaving this program discards unsaved changes.</p>
         <textarea ref={editor} id={fieldId} value={answer} onChange={event => { setAnswer(event.target.value); setNotice(''); }} maxLength={4000} rows={9}
           disabled={busy !== null || selection !== null} aria-invalid={problem ? true : undefined} aria-describedby={`${fieldId}-help ${fieldId}-limit ${fieldId}-state${problem ? ` ${fieldId}-problem` : ''}`} />
         <p id={`${fieldId}-limit`} className="sp-assignment-count">{answer.length.toLocaleString()} / 4,000 characters · {new TextEncoder().encode(answer).length.toLocaleString()} / 12,000 UTF-8 bytes</p>
@@ -275,10 +275,10 @@ export default function AssignmentSubmission({ session, itemId, programId, onAut
         {blank ? <p className="sp-note">A blank draft can be saved. Enter an answer before reviewing it for submission.</p> : dirty ? <p className="sp-note">Save your changes to enable review.</p> : null}
         <div className="sp-assignment-attachments">
           <h4>Practice files</h4>
-          <p id={`${fieldId}-file-help`} className="sp-note">Save your text draft before adding files. Use synthetic information only: TXT, PDF, PNG or JPEG; non-empty and at most 1 MiB (1,048,576 bytes) each. Include up to 3 active files and 6 uploaded files in total per attempt. Removing a file does not reset this attempt’s total.</p>
+          <p id={`${fieldId}-file-help`} className="sp-note">Save your text draft before adding files. Allowed files: TXT, PDF, PNG or JPEG; non-empty and at most 1 MiB (1,048,576 bytes) each. Include up to 3 active files and 6 uploaded files in total per attempt. Removing a file does not reset this attempt’s total.</p>
           <p id={`${fieldId}-file-name-help`} className="sp-note">Filenames may contain ASCII letters, digits, spaces, underscores, hyphens and periods, up to 100 characters. Start with a letter or digit; avoid repeated periods and trailing spaces or periods. File selection is not saved: upload it explicitly, or choose it again after a reload. File contents are not displayed here. Files are not scanned for malware.</p>
           <p className="sp-assignment-state">{activeFiles.length} / 3 active files · {activeFiles.length + removedFiles.length} / 6 total uploads</p>
-          <label htmlFor={`${fieldId}-file`}>Choose a practice file</label>
+          <label htmlFor={`${fieldId}-file`}>Choose a file</label>
           <input ref={fileInput} id={`${fieldId}-file`} type="file" accept=".txt,.pdf,.png,.jpg,.jpeg,text/plain,application/pdf,image/png,image/jpeg"
             disabled={busy !== null || needsReload || current.state !== 'draft' || dirty || problem !== null || fileLimitReached}
             aria-describedby={`${fieldId}-file-help ${fieldId}-file-name-help${selection?.problem ? ` ${fieldId}-file-problem` : ''}`}
@@ -291,7 +291,7 @@ export default function AssignmentSubmission({ session, itemId, programId, onAut
             {selection.problem ? <p id={`${fieldId}-file-problem`} className="sp-assignment-error" role="alert">{selection.problem}</p> : null}
             <p className="sp-note">Upload or clear this selection before editing your answer or reviewing the assignment.</p>
             <div className="sp-assignment-actions"><button type="button" className="sp-learning-primary" onClick={() => void run('uploading')}
-              disabled={busy !== null || needsReload || selection.problem !== null || dirty || fileLimitReached}>{busy === 'uploading' ? 'Uploading practice file…' : 'Upload selected file'}</button>
+              disabled={busy !== null || needsReload || selection.problem !== null || dirty || fileLimitReached}>{busy === 'uploading' ? 'Uploading file…' : 'Upload selected file'}</button>
               <button type="button" onClick={clearSelection} disabled={busy !== null}>Clear selected file</button></div></div> : null}
           {current.state !== 'draft' || dirty ? <p className="sp-note">Save your latest text draft to enable file changes.</p> : null}
           {activeFiles.length >= 3 ? <p className="sp-note">Three files are attached. Remove an active file before adding or restoring another.</p> : null}
@@ -301,11 +301,11 @@ export default function AssignmentSubmission({ session, itemId, programId, onAut
             <FileList files={removedFiles} removed editing blocked={busy !== null || needsReload || dirty || selection !== null} restoreBlocked={activeFiles.length >= 3} onDownload={file => void download(file)} onChange={(action, file) => void run(action, file)} /></> : null}
         </div>
       </>}
-      {needsReload ? <div className="sp-assignment-reload"><p>Reloading replaces this form’s answer with the saved version. Keep a private copy of any unsaved practice text you want to retain.</p>
+      {needsReload ? <div className="sp-assignment-reload"><p>Reloading replaces this form’s answer with the saved version. Keep a private copy of any unsaved text you want to retain.</p>
         <button type="button" onClick={() => void run('reloading')} disabled={busy !== null}>{busy === 'reloading' ? 'Checking saved status…' : 'Reload saved status and replace this answer'}</button></div> : null}
     </form>}
     <AssignmentAttemptHistory session={session} itemId={itemId} programId={programId} currentAttempt={current.attempt_number} currentReceiptId={current.receipt?.id ?? null}
       busy={busy !== null || needsReload || selection !== null} onDownload={(receiptId, file) => void download(file, receiptId)} onAuthenticationRequired={onAuthenticationRequired} onUnavailable={feedbackUnavailable} onNewerAttempt={newerAttempt} />
-    <p className="sp-note">Dates use your device’s time zone. A synthetic receipt confirms this synthetic practice submission only.</p>
+    <p className="sp-note">Dates use your device’s time zone. A receipt confirms the submitted answer and files.</p>
   </section>;
 }

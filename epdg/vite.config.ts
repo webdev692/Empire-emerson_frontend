@@ -6,9 +6,11 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from 'vite-plugin-pwa';
 import { validateHostedPracticeProfile, hostedPracticeRedirects, hostedPracticeHeaders, HOSTED_PRACTICE_OUTPUT } from './scripts/hosted-practice-profile.mjs';
+import { PORTAL_RELEASE_OUTPUT, validatePortalReleaseProfile, portalReleaseRedirects, portalReleaseHeaders } from './scripts/portal-release-profile.mjs';
 import { staticPortalRedirects, staticPortalHeaders } from './scripts/netlify-static-rules.mjs';
 import { ADMIN_STAGING_HOSTED_OUTPUT, adminStagingHostedHeaders, adminStagingHostedRedirects, validateAdminStagingApiOrigin } from './scripts/admin-staging-hosted-profile.mjs';
 
+const closedReleaseDefines = { __EPDG_RELEASE_PORTAL_MODE__: 'false', __EPDG_RELEASE_REVIEW_MODE__: 'false', __EPDG_RELEASE_PORTAL_ORIGIN__: JSON.stringify('') };
 const syntheticOrigin = 'http://127.0.0.1:58080';
 const syntheticRoot = fileURLToPath(new URL('.', import.meta.url));
 const syntheticPolicy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' http://127.0.0.1:58000 ws://127.0.0.1:58080; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'";
@@ -63,7 +65,7 @@ function adminStagingIsolation(preview: boolean | undefined): Plugin {
   };
 }
 
-function syntheticIsolation(): Plugin {
+function syntheticIsolation(releaseReview = false): Plugin {
   return {
     name: 'local-synthetic-isolation',
     configResolved(config) {
@@ -103,14 +105,18 @@ function syntheticIsolation(): Plugin {
 <meta name="robots" content="noindex,nofollow" />
 <meta name="referrer" content="no-referrer" />
 <title>EPDG Portal — Local synthetic environment</title></head>
-<body><div id="root"></div><script type="module" src="/src/synthetic/main.tsx"></script></body></html>`;
+<body><div id="root"></div><script type="module" src="/src/synthetic/${releaseReview ? 'release-main' : 'main'}.tsx"></script></body></html>`;
       },
     },
   };
 }
 
 export default defineConfig(({ mode, command, isPreview }) => {
-  const synthetic = mode === 'synthetic-local';
+  const release = mode === 'portal-release';
+  const releaseReview = mode === 'portal-review';
+  if (release && (command !== 'build' || isPreview)) throw new Error('Portal release is a review build only.');
+  const releaseProfile = release ? validatePortalReleaseProfile(process.env) : null;
+  const synthetic = mode === 'synthetic-local' || releaseReview;
   const hosted = mode === 'hosted-practice';
   const adminStaging = mode === 'admin-staging';
   const adminStagingHosted = mode === 'admin-staging-hosted';
@@ -123,9 +129,10 @@ export default defineConfig(({ mode, command, isPreview }) => {
   if (hosted && (command !== 'build' || isPreview)) throw new Error('Hosted practice requires an explicit reviewed build.');
   const hostedProfile = hosted ? validateHostedPracticeProfile(JSON.parse(readFileSync(new URL('./hosted-practice.config.json', import.meta.url), 'utf8'))) : null;
   return {
+  define: closedReleaseDefines,
   ...(adminStaging ? {
     envPrefix: [],
-    define: { __EPDG_ADMIN_STAGING_API_ORIGIN__: JSON.stringify(adminStagingApi), __EPDG_ADMIN_STAGING_HOSTED__: 'false' },
+    define: { ...closedReleaseDefines, __EPDG_ADMIN_STAGING_API_ORIGIN__: JSON.stringify(adminStagingApi), __EPDG_ADMIN_STAGING_HOSTED__: 'false' },
     server: {
       host: '127.0.0.1', port: 58080, strictPort: true, origin: adminStagingOrigin,
       allowedHosts: ['127.0.0.1'], cors: { origin: adminStagingOrigin },
@@ -144,7 +151,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
   } : {}),
   ...(adminStagingHosted ? {
     envPrefix: [],
-    define: { __EPDG_ADMIN_STAGING_API_ORIGIN__: JSON.stringify(''), __EPDG_ADMIN_STAGING_HOSTED__: 'true' },
+    define: { ...closedReleaseDefines, __EPDG_ADMIN_STAGING_API_ORIGIN__: JSON.stringify(''), __EPDG_ADMIN_STAGING_HOSTED__: 'true' },
     build: {
       outDir: ADMIN_STAGING_HOSTED_OUTPUT, sourcemap: false, emptyOutDir: true,
       rollupOptions: { input: fileURLToPath(new URL('./index.html', import.meta.url)) },
@@ -165,6 +172,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
       ],
     },
     define: {
+      ...closedReleaseDefines,
       __EPDG_HOSTED_PRACTICE_MODE__: 'true',
       __EPDG_HOSTED_PRACTICE_PROFILE__: JSON.stringify({ environment: hostedProfile.environment, portalOrigins: hostedProfile.portalOrigins }),
       // Hosted builds must compile the local-only alias path completely away.
@@ -175,7 +183,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
   ...(synthetic ? {
     // Non-secret login preference only. Passwords and runtime.json are never read.
     // Build/preview rejection above prevents this private alias from being published.
-    define: { __EPDG_SYNTHETIC_LOGIN_ALIAS__: JSON.stringify(syntheticLoginAlias()) },
+    define: { ...closedReleaseDefines, __EPDG_SYNTHETIC_LOGIN_ALIAS__: releaseReview ? 'null' : JSON.stringify(syntheticLoginAlias()), ...(releaseReview ? { __EPDG_RELEASE_PORTAL_MODE__: 'true', __EPDG_RELEASE_REVIEW_MODE__: 'true', __EPDG_RELEASE_PORTAL_ORIGIN__: JSON.stringify(syntheticOrigin), __EPDG_ADMIN_STAGING_API_ORIGIN__: JSON.stringify(adminStagingApi), __EPDG_ADMIN_STAGING_HOSTED__: 'true' } : {}) },
     // Custom VITE_ variables, including inherited production API settings, are never exposed here.
     envPrefix: [],
     server: {
@@ -195,9 +203,33 @@ export default defineConfig(({ mode, command, isPreview }) => {
       },
     },
   } : {}),
+  ...(releaseProfile ? {
+    envPrefix: [],
+    resolve: { alias: [
+      { find: /^\.\/localPracticeRuntime(?:\.ts)?$/, replacement: fileURLToPath(new URL('./src/synthetic/hostedPracticeRuntime.ts', import.meta.url)) },
+      { find: /^\.\/localLoginAlias(?:\.ts)?$/, replacement: fileURLToPath(new URL('./src/synthetic/hostedLoginAlias.ts', import.meta.url)) },
+    ] },
+    define: { ...closedReleaseDefines, __EPDG_RELEASE_PORTAL_MODE__: 'true', __EPDG_RELEASE_REVIEW_MODE__: 'false', __EPDG_RELEASE_PORTAL_ORIGIN__: JSON.stringify(releaseProfile.portalOrigin), __EPDG_SYNTHETIC_LOGIN_ALIAS__: 'null', __EPDG_ADMIN_STAGING_API_ORIGIN__: JSON.stringify(''), __EPDG_ADMIN_STAGING_HOSTED__: 'true' },
+    build: { outDir: PORTAL_RELEASE_OUTPUT, sourcemap: false, emptyOutDir: true },
+  } : {}),
   plugins: [
-    ...(synthetic ? [syntheticIsolation()] : []),
+    ...(synthetic ? [syntheticIsolation(releaseReview)] : []),
     ...(adminStaging ? [adminStagingIsolation(isPreview)] : []),
+    ...(releaseProfile ? [{
+      name: 'held-portal-release-candidate',
+      configResolved(config) {
+        if (config.base !== '/' || config.command !== 'build' || !Array.isArray(config.envPrefix) || config.envPrefix.length !== 0 || config.build.outDir !== PORTAL_RELEASE_OUTPUT || config.build.sourcemap) throw new Error('Portal release profile cannot be broadened.');
+      },
+      transformIndexHtml: { order: 'pre', handler() {
+        return '<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="robots" content="noindex,nofollow" /><meta name="referrer" content="no-referrer" /><title>EPDG Learning &amp; Program Portal</title></head><body><div id="root"></div><script type="module" src="/src/synthetic/release-main.tsx"></script></body></html>';
+      } },
+      generateBundle() {
+        this.emitFile({ type: 'asset', fileName: '_redirects', source: portalReleaseRedirects(releaseProfile) });
+        this.emitFile({ type: 'asset', fileName: '_headers', source: portalReleaseHeaders });
+        this.emitFile({ type: 'asset', fileName: 'release-candidate.json', source: JSON.stringify(releaseProfile, null, 2) + '\n' });
+        this.emitFile({ type: 'asset', fileName: 'sw.js', source: readFileSync(new URL('./scripts/hosted-practice-retirement-worker.js', import.meta.url), 'utf8') });
+      },
+    } satisfies Plugin] : []),
     ...(adminStagingHosted ? [{
       name: 'hosted-admin-staging-isolation',
       configResolved(config) {
@@ -247,7 +279,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
     {
       name: 'isolated-portal-design-preview',
       generateBundle() {
-        if (!hosted && !synthetic && !adminStaging && !adminStagingHosted) {
+        if (!release && !hosted && !synthetic && !adminStaging && !adminStagingHosted) {
           this.emitFile({ type: 'asset', fileName: '_redirects', source: staticPortalRedirects });
           this.emitFile({ type: 'asset', fileName: '_headers', source: staticPortalHeaders });
         }
@@ -264,7 +296,7 @@ export default defineConfig(({ mode, command, isPreview }) => {
     tailwindcss(),
     react(),
     VitePWA({
-      disable: mode === 'design-preview' || mode === 'synthetic-local' || hosted || adminStaging || adminStagingHosted,
+      disable: mode === 'design-preview' || synthetic || release || hosted || adminStaging || adminStagingHosted,
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {

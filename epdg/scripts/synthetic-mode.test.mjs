@@ -22,6 +22,8 @@ test('synthetic mode ignores inherited production API settings and emits an isol
     const config = await resolveSynthetic();
     assert.equal(config.env.VITE_API_URL, undefined);
     assert.deepEqual(config.envPrefix, []);
+    assert.equal(config.define.__EPDG_RELEASE_PORTAL_MODE__,'false');
+    assert.equal(config.define.__EPDG_RELEASE_REVIEW_MODE__,'false');
     assert.equal(config.server.host, '127.0.0.1');
     assert.equal(config.server.port, 58080);
     assert.equal(config.server.strictPort, true);
@@ -96,4 +98,16 @@ test('normal and disconnected design modes keep their original HTML entries', as
     assert.doesNotMatch(document, /\/src\/synthetic\//);
     assert.ok(document.includes(mode === 'production' ? '/src/main.tsx' : '/src/design-preview/main.tsx'));
   }
+});
+
+
+test('release review reuses fixed synthetic listener and cannot be built or broadened', async () => {
+  const config = await resolveSynthetic({mode:'portal-review'});
+  assert.equal(config.define.__EPDG_RELEASE_PORTAL_MODE__,'true');
+  assert.equal(config.define.__EPDG_RELEASE_REVIEW_MODE__,'true');
+  assert.equal(config.define.__EPDG_SYNTHETIC_LOGIN_ALIAS__,'null');
+  assert.match(config.plugins.find(p=>p.name==='local-synthetic-isolation').transformIndexHtml.handler(),/release-main\.tsx/);
+  await assert.rejects(resolveSynthetic({mode:'portal-review'},'build'),/development-only/);
+  await assert.rejects(resolveSynthetic({mode:'portal-review'},'serve',true),/development-only/);
+  for(const server of [{host:'0.0.0.0'},{port:58081},{proxy:{'/api':'https://unreviewed.invalid'}},{ws:{host:'unreviewed.invalid'}}]) await assert.rejects(resolveSynthetic({mode:'portal-review',server}),/fixed loopback/);
 });

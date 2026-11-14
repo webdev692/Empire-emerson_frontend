@@ -18,6 +18,7 @@ async function filesBelow(directory) {
 const files = await filesBelow(root);
 const names = files.map(path => relative(root, path).replaceAll('\\', '/')).sort();
 assert.deepEqual(names.filter(name => name.endsWith('.html')), ['index.html']);
+assert.ok(!names.some(name => /AccountManagement|ScopedWorkspace/.test(name)), 'release-only chunks are excluded from hosted staging');
 assert.ok(names.includes('_headers') && names.includes('_redirects'));
 assert.ok(!names.some(name => name.endsWith('.map')), 'source maps are excluded');
 assert.ok(!names.some(name => /^(?:sw\.js|manifest\.webmanifest)$/i.test(name)), 'hosted admin output does not contain a service worker or install manifest');
