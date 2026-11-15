@@ -3250,6 +3250,34 @@
       "assetId": "epdg-learning-travels",
       "role": "editorial",
       "presentation": "banner"
+    },
+    {
+      "entity": "TEE",
+      "path": "/project-studio",
+      "assetId": "tee-project-clarity",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEE",
+      "path": "/project-studio",
+      "assetId": "tee-shared-handoff",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "TEA",
+      "path": "/project-studio",
+      "assetId": "tea-organized-records",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEA",
+      "path": "/small-business",
+      "assetId": "tea-financial-context",
+      "role": "editorial",
+      "presentation": "feature"
     }
   ],
   "retainedAssets": [

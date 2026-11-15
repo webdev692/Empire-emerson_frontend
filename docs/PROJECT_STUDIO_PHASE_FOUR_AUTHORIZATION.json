@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "authority": "Direct user authorization for Phase Four public Project Studio informational positioning on TEE and TEA only. This permits eight informational areas, four hypothetical examples and six process steps; it does not approve additional offers or activate operations.",
+  "approved_on": "2026-11-15",
+  "reviewed_source_commit": "d784416dc3c8318d424f7fba75dd37a272656045",
+  "entities": [
+    "TEE",
+    "TEA"
+  ],
+  "destinations": [
+    "https://theemerson.netlify.app",
+    "https://emersonagency.netlify.app"
+  ],
+  "information_data_path": "shared/project-studio.information.json",
+  "information_data_sha256_lf": "0995dbbf0b0aad698592dee5157a938ba03eab55af24632591014140164e3824",
+  "historical_approval_path": "docs/PROJECT_STUDIO_PUBLICATION_APPROVAL.json",
+  "historical_approval_sha256_lf": "6feb4b389eac43204fa65b6156960cfa5b157ce46989e54e6dcc303a0bb50017",
+  "historical_public_data_path": "shared/project-studio.public.json",
+  "historical_public_data_sha256_lf": "9bdc4efb983bc2c213f9165397ba07fc24858e82bfdda6c83f9d54e0fb9d2366",
+  "historical_reviewed_data_path": "shared/project-studio.preview.json",
+  "historical_reviewed_data_sha256_lf": "9bdc4efb983bc2c213f9165397ba07fc24858e82bfdda6c83f9d54e0fb9d2366",
+  "category_ids": [
+    "websites-digital-development",
+    "sales-client-coordination",
+    "human-resources-people-operations",
+    "operations-project-management",
+    "business-systems-automation",
+    "financial-records-organization",
+    "marketing-content-research",
+    "technical-quality-security"
+  ],
+  "illustrative_case_ids": [
+    "website-refresh",
+    "appointment-workflow",
+    "employee-onboarding",
+    "internal-project"
+  ],
+  "process_step_ids": [
+    "tell-us",
+    "review",
+    "scope",
+    "assign",
+    "complete-review",
+    "accept-handoff"
+  ],
+  "historical_example_ids": [
+    "BUS-03",
+    "SYS-03"
+  ],
+  "public_information_authorized": true,
+  "informational_only": true,
+  "registration_enabled": false,
+  "live_intake_enabled": false,
+  "payments_enabled": false,
+  "contracts_enabled": false,
+  "client_accounts_enabled": false,
+  "commercial_activation_enabled": false,
+  "sensitive_system_access_enabled": false,
+  "crm_integration_enabled": false,
+  "email_routing_enabled": false,
+  "new_spending_authorized": false,
+  "permissions_changed": false
+}

@@ -14,7 +14,22 @@ const read=path=>readFileSync(resolve(root,path),'utf8');
 const raw=read('shared/public-media.json').replaceAll('\r\n','\n'),media=JSON.parse(raw),approval=JSON.parse(read('docs/PUBLIC_MEDIA_PHASE_TWO_APPROVAL.json')),sites=JSON.parse(read('shared/public-sites.json'));
 const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 assert.equal(approval.permission,'APPROVED_BY_FOUNDER');
-assert.equal(digest(raw),approval.manifestSha256,'Media changed after approval record');
+const phaseFour=JSON.parse(read('docs/PUBLIC_MEDIA_PHASE_FOUR_APPROVAL.json'));
+assert.equal(approval.manifestSha256,'51766b36a26eb99701da641c5527fd9bea2c9e1ed3529d4b9a114c88117d5e0e','Historical media authorization must remain intact');
+assert.equal(phaseFour.historical_manifest_sha256,approval.manifestSha256);
+assert.equal(digest(raw),phaseFour.manifest_sha256,'Media changed after additive Phase Four approval');
+assert.equal(phaseFour.new_assets,0);
+assert.equal(phaseFour.epdg_placements_unchanged,true);
+assert.deepEqual(phaseFour.added_placements,[
+ {entity:'TEE',path:'/project-studio',assetId:'tee-project-clarity',role:'editorial',presentation:'banner'},
+ {entity:'TEE',path:'/project-studio',assetId:'tee-shared-handoff',role:'editorial',presentation:'feature'},
+ {entity:'TEA',path:'/project-studio',assetId:'tea-organized-records',role:'editorial',presentation:'banner'},
+ {entity:'TEA',path:'/small-business',assetId:'tea-financial-context',role:'editorial',presentation:'feature'},
+]);
+assert.deepEqual(media.placements.slice(-4),phaseFour.added_placements);
+const historicalMedia={...media,placements:media.placements.slice(0,-4)};
+assert.equal(digest(JSON.stringify(historicalMedia,null,2)+'\n'),approval.manifestSha256,'All historical artwork, EPDG placements and photography must remain exact');
+assert.deepEqual(phaseFour.reviewed_counts,{...approval.reviewedCounts,placements:approval.reviewedCounts.placements+4});
 assert.deepEqual(media.assets.map(a=>a.id),approval.assets);
 assert.equal(media.assets.length,37);assert.equal(new Set(approval.assets).size,37);
 assert.equal(media.assets.filter(a=>a.kind==='portrait').length,7);
@@ -86,7 +101,7 @@ for(const [entity,site] of Object.entries(sites)){
  for(const directory of ['public/media','dist/media'])assert.deepEqual(readdirSync(resolve(root,site.app,directory)).sort(),[...expectedFiles].sort(),'Unreviewed media file in public source or built artifact');
 }
 assert.equal(verifiedFiles,approval.reviewedCounts.deployedCopies,'All reviewed asset copies must exist across the three public sites');
-assert.equal(renderedPlacements,approval.reviewedCounts.placements,'All reviewed placements render');
+assert.equal(renderedPlacements,phaseFour.reviewed_counts.placements,'All historical and additive placements render');
 assert.equal(founderPortraits,10,'Founder portraits reduced from 15 to 10 across the public catalog');
 assert.deepEqual([...editorialStyles].sort(),['banner','card','feature','research','story']);
 console.log(JSON.stringify({passed:true,assets:media.assets.length,photography,verifiedFiles,renderedPlacements,founderPortraits,editorialStyles:[...editorialStyles],maximumVariantBytes:Math.max(...media.assets.flatMap(a=>a.files).map(f=>f.bytes))},null,2));

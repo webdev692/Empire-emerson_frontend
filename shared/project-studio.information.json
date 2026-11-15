@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "scope": "informational-project-inquiries",
+  "categoryNotice": "These are areas for individual project review, not additional commercial packages. Expertise, feasibility, capacity, confidentiality, professional qualifications, jurisdiction, compensation and oversight must be assessed before a project can be accepted.",
+  "illustrativeCaseNotice": "Hypothetical examples for illustration. These are not completed client projects or claims of delivered results.",
+  "categories": [
+    {
+      "id": "websites-digital-development",
+      "title": "Websites & Digital Development",
+      "summary": "A clearer, more useful digital presence for your business.",
+      "examples": ["Business websites", "Mobile and accessibility improvements", "Debugging and approved features"],
+      "detail": "From a simple business website to improvements in an existing digital platform, we can review the technical work your business needs and determine an appropriate project plan. Possible work includes redesigns, content updates, usability, loading performance, application debugging and technical documentation.",
+      "boundary": "Custom applications and new features require a technical feasibility, security and capacity assessment before a scope or delivery commitment can be confirmed."
+    },
+    {
+      "id": "sales-client-coordination",
+      "title": "Sales Support & Client Coordination",
+      "summary": "Organize the steps between a customer inquiry and a useful conversation.",
+      "examples": ["Appointment-setting workflows", "CRM pipeline organization", "Follow-up templates"],
+      "detail": "Explore lead research, prospect qualification procedures, customer inquiry management, scheduling, sales tracking, client communication templates, authorized outreach administration and sales operations reporting.",
+      "boundary": "Active outreach and closing require client authority, legal compliance, an approved communication scope and qualified supervision. Appointments, sales and revenue are not guaranteed."
+    },
+    {
+      "id": "human-resources-people-operations",
+      "title": "Human Resources & People Operations",
+      "summary": "Make people processes easier to follow and hand over.",
+      "examples": ["Onboarding and offboarding checklists", "HR forms and training documentation", "Recruiting administration"],
+      "detail": "Projects may address applicant workflow design, personnel-record organization, HR procedures, internal communication, employee scheduling, surveys and departmental handoffs.",
+      "boundary": "Employment-law determinations, formal employer decisions and protected personnel data require appropriate authorization and professional oversight. Contributors do not receive personnel-record access automatically."
+    },
+    {
+      "id": "operations-project-management",
+      "title": "Business Operations & Project Management",
+      "summary": "Turn scattered tasks into an organized, documented project.",
+      "examples": ["Standard operating procedures", "Project schedules and task systems", "Administrative coordination"],
+      "detail": "Explore workflow improvements, process documentation, file organization, internal reporting, departmental handoffs, project coordination and progress reporting. A business may need one defined project or a separately scoped period of recurring operational support.",
+      "boundary": "Recurring support needs its own agreed period, responsibilities, deliverables and capacity review; it is not included automatically in a one-time project."
+    },
+    {
+      "id": "business-systems-automation",
+      "title": "Business Systems & Automation",
+      "summary": "Connect the practical steps that keep everyday work moving.",
+      "examples": ["Forms and scheduling workflows", "CRM configuration and tracking", "Spreadsheets and reporting templates"],
+      "detail": "Possible projects include approved surveys, client intake questionnaire design, lead tracking, workflow mapping, administrative dashboards, database organization and suitable process automation.",
+      "boundary": "Unfamiliar or sensitive systems require approved access, a defined scope and appropriate review before any connection or change. Designing an intake workflow does not activate this website's intake."
+    },
+    {
+      "id": "financial-records-organization",
+      "title": "Financial Records & Business Organization",
+      "summary": "Organize the records and workflows that support business decisions.",
+      "examples": ["Invoice and expense organization", "Budget and cash-flow templates", "Recordkeeping and reconciliation support"],
+      "detail": "Explore financial-document organization, expense classification support, internal transaction review, reporting improvements and bookkeeping workflow organization. The Emerson Agency LLC may provide separately scoped specialist services where current professional authorization supports them.",
+      "boundary": "Record organization, bookkeeping support and internal review are not an independent financial-statement audit. CPA attest, statutory audit, legal or regulated financial services require verified qualifications and appropriate engagement arrangements."
+    },
+    {
+      "id": "marketing-content-research",
+      "title": "Marketing, Content & Business Research",
+      "summary": "Build useful business materials from clear goals and sound research.",
+      "examples": ["Content calendars and website copy", "Audience and competitor research", "Email and presentation materials"],
+      "detail": "Possible work includes brand-language refinement, business process research, digital communication planning and ethical campaign support, with sources and client-owned or licensed materials identified in the scope.",
+      "boundary": "Communications require factual review and appropriate permissions. Research or campaign work does not guarantee engagement, rankings, leads or commercial outcomes."
+    },
+    {
+      "id": "technical-quality-security",
+      "title": "Technical Review, Quality & Security",
+      "summary": "Understand technical issues and plan appropriate improvements.",
+      "examples": ["Code, performance and accessibility reviews", "Application and dependency checks", "Authorized security review"],
+      "detail": "Explore debugging, application testing, technical documentation, security configuration review, authorized vulnerability assessment and remediation planning with appropriately qualified reviewers.",
+      "boundary": "Security testing requires written authorization and agreed systems and methods. A review is not a security guarantee or compliance certification; specialized testing requires verified capability and an appropriate engagement."
+    }
+  ],
+  "illustrativeCases": [
+    { "id": "website-refresh", "categoryId": "websites-digital-development", "title": "A local business needs a better website.", "description": "An owner has an outdated site and wants clearer services, a more professional design, mobile accessibility and a better inquiry pathway. Scoping would establish the pages, content, technical constraints and review criteria." },
+    { "id": "appointment-workflow", "categoryId": "sales-client-coordination", "title": "A company is missing appointment opportunities.", "description": "Customer inquiries are scattered across tools. A proposed project could organize follow-up, scheduling and CRM activity, with approved responsibilities and communication procedures." },
+    { "id": "employee-onboarding", "categoryId": "human-resources-people-operations", "title": "An organization needs a better employee onboarding process.", "description": "The company wants consistent forms, checklists, training documentation and departmental handoffs. The scope would define approved materials, employer decisions and any restricted information." },
+    { "id": "internal-project", "categoryId": "operations-project-management", "title": "A founder needs help organizing an internal project.", "description": "Objectives, files and responsibilities are spread across several places. A defined project could establish milestones, task ownership and documented progress for the founder to review." }
+  ],
+  "processSteps": [
+    { "id": "tell-us", "title": "Tell Us What You Need", "description": "Describe the business problem, existing process and desired result. Start with your offline planning brief; this page does not send a request." },
+    { "id": "review", "title": "Review the Project", "description": "Emerson evaluates service fit, expertise, capacity, requirements and potential constraints before any project acceptance." },
+    { "id": "scope", "title": "Agree on Scope", "description": "The parties establish deliverables, exclusions, price, milestones, responsibilities, ownership and written terms." },
+    { "id": "assign", "title": "Assign the Project Team", "description": "An authorized lead coordinates appropriately skilled contributors and the project-review process under approved staffing arrangements." },
+    { "id": "complete-review", "title": "Complete & Review", "description": "Work follows the agreed scope, with checkpoints, communication, appropriate quality assurance and documented revisions." },
+    { "id": "accept-handoff", "title": "Accept & Hand Off", "description": "The client reviews the final deliverables and receives agreed files, documentation and handoff guidance." }
+  ]
+}
