@@ -98,10 +98,12 @@ test('TEE Project Studio expands planning and review without changing its two ap
   try {
     const { default: ProjectStudio } = await server.ssrLoadModule('/shared/ProjectStudio.tsx');
     const html = renderToStaticMarkup(createElement(MemoryRouter, null, createElement(ProjectStudio, { entity: 'TEE', view: 'page' })));
-    assert.match(html, /Project stages and the record used to guide each decision/);
+    assert.match(html, /How Project Studio Works/);
+    for (const title of ['Tell Us What You Need', 'Review the Project', 'Agree on Scope', 'Assign the Project Team', 'Complete &amp; Review', 'Accept &amp; Hand Off']) assert.ok(html.includes(title));
     assert.match(html, /The lead and reviewer should compare each deliverable/);
     assert.match(html, /Confidentiality and ownership/);
-    assert.match(html, /Intern contributor, if assigned/);
+    assert.match(html, /Educational interns are not automatically assigned to revenue-producing work/);
+    assert.match(html, /approved staffing, supervision and compensation arrangement/);
     assert.match(html, /not accept project inquiries/);
     assert.match(html, /BUS-03/);
     assert.match(html, /SYS-03/);

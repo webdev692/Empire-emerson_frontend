@@ -1,0 +1,42 @@
+.modern-site .ps-referral-page {
+  --ps-ink: var(--ink);
+  --ps-deep: var(--ink);
+  --ps-paper: var(--paper);
+  --ps-muted: var(--muted);
+  background: var(--paper);
+}
+.ps-referral-page .ps-wrap { width: min(1240px, calc(100% - 64px)); }
+.modern-site .ps-referral-page .ps-eyebrow { color: var(--brand); }
+.ps-referral-page .ps-referral-pathways,
+.ps-referral-page .ps-referral-examples { padding-block: clamp(48px, 6vw, 80px); }
+.ps-referral-pathway-grid,
+.ps-referral-example-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 44px; }
+.ps-referral-pathway { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; border-top: 2px solid var(--brand); padding: 26px 0 14px; }
+.ps-referral-pathway > p:not(.ps-eyebrow) { flex: 1; color: var(--muted); }
+.ps-referral-page .ps-text-link { gap: 8px; color: var(--brand); max-width: 100%; }
+.ps-referral-page .ps-referral-intro { max-width: 76ch; color: var(--muted); margin-bottom: 32px; }
+.ps-referral-transparency { background: var(--mist); border-block: 1px solid var(--line); padding-block: 48px; }
+.ps-referral-transparency-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 64px; align-items: start; }
+.ps-referral-transparency-grid h2 { max-width: 18ch; }
+.ps-referral-transparency-grid > div > p:first-child { margin-top: 0; }
+.ps-referral-example { border-left: 2px solid var(--soft); padding: 8px 0 8px 24px; }
+.ps-referral-page .ps-referral-example .ps-price { font-size: .88rem; font-weight: 700; margin-bottom: 0; }
+.ps-referral-planning { padding-block: 48px; border-top: 1px solid var(--line); }
+.modern-site .ps-referral-page .ps-button { background: var(--brand); border-color: var(--brand); color: var(--paper); }
+.modern-site .ps-referral-page .ps-button:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.modern-site .ps-referral-page a:focus-visible { outline: 3px solid var(--brand); outline-offset: 5px; }
+.modern-site .ps-referral-page .editorial-banner a:focus-visible { outline-color: var(--soft); }
+.ps-referral-page .ps-referral-planning .ps-small { margin-top: 18px; max-width: 65ch; }
+@media (max-width: 850px) {
+  .ps-referral-transparency-grid { grid-template-columns: 1fr; gap: 16px; }
+  .ps-referral-transparency-grid h2 { max-width: 24ch; }
+  .ps-referral-pathway-grid { gap: 24px; }
+}
+@media (max-width: 600px) {
+  .ps-referral-page .ps-wrap { width: calc(100% - 40px); }
+  .ps-referral-pathway-grid, .ps-referral-example-grid { grid-template-columns: 1fr; }
+  .ps-referral-pathway { padding-top: 22px; }
+  .ps-referral-transparency, .ps-referral-planning { padding-block: 38px; }
+  .ps-referral-page .ps-button { width: 100%; gap: 12px; text-align: center; }
+  .ps-referral-example { padding-left: 18px; }
+}

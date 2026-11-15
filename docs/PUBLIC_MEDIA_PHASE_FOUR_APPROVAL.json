@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "authority": "Founder Phase Four directive authorizes reuse of approved Phase Three imagery for TEE and TEA Project Studio and the Agency small-business referral.",
+  "approved_on": "2026-11-15",
+  "historical_approval_path": "docs/PUBLIC_MEDIA_PHASE_TWO_APPROVAL.json",
+  "historical_manifest_sha256": "51766b36a26eb99701da641c5527fd9bea2c9e1ed3529d4b9a114c88117d5e0e",
+  "manifest_sha256": "afe74c37ab93a00f095d64cc45e0b635e5bf4c8e2e9604d3bfd78892a8d6da5c",
+  "added_placements": [
+    {
+      "entity": "TEE",
+      "path": "/project-studio",
+      "assetId": "tee-project-clarity",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEE",
+      "path": "/project-studio",
+      "assetId": "tee-shared-handoff",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "TEA",
+      "path": "/project-studio",
+      "assetId": "tea-organized-records",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEA",
+      "path": "/small-business",
+      "assetId": "tea-financial-context",
+      "role": "editorial",
+      "presentation": "feature"
+    }
+  ],
+  "new_assets": 0,
+  "epdg_placements_unchanged": true,
+  "reviewed_counts": {
+    "assets": 37,
+    "uniqueVariants": 268,
+    "deployedCopies": 341,
+    "placements": 104
+  }
+}
