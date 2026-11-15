@@ -906,3 +906,23 @@ This update starts from PR #51/main `716303d0f98863a4b155b6f6838d966695d4f80c`, 
 Shamrit, Kenny and Todor retain initials because the bounded private review found no verified individual permission for public company websites. The shared cards now accept approved images for every leadership role. The 105 additional personal-media files received metadata/hash/duplicate review, with later candidates held for visual and rights review. Private source and HR records stay outside GitHub.
 
 The working-tree verification passed all 15 public groups and 95 regression tests, including actual component rendering, subject-specific responsive source checks, retained-asset hashes, frozen scholarly/legal sources and all existing public routes. Exact-head CI, browser evidence and targeted production receipts will follow; this entry does not yet claim publication. Preserve `[skip netlify]`, deploy only the three public projects and keep the separate `epdg` portal and SSO unchanged. Recovery remains a reviewed fix-forward change and targeted public rebuild.
+
+### Verified leadership photography publication — November 14 Eastern / November 15 UTC
+
+Implementation [PR #52](https://github.com/webdev692/Empire-emerson_frontend/pull/52) merged as `8c2fa69279c6acc3d809c05c9d8e8ff3cc0971c6`, with a tree identical to reviewed head `1c29217dcbcd9a994220fcdea1a3ac3240f0be69`. All seven required jobs passed in [public run 43669527438](https://github.com/webdev692/Empire-emerson_frontend/actions/runs/43669527438) and [application/Edge run 43669527470](https://github.com/webdev692/Empire-emerson_frontend/actions/runs/43669527470). The clean-head local run passed all 15 groups and 95 regression tests at 02:50:51.054 UTC. Exact-head hosted previews passed before merge.
+
+The three production deployments are ready and independently verified as each project's current deployment, all built from the reviewed merge with a clean source tree:
+
+| Public project | Live leadership directory | Deployment ID | Published UTC, November 15 |
+| --- | --- | --- | --- |
+| theemerson | https://theemerson.netlify.app/leadership/ | `6af91e933e77631eec763dc1` | 02:53:33.246 |
+| emersonagency | https://emersonagency.netlify.app/leadership/ | `6af91e9361b83ac7191bc70b` | 02:53:31.937 |
+| emersonprofessionaldevelopment | https://emersonprofessionaldevelopment.netlify.app/leadership/ | `6af91e94dc8df016e303cf3e` | 02:53:41.518 |
+
+Live HTTP verification at 02:54:49.199 UTC passed all 227 pages, 51 redirects and 166 deployed image copies, including exact byte hashes for the retained joint asset. SEO/schema, direct leadership routes, sitemaps, robots, true 404s and exact-commit manifests passed. All 49 manuscript and 10 conference records and previously frozen sources remain unchanged. The registry contains 20 approved assets and 131 unique variants, with 19 active assets and one retained joint portrait.
+
+Chrome verified the three previews at 1440, 768, 390 and 320 px: portraits loaded with natural 4:5 proportions, full names, no visible captions and no horizontal overflow. Mobile menu/Escape, keyboard skip-to-main navigation, alt text, intrinsic dimensions and landmark checks passed. Live review confirmed the solo portrait in all six requested placements and all three held staff initials. The actual deployed composition has no visible bottom Meta AI mark. This is targeted accessibility verification, not full WCAG conformance or screen-reader certification.
+
+The original source and provenance history remain private and unchanged. Shamrit, Kenny and Todor remain held for verified individual public-photo permission. No private HR records or unrelated new media were published. The 257-file inventory and 105-file incremental metadata/duplicate audit are retained privately, with future candidates deferred.
+
+The protected `epdg` portal remains on deployment `6af0ddc0208d400c348cdccd` with team SSO on all deploys. No portal source, deployment, backend, database, CRM, account, permission, subscription or project change was made. Evidence is outside the repository under `build-evidence/leadership-photography-20261114/`: `github-release.json`, `provider-release.json`, `check-1c29217/`, `hosted-production.json`, `browser-production.json`, production screenshots, restricted consent/source records and `FINAL-RELEASE-REPORT.md`. This receipt changes documentation only; retain `[skip netlify]` and keep the deployed source at the implementation merge above.
