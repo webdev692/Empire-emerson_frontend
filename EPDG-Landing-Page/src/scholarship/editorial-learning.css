@@ -1,0 +1,23 @@
+/* Keep the tools and schedule near the compact academic introductions. */
+#research-browser,#conference-browser,#class-schedule{padding-block:36px 56px;scroll-margin-top:100px}
+#research-browser .modern-section-heading,#conference-browser .modern-section-heading,#class-schedule .modern-section-heading{margin-bottom:20px}
+#research-browser .scholarship-tools{margin-block:0 18px}
+#research-browser .scholarship-source{max-width:100ch}
+#research-browser .scholarship-feature-links{font-size:.88rem;margin-block:16px 28px}
+#class-schedule .scholarship-table{margin-block:20px}
+#class-schedule .scholarship-table tbody tr:nth-child(2){background:var(--mist)}
+#class-schedule .scholarship-table tbody th{border-left:3px solid var(--brand)}
+#class-schedule .scholarship-table td:last-child{font-weight:650;color:var(--brand)}
+.epdg-learning-progression{margin-bottom:48px}
+.epdg-learning-progression .editorial-card h3{font-size:1.45rem}
+.epdg-learning-progression .editorial-card-copy{padding:20px}
+.epdg-learning-progression .editorial-art picture{height:190px}
+.epdg-learning-progression + .scholarship-step-list{max-width:900px;border-top:1px solid var(--line);padding-top:36px}
+.epdg-track-grid{margin-top:32px}
+.epdg-track-grid .editorial-art picture{height:180px}
+.epdg-track-grid .editorial-card h3{font-size:1.5rem}
+.epdg-track-practice{padding-top:16px;border-top:1px solid var(--line);font-size:.82rem!important;line-height:1.8}
+.epdg-founder-acknowledgment{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:start;max-width:900px}
+.epdg-founder-acknowledgment p{max-width:65ch}
+@media(max-width:760px){#research-browser,#conference-browser,#class-schedule{padding-block:28px 40px}.epdg-founder-acknowledgment{grid-template-columns:1fr;gap:12px}}
+@media(max-width:540px){.epdg-learning-progression .editorial-art picture,.epdg-track-grid .editorial-art picture{height:170px}.epdg-learning-progression{margin-bottom:32px}#class-schedule .scholarship-table{font-size:.86rem}#class-schedule .scholarship-table th,#class-schedule .scholarship-table td{padding:.75rem .45rem}}

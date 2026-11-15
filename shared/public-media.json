@@ -1,5 +1,5 @@
 {
-  "revision": "2026-11-15-phase-three-leadership",
+  "revision": "2026-11-15-phase-three-editorial",
   "assets": [
     {
       "id": "tee-purple-emblem",
@@ -1421,6 +1421,1136 @@
           "sha256": "2158a2023bcb2b88364c00f7076358dbbb2156a0170f481b77b4abe44f0908fb"
         }
       ]
+    },
+    {
+      "id": "tee-mutual-learning",
+      "title": "Mutual learning",
+      "alt": "Conceptual illustration of a project folder, research notes and collaborative planning materials.",
+      "caption": "Conceptual illustration of a project folder, research notes and collaborative planning materials.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 750,
+      "files": [
+        {
+          "src": "/media/tee-mutual-learning-320.avif",
+          "width": 320,
+          "height": 214,
+          "format": "avif",
+          "bytes": 6262,
+          "sha256": "8d273ab017548e5bd6f824847c7c83622f06e5ff9f57db620c1d53c5181d55ef"
+        },
+        {
+          "src": "/media/tee-mutual-learning-320.webp",
+          "width": 320,
+          "height": 214,
+          "format": "webp",
+          "bytes": 10766,
+          "sha256": "f1e7e695b2428c6238772c81edd8f418b8719afb4f16e2e9afd0a7bbbe9e3f51"
+        },
+        {
+          "src": "/media/tee-mutual-learning-480.avif",
+          "width": 480,
+          "height": 321,
+          "format": "avif",
+          "bytes": 12982,
+          "sha256": "3b900b0a64a28f524e9072f9701a0340acdecc79740ab87e0032fceeef7a77e2"
+        },
+        {
+          "src": "/media/tee-mutual-learning-480.webp",
+          "width": 480,
+          "height": 321,
+          "format": "webp",
+          "bytes": 20936,
+          "sha256": "344e96e7d9603f1490f0540fcaa36a2153dcefa90fc2586472c6b01a330965c6"
+        },
+        {
+          "src": "/media/tee-mutual-learning-800.avif",
+          "width": 800,
+          "height": 535,
+          "format": "avif",
+          "bytes": 29802,
+          "sha256": "4829158b7868ead60b27427609fbe6b8abc794df0a9326db75e55f1197afdbb1"
+        },
+        {
+          "src": "/media/tee-mutual-learning-800.webp",
+          "width": 800,
+          "height": 535,
+          "format": "webp",
+          "bytes": 47304,
+          "sha256": "1c6c0f0eaa86adb911fc7f21357c0821b0db7b9f78a10a67dfee022521c7e3e0"
+        },
+        {
+          "src": "/media/tee-mutual-learning-1122.avif",
+          "width": 1122,
+          "height": 750,
+          "format": "avif",
+          "bytes": 48834,
+          "sha256": "4188a406dd9140b5a7b85fc1bcf25b97e0bfad6318f8f4e8a5a75c9150e14538"
+        },
+        {
+          "src": "/media/tee-mutual-learning-1122.webp",
+          "width": 1122,
+          "height": 750,
+          "format": "webp",
+          "bytes": 76726,
+          "sha256": "c6d3b2d2b1c914af6b853a6fdf029fbb9c2350616b4ea7c6d09b77930e92ebf1"
+        },
+        {
+          "src": "/media/tee-mutual-learning-1122.jpg",
+          "width": 1122,
+          "height": 750,
+          "format": "jpeg",
+          "bytes": 116069,
+          "sha256": "480c9a834628098b039e0b499c52f8e09daf27edf4ac2949eab88bf179a40a2e"
+        }
+      ]
+    },
+    {
+      "id": "tee-project-clarity",
+      "title": "Project clarity",
+      "alt": "Illustrated documentation checklist and review notes on a purple-toned desk.",
+      "caption": "Illustrated documentation checklist and review notes on a purple-toned desk.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 362,
+      "files": [
+        {
+          "src": "/media/tee-project-clarity-320.avif",
+          "width": 320,
+          "height": 103,
+          "format": "avif",
+          "bytes": 3125,
+          "sha256": "4a9c530aa3516e1951682a7aa1379b6bd6a3780793daa52d0292aed41e4e535d"
+        },
+        {
+          "src": "/media/tee-project-clarity-320.webp",
+          "width": 320,
+          "height": 103,
+          "format": "webp",
+          "bytes": 5176,
+          "sha256": "cc2bf76d50bfa10dd0906fa11ca6a3e1192b07127d5e977bd606873cf78fafa7"
+        },
+        {
+          "src": "/media/tee-project-clarity-480.avif",
+          "width": 480,
+          "height": 155,
+          "format": "avif",
+          "bytes": 6345,
+          "sha256": "1e22335bec5af619ca4a4fd550b4a6b105c2faa9f9368cc90a1a7664bf5d3b0a"
+        },
+        {
+          "src": "/media/tee-project-clarity-480.webp",
+          "width": 480,
+          "height": 155,
+          "format": "webp",
+          "bytes": 9820,
+          "sha256": "b281a633b7ad79008b17f06a6eab0e5a433ecdc5258e737e619cb732b7fb69cf"
+        },
+        {
+          "src": "/media/tee-project-clarity-800.avif",
+          "width": 800,
+          "height": 258,
+          "format": "avif",
+          "bytes": 14517,
+          "sha256": "3d0592340f982054078a9045692b060c9269edc3ebede6adf7273c1c5b6ce684"
+        },
+        {
+          "src": "/media/tee-project-clarity-800.webp",
+          "width": 800,
+          "height": 258,
+          "format": "webp",
+          "bytes": 21712,
+          "sha256": "4312660d328f67a78fa1d48c455701a98176b6cb636bc052ce6096c5491366bf"
+        },
+        {
+          "src": "/media/tee-project-clarity-1122.avif",
+          "width": 1122,
+          "height": 362,
+          "format": "avif",
+          "bytes": 23408,
+          "sha256": "817dd8b2839a9b729b7859893e6eb145da6c80e36e13f91cf1fad3b3585c8f74"
+        },
+        {
+          "src": "/media/tee-project-clarity-1122.webp",
+          "width": 1122,
+          "height": 362,
+          "format": "webp",
+          "bytes": 34040,
+          "sha256": "2fcb3bed156ca07ccd87b177db757e82b235ec5e686a10829e828f084eb693d1"
+        },
+        {
+          "src": "/media/tee-project-clarity-1122.jpg",
+          "width": 1122,
+          "height": 362,
+          "format": "jpeg",
+          "bytes": 54657,
+          "sha256": "5e171ff650d944fc8b57fe51bd61b5d5530ad6b67288f2af8e9bb46a8dcb8c8a"
+        }
+      ]
+    },
+    {
+      "id": "tee-research-systems",
+      "title": "Research and understandable systems",
+      "alt": "Conceptual research notes and a diagram linking evidence, dialogue and practice.",
+      "caption": "Conceptual research notes and a diagram linking evidence, dialogue and practice.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 800,
+      "files": [
+        {
+          "src": "/media/tee-research-systems-320.avif",
+          "width": 320,
+          "height": 228,
+          "format": "avif",
+          "bytes": 5499,
+          "sha256": "edb13dca91ae1ad425984d1cd336146bab7ae19091b93b8d6421f504d53ce9da"
+        },
+        {
+          "src": "/media/tee-research-systems-320.webp",
+          "width": 320,
+          "height": 228,
+          "format": "webp",
+          "bytes": 8726,
+          "sha256": "f55ec4798772bef014abfc9b3c0edd4570ffd3adc022f3d45bdef3123fd85821"
+        },
+        {
+          "src": "/media/tee-research-systems-480.avif",
+          "width": 480,
+          "height": 342,
+          "format": "avif",
+          "bytes": 11325,
+          "sha256": "11b34d0ea030c4e65ccba6993047c53cb8da5b1dab4d85f042b7ed1ef542564f"
+        },
+        {
+          "src": "/media/tee-research-systems-480.webp",
+          "width": 480,
+          "height": 342,
+          "format": "webp",
+          "bytes": 16996,
+          "sha256": "77162d059d82b01cf23f4905236b0b3574b19374aa8ed9063a9d7e7c683a064c"
+        },
+        {
+          "src": "/media/tee-research-systems-800.avif",
+          "width": 800,
+          "height": 570,
+          "format": "avif",
+          "bytes": 27091,
+          "sha256": "e59a90304776c7c03760ccb096e77bd064d68a5722ea2b523b6453dc7808a8c4"
+        },
+        {
+          "src": "/media/tee-research-systems-800.webp",
+          "width": 800,
+          "height": 570,
+          "format": "webp",
+          "bytes": 40026,
+          "sha256": "003c2fd2aac864265a481e05159b04e0f814644b681ae52aa9bd8f0babb94838"
+        },
+        {
+          "src": "/media/tee-research-systems-1122.avif",
+          "width": 1122,
+          "height": 800,
+          "format": "avif",
+          "bytes": 44704,
+          "sha256": "a4012bcc8d66b00c8c249a31bedc5c81ea1722973585bd0cc391a3d7512b9ad4"
+        },
+        {
+          "src": "/media/tee-research-systems-1122.webp",
+          "width": 1122,
+          "height": 800,
+          "format": "webp",
+          "bytes": 68186,
+          "sha256": "8471a667a911e189a25827ebbf6ecf3bd4548fb1ecabf20522e3663efb0463d7"
+        },
+        {
+          "src": "/media/tee-research-systems-1122.jpg",
+          "width": 1122,
+          "height": 800,
+          "format": "jpeg",
+          "bytes": 109943,
+          "sha256": "47379ab30e8f997a1ebaba56f7f6c4b44c767e52387dee42ac26b1f2113a86ba"
+        }
+      ]
+    },
+    {
+      "id": "tee-connected-infrastructure",
+      "title": "Connected infrastructure",
+      "alt": "Purple conceptual illustration of a globe above connected layers of digital systems.",
+      "caption": "Purple conceptual illustration of a globe above connected layers of digital systems.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 600,
+      "files": [
+        {
+          "src": "/media/tee-connected-infrastructure-320.avif",
+          "width": 320,
+          "height": 171,
+          "format": "avif",
+          "bytes": 3622,
+          "sha256": "10446ba3fcc9bfb2bec63a50af5550a8c454cdb9ef1cb82c1ebaf7e69a1c62d6"
+        },
+        {
+          "src": "/media/tee-connected-infrastructure-320.webp",
+          "width": 320,
+          "height": 171,
+          "format": "webp",
+          "bytes": 4560,
+          "sha256": "9414789a4996291e326cd137fd9fa15de37fd44d3c86446c924630f721b7f720"
+        },
+        {
+          "src": "/media/tee-connected-infrastructure-480.avif",
+          "width": 480,
+          "height": 257,
+          "format": "avif",
+          "bytes": 7314,
+          "sha256": "4b7d5edb6932a5579bdd63c2ae2a0951de0c3db64e30dc9203b60c739d8524eb"
+        },
+        {
+          "src": "/media/tee-connected-infrastructure-480.webp",
+          "width": 480,
+          "height": 257,
+          "format": "webp",
+          "bytes": 9652,
+          "sha256": "450b3d5d660f7796c34471f8d0723faa73cff8cc31c51c567494e5e92c821b48"
+        },
+        {
+          "src": "/media/tee-connected-infrastructure-800.avif",
+          "width": 800,
+          "height": 428,
+          "format": "avif",
+          "bytes": 18249,
+          "sha256": "44c6b9968e2c0ec204393093878a5c834bc3b8ed608fc9973672459bb0dd76a4"
+        },
+        {
+          "src": "/media/tee-connected-infrastructure-800.webp",
+          "width": 800,
+          "height": 428,
+          "format": "webp",
+          "bytes": 25874,
+          "sha256": "49c87c7c5bc0ffac425933b62ef080bcc8a4db3ad301ec053a54543d5cb32f36"
+        },
+        {
+          "src": "/media/tee-connected-infrastructure-1122.avif",
+          "width": 1122,
+          "height": 600,
+          "format": "avif",
+          "bytes": 32401,
+          "sha256": "506faf7ec9e8758689445920f672090d641e1fecda4e25ae0939ee3f8ebc1962"
+        },
+        {
+          "src": "/media/tee-connected-infrastructure-1122.webp",
+          "width": 1122,
+          "height": 600,
+          "format": "webp",
+          "bytes": 46348,
+          "sha256": "375fb6710a92b43f1e766468bfe826b3f03ed34b3120c401b2d1838b1af46734"
+        },
+        {
+          "src": "/media/tee-connected-infrastructure-1122.jpg",
+          "width": 1122,
+          "height": 600,
+          "format": "jpeg",
+          "bytes": 67063,
+          "sha256": "8024d4b514adcc253382714998196b4c131b35c6a6e89091b209efa63ebea3de"
+        }
+      ]
+    },
+    {
+      "id": "tee-shared-handoff",
+      "title": "The shared handoff",
+      "alt": "Conceptual sequence connecting research, design, interface, data, testing and improvement.",
+      "caption": "Conceptual sequence connecting research, design, interface, data, testing and improvement.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 700,
+      "files": [
+        {
+          "src": "/media/tee-shared-handoff-320.avif",
+          "width": 320,
+          "height": 200,
+          "format": "avif",
+          "bytes": 4603,
+          "sha256": "aa947c34f61591c1bfdf1a577e63286049ce8085a3e9f3767310456d3a05d0e3"
+        },
+        {
+          "src": "/media/tee-shared-handoff-320.webp",
+          "width": 320,
+          "height": 200,
+          "format": "webp",
+          "bytes": 6078,
+          "sha256": "5b10cac9ad4f6d541fbfe3e45c4fa20ef037b42d5b09ba31f8bfdf01534008b1"
+        },
+        {
+          "src": "/media/tee-shared-handoff-480.avif",
+          "width": 480,
+          "height": 299,
+          "format": "avif",
+          "bytes": 9379,
+          "sha256": "f742113b94faee053ae2895b1eab3208a2890afde3b48e1a39ff8fd9dad411d5"
+        },
+        {
+          "src": "/media/tee-shared-handoff-480.webp",
+          "width": 480,
+          "height": 299,
+          "format": "webp",
+          "bytes": 12420,
+          "sha256": "56b3a991c8886506631bbffb11556a055684cba49be55a1bf63c1ae314266405"
+        },
+        {
+          "src": "/media/tee-shared-handoff-800.avif",
+          "width": 800,
+          "height": 499,
+          "format": "avif",
+          "bytes": 21258,
+          "sha256": "d29e5167e6a05d8d3262fbfcdcacd1dd1bda8b16d417826973acd1908d9d43f3"
+        },
+        {
+          "src": "/media/tee-shared-handoff-800.webp",
+          "width": 800,
+          "height": 499,
+          "format": "webp",
+          "bytes": 29794,
+          "sha256": "a15d16b2a8eb510e226dcfb21c2ea947121c879ef30e4c52db34d8054f1cf45f"
+        },
+        {
+          "src": "/media/tee-shared-handoff-1122.avif",
+          "width": 1122,
+          "height": 700,
+          "format": "avif",
+          "bytes": 35214,
+          "sha256": "3abc4c0fb19656c260b745fcfe73392696d7d0c9b2607e34d4fa13abcd083279"
+        },
+        {
+          "src": "/media/tee-shared-handoff-1122.webp",
+          "width": 1122,
+          "height": 700,
+          "format": "webp",
+          "bytes": 49934,
+          "sha256": "1122690587dbea161667be48053425f7ff9dfdb10ac267eac43a62c2ef6e4705"
+        },
+        {
+          "src": "/media/tee-shared-handoff-1122.jpg",
+          "width": 1122,
+          "height": 700,
+          "format": "jpeg",
+          "bytes": 76741,
+          "sha256": "5141fb1f5dc7d61f1f5604eec5e2e7bc0d16cbb6e49dd6dddecade5ec1dd3b86"
+        }
+      ]
+    },
+    {
+      "id": "tea-organized-records",
+      "title": "Organized financial records",
+      "alt": "Illustrated blue filing box with organized financial record categories.",
+      "caption": "Illustrated blue filing box with organized financial record categories.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 400,
+      "files": [
+        {
+          "src": "/media/tea-organized-records-320.avif",
+          "width": 320,
+          "height": 114,
+          "format": "avif",
+          "bytes": 3369,
+          "sha256": "bcd4a4f0bca1a8d1e3af4c1b09207851e3ef72988e1b3e5d7b3f77bbf68daa5e"
+        },
+        {
+          "src": "/media/tea-organized-records-320.webp",
+          "width": 320,
+          "height": 114,
+          "format": "webp",
+          "bytes": 5770,
+          "sha256": "cbc2c0bbdcb969808aebff90920184e6f28e8d67735f9e2106b2bd231ed2ff7d"
+        },
+        {
+          "src": "/media/tea-organized-records-480.avif",
+          "width": 480,
+          "height": 171,
+          "format": "avif",
+          "bytes": 6305,
+          "sha256": "13d6b5b9c92605f3e18cdecc798a556efc438497002e67e67c6d75781a1a34b1"
+        },
+        {
+          "src": "/media/tea-organized-records-480.webp",
+          "width": 480,
+          "height": 171,
+          "format": "webp",
+          "bytes": 11074,
+          "sha256": "d019d7c83f574b91f5cd4c68d2e774b076317c6b205df53a43bf3f7466864c2c"
+        },
+        {
+          "src": "/media/tea-organized-records-800.avif",
+          "width": 800,
+          "height": 285,
+          "format": "avif",
+          "bytes": 13379,
+          "sha256": "01d4f45da2ac7596615f9a0523c408c00cd9ba13794a37623f42d2551af2236c"
+        },
+        {
+          "src": "/media/tea-organized-records-800.webp",
+          "width": 800,
+          "height": 285,
+          "format": "webp",
+          "bytes": 25674,
+          "sha256": "87f5d94464d513c0b50dfa4e11987229588a7e41ffe46c2bc01295611025c007"
+        },
+        {
+          "src": "/media/tea-organized-records-1122.avif",
+          "width": 1122,
+          "height": 400,
+          "format": "avif",
+          "bytes": 22684,
+          "sha256": "6e9542a7737574e0b65f68794d615ffb6538307b723a14b1fc09d40e96060e2b"
+        },
+        {
+          "src": "/media/tea-organized-records-1122.webp",
+          "width": 1122,
+          "height": 400,
+          "format": "webp",
+          "bytes": 44604,
+          "sha256": "095abb369fb0bda95674e1488e749cb48d7347257dbfcdc4f8e24cc84277641a"
+        },
+        {
+          "src": "/media/tea-organized-records-1122.jpg",
+          "width": 1122,
+          "height": 400,
+          "format": "jpeg",
+          "bytes": 62948,
+          "sha256": "aface45d12b81f2272df5f0053f6be286903b1ee6780bbadc11d7c2a45a710dc"
+        }
+      ]
+    },
+    {
+      "id": "tea-questions-notebook",
+      "title": "Questions before decisions",
+      "alt": "Illustrated open notebook with questions for thinking through financial decisions.",
+      "caption": "Illustrated open notebook with questions for thinking through financial decisions.",
+      "kind": "editorial",
+      "width": 720,
+      "height": 700,
+      "files": [
+        {
+          "src": "/media/tea-questions-notebook-320.avif",
+          "width": 320,
+          "height": 311,
+          "format": "avif",
+          "bytes": 7595,
+          "sha256": "a313fc564df65e85be1a53a0db5763b5445aaeddcd063ad29ea2e9206b9addf9"
+        },
+        {
+          "src": "/media/tea-questions-notebook-320.webp",
+          "width": 320,
+          "height": 311,
+          "format": "webp",
+          "bytes": 12170,
+          "sha256": "89718197fa1eeae36589c37ee1705173ff6d8489ab176738c9d8c861aace355a"
+        },
+        {
+          "src": "/media/tea-questions-notebook-480.avif",
+          "width": 480,
+          "height": 467,
+          "format": "avif",
+          "bytes": 15293,
+          "sha256": "731868156e541bad0ff8026afce0b0b7db18fe07d0308bcd7a41920c20f5d17a"
+        },
+        {
+          "src": "/media/tea-questions-notebook-480.webp",
+          "width": 480,
+          "height": 467,
+          "format": "webp",
+          "bytes": 23992,
+          "sha256": "81b5c659e7d618ed9f9841eec965b2279529625b3a5b86413d40c0b7adda7ce7"
+        },
+        {
+          "src": "/media/tea-questions-notebook-720.avif",
+          "width": 720,
+          "height": 700,
+          "format": "avif",
+          "bytes": 27098,
+          "sha256": "a14fa4edbb00a128680b826916689b135ace40d6c1a197f507961a08ec05ba55"
+        },
+        {
+          "src": "/media/tea-questions-notebook-720.webp",
+          "width": 720,
+          "height": 700,
+          "format": "webp",
+          "bytes": 42664,
+          "sha256": "521069c9409ed701e35839d08d492130374efe6e687327c829e16f3b5b25a5f1"
+        },
+        {
+          "src": "/media/tea-questions-notebook-720.jpg",
+          "width": 720,
+          "height": 700,
+          "format": "jpeg",
+          "bytes": 65580,
+          "sha256": "a4e33976077d6a640dd61a208ade03896ff792cb3b37346d386a9afa9e2c16a3"
+        }
+      ]
+    },
+    {
+      "id": "tea-expense-folders",
+      "title": "Organizing expense records",
+      "alt": "Illustrated folder dividers for receipts, travel, meals, supplies and other expenses.",
+      "caption": "Illustrated folder dividers for receipts, travel, meals, supplies and other expenses.",
+      "kind": "editorial",
+      "width": 590,
+      "height": 500,
+      "files": [
+        {
+          "src": "/media/tea-expense-folders-320.avif",
+          "width": 320,
+          "height": 271,
+          "format": "avif",
+          "bytes": 5502,
+          "sha256": "a15ffbaad8d7ef810b8224fdb8de6a20c2e7d28ad31fe5191ee1f3e084fefa55"
+        },
+        {
+          "src": "/media/tea-expense-folders-320.webp",
+          "width": 320,
+          "height": 271,
+          "format": "webp",
+          "bytes": 10910,
+          "sha256": "3f33ae171caa1454f66cec3fc133b8ecbba1191cde49530ff8810658bb402fcf"
+        },
+        {
+          "src": "/media/tea-expense-folders-480.avif",
+          "width": 480,
+          "height": 407,
+          "format": "avif",
+          "bytes": 12928,
+          "sha256": "737cc438e1baaa3d97c2437cbe228290a88d1491870705805a20588968675c75"
+        },
+        {
+          "src": "/media/tea-expense-folders-480.webp",
+          "width": 480,
+          "height": 407,
+          "format": "webp",
+          "bytes": 24786,
+          "sha256": "308106c3063f9d1c7fac158a6b2948c2401a33e31b4c5885a9af084b8dd3b2bd"
+        },
+        {
+          "src": "/media/tea-expense-folders-590.avif",
+          "width": 590,
+          "height": 500,
+          "format": "avif",
+          "bytes": 20251,
+          "sha256": "c9a8afb8ebf2bbb2da9b83e4e36e5fe11d9f8638aeed2553872cd66e4ef72da4"
+        },
+        {
+          "src": "/media/tea-expense-folders-590.webp",
+          "width": 590,
+          "height": 500,
+          "format": "webp",
+          "bytes": 35462,
+          "sha256": "dcf328f554c2d3f7f4c5995b4c1a0bf1579c6f202998e7633a811de0e8515777"
+        },
+        {
+          "src": "/media/tea-expense-folders-590.jpg",
+          "width": 590,
+          "height": 500,
+          "format": "jpeg",
+          "bytes": 46697,
+          "sha256": "4fb27917edb3b1ea20d1900b6fcad47767f512096207fcff6870e82b853e7dac"
+        }
+      ]
+    },
+    {
+      "id": "tea-financial-context",
+      "title": "Financial context",
+      "alt": "Conceptual blue notebook and blank financial-review checklist.",
+      "caption": "Conceptual blue notebook and blank financial-review checklist.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 700,
+      "files": [
+        {
+          "src": "/media/tea-financial-context-320.avif",
+          "width": 320,
+          "height": 200,
+          "format": "avif",
+          "bytes": 4763,
+          "sha256": "3935aad66672c99ed2feecc42b61b5f45737332333d1f003604ca0c87caf359e"
+        },
+        {
+          "src": "/media/tea-financial-context-320.webp",
+          "width": 320,
+          "height": 200,
+          "format": "webp",
+          "bytes": 7194,
+          "sha256": "45464d58e08d13b9119fd6ef5d9ff0c0d1937a32c90a483cc0d4efe0310b3527"
+        },
+        {
+          "src": "/media/tea-financial-context-480.avif",
+          "width": 480,
+          "height": 299,
+          "format": "avif",
+          "bytes": 9361,
+          "sha256": "1930616961fdc5fe7530b59a09e286e6dc5eddc6449ff9ed076d936041bc2e5d"
+        },
+        {
+          "src": "/media/tea-financial-context-480.webp",
+          "width": 480,
+          "height": 299,
+          "format": "webp",
+          "bytes": 13752,
+          "sha256": "84df9bed90172b7ba02d39194acd5a1409a78e6dc6750107de94a71173be6e14"
+        },
+        {
+          "src": "/media/tea-financial-context-800.avif",
+          "width": 800,
+          "height": 499,
+          "format": "avif",
+          "bytes": 21200,
+          "sha256": "10f9091993e14ff77739260d0ea7eca445acd3a0be558e678a1945b583923e08"
+        },
+        {
+          "src": "/media/tea-financial-context-800.webp",
+          "width": 800,
+          "height": 499,
+          "format": "webp",
+          "bytes": 32016,
+          "sha256": "cd0c0280e16c089ef8c96701a9506c4a8bbbfa6624cfc04220ccb70998f98e1c"
+        },
+        {
+          "src": "/media/tea-financial-context-1122.avif",
+          "width": 1122,
+          "height": 700,
+          "format": "avif",
+          "bytes": 36539,
+          "sha256": "baebff86e083aea39750e64dc83fc38fa1658bc1d1af6c87288a924cfe6015b9"
+        },
+        {
+          "src": "/media/tea-financial-context-1122.webp",
+          "width": 1122,
+          "height": 700,
+          "format": "webp",
+          "bytes": 56432,
+          "sha256": "5c78924e39bd6f77925c7cfb1591f9b4a475d9fb46899a6ea2892b8b06a2521f"
+        },
+        {
+          "src": "/media/tea-financial-context-1122.jpg",
+          "width": 1122,
+          "height": 700,
+          "format": "jpeg",
+          "bytes": 90119,
+          "sha256": "4fae580f3b269c07467c557487cab5204bfe64005753c82f01625fdde08889e9"
+        }
+      ]
+    },
+    {
+      "id": "tea-important-documents",
+      "title": "Important documents",
+      "alt": "Illustrated blue organizer with dividers for statements, receipts, invoices and important records.",
+      "caption": "Illustrated blue organizer with dividers for statements, receipts, invoices and important records.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 750,
+      "files": [
+        {
+          "src": "/media/tea-important-documents-320.avif",
+          "width": 320,
+          "height": 214,
+          "format": "avif",
+          "bytes": 4803,
+          "sha256": "e0654bb503b382b8ddda36c182940fd72b88978d89b3ed4611d284b570faa209"
+        },
+        {
+          "src": "/media/tea-important-documents-320.webp",
+          "width": 320,
+          "height": 214,
+          "format": "webp",
+          "bytes": 8128,
+          "sha256": "2a2501a22a934b41e45d0c8d48c06c03ea8befed53c914c9a9e8f27c51185107"
+        },
+        {
+          "src": "/media/tea-important-documents-480.avif",
+          "width": 480,
+          "height": 321,
+          "format": "avif",
+          "bytes": 9276,
+          "sha256": "2e83fd1a9672830264b93565a6d0d18587ec05a581e0ce9914f2a8de14208b83"
+        },
+        {
+          "src": "/media/tea-important-documents-480.webp",
+          "width": 480,
+          "height": 321,
+          "format": "webp",
+          "bytes": 15286,
+          "sha256": "479d39ffd9a783c4ff6c4b8250df59b792febf278ca86a511cffc34723e6876d"
+        },
+        {
+          "src": "/media/tea-important-documents-800.avif",
+          "width": 800,
+          "height": 535,
+          "format": "avif",
+          "bytes": 22046,
+          "sha256": "76677dd5a8f40c71d27de882ec4745d2a16b4448dc58867b46af052e33930c03"
+        },
+        {
+          "src": "/media/tea-important-documents-800.webp",
+          "width": 800,
+          "height": 535,
+          "format": "webp",
+          "bytes": 39360,
+          "sha256": "8cc18c955588622077f949993ee1ab573ef6800815c21bc4bb217c762276d5b9"
+        },
+        {
+          "src": "/media/tea-important-documents-1122.avif",
+          "width": 1122,
+          "height": 750,
+          "format": "avif",
+          "bytes": 41621,
+          "sha256": "54fea94583edfd6250baecf43be81669e97f445daa7503e586a43f9dfbf79622"
+        },
+        {
+          "src": "/media/tea-important-documents-1122.webp",
+          "width": 1122,
+          "height": 750,
+          "format": "webp",
+          "bytes": 70692,
+          "sha256": "968b16b5a0319bf134b550a90cbac7f1e71598e9a1af87923719d5b3db89f7f0"
+        },
+        {
+          "src": "/media/tea-important-documents-1122.jpg",
+          "width": 1122,
+          "height": 750,
+          "format": "jpeg",
+          "bytes": 105719,
+          "sha256": "80a7dfcddde8016de747f79166a77e0f3e74395571b1f2fea919a75fe571a027"
+        }
+      ]
+    },
+    {
+      "id": "epdg-learning-travels",
+      "title": "Learning travels with you",
+      "alt": "Illustrated learning desk with books, notebooks and map details.",
+      "caption": "Illustrated learning desk with books, notebooks and map details.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 750,
+      "files": [
+        {
+          "src": "/media/epdg-learning-travels-320.avif",
+          "width": 320,
+          "height": 214,
+          "format": "avif",
+          "bytes": 7707,
+          "sha256": "b24c3e34a52a160991a5ab09031906b14c008446c582ca8822c509045a7d165c"
+        },
+        {
+          "src": "/media/epdg-learning-travels-320.webp",
+          "width": 320,
+          "height": 214,
+          "format": "webp",
+          "bytes": 14596,
+          "sha256": "3d46b7735ff2a2d238f91c33dbe34d5f7e866c6a9d8d1f7c9437ed132b9246c5"
+        },
+        {
+          "src": "/media/epdg-learning-travels-480.avif",
+          "width": 480,
+          "height": 321,
+          "format": "avif",
+          "bytes": 15752,
+          "sha256": "02798fcb52065f41af8bc3a69e37753d5f3c7b491e80e827a61d63fbba384421"
+        },
+        {
+          "src": "/media/epdg-learning-travels-480.webp",
+          "width": 480,
+          "height": 321,
+          "format": "webp",
+          "bytes": 28724,
+          "sha256": "c53be1407e69c0102ea8a45a63a5d76316021b58ae5c2da130f4507f029aeb9c"
+        },
+        {
+          "src": "/media/epdg-learning-travels-800.avif",
+          "width": 800,
+          "height": 535,
+          "format": "avif",
+          "bytes": 36684,
+          "sha256": "fd47030bab580f38cc4a99177f2e9598607b08b49040bf38c354b9d62ffd6225"
+        },
+        {
+          "src": "/media/epdg-learning-travels-800.webp",
+          "width": 800,
+          "height": 535,
+          "format": "webp",
+          "bytes": 64574,
+          "sha256": "dc07689d3f55f4ed59bc60da139db2aaa5288b411d34a88aafd8e0328f3f45ea"
+        },
+        {
+          "src": "/media/epdg-learning-travels-1122.avif",
+          "width": 1122,
+          "height": 750,
+          "format": "avif",
+          "bytes": 58886,
+          "sha256": "8cb846955fea5752a43c1603ae03f2face64144d53cb102658b20c8278c3a57b"
+        },
+        {
+          "src": "/media/epdg-learning-travels-1122.webp",
+          "width": 1122,
+          "height": 750,
+          "format": "webp",
+          "bytes": 100954,
+          "sha256": "1388c42103dc9894d515bc509e389946380ed684b615f0ff1de5129ad984995d"
+        },
+        {
+          "src": "/media/epdg-learning-travels-1122.jpg",
+          "width": 1122,
+          "height": 750,
+          "format": "jpeg",
+          "bytes": 139426,
+          "sha256": "4c699683cea3de1cf64ef9041c9271887962bfcf9f3997d3b4511e70ad46791a"
+        }
+      ]
+    },
+    {
+      "id": "epdg-cultural-context",
+      "title": "Language and cultural context",
+      "alt": "Conceptual annotated language-review notes and an open learning notebook.",
+      "caption": "Conceptual annotated language-review notes and an open learning notebook.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 750,
+      "files": [
+        {
+          "src": "/media/epdg-cultural-context-320.avif",
+          "width": 320,
+          "height": 214,
+          "format": "avif",
+          "bytes": 7143,
+          "sha256": "9b30881eaf3a3d9c2ca34bccf0908892e24ce519bad836e17151e1ad25bf70dd"
+        },
+        {
+          "src": "/media/epdg-cultural-context-320.webp",
+          "width": 320,
+          "height": 214,
+          "format": "webp",
+          "bytes": 12008,
+          "sha256": "579f94a4517fd1d2e6748c6473edd26c333695566f2ae0b2675bb277eaf3fcb9"
+        },
+        {
+          "src": "/media/epdg-cultural-context-480.avif",
+          "width": 480,
+          "height": 321,
+          "format": "avif",
+          "bytes": 15079,
+          "sha256": "435e15bf364f6ce29df64c67fa31197350cf1e64a24ac2694805fa420f34b60f"
+        },
+        {
+          "src": "/media/epdg-cultural-context-480.webp",
+          "width": 480,
+          "height": 321,
+          "format": "webp",
+          "bytes": 24648,
+          "sha256": "9a4547e4aea59c2dabe170fbbb3ac0f5bf5647be43d20d6beff3929a4ff99f5e"
+        },
+        {
+          "src": "/media/epdg-cultural-context-800.avif",
+          "width": 800,
+          "height": 535,
+          "format": "avif",
+          "bytes": 35972,
+          "sha256": "896c5457f802f732aaa724dc38411374fdc6f0d09284a47e2fcb787400befff0"
+        },
+        {
+          "src": "/media/epdg-cultural-context-800.webp",
+          "width": 800,
+          "height": 535,
+          "format": "webp",
+          "bytes": 58474,
+          "sha256": "8b4b19051296fa3bf9d87f52150d4f3ec83254a47f8756714d02b85e949837a3"
+        },
+        {
+          "src": "/media/epdg-cultural-context-1122.avif",
+          "width": 1122,
+          "height": 750,
+          "format": "avif",
+          "bytes": 58994,
+          "sha256": "a7695645cc0d5cda2fab520b1e1de3257fa2e0078414b5c2da4db05e9684d9b0"
+        },
+        {
+          "src": "/media/epdg-cultural-context-1122.webp",
+          "width": 1122,
+          "height": 750,
+          "format": "webp",
+          "bytes": 93286,
+          "sha256": "6cb52a13090bada917992dbd4682d054bf4cecd375ba3d8ab3da3926ab588b36"
+        },
+        {
+          "src": "/media/epdg-cultural-context-1122.jpg",
+          "width": 1122,
+          "height": 750,
+          "format": "jpeg",
+          "bytes": 135218,
+          "sha256": "b3b1a95d19f43fba501e062e6e6cedf5b34da575e8f70d167a6b30f0f4646220"
+        }
+      ]
+    },
+    {
+      "id": "epdg-shared-standards",
+      "title": "Shared standards, different approaches",
+      "alt": "Illustrated study drafts and a conceptual rubric showing different approaches to shared learning.",
+      "caption": "Illustrated study drafts and a conceptual rubric showing different approaches to shared learning.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 800,
+      "files": [
+        {
+          "src": "/media/epdg-shared-standards-320.avif",
+          "width": 320,
+          "height": 228,
+          "format": "avif",
+          "bytes": 7624,
+          "sha256": "67aacad57bbca48ab71b4bbc7274e9310e34a5f77f82ebf9bdf47c88ecc4b5a9"
+        },
+        {
+          "src": "/media/epdg-shared-standards-320.webp",
+          "width": 320,
+          "height": 228,
+          "format": "webp",
+          "bytes": 13284,
+          "sha256": "d00307e4ba96b88bb71b354278bb6b3fc6d363af23add6e96e721d92ef6e0b89"
+        },
+        {
+          "src": "/media/epdg-shared-standards-480.avif",
+          "width": 480,
+          "height": 342,
+          "format": "avif",
+          "bytes": 15913,
+          "sha256": "aa10c3522170bae21049d012d24a1c8ce8bd66bacc5dd63f0f40617c16699a2e"
+        },
+        {
+          "src": "/media/epdg-shared-standards-480.webp",
+          "width": 480,
+          "height": 342,
+          "format": "webp",
+          "bytes": 26202,
+          "sha256": "cd973d5b8cb588392f3edeb6cc579bea51ccc3a5226d06cdfc1e475eba41fc8f"
+        },
+        {
+          "src": "/media/epdg-shared-standards-800.avif",
+          "width": 800,
+          "height": 570,
+          "format": "avif",
+          "bytes": 37318,
+          "sha256": "1878787900cb6311c6b2a9624fd3d61b09970e3f56ef2b79ebecdbd7153e80e8"
+        },
+        {
+          "src": "/media/epdg-shared-standards-800.webp",
+          "width": 800,
+          "height": 570,
+          "format": "webp",
+          "bytes": 59790,
+          "sha256": "0e16bf33de0cb09be5180468c6b116f280fcd19dd7a58f4f0150ff242eee8c29"
+        },
+        {
+          "src": "/media/epdg-shared-standards-1122.avif",
+          "width": 1122,
+          "height": 800,
+          "format": "avif",
+          "bytes": 60180,
+          "sha256": "035f217d49b47fff6ac799cee2e9a632a8869154ee860cfd93ef9940d4e3a77d"
+        },
+        {
+          "src": "/media/epdg-shared-standards-1122.webp",
+          "width": 1122,
+          "height": 800,
+          "format": "webp",
+          "bytes": 94806,
+          "sha256": "a370a1cc5de704eb566bdc8bcf6328b86f6bacad3e18a5019ea0192f36730039"
+        },
+        {
+          "src": "/media/epdg-shared-standards-1122.jpg",
+          "width": 1122,
+          "height": 800,
+          "format": "jpeg",
+          "bytes": 140765,
+          "sha256": "52ed360109afc9796cdf5b07d0c9c197098299fffc2156a823a45f30fe3e5333"
+        }
+      ]
+    },
+    {
+      "id": "epdg-experience-evidence",
+      "title": "Experience into evidence",
+      "alt": "Illustrated portfolio folder with sections for a project, reflection and next steps.",
+      "caption": "Illustrated portfolio folder with sections for a project, reflection and next steps.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 800,
+      "files": [
+        {
+          "src": "/media/epdg-experience-evidence-320.avif",
+          "width": 320,
+          "height": 228,
+          "format": "avif",
+          "bytes": 6534,
+          "sha256": "ca422bd17d4dee0537385b29fc427b43f98d5eaa23f46720a23430f4a05b7a4b"
+        },
+        {
+          "src": "/media/epdg-experience-evidence-320.webp",
+          "width": 320,
+          "height": 228,
+          "format": "webp",
+          "bytes": 12456,
+          "sha256": "dc28da4af9bedd368c5ded4d3d93f31391fe01e0bf411a9ada19ebde26db4d2e"
+        },
+        {
+          "src": "/media/epdg-experience-evidence-480.avif",
+          "width": 480,
+          "height": 342,
+          "format": "avif",
+          "bytes": 13217,
+          "sha256": "96916d3c92e5c5d8322f747e7e6b8f9ec08c7678a9e3dd7f2b2e598110270fdc"
+        },
+        {
+          "src": "/media/epdg-experience-evidence-480.webp",
+          "width": 480,
+          "height": 342,
+          "format": "webp",
+          "bytes": 25444,
+          "sha256": "4670aa68a9aaa984b3a691bbafa22b3b8821a416664cbc99fe0c1b2c175ca2c6"
+        },
+        {
+          "src": "/media/epdg-experience-evidence-800.avif",
+          "width": 800,
+          "height": 570,
+          "format": "avif",
+          "bytes": 33149,
+          "sha256": "2d2a63b82e468939695eeee10cadf0cf54ace7ace758cccfb7c13c1a565adf44"
+        },
+        {
+          "src": "/media/epdg-experience-evidence-800.webp",
+          "width": 800,
+          "height": 570,
+          "format": "webp",
+          "bytes": 62778,
+          "sha256": "166e41ff94c6b62f716549fe03dd638d6295a70730ef0cd1c74739c4ea7332cc"
+        },
+        {
+          "src": "/media/epdg-experience-evidence-1122.avif",
+          "width": 1122,
+          "height": 800,
+          "format": "avif",
+          "bytes": 59596,
+          "sha256": "4ce2b150b2182af4b66cc33cd5f6b248440b98791093d48b48d4abd02a3c80fe"
+        },
+        {
+          "src": "/media/epdg-experience-evidence-1122.webp",
+          "width": 1122,
+          "height": 800,
+          "format": "webp",
+          "bytes": 105536,
+          "sha256": "339ca032f1e1f98fc36ca596c3a290c233bfe3826d632dc10c2c5a38a803a409"
+        },
+        {
+          "src": "/media/epdg-experience-evidence-1122.jpg",
+          "width": 1122,
+          "height": 800,
+          "format": "jpeg",
+          "bytes": 141316,
+          "sha256": "2eaa387fd25e72d34cf805531f31de8403d507e58cfdc1d36209c770aa24d797"
+        }
+      ]
     }
   ],
   "placements": [
@@ -1431,36 +2561,6 @@
       "role": "brand"
     },
     {
-      "entity": "TEE",
-      "path": "/partnerships",
-      "assetId": "tee-brand-banner",
-      "role": "editorial"
-    },
-    {
-      "entity": "TEA",
-      "path": "/financial-coaching",
-      "assetId": "tea-financial-literacy-context",
-      "role": "editorial"
-    },
-    {
-      "entity": "TEA",
-      "path": "/small-business",
-      "assetId": "tea-financial-systems",
-      "role": "editorial"
-    },
-    {
-      "entity": "TEA",
-      "path": "/insurance",
-      "assetId": "tea-insurance-education",
-      "role": "editorial"
-    },
-    {
-      "entity": "TEA",
-      "path": "/community-education",
-      "assetId": "tea-education-first",
-      "role": "editorial"
-    },
-    {
       "entity": "TEA",
       "path": "*",
       "assetId": "tea-blue-emblem",
@@ -1468,57 +2568,9 @@
     },
     {
       "entity": "EPDG",
-      "path": "/global-internship-program",
-      "assetId": "epdg-education-without-borders",
-      "role": "editorial"
-    },
-    {
-      "entity": "EPDG",
       "path": "*",
       "assetId": "epdg-green-emblem",
       "role": "brand"
-    },
-    {
-      "entity": "EPDG",
-      "path": "/career-readiness",
-      "assetId": "epdg-documentation-skill",
-      "role": "editorial"
-    },
-    {
-      "entity": "EPDG",
-      "path": "/about",
-      "assetId": "epdg-professional-growth",
-      "role": "editorial"
-    },
-    {
-      "entity": "EPDG",
-      "path": "/classes",
-      "assetId": "epdg-classroom-study",
-      "role": "editorial"
-    },
-    {
-      "entity": "EPDG",
-      "path": "/internship-tracks",
-      "assetId": "epdg-applied-project",
-      "role": "editorial"
-    },
-    {
-      "entity": "EPDG",
-      "path": "/professional-training",
-      "assetId": "epdg-revision-feedback",
-      "role": "editorial"
-    },
-    {
-      "entity": "EPDG",
-      "path": "/research",
-      "assetId": "epdg-public-evidence",
-      "role": "editorial"
-    },
-    {
-      "entity": "EPDG",
-      "path": "/certificates",
-      "assetId": "epdg-clear-expectations",
-      "role": "editorial"
     },
     {
       "entity": "TEE",
@@ -1624,6 +2676,496 @@
       "assetId": "todor-tomic-professional",
       "role": "portrait",
       "subject": "todor-tomic"
+    },
+    {
+      "entity": "TEE",
+      "path": "/programs",
+      "assetId": "tee-research-systems",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEE",
+      "path": "/programs",
+      "assetId": "tee-project-clarity",
+      "role": "editorial",
+      "presentation": "story"
+    },
+    {
+      "entity": "TEE",
+      "path": "/",
+      "assetId": "tee-mutual-learning",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEE",
+      "path": "/",
+      "assetId": "tee-purple-emblem",
+      "role": "brand",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/",
+      "assetId": "tea-blue-emblem",
+      "role": "brand",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/",
+      "assetId": "epdg-green-emblem",
+      "role": "brand",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/",
+      "assetId": "tee-research-systems",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/",
+      "assetId": "tee-connected-infrastructure",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/",
+      "assetId": "tee-shared-handoff",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/",
+      "assetId": "tee-project-clarity",
+      "role": "editorial",
+      "presentation": "story"
+    },
+    {
+      "entity": "TEE",
+      "path": "/about",
+      "assetId": "tee-connected-infrastructure",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEE",
+      "path": "/about",
+      "assetId": "tee-purple-emblem",
+      "role": "brand",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/about",
+      "assetId": "tea-blue-emblem",
+      "role": "brand",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/about",
+      "assetId": "epdg-green-emblem",
+      "role": "brand",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/about",
+      "assetId": "tee-research-systems",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "TEE",
+      "path": "/start-here",
+      "assetId": "tee-project-clarity",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEE",
+      "path": "/partnerships",
+      "assetId": "tee-shared-handoff",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEE",
+      "path": "/partnerships",
+      "assetId": "tee-brand-banner",
+      "role": "editorial",
+      "presentation": "story"
+    },
+    {
+      "entity": "TEA",
+      "path": "/",
+      "assetId": "tea-financial-context",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEA",
+      "path": "/",
+      "assetId": "tea-organized-records",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEA",
+      "path": "/",
+      "assetId": "tea-important-documents",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEA",
+      "path": "/",
+      "assetId": "tea-questions-notebook",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEA",
+      "path": "/",
+      "assetId": "tea-expense-folders",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEA",
+      "path": "/",
+      "assetId": "tea-education-first",
+      "role": "editorial",
+      "presentation": "story"
+    },
+    {
+      "entity": "TEA",
+      "path": "/about",
+      "assetId": "tea-important-documents",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEA",
+      "path": "/about",
+      "assetId": "tea-financial-context",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "TEA",
+      "path": "/tax-preparation",
+      "assetId": "tea-organized-records",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEA",
+      "path": "/tax-preparation",
+      "assetId": "tea-important-documents",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "TEA",
+      "path": "/insurance",
+      "assetId": "tea-important-documents",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEA",
+      "path": "/insurance",
+      "assetId": "tea-insurance-education",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "TEA",
+      "path": "/financial-coaching",
+      "assetId": "tea-questions-notebook",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEA",
+      "path": "/financial-coaching",
+      "assetId": "tea-financial-literacy-context",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "TEA",
+      "path": "/small-business",
+      "assetId": "tea-expense-folders",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEA",
+      "path": "/small-business",
+      "assetId": "tea-financial-systems",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "TEA",
+      "path": "/financial-resources",
+      "assetId": "tea-financial-context",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEA",
+      "path": "/financial-resources",
+      "assetId": "tea-important-documents",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "TEA",
+      "path": "/community-education",
+      "assetId": "tea-questions-notebook",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "TEA",
+      "path": "/community-education",
+      "assetId": "tea-education-first",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/classes",
+      "assetId": "epdg-shared-standards",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/programs",
+      "assetId": "epdg-learning-travels",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/programs",
+      "assetId": "epdg-classroom-study",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/programs",
+      "assetId": "epdg-education-without-borders",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/programs",
+      "assetId": "epdg-shared-standards",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/programs",
+      "assetId": "epdg-clear-expectations",
+      "role": "editorial",
+      "presentation": "story"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/",
+      "assetId": "epdg-learning-travels",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/",
+      "assetId": "epdg-professional-growth",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/",
+      "assetId": "epdg-education-without-borders",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/",
+      "assetId": "epdg-classroom-study",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/",
+      "assetId": "epdg-experience-evidence",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/about",
+      "assetId": "epdg-professional-growth",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/research",
+      "assetId": "epdg-learning-travels",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/research",
+      "assetId": "epdg-documentation-skill",
+      "role": "editorial",
+      "presentation": "research"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/conferences",
+      "assetId": "epdg-learning-travels",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/global-internship-program",
+      "assetId": "epdg-education-without-borders",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/global-internship-program",
+      "assetId": "epdg-classroom-study",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/global-internship-program",
+      "assetId": "epdg-applied-project",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/global-internship-program",
+      "assetId": "epdg-revision-feedback",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/global-internship-program",
+      "assetId": "epdg-public-evidence",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/internship-tracks",
+      "assetId": "epdg-cultural-context",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/internship-tracks",
+      "assetId": "epdg-applied-project",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/internship-tracks",
+      "assetId": "epdg-revision-feedback",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/internship-tracks",
+      "assetId": "epdg-experience-evidence",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/internship-tracks",
+      "assetId": "epdg-professional-growth",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/internship-tracks",
+      "assetId": "epdg-clear-expectations",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/internship-tracks",
+      "assetId": "epdg-public-evidence",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/internship-tracks",
+      "assetId": "epdg-education-without-borders",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/career-readiness",
+      "assetId": "epdg-experience-evidence",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/professional-training",
+      "assetId": "epdg-shared-standards",
+      "role": "editorial",
+      "presentation": "feature"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/certificates",
+      "assetId": "epdg-public-evidence",
+      "role": "editorial",
+      "presentation": "banner"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/partnerships",
+      "assetId": "epdg-learning-travels",
+      "role": "editorial",
+      "presentation": "banner"
     }
   ],
   "retainedAssets": [

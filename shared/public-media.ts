@@ -3,10 +3,15 @@ import manifest from './public-media.json';
 export type MediaEntity = 'TEE' | 'TEA' | 'EPDG';
 export type PublicMediaFile = { src: string; width: number; height: number; format: 'webp' | 'avif' | 'jpeg'; bytes: number; sha256: string };
 export type PublicMediaAsset = { id: string; title: string; alt: string; caption: string; kind: 'brand' | 'editorial' | 'portrait'; width: number; height: number; files: PublicMediaFile[] };
-export type PublicMediaPlacement = { entity: MediaEntity; path: string; assetId: string; role: 'brand' | 'editorial' | 'portrait'; subject?: string };
+export type PublicMediaPlacement = { entity: MediaEntity; path: string; assetId: string; role: 'brand' | 'editorial' | 'portrait'; subject?: string; presentation?: 'banner' | 'feature' | 'card' | 'story' | 'research' };
 export const publicMedia = manifest as { revision: string; assets: PublicMediaAsset[]; placements: PublicMediaPlacement[]; retainedAssets: { assetId: string; entities: MediaEntity[] }[] };
 export function mediaForPage(entity: MediaEntity, path: string) {
-  return publicMedia.placements.filter(item => item.entity === entity && item.path === path && item.role === 'editorial').map(item => publicMedia.assets.find(asset => asset.id === item.assetId)!).filter(Boolean);
+  return publicMedia.placements.filter(item => item.entity === entity && item.path === path && item.role === 'editorial' && !item.presentation).map(item => publicMedia.assets.find(asset => asset.id === item.assetId)!).filter(Boolean);
+}
+export function mediaAsset(id: string): PublicMediaAsset {
+  const asset = publicMedia.assets.find(item => item.id === id);
+  if (!asset) throw new Error(`Unknown reviewed media asset: ${id}`);
+  return asset;
 }
 export function brandMedia(entity: MediaEntity) {
   const placement = publicMedia.placements.find(item => item.entity === entity && item.role === 'brand');
