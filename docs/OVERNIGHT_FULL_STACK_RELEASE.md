@@ -911,3 +911,7 @@ The frontend suite now has 119 passing native tests. The initial native HTTPS st
 Fresh full/runtime dependency audits remain 12 development-tooling findings (ten moderate, two low) and zero runtime findings. The repeated isolated non-forced audit-fix dry run proposed no changes. `epdg/docs/DEPENDENCY_SECURITY_REVIEW.md` records installed call-site exposure, upstream ranges, mitigations and the actual policy: required checks must pass, but no repository severity threshold or zero-audit mandate is defined. The previously open tooling gate still requires a recorded founder disposition or reviewed remediation; green CI is not acceptance. No broad upgrade, forced override or dependency change was introduced.
 
 Production entry, SSO, deployment, database, real identities, role grants and mail remain unchanged and held. The private activation package and production approval gates are separate from this technical review. Follow `epdg/docs/PORTAL_RELEASE_CANDIDATE.md` for the harness limits and retain the existing locked deployment until an exactly scoped successor release is approved.
+
+### 2026-11-14 — Phase Three mobile acceptance correction
+
+Narrow-screen acceptance found the account-management view buttons competing for width. Portal navigation now wraps, and administrator view buttons retain their label width with compact spacing. The change affects portal styles only; public company application trees remain unchanged. Final browser, artifact, source and CI receipts are recorded in the private release package. Production remains locked and undeployed.

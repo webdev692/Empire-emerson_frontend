@@ -229,7 +229,8 @@ td strong { color: #25332a; font-size: 11px; }
 .sp-root .app-shell .sidebar-note p { color: #47594d; }
 .sp-root .app-shell :is(th, .sidebar-label, .eyebrow) { color: #44554a; }
 .sp-root .app-shell .topbar .eyebrow { color: #b9cbbf; }
-.sp-root .app-shell .sp-tabs button { color: #164f3d; background: #fff; border-color: #647b6d; }
+.sp-root .app-shell .sp-tabs { gap: 8px; }
+.sp-root .app-shell .sp-tabs button { flex: 0 0 auto; white-space: nowrap; color: #164f3d; background: #fff; border-color: #647b6d; }
 .sp-root .app-shell .sp-tabs button:hover { background: #e8f1ec; }
 .sp-root .app-shell .sp-tabs button[aria-current=page] { background: #164f3d; color: #fff; }
 .sp-root .app-shell :is(a, button, input, select, textarea):focus-visible { outline: 3px solid #164f3d; outline-offset: 3px; }
