@@ -17,6 +17,7 @@ async function filesBelow(directory) {
 const files = await filesBelow(root);
 const names = files.map(path => relative(root, path).replaceAll('\\', '/')).sort();
 assert.deepEqual(names.filter(name => name.endsWith('.html')), ['admin-staging.html']);
+assert.ok(!names.some(name => /AccountManagement|ScopedWorkspace/.test(name)), 'release-only chunks are excluded from local staging');
 assert.ok(names.includes('_headers'), 'local-only security headers are emitted');
 const combined = (await Promise.all(files.filter(path => /\.(html|js|css|json|txt)$/.test(path) || path.endsWith('\\_headers') || path.endsWith('/_headers')).map(path => readFile(path, 'utf8')))).join('\n');
 assert.match(combined, /noindex, nofollow/);

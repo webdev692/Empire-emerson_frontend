@@ -1,0 +1,1346 @@
+{
+  "revision": "2026-11-14-phase-two",
+  "assets": [
+    {
+      "id": "tee-purple-emblem",
+      "title": "Purple Emerson emblem",
+      "alt": "Purple and gold Emerson Empire emblem with a crown above an E.",
+      "caption": "Purple Emerson emblem",
+      "kind": "brand",
+      "width": 1254,
+      "height": 1254,
+      "files": [
+        {
+          "src": "/media/tee-purple-emblem-160.webp",
+          "width": 160,
+          "height": 160,
+          "format": "webp",
+          "bytes": 4150,
+          "sha256": "ff94dd0d3034895a3f47505d051584246c91ebf5b915dbf35215c78b1771720f"
+        },
+        {
+          "src": "/media/tee-purple-emblem-160.jpg",
+          "width": 160,
+          "height": 160,
+          "format": "jpeg",
+          "bytes": 4431,
+          "sha256": "eda8ac61e0f44220e2f053e3ab5d25a85f17b2db7a447878da4ecb4277bfa662"
+        },
+        {
+          "src": "/media/tee-purple-emblem-320.webp",
+          "width": 320,
+          "height": 320,
+          "format": "webp",
+          "bytes": 10912,
+          "sha256": "90e06b932a8c61cf47b622472fefeee8a91089906bba0cdc0cc925b1310e626c"
+        },
+        {
+          "src": "/media/tee-purple-emblem-320.jpg",
+          "width": 320,
+          "height": 320,
+          "format": "jpeg",
+          "bytes": 12630,
+          "sha256": "98bd1b76cb304f3c9ab9f44840507a049d0906a34774747e512f6c30276d8440"
+        }
+      ]
+    },
+    {
+      "id": "tee-brand-banner",
+      "title": "Emerson Empire brand banner",
+      "alt": "Purple Emerson Empire banner with a gold crown and monogram.",
+      "caption": "The Emerson organizations connect community service, practical education and responsible professional development.",
+      "kind": "editorial",
+      "width": 1942,
+      "height": 809,
+      "files": [
+        {
+          "src": "/media/tee-brand-banner-480.webp",
+          "width": 480,
+          "height": 200,
+          "format": "webp",
+          "bytes": 8972,
+          "sha256": "a6ac1e82b3b86e3f10102b0f9a0eb06512c3f895ed742345976e586ce000af23"
+        },
+        {
+          "src": "/media/tee-brand-banner-480.avif",
+          "width": 480,
+          "height": 200,
+          "format": "avif",
+          "bytes": 5753,
+          "sha256": "0d4b3397dbff9d81d4dbcf9aa4bb3385addbd309b2b29b12eb917e1122099719"
+        },
+        {
+          "src": "/media/tee-brand-banner-960.webp",
+          "width": 960,
+          "height": 400,
+          "format": "webp",
+          "bytes": 22320,
+          "sha256": "4f5d41d1bf0c328e845a99434188fc22946736ec2f1248fb0d1daa9458fbf629"
+        },
+        {
+          "src": "/media/tee-brand-banner-960.avif",
+          "width": 960,
+          "height": 400,
+          "format": "avif",
+          "bytes": 13388,
+          "sha256": "d325c9d6a5f4a037ee9194b6321990a9f1dfc843520ff05785b60bb2b14b51b2"
+        },
+        {
+          "src": "/media/tee-brand-banner-960.jpg",
+          "width": 960,
+          "height": 400,
+          "format": "jpeg",
+          "bytes": 31005,
+          "sha256": "32ee2b386fcc7024071817e7dba26e5dcf3ba25f117334312d1b2738d0a0620f"
+        },
+        {
+          "src": "/media/tee-brand-banner-1280.webp",
+          "width": 1280,
+          "height": 533,
+          "format": "webp",
+          "bytes": 31678,
+          "sha256": "cd70ac417e3d44cd1a41468ab874761f17fcd4b92f676eea90a546c931f0b74d"
+        },
+        {
+          "src": "/media/tee-brand-banner-1280.avif",
+          "width": 1280,
+          "height": 533,
+          "format": "avif",
+          "bytes": 20684,
+          "sha256": "10e8cb1c70c9f823bc2d2931ec65ea55e9edce969bbcd3e51e39f5f91fc8353b"
+        }
+      ]
+    },
+    {
+      "id": "tea-financial-literacy-context",
+      "title": "Financial Literacy Requires Context",
+      "alt": "Illustrated financial planning desk with an open notebook and the words Financial Literacy Requires Context.",
+      "caption": "Financial literacy requires context. Start with household priorities, clear information and questions that fit your circumstances.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 1402,
+      "files": [
+        {
+          "src": "/media/tea-financial-literacy-context-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 41456,
+          "sha256": "c4f21d5b36ff7ff73dcaaf52194cadfa94835a4a381923b60e7a5a858ce544f6"
+        },
+        {
+          "src": "/media/tea-financial-literacy-context-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 23733,
+          "sha256": "05b1d45e8d98b73e82b1cca0cb9c1ccac1642d99f90147f798b3b5a49a5fa50a"
+        },
+        {
+          "src": "/media/tea-financial-literacy-context-960.webp",
+          "width": 960,
+          "height": 1200,
+          "format": "webp",
+          "bytes": 119338,
+          "sha256": "2fc360181a2520e0012d9f6966b2ff07a8249c8e453dc171b551dd1962e72741"
+        },
+        {
+          "src": "/media/tea-financial-literacy-context-960.avif",
+          "width": 960,
+          "height": 1200,
+          "format": "avif",
+          "bytes": 67911,
+          "sha256": "8f610d5b801da37f7734d1eb3a4beb2b71c3c885e3189ca496f49e4f0f27b392"
+        },
+        {
+          "src": "/media/tea-financial-literacy-context-960.jpg",
+          "width": 960,
+          "height": 1200,
+          "format": "jpeg",
+          "bytes": 140062,
+          "sha256": "ac960ef0556496c3db4b74482c704666c79ce1de273213b06e7eeb6eb3f276c2"
+        },
+        {
+          "src": "/media/tea-financial-literacy-context-1122.webp",
+          "width": 1122,
+          "height": 1402,
+          "format": "webp",
+          "bytes": 150314,
+          "sha256": "4d656f505ab89ccc93b45788d0c0dad1938871ca9445c38473a81e3299d3af1e"
+        },
+        {
+          "src": "/media/tea-financial-literacy-context-1122.avif",
+          "width": 1122,
+          "height": 1402,
+          "format": "avif",
+          "bytes": 85776,
+          "sha256": "9d15866a0d1b5fc2d549851662f7a61d4436adb08efe3ea3a160ba7bdd435e68"
+        }
+      ]
+    },
+    {
+      "id": "tea-financial-systems",
+      "title": "Financial Stability Is Built Through Systems",
+      "alt": "Illustrated financial records, calculator and notebooks beneath the words Financial Stability Is Built Through Systems.",
+      "caption": "Financial stability is built through systems: organized records, regular review and practical routines for households and small businesses.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 1402,
+      "files": [
+        {
+          "src": "/media/tea-financial-systems-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 40666,
+          "sha256": "0686c577617299d88ae5e57593169cca9f4b4297564963ec4b32ebb8f12d227b"
+        },
+        {
+          "src": "/media/tea-financial-systems-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 24294,
+          "sha256": "21e5fbee870c6ee1910c1cc9fdc85cbdd10f01ab02e1d793e60f75245d0c1f97"
+        },
+        {
+          "src": "/media/tea-financial-systems-960.webp",
+          "width": 960,
+          "height": 1200,
+          "format": "webp",
+          "bytes": 119354,
+          "sha256": "32256bd2ab3a30e95900413530bedf0ff1a7757310b4d39d1ce3f80251c88df4"
+        },
+        {
+          "src": "/media/tea-financial-systems-960.avif",
+          "width": 960,
+          "height": 1200,
+          "format": "avif",
+          "bytes": 70716,
+          "sha256": "b6282a9d337b186df4717e7e3d2aa9a4f23f848ec09709292c446b2635a22cb2"
+        },
+        {
+          "src": "/media/tea-financial-systems-960.jpg",
+          "width": 960,
+          "height": 1200,
+          "format": "jpeg",
+          "bytes": 140993,
+          "sha256": "530c914614687a9aafe600b495f305742dc702d334c0e4614627874044cd4fdf"
+        },
+        {
+          "src": "/media/tea-financial-systems-1122.webp",
+          "width": 1122,
+          "height": 1402,
+          "format": "webp",
+          "bytes": 150516,
+          "sha256": "25ff0b28da069be50c55e2139a815e64468495e762bef5aba0437fc7fa25d51e"
+        },
+        {
+          "src": "/media/tea-financial-systems-1122.avif",
+          "width": 1122,
+          "height": 1402,
+          "format": "avif",
+          "bytes": 87871,
+          "sha256": "81462e95463ef3e187c503b3a78a5651e52381ad6b595fd8f6d95208cc54c313"
+        }
+      ]
+    },
+    {
+      "id": "tea-insurance-education",
+      "title": "Insurance Education",
+      "alt": "Insurance education graphic showing an umbrella over wooden family and home figures.",
+      "caption": "Insurance education starts with understanding coverage, exclusions and questions to ask. Availability and regulated services require current license and jurisdiction verification.",
+      "kind": "editorial",
+      "width": 1254,
+      "height": 1254,
+      "files": [
+        {
+          "src": "/media/tea-insurance-education-480.webp",
+          "width": 480,
+          "height": 480,
+          "format": "webp",
+          "bytes": 39894,
+          "sha256": "177704b6bf23123ac90c60d0822c0eb2e0dab7dcab6c608566cca3113c7f6e6f"
+        },
+        {
+          "src": "/media/tea-insurance-education-480.avif",
+          "width": 480,
+          "height": 480,
+          "format": "avif",
+          "bytes": 22351,
+          "sha256": "634648c1e47dbc6cd83bd85fb25a4122cc9fc1026500467feac208cee08ce0b9"
+        },
+        {
+          "src": "/media/tea-insurance-education-960.webp",
+          "width": 960,
+          "height": 960,
+          "format": "webp",
+          "bytes": 102370,
+          "sha256": "cd18e4144b0566e0cbab8e5d0b7e1c961c398f1827b35c364fdcc4b54ddab108"
+        },
+        {
+          "src": "/media/tea-insurance-education-960.avif",
+          "width": 960,
+          "height": 960,
+          "format": "avif",
+          "bytes": 54440,
+          "sha256": "9370532d8d7e0152f00c046c707d049110586ed19d86db5e9443bc91f38a6bb4"
+        },
+        {
+          "src": "/media/tea-insurance-education-960.jpg",
+          "width": 960,
+          "height": 960,
+          "format": "jpeg",
+          "bytes": 125166,
+          "sha256": "c332dae9f01ed95a95a19570e6f4142af8d11ea5eb06d04fa4e513aeb44488a6"
+        },
+        {
+          "src": "/media/tea-insurance-education-1254.webp",
+          "width": 1254,
+          "height": 1254,
+          "format": "webp",
+          "bytes": 143954,
+          "sha256": "192f08500af74986958ade000d5da8dba8f7e05433da792ab8988c6e4b14696f"
+        },
+        {
+          "src": "/media/tea-insurance-education-1254.avif",
+          "width": 1254,
+          "height": 1254,
+          "format": "avif",
+          "bytes": 76081,
+          "sha256": "dee0f7a0c29068c952ce77f5cc335a3bcd5831eed5617c3d0b074fa461072626"
+        }
+      ]
+    },
+    {
+      "id": "tea-education-first",
+      "title": "Education First",
+      "alt": "Blue and gold Emerson Agency graphic reading Education First, People Over Profit.",
+      "caption": "Education first. People over profit. Explore practical financial learning that begins with people’s needs and informed decisions.",
+      "kind": "editorial",
+      "width": 1254,
+      "height": 1254,
+      "files": [
+        {
+          "src": "/media/tea-education-first-480.webp",
+          "width": 480,
+          "height": 480,
+          "format": "webp",
+          "bytes": 25974,
+          "sha256": "b974c79f9c0a3c5cef3b5131d99d0df7e1a350987557be7a090470055a1ab694"
+        },
+        {
+          "src": "/media/tea-education-first-480.avif",
+          "width": 480,
+          "height": 480,
+          "format": "avif",
+          "bytes": 14822,
+          "sha256": "41ccb263182467ffe6c92068726a93843f5d786de1f9cf0e3ec16a65bd7ea696"
+        },
+        {
+          "src": "/media/tea-education-first-960.webp",
+          "width": 960,
+          "height": 960,
+          "format": "webp",
+          "bytes": 70722,
+          "sha256": "38e2f2d6232134beab6356c8e05c3242637ea9a89daf7988a85c0c60767cfdb4"
+        },
+        {
+          "src": "/media/tea-education-first-960.avif",
+          "width": 960,
+          "height": 960,
+          "format": "avif",
+          "bytes": 39694,
+          "sha256": "10720c41454b9686a46754430c301cf950eedbd3b62a08a966af617abfce07c1"
+        },
+        {
+          "src": "/media/tea-education-first-960.jpg",
+          "width": 960,
+          "height": 960,
+          "format": "jpeg",
+          "bytes": 86228,
+          "sha256": "f8f1049ca7e7c866f7260e46e3254c18d1efcb9813e6aabe12cc7cf1fa940381"
+        },
+        {
+          "src": "/media/tea-education-first-1254.webp",
+          "width": 1254,
+          "height": 1254,
+          "format": "webp",
+          "bytes": 100570,
+          "sha256": "38697421f653cf2a891c2bc0157c0f24ea32856676b519069820119244b60b30"
+        },
+        {
+          "src": "/media/tea-education-first-1254.avif",
+          "width": 1254,
+          "height": 1254,
+          "format": "avif",
+          "bytes": 56266,
+          "sha256": "5e62a70b72a02777ac5c52c2c5a13d6778b32ad5f5da0e7961321e0e1811a9d2"
+        }
+      ]
+    },
+    {
+      "id": "tea-blue-emblem",
+      "title": "Blue Emerson Agency emblem",
+      "alt": "Blue and gold Emerson Agency emblem with a crown above an E.",
+      "caption": "Blue Emerson Agency emblem",
+      "kind": "brand",
+      "width": 1254,
+      "height": 1254,
+      "files": [
+        {
+          "src": "/media/tea-blue-emblem-160.webp",
+          "width": 160,
+          "height": 160,
+          "format": "webp",
+          "bytes": 5120,
+          "sha256": "63316f28de0fa90f36d41929f8b2e77b7e0c47b98445d93222b7bcf808874f7a"
+        },
+        {
+          "src": "/media/tea-blue-emblem-160.jpg",
+          "width": 160,
+          "height": 160,
+          "format": "jpeg",
+          "bytes": 5407,
+          "sha256": "5df204b3009745a29d8685c4974f576541a32ba33961e80e87e0dbb14af77fa1"
+        },
+        {
+          "src": "/media/tea-blue-emblem-320.webp",
+          "width": 320,
+          "height": 320,
+          "format": "webp",
+          "bytes": 12830,
+          "sha256": "d7af2d80bef3964457cc6c702cb871622992953be0cf8dfdd3ff77c7135ac742"
+        },
+        {
+          "src": "/media/tea-blue-emblem-320.jpg",
+          "width": 320,
+          "height": 320,
+          "format": "jpeg",
+          "bytes": 15229,
+          "sha256": "038baa35f4e3ef95f5c4b7b6f254b988983a41107db584e944aa2a1a99bc849a"
+        }
+      ]
+    },
+    {
+      "id": "epdg-education-without-borders",
+      "title": "Education Without Borders",
+      "alt": "Illustrated learning desk with a map, project notes and the words Education Without Borders.",
+      "caption": "Education without borders begins with clear learning goals, reliable communication and respect for different experiences.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 1402,
+      "files": [
+        {
+          "src": "/media/epdg-education-without-borders-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 42622,
+          "sha256": "b33c20d1f72cf1fe69f4b8d96104d182f6f92ebc9d0d08f179dbe8fbdd42690b"
+        },
+        {
+          "src": "/media/epdg-education-without-borders-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 23859,
+          "sha256": "fa3924123a3ca57676b69c642f259f8c23ba22c583b81ae9ac477623937fb88c"
+        },
+        {
+          "src": "/media/epdg-education-without-borders-960.webp",
+          "width": 960,
+          "height": 1200,
+          "format": "webp",
+          "bytes": 120844,
+          "sha256": "1eed89292be4dd34f810cd5dbb4b6ca3e41b69d5ec8ca0c36186e68a3938eae0"
+        },
+        {
+          "src": "/media/epdg-education-without-borders-960.avif",
+          "width": 960,
+          "height": 1200,
+          "format": "avif",
+          "bytes": 67596,
+          "sha256": "704709b19dba93b457219307e26c4c2b7389a849cdf816fa781dc675b780305d"
+        },
+        {
+          "src": "/media/epdg-education-without-borders-960.jpg",
+          "width": 960,
+          "height": 1200,
+          "format": "jpeg",
+          "bytes": 141462,
+          "sha256": "cf9e5c66295d7f4bcb63bed398ef37c3ad7599eb844dfaa12b0ca19963480896"
+        },
+        {
+          "src": "/media/epdg-education-without-borders-1122.webp",
+          "width": 1122,
+          "height": 1402,
+          "format": "webp",
+          "bytes": 150384,
+          "sha256": "92c28677e1114536ca47e6bac37b78316b90ab1dfc5cbe1261172fe03e17f1c5"
+        },
+        {
+          "src": "/media/epdg-education-without-borders-1122.avif",
+          "width": 1122,
+          "height": 1402,
+          "format": "avif",
+          "bytes": 85373,
+          "sha256": "4c0573fd61162b6ad4b1ad678622a8badcc47c2796d11584f8d007cab536f06e"
+        }
+      ]
+    },
+    {
+      "id": "epdg-green-emblem",
+      "title": "Green EPDG emblem",
+      "alt": "Green and gold EPDG emblem with a crown above the initials.",
+      "caption": "Green EPDG emblem",
+      "kind": "brand",
+      "width": 1254,
+      "height": 1254,
+      "files": [
+        {
+          "src": "/media/epdg-green-emblem-160.webp",
+          "width": 160,
+          "height": 160,
+          "format": "webp",
+          "bytes": 5784,
+          "sha256": "d1d2fd3d24616630a4d5fded3eabfd66c1690e1a9bca18a142b07c0e7b155b75"
+        },
+        {
+          "src": "/media/epdg-green-emblem-160.jpg",
+          "width": 160,
+          "height": 160,
+          "format": "jpeg",
+          "bytes": 5780,
+          "sha256": "3c0c26773c8ccbac6d9f647199411204f46c5e43ad8f07efebe30fcf29c9f2e4"
+        },
+        {
+          "src": "/media/epdg-green-emblem-320.webp",
+          "width": 320,
+          "height": 320,
+          "format": "webp",
+          "bytes": 15418,
+          "sha256": "84e852d43ed49cdbed2ebebcb31769ee05e386799f6be73b00985f40836e464b"
+        },
+        {
+          "src": "/media/epdg-green-emblem-320.jpg",
+          "width": 320,
+          "height": 320,
+          "format": "jpeg",
+          "bytes": 17106,
+          "sha256": "fad18eaba0ef7208a42d4dfb9f95f75f90af4e3b33a66983d3ce3d8f32439a8b"
+        }
+      ]
+    },
+    {
+      "id": "epdg-documentation-skill",
+      "title": "Documentation Is a Professional Skill",
+      "alt": "Learning desk illustration with a notebook and the words Documentation Is a Professional Skill.",
+      "caption": "Documentation is a professional skill. Record what you tried, the feedback you received and how your work developed.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 1402,
+      "files": [
+        {
+          "src": "/media/epdg-documentation-skill-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 41762,
+          "sha256": "4b00beb66652dfd27c23705f64a769d7e564ace3b89972fd6590b3d1180dcb5e"
+        },
+        {
+          "src": "/media/epdg-documentation-skill-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 23913,
+          "sha256": "5816fd092c33ac47373d0700da51fa44b81e8d65ca5124f2f714dd1a48617ccb"
+        },
+        {
+          "src": "/media/epdg-documentation-skill-960.webp",
+          "width": 960,
+          "height": 1200,
+          "format": "webp",
+          "bytes": 112286,
+          "sha256": "4e43fa7165f577350eec3f023d44120004ce6b3f32f5018187edea57de917907"
+        },
+        {
+          "src": "/media/epdg-documentation-skill-960.avif",
+          "width": 960,
+          "height": 1200,
+          "format": "avif",
+          "bytes": 64548,
+          "sha256": "14b7ee654d93433673959216dd4010290ef7a173392de15e02a50dbe9f67f6f4"
+        },
+        {
+          "src": "/media/epdg-documentation-skill-960.jpg",
+          "width": 960,
+          "height": 1200,
+          "format": "jpeg",
+          "bytes": 137704,
+          "sha256": "e68af3340235bbe8194c90cf78dcb808c252eda48f467bb22e5dcc345e1b49ec"
+        },
+        {
+          "src": "/media/epdg-documentation-skill-1122.webp",
+          "width": 1122,
+          "height": 1402,
+          "format": "webp",
+          "bytes": 142090,
+          "sha256": "4f6b434cf6455fccbaade134f2685e6a7935881052c92ca41a73f78e85c4e9be"
+        },
+        {
+          "src": "/media/epdg-documentation-skill-1122.avif",
+          "width": 1122,
+          "height": 1402,
+          "format": "avif",
+          "bytes": 80266,
+          "sha256": "cb06f9c9b8e96b78d8e840ca86c653baf8f5de2260990924b0dca74081c5592c"
+        }
+      ]
+    },
+    {
+      "id": "epdg-professional-growth",
+      "title": "Professional Growth Happens in More Than One Room",
+      "alt": "Illustrated books and learning notes beneath the words Professional Growth Happens in More Than One Room.",
+      "caption": "Professional growth happens in more than one room: through study, practical projects, reflection and sharing work responsibly.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 1402,
+      "files": [
+        {
+          "src": "/media/epdg-professional-growth-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 54768,
+          "sha256": "a1434a52c30ed728ea8e7253bd193b0069dbc9330fbb0a1a49bb62d5bd349234"
+        },
+        {
+          "src": "/media/epdg-professional-growth-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 28161,
+          "sha256": "f83211fc9a0acaf1e69912973aa4ad9fae38622b388fcd863f6c0ceadd2eee52"
+        },
+        {
+          "src": "/media/epdg-professional-growth-960.webp",
+          "width": 960,
+          "height": 1200,
+          "format": "webp",
+          "bytes": 152566,
+          "sha256": "3a656f2ef7370f90535e2e0860a50af94fac5199c629b3ad3de341e237961fdb"
+        },
+        {
+          "src": "/media/epdg-professional-growth-960.avif",
+          "width": 960,
+          "height": 1200,
+          "format": "avif",
+          "bytes": 81009,
+          "sha256": "35705e31a3564812ef331c6180e0d500f0f56e9c95181f403618a80a112b6235"
+        },
+        {
+          "src": "/media/epdg-professional-growth-960.jpg",
+          "width": 960,
+          "height": 1200,
+          "format": "jpeg",
+          "bytes": 168564,
+          "sha256": "f2f1f1cb2e907e84ad2d213486d950b396d9b6541beaa09bf82b5c5ef59a2f5f"
+        },
+        {
+          "src": "/media/epdg-professional-growth-1122.webp",
+          "width": 1122,
+          "height": 1402,
+          "format": "webp",
+          "bytes": 187268,
+          "sha256": "f05ad9afb89ad1c24f2c37da216c7a72a4b5bc853a9f0b4c86d2b824b4e5dcef"
+        },
+        {
+          "src": "/media/epdg-professional-growth-1122.avif",
+          "width": 1122,
+          "height": 1402,
+          "format": "avif",
+          "bytes": 100445,
+          "sha256": "047d3266c3e56d05806fd9d5fee5630dc03ccd190e2c6f0fbd41c165bf852c52"
+        }
+      ]
+    },
+    {
+      "id": "epdg-classroom-study",
+      "title": "The Classroom",
+      "alt": "Open study notebooks and books beneath the words The Classroom.",
+      "caption": "The classroom provides a foundation for asking questions, building understanding and preparing for practical work.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 1402,
+      "files": [
+        {
+          "src": "/media/epdg-classroom-study-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 50232,
+          "sha256": "09ed4d7e4d075ba3b9217d74231084cf43e0888a6d982fb80a4aabcd6ae166ba"
+        },
+        {
+          "src": "/media/epdg-classroom-study-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 26749,
+          "sha256": "4cb6ae64f2f10d47cdada2d1c0a20c2f21460e4768cc4d43f0054b5dbb791161"
+        },
+        {
+          "src": "/media/epdg-classroom-study-960.webp",
+          "width": 960,
+          "height": 1200,
+          "format": "webp",
+          "bytes": 143074,
+          "sha256": "efaf99e6785dc1c8db497170782edd67ea42bbe88922fd0169607aa699c003c7"
+        },
+        {
+          "src": "/media/epdg-classroom-study-960.avif",
+          "width": 960,
+          "height": 1200,
+          "format": "avif",
+          "bytes": 78305,
+          "sha256": "156186df67f9eec778a54e3bb0d5537fe53ee1bd609775b321d3101352e4e713"
+        },
+        {
+          "src": "/media/epdg-classroom-study-960.jpg",
+          "width": 960,
+          "height": 1200,
+          "format": "jpeg",
+          "bytes": 159962,
+          "sha256": "d604dd17ef2c9995899b264485311073b6c4e0164889d416b37d86fcdee53949"
+        },
+        {
+          "src": "/media/epdg-classroom-study-1122.webp",
+          "width": 1122,
+          "height": 1402,
+          "format": "webp",
+          "bytes": 178348,
+          "sha256": "53040ccaa37d24089e82284fde50d5cc4b5d8abd1dcb3e1af101a78e9060d3a3"
+        },
+        {
+          "src": "/media/epdg-classroom-study-1122.avif",
+          "width": 1122,
+          "height": 1402,
+          "format": "avif",
+          "bytes": 98086,
+          "sha256": "3105704fae474acd90e1939d2e40d3911864e955b683c0a0418aad9d683dfe17"
+        }
+      ]
+    },
+    {
+      "id": "epdg-applied-project",
+      "title": "The Project",
+      "alt": "Illustrated project briefs and notes beneath the words The Project.",
+      "caption": "The project connects learning to a defined task. A clear brief, documented choices and review help make the work useful.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 1402,
+      "files": [
+        {
+          "src": "/media/epdg-applied-project-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 49314,
+          "sha256": "afeb0af5ac064431c850056cc949e4ba9b582e7014e3b54c6ab22a6ed137acc1"
+        },
+        {
+          "src": "/media/epdg-applied-project-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 27009,
+          "sha256": "07275a44a6bf2f0e201902a4920893db54a2e9d492a4ce55743a60a532d19560"
+        },
+        {
+          "src": "/media/epdg-applied-project-960.webp",
+          "width": 960,
+          "height": 1200,
+          "format": "webp",
+          "bytes": 135676,
+          "sha256": "792e13dc3997766e332ec0e606975c75a0d76aecdbdc25e3f711bad89151a8b7"
+        },
+        {
+          "src": "/media/epdg-applied-project-960.avif",
+          "width": 960,
+          "height": 1200,
+          "format": "avif",
+          "bytes": 76897,
+          "sha256": "4be146af8fe544cc7499228e81d5470110896fb8b517e28d15085511a786c834"
+        },
+        {
+          "src": "/media/epdg-applied-project-960.jpg",
+          "width": 960,
+          "height": 1200,
+          "format": "jpeg",
+          "bytes": 154766,
+          "sha256": "72311e581365c6636fb0ec08f107054a50ee11e3dc9f188a762e849fb8aea2da"
+        },
+        {
+          "src": "/media/epdg-applied-project-1122.webp",
+          "width": 1122,
+          "height": 1402,
+          "format": "webp",
+          "bytes": 169664,
+          "sha256": "61bca269c1ff99110dc049b7c7422d9619b20bf6eb2e93f636b9b63e06ca4f08"
+        },
+        {
+          "src": "/media/epdg-applied-project-1122.avif",
+          "width": 1122,
+          "height": 1402,
+          "format": "avif",
+          "bytes": 96031,
+          "sha256": "57d2bacc59b235e5868d81ead426f447a695c90557d7cf14e4961aeb16789ac7"
+        }
+      ]
+    },
+    {
+      "id": "epdg-revision-feedback",
+      "title": "The Revision",
+      "alt": "Draft pages with marked revisions beneath the words The Revision.",
+      "caption": "The revision makes learning visible. Use feedback to refine a draft and explain the choices behind the next version.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 1402,
+      "files": [
+        {
+          "src": "/media/epdg-revision-feedback-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 52958,
+          "sha256": "f77278f0f58a5f8c12bde6a6b9d363a8746f0880fe484af4a3c2c4e52ed3ec79"
+        },
+        {
+          "src": "/media/epdg-revision-feedback-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 28417,
+          "sha256": "1338c55217ddfaa2cdc2906366fea1fddb94a817cb49715a0981a33fef916b86"
+        },
+        {
+          "src": "/media/epdg-revision-feedback-960.webp",
+          "width": 960,
+          "height": 1200,
+          "format": "webp",
+          "bytes": 147708,
+          "sha256": "e1bf48098cb02c5e72bbc7b8b7cc70ed764a66dd4b83964a47a8509bbd636659"
+        },
+        {
+          "src": "/media/epdg-revision-feedback-960.avif",
+          "width": 960,
+          "height": 1200,
+          "format": "avif",
+          "bytes": 82634,
+          "sha256": "1704f67b9b3548aa3a550911d2f9bfad0df3aa04f31dc5c101e99bdf1e369df3"
+        },
+        {
+          "src": "/media/epdg-revision-feedback-960.jpg",
+          "width": 960,
+          "height": 1200,
+          "format": "jpeg",
+          "bytes": 166062,
+          "sha256": "4257a876229ad061364848f4d0df7eb0bf71d6dd9c4b3f80caedc9d628202600"
+        },
+        {
+          "src": "/media/epdg-revision-feedback-1122.webp",
+          "width": 1122,
+          "height": 1402,
+          "format": "webp",
+          "bytes": 186140,
+          "sha256": "31de99a753e5737fcb853f0d3f81dd977ec47b043fe46c620b886d8a2108ffb1"
+        },
+        {
+          "src": "/media/epdg-revision-feedback-1122.avif",
+          "width": 1122,
+          "height": 1402,
+          "format": "avif",
+          "bytes": 103035,
+          "sha256": "ca6e5e3aab2901388c5f79132d205729c00f4403b46a0f5b7cd191c980dedf95"
+        }
+      ]
+    },
+    {
+      "id": "epdg-public-evidence",
+      "title": "The Public Evidence",
+      "alt": "Illustrated portfolio folder and manuscript pages beneath the words The Public Evidence.",
+      "caption": "The public evidence is work shared with context: its purpose, methods and limits. This illustration does not depict a particular manuscript or event.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 1402,
+      "files": [
+        {
+          "src": "/media/epdg-public-evidence-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 43864,
+          "sha256": "0b435490c60978bf5e32a8f9f991a0669fe5a9f342613877d899db7b6d26e12d"
+        },
+        {
+          "src": "/media/epdg-public-evidence-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 22942,
+          "sha256": "1d1a9829f97561ea907561be4467904adb5caab7e6970ce0a152d98b1ed93b0b"
+        },
+        {
+          "src": "/media/epdg-public-evidence-960.webp",
+          "width": 960,
+          "height": 1200,
+          "format": "webp",
+          "bytes": 125194,
+          "sha256": "0c7fcee4c6913937b9e83ab64c5aa4eac21f5cd3262254ed8de1a8140fe78ee1"
+        },
+        {
+          "src": "/media/epdg-public-evidence-960.avif",
+          "width": 960,
+          "height": 1200,
+          "format": "avif",
+          "bytes": 68053,
+          "sha256": "6048857ede7c01209e17a4b04e3680d961e62ce502badbbd9a665e44d827ddaf"
+        },
+        {
+          "src": "/media/epdg-public-evidence-960.jpg",
+          "width": 960,
+          "height": 1200,
+          "format": "jpeg",
+          "bytes": 140721,
+          "sha256": "8fa2eee18a27e65ea28ba0769f7753db667bcc5a26cbd7d90a43ce1cb0c86f80"
+        },
+        {
+          "src": "/media/epdg-public-evidence-1122.webp",
+          "width": 1122,
+          "height": 1402,
+          "format": "webp",
+          "bytes": 159080,
+          "sha256": "fc1673f4426c934548a6200b40c07a37ba0369a53691fc385de578f671deebc6"
+        },
+        {
+          "src": "/media/epdg-public-evidence-1122.avif",
+          "width": 1122,
+          "height": 1402,
+          "format": "avif",
+          "bytes": 84258,
+          "sha256": "474321165d3d2cfd1bf76451b3dcf1f82a19c165ef67b369bec577fb589f3095"
+        }
+      ]
+    },
+    {
+      "id": "epdg-clear-expectations",
+      "title": "Clear Expectations",
+      "alt": "Illustrated project brief and task list beneath the words Clear Expectations.",
+      "caption": "Clear expectations help learners understand the task, the feedback process and the next step in their development.",
+      "kind": "editorial",
+      "width": 1122,
+      "height": 1402,
+      "files": [
+        {
+          "src": "/media/epdg-clear-expectations-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 48082,
+          "sha256": "43b5e805ed94120301434222c92fd171ec316ffd21663e6b6241a8798530ca00"
+        },
+        {
+          "src": "/media/epdg-clear-expectations-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 25753,
+          "sha256": "c07a0cac11a52a0df59557ee21ff206bde7bf6f865e9498ba37459fadc3c2301"
+        },
+        {
+          "src": "/media/epdg-clear-expectations-960.webp",
+          "width": 960,
+          "height": 1200,
+          "format": "webp",
+          "bytes": 133802,
+          "sha256": "2a47ef61d3b64c81baf99c343450d499c73f0644cd8ee215c2300488401c3783"
+        },
+        {
+          "src": "/media/epdg-clear-expectations-960.avif",
+          "width": 960,
+          "height": 1200,
+          "format": "avif",
+          "bytes": 74430,
+          "sha256": "c3f17910c0b3edd58fdca3b01de94c54173c9bb493d7b121c217d2a19d6322fe"
+        },
+        {
+          "src": "/media/epdg-clear-expectations-960.jpg",
+          "width": 960,
+          "height": 1200,
+          "format": "jpeg",
+          "bytes": 152436,
+          "sha256": "9a40f3dd09bd536c3033b092de9d61f7d2f4fb1a631d315dd16aed361b410b0a"
+        },
+        {
+          "src": "/media/epdg-clear-expectations-1122.webp",
+          "width": 1122,
+          "height": 1402,
+          "format": "webp",
+          "bytes": 166738,
+          "sha256": "8048b30e90736e537a6d1f56d96884fb8205f40ecc0a4603eb28b22c2ff5d143"
+        },
+        {
+          "src": "/media/epdg-clear-expectations-1122.avif",
+          "width": 1122,
+          "height": 1402,
+          "format": "avif",
+          "bytes": 94215,
+          "sha256": "34c97e250cfcc4e700f31bd2a3ce61d69c53455f7630f34116545b96fd808e19"
+        }
+      ]
+    },
+    {
+      "id": "lyric-helena-emerson-executive",
+      "title": "Lyric Helena Emerson",
+      "alt": "Portrait of Lyric Helena Emerson.",
+      "caption": "",
+      "kind": "portrait",
+      "width": 1122,
+      "height": 1402,
+      "files": [
+        {
+          "src": "/media/lyric-helena-emerson-executive-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 30200,
+          "sha256": "4bef361dc05b838c1278859933b69f88c615f14685a3bc306aa3f84d68576856"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-executive-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 16869,
+          "sha256": "662c0620f580535a389b3537448802810c4920a1c8e8629f728fe2739cacda83"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-executive-800.webp",
+          "width": 800,
+          "height": 1000,
+          "format": "webp",
+          "bytes": 56196,
+          "sha256": "ce86cf10131578ad93c870bbbc4c15ce05cec8100f7a6bcc03c4ffbf68c83269"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-executive-800.avif",
+          "width": 800,
+          "height": 1000,
+          "format": "avif",
+          "bytes": 32481,
+          "sha256": "d57516dc89ceab9a6c781627b059c5911fc387294d5ef06e6a3c67647deb59ce"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-executive-800.jpg",
+          "width": 800,
+          "height": 1000,
+          "format": "jpeg",
+          "bytes": 84376,
+          "sha256": "2b5bdac024da4752e6d9d50047bbe4335f532f945cd42767f1be738519fa4491"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-executive-1120.webp",
+          "width": 1120,
+          "height": 1400,
+          "format": "webp",
+          "bytes": 83328,
+          "sha256": "43febf5fcc59635c0ac92f526294dae44961a39d176d1d5fc3e2c08fc0c3acbb"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-executive-1120.avif",
+          "width": 1120,
+          "height": 1400,
+          "format": "avif",
+          "bytes": 50665,
+          "sha256": "d371b63f6185971d24e2e3fe647691d7b0ee39bbe06bc17bfbbbca43a5d4ce33"
+        }
+      ]
+    },
+    {
+      "id": "lyric-helena-emerson-plum",
+      "title": "Lyric Helena Emerson",
+      "alt": "Portrait of Lyric Helena Emerson.",
+      "caption": "",
+      "kind": "portrait",
+      "width": 1118,
+      "height": 1407,
+      "files": [
+        {
+          "src": "/media/lyric-helena-emerson-plum-480.webp",
+          "width": 480,
+          "height": 604,
+          "format": "webp",
+          "bytes": 41892,
+          "sha256": "f7aeaf62d0585f497b1e78b9d2419b5fd1ddee78374d61a797848691a1fff50f"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-plum-480.avif",
+          "width": 480,
+          "height": 604,
+          "format": "avif",
+          "bytes": 21123,
+          "sha256": "daafcf658634db13fe66d796cbc163e7d101d6865b7f2889ed9c2df7a10b8a1f"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-plum-800.webp",
+          "width": 800,
+          "height": 1007,
+          "format": "webp",
+          "bytes": 90966,
+          "sha256": "48b5ebb0f561ffc8c5c9073e57ea8181e57b93b2315927705aee84c792c80c66"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-plum-800.avif",
+          "width": 800,
+          "height": 1007,
+          "format": "avif",
+          "bytes": 47611,
+          "sha256": "236e8d93115cf686f1bf3f44c19e74e3701f25e0a61cb7d563aa6c51b500bab2"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-plum-800.jpg",
+          "width": 800,
+          "height": 1007,
+          "format": "jpeg",
+          "bytes": 107459,
+          "sha256": "0c6630320488c5da47bcee416dcf0e5b3116f3f086f8b9430e70f5fb34090f09"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-plum-1118.webp",
+          "width": 1118,
+          "height": 1407,
+          "format": "webp",
+          "bytes": 143700,
+          "sha256": "615ecf32527f99d13af7c0d561a3e4f3a45351b883a12a00369548f3281d12f9"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-plum-1118.avif",
+          "width": 1118,
+          "height": 1407,
+          "format": "avif",
+          "bytes": 77415,
+          "sha256": "296c74a6c304197fb1e3191c80db3345d33afa51686764db7fc85b901ee15e78"
+        }
+      ]
+    },
+    {
+      "id": "lyric-helena-emerson-darin-latrelle-james",
+      "title": "Lyric Helena Emerson and Darin Latrelle James",
+      "alt": "Portrait of Lyric Helena Emerson and Darin Latrelle James together.",
+      "caption": "",
+      "kind": "portrait",
+      "width": 1241,
+      "height": 1268,
+      "files": [
+        {
+          "src": "/media/lyric-helena-emerson-darin-latrelle-james-480.webp",
+          "width": 480,
+          "height": 490,
+          "format": "webp",
+          "bytes": 18696,
+          "sha256": "0b692023259e7e2aed23aaeeb6ef93e49a5b322369df85dbd9c9d777ce443b7e"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-darin-latrelle-james-480.avif",
+          "width": 480,
+          "height": 490,
+          "format": "avif",
+          "bytes": 11724,
+          "sha256": "770494cc8d52725a164e043470466584e8e2267b82a94b0dc8f10c290f7b3707"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-darin-latrelle-james-800.webp",
+          "width": 800,
+          "height": 817,
+          "format": "webp",
+          "bytes": 35886,
+          "sha256": "3a0d81e45fc2413d3ba63e74c737dd662c2c79c44987a5463a3fd25f894913f6"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-darin-latrelle-james-800.avif",
+          "width": 800,
+          "height": 817,
+          "format": "avif",
+          "bytes": 22053,
+          "sha256": "33ef50f2d1cf8ed7509badcce1c21e94dac992fb8ca5f146f712fd22953069f3"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-darin-latrelle-james-800.jpg",
+          "width": 800,
+          "height": 817,
+          "format": "jpeg",
+          "bytes": 55216,
+          "sha256": "1812bd85ef058171fbda8a9c3a348185d34c6cf7932a014c032145b7fffce0c1"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-darin-latrelle-james-1120.webp",
+          "width": 1120,
+          "height": 1144,
+          "format": "webp",
+          "bytes": 53282,
+          "sha256": "967c2515768fbae095271ca98deacdabaa4b7ff85ef71977cf7400cb61b926bf"
+        },
+        {
+          "src": "/media/lyric-helena-emerson-darin-latrelle-james-1120.avif",
+          "width": 1120,
+          "height": 1144,
+          "format": "avif",
+          "bytes": 33265,
+          "sha256": "c685b1a3befee918bf25c82589db07a574b5461e2d4433ecf7e2729115e06af6"
+        }
+      ]
+    }
+  ],
+  "placements": [
+    {
+      "entity": "TEE",
+      "path": "*",
+      "assetId": "tee-purple-emblem",
+      "role": "brand"
+    },
+    {
+      "entity": "TEE",
+      "path": "/partnerships",
+      "assetId": "tee-brand-banner",
+      "role": "editorial"
+    },
+    {
+      "entity": "TEA",
+      "path": "/financial-coaching",
+      "assetId": "tea-financial-literacy-context",
+      "role": "editorial"
+    },
+    {
+      "entity": "TEA",
+      "path": "/small-business",
+      "assetId": "tea-financial-systems",
+      "role": "editorial"
+    },
+    {
+      "entity": "TEA",
+      "path": "/insurance",
+      "assetId": "tea-insurance-education",
+      "role": "editorial"
+    },
+    {
+      "entity": "TEA",
+      "path": "/community-education",
+      "assetId": "tea-education-first",
+      "role": "editorial"
+    },
+    {
+      "entity": "TEA",
+      "path": "*",
+      "assetId": "tea-blue-emblem",
+      "role": "brand"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/global-internship-program",
+      "assetId": "epdg-education-without-borders",
+      "role": "editorial"
+    },
+    {
+      "entity": "EPDG",
+      "path": "*",
+      "assetId": "epdg-green-emblem",
+      "role": "brand"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/career-readiness",
+      "assetId": "epdg-documentation-skill",
+      "role": "editorial"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/about",
+      "assetId": "epdg-professional-growth",
+      "role": "editorial"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/classes",
+      "assetId": "epdg-classroom-study",
+      "role": "editorial"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/internship-tracks",
+      "assetId": "epdg-applied-project",
+      "role": "editorial"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/professional-training",
+      "assetId": "epdg-revision-feedback",
+      "role": "editorial"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/research",
+      "assetId": "epdg-public-evidence",
+      "role": "editorial"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/certificates",
+      "assetId": "epdg-clear-expectations",
+      "role": "editorial"
+    },
+    {
+      "entity": "TEE",
+      "path": "/leadership/lyric-helena-emerson",
+      "assetId": "lyric-helena-emerson-executive",
+      "role": "portrait",
+      "subject": "lyric-helena-emerson"
+    },
+    {
+      "entity": "TEE",
+      "path": "/leadership/darin-latrelle-james",
+      "assetId": "lyric-helena-emerson-darin-latrelle-james",
+      "role": "portrait",
+      "subject": "darin-latrelle-james"
+    },
+    {
+      "entity": "TEA",
+      "path": "/leadership/lyric-helena-emerson",
+      "assetId": "lyric-helena-emerson-plum",
+      "role": "portrait",
+      "subject": "lyric-helena-emerson"
+    },
+    {
+      "entity": "TEA",
+      "path": "/leadership/darin-latrelle-james",
+      "assetId": "lyric-helena-emerson-darin-latrelle-james",
+      "role": "portrait",
+      "subject": "darin-latrelle-james"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/leadership/lyric-helena-emerson",
+      "assetId": "lyric-helena-emerson-executive",
+      "role": "portrait",
+      "subject": "lyric-helena-emerson"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/leadership/darin-latrelle-james",
+      "assetId": "lyric-helena-emerson-darin-latrelle-james",
+      "role": "portrait",
+      "subject": "darin-latrelle-james"
+    }
+  ]
+}

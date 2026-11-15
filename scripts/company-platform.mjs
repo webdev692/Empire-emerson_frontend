@@ -8,6 +8,7 @@ import { validateThreeProgramsPublication } from './three-programs-release.mjs';
 import { validateResearchPublication } from './tee-research-release.mjs';
 import { validateFrozenExports } from './public-source-boundary.mjs';
 import { validatePlatformEntryPagesRelease } from './platform-entry-pages-release.mjs';
+import { validateModernizationRelease } from './modernization-release.mjs';
 // Both advertised production build commands must use the same frozen gate.
 const action = ['build', 'build-live'].includes(process.argv[2]) ? 'build-website' : process.argv[2];
 const liveBuild = action === 'build-website';
@@ -28,6 +29,7 @@ if (action === 'build-review') {
   for (const [entity,site] of Object.entries(sites)) env[`VITE_${entity}_PREVIEW_ORIGIN`] = site.origin;
 }
 if (liveBuild) {
+  validateModernizationRelease(repository);
   const boundary = validateFrozenExports(repository);
   const entryPages = validatePlatformEntryPagesRelease(repository);
   const release = Object.values(boundary.published).find(site => site.app === basename(process.cwd()));

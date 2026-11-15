@@ -157,7 +157,7 @@ function MentorReviewEditor({ session, review, onAuthenticationRequired, onUnava
           <div className="sp-mentor-actions"><button type="button" onClick={() => { focusTarget.current = 'editor'; setPhase('editing'); }} disabled={busy !== null}>Edit feedback draft</button>
             <button type="button" className="sp-learning-primary" onClick={() => void run('publishing')} disabled={blocked}>{busy === 'publishing' ? 'Publishing feedback…' : 'Publish feedback'}</button></div>
         </> : <><p className="sp-eyebrow">Private until published</p><h3>Private feedback draft</h3>
-          <label htmlFor={fieldId}>Feedback comment</label><p id={`${fieldId}-help`} className="sp-note">Use synthetic practice information only. Save a private draft, then review it before publishing. Only saved feedback survives a page reload. Leaving this review discards unsaved changes.</p>
+          <label htmlFor={fieldId}>Feedback comment</label><p id={`${fieldId}-help`} className="sp-note">Save a private draft, then review it before publishing. Only saved feedback survives a page reload. Leaving this review discards unsaved changes.</p>
           <textarea ref={textarea} id={fieldId} rows={9} maxLength={4000} value={comment} onChange={event => { setComment(event.target.value); setNotice(''); }} disabled={busy !== null}
             aria-invalid={problem ? true : undefined} aria-describedby={`${fieldId}-help ${fieldId}-limit ${fieldId}-state${problem ? ` ${fieldId}-problem` : ''}`} />
           <p id={`${fieldId}-limit`} className="sp-mentor-meta">{comment.length.toLocaleString()} / 4,000 characters · {new TextEncoder().encode(comment).length.toLocaleString()} / 12,000 UTF-8 bytes</p>
@@ -168,10 +168,10 @@ function MentorReviewEditor({ session, review, onAuthenticationRequired, onUnava
           {blank ? <p className="sp-note">A blank draft can be saved. Enter a comment before reviewing it for publication.</p> : dirty ? <p className="sp-note">Save your changes to enable feedback review.</p> : null}
         </>}
         {remoteChanged || needsReload ? <div className="sp-mentor-reload">{remoteChanged ? <p role="alert">The server has a newer saved review. Your comment has been kept here.</p> : null}
-          <p>Reloading replaces this form’s comment with the latest saved version. Keep a private copy of any unsaved practice text you want to retain.</p>
+          <p>Reloading replaces this form’s comment with the latest saved version. Keep a private copy of any unsaved text you want to retain.</p>
           <button type="button" onClick={() => void run('reloading')} disabled={busy !== null}>{busy === 'reloading' ? 'Checking saved review…' : 'Reload saved review and replace this comment'}</button></div> : null}
       </form>}
-      <p className="sp-note">This synthetic practice workflow provides feedback only. Grades, reopening, learner record administration and owner/admin controls remain unavailable.</p>
+      <p className="sp-note">This workflow provides mentor feedback. Grading and reopening remain unavailable.</p>
     </section>
   </div>;
 }
@@ -225,7 +225,7 @@ function MentorReviewsForAccount({ session, onAuthenticationRequired, onMutation
   return <section className="sp-mentor" aria-labelledby="sp-mentor-heading" aria-busy={blocked || view.status === 'loading'}>
     <div className="sp-mentor-top"><div><p className="sp-eyebrow">Synthetic mentor workspace</p><h2 id="sp-mentor-heading" ref={heading} tabIndex={-1}>{revalidating ? 'Checking your review access' : selection ? 'Review a submitted assignment' : 'Mentor review queue'}</h2></div>
       {selection ? <button type="button" onClick={() => navigate(null)} disabled={blocked}>Back to review queue</button> : <button type="button" onClick={refresh} disabled={blocked}>Refresh review queue</button>}</div>
-    <p className="sp-mentor-test">Synthetic practice review only · The server checks each explicit program assignment. Owner/admin controls remain closed.</p>
+    <p className="sp-mentor-test">The server checks your explicit reviewer assignment for each program.</p>
     {(!ready && view.status === 'loading') || (revalidating && !refreshError) ? <p className="sp-mentor-state" role="status">Loading authorized review records…</p> : null}
     {refreshError && ready ? <div className="sp-mentor-state"><p role="alert">{refreshError}</p><p>Records remain hidden until changed account access is verified.</p><button type="button" onClick={refresh} disabled={busy}>Retry review records</button></div> : null}
     {view.status === 'error' || view.status === 'unavailable' ? <div className="sp-mentor-state"><h3>{view.status === 'unavailable' ? 'Mentor review access unavailable' : 'Review records unavailable'}</h3><p role="alert">{view.message}</p><button type="button" onClick={refresh}>Try again</button></div> : null}
@@ -234,7 +234,7 @@ function MentorReviewsForAccount({ session, onAuthenticationRequired, onMutation
         <MentorReviewEditor key={`${mentorId}-${ready.detail.review.receipt_id}`} session={session} review={ready.detail.review} onAuthenticationRequired={onAuthenticationRequired}
           onUnavailable={() => setView({ status: 'unavailable', message: 'Mentor review records are unavailable for your current assignment or account.' })}
           onChanged={() => { setRefreshError(''); setReload(value => value + 1); }} onMutationBusy={setBusy} /></> : <>
-        <p className="sp-note">{ready.queue.reviews.length} submitted {ready.queue.reviews.length === 1 ? 'assignment' : 'assignments'} shown. This queue shows up to 100 submissions from programs explicitly assigned to this synthetic reviewer.</p>
+        <p className="sp-note">{ready.queue.reviews.length} submitted {ready.queue.reviews.length === 1 ? 'assignment' : 'assignments'} shown. This queue shows up to 100 submissions from programs explicitly assigned to this reviewer.</p>
         {ready.queue.reviews.length === 0 ? <div className="sp-mentor-state"><h3>No submitted assignments to review</h3><p>No submitted learner work is currently available within your assigned program scope.</p></div> :
           <ol className="sp-mentor-queue">{ready.queue.reviews.map(row => <li className="sp-panel" key={row.receipt_id}><p className="sp-eyebrow">Attempt {row.attempt_number} · {row.review_state === 'published' ? 'Feedback published' : row.review_state === 'draft' ? 'Private draft saved' : 'Awaiting review'}</p>
             <h3>{row.assignment_title}</h3><dl className="sp-mentor-facts"><div><dt>Learner</dt><dd>{row.learner_label}</dd></div><div><dt>Program</dt><dd>{row.program_title}</dd></div>

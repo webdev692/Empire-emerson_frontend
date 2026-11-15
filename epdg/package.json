@@ -20,21 +20,24 @@
     "build:hosted-practice": "tsc -b && vite build --mode hosted-practice && node scripts/verify-hosted-practice-build.mjs dist-hosted-practice",
     "optimize-images": "node scripts/optimize-images.mjs",
     "lint": "eslint .",
-    "test": "node --experimental-strip-types --test src/lib/apiConfig.test.mjs src/lib/productionSafety.test.mjs src/admin-staging/client.test.mjs scripts/admin-staging-hosted-profile.test.mjs src/synthetic/client.test.mjs src/synthetic/learningClient.test.mjs src/synthetic/assignmentClient.test.mjs src/synthetic/reviewClient.test.mjs src/synthetic/revisionClient.test.mjs src/synthetic/onboardingClient.test.mjs src/synthetic/hosted-client.test.mjs scripts/synthetic-mode.test.mjs scripts/hosted-practice-profile.test.mjs scripts/hosted-practice-retirement-worker.test.mjs",
+    "test": "node --experimental-strip-types --test src/lib/apiConfig.test.mjs src/lib/productionSafety.test.mjs src/admin-staging/client.test.mjs scripts/admin-staging-hosted-profile.test.mjs src/synthetic/client.test.mjs src/synthetic/learningClient.test.mjs src/synthetic/assignmentClient.test.mjs src/synthetic/reviewClient.test.mjs src/synthetic/revisionClient.test.mjs src/synthetic/onboardingClient.test.mjs src/synthetic/hosted-client.test.mjs scripts/synthetic-mode.test.mjs scripts/hosted-practice-profile.test.mjs scripts/hosted-practice-retirement-worker.test.mjs src/synthetic/release-client.test.mjs scripts/portal-release-profile.test.mjs scripts/portal-release-preview.test.mjs",
     "smoke": "node ../scripts/smoke-check.mjs epdg",
     "preview": "vite preview",
-    "build:admin-staging-hosted": "tsc -b && vite build --mode admin-staging-hosted && node scripts/verify-admin-staging-hosted-build.mjs dist-admin-staging-hosted"
+    "build:admin-staging-hosted": "tsc -b && vite build --mode admin-staging-hosted && node scripts/verify-admin-staging-hosted-build.mjs dist-admin-staging-hosted",
+    "dev:portal-review": "vite --mode portal-review",
+    "build:portal-release": "tsc -b && vite build --mode portal-release && node scripts/verify-portal-release-build.mjs dist-portal-release",
+    "preview:portal-https": "node scripts/portal-release-preview.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "4.3.0",
-    "axios": "1.16.1",
+    "axios": "1.21.1",
     "lucide": "1.16.0",
     "lucide-react": "1.16.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "react-helmet-async": "3.0.0",
     "react-hook-form": "7.76.1",
-    "react-router-dom": "7.15.1",
+    "react-router-dom": "7.18.5",
     "zustand": "5.0.13"
   },
   "devDependencies": {
@@ -44,16 +47,16 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
     "autoprefixer": "10.5.0",
-    "eslint": "10.3.0",
+    "eslint": "10.15.0",
     "eslint-plugin-react-hooks": "7.1.1",
     "eslint-plugin-react-refresh": "0.5.2",
     "globals": "17.6.0",
-    "postcss": "8.5.14",
-    "sharp": "0.34.5",
+    "postcss": "8.5.33",
+    "sharp": "0.35.5",
     "tailwindcss": "4.3.0",
     "typescript": "6.0.3",
     "typescript-eslint": "8.59.3",
-    "vite": "8.0.13",
+    "vite": "8.3.8",
     "vite-plugin-pwa": "1.3.0"
   }
 }

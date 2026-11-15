@@ -72,7 +72,7 @@ jobs:
 
       - name: Clean isolated EPDG artifact directories
         if: matrix.directory == 'epdg'
-        run: node -e "const fs = require('node:fs'); for (const dir of ['dist', 'dist-design-preview', 'dist-hosted-practice', 'dist-admin-staging-hosted']) fs.rmSync(dir, {recursive:true, force:true})"
+        run: node -e "const fs = require('node:fs'); for (const dir of ['dist', 'dist-design-preview', 'dist-hosted-practice', 'dist-admin-staging-hosted', 'dist-portal-release']) fs.rmSync(dir, {recursive:true, force:true})"
 
       - name: Build
         run: npm run build
@@ -104,6 +104,15 @@ jobs:
         env:
           EPDG_ADMIN_STAGING_API_ORIGIN: https://fixture.up.railway.app
         run: npm run build:admin-staging-hosted
+
+      - name: Build and verify held portal release candidate with synthetic targets
+        if: matrix.directory == 'epdg'
+        env:
+          EPDG_PORTAL_RELEASE_BUILD: reviewed-candidate
+          EPDG_PORTAL_RELEASE_ORIGIN: https://portal.example.invalid
+          EPDG_PORTAL_RELEASE_API_ORIGIN: https://fixture.up.railway.app
+          EPDG_PORTAL_TARGET_REVIEW: ci-synthetic-target-review
+        run: npm run build:portal-release
 
       - name: Lint
         run: npm run lint

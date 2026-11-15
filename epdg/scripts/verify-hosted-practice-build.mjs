@@ -17,6 +17,7 @@ function collect(folder, prefix = '') {
   }
 }
 collect(root);
+assert.ok(!files.some(file => /AccountManagement|ScopedWorkspace|AdminStagingApp/.test(file)), 'release-only chunks are excluded from hosted practice');
 const index = readFileSync(join(root, 'index.html'), 'utf8');
 const javascript = files.filter(file => file.endsWith('.js')).map(file => readFileSync(join(root, file), 'utf8')).join('\n');
 assert.ok(javascript.length > 0, 'Missing compiled hosted practice JavaScript.');

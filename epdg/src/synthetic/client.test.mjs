@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { API_ORIGIN, captureRecovery, createPortalClient, parseSession, passwordProblem, PortalRequestError, resolveLoginEmail } from './client.ts';
+import { API_ORIGIN, captureRecovery, captureInvitation, createPortalClient, parseSession, passwordProblem, PortalRequestError, resolveLoginEmail } from './client.ts';
+import { consumeAccountLink, observeAccountLinks } from './accountLinks.ts';
 
 const fixture = () => ({ success: true, user: { id: 1, name: 'SYNTHETIC learner', email: 'learner@epdg.invalid', legacy_role: 'intern',
   memberships: [{ id: 'membership-a', school_id: 7, company_id: null }], permissions: [], privileged_controls_available: false },
@@ -62,6 +63,69 @@ test('password validation preserves the backend UTF-8 bcrypt boundary', () => {
   assert.ok(passwordProblem('a'.repeat(73)));
   assert.equal(passwordProblem('é'.repeat(36)), null);
   assert.ok(passwordProblem('é'.repeat(37)));
+});
+
+test('invitation fragments require the exact path and cannot be confused with recovery', () => {
+  const token = 'i'.repeat(43);
+  assert.equal(captureInvitation({ pathname: '/accept-invitation', hash: `#token=${token}` }), token);
+  for (const location of [{ pathname: '/reset-password', hash: `#token=${token}` },
+    { pathname: '/accept-invitation', hash: `#token=${token}&role=admin` }, { pathname: '/accept-invitation', hash: '#token=short' }]) {
+    assert.equal(captureInvitation(location), null);
+  }
+});
+
+test('same-document invitation and recovery navigations consume once and scrub before render', () => {
+  const browser = new EventTarget();
+  browser.location = { pathname: '/accept-invitation', hash: '', search: '' };
+  const history = [];
+  browser.history = { replaceState(_state, _unused, path) { history.push(path); browser.location.hash = ''; browser.location.search = ''; } };
+  const links = []; let navigations = 0;
+  const stop = observeAccountLinks(browser, link => {
+    assert.equal(browser.location.hash, ''); assert.equal(browser.location.search, ''); links.push(link);
+  }, () => navigations++);
+  browser.location.hash = `#token=${'i'.repeat(43)}`; browser.location.search = '?discard=private';
+  browser.dispatchEvent(new Event('popstate')); browser.dispatchEvent(new Event('hashchange'));
+  assert.equal(links.length, 1); assert.equal(navigations, 0);
+  assert.equal(links[0].invitationToken, 'i'.repeat(43)); assert.equal(links[0].recoveryToken, null);
+  browser.location.hash = '#portal-main';
+  browser.dispatchEvent(new Event('popstate')); browser.dispatchEvent(new Event('hashchange'));
+  assert.equal(links.length, 1); assert.equal(navigations, 0);
+  assert.equal(links[0].invitationToken, 'i'.repeat(43)); assert.equal(browser.location.hash, '#portal-main');
+  browser.location.pathname = '/reset-password'; browser.location.hash = `#token=${'r'.repeat(43)}`;
+  browser.dispatchEvent(new Event('hashchange'));
+  assert.equal(links[1].recoveryToken, 'r'.repeat(43)); assert.equal(links[1].invitationToken, null);
+  browser.location.hash = '#token=invalid'; browser.dispatchEvent(new Event('hashchange'));
+  assert.equal(links[2].recoveryToken, null); assert.equal(browser.location.hash, '');
+  browser.dispatchEvent(new Event('popstate')); assert.equal(navigations, 1);
+  stop(); browser.location.hash = `#token=${'r'.repeat(43)}`; browser.dispatchEvent(new Event('hashchange'));
+  assert.equal(links.length, 3);
+  assert.equal(consumeAccountLink(browser).recoveryToken, 'r'.repeat(43)); assert.equal(browser.location.hash, '');
+  assert.deepEqual(history, ['/accept-invitation', '/reset-password', '/reset-password', '/reset-password']);
+});
+
+test('invitation acceptance sends no role or identity, and does not establish a session', async () => {
+  const calls = [];
+  const client = createPortalClient(async (url, options) => { calls.push({ url, options }); return Response.json({ success: true }); });
+  const result = await client.acceptInvitation('i'.repeat(43), 'synthetic-new-password');
+  assert.deepEqual(result, { success: true });
+  assert.equal(calls[0].url, `${API_ORIGIN}/api/auth/accept-invitation`);
+  assert.deepEqual(JSON.parse(calls[0].options.body), { token: 'i'.repeat(43), password: 'synthetic-new-password' });
+  assert.equal(calls[0].options.headers['X-EPDG-Request'], 'portal');
+  assert.equal(calls[0].options.redirect, 'error');
+  assert.equal(calls[0].options.referrerPolicy, 'no-referrer');
+  await assert.rejects(client.acceptInvitation('short', 'synthetic-new-password'), e => e.status === 400);
+  await assert.rejects(client.acceptInvitation('i'.repeat(43), 'short'), e => e.status === 400);
+  assert.equal(calls.length, 1);
+});
+
+test('invalid, expired and unavailable invitation responses remain privacy safe', async () => {
+  for (const status of [400, 409, 410, 503]) {
+    const client = createPortalClient(async () => Response.json({ message: 'private-recipient-token' }, { status }));
+    await assert.rejects(client.acceptInvitation('i'.repeat(43), 'synthetic-new-password'), e => {
+      assert.equal(e.status, status); assert.doesNotMatch(e.message, /private-recipient-token/);
+      assert.match(e.message, status === 503 ? /release review/ : /invalid, expired, or already used/); return true;
+    });
+  }
 });
 
 test('an exact local alias preserves the existing synthetic identity without broad real-email access', () => {

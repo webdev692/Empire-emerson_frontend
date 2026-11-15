@@ -118,7 +118,7 @@ function ProgramsForLearner({ session, onAuthenticationRequired, onMutationBusy 
   return <section className="sp-learning" aria-labelledby="sp-learning-heading" aria-busy={controlsBusy || (!ready && view.status === 'loading')}>
     <div className="sp-learning-top"><div><p className="sp-eyebrow">Your programs</p><h2 id="sp-learning-heading" ref={heading} tabIndex={-1}>{revalidating ? 'Checking your programs' : ready?.detail ? ready.detail.program.title : 'Make room for your next step'}</h2></div>
       {selection ? <button type="button" onClick={back} disabled={controlsBusy}>Back to programs</button> : null}</div>
-    <p className="sp-learning-test">Synthetic learning records · Practice content and progress stay in this synthetic practice environment.</p>
+    <p className="sp-learning-test">Your assigned programs and current progress.</p>
     {message ? <p className="sp-message" role="status">{message}</p> : null}
     {refreshError && ready ? <div className="sp-learning-state"><p role="alert">{refreshError}</p><p>Your assignment editor has been retained. Learning records stay hidden until access is verified when account access changes.</p><button type="button" onClick={() => { setRefreshError(''); setReload(value => value + 1); }} disabled={busy || assignmentBusy.size > 0}>Retry learning records</button></div> : null}
     {(!ready && (view.status === 'loading' || view.status === 'ready')) || (revalidating && !refreshError) ? <div className="sp-learning-state" role="status"><p>Loading your learning records…</p></div> : null}
@@ -138,7 +138,7 @@ function ProgramsForLearner({ session, onAuthenticationRequired, onMutationBusy 
         <p>{ready.detail.program.summary}</p>
         <p className="sp-learning-date"><LocalDate value={ready.detail.program.starts_at} /> – <LocalDate value={ready.detail.program.ends_at} /></p>
         <Progress title={ready.detail.program.title} completed={ready.detail.program.completed_items} total={ready.detail.program.total_items} percent={ready.detail.program.progress_percent} />
-        <p className="sp-note">Progress counts completed lessons. Synthetic assignments support saved text drafts and practice file attachments. Grading remains unavailable.</p>
+        <p className="sp-note">Progress counts completed lessons. Assignments support saved text drafts and file attachments. Grading remains unavailable.</p>
         <p className="sp-note">Save assignment drafts before leaving this program. Unsaved answers are discarded when you navigate away.</p>
         {ready.detail.program.items.length === 0 ? <div className="sp-learning-state"><h3>No learning activities yet</h3><p>There are no lessons or assignments available in this program.</p></div> : null}
         <ol className="sp-program-items">{ready.detail.program.items.map(item => <li key={item.id} className="sp-panel"><p className="sp-learning-meta">{item.kind === 'lesson' ? 'Lesson' : 'Assignment'} · {item.status === 'completed' ? 'Completed' : item.status === 'draft' ? 'Saved draft' : item.status === 'submitted' ? 'Submitted' : 'Not started'}</p><h3 id={`learning-item-${item.id}`} tabIndex={-1}>{item.title}</h3><p>{item.description}</p><div className="sp-learning-copy">{item.content}</div><p className="sp-learning-date">{item.due_at ? <>Due <LocalDate value={item.due_at} /></> : 'No due date'}</p>

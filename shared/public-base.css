@@ -1,0 +1,2 @@
+@import './public-design-system.css';
+html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0}button,input,select,textarea{font:inherit}a{color:inherit}button{cursor:pointer}#root{min-height:100vh}img{max-width:100%}*{box-sizing:border-box}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

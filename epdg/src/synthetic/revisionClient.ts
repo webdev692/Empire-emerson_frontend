@@ -1,4 +1,4 @@
-import { PRACTICE_ENVIRONMENT, type PracticeEnvironment } from './runtimeProfile.ts';
+import { LEARNING_ENVIRONMENT, type PracticeEnvironment } from './runtimeProfile.ts';
 import { API_ORIGIN, PortalRequestError } from './client.ts';
 import { answerProblem, parseAttachment, type AttachmentMetadata } from './assignmentClient.ts';
 import { parseLearnerFeedback, type PublishedFeedback } from './reviewClient.ts';
@@ -17,7 +17,7 @@ const date = (v: unknown): v is string => typeof v === 'string' && v.length <= 4
 const invalid = () => new PortalRequestError(502, 'The submitted attempt history could not be verified. Refresh its saved status.');
 export function parseAssignmentAttempts(value: unknown, learnerId: number, programId: string, itemId: string): AssignmentAttempts {
   if (!Number.isSafeInteger(learnerId) || learnerId <= 0 || !uuid(programId) || !uuid(itemId) || !record(value) ||
-    value.success !== true || value.environment !== PRACTICE_ENVIRONMENT || value.learner_id !== learnerId ||
+    value.success !== true || value.environment !== LEARNING_ENVIRONMENT || value.learner_id !== learnerId ||
     value.item_id !== itemId || value.program_id !== programId || !Array.isArray(value.attempts) || value.attempts.length > 5) throw invalid();
   const attempts = value.attempts.map((row, index): AssignmentAttempt => {
     if (!record(row) || !uuid(row.receipt_id) || row.attempt_number !== index + 1 || typeof row.answer !== 'string' ||
@@ -25,7 +25,7 @@ export function parseAssignmentAttempts(value: unknown, learnerId: number, progr
       Number(row.submission_revision) < index + 1 || Number(row.submission_revision) > 2147483647 ||
       !Array.isArray(row.attachments) || row.attachments.length > 3) throw invalid();
     const attachments = row.attachments.map(parseAttachment);
-    const feedback = parseLearnerFeedback({ success: true, environment: PRACTICE_ENVIRONMENT, learner_id: learnerId,
+    const feedback = parseLearnerFeedback({ success: true, environment: LEARNING_ENVIRONMENT, learner_id: learnerId,
       item_id: itemId, program_id: programId, receipt_id: row.receipt_id, feedback: row.published_feedback }, learnerId, programId, itemId, row.receipt_id).feedback;
     return { receipt_id: row.receipt_id, attempt_number: index + 1, answer: row.answer, attachments,
       submitted_at: row.submitted_at, submission_revision: row.submission_revision as number, published_feedback: feedback };
@@ -35,7 +35,7 @@ export function parseAssignmentAttempts(value: unknown, learnerId: number, progr
   const fileIds = attempts.flatMap(row => row.attachments.map(file => file.id));
   const feedbackIds = attempts.flatMap(row => row.published_feedback.map(feedback => feedback.id));
   if (new Set(fileIds).size !== fileIds.length || new Set(feedbackIds).size !== feedbackIds.length) throw invalid();
-  return { success: true, environment: PRACTICE_ENVIRONMENT, learner_id: learnerId, item_id: itemId, program_id: programId, attempts };
+  return { success: true, environment: LEARNING_ENVIRONMENT, learner_id: learnerId, item_id: itemId, program_id: programId, attempts };
 }
 export function createRevisionClient(fetcher: typeof fetch = fetch) {
   return {

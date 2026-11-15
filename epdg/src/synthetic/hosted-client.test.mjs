@@ -7,7 +7,7 @@ import { readFileSync } from 'node:fs';
 globalThis.__EPDG_HOSTED_PRACTICE_PROFILE__ = { environment: 'synthetic-hosted', portalOrigins: ['https://portal.example.com'] };
 globalThis.__EPDG_HOSTED_PRACTICE_MODE__ = true;
 globalThis.__EPDG_HOSTED_PRACTICE_ENABLED__ = true;
-const { API_ORIGIN, createPortalClient, loginAlias, parseSession, resolveLoginEmail } = await import('./client.ts');
+const { API_ORIGIN, captureInvitation, createPortalClient, loginAlias, parseSession, resolveLoginEmail } = await import('./client.ts');
 const { hostedContextAllowed, PRACTICE_ENVIRONMENT } = await import('./runtimeProfile.ts');
 const { parseDashboard, createLearningClient } = await import('./learningClient.ts');
 const { parseOnboardingSummary, createOnboardingClient } = await import('./onboardingClient.ts');
@@ -26,6 +26,15 @@ const dashboard = () => ({ success: true, environment, learner_id: 2, generated_
   summary: { active_programs: 0, completed_items: 0, total_items: 0, progress_percent: 0 }, programs: [], upcoming: [], feedback: [], resources: [] });
 const onboarding = () => ({ success: true, environment, learner_id: 2, generated_at: at, privileged_controls_available: false,
   onboarding: { status: 'not_received', program_id: null, program_title: null, updated_at: null } });
+
+test('hosted practice cannot consume or submit invitation review tokens', async () => {
+  const token = 'i'.repeat(43);
+  assert.equal(captureInvitation({ pathname: '/accept-invitation', hash: `#token=${token}` }), null);
+  let calls = 0;
+  const client = createPortalClient(async () => { calls++; return Response.json({ success: true, environment }); });
+  await assert.rejects(client.acceptInvitation(token, 'synthetic-password'), e => e.status === 503);
+  assert.equal(calls, 0);
+});
 
 test('hosted bootstrap requires exact HTTPS origin and compiled production mode', () => {
   const context = { mode: 'hosted-practice', production: true, development: false, origin: 'https://portal.example.com' };

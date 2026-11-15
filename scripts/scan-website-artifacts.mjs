@@ -61,8 +61,9 @@ for (const [entity, site] of Object.entries(boundary.published)) {
   assert.ok(html.includes(`rel="canonical" href="${site.origin}/"`));
   assert.doesNotMatch(html, /onload=|data-netlify|noindex/i);
   const sitemap = readFileSync(resolve(dist, 'sitemap.xml'), 'utf8');
-  for (const path of ['/classes', '/privacy', '/terms', '/disclaimer', '/inquiry']) assert.ok(sitemap.includes(site.origin + path));
+  for (const path of ['/classes', '/privacy', '/terms', '/disclaimer', '/contact']) assert.ok(sitemap.includes(site.origin + path));
   for (const path of entryPages.links.page_paths[entity]) assert.ok(sitemap.includes(site.origin + path));
-  assert.ok(readFileSync(resolve(dist, '_redirects'), 'utf8').includes('/* /index.html 200'), 'SPA direct-route reload fallback is missing');
+  assert.ok(readFileSync(resolve(dist, '_redirects'), 'utf8').includes('/* /404.html 404'), 'Unknown routes must return a real HTTP 404');
+  assert.equal(manifest.website_modernization.revision, '2026-11-14');
   console.log(`${entity}: current manifest hashes, approved payloads, privacy, canonical routes and external-only intake PASS (${emitted.length} files).`);
 }

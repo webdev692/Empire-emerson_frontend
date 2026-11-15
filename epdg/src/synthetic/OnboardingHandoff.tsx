@@ -7,10 +7,10 @@ type Props = { session: Session; busy: boolean; onRefresh: () => void; onAuthent
 type View = { status: 'loading' } | { status: 'ready'; data: OnboardingSummary; verifiedSession: Session } |
   { status: 'error'; message: string; verifiedSession: Session };
 const descriptions = {
-  not_received: { label: 'Awaiting synthetic handoff', body: 'No synthetic onboarding handoff has been received for this learner.' },
-  ready: { label: 'Ready for practice learning', body: 'The synthetic onboarding handoff is current. Its practice program is available in your learning space.' },
-  held: { label: 'Practice onboarding on hold', body: 'The synthetic onboarding handoff is on hold. Its practice program is unavailable while clearance is reviewed in CRM.' },
-  withdrawn: { label: 'Practice enrollment withdrawn', body: 'The synthetic onboarding handoff was withdrawn. Its practice program is unavailable.' },
+  not_received: { label: 'Awaiting verified handoff', body: 'No verified onboarding handoff has been received for this learner.' },
+  ready: { label: 'Ready for learning', body: 'The verified onboarding handoff is current. Its assigned program is available in your learning space.' },
+  held: { label: 'Onboarding on hold', body: 'The verified onboarding handoff is on hold. Its assigned program is unavailable while clearance is reviewed in CRM.' },
+  withdrawn: { label: 'Enrollment withdrawn', body: 'The verified onboarding handoff was withdrawn. Its assigned program is unavailable.' },
 };
 
 export default function OnboardingHandoff({ session, busy, onRefresh, onAuthenticationRequired }: Props) {
@@ -39,7 +39,7 @@ export default function OnboardingHandoff({ session, busy, onRefresh, onAuthenti
   return <section className="sp-onboarding sp-panel" aria-labelledby={headingId}>
     <div className="sp-onboarding-heading"><div><p className="sp-eyebrow">CRM to learning</p><h2 id={headingId}>Onboarding handoff</h2></div>
       <button type="button" disabled={busy} onClick={onRefresh}>Refresh onboarding status</button></div>
-    {!current ? <p role="status">Checking synthetic onboarding status…</p> : null}
+    {!current ? <p role="status">Checking onboarding status…</p> : null}
     {current?.status === 'error' ? <p role="alert" className="sp-error">{current.message}</p> : null}
     {data && description ? <div className="sp-onboarding-result">
       <p className={`sp-onboarding-badge sp-onboarding-${data.onboarding.status}`} role="status">{description.label}</p>
@@ -48,6 +48,6 @@ export default function OnboardingHandoff({ session, busy, onRefresh, onAuthenti
       <p className="sp-note">{data.onboarding.updated_at ? <>Status updated <time dateTime={data.onboarding.updated_at}>{new Date(data.onboarding.updated_at).toLocaleString()}</time><span aria-hidden="true"> · </span></> : null}
         Checked <time dateTime={data.generated_at}>{new Date(data.generated_at).toLocaleString()}</time></p>
     </div> : null}
-    <p className="sp-note">CRM handles applications and onboarding clearance. This synthetic environment uses fictional handoffs for a dedicated practice program. Owner/admin controls remain closed.</p>
+    <p className="sp-note">CRM handles applications and onboarding clearance. Education access requires a verified handoff and current program enrollment.</p>
   </section>;
 }

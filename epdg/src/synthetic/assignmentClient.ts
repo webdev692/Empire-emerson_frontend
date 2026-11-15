@@ -1,4 +1,4 @@
-import { PRACTICE_ENVIRONMENT, type PracticeEnvironment } from './runtimeProfile.ts';
+import { LEARNING_ENVIRONMENT, type PracticeEnvironment } from './runtimeProfile.ts';
 import { API_ORIGIN, PortalRequestError } from './client.ts';
 
 export interface AttachmentMetadata {
@@ -24,7 +24,7 @@ export function attachmentProblem(file: Pick<File, 'name' | 'size' | 'type'>): s
   if (!Number.isSafeInteger(file.size) || file.size < 1 || file.size > 1048576) return 'Choose a nonempty file no larger than 1 MiB.';
   if (!/^[A-Za-z0-9][A-Za-z0-9 ._-]{0,99}$/.test(file.name) || file.name.includes('..') || /[ .]$/.test(file.name)) return 'Use a filename of at most 100 ASCII letters, numbers, spaces, periods, hyphens or underscores, starting with a letter or number.';
   const media = mediaFor(file.name);
-  if (!media) return 'Choose a TXT, PDF, PNG or JPEG practice file.';
+  if (!media) return 'Choose a TXT, PDF, PNG or JPEG file.';
   if (file.type && file.type !== 'application/octet-stream' && file.type !== media) return 'The file type must match its filename extension.';
   return null;
 }
@@ -87,7 +87,7 @@ export function answerProblem(answer: string): string | null {
 }
 export function parseSubmission(value: unknown, ownerId: number, programId: string, itemId: string): SubmissionEnvelope {
   const invalid = () => new PortalRequestError(502, 'The saved assignment status could not be verified. Reload its status before trying again.');
-  if (!record(value) || value.success !== true || value.environment !== PRACTICE_ENVIRONMENT || value.learner_id !== ownerId ||
+  if (!record(value) || value.success !== true || value.environment !== LEARNING_ENVIRONMENT || value.learner_id !== ownerId ||
     !Number.isSafeInteger(ownerId) || ownerId <= 0 || !uuid(programId) || !uuid(itemId) || !record(value.submission)) throw invalid();
   const s = value.submission;
   if (s.item_id !== itemId || s.program_id !== programId || typeof s.answer !== 'string' || answerProblem(s.answer) || !revision(s.revision) ||
@@ -107,7 +107,7 @@ export function parseSubmission(value: unknown, ownerId: number, programId: stri
     if (s.state === 'submitted' && (!s.answer.trim() || !record(s.receipt) || !uuid(s.receipt.id) || !date(s.receipt.submitted_at) || s.receipt.revision !== s.revision)) throw invalid();
     if (record(s.receipt) && s.receipt.id === s.previous_receipt_id) throw invalid();
   }
-  return { success: true, environment: PRACTICE_ENVIRONMENT, learner_id: ownerId,
+  return { success: true, environment: LEARNING_ENVIRONMENT, learner_id: ownerId,
     submission: { item_id: itemId, program_id: programId, state: s.state as AssignmentRecord['state'], answer: s.answer,
       attempt_number: s.attempt_number as number, previous_receipt_id: s.previous_receipt_id as string | null, can_start_revision: s.can_start_revision,
       revision: s.revision, saved_at: s.saved_at as string | null, attachments, removed_attachments: removed,
