@@ -12,6 +12,8 @@ The Agency uses “Your business needs more than advice. Sometimes it needs the 
 
 Four additional placements reuse approved Phase Three artwork. `PUBLIC_MEDIA_PHASE_FOUR_APPROVAL.json` binds those additions separately; the historical media approval stays intact. Reconstructing the previous manifest must reproduce its exact approved hash. No asset bytes, portraits, captions, biographies or EPDG media placements change.
 
+Browser accessibility review also identified that the TEE/TEA home-link accessible names omitted their visible taglines. Their labels now include both the organization name and tagline. The EPDG branch retains its existing output. This shared-shell correction changes no destination or authentication behavior.
+
 Live Studio intake, client registration, payments, contracting, project acceptance, CRM integration, permissions and sensitive-system access remain closed. No staffing assignment, compensation arrangement or commercial engagement is created. The private future activation proposal remains outside this repository and is for founder review only.
 
 ## Release procedure
