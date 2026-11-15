@@ -915,3 +915,41 @@ Production entry, SSO, deployment, database, real identities, role grants and ma
 ### 2026-11-14 — Phase Three mobile acceptance correction
 
 Narrow-screen acceptance found the account-management view buttons competing for width. Portal navigation now wraps, and administrator view buttons retain their label width with compact spacing. The change affects portal styles only; public company application trees remain unchanged. Final browser, artifact, source and CI receipts are recorded in the private release package. Production remains locked and undeployed.
+
+## November 14, 2026 — Phase-two media and leadership implementation
+
+Phase two continues from merged PR #49/main `6f9aa03da8b3cb3f6c4f8dd608bf60bd9cef7147`. Scope and authorization are recorded in `PUBLIC_WEBSITE_PHASE_TWO_2026-11-14.md` and `PUBLIC_MEDIA_PHASE_TWO_APPROVAL.json`. The founder approved 16 reviewed brand/editorial assets, then explicitly approved the three portrait candidates without visible captions. All five leadership entries display full names and approved company titles. Source/permission records remain restricted outside the repository.
+
+The release adds 18 leadership routes while retaining all 209 existing routes, 49 manuscripts and 10 conference records. Media use responsive local derivatives with dimension, checksum, permission, metadata and compiled-placement checks. Final commit CI, browser checks, targeted Netlify deployment IDs and production verification will be recorded after completion. Until then, this section is an implementation record, not a publication receipt.
+
+Use `[skip netlify]` throughout PR and merge history. Build only the three public projects at the reviewed SHA. Keep the separate EPDG portal locked and unchanged; do not touch backend, auth, private application data or privileges. Recovery is a reviewed fix-forward source change and targeted rebuild, preserving prior release receipts.
+
+### Verified phase-two publication — November 14 Eastern / November 15 UTC
+
+Implementation PR [#50](https://github.com/webdev692/Empire-emerson_frontend/pull/50) merged as `3c44304c18c7565aa681a653f8a41e3e19293d05`. Its tree exactly matches reviewed head `2087c599f92afe474b0868b1a829d8d216063a87`. All seven required jobs passed in [application/Edge run 43661535044](https://github.com/webdev692/Empire-emerson_frontend/actions/runs/43661535044) and [public-release run 43661535056](https://github.com/webdev692/Empire-emerson_frontend/actions/runs/43661535056). The clean-head local run passed all 15 groups, including 90 regression tests, at 01:08:57.837 UTC. Hosted exact-head previews passed before merge.
+
+All three production deployments are ready and independently confirmed as each project's current deployment, built from the same reviewed merge with a clean source tree:
+
+| Public project | Live URL | Deployment ID | Published UTC, November 15 |
+| --- | --- | --- | --- |
+| theemerson | https://theemerson.netlify.app/ | `6af90cf8672754ccf8d22929` | 01:38:27.556 |
+| emersonagency | https://emersonagency.netlify.app/ | `6af90cf8b2a47fe44de02160` | 01:38:26.311 |
+| emersonprofessionaldevelopment | https://emersonprofessionaldevelopment.netlify.app/ | `6af90cf9fffe0faf3de00f8e` | 01:38:33.853 |
+
+Production HTTP verification at 01:39:26.592 UTC passed all 227 pages, 51 redirects and 145 deployed image files against the approved byte hashes. Checks include metadata/schema, every leadership route, intrinsic image dimensions, sitemaps/robots, true 404s and exact-commit release manifests. There are 124 unique image variants; shared portraits account for copies deployed to more than one site. All 209 original routes, 49 manuscripts and 10 conference records are retained.
+
+Chrome review covered desktop 1440 px, tablet 768 px, mobile 390 px and narrow mobile 320 px samples. The live Agency founder portrait and TEE joint portrait loaded correctly without visible captions; EPDG's live directory displayed all five full names. The mobile menu and Escape behavior passed. Targeted axe checks found no violations; its color-contrast result was incomplete, supplemented by computed new-text contrast samples (minimum 6.49:1) and visual review. This is not full WCAG conformance or screen-reader certification. One unthrottled Agency preview desktop sample recorded LCP 588 ms and CLS 0; this is not field Core Web Vitals, a controlled cross-site comparison or real-user INP.
+
+The source audit reviewed 152 originals and selected 19 approved source images. The remaining 133 comprise 31 identical-byte copies, one additional pixel duplicate, 14 alternate exports, 15 deferred editorial/brand variants, 69 unsuitable facility/internal/promotional/screenshot images, and three other unapproved likenesses. The three selected portraits were approved without visible captions by the founder's latest instruction. No portrait permission remains pending for those three selected assets. Individual headshots remain unavailable for Shamrit Phagura, Godwin-Iwatan Kehinde (Kenny), and Todor Tomic; Darin uses the approved joint portrait and could later supply a standalone headshot. No unsupplied professional links or qualifications were invented.
+
+After publication the separate `epdg` portal still used deployment `6af0ddc0208d400c348cdccd` with team SSO on all deploys. No portal source or publication, backend, authentication, account, database, CRM, Creative Studio data, access-control, subscription or project change was made. Previous dependency and physical-device/browser/screen-reader limitations remain as recorded for phase one.
+
+Evidence is retained outside the repository in `build-evidence/website-phase-two-20261114/`: `provider-release.json`, `check-2087c59/`, `hosted-preview.json`, `hosted-production.json`, `browser-preview-2087c59.json`, `browser-production.json`, production screenshots, the restricted media manifest and `FINAL-RELEASE-REPORT.md`. This receipt update is documentation only. Keep `[skip netlify]` on its commit and merge; the deployed source stays at the implementation merge above. Apply the same reviewed fix-forward and three-project-only release boundary for later corrections.
+
+## 2026-11-14 — Portal prerequisite reconciliation after the public media release
+
+The held portal candidate incorporates main `716303d0f98863a4b155b6f6838d966695d4f80c`, including merged public-media PR 50 and its publication receipts, through an ordinary merge into the existing PR 47 branch. The latest portal source, including narrow-screen navigation corrections from `c127d032df023de511abc002a35dc3d30b558a8d`, is preserved. Both complete journal histories are retained. Public application trees, approved media, leadership content, shared code and release scripts remain exactly those from the reviewed main revision. No ancestor branch or production branch is rewritten.
+
+This is source reconciliation and prerequisite review only. Applicable source/build/lint/smoke/privacy checks, current audit evidence and exact-head CI are recorded in the PR and private prerequisite package. The original seven-file untracked administrator artifact is preserved byte-for-byte. The twelve development-tooling advisories and their scoped mitigations remain subject to an explicit founder risk decision; passing CI is not that decision. No dependency version or toolchain override is changed.
+
+Production deployment, visitor protection, database privileges or migrations, founder/other account creation, role grants, sender configuration, invitations and spending remain unapproved and unchanged. Continue from the exact reconciled source only after the separate production prerequisite and release decisions are authorized.

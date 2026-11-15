@@ -5,13 +5,14 @@ import { pathToFileURL, fileURLToPath } from 'node:url';
 const repository = fileURLToPath(new URL('..', import.meta.url));
 const appRoot = resolve(process.argv[2]);
 const sites = JSON.parse(readFileSync(resolve(repository, 'shared/public-sites.json'), 'utf8'));
+const publicMedia = JSON.parse(readFileSync(resolve(repository, 'shared/public-media.json'), 'utf8'));
 const entry = Object.entries(sites).find(([, site]) => resolve(repository, site.app) === appRoot);
 assert.ok(entry, 'Only the three public company apps may be rendered');
 const [entity, site] = entry;
 const { build } = await import(pathToFileURL(resolve(appRoot, 'node_modules/vite/dist/node/index.js')));
 const { default: react } = await import(pathToFileURL(resolve(appRoot, 'node_modules/@vitejs/plugin-react/dist/index.js')));
 await build({ configFile: false, root: appRoot, mode: 'public-release', plugins: [react()], resolve: { dedupe: ['react', 'react-dom'] }, ssr: { noExternal: true }, build: { ssr: resolve(appRoot, 'src/entry-server.tsx'), outDir: 'dist-ssr', target: 'node22', minify: false, emptyOutDir: true } });
-const { routes, render, scholarlyData } = await import(pathToFileURL(resolve(appRoot, 'dist-ssr/entry-server.js')));
+const { routes, render, scholarlyData, leadershipData } = await import(pathToFileURL(resolve(appRoot, 'dist-ssr/entry-server.js')));
 assert.equal(new Set(routes.map(route => route.path)).size, routes.length, 'Duplicate public routes');
 const out = resolve(appRoot, 'dist');
 const template = readFileSync(resolve(out, 'index.html'), 'utf8');
@@ -26,7 +27,31 @@ function structured(route) {
     { '@type': 'WebPage', '@id': url + '#webpage', url, name: route.title, description: route.description, isPartOf: { '@id': `${site.origin}/#website` } },
     { '@type': 'WebSite', '@id': `${site.origin}/#website`, url: site.origin + '/', name: names[entity], publisher: { '@id': `${site.origin}/#organization` } },
   ];
+  const mediaPlacements = publicMedia.placements.filter(item => item.entity === entity && (item.role === 'brand' || item.path === route.path));
+  for (const placement of mediaPlacements) {
+    const asset = publicMedia.assets.find(item => item.id === placement.assetId);
+    const file = asset.files.filter(item => item.format === 'webp').at(-1);
+    const imageId = `${site.origin}/media/#${asset.id}`;
+    graph.push({ '@type': 'ImageObject', '@id': imageId, contentUrl: site.origin + file.src, width: file.width, height: file.height, name: asset.title, description: asset.alt });
+    if (placement.role === 'brand') graph[0].logo = { '@id': imageId };
+    else graph.find(node => node['@type'] === 'WebPage').primaryImageOfPage = { '@id': imageId };
+  }
   if (route.path !== '/') graph.push({ '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: site.origin + '/' }, { '@type': 'ListItem', position: 2, name: route.title, item: url }] });
+  const leader = leadershipData?.find(person => route.path === `/leadership/${person.slug}`);
+  if (route.path === '/leadership' || leader) {
+    const people = leader ? [leader] : leadershipData;
+    for (const person of people) {
+      const identity = { '@type': 'Person', '@id': person.personId, name: person.name, jobTitle: person.title, url: person.canonicalUrl, description: person.summary[entity], affiliation: { '@id': `${site.origin}/#organization` }, ...(person.professionalLinks.length ? { sameAs: person.professionalLinks.map(link => link.href) } : {}) };
+      const existing = graph.find(node => node['@id'] === person.personId);
+      if (existing) Object.assign(existing, identity); else graph.push(identity);
+    }
+    const page = graph.find(node => node['@type'] === 'WebPage');
+    if (leader) { page['@type'] = 'ProfilePage'; page.mainEntity = { '@id': leader.personId }; }
+    else {
+      page['@type'] = 'CollectionPage'; page.mainEntity = { '@id': url + '#leadership' };
+      graph.push({ '@type': 'ItemList', '@id': url + '#leadership', name: 'Company leadership', numberOfItems: people.length, itemListElement: people.map((person, index) => ({ '@type': 'ListItem', position: index + 1, url: `${site.origin}/leadership/${person.slug}`, item: { '@id': person.personId } })) });
+    }
+  }
   const work = scholarlyData?.manuscripts.find(item => route.path === `/research/${item.slug}`);
   if (work) graph.push({ '@type': 'ScholarlyArticle', '@id': url + '#work', name: work.title, headline: work.title, abstract: work.abstract, author: { '@id': personId }, url, sameAs: [work.canonicalUrl, ...work.alternateRecords], creativeWorkStatus: work.status, keywords: work.categories, ...(work.year ? { datePublished: String(work.year) } : {}), ...(work.doi ? { identifier: work.doi } : {}), ...(work.pdfUrl ? { encoding: { '@type': 'MediaObject', contentUrl: work.pdfUrl, encodingFormat: 'application/pdf' } } : {}) });
   return JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replaceAll('<', '\\u003c');
@@ -47,7 +72,7 @@ for (const route of routes) {
 }
 writeFileSync(resolve(out, '404.html'), await pageHtml({ path: '/404', title: 'Page not found', description: 'The requested page is unavailable. Return to the company home or explore the resource library.' }, true));
 writeFileSync(resolve(out, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + routes.map(route => `  <url><loc>${escape(site.origin + route.path)}</loc></url>`).join('\n') + '\n</urlset>\n');
-const aliases = { '/privacy-policy': '/privacy', '/terms-of-use': '/terms', '/educational-resources': '/resources', '/resource-library': '/resources', '/inquiry': '/contact', '/leadership': '/founder', '/services': '/services-pricing', '/register': '/classes', '/journal': '/research', '/speaking': entity === 'EPDG' ? '/conferences' : '/research', ...(entity === 'TEE' ? { '/sc-community': '/community-resources', '/research/administrative-records': 'https://emersonprofessionaldevelopment.netlify.app/conferences/evidence-policymaking-2026', '/research/ordered-liberty-datafication': 'https://emersonprofessionaldevelopment.netlify.app/conferences/ordered-liberty-2026', '/research/reciprocity-without-justice': 'https://emersonprofessionaldevelopment.netlify.app/research/emerwj', '/global-internship': 'https://emersonprofessionaldevelopment.netlify.app/global-internship-program', '/epdg': 'https://emersonprofessionaldevelopment.netlify.app/', '/agency': 'https://emersonagency.netlify.app/' } : entity === 'TEA' ? { '/educationPage': '/community-education' } : { '/global-internship': '/global-internship-program', '/programs': '/global-internship-program' }) };
+const aliases = { '/privacy-policy': '/privacy', '/terms-of-use': '/terms', '/educational-resources': '/resources', '/resource-library': '/resources', '/inquiry': '/contact', '/leadership/lyric': '/leadership/lyric-helena-emerson', '/leadership/darin': '/leadership/darin-latrelle-james', '/leadership/shamrit': '/leadership/shamrit-phagura', '/leadership/kenny': '/leadership/godwin-iwatan-kehinde', '/leadership/todor': '/leadership/todor-tomic', '/services': '/services-pricing', '/register': '/classes', '/journal': '/research', '/speaking': entity === 'EPDG' ? '/conferences' : '/research', ...(entity === 'TEE' ? { '/sc-community': '/community-resources', '/research/administrative-records': 'https://emersonprofessionaldevelopment.netlify.app/conferences/evidence-policymaking-2026', '/research/ordered-liberty-datafication': 'https://emersonprofessionaldevelopment.netlify.app/conferences/ordered-liberty-2026', '/research/reciprocity-without-justice': 'https://emersonprofessionaldevelopment.netlify.app/research/emerwj', '/global-internship': 'https://emersonprofessionaldevelopment.netlify.app/global-internship-program', '/epdg': 'https://emersonprofessionaldevelopment.netlify.app/', '/agency': 'https://emersonagency.netlify.app/' } : entity === 'TEA' ? { '/educationPage': '/community-education' } : { '/global-internship': '/global-internship-program', '/programs': '/global-internship-program' }) };
 writeFileSync(resolve(out, '_redirects'), Object.entries(aliases).filter(([from]) => !routes.some(route => route.path === from)).map(([from, to]) => `${from} ${to} 301`).join('\n') + '\n/* /404.html 404\n');
 writeFileSync(resolve(out, 'public-routes.json'), JSON.stringify({ revision: '2026-11-14', routes, aliases }, null, 2) + '\n');
 assert.ok(readFileSync(resolve(out, 'social-preview.png')).length > 1000, 'Reviewed social preview is missing');

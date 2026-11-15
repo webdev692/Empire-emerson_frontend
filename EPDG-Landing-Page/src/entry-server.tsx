@@ -3,6 +3,7 @@ import { renderToPipeableStream } from 'react-dom/server';
 import { PassThrough } from 'node:stream';
 import App from './App';
 import { publicPages } from './PublicPages';
+export { leadershipProfiles as leadershipData } from '../../shared/LeadershipData';
 export const routes = publicPages.map(({path,title,description})=>({path,title,description}));
 export function render(pathname: string): Promise<string> {
   return new Promise((resolve, reject) => {
