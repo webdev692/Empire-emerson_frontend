@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "revision": "2026-11-14-leadership-biographies",
+  "authorization": "Founder-supplied public leadership copy. Applies to the three public company leadership directories and profiles; does not authorize photo, account or access changes.",
+  "profiles": [
+    {
+      "slug": "lyric-helena-emerson",
+      "name": "Lyric Helena Emerson",
+      "title": "Founder & Chief Executive Officer",
+      "secondaryTitle": null,
+      "location": "Columbia, South Carolina, USA",
+      "paragraphs": 6,
+      "copySha256": "ccc50f69d69c8e787f8afec751209619ceebe8168584483bfaaed70a7ff93f80"
+    },
+    {
+      "slug": "darin-latrelle-james",
+      "name": "Darin Latrelle James",
+      "title": "Managing Partner",
+      "secondaryTitle": null,
+      "location": null,
+      "paragraphs": 7,
+      "copySha256": "715b24776903f446114d0ad68921adae25bb61094f8d3d471e104e005c634a8a"
+    },
+    {
+      "slug": "shamrit-phagura",
+      "name": "Shamrit Phagura",
+      "title": "Computer Science Team Lead",
+      "secondaryTitle": null,
+      "location": "California State University, Sacramento — Sacramento, California, USA",
+      "paragraphs": 7,
+      "copySha256": "c6074153a79645fb2b7e392db1f3ded64e983fca17dea456962b9c1bba8f3f78"
+    },
+    {
+      "slug": "godwin-iwatan-kehinde",
+      "name": "Godwin-Iwatan Kehinde (Kenny)",
+      "title": "Global Outreach, Human Resources & Operations Lead",
+      "secondaryTitle": "Executive Assistant to the CEO",
+      "location": "Babcock University — Ilishan-Remo, Ogun State, Nigeria",
+      "paragraphs": 8,
+      "copySha256": "75995ca29ea6d1de9d8986cee38eb12f9654917505068fbdf4a408dc920a6867"
+    },
+    {
+      "slug": "todor-tomic",
+      "name": "Todor Tomic",
+      "title": "Sales & Business Development Manager",
+      "secondaryTitle": null,
+      "location": "Gornji Milanovac, Serbia",
+      "paragraphs": 7,
+      "copySha256": "180cf5c5b3d9b7aa78495597704715b15053636b605421d15bbc4036e8830b7d"
+    }
+  ],
+  "directoryTagline": "Founder-led. Built through collaboration. Strengthened by the people who help turn vision into lasting work.",
+  "founderNote": {
+    "paragraphs": 5,
+    "copySha256": "c3663aa6df1e58db2f2640250b8894123a1ffe63438c474cefe087072fb7cdb3"
+  }
+}

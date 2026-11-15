@@ -8,6 +8,16 @@
 .leadership-portrait img{width:100%;height:auto}
 .modern-site .leadership-role{font-size:1rem;font-weight:700;color:var(--brand);line-height:1.5;margin-bottom:1.1rem;max-width:46ch}
 .modern-site .leadership-location{font-size:.82rem;color:var(--muted);margin-bottom:1.5rem}
+.modern-site .leadership-secondary-role{font-size:.92rem;font-style:italic;line-height:1.6;color:var(--brand);margin-top:-.5rem;margin-bottom:1.25rem;max-width:46ch}
+.modern-site .leadership-directory-tagline{font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.15rem,1.8vw,1.45rem);font-style:italic;line-height:1.6;color:var(--brand);max-width:54ch;margin-bottom:1.5rem}
+.leadership-biography,.leadership-founder-note{max-width:72ch;font-size:clamp(1rem,1.3vw,1.1rem);line-height:1.85}
+.modern-site .leadership-biography>p,.modern-site .leadership-founder-note blockquote>p{margin-bottom:1.5rem}
+.leadership-founder-note{border-left:3px solid var(--brand);padding-left:clamp(20px,3vw,38px)}
+.leadership-founder-note blockquote{margin:0;padding:0;border:0;font:inherit;color:var(--text)}
+.modern-site .leadership-closing{color:var(--ink);padding-top:1.5rem;margin-top:2rem;border-top:1px solid var(--line);line-height:1.75}
+.modern-site .leadership-signature{margin:2rem 0 0;font-size:.88rem;line-height:1.7;color:var(--muted)}
+.leadership-signature strong,.leadership-signature span{display:block}
+.leadership-signature strong{color:var(--ink);font-size:1rem;margin-bottom:.35rem}
 .leadership-partner{display:grid;grid-template-columns:minmax(0,.58fr) minmax(0,1.42fr);gap:clamp(32px,6vw,90px);align-items:center}
 .leadership-partner .leadership-monogram{aspect-ratio:1;background:var(--brand)}
 .leadership-partner .leadership-monogram>span:first-child{font-size:clamp(3.5rem,6vw,5.5rem)}
@@ -24,6 +34,7 @@
 .modern-site .leadership-department-label{color:var(--muted);font-size:.72rem;line-height:1.5;letter-spacing:.04em;margin-bottom:15px}
 .modern-site .leadership-department h3{font-size:1.8rem;line-height:1.17;max-width:19ch}
 .modern-site .leadership-department .leadership-role{font-size:.88rem;min-height:4.5em}
+.modern-site .leadership-department .leadership-secondary-role{font-size:.84rem}
 .leadership-card-summary{font-size:.92rem;flex-grow:1}
 .leadership-department>.modern-inline-link{margin-top:10px}
 .leadership-context{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,90px)}

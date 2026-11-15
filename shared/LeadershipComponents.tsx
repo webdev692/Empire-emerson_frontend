@@ -1,6 +1,6 @@
 import { PublicHero, Section } from './PublicDesignSystem';
 import type { PublicEntity } from './PublicDesignSystem';
-import { leadershipCompanyIntroduction, leadershipProfiles } from './LeadershipData';
+import { leadershipCompanyIntroduction, leadershipDirectoryTagline, leadershipFounderNote, leadershipProfiles } from './LeadershipData';
 import type { LeadershipProfile } from './LeadershipData';
 import { publicCompanies } from './public-company-identity';
 import './Leadership.css';
@@ -26,7 +26,7 @@ export function LeadershipDirectory({ entity, options }: { entity: PublicEntity;
   const partner = leadershipProfiles[1];
   const departments = introduction.departments.map(slug => leadershipProfiles.find(profile => profile.slug === slug)!);
   return <>
-    <PublicHero eyebrow={`${publicCompanies[entity].short} · Company leadership`} title="Meet our leadership." description={introduction.description}>
+    <PublicHero eyebrow={`${publicCompanies[entity].short} · Company leadership`} title="Meet our leadership." description={<><p className="leadership-directory-tagline">{leadershipDirectoryTagline}</p><p>{introduction.description}</p></>}>
       <a className="modern-button" href="#executive-leadership">Executive leadership <span aria-hidden="true">↓</span></a>
       <a className="modern-button-secondary" href="#departmental-leadership">Departmental leadership</a>
     </PublicHero>
@@ -41,8 +41,11 @@ export function LeadershipDirectory({ entity, options }: { entity: PublicEntity;
     </Section>
     <Section id="departmental-leadership" eyebrow="Departmental leadership" title="The work that connects our teams." description={introduction.emphasis}>
       <div className="leadership-departments">{departments.map(profile => <article className="leadership-department" key={profile.slug} aria-labelledby={`leader-${profile.slug}`}>
-        <ProfileVisual profile={profile} portrait={options.portraits?.[profile.slug]} /><p className="leadership-department-label">{profile.department}</p><h3 id={`leader-${profile.slug}`}>{profile.name}</h3><p className="leadership-role">{profile.title}</p><p className="leadership-card-summary">{profile.summary[entity]}</p><ProfileLink profile={profile} />
+        <ProfileVisual profile={profile} portrait={options.portraits?.[profile.slug]} /><p className="leadership-department-label">{profile.department}</p><h3 id={`leader-${profile.slug}`}>{profile.name}</h3><p className="leadership-role">{profile.title}</p>{profile.secondaryTitle && <p className="leadership-secondary-role">{profile.secondaryTitle}</p>}<p className="leadership-card-summary">{profile.summary[entity]}</p><ProfileLink profile={profile} />
       </article>)}</div>
+    </Section>
+    <Section id="founder-note" eyebrow="Recognition & shared purpose" title="A Note from Our Founder">
+      <div className="leadership-founder-note"><blockquote>{leadershipFounderNote.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}<p className="leadership-closing"><strong>{leadershipFounderNote.closingStatement}</strong></p></blockquote><p className="leadership-signature"><strong>— Lyric Helena Emerson</strong><span>Founder &amp; Chief Executive Officer</span><span>The Emerson Empire</span></p></div>
     </Section>
     <Section tone="mist"><div className="leadership-context"><div><p className="modern-kicker">Connected companies. Clear responsibilities.</p><h2>A shared team, with a distinct purpose in each company.</h2></div><div><p>These profiles describe company leadership responsibilities across the Emerson ecosystem. Individual program and internship assignments are separate from these company roles.</p><p>For a service question, program inquiry, or proposed collaboration, use the relevant company contact route so your message reaches the right team.</p><a className="modern-inline-link" href="/contact">Find the right contact <span aria-hidden="true">→</span></a></div></div></Section>
   </>;
@@ -62,7 +65,8 @@ function FounderContext({ entity }: { entity: PublicEntity }) {
 
 export function LeadershipDetail({ entity, profile, options }: { entity: PublicEntity; profile: LeadershipProfile; options: LeadershipPageOptions }) {
   return <>
-    <section className="modern-hero leadership-profile-hero"><div className="modern-wrap leadership-profile-header"><div><p className="modern-kicker">{publicCompanies[entity].short} · Company leadership</p><h1>{profile.name}</h1><p className="leadership-role">{profile.title}</p>{profile.location && <p className="leadership-location">{profile.location}</p>}<p className="modern-lead">{profile.summary[entity]}</p><a className="modern-inline-link" href="/leadership"><span aria-hidden="true">← </span>Meet the leadership team</a></div><ProfileVisual profile={profile} portrait={options.portraits?.[profile.slug]} priority /></div></section>
+    <section className="modern-hero leadership-profile-hero"><div className="modern-wrap leadership-profile-header"><div><p className="modern-kicker">{publicCompanies[entity].short} · Company leadership</p><h1>{profile.name}</h1><p className="leadership-role">{profile.title}</p>{profile.secondaryTitle && <p className="leadership-secondary-role">{profile.secondaryTitle}</p>}{profile.location && <p className="leadership-location">{profile.location}</p>}<p className="modern-lead">{profile.summary[entity]}</p><a className="modern-inline-link" href="/leadership"><span aria-hidden="true">← </span>Meet the leadership team</a></div><ProfileVisual profile={profile} portrait={options.portraits?.[profile.slug]} priority /></div></section>
+    <Section id="biography" eyebrow="Personal & professional journey" title="Biography"><div className="modern-prose leadership-biography">{profile.biography.map(paragraph => <p key={paragraph}>{paragraph}</p>)}<p className="leadership-closing"><strong>{profile.closingStatement}</strong></p></div></Section>
     <Section eyebrow={profile.department} title="Professional contribution"><div className="leadership-detail-body"><div className="modern-prose"><p>{profile.contribution[entity]}</p>{profile.slug === 'lyric-helena-emerson' && <FounderContext entity={entity} />}</div><aside className="leadership-company-note"><p className="modern-kicker">Company connection</p><h3>{publicCompanies[entity].name}</h3><p>{publicCompanies[entity].line}</p><ul>{relevantLinks[entity].map(link => <li key={link.href}><a href={link.href}>{link.label}</a></li>)}</ul></aside></div></Section>
     <Section tone="mist" eyebrow="Areas of responsibility" title="What the role brings together."><ul className="leadership-responsibilities">{profile.responsibilities.map((responsibility, index) => <li key={responsibility}><span className="leadership-responsibility-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><span>{responsibility}</span></li>)}</ul></Section>
     {profile.professionalLinks.length > 0 && <Section eyebrow="Public professional profiles" title="Explore the work in context."><ul className="leadership-public-links">{profile.professionalLinks.map(link => <li key={link.href}><a href={link.href}>{link.label} <span aria-hidden="true">↗</span></a></li>)}</ul></Section>}
