@@ -934,3 +934,23 @@ The latest supplied public copy expands all five company profiles with 35 biogra
 `LEADERSHIP_BIOGRAPHY_APPROVAL_2026-11-14.json` records the independently captured copy hashes, approved titles and locations. Acceptance checks reject altered degree status, pronouns, roles, missing biography paragraphs and omitted founder-note text. Metadata and structured descriptions include Kenny's secondary role while primary Person identities remain stable. Existing company context, photographs, staff photo holds, 227 routes, 51 redirects, scholarship and legal/catalog source files remain unchanged.
 
 This implementation starts from main `f051494ff6371e0443be32b63fd7fe2d87f8653e`. Exact-head checks, review and three-site production receipts will follow before claiming release. Preserve `[skip netlify]` on commits, PRs and merges; target only the three existing public sites. No protected portal, backend, database, CRM, SSO or account changes are part of this update. Recovery remains a reviewed fix-forward public-source change and targeted rebuild.
+
+### Verified leadership biography publication — November 14 Eastern / November 15 UTC
+
+Implementation [PR #54](https://github.com/webdev692/Empire-emerson_frontend/pull/54) merged as `ae1d7592c04e68a903a8ca1af0faa170610834bb`, with a tree identical to reviewed head `8dbdb8a83ad373c07ff34b4ea72237caeddc36e9`. All seven required jobs passed in [application/Edge run 43671166975](https://github.com/webdev692/Empire-emerson_frontend/actions/runs/43671166975) and [public run 43671167035](https://github.com/webdev692/Empire-emerson_frontend/actions/runs/43671167035). The clean-head local check passed all 15 public groups and 97 regression tests at 03:12:14.444 UTC. Exact-head hosted previews passed before merge.
+
+The three production deployments are ready and were independently verified as each project's current deployment, all built from the reviewed merge with a clean source tree:
+
+| Public project | Live leadership directory | Deployment ID | Published UTC, November 15 |
+| --- | --- | --- | --- |
+| theemerson | https://theemerson.netlify.app/leadership/ | `6af923997d429ee0538cd594` | 03:14:56.626 |
+| emersonagency | https://emersonagency.netlify.app/leadership/ | `6af923998268ddeac76d1383` | 03:14:55.897 |
+| emersonprofessionaldevelopment | https://emersonprofessionaldevelopment.netlify.app/leadership/ | `6af923995adeae609280f170` | 03:15:08.174 |
+
+Live HTTP verification at 03:16:01.133 UTC passed all 227 pages, 51 redirects and 166 deployed image copies. All five biographies on each site contain the approved paragraphs and closing statements; each directory contains the complete founder note and tagline. Metadata/schema, direct routes, sitemaps, robots, true 404s, image byte hashes and exact-commit release manifests passed. The 49 manuscripts, 10 conference records and frozen source files remain unchanged.
+
+Chrome preview review covered all 15 biography pages at 390 px and all three directories at 1440, 768 and 320 px. Paragraph counts, role text, single main/H1, readable type and absence of horizontal overflow passed. Mobile menu/Escape and keyboard skip-to-main navigation passed. Live browser checks confirmed all three directories' founder note, signature, updated Kenny/Todor titles and absence of horizontal overflow. The saved live EPDG screenshot shows the directory introduction and tagline. These are targeted responsive/accessibility checks, not full WCAG conformance or screen-reader certification.
+
+All existing approved photos remain unchanged. Shamrit, Kenny and Todor retain initials under their existing individual photo-permission holds. The protected `epdg` portal remains on deployment `6af0ddc0208d400c348cdccd` with team SSO on all deploys. No portal source, publication, backend, CRM, database, account, permission, subscription or project configuration change was made.
+
+Evidence is retained outside GitHub under `build-evidence/leadership-biographies-20261114/`: `github-release.json`, `provider-release.json`, `check-final-head/`, `hosted-preview.json`, `hosted-production.json`, `browser-preview.json`, `browser-production.json`, the live screenshot and `FINAL-RELEASE-REPORT.md`. This receipt changes documentation only; retain `[skip netlify]` and keep the deployed source at the implementation merge above. Recovery remains a reviewed fix-forward public-source change and targeted three-project rebuild.
