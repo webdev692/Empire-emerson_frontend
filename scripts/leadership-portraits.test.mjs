@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 import { createRequire } from 'node:module';
+import { validateLeadershipPhotography } from './leadership-photography-checks.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const app = resolve(root, 'Emerson_Empire');
@@ -58,7 +59,8 @@ test('a supplied departmental portrait stays with its named profile while other 
 test('page catalog resolves an approved placement for any department and only its company', () => {
   for (const profile of leadershipProfiles.slice(2)) {
     const portrait = fixturePortrait(profile);
-    const assetsLength = publicMedia.assets.length, placementsLength = publicMedia.placements.length;
+    const assetsLength = publicMedia.assets.length, originalPlacements = [...publicMedia.placements];
+    publicMedia.placements.splice(0, publicMedia.placements.length, ...originalPlacements.filter(item => item.subject !== profile.slug));
     publicMedia.assets.push(portrait);
     publicMedia.placements.push({ entity: 'EPDG', path: '/leadership', role: 'portrait', subject: profile.slug, assetId: portrait.id });
     try {
@@ -68,26 +70,45 @@ test('page catalog resolves an approved placement for any department and only it
         const detail = renderToStaticMarkup(pages.find(page => page.path === '/leadership/' + profile.slug).content);
         assert.equal(departmentCard(directory, profile).includes('src="/media/test-' + profile.slug + '.jpg"'), entity === 'EPDG');
         assert.equal(detail.includes('src="/media/test-' + profile.slug + '.jpg"'), entity === 'EPDG');
+        assert.equal(departmentCard(directory, profile).includes('leadership-monogram'), entity !== 'EPDG');
       }
     } finally {
       publicMedia.assets.splice(assetsLength);
-      publicMedia.placements.splice(placementsLength);
+      publicMedia.placements.splice(0, publicMedia.placements.length, ...originalPlacements);
     }
   }
 });
 
-test('current held staff photographs remain absent from every company directory and profile', () => {
+test('all five approved portraits render in their own directory regions and biography pages on every company', () => {
   for (const entity of ['TEE', 'TEA', 'EPDG']) {
     const pages = createPublicPages(entity, []);
     const directory = renderToStaticMarkup(pages.find(page => page.path === '/leadership').content);
-    for (const profile of leadershipProfiles.slice(2)) {
-      assert.equal(publicMedia.placements.some(item => item.entity === entity && item.role === 'portrait' && item.subject === profile.slug), false);
-      const card = departmentCard(directory, profile);
-      assert.ok(card.includes('class="leadership-monogram" aria-hidden="true"'));
-      assert.ok(!card.includes('<img'));
+    validateLeadershipPhotography(directory, { entity, path: '/leadership', media: publicMedia });
+    assert.ok(!directory.includes('leadership-monogram'));
+    for (const profile of leadershipProfiles) {
       const detail = renderToStaticMarkup(pages.find(page => page.path === '/leadership/' + profile.slug).content);
-      assert.ok(detail.includes('class="leadership-monogram" aria-hidden="true"'));
-      assert.ok(!detail.includes('class="leadership-portrait"'));
+      validateLeadershipPhotography(detail, { entity, path: '/leadership/' + profile.slug, media: publicMedia });
+      assert.ok(!detail.includes('leadership-monogram'));
+      assert.ok(detail.includes('loading="eager"'));
+    }
+  }
+});
+
+test('rendered directory and biography checks reject cross-subject staff image swaps', () => {
+  const staff = leadershipProfiles.slice(2);
+  for (const entity of ['TEE', 'TEA', 'EPDG']) {
+    const pages = createPublicPages(entity, []);
+    for (const [index, profile] of staff.entries()) {
+      const ownId = publicMedia.placements.find(item => item.entity === entity && item.subject === profile.slug).assetId;
+      const otherId = publicMedia.placements.find(item => item.entity === entity && item.subject === staff[(index + 1) % staff.length].slug).assetId;
+      const own = publicMedia.assets.find(asset => asset.id === ownId);
+      const other = publicMedia.assets.find(asset => asset.id === otherId);
+      for (const path of ['/leadership', '/leadership/' + profile.slug]) {
+        const html = renderToStaticMarkup(pages.find(page => page.path === path).content);
+        const swapped = own.files.reduce((changed, file) => changed.replaceAll(file.src, other.files[0].src), html);
+        assert.notEqual(swapped, html);
+        assert.throws(() => validateLeadershipPhotography(swapped, { entity, path, media: publicMedia }), /incorrectly identified|Responsive source/);
+      }
     }
   }
 });

@@ -1,5 +1,5 @@
 {
-  "revision": "2026-11-14-leadership-photography",
+  "revision": "2026-11-15-phase-three-leadership",
   "assets": [
     {
       "id": "tee-purple-emblem",
@@ -1268,6 +1268,159 @@
           "sha256": "d7566ba10b7a269c6f7a26de4842d40fe850b435f23955dd17fe7fde7e127281"
         }
       ]
+    },
+    {
+      "id": "shamrit-phagura-professional",
+      "title": "Shamrit Phagura",
+      "alt": "Portrait of Shamrit Phagura, Computer Science Team Lead.",
+      "caption": "",
+      "kind": "portrait",
+      "width": 480,
+      "height": 600,
+      "files": [
+        {
+          "src": "/media/shamrit-phagura-professional-240.avif",
+          "width": 240,
+          "height": 300,
+          "format": "avif",
+          "bytes": 5158,
+          "sha256": "9b10830ddceb0fbb19b7639300b29d9414ccba17ce4dba7f0fa40f0ccc7c958b"
+        },
+        {
+          "src": "/media/shamrit-phagura-professional-240.webp",
+          "width": 240,
+          "height": 300,
+          "format": "webp",
+          "bytes": 7818,
+          "sha256": "c1b1264c92456eef76461a412fa4960266d11cb05fb3e659da63c65fc023c94f"
+        },
+        {
+          "src": "/media/shamrit-phagura-professional-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 13763,
+          "sha256": "78c5bd2fa520ba178a6db1e95534960d288d8b24d237583f3b5166ea44e2c8f7"
+        },
+        {
+          "src": "/media/shamrit-phagura-professional-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 21168,
+          "sha256": "469adb8013fc99c67e9ae84ce7566428beb23c2bc7421b2e67707e24383b1a2f"
+        },
+        {
+          "src": "/media/shamrit-phagura-professional-480.jpg",
+          "width": 480,
+          "height": 600,
+          "format": "jpeg",
+          "bytes": 31339,
+          "sha256": "dbeee50e8d6eb53f66069572cc61fb49b67b4032d3404028dce7986e125ce263"
+        }
+      ]
+    },
+    {
+      "id": "godwin-iwatan-kehinde-professional",
+      "title": "Godwin-Iwatan Kehinde (Kenny)",
+      "alt": "Portrait of Godwin-Iwatan Kehinde (Kenny), Global Outreach, Human Resources & Operations Lead and Executive Assistant to the CEO.",
+      "caption": "",
+      "kind": "portrait",
+      "width": 480,
+      "height": 600,
+      "files": [
+        {
+          "src": "/media/godwin-iwatan-kehinde-professional-240.avif",
+          "width": 240,
+          "height": 300,
+          "format": "avif",
+          "bytes": 5724,
+          "sha256": "1e64c4c3dc98d71d3dd7b041876c6a33b08235d4cbaa20214d3365adc250062b"
+        },
+        {
+          "src": "/media/godwin-iwatan-kehinde-professional-240.webp",
+          "width": 240,
+          "height": 300,
+          "format": "webp",
+          "bytes": 9452,
+          "sha256": "2af546082127c46924c0a1f0976b7eed78fc6ccb6c93c68fef5883f981eb0e67"
+        },
+        {
+          "src": "/media/godwin-iwatan-kehinde-professional-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 15211,
+          "sha256": "1ea6a5fa26bc103ece50b98a75e7b13924ba72db26c4a1af007d3901bbbe8a71"
+        },
+        {
+          "src": "/media/godwin-iwatan-kehinde-professional-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 27018,
+          "sha256": "ecf7e3689e87f8772350fbcfff62f51027c4a839e705d4a8f342481773dc35c3"
+        },
+        {
+          "src": "/media/godwin-iwatan-kehinde-professional-480.jpg",
+          "width": 480,
+          "height": 600,
+          "format": "jpeg",
+          "bytes": 36923,
+          "sha256": "d16bfc3b927301df3269f09e286ce95323d936fef3a2b06f815fffbb20100c9f"
+        }
+      ]
+    },
+    {
+      "id": "todor-tomic-professional",
+      "title": "Todor Tomic",
+      "alt": "Portrait of Todor Tomic, Sales & Business Development Manager.",
+      "caption": "",
+      "kind": "portrait",
+      "width": 480,
+      "height": 600,
+      "files": [
+        {
+          "src": "/media/todor-tomic-professional-240.avif",
+          "width": 240,
+          "height": 300,
+          "format": "avif",
+          "bytes": 4255,
+          "sha256": "c2e47d310cd7f208ef5b40cc2e3f6fd23791cdee9be0522f45e19cf73f3c7c7a"
+        },
+        {
+          "src": "/media/todor-tomic-professional-240.webp",
+          "width": 240,
+          "height": 300,
+          "format": "webp",
+          "bytes": 6966,
+          "sha256": "c96bb3757bf99d7798a7023e47fcb503b0605ce6ad4b08b20916dd6deb5feba3"
+        },
+        {
+          "src": "/media/todor-tomic-professional-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 13953,
+          "sha256": "fb2750008de6234d08cca3c41433b767ef416933858366043cc4cb7fa9b12ae5"
+        },
+        {
+          "src": "/media/todor-tomic-professional-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 25034,
+          "sha256": "f96ba42ad8d7d3c23fcc5f0488c6c83bf39c7763a93b4cdd828708b95c665d82"
+        },
+        {
+          "src": "/media/todor-tomic-professional-480.jpg",
+          "width": 480,
+          "height": 600,
+          "format": "jpeg",
+          "bytes": 31696,
+          "sha256": "2158a2023bcb2b88364c00f7076358dbbb2156a0170f481b77b4abe44f0908fb"
+        }
+      ]
     }
   ],
   "placements": [
@@ -1408,6 +1561,69 @@
       "assetId": "darin-latrelle-james-option-b",
       "role": "portrait",
       "subject": "darin-latrelle-james"
+    },
+    {
+      "entity": "TEE",
+      "path": "/leadership/shamrit-phagura",
+      "assetId": "shamrit-phagura-professional",
+      "role": "portrait",
+      "subject": "shamrit-phagura"
+    },
+    {
+      "entity": "TEA",
+      "path": "/leadership/shamrit-phagura",
+      "assetId": "shamrit-phagura-professional",
+      "role": "portrait",
+      "subject": "shamrit-phagura"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/leadership/shamrit-phagura",
+      "assetId": "shamrit-phagura-professional",
+      "role": "portrait",
+      "subject": "shamrit-phagura"
+    },
+    {
+      "entity": "TEE",
+      "path": "/leadership/godwin-iwatan-kehinde",
+      "assetId": "godwin-iwatan-kehinde-professional",
+      "role": "portrait",
+      "subject": "godwin-iwatan-kehinde"
+    },
+    {
+      "entity": "TEA",
+      "path": "/leadership/godwin-iwatan-kehinde",
+      "assetId": "godwin-iwatan-kehinde-professional",
+      "role": "portrait",
+      "subject": "godwin-iwatan-kehinde"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/leadership/godwin-iwatan-kehinde",
+      "assetId": "godwin-iwatan-kehinde-professional",
+      "role": "portrait",
+      "subject": "godwin-iwatan-kehinde"
+    },
+    {
+      "entity": "TEE",
+      "path": "/leadership/todor-tomic",
+      "assetId": "todor-tomic-professional",
+      "role": "portrait",
+      "subject": "todor-tomic"
+    },
+    {
+      "entity": "TEA",
+      "path": "/leadership/todor-tomic",
+      "assetId": "todor-tomic-professional",
+      "role": "portrait",
+      "subject": "todor-tomic"
+    },
+    {
+      "entity": "EPDG",
+      "path": "/leadership/todor-tomic",
+      "assetId": "todor-tomic-professional",
+      "role": "portrait",
+      "subject": "todor-tomic"
     }
   ],
   "retainedAssets": [
