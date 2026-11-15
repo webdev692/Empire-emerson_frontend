@@ -70,9 +70,11 @@ The November 14 audit falls from 31 findings (13 high, 14 moderate, 4 low) to
 12 (0 critical/high, 10 moderate, 2 low). `npm audit --omit=dev` reports zero.
 The full audit remains open: TypeScript ESLint uses affected minimatch versions;
 Workbox uses affected glob versions; its resolver uses deepmerge with no patched
-release. These nodes are all development dependencies. Compatible updates do
-not resolve these chains; forced major overrides and the audit's suggested
-downgrades were not applied. Their impact must be resolved or explicitly
+release. These nodes are all development dependencies. The non-forced dry run
+proposed no changes for the pinned manifest; this does not rule out alternative
+remediation. Forced major overrides and suggested downgrades were not applied.
+See `DEPENDENCY_SECURITY_REVIEW.md` for the phase-three call-site and policy review.
+Their impact must be resolved or explicitly
 reviewed before production release. Passing application tests is not a clean
 full dependency-security result.
 

@@ -29,6 +29,47 @@ review origin against the synthetic backend. Build and preview are prohibited
 for that mode. It accepts only `.invalid` identities. No real credentials or
 HR records belong in this runtime.
 
+## Native HTTPS artifact review
+
+`npm run preview:portal-https` is an isolated native-test harness, not a Vite
+server, hosting replacement or deployment command. Build the existing
+`portal-release` profile with the reserved test origin
+`https://epdg-review.localhost`, the documented fictional Railway upstream and
+an explicit test review reference. Keep a separate actual-target artifact built
+from the same reviewed commit; the two configurations are not byte-identical.
+Neither artifact grants release authorization.
+
+The harness requires `EPDG_PREVIEW_ACK`, `EPDG_PREVIEW_ARTIFACT`,
+`EPDG_PREVIEW_MANIFEST`, `EPDG_PREVIEW_KEY` and `EPDG_PREVIEW_CERTIFICATE`.
+The acknowledgement is `local-synthetic-only`. The external manifest records
+`sourceCommit`, profile `portal-release` and every artifact file's relative
+`path`/`sha256`. The certificate and key must be outside the artifact. All bytes
+are verified and loaded into memory before serving, so later filesystem changes
+cannot silently change the tested artifact.
+
+The listener is fixed to loopback port 443 and the reserved host; `/api` proxies
+only to the separately prepared disposable production-profile API on loopback
+58001. It strips incoming forwarded headers, supplies fixed local proxy metadata,
+preserves the API's cookie headers, refuses redirects and bounds requests.
+Static responses use the artifact's reviewed security headers. Private paths,
+traversal, foreign hosts/origins and static mutations are denied. The harness
+does not execute the artifact's proposed provider routing rules.
+
+Generate a short-lived local test certificate in memory and export only to a
+private task directory; do not import it into an OS/browser trust store. The
+native test client supplies that fixture certificate explicitly as `ca`, keeps
+`rejectUnauthorized: true`, checks the reserved hostname and resolves only that
+test hostname to loopback. Missing trust and a different hostname must fail.
+Never bypass a browser TLS warning or override the real portal hostname.
+
+Use only synthetic identities/database/mail fixtures. Stop the recorded server
+and remove its private key when the review ends; retain the certificate's
+non-secret fingerprint, artifact hashes and sanitized results. Native HTTPS
+checks prove the exercised cookie/origin/CSRF behavior, not browser acceptance
+of a public certificate or the actual Netlify/Railway ingress. Browser desktop
+and responsive checks use the separate fixed HTTP review mode. Actual provider
+TLS, forwarding/rate-limit behavior and public entry remain live release gates.
+
 ## Authentication and routes
 
 The existing sign-in, invitation acceptance, recovery, reset and change-password
