@@ -58,7 +58,13 @@ test('rendered company catalogs isolate ownership, expose estimates and preserve
    const html=renderToStaticMarkup(createElement(Services,{entity}));
    assert.equal((html.match(/class="cp-card sp-service"/g)||[]).length,{TEE:5,TEA:14,EPDG:17}[entity]);
    for(const service of catalog.services) assert.equal(html.includes(`id="${service.id}"`),service.entity===entity);
-   assert.match(html,/Planning estimates/);assert.match(html,/No Drive sign-in needed/);assert.match(html,/Registration|registration/);
+   assert.match(html,/Planning estimates/);assert.match(html,/Registration|registration/);
+   const guide=catalog.guides.find(row=>row.entity===entity);
+   assert.ok(guide);assert.match(guide.href,/^\/guides\/[A-Za-z0-9_]+\.pdf$/);
+   const guideLinks=[...html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)].filter(match=>match[1]===guide.href);
+   assert.equal(guideLinks.length,2,'the public guide retains separate read and download links');
+   assert.ok(guideLinks.some(match=>match[0].includes(`download="${guide.filename}"`)),'the guide download stays on the approved public PDF');
+   assert.doesNotMatch(html,/https?:\/\/(?:drive\.google\.com|docs\.google\.com\/document|accounts\.google\.com)/i);
    const id=catalog.services.find(row=>row.entity===entity).id;
    const url=serviceInquiryHref(entity,id);assert.ok(isServiceInquiryHref(url,entity));assert.ok(!url.includes('+'));assert.ok(url.includes('%20'));
    assert.ok(isServiceInquiryHref(serviceInquiryHref(entity,id,true),entity));

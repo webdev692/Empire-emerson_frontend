@@ -44,6 +44,9 @@ const paths=[...common,...catalog.resources.filter(row=>entity==='TEE'||row.enti
 writeFileSync(resolve(out,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+paths.map(path=>`  <url><loc>${site.origin}${path}</loc></url>`).join('\n')+'\n</urlset>\n');
 writeFileSync(resolve(out,'_headers'),'/*\n'+Object.entries(liveHeaders).map(([key,value])=>`  ${key}: ${value}`).join('\n')+'\n');
 writeFileSync(resolve(out,'_redirects'),'/* /index.html 200\n');
+// The new revision renders actual page bodies before the final artifact manifest is sealed.
+const rendered = spawnSync(process.execPath, [resolve(root, 'scripts/prerender-public.mjs'), appRoot], { stdio: 'inherit', env: process.env });
+assert.equal(rendered.status, 0, 'Public route pre-rendering failed');
 const git=args=>spawnSync('git',['-c',`safe.directory=${root.replaceAll('\\','/').replace(/\/$/,'')}`,'-C',root,...args],{encoding:'utf8'});
 const commit=git(['rev-parse','HEAD']); const status=git(['status','--porcelain']);
 assert.equal(commit.status,0); assert.equal(status.status,0);
@@ -53,6 +56,7 @@ const manifest={schema_version:'1.0.0',entity,app,site_id:site.site_id,origin:si
   three_programs:{approval_record:'docs/THREE_PROGRAMS_PUBLICATION_APPROVAL.json',data_sha256_lf:programApproval.data_sha256_lf,primary_route:primaryProgram.route,program_ids:programApproval.programs.map(program=>program.id),email_drafts_only:process.env.VITE_PUBLIC_INTAKE_RELEASE !== 'true'},
   research:research ? {approval_record:'docs/TEE_RESEARCH_PUBLICATION_APPROVAL.json',reviewed_commit:research.reviewed_commit,data_sha256_lf:research.public_data_sha256_lf,work_ids:research.work_ids,conference_summaries_only:true} : null,
   platform_entry_pages:{public_configuration:'shared/platform-entry-links.json',paths:entryPages.links.page_paths[entity],login_destinations:entryPages.links.login_destinations},
+  website_modernization:{revision:'2026-11-14',authorization_record:'docs/PUBLIC_WEBSITE_MODERNIZATION_2026-11-14.json',static_routes:true,portal_changed:false,crm_changed:false,media_studio_changed:false},
   files:files(out).map(path=>({path:relative(out,path).replaceAll('\\','/'),bytes:statSync(path).size,sha256:createHash('sha256').update(readFileSync(path)).digest('hex')}))};
 writeFileSync(resolve(out,'release-build.json'),JSON.stringify(manifest,null,2)+'\n');
 console.log(`${entity}: approved public artifacts prepared; current website intake state recorded.`);

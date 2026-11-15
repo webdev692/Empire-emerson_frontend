@@ -21,20 +21,14 @@ test('platform page approval uses the authorized routes, destinations, and close
   assert.equal(approved.links.login_destinations.epdg_portal, 'https://epdg.netlify.app/login');
 });
 
-test('the public route table and navigation expose each approved information page', () => {
-  const tee = readFileSync(resolve(root, 'Emerson_Empire/src/App.tsx'), 'utf8');
-  const tea = readFileSync(resolve(root, 'Agency_LandingPage/src/App.tsx'), 'utf8');
-  const epdg = readFileSync(resolve(root, 'EPDG-Landing-Page/src/App.tsx'), 'utf8');
-  assert.match(tee, /path="\/creative-studio"/);
-  assert.match(tee, /path="\/platforms"/);
-  assert.match(tea, /path="\/staff-crm"/);
-  assert.match(epdg, /path="\/intern-portal"/);
-  assert.match(readFileSync(resolve(root, 'Emerson_Empire/src/Components/Umbrella/Navbar.tsx'), 'utf8'), /label: 'Creative Studio'/);
-  assert.match(readFileSync(resolve(root, 'Agency_LandingPage/src/Components/Umbrella/Navbar.tsx'), 'utf8'), /label: 'Staff CRM Login'/);
-  const epdgNavigation = readFileSync(resolve(root, 'EPDG-Landing-Page/src/components/EPDG/Navbar.tsx'), 'utf8');
-  assert.match(epdgNavigation, /label: "Intern Portal"/);
-  assert.doesNotMatch(epdgNavigation, /Create Account|PLATFORM_URL/);
-  assert.match(readFileSync(resolve(root, 'EPDG-Landing-Page/src/components/EPDG/Internship.tsx'), 'utf8'), /Intern Portal information/);
+test('public entrypoints use the shared route catalog and expose the approved platform links', () => {
+  for (const app of ['Emerson_Empire', 'Agency_LandingPage', 'EPDG-Landing-Page']) {
+    assert.match(readFileSync(resolve(root, app, 'src/App.tsx'), 'utf8'), /PublicWebsite.*pages={publicPages}/);
+    assert.match(readFileSync(resolve(root, app, 'src/PublicPages.tsx'), 'utf8'), /createPublicPages/);
+  }
+  const shell = readFileSync(resolve(root, 'shared/PublicDesignSystem.tsx'), 'utf8');
+  for (const path of ['/creative-studio', '/platforms', '/staff-crm', '/intern-portal']) assert.ok(shell.includes(path));
+  // The post-build verifier additionally resolves every advertised link against the rendered route inventory.
 });
 
 test('rendered portal pages state their verified access boundaries and link to the exact applications', async () => {
@@ -65,13 +59,15 @@ test('rendered portal pages state their verified access boundaries and link to t
     const gateway = renderToStaticMarkup(createElement(PlatformHomeGateway, { entity: 'TEE' }));
     assert.ok(creative.includes('href="https://start-project-9563ae.netlify.app/"'));
     assert.match(creative, /Personal accounts available · company workspace controlled/);
-    assert.match(creative, /private save and reopen flows for supported Image, Video, Audio, and Social projects/);
+    assert.match(creative, /Supported Image, Video, Audio, and Social projects can be saved privately and reopened in a personal account/);
     assert.ok(crm.includes('href="https://emerson-crm.netlify.app/"'));
     assert.match(crm, /Invitation-only · membership and record permissions required/);
     assert.match(crm, /The CRM owns applicant, resume, and onboarding records/);
     assert.ok(portal.includes('href="https://epdg.netlify.app/login"'));
-    assert.match(portal, /Hosted synthetic practice · real learner access not activated/);
+    assert.match(portal, /Restricted review access · learner activation unavailable/);
     assert.match(portal, /No public portal registration is offered/);
+    assert.match(portal, /Real learner accounts are not activated/);
+    assert.match(portal, /Protected sign-in and portal access checks remain in place/);
     assert.match(portal, /humanresources@theemersonempire.info/);
     assert.match(directory, /Emerson CRM/);
     assert.match(directory, /The Emerson Agency/);
@@ -84,6 +80,7 @@ test('rendered portal pages state their verified access boundaries and link to t
       assert.match(html, /aria-label="Breadcrumb"/);
       assert.match(html, /aria-label="Frequently asked questions"|<section[^>]*aria-labelledby="pe-faq-heading"/);
       assert.doesNotMatch(html, /\?utm_source=|token=|access_token=|Create Account/);
+      assert.doesNotMatch(html, /synthetic practice|Netlify SSO|release-gated|No Drive sign-in/i);
     }
   } finally { await server.close(); }
 });

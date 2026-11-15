@@ -1,0 +1,5 @@
+import { CardGrid, Card, InquiryPanel } from '../../shared/PublicDesignSystem';
+const epdg='https://emersonprofessionaldevelopment.netlify.app';
+const agency='https://emersonagency.netlify.app';
+export function Ecosystem() { return <CardGrid><Card title="The Emerson Empire" href="/about" label="Our purpose"><p>Community resources, organizational leadership, and clear pathways to education and opportunity.</p></Card><Card title="The Emerson Agency LLC" href={agency} label="Explore the Agency"><p>Financial education, tax-preparation inquiries, financial coaching, and practical small-business support.</p></Card><Card title="Emerson Professional Development Group" href={epdg} label="Explore EPDG"><p>Research-informed learning, career readiness, structured internships, and portfolio development.</p></Card></CardGrid>; }
+export function ContactPanel() { return <InquiryPanel><p>Tell us what you are looking for, and we will help identify the appropriate company or public resource.</p><a className="modern-button" href="/contact">Find the right contact <span aria-hidden="true">→</span></a></InquiryPanel>; }

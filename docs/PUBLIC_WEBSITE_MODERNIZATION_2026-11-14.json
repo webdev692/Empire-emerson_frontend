@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "revision": "2026-11-14-public-modernization",
+  "authorized_on": "2026-11-14",
+  "authority": "Direct founder task: Three-Website Modernization & Production Release",
+  "baseline_commit": "9951c490a59c98412e855d5f125d649d8f4c41e7",
+  "scope": ["Emerson_Empire", "Agency_LandingPage", "EPDG-Landing-Page"],
+  "authorization": "Founder authorized coordinated public design, founder narratives, already-public scholarship, technical SEO, testing, commit, pull request, merge and release to the three existing public Netlify projects.",
+  "publication_approved": true,
+  "portal_activation_authorized": false,
+  "portal_changes_authorized": false,
+  "crm_changes_authorized": false,
+  "media_studio_changes_authorized": false,
+  "paid_resources_authorized": false,
+  "content_policy": {
+    "frozen_catalog_exports": "Retained unchanged and checked by the existing exact-version validators.",
+    "legal_wording": "Existing October 28 approved legal source retained unchanged.",
+    "new_public_content": "Founder-approved brief, currently public author records, factual verification from the November 8 CV, official provider pages, and preserved public material.",
+    "private_cv_publication": false,
+    "manuscript_status": "Public manuscript records are not automatically peer reviewed or published journal articles.",
+    "conference_status": "Two delivered; one accepted but not delivered; six accepted forthcoming; one CV-reported acceptance with date pending and organizer timeline discrepancy.",
+    "credentials": "Unverified active insurance licensure and precise IRS credential designation omitted; professional background described without implying authorization.",
+    "historical_timeline": "Unsupported 2018, 2020 and 2022 company claims and outcome metrics omitted.",
+    "attribution": "Existing source/contributor history and intern attribution retained. No private roster published."
+  },
+  "release_policy": {
+    "preserve_previous_receipts": true,
+    "required_checks": "Pinned public suite, public artifact verification, fresh GitHub workflow jobs and browser review.",
+    "netlify_isolation": "Use skip-netlify markers and target only the three public project IDs; never change the separate portal lock or deploy the portal.",
+    "failure_recovery": "Keep last working publication when a candidate fails; review and deploy a fix-forward commit for a published defect."
+  }
+}

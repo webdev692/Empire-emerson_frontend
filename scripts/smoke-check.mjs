@@ -33,7 +33,7 @@ assert.equal(
 );
 assert.match(
   sourceIndex,
-  new RegExp(`<meta\\s+name=["']emerson-release["']\\s+content=["']${app === 'epdg' ? '2026-07-25-digital-infrastructure-sprint-r5' : '2026-10-28-public-website-repairs'}["']`, 'i'),
+  new RegExp(`<meta\\s+name=["']emerson-release["']\\s+content=["']${app === 'epdg' ? '2026-07-25-digital-infrastructure-sprint-r5' : '2026-11-14-public-modernization'}["']`, 'i'),
   `${app} is missing the exact-head release marker`,
 );
 
@@ -83,7 +83,7 @@ switch (app) {
     break;
   }
   case "EPDG-Landing-Page": {
-    assert.match(read("src/App.tsx"), /<Route\s+path=["']\/classes["']/, "The classes route is missing");
+    assert.ok(read("dist/classes/index.html").includes("<h1"), "The classes route must deliver rendered content");
     assert.ok(read("dist/sitemap.xml").includes("https://emersonprofessionaldevelopment.netlify.app/intern-portal"), "The Intern Portal information route is absent from the sitemap");
     assert.doesNotMatch(read("src/components/EPDG/Navbar.tsx"), /Create Account|PLATFORM_URL/, "The public EPDG navigation still implies open portal registration");
     const builtIndex = read("dist/index.html");
