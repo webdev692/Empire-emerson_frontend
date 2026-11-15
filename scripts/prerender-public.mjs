@@ -41,7 +41,7 @@ function structured(route) {
   if (route.path === '/leadership' || leader) {
     const people = leader ? [leader] : leadershipData;
     for (const person of people) {
-      const identity = { '@type': 'Person', '@id': person.personId, name: person.name, jobTitle: person.title, url: person.canonicalUrl, description: person.summary[entity], affiliation: { '@id': `${site.origin}/#organization` }, ...(person.professionalLinks.length ? { sameAs: person.professionalLinks.map(link => link.href) } : {}) };
+      const identity = { '@type': 'Person', '@id': person.personId, name: person.name, jobTitle: person.title, url: person.canonicalUrl, description: `${person.secondaryTitle ? person.secondaryTitle + '. ' : ''}${person.summary[entity]}`, affiliation: { '@id': `${site.origin}/#organization` }, ...(person.professionalLinks.length ? { sameAs: person.professionalLinks.map(link => link.href) } : {}) };
       const existing = graph.find(node => node['@id'] === person.personId);
       if (existing) Object.assign(existing, identity); else graph.push(identity);
     }

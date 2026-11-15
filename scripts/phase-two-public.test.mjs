@@ -5,7 +5,7 @@ import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync } from 'nod
 import { tmpdir } from 'node:os';
 import { resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { leadershipProfiles } from '../shared/LeadershipData.ts';
+import { leadershipProfiles, leadershipDirectoryTagline, leadershipFounderNote } from '../shared/LeadershipData.ts';
 import { approvedLeadership, leadershipPaths, validateLeadershipProfiles, verifyPreservedSources, validateRouteExpansion, validateImageMarkup, validateLeadershipDocument } from './verify-phase-two-public.mjs';
 import { validatePhotographyAssignments, validateLeadershipPhotography, soloPortrait, jointPortrait } from './leadership-photography-checks.mjs';
 
@@ -19,14 +19,15 @@ const monogram = person => `<div class="leadership-monogram" aria-hidden="true">
 function documentFixture({ directory = false, person = leadershipProfiles[1] } = {}) {
   const people = directory ? leadershipProfiles : [person];
   const path = directory ? '/leadership' : `/leadership/${person.slug}`;
-  const graph = people.map(profile => ({ '@type': 'Person', '@id': profile.personId, name: profile.name, jobTitle: profile.title, url: profile.canonicalUrl, affiliation: { '@id': site.origin + '/#organization' }, ...(profile.professionalLinks.length ? { sameAs: profile.professionalLinks.map(link => link.href) } : {}) }));
+  const graph = people.map(profile => ({ '@type': 'Person', '@id': profile.personId, name: profile.name, jobTitle: profile.title, url: profile.canonicalUrl, description: `${profile.secondaryTitle ? profile.secondaryTitle + '. ' : ''}${profile.summary.TEA}`, affiliation: { '@id': site.origin + '/#organization' }, ...(profile.professionalLinks.length ? { sameAs: profile.professionalLinks.map(link => link.href) } : {}) }));
   if (directory) graph.push(
     { '@type': 'CollectionPage', '@id': site.origin + path + '#webpage', mainEntity: { '@id': site.origin + path + '#leadership' } },
     { '@type': 'ItemList', '@id': site.origin + path + '#leadership', numberOfItems: 5, itemListElement: people.map((profile, index) => ({ '@type': 'ListItem', position: index + 1, url: site.origin + '/leadership/' + profile.slug, item: { '@id': profile.personId } })) },
   );
   else graph.push({ '@type': 'ProfilePage', '@id': site.origin + path + '#webpage', url: site.origin + path, mainEntity: { '@id': person.personId } });
   const copy = directory ? `<h1>Meet our leadership.</h1>${people.map(profile => `<article>${monogram(profile)}<h2>${escape(profile.name)}</h2><p>${escape(profile.title)}</p><a href="/leadership/${profile.slug}">Explore ${escape(profile.name)}</a></article>`).join('')}` : `<h1>${escape(person.name)}</h1><p>${escape(person.title)}</p>${monogram(person)}<ul>${person.responsibilities.map(value => `<li>${escape(value)}</li>`).join('')}</ul><a href="/leadership">Meet the leadership team</a>`;
-  return { html: `<html><head><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script></head><body><nav aria-label="Main navigation"><a href="/leadership">Leadership</a></nav><main><div class="wrapper"><div>${copy}</div></div></main></body></html>`, context: { entity: 'TEA', site, route: { path }, profiles: leadershipProfiles }, graph };
+  const suppliedCopy = directory ? [leadershipDirectoryTagline, ...leadershipFounderNote.paragraphs, leadershipFounderNote.closingStatement, ...people.map(profile => profile.secondaryTitle).filter(Boolean)] : [...person.biography, person.closingStatement, person.location, person.secondaryTitle].filter(Boolean);
+  return { html: `<html><head><script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script></head><body><nav aria-label="Main navigation"><a href="/leadership">Leadership</a></nav><main><div class="wrapper"><div>${copy}${suppliedCopy.map(text => `<p>${escape(text)}</p>`).join('')}</div></div></main></body></html>`, context: { entity: 'TEA', site, route: { path }, profiles: leadershipProfiles }, graph };
 }
 
 test('all five founder-approved company roles and responsibilities are complete', () => {
@@ -47,6 +48,27 @@ test('leadership records reject private fields, unsupplied links and invented ac
     const changed = clone(leadershipProfiles); mutate(changed);
     assert.throws(() => validateLeadershipProfiles(changed));
   }
+});
+
+test('approved biography checks reject changed pronouns, degree status and company roles', () => {
+  for (const mutate of [
+    people => { people[1].biography[5] = people[1].biography[5].replace('pursuing an MBA', 'earned an MBA'); },
+    people => { people[0].biography[1] = people[0].biography[1].replace('in 2027', 'in 2026'); },
+    people => { people[2].biography[2] = people[2].biography[2].replace('herself', 'himself'); },
+    people => { people[3].biography[1] = people[3].biography[1].replace('herself', 'himself'); },
+    people => { people[3].secondaryTitle = 'Chief Financial Officer'; },
+    people => { people[4].title = 'Sales Manager'; },
+  ]) { const changed = clone(leadershipProfiles); mutate(changed); assert.throws(() => validateLeadershipProfiles(changed)); }
+});
+
+test('rendered leadership requires complete supplied biographies, closing statements and founder note', () => {
+  const profile = documentFixture({ person: leadershipProfiles[2] });
+  for (const text of [leadershipProfiles[2].biography[0], leadershipProfiles[2].closingStatement, leadershipProfiles[2].location]) {
+    assert.throws(() => validateLeadershipDocument(profile.html.replace(escape(text), ''), profile.context));
+  }
+  const directory = documentFixture({ directory: true });
+  assert.throws(() => validateLeadershipDocument(directory.html.replace(escape(leadershipFounderNote.paragraphs[0]), ''), directory.context), /founder note/);
+  assert.throws(() => validateLeadershipDocument(directory.html.replace(escape(leadershipDirectoryTagline), ''), directory.context), /tagline/);
 });
 
 test('a changed scholarly or legal source fails even when its record count stays the same', t => {

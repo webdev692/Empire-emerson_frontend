@@ -4,25 +4,27 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { leadershipProfiles } from '../shared/LeadershipData.ts';
+import { leadershipProfiles, leadershipDirectoryTagline, leadershipFounderNote } from '../shared/LeadershipData.ts';
 import { attributes, visibleText, verifyRedirects } from './verify-modern-public.mjs';
 import { assertPublicPrivacy } from './public-source-boundary.mjs';
 
 const repository = fileURLToPath(new URL('..', import.meta.url));
 const readJson = path => JSON.parse(readFileSync(path, 'utf8'));
+const biographyApproval = readJson(resolve(repository, 'docs/LEADERSHIP_BIOGRAPHY_APPROVAL_2026-11-14.json'));
+const copyHash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const typesInclude = (node, type) => node['@type'] === type || (Array.isArray(node['@type']) && node['@type'].includes(type));
 const tags = (html, tag) => [...html.matchAll(new RegExp(`<${tag}\\b([^>]*)>`, 'gi'))].map(match => attributes(match[1]));
 const elements = (html, tag) => [...html.matchAll(new RegExp(`<${tag}\\b([^>]*)>([\\s\\S]*?)<\\/${tag}>`, 'gi'))].map(match => ({ attributes: attributes(match[1]), html: match[2] }));
 const sorted = values => [...values].sort();
 const publicOrigin = 'https://theemerson.netlify.app';
 
-// Independent acceptance data from the founder's phase-two brief, not extracted from implementation.
+// Independent acceptance data from the phase-two brief and latest founder-supplied biography update.
 export const approvedLeadership = [
   { slug: 'lyric-helena-emerson', legacy: 'lyric', name: 'Lyric Helena Emerson', title: 'Founder & Chief Executive Officer', initials: 'LHE', responsibilities: ['Organizational strategy and executive leadership', 'Community-centered leadership and company direction', 'Independent scholarship and education', 'Program development', 'Public-facing partnerships and institutional communication'] },
   { slug: 'darin-latrelle-james', legacy: 'darin', name: 'Darin Latrelle James', title: 'Managing Partner', initials: 'DLJ', responsibilities: ['Coordination across the Emerson enterprise', 'Strategic implementation', 'Operational planning', 'Management support', 'Cross-functional organizational development', 'Supporting effective collaboration and follow-through'] },
   { slug: 'shamrit-phagura', legacy: 'shamrit', name: 'Shamrit Phagura', title: 'Computer Science Team Lead', initials: 'SP', responsibilities: ['Technical development coordination', 'Digital infrastructure', 'Computer science team leadership', 'Software implementation', 'Technical quality review', 'Coordinating approved development priorities', 'Supporting maintainable digital systems'] },
   { slug: 'godwin-iwatan-kehinde', legacy: 'kenny', name: 'Godwin-Iwatan Kehinde (Kenny)', title: 'Global Outreach, Human Resources & Operations Lead', initials: 'GK', responsibilities: ['Global outreach coordination', 'Human resources administration within authorized scope', 'Organizational operations', 'Program coordination', 'Administrative systems', 'International and institutional communications', 'Operational follow-through and reporting'] },
-  { slug: 'todor-tomic', legacy: 'todor', name: 'Todor Tomic', title: 'Sales Manager', initials: 'TT', responsibilities: ['Sales management', 'Ethical outreach', 'Business development coordination', 'Customer inquiry and follow-up processes', 'Sales workflow organization', 'Client communication', 'Needs discovery and responsible lead management'] },
+  { slug: 'todor-tomic', legacy: 'todor', name: 'Todor Tomic', title: 'Sales & Business Development Manager', initials: 'TT', responsibilities: ['Sales management', 'Ethical outreach', 'Business development coordination', 'Customer inquiry and follow-up processes', 'Sales workflow organization', 'Client communication', 'Needs discovery and responsible lead management'] },
 ];
 const expectedPersonId = profile => profile.slug === 'lyric-helena-emerson' ? `${publicOrigin}/founder#lyric-helena-emerson` : `${publicOrigin}/leadership/${profile.slug}#person`;
 const professionalLinks = ['https://philpeople.org/profiles/lyric-helena-emerson', 'https://orcid.org/0009-0001-5355-6489'];
@@ -31,9 +33,13 @@ export const leadershipPaths = ['/leadership', ...approvedLeadership.map(person 
 export function validateLeadershipProfiles(profiles) {
   assert.equal(profiles.length, 5, 'Exactly five approved leaders are required');
   assert.deepEqual(sorted(profiles.map(person => person.slug)), sorted(approvedLeadership.map(person => person.slug)), 'Approved leadership identities changed');
-  const keys = ['slug', 'name', 'title', 'initials', 'department', 'canonicalUrl', 'personId', 'location', 'summary', 'contribution', 'responsibilities', 'professionalLinks'];
+  const keys = ['slug', 'name', 'title', 'secondaryTitle', 'initials', 'department', 'canonicalUrl', 'personId', 'location', 'biography', 'closingStatement', 'summary', 'contribution', 'responsibilities', 'professionalLinks'];
+  assert.equal(leadershipDirectoryTagline, biographyApproval.directoryTagline);
+  assert.equal(leadershipFounderNote.paragraphs.length, biographyApproval.founderNote.paragraphs);
+  assert.equal(copyHash(leadershipFounderNote), biographyApproval.founderNote.copySha256, 'Founder note differs from supplied copy');
   for (const expected of approvedLeadership) {
     const person = profiles.find(item => item.slug === expected.slug);
+    const approvedCopy = biographyApproval.profiles.find(item => item.slug === expected.slug);
     assert.ok(Object.keys(person).every(key => keys.includes(key)), `${expected.slug}: unapproved/private profile field`);
     for (const field of ['name', 'title', 'initials']) assert.equal(person[field], expected[field], `${expected.slug}: approved ${field} changed`);
     assert.deepEqual(sorted(person.responsibilities), sorted(expected.responsibilities), `${expected.slug}: approved company responsibilities changed`);
@@ -47,13 +53,16 @@ export function validateLeadershipProfiles(profiles) {
     assert.equal(new Set(Object.values(person.summary)).size, 3, `${person.slug}: company summaries must be distinct`);
     assert.deepEqual(sorted(person.professionalLinks.map(link => link.href)), person.slug === 'lyric-helena-emerson' ? sorted(professionalLinks) : [], `${person.slug}: unapproved professional link`);
     for (const link of person.professionalLinks) assert.ok(link.label?.trim(), `${person.slug}: professional link needs an accessible label`);
-    if (person.slug === 'lyric-helena-emerson') assert.equal(person.location, 'Columbia, South Carolina, USA');
-    else assert.equal(person.location, undefined, `${person.slug}: personal location was not approved`);
+    assert.equal(person.location ?? null, approvedCopy.location, `${person.slug}: location differs from supplied copy`);
+    assert.equal(person.secondaryTitle ?? null, approvedCopy.secondaryTitle, `${person.slug}: secondary title differs from supplied copy`);
+    assert.equal(person.biography?.length, approvedCopy.paragraphs, `${person.slug}: approved biography paragraph missing`);
+    assert.equal(copyHash({ biography: person.biography, closingStatement: person.closingStatement }), approvedCopy.copySha256, `${person.slug}: biography differs from supplied copy`);
     assertPublicPrivacy(person);
-    const copy = [...Object.values(person.summary), ...Object.values(person.contribution), ...person.responsibilities].join(' ');
+    const companyCopy = [...Object.values(person.summary), ...Object.values(person.contribution), ...person.responsibilities].join(' ');
+    const copy = [companyCopy, ...person.biography, person.closingStatement, person.secondaryTitle, person.location].filter(Boolean).join(' ');
     assert.doesNotMatch(copy, /Team (?:Phoenix|Eclipse)|\bGIP (?:team|lead|manager)|\b(?:IRS.certified|licensed in all states)|\b(?:has|holds|granted) unrestricted (?:production|database|system)|\b\d[\d,]* (?:clients|contracts)|\$\s*\d/i, `${person.slug}: unsupported internship title, authority, credential or commercial outcome`);
     assert.doesNotMatch(copy, /[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|\b\d{3}[-.]\d{2}[-.]\d{4}\b/i, `${person.slug}: private contact or identifier`);
-    if (person.slug !== 'lyric-helena-emerson') assert.doesNotMatch(copy, /\b(?:graduated|degree|university|certified|award-winning|PhD|MBA)\b/i, `${person.slug}: unapproved personal credential`);
+    if (person.slug !== 'lyric-helena-emerson') assert.doesNotMatch(companyCopy, /\b(?:graduated|degree|university|certified|award-winning|PhD|MBA)\b/i, `${person.slug}: unapproved personal credential outside supplied biography`);
   }
   return { leaders: profiles.length, professionalLinks: 2 };
 }
@@ -119,9 +128,11 @@ export function validateLeadershipDocument(html, { entity, site, route, profiles
   assert.ok(people.length, `${label}: unknown leadership page`);
   for (const person of people) {
     assert.ok(text.includes(person.name) && text.includes(person.title), `${label}: complete approved public name and company title required`);
+    if (person.secondaryTitle) assert.ok(text.includes(person.secondaryTitle), `${label}: secondary company title missing`);
     const node = graph.find(item => item['@id'] === person.personId);
     assert.ok(node && typesInclude(node, 'Person'), `${label}: leader Person node missing`);
     for (const [field, expected] of [['name', person.name], ['jobTitle', person.title], ['url', person.canonicalUrl]]) assert.equal(node[field], expected, `${label}: Person ${field} differs from approved identity`);
+    if (person.secondaryTitle) assert.ok(node.description?.includes(person.secondaryTitle), `${label}: structured secondary company title missing`);
     assert.equal(node.affiliation?.['@id'], `${site.origin}/#organization`, `${label}: affiliation must identify this company`);
     assert.deepEqual(sorted(node.sameAs || []), sorted(person.professionalLinks.map(link => link.href)), `${label}: unapproved structured professional profile`);
   }
@@ -134,6 +145,8 @@ export function validateLeadershipDocument(html, { entity, site, route, profiles
   assert.equal(monograms.length + portraits.length, visualCount, `${label}: each leader needs one initials fallback or approved portrait`);
   for (const monogram of monograms) assert.equal(monogram['aria-hidden'], 'true', `${label}: decorative initials should not duplicate accessible names`);
   if (route.path === '/leadership') {
+    assert.ok(text.includes(leadershipDirectoryTagline), `${label}: supplied directory tagline missing`);
+    for (const paragraph of [...leadershipFounderNote.paragraphs, leadershipFounderNote.closingStatement]) assert.ok(text.includes(paragraph), `${label}: approved founder note missing`);
     for (const person of profiles) assert.ok(links.includes(`/leadership/${person.slug}`), `${label}: leader detail link missing`);
     const list = graph.find(node => typesInclude(node, 'ItemList'));
     assert.equal(list?.numberOfItems, 5, `${label}: directory structured count`);
@@ -146,6 +159,8 @@ export function validateLeadershipDocument(html, { entity, site, route, profiles
   } else {
     const person = people[0];
     assert.equal(visibleText(elements(main, 'h1')[0]?.html || ''), person.name, `${label}: individual profile heading`);
+    for (const paragraph of [...person.biography, person.closingStatement]) assert.ok(text.includes(paragraph), `${label}: approved biography text missing`);
+    if (person.location) assert.ok(text.includes(person.location), `${label}: supplied location missing`);
     for (const responsibility of person.responsibilities) assert.ok(text.includes(responsibility), `${label}: missing approved responsibility ${responsibility}`);
     const profilePage = graph.find(node => typesInclude(node, 'ProfilePage'));
     assert.equal(profilePage?.mainEntity?.['@id'], person.personId, `${label}: ProfilePage must identify the actual leader`);
