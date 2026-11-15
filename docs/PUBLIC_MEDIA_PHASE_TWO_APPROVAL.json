@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "revision": "2026-11-14-leadership-photography",
+  "revision": "2026-11-15-phase-three-leadership",
   "permission": "APPROVED_BY_FOUNDER",
-  "scope": "The 19 previously approved assets plus the founder-selected Darin Option B derivative across the three public Emerson websites. The approved joint asset is retained without a rendered placement.",
+  "scope": "The 20 previously approved and retained assets plus three founder-approved staff professional portraits across the three public Emerson websites.",
   "approvedStatement": "Yes, I have the rights; publish these 16",
-  "portraitPolicy": "Founder portraits and Darin’s approved solo portrait render without visible captions. Full names identify the profiles. The joint portrait and its existing files remain approved and retained for later editorial use, with no current placement. Other staff retain initials until individual publication permission is verified.",
+  "portraitPolicy": "All five leaders have approved individual portraits, without visible captions and identified by full names. The joint portrait remains approved and retained for later editorial use without a current placement.",
   "sourceRecords": "Restricted source IDs, provenance, hashes, permission history and review details are retained outside the public repository.",
-  "manifestSha256": "adc78b3dda244381cae2bdbe69225fcf8202a6ad15b0a2538b2e7dd62799139a",
+  "manifestSha256": "14ef8e7c2b91759dd2390a721095efb12a4909cff6587f9a9530310e846fa4f4",
   "assets": [
     "tee-purple-emblem",
     "tee-brand-banner",
@@ -27,8 +27,12 @@
     "lyric-helena-emerson-executive",
     "lyric-helena-emerson-plum",
     "lyric-helena-emerson-darin-latrelle-james",
-    "darin-latrelle-james-option-b"
+    "darin-latrelle-james-option-b",
+    "shamrit-phagura-professional",
+    "godwin-iwatan-kehinde-professional",
+    "todor-tomic-professional"
   ],
   "portraitStatement": "the 3 portrait candidates can be posted no caption please and leadership profiles use full names",
-  "photographyStatement": "Use Darin’s individual Option B portrait, crop the bottom appropriately, and replace the joint image on his company leadership profiles."
+  "photographyStatement": "Use Darin’s individual Option B portrait, crop the bottom appropriately, and replace the joint image on his company leadership profiles.",
+  "staffPortraitStatement": "I confirm that Shamrit Phagura, Godwin-Iwatan Kehinde (Kenny), and Todor Tomic have authorized the use of their professional headshots on our public company websites."
 }

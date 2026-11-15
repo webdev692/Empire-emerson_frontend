@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
 import { attributes, visibleText } from './verify-modern-public.mjs';
-import { validatePhotographyAssignments, validateLeadershipPhotography } from './leadership-photography-checks.mjs';
+import { validatePhotographyAssignments, validateLeadershipPhotography, staffPortraits } from './leadership-photography-checks.mjs';
 const root=fileURLToPath(new URL('..',import.meta.url));
 const require=createRequire(import.meta.url), sharp=require('../Agency_LandingPage/node_modules/sharp');
 const read=path=>readFileSync(resolve(root,path),'utf8');
@@ -15,11 +15,13 @@ const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 assert.equal(approval.permission,'APPROVED_BY_FOUNDER');
 assert.equal(digest(raw),approval.manifestSha256,'Media changed after approval record');
 assert.deepEqual(media.assets.map(a=>a.id),approval.assets);
-assert.equal(media.assets.length,20);assert.equal(new Set(approval.assets).size,20);
-assert.equal(media.assets.filter(a=>a.kind==='portrait').length,4);
+assert.equal(media.assets.length,23);assert.equal(new Set(approval.assets).size,23);
+assert.equal(media.assets.filter(a=>a.kind==='portrait').length,7);
+assert.equal(media.assets.flatMap(asset=>asset.files).length,146,'Reviewed unique media variant count');
+assert.equal(new Set(media.assets.flatMap(asset=>asset.files.map(file=>file.src))).size,146,'Media variant paths must be unique');
 const photography=validatePhotographyAssignments(media);
 assert.ok(!/drive\.google|googleDrive|sourceSha|permissions|@gmail|localSourcePath|C:\\/i.test(raw),'Private source metadata must remain outside public bundles');
-const roles={'lyric-helena-emerson':new Set(['lyric-helena-emerson-executive','lyric-helena-emerson-plum']),'darin-latrelle-james':new Set(['darin-latrelle-james-option-b'])};
+const roles={'lyric-helena-emerson':new Set(['lyric-helena-emerson-executive','lyric-helena-emerson-plum']),'darin-latrelle-james':new Set(['darin-latrelle-james-option-b']),...Object.fromEntries(Object.entries(staffPortraits).map(([subject,id])=>[subject,new Set([id])]))};
 let verifiedFiles=0,renderedPlacements=0;
 for(const asset of media.assets){
  assert.ok(['brand','editorial','portrait'].includes(asset.kind));
@@ -68,4 +70,6 @@ for(const [entity,site] of Object.entries(sites)){
  }
  assert.deepEqual(readdirSync(resolve(root,site.app,'public/media')).sort(),[...expectedFiles].sort(),'Unreviewed media file in public source');
 }
+assert.equal(verifiedFiles,211,'All reviewed asset copies must exist across the three public sites');
+assert.equal(renderedPlacements,31,'Release A preserves earlier placements and adds nine staff assignments');
 console.log(JSON.stringify({passed:true,assets:media.assets.length,photography,verifiedFiles,renderedPlacements,maximumVariantBytes:Math.max(...media.assets.flatMap(a=>a.files).map(f=>f.bytes))},null,2));
