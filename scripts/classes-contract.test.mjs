@@ -145,13 +145,14 @@ test("EPDG landing and classes routes retain their main landmark and skip link",
   for (const page of [landingPage, classesPage]) {
     assert.match(page, /<main id="main-content">/);
   }
-  const [shell, keyboardEntry] = await Promise.all([
+  const [shell, publicShell] = await Promise.all([
     readFile(new URL('../EPDG-Landing-Page/src/App.tsx', import.meta.url), 'utf8'),
-    readFile(new URL('../shared/PublicWebsiteAccessibility.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../shared/PublicDesignSystem.tsx', import.meta.url), 'utf8'),
   ]);
-  assert.match(shell, /<Accessibility\s*\/>[\s\S]*<Routes>/);
-  assert.match(keyboardEntry, /href="#main-content"/);
-  assert.match(keyboardEntry, /querySelector<HTMLElement>\('main'\)/);
-  assert.match(keyboardEntry, /main\.focus\(/);
+  assert.match(shell, /<PublicWebsite entity="EPDG" pages=\{publicPages\}/);
+  assert.match(publicShell, /href="#main-content"/);
+  assert.match(publicShell, /const Content = hasMain \? 'div' : 'main'/);
+  assert.match(publicShell, /id=\{hasMain \? undefined : 'main-content'\}/);
+  assert.match(publicShell, /tabIndex=\{hasMain \? undefined : -1\}/);
   assert.match(weeklyClasses, /<h1[\s\S]*?id="classes-title"/);
 });

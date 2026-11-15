@@ -24,7 +24,7 @@
 .intern-site [id] { scroll-margin-top:110px; }
 @media(max-width:700px) { .is-gateway-grid { grid-template-columns:1fr; }.is-learning-gateway { padding:44px 24px; } }
 
-.is-tee #main-content > section:first-child { padding-top:0; }
+.is-tee #main-content > section:first-child:not(.modern-hero) { padding-top:0; }
 .is-experience-links nav + nav { margin-top:20px; padding-top:16px; border-top:1px solid #c9a84c44; }
 
 .is-tee nav[aria-label="Main navigation"] img { object-fit:contain; }
