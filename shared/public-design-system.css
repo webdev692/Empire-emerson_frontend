@@ -13,3 +13,4 @@
 
 @media(max-width:640px){.modern-brand{max-width:calc(100% - 100px)}}
 .modern-breadcrumb>a,.modern-breadcrumb>span[aria-hidden]{flex-shrink:0}.modern-breadcrumb>span:last-child{min-width:0}
+.modern-path-row>span:first-child{flex:0 0 2ch;white-space:nowrap}.modern-path-row>div{min-width:0}.modern-path-row>span:last-child{flex-shrink:0}

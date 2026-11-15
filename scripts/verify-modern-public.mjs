@@ -144,6 +144,8 @@ export function validateSiteDocument(html, { entity, site, route, notFound = fal
   assert.equal(structured['@context'], 'https://schema.org');
   const graph = structured['@graph'];
   assert.ok(Array.isArray(graph), `${page}: structured graph required`);
+  const graphIds = graph.map(item => item['@id']).filter(Boolean);
+  assert.equal(new Set(graphIds).size, graphIds.length, `${page}: duplicate structured identity`);
   const person = graph.find(item => typesInclude(item, 'Person'));
   const organization = graph.find(item => typesInclude(item, 'Organization'));
   assert.equal(person?.name, founderName, `${page}: structured founder identity`);
@@ -152,6 +154,7 @@ export function validateSiteDocument(html, { entity, site, route, notFound = fal
   assert.equal(organization?.name, companyNames[entity], `${page}: distinct organization identity`);
   assert.equal(organization?.['@id'], `${site.origin}/#organization`, `${page}: organization ID must not conflate companies`);
   assert.equal(organization?.founder?.['@id'], person['@id'], `${page}: organization-founder relationship`);
+  if (organization.logo) assert.equal(organization.logo['@id'], `${site.origin}/media/#${{ TEE: 'tee-purple-emblem', TEA: 'tea-blue-emblem', EPDG: 'epdg-green-emblem' }[entity]}`, `${page}: organization logo must belong to its company`);
   if (route.path !== '/') {
     const breadcrumb = graph.find(item => typesInclude(item, 'BreadcrumbList'));
     assert.ok(breadcrumb?.itemListElement?.length >= 2, `${page}: meaningful breadcrumb graph`);

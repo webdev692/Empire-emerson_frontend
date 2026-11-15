@@ -1,0 +1,117 @@
+.tee-ecosystem .editorial-art picture {
+  justify-content: flex-start;
+  height: 130px;
+  padding: 22px 24px;
+}
+
+.tee-ecosystem .editorial-art img {
+  width: 86px;
+  height: 86px;
+  object-fit: contain;
+}
+
+.tee-ecosystem .editorial-card:nth-child(2) .editorial-art picture {
+  background: #eef2f6;
+}
+
+.tee-ecosystem .editorial-card:nth-child(3) .editorial-art picture {
+  background: #edf3ef;
+}
+
+.tee-community-anchor {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 30px 36px;
+  margin-bottom: 38px;
+  border-left: 4px solid var(--brand);
+  background: var(--mist);
+}
+
+.tee-community-anchor::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 220px;
+  height: 220px;
+  right: -35px;
+  top: -65px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  box-shadow: 0 0 0 40px var(--mist), 0 0 0 41px var(--line);
+}
+
+.tee-community-anchor .modern-kicker {
+  margin-bottom: 12px !important;
+}
+
+.tee-community-anchor h3 {
+  font-size: clamp(1.7rem, 2.7vw, 2.6rem);
+  margin-bottom: 0;
+}
+
+.tee-community-resource-header .modern-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 3px solid var(--brand);
+}
+
+.tee-community-resource-header .modern-hero::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: min(32vw, 390px);
+  aspect-ratio: 1;
+  right: -50px;
+  top: 32px;
+  border: 1px solid var(--soft);
+  border-radius: 50% 50% 0 50%;
+  box-shadow: 0 0 0 30px var(--mist), 0 0 0 31px var(--soft), 0 0 0 60px var(--mist), 0 0 0 61px var(--soft);
+  opacity: .45;
+}
+
+.tee-community-region {
+  display: inline-block;
+  padding: 10px 16px;
+  color: var(--brand);
+  background: var(--paper);
+  border: 1px solid var(--brand);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.tee-founder-summary .modern-section {
+  padding-block: 50px;
+}
+
+.tee-founder-summary .modern-founder-feature {
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: 44px;
+  max-width: 1080px;
+}
+
+.tee-founder-summary .modern-founder-feature > picture {
+  max-width: 220px;
+}
+
+.tee-founder-summary .modern-founder-feature h2 {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+}
+
+@media (max-width: 640px) {
+  .tee-community-anchor {
+    padding: 24px;
+  }
+
+  .tee-founder-summary .modern-founder-feature {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .tee-founder-summary .modern-founder-feature > picture {
+    max-width: 176px;
+  }
+}

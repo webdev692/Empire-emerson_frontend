@@ -29,7 +29,8 @@ export function validatePhotographyAssignments(media) {
     }
   }
   assert.ok(media.assets.some(asset => asset.id === jointPortrait), 'Retain the approved joint asset');
-  assert.deepEqual(media.retainedAssets, [{ assetId: jointPortrait, entities }], 'Only the approved joint asset is retained without a placement');
+  const retainedPortraits = media.retainedAssets.filter(item => media.assets.find(asset => asset.id === item.assetId)?.kind === 'portrait');
+  assert.deepEqual(retainedPortraits, [{ assetId: jointPortrait, entities }], 'Only the approved joint portrait is retained without a placement');
   assert.ok(!media.placements.some(item => item.assetId === jointPortrait), 'The joint asset must no longer have a profile placement');
   return { activePortraits: 6, retainedPortraits: 1, assignments: portraits.length };
 }

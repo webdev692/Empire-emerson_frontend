@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "revision": "2026-11-15-phase-three-leadership",
+  "revision": "2026-11-15-phase-three-editorial",
   "permission": "APPROVED_BY_FOUNDER",
-  "scope": "The 20 previously approved and retained assets plus three founder-approved staff professional portraits across the three public Emerson websites.",
+  "scope": "The 23 approved Release A assets and 14 additional reviewed company editorial illustrations across the three existing public Emerson websites.",
   "approvedStatement": "Yes, I have the rights; publish these 16",
   "portraitPolicy": "All five leaders have approved individual portraits, without visible captions and identified by full names. The joint portrait remains approved and retained for later editorial use without a current placement.",
   "sourceRecords": "Restricted source IDs, provenance, hashes, permission history and review details are retained outside the public repository.",
-  "manifestSha256": "14ef8e7c2b91759dd2390a721095efb12a4909cff6587f9a9530310e846fa4f4",
+  "manifestSha256": "51766b36a26eb99701da641c5527fd9bea2c9e1ed3529d4b9a114c88117d5e0e",
   "assets": [
     "tee-purple-emblem",
     "tee-brand-banner",
@@ -30,9 +30,31 @@
     "darin-latrelle-james-option-b",
     "shamrit-phagura-professional",
     "godwin-iwatan-kehinde-professional",
-    "todor-tomic-professional"
+    "todor-tomic-professional",
+    "tee-mutual-learning",
+    "tee-project-clarity",
+    "tee-research-systems",
+    "tee-connected-infrastructure",
+    "tee-shared-handoff",
+    "tea-organized-records",
+    "tea-questions-notebook",
+    "tea-expense-folders",
+    "tea-financial-context",
+    "tea-important-documents",
+    "epdg-learning-travels",
+    "epdg-cultural-context",
+    "epdg-shared-standards",
+    "epdg-experience-evidence"
   ],
   "portraitStatement": "the 3 portrait candidates can be posted no caption please and leadership profiles use full names",
   "photographyStatement": "Use Darin’s individual Option B portrait, crop the bottom appropriately, and replace the joint image on his company leadership profiles.",
-  "staffPortraitStatement": "I confirm that Shamrit Phagura, Godwin-Iwatan Kehinde (Kenny), and Todor Tomic have authorized the use of their professional headshots on our public company websites."
+  "staffPortraitStatement": "I confirm that Shamrit Phagura, Godwin-Iwatan Kehinde (Kenny), and Todor Tomic have authorized the use of their professional headshots on our public company websites.",
+  "editorialStatement": "I am authorizing two coordinated implementation and publication releases: Release A: Complete all five company leadership profiles with approved individual photography. Release B: Enrich the website designs with additional approved company media, improve visual storytelling, introduce varied editorial layouts, and reduce repetitive founder imagery and content.",
+  "editorialPolicy": "Conceptual editorial illustrations are identified as illustrations. Reviewed crops exclude unsuitable mock records. Source provenance remains in the restricted register; no documentary facility, participant or event claim is made.",
+  "reviewedCounts": {
+    "assets": 37,
+    "uniqueVariants": 268,
+    "deployedCopies": 341,
+    "placements": 100
+  }
 }

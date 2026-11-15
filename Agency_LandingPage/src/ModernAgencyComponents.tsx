@@ -1,22 +1,20 @@
 import { useState } from 'react';
 import { InquiryPanel } from '../../shared/PublicDesignSystem';
+import { ImageCard, ImageCardGrid } from '../../shared/EditorialDesign';
+import { mediaAsset } from '../../shared/public-media';
 import catalog from '../../shared/services-catalog.public.json';
 import { contactMailboxes } from '../../shared/public-intake';
 const pricingGuide = '/guides/The_Emerson_Agency_Customer_Service_and_Pricing_Guide.pdf';
 const inquiryHref = `mailto:${contactMailboxes.sales}?subject=The%20Emerson%20Agency%20service%20inquiry&body=I%20would%20like%20information%20about%3A%20%0A%0AMy%20general%20goal%3A%20%0A%0APlease%20do%20not%20include%20tax%20returns%2C%20account%20numbers%2C%20identity%20documents%20or%20other%20sensitive%20records.`;
 const serviceFamilies = [
-  { number: '01', title: 'Tax preparation', path: '/tax-preparation', text: 'Document readiness, tax preparation inquiries, and clear next steps for individuals and small businesses.' },
-  { number: '02', title: 'Insurance education', path: '/insurance', text: 'Understand policy language, organize questions, and learn what to verify before choosing professional insurance services.' },
-  { number: '03', title: 'Financial coaching', path: '/financial-coaching', text: 'Make space for practical conversations about household organization, financial habits, credit, and debt.' },
-  { number: '04', title: 'Small business services', path: '/small-business', text: 'Bring structure to business records, financial administration, and the next steps of entrepreneurship.' },
+  { number: '01', assetId: 'tea-organized-records', title: 'Tax preparation', path: '/tax-preparation', text: 'Document readiness, tax preparation inquiries, and clear next steps for individuals and small businesses.' },
+  { number: '02', assetId: 'tea-important-documents', title: 'Insurance education', path: '/insurance', text: 'Understand policy language, organize questions, and learn what to verify before choosing professional insurance services.' },
+  { number: '03', assetId: 'tea-questions-notebook', title: 'Financial coaching', path: '/financial-coaching', text: 'Make space for practical conversations about household organization, financial habits, credit, and debt.' },
+  { number: '04', assetId: 'tea-expense-folders', title: 'Small business services', path: '/small-business', text: 'Bring structure to business records, financial administration, and the next steps of entrepreneurship.' },
 ];
 
 export function ServicesOverview() {
-  return <div className="agency-service-list">{serviceFamilies.map(service => <article key={service.path}>
-    <span className="agency-number" aria-hidden="true">{service.number}</span>
-    <div><h3><a href={service.path}>{service.title}</a></h3><p>{service.text}</p></div>
-    <a className="agency-service-arrow" href={service.path} aria-label={`Explore ${service.title}`}>↗</a>
-  </article>)}</div>;
+  return <ImageCardGrid columns={4}>{serviceFamilies.map(service => <ImageCard key={service.path} asset={mediaAsset(service.assetId)} title={service.title} href={service.path} label="Explore service" kicker={service.number}><p>{service.text}</p></ImageCard>)}</ImageCardGrid>;
 }
 
 export function ServiceEstimates({ ids }: { ids: string[] }) {

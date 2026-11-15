@@ -61,6 +61,12 @@ test('each organization retains a separate structured identity', () => {
   const conflated = clone(graph); conflated['@graph'][1]['@id'] = 'https://theemerson.netlify.app/#organization';
   assert.throws(() => validateSiteDocument(fixture.replace(JSON.stringify(graph), JSON.stringify(conflated)), context), /conflate companies/);
 });
+test('reused ecosystem artwork cannot duplicate graph identities or replace the company logo', () => {
+  const duplicate = clone(graph); duplicate['@graph'].push(duplicate['@graph'][1]);
+  assert.throws(() => validateSiteDocument(fixture.replace(JSON.stringify(graph), JSON.stringify(duplicate)), context), /duplicate structured identity/);
+  const wrongLogo = clone(graph); wrongLogo['@graph'][1].logo = { '@id': context.site.origin + '/media/#epdg-green-emblem' };
+  assert.throws(() => validateSiteDocument(fixture.replace(JSON.stringify(graph), JSON.stringify(wrongLogo)), context), /logo must belong/);
+});
 
 test('canonical aliases redirect permanently while unknown routes retain HTTP 404 behavior', () => {
   const manifest = { routes: [{ path: '/' }, { path: '/privacy' }], aliases: { '/privacy-policy': '/privacy' } };
