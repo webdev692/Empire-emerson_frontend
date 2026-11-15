@@ -26,3 +26,7 @@ The public asset registry is `shared/public-media.json`; its reviewed checksum, 
 Every commit, PR title and merge message uses `[skip netlify]`. Explicit Git builds are pinned to the reviewed commit and only the three existing public site IDs. Required CI must pass before merging and production publication. The separate `epdg` portal remains locked at its previous deployment; authentication, users, databases, backend, CRM, Creative Studio data, service configuration and privileges are outside this release. No new sites, plans, credits or subscriptions are purchased.
 
 For a regression, create a reviewed fix-forward source change, run the affected checks, and rebuild only the affected public projects at the reviewed SHA. Preserve the portal lock, contributor history, original media, and prior release evidence. Do not restore a previous Netlify deploy through a provider rollback action.
+
+## Verified production result
+
+PR [#50](https://github.com/webdev692/Empire-emerson_frontend/pull/50) merged as `3c44304c18c7565aa681a653f8a41e3e19293d05` after all seven required GitHub jobs passed. All 15 clean-head local check groups passed, including 90 regression tests. The three public production sites now use that merge; post-release verification passed all 227 pages, 51 redirects and 145 deployed image files. Full deployment IDs, timestamps, browser evidence, limitations and recovery instructions are recorded in `OVERNIGHT_FULL_STACK_RELEASE.md` under verified phase-two publication. The separate EPDG portal remains locked on its prior deployment.

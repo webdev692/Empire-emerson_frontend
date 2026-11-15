@@ -876,3 +876,25 @@ Phase two continues from merged PR #49/main `6f9aa03da8b3cb3f6c4f8dd608bf60bd9ce
 The release adds 18 leadership routes while retaining all 209 existing routes, 49 manuscripts and 10 conference records. Media use responsive local derivatives with dimension, checksum, permission, metadata and compiled-placement checks. Final commit CI, browser checks, targeted Netlify deployment IDs and production verification will be recorded after completion. Until then, this section is an implementation record, not a publication receipt.
 
 Use `[skip netlify]` throughout PR and merge history. Build only the three public projects at the reviewed SHA. Keep the separate EPDG portal locked and unchanged; do not touch backend, auth, private application data or privileges. Recovery is a reviewed fix-forward source change and targeted rebuild, preserving prior release receipts.
+
+### Verified phase-two publication — November 14 Eastern / November 15 UTC
+
+Implementation PR [#50](https://github.com/webdev692/Empire-emerson_frontend/pull/50) merged as `3c44304c18c7565aa681a653f8a41e3e19293d05`. Its tree exactly matches reviewed head `2087c599f92afe474b0868b1a829d8d216063a87`. All seven required jobs passed in [application/Edge run 43661535044](https://github.com/webdev692/Empire-emerson_frontend/actions/runs/43661535044) and [public-release run 43661535056](https://github.com/webdev692/Empire-emerson_frontend/actions/runs/43661535056). The clean-head local run passed all 15 groups, including 90 regression tests, at 01:08:57.837 UTC. Hosted exact-head previews passed before merge.
+
+All three production deployments are ready and independently confirmed as each project's current deployment, built from the same reviewed merge with a clean source tree:
+
+| Public project | Live URL | Deployment ID | Published UTC, November 15 |
+| --- | --- | --- | --- |
+| theemerson | https://theemerson.netlify.app/ | `6af90cf8672754ccf8d22929` | 01:38:27.556 |
+| emersonagency | https://emersonagency.netlify.app/ | `6af90cf8b2a47fe44de02160` | 01:38:26.311 |
+| emersonprofessionaldevelopment | https://emersonprofessionaldevelopment.netlify.app/ | `6af90cf9fffe0faf3de00f8e` | 01:38:33.853 |
+
+Production HTTP verification at 01:39:26.592 UTC passed all 227 pages, 51 redirects and 145 deployed image files against the approved byte hashes. Checks include metadata/schema, every leadership route, intrinsic image dimensions, sitemaps/robots, true 404s and exact-commit release manifests. There are 124 unique image variants; shared portraits account for copies deployed to more than one site. All 209 original routes, 49 manuscripts and 10 conference records are retained.
+
+Chrome review covered desktop 1440 px, tablet 768 px, mobile 390 px and narrow mobile 320 px samples. The live Agency founder portrait and TEE joint portrait loaded correctly without visible captions; EPDG's live directory displayed all five full names. The mobile menu and Escape behavior passed. Targeted axe checks found no violations; its color-contrast result was incomplete, supplemented by computed new-text contrast samples (minimum 6.49:1) and visual review. This is not full WCAG conformance or screen-reader certification. One unthrottled Agency preview desktop sample recorded LCP 588 ms and CLS 0; this is not field Core Web Vitals, a controlled cross-site comparison or real-user INP.
+
+The source audit reviewed 152 originals and selected 19 approved source images. The remaining 133 comprise 31 identical-byte copies, one additional pixel duplicate, 14 alternate exports, 15 deferred editorial/brand variants, 69 unsuitable facility/internal/promotional/screenshot images, and three other unapproved likenesses. The three selected portraits were approved without visible captions by the founder's latest instruction. No portrait permission remains pending for those three selected assets. Individual headshots remain unavailable for Shamrit Phagura, Godwin-Iwatan Kehinde (Kenny), and Todor Tomic; Darin uses the approved joint portrait and could later supply a standalone headshot. No unsupplied professional links or qualifications were invented.
+
+After publication the separate `epdg` portal still used deployment `6af0ddc0208d400c348cdccd` with team SSO on all deploys. No portal source or publication, backend, authentication, account, database, CRM, Creative Studio data, access-control, subscription or project change was made. Previous dependency and physical-device/browser/screen-reader limitations remain as recorded for phase one.
+
+Evidence is retained outside the repository in `build-evidence/website-phase-two-20261114/`: `provider-release.json`, `check-2087c59/`, `hosted-preview.json`, `hosted-production.json`, `browser-preview-2087c59.json`, `browser-production.json`, production screenshots, the restricted media manifest and `FINAL-RELEASE-REPORT.md`. This receipt update is documentation only. Keep `[skip netlify]` on its commit and merge; the deployed source stays at the implementation merge above. Apply the same reviewed fix-forward and three-project-only release boundary for later corrections.
