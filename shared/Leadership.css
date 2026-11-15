@@ -1,0 +1,52 @@
+.leadership-feature{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,90px);align-items:center}
+.leadership-feature-copy>p:not(.modern-kicker):not(.leadership-role):not(.leadership-location){max-width:62ch}
+.leadership-monogram{aspect-ratio:4/4.6;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;min-width:0}
+.leadership-monogram:before{content:'';position:absolute;inset:24px;border:1px solid var(--soft);opacity:.55;border-radius:50% 50% 0 0}
+.leadership-monogram>span:first-child{font-family:Georgia,'Times New Roman',serif;font-size:clamp(4rem,7vw,7.3rem);line-height:1;letter-spacing:-.06em;position:relative;padding-right:.06em}
+.leadership-monogram-line{width:46px;height:1px;background:var(--soft);margin-top:27px}
+.leadership-portrait{margin:0;background:var(--mist);border-bottom:5px solid var(--brand);width:100%;align-self:start}
+.leadership-portrait img{width:100%;height:auto}
+.modern-site .leadership-role{font-size:1rem;font-weight:700;color:var(--brand);line-height:1.5;margin-bottom:1.1rem;max-width:46ch}
+.modern-site .leadership-location{font-size:.82rem;color:var(--muted);margin-bottom:1.5rem}
+.leadership-partner{display:grid;grid-template-columns:minmax(0,.58fr) minmax(0,1.42fr);gap:clamp(32px,6vw,90px);align-items:center}
+.leadership-partner .leadership-monogram{aspect-ratio:1;background:var(--brand)}
+.leadership-partner .leadership-monogram>span:first-child{font-size:clamp(3.5rem,6vw,5.5rem)}
+.leadership-partner>div:last-child>p:not(.modern-kicker):not(.leadership-role){max-width:65ch}
+.leadership-departments{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.leadership-department{display:flex;flex-direction:column;align-items:start;min-width:0;padding-bottom:12px}
+.leadership-department .leadership-monogram{width:100%;aspect-ratio:1.65;margin-bottom:28px;background:var(--mist);color:var(--brand);border-top:2px solid var(--brand)}
+.leadership-department .leadership-monogram:before{inset:18px;border-color:var(--brand);opacity:.25}
+.leadership-department .leadership-monogram>span:first-child{font-size:3.4rem}
+.leadership-department .leadership-monogram-line{margin-top:14px;background:var(--brand)}
+.modern-site .leadership-department-label{color:var(--muted);font-size:.72rem;line-height:1.5;letter-spacing:.04em;margin-bottom:15px}
+.modern-site .leadership-department h3{font-size:1.8rem;line-height:1.17;max-width:19ch}
+.modern-site .leadership-department .leadership-role{font-size:.88rem;min-height:4.5em}
+.leadership-card-summary{font-size:.92rem;flex-grow:1}
+.leadership-department>.modern-inline-link{margin-top:10px}
+.leadership-context{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,90px)}
+.leadership-profile-header{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:clamp(36px,6vw,90px);align-items:center}
+.modern-site .leadership-profile-header h1{font-size:clamp(2.6rem,4.8vw,4.7rem);max-width:17ch}
+.leadership-profile-header .leadership-monogram{aspect-ratio:4/4.6}
+.leadership-profile-header .modern-lead{margin-block:24px}
+.leadership-detail-body{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr);gap:clamp(32px,6vw,90px);align-items:start}
+.leadership-company-note{border-top:2px solid var(--brand);padding-top:25px}
+.leadership-company-note>p:not(.modern-kicker){font-size:.88rem;color:var(--muted)}
+.leadership-company-note ul{list-style:none;padding:0;font-size:.88rem}
+.leadership-company-note li{padding-block:9px;border-top:1px solid var(--line)}
+.leadership-scope{border-left:3px solid var(--brand);padding:4px 0 4px 24px;margin-top:36px}
+.modern-site .leadership-scope h3{margin-top:0;font-size:1.6rem}
+.leadership-scope p{font-size:.92rem}
+.modern-site .leadership-responsibilities{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;column-gap:56px}
+.leadership-responsibilities li{display:flex;gap:20px;align-items:baseline;border-top:1px solid var(--line);padding-block:23px;margin:0}
+.leadership-responsibility-index{font-size:.75rem;letter-spacing:.05em;color:var(--brand);flex-shrink:0}
+.leadership-link-list{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:.88rem}
+.modern-site .leadership-public-links{list-style:none;padding:0;max-width:760px}
+.leadership-public-links li{border-top:1px solid var(--line);padding-block:20px}
+.leadership-public-links a{display:flex;justify-content:space-between;gap:24px;font-weight:600}
+.leadership-company-links{display:flex;flex-direction:column;margin-top:25px}
+.leadership-company-links a{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-block:17px;text-decoration:none;font-size:.92rem}
+.leadership-company-links a:hover{text-decoration:underline}
+.leadership-current{font-size:.69rem;line-height:1.4;color:var(--muted);flex-shrink:0}
+@media(max-width:900px){.leadership-departments{gap:24px}.modern-site .leadership-department h3{font-size:1.55rem}.leadership-feature,.leadership-partner{gap:36px}.leadership-profile-header{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr)}.leadership-company-links a{flex-wrap:wrap;gap:4px}}
+@media(max-width:680px){.leadership-feature,.leadership-partner,.leadership-departments,.leadership-context,.leadership-profile-header,.leadership-detail-body,.modern-site .leadership-responsibilities{grid-template-columns:1fr}.leadership-feature>.leadership-monogram,.leadership-feature>.leadership-portrait{max-width:440px}.leadership-partner>.leadership-monogram{max-width:320px;aspect-ratio:1.35}.leadership-profile-header>.leadership-monogram{max-width:380px;aspect-ratio:1.4}.leadership-profile-header>.leadership-portrait{max-width:380px}.leadership-profile-header .leadership-monogram>span:first-child{font-size:4.6rem}.leadership-departments{gap:48px}.leadership-department .leadership-monogram{aspect-ratio:2.1}.modern-site .leadership-department h3{font-size:2rem;max-width:none}.modern-site .leadership-department .leadership-role{min-height:0}.leadership-department .leadership-card-summary{max-width:65ch}.leadership-company-links a{flex-wrap:nowrap}.leadership-company-note{max-width:38rem}.leadership-profile-header{gap:32px}.leadership-feature .leadership-monogram>span:first-child{font-size:5.5rem}}
+@media(max-width:380px){.leadership-company-links a{flex-wrap:wrap}.modern-site .leadership-profile-header h1{font-size:2.35rem}}

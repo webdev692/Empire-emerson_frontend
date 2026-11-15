@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "revision": "2026-11-14-phase-two",
+  "permission": "APPROVED_BY_FOUNDER",
+  "scope": "The reviewed 16 emblems/editorial illustrations plus three portraits approved by the founder’s latest instruction, across the three public Emerson websites.",
+  "approvedStatement": "Yes, I have the rights; publish these 16",
+  "portraitPolicy": "The three reviewed portrait candidates are approved without visible captions. Full names identify every leadership profile. The joint portrait retains both subjects and does not serve as a cropped standalone headshot.",
+  "sourceRecords": "Restricted source IDs, provenance, hashes, permission history and review details are retained outside the public repository.",
+  "manifestSha256": "6ef012d40fa4cf0ceb30e842b33fca2134fb2975248ea1cc99f2c2c5a024a646",
+  "assets": [
+    "tee-purple-emblem",
+    "tee-brand-banner",
+    "tea-financial-literacy-context",
+    "tea-financial-systems",
+    "tea-insurance-education",
+    "tea-education-first",
+    "tea-blue-emblem",
+    "epdg-education-without-borders",
+    "epdg-green-emblem",
+    "epdg-documentation-skill",
+    "epdg-professional-growth",
+    "epdg-classroom-study",
+    "epdg-applied-project",
+    "epdg-revision-feedback",
+    "epdg-public-evidence",
+    "epdg-clear-expectations",
+    "lyric-helena-emerson-executive",
+    "lyric-helena-emerson-plum",
+    "lyric-helena-emerson-darin-latrelle-james"
+  ],
+  "portraitStatement": "the 3 portrait candidates can be posted no caption please and leadership profiles use full names"
+}
