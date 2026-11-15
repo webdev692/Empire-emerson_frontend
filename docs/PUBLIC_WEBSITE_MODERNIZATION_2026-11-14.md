@@ -39,3 +39,7 @@ Google Search Console tools were available but no existing connected property wa
 Use pinned Node 22.23.1/npm 11.17.0, deterministic installs, then `npm run check:public`. This includes existing privacy/approval regressions, new semantic and mutation tests, shared/application lint, TypeScript builds, targeted smoke, static-page/navigation/structured-data checks and artifact hashing/privacy scans. Browser review covers desktop, tablet, mobile, menus, filtering and direct reloads. Current-head evidence and deployment receipts are recorded separately; earlier working-tree checks are not final release receipts.
 
 A failed candidate must not replace a working publication. A published defect requires a reviewed fix-forward commit and targeted rebuild of the affected public projects. Preserve all earlier receipts and the portal lock/SSO boundary.
+
+## Publication result
+
+PR #48 is merged and all three existing public projects are published from merge `bce7ad2aacacc248a8c9ed5cf48ba82e685d492b`, whose tree matches checked head `99c7504c16d28e99469d9330c7a4b08fd8d19c28`. All seven GitHub jobs, thirteen local verification groups, 209 live pages and 39 redirects passed. See the November 14 release section in `OVERNIGHT_FULL_STACK_RELEASE.md` for exact deployment identifiers, UTC publication timestamps, browser coverage, residual limitations and the unchanged portal lock/SSO receipt.
