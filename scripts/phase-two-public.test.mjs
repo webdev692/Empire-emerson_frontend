@@ -7,6 +7,7 @@ import { resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { leadershipProfiles } from '../shared/LeadershipData.ts';
 import { approvedLeadership, leadershipPaths, validateLeadershipProfiles, verifyPreservedSources, validateRouteExpansion, validateImageMarkup, validateLeadershipDocument } from './verify-phase-two-public.mjs';
+import { validatePhotographyAssignments, validateLeadershipPhotography, soloPortrait, jointPortrait } from './leadership-photography-checks.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const baseline = JSON.parse(readFileSync(resolve(root, 'docs/PUBLIC_WEBSITE_PHASE_TWO_BASELINE.json'), 'utf8'));
@@ -116,4 +117,32 @@ test('responsive image markup reserves layout space and excludes private Drive s
   const image = '<img src="/media/research-640.webp" srcset="/media/research-640.webp 640w, /media/research-1280.webp 1280w" sizes="(max-width: 680px) 100vw, 50vw" alt="Books and research notes" width="1280" height="800" loading="lazy">';
   assert.equal(validateImageMarkup(image), 1);
   for (const changed of [image.replace('width="1280"', 'width="0"'), image.replace('height="800"', ''), image.replace(' sizes="(max-width: 680px) 100vw, 50vw"', ''), image.replace('src="/media/research-640.webp"', 'src="https://drive.google.com/file/d/private"'), image.replace('640w', '0w'), image.replace('loading="lazy"', 'loading="lazy" fetchpriority="high"')]) assert.throws(() => validateImageMarkup(changed));
+});
+
+test('photography approval requires the solo partner portrait and retains the joint asset without placement', () => {
+  const media = JSON.parse(readFileSync(resolve(root, 'shared/public-media.json'), 'utf8'));
+  assert.deepEqual(validatePhotographyAssignments(media), { activePortraits: 3, retainedPortraits: 1, assignments: 6 });
+  for (const mutate of [
+    data => { data.placements.find(item => item.subject === 'darin-latrelle-james').assetId = jointPortrait; },
+    data => { data.assets = data.assets.filter(item => item.id !== jointPortrait); },
+    data => { data.retainedAssets = []; },
+    data => { data.placements.push({ entity: 'TEE', role: 'portrait', subject: 'todor-tomic', path: '/leadership/todor-tomic', assetId: soloPortrait }); },
+    data => { data.placements = data.placements.filter(item => !(item.entity === 'TEA' && item.subject === 'darin-latrelle-james')); },
+  ]) { const changed = clone(media); mutate(changed); assert.throws(() => validatePhotographyAssignments(changed)); }
+});
+
+test('rendered photography checks catch a substituted image and preserve staff initials', () => {
+  const media = JSON.parse(readFileSync(resolve(root, 'shared/public-media.json'), 'utf8'));
+  const solo = media.assets.find(item => item.id === soloPortrait);
+  const joint = media.assets.find(item => item.id === jointPortrait);
+  const context = { entity: 'TEE', path: '/leadership/darin-latrelle-james', media };
+  const image = `<section class="modern-hero leadership-profile-hero"><picture><source srcset="${solo.files[0].src} 480w"><img src="${solo.files[0].src}" alt="${solo.alt}"></picture></section>`;
+  validateLeadershipPhotography(image, context);
+  assert.throws(() => validateLeadershipPhotography(image.replace(solo.files[0].src, joint.files[0].src), context), /Retained joint/);
+  assert.throws(() => validateLeadershipPhotography(image.replace(solo.alt, 'Someone else'), context), /incorrectly identified/);
+  assert.throws(() => validateLeadershipPhotography(image.replace(`srcset="${solo.files[0].src}`, 'srcset="/media/another-person.webp'), context), /Responsive source/);
+  const staff = { ...context, path: '/leadership/shamrit-phagura' };
+  const placeholder = `<section class="modern-hero leadership-profile-hero">${monogram(leadershipProfiles[2])}</section>`;
+  validateLeadershipPhotography(placeholder, staff);
+  assert.throws(() => validateLeadershipPhotography(placeholder.replace('</section>', `<img src="${solo.files[0].src}"></section>`), staff), /must not be published/);
 });

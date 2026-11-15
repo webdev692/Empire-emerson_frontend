@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "revision": "2026-11-14-phase-two",
+  "revision": "2026-11-14-leadership-photography",
   "permission": "APPROVED_BY_FOUNDER",
-  "scope": "The reviewed 16 emblems/editorial illustrations plus three portraits approved by the founder’s latest instruction, across the three public Emerson websites.",
+  "scope": "The 19 previously approved assets plus the founder-selected Darin Option B derivative across the three public Emerson websites. The approved joint asset is retained without a rendered placement.",
   "approvedStatement": "Yes, I have the rights; publish these 16",
-  "portraitPolicy": "The three reviewed portrait candidates are approved without visible captions. Full names identify every leadership profile. The joint portrait retains both subjects and does not serve as a cropped standalone headshot.",
+  "portraitPolicy": "Founder portraits and Darin’s approved solo portrait render without visible captions. Full names identify the profiles. The joint portrait and its existing files remain approved and retained for later editorial use, with no current placement. Other staff retain initials until individual publication permission is verified.",
   "sourceRecords": "Restricted source IDs, provenance, hashes, permission history and review details are retained outside the public repository.",
-  "manifestSha256": "6ef012d40fa4cf0ceb30e842b33fca2134fb2975248ea1cc99f2c2c5a024a646",
+  "manifestSha256": "adc78b3dda244381cae2bdbe69225fcf8202a6ad15b0a2538b2e7dd62799139a",
   "assets": [
     "tee-purple-emblem",
     "tee-brand-banner",
@@ -26,7 +26,9 @@
     "epdg-clear-expectations",
     "lyric-helena-emerson-executive",
     "lyric-helena-emerson-plum",
-    "lyric-helena-emerson-darin-latrelle-james"
+    "lyric-helena-emerson-darin-latrelle-james",
+    "darin-latrelle-james-option-b"
   ],
-  "portraitStatement": "the 3 portrait candidates can be posted no caption please and leadership profiles use full names"
+  "portraitStatement": "the 3 portrait candidates can be posted no caption please and leadership profiles use full names",
+  "photographyStatement": "Use Darin’s individual Option B portrait, crop the bottom appropriately, and replace the joint image on his company leadership profiles."
 }

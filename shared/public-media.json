@@ -1,5 +1,5 @@
 {
-  "revision": "2026-11-14-phase-two",
+  "revision": "2026-11-14-leadership-photography",
   "assets": [
     {
       "id": "tee-purple-emblem",
@@ -1201,6 +1201,73 @@
           "sha256": "c685b1a3befee918bf25c82589db07a574b5461e2d4433ecf7e2729115e06af6"
         }
       ]
+    },
+    {
+      "id": "darin-latrelle-james-option-b",
+      "title": "Darin Latrelle James",
+      "alt": "Portrait of Darin Latrelle James, Managing Partner.",
+      "caption": "",
+      "kind": "portrait",
+      "width": 1200,
+      "height": 1500,
+      "files": [
+        {
+          "src": "/media/darin-latrelle-james-option-b-480.webp",
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "bytes": 15338,
+          "sha256": "a0377ef45d101e79c444cdce1f04dce6b0d8535fe6ebdc6c221220d2f07102a3"
+        },
+        {
+          "src": "/media/darin-latrelle-james-option-b-480.avif",
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "bytes": 10062,
+          "sha256": "602f761c38eeca39db81ec21aa9c795c0d9da89348c031f1c64fd068bae52df7"
+        },
+        {
+          "src": "/media/darin-latrelle-james-option-b-800.webp",
+          "width": 800,
+          "height": 1000,
+          "format": "webp",
+          "bytes": 30856,
+          "sha256": "4031ee1c70007d80243ea4c7e557e839e29cd6705953f21abcbddf8e0e446442"
+        },
+        {
+          "src": "/media/darin-latrelle-james-option-b-800.avif",
+          "width": 800,
+          "height": 1000,
+          "format": "avif",
+          "bytes": 20516,
+          "sha256": "b2577ecd18d8b30945f817dc805d5c3442082e79f42238cc476aff9f4b6468ae"
+        },
+        {
+          "src": "/media/darin-latrelle-james-option-b-800.jpg",
+          "width": 800,
+          "height": 1000,
+          "format": "jpeg",
+          "bytes": 50409,
+          "sha256": "e91e8ad0815e747e04db6fb97e14e6a57bb0759007dd3f7238a05093db952804"
+        },
+        {
+          "src": "/media/darin-latrelle-james-option-b-1200.webp",
+          "width": 1200,
+          "height": 1500,
+          "format": "webp",
+          "bytes": 53702,
+          "sha256": "bdeb5369bf32c6623397e69ade31c04e3dbcd5a3ead2e4422944d12266956d9e"
+        },
+        {
+          "src": "/media/darin-latrelle-james-option-b-1200.avif",
+          "width": 1200,
+          "height": 1500,
+          "format": "avif",
+          "bytes": 36965,
+          "sha256": "d7566ba10b7a269c6f7a26de4842d40fe850b435f23955dd17fe7fde7e127281"
+        }
+      ]
     }
   ],
   "placements": [
@@ -1310,7 +1377,7 @@
     {
       "entity": "TEE",
       "path": "/leadership/darin-latrelle-james",
-      "assetId": "lyric-helena-emerson-darin-latrelle-james",
+      "assetId": "darin-latrelle-james-option-b",
       "role": "portrait",
       "subject": "darin-latrelle-james"
     },
@@ -1324,7 +1391,7 @@
     {
       "entity": "TEA",
       "path": "/leadership/darin-latrelle-james",
-      "assetId": "lyric-helena-emerson-darin-latrelle-james",
+      "assetId": "darin-latrelle-james-option-b",
       "role": "portrait",
       "subject": "darin-latrelle-james"
     },
@@ -1338,9 +1405,19 @@
     {
       "entity": "EPDG",
       "path": "/leadership/darin-latrelle-james",
-      "assetId": "lyric-helena-emerson-darin-latrelle-james",
+      "assetId": "darin-latrelle-james-option-b",
       "role": "portrait",
       "subject": "darin-latrelle-james"
+    }
+  ],
+  "retainedAssets": [
+    {
+      "assetId": "lyric-helena-emerson-darin-latrelle-james",
+      "entities": [
+        "TEE",
+        "TEA",
+        "EPDG"
+      ]
     }
   ]
 }
