@@ -1,5 +1,5 @@
 /* One public design system; brand colors vary by organization. */
-.modern-topbar :focus-visible{outline-color:var(--soft)}
+.modern-site .modern-topbar :focus-visible{outline-color:var(--soft)}
 .modern-site{--ink:#1b1030;--brand:#35165c;--accent:#61359b;--soft:#b49adb;--mist:#f5f0fb;--paper:#fffdf8;--text:#29252c;--muted:#605b65;--line:#d9d2de;color:var(--text);background:var(--paper);font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:1.7;min-height:100vh;isolation:isolate}
 .modern-tea{--ink:#0b1f3a;--brand:#164573;--accent:#3579b5;--soft:#a5c9e8;--mist:#f0f6fb;--line:#ccd8e2}
 .modern-epdg{--ink:#0c2a21;--brand:#15523d;--accent:#30835f;--soft:#a4d2b8;--mist:#f0f8f2;--line:#c9dcd0}
