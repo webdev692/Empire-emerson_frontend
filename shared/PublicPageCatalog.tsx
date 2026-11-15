@@ -7,6 +7,8 @@ import { PlatformInformationPage } from './PlatformEntryPages';
 import ProjectStudio from './ProjectStudio';
 import ThreePrograms from './ThreePrograms';
 import catalog from './catalog.public.json';
+import { createLeadershipPages } from './LeadershipPages';
+import { portraitMedia } from './public-media';
 
 /** Retains approved resource and learning records while replacing their surrounding presentation. */
 export function createPublicPages(entity: PublicEntity, modernPages: PublicPage[], resourceSupplement?: ReactNode): PublicPage[] {
@@ -36,5 +38,10 @@ export function createPublicPages(entity: PublicEntity, modernPages: PublicPage[
   }
   const merged = new Map(pages.map(page => [page.path, page]));
   for (const page of modernPages) merged.set(page.path, page);
+  for (const page of createLeadershipPages(entity, { portraits: { 'lyric-helena-emerson': portraitMedia(entity, 'lyric-helena-emerson'), 'darin-latrelle-james': portraitMedia(entity, 'darin-latrelle-james') } })) merged.set(page.path, page);
+  for (const path of ['/about', '/founder']) {
+    const page = merged.get(path);
+    if (page) merged.set(path, { ...page, content: <>{page.content}<Section eyebrow="Company leadership" title="The people behind the work."><div className="modern-prose"><p>Meet the founder, managing partner and departmental leaders who coordinate the Emerson organizations.</p><a className="modern-button-secondary" href="/leadership">Meet our leadership</a></div></Section></> });
+  }
   return [...merged.values()];
 }
