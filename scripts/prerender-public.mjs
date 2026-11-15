@@ -27,14 +27,19 @@ function structured(route) {
     { '@type': 'WebPage', '@id': url + '#webpage', url, name: route.title, description: route.description, isPartOf: { '@id': `${site.origin}/#website` } },
     { '@type': 'WebSite', '@id': `${site.origin}/#website`, url: site.origin + '/', name: names[entity], publisher: { '@id': `${site.origin}/#organization` } },
   ];
-  const mediaPlacements = publicMedia.placements.filter(item => item.entity === entity && (item.role === 'brand' || item.path === route.path));
+  const mediaPlacements = publicMedia.placements.filter(item => item.entity === entity && (item.path === '*' || item.path === route.path));
+  const imageIds = new Set();
   for (const placement of mediaPlacements) {
     const asset = publicMedia.assets.find(item => item.id === placement.assetId);
     const file = asset.files.filter(item => item.format === 'webp').at(-1);
     const imageId = `${site.origin}/media/#${asset.id}`;
-    graph.push({ '@type': 'ImageObject', '@id': imageId, contentUrl: site.origin + file.src, width: file.width, height: file.height, name: asset.title, description: asset.alt });
-    if (placement.role === 'brand') graph[0].logo = { '@id': imageId };
-    else graph.find(node => node['@type'] === 'WebPage').primaryImageOfPage = { '@id': imageId };
+    if (!imageIds.has(imageId)) graph.push({ '@type': 'ImageObject', '@id': imageId, contentUrl: site.origin + file.src, width: file.width, height: file.height, name: asset.title, description: asset.alt });
+    imageIds.add(imageId);
+    if (placement.role === 'brand' && placement.path === '*') graph[0].logo = { '@id': imageId };
+    else if (placement.role !== 'brand') {
+      const page = graph.find(node => node['@type'] === 'WebPage');
+      if (!page.primaryImageOfPage || placement.presentation === 'banner') page.primaryImageOfPage = { '@id': imageId };
+    }
   }
   if (route.path !== '/') graph.push({ '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: site.origin + '/' }, { '@type': 'ListItem', position: 2, name: route.title, item: url }] });
   const leader = leadershipData?.find(person => route.path === `/leadership/${person.slug}`);
