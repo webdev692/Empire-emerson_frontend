@@ -50,6 +50,39 @@
   margin-bottom: 0;
 }
 
+.tee-community-resource-header .modern-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 3px solid var(--brand);
+}
+
+.tee-community-resource-header .modern-hero::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: min(32vw, 390px);
+  aspect-ratio: 1;
+  right: -50px;
+  top: 32px;
+  border: 1px solid var(--soft);
+  border-radius: 50% 50% 0 50%;
+  box-shadow: 0 0 0 30px var(--mist), 0 0 0 31px var(--soft), 0 0 0 60px var(--mist), 0 0 0 61px var(--soft);
+  opacity: .45;
+}
+
+.tee-community-region {
+  display: inline-block;
+  padding: 10px 16px;
+  color: var(--brand);
+  background: var(--paper);
+  border: 1px solid var(--brand);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
 .tee-founder-summary .modern-section {
   padding-block: 50px;
 }

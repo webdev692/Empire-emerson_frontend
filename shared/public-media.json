@@ -2687,6 +2687,48 @@
     {
       "entity": "TEE",
       "path": "/programs",
+      "assetId": "tee-mutual-learning",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/programs",
+      "assetId": "epdg-green-emblem",
+      "role": "brand",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/programs",
+      "assetId": "tee-connected-infrastructure",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/programs",
+      "assetId": "tee-shared-handoff",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/programs",
+      "assetId": "tee-purple-emblem",
+      "role": "brand",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/programs",
+      "assetId": "tee-brand-banner",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/programs",
       "assetId": "tee-project-clarity",
       "role": "editorial",
       "presentation": "story"
@@ -2788,6 +2830,48 @@
       "assetId": "tee-project-clarity",
       "role": "editorial",
       "presentation": "banner"
+    },
+    {
+      "entity": "TEE",
+      "path": "/start-here",
+      "assetId": "tee-purple-emblem",
+      "role": "brand",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/start-here",
+      "assetId": "epdg-green-emblem",
+      "role": "brand",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/start-here",
+      "assetId": "tea-blue-emblem",
+      "role": "brand",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/start-here",
+      "assetId": "tee-shared-handoff",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/start-here",
+      "assetId": "tee-research-systems",
+      "role": "editorial",
+      "presentation": "card"
+    },
+    {
+      "entity": "TEE",
+      "path": "/start-here",
+      "assetId": "tee-connected-infrastructure",
+      "role": "editorial",
+      "presentation": "card"
     },
     {
       "entity": "TEE",

@@ -6,7 +6,7 @@
   "approvedStatement": "Yes, I have the rights; publish these 16",
   "portraitPolicy": "All five leaders have approved individual portraits, without visible captions and identified by full names. The joint portrait remains approved and retained for later editorial use without a current placement.",
   "sourceRecords": "Restricted source IDs, provenance, hashes, permission history and review details are retained outside the public repository.",
-  "manifestSha256": "c0ef4afa29fad6d4d5c0a1e8b1e86c49197262ba37766d0659a1dd5baabe6eb1",
+  "manifestSha256": "51766b36a26eb99701da641c5527fd9bea2c9e1ed3529d4b9a114c88117d5e0e",
   "assets": [
     "tee-purple-emblem",
     "tee-brand-banner",
@@ -55,6 +55,6 @@
     "assets": 37,
     "uniqueVariants": 268,
     "deployedCopies": 341,
-    "placements": 88
+    "placements": 100
   }
 }
