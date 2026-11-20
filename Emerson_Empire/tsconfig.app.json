@@ -20,7 +20,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Path aliases (TS6+: no baseUrl needed in bundler mode; paths are relative to this tsconfig) */
+    "paths": {
+      "@shared/*": ["../shared/*"]
+    }
   },
   "include": ["src"]
 }
